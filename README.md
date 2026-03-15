@@ -3,14 +3,12 @@
 <br/>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/%E2%97%86%20AI%2FML%20Knowledge%20Graph-ffffff?style=for-the-badge&labelColor=000000&color=000000">
-  <img src="https://img.shields.io/badge/%E2%97%86%20AI%2FML%20Knowledge%20Graph-000000?style=for-the-badge&labelColor=ffffff&color=ffffff" alt="AI/ML Knowledge Graph" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/badchars/ai-knowledge-graph/main/.github/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/badchars/ai-knowledge-graph/main/.github/banner-light.svg">
+  <img alt="AI/ML Knowledge Graph" src="https://raw.githubusercontent.com/badchars/ai-knowledge-graph/main/.github/banner-dark.svg" width="700">
 </picture>
 
 <br/><br/>
-
-### The open-source interactive encyclopedia of AI/ML.
-### From GPU architecture to prompt injection attacks — all in one graph.
 
 <br/>
 
