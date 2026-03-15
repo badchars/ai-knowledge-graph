@@ -28,28 +28,6 @@
 [![D3.js](https://img.shields.io/badge/d3.js-v7-f9a03c?style=flat-square&logo=d3dotjs)](https://d3js.org)
 [![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-24292e?style=flat-square&logo=github)](https://pages.github.com)
 
-<br/>
-
-```
-         ╭──────────────────────────────────────────────────────╮
-         │                                                      │
-         │     GPU ──── CUDA ──── vLLM ──── KV-Cache            │
-         │      │                  │           │                │
-         │    VRAM    Transformer ─┤     PagedAttention         │
-         │      │        │   │    │           │                 │
-         │    DGX    Attention MoE │    Continuous Batch        │
-         │             │         │                              │
-         │        Embedding ── RAG ── Prompt Injection          │
-         │             │       │          │                     │
-         │        Vector DB   LLM    Jailbreak                  │
-         │                     │         │                      │
-         │             Fine-tuning   Guardrails                 │
-         │                 │             │                      │
-         │              LoRA         AI Firewall                │
-         │                                                      │
-         ╰──────────────────────────────────────────────────────╯
-```
-
 </div>
 
 <br/>
