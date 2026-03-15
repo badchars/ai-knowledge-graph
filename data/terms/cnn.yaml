@@ -1,0 +1,189 @@
+id: cnn
+name: CNN
+fullName: Convolutional Neural Network
+category: architecture
+desc:
+  tr: |-
+    Görüntü işleme ve computer vision için özel olarak tasarlanmış derin öğrenme mimarisi. Klasik sinir ağlarının aksine CNN'ler, convolution katmanları sayesinde görüntülerdeki yerel desenleri (kenarlar, köşeler, dokular) otomatik olarak öğrenir — bu sayede elle feature engineering yapmaya gerek kalmaz.
+
+    [LeNet-5](http://yann.lecun.com/exdb/lenet/) (1998) ilk başarılı CNN mimarisidir; ardından [AlexNet](https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html) (2012) ImageNet yarışmasını kazanarak AI devrimini başlatmıştır. Günümüzde [ResNet](https://arxiv.org/abs/1512.03385), [EfficientNet](https://arxiv.org/abs/1905.11946), [Vision Transformer](https://arxiv.org/abs/2010.11929) gibi modern mimariler CNN prensiplerini geliştirerek kullanır.
+
+    CNN'ler sadece görüntü sınıflandırması değil, object detection ([YOLO](https://github.com/ultralytics/ultralytics), [Faster R-CNN](https://arxiv.org/abs/1506.01497)), semantic segmentation ve video analizi gibi birçok görsel görevde de başarılıdır. [PyTorch](https://pytorch.org) ve [TensorFlow](https://tensorflow.org) ile kolayca oluşturulabilir.
+  en: |-
+    A deep learning architecture specifically designed for image processing and computer vision. Unlike classic neural networks, CNNs use convolutional layers to automatically learn local patterns in images (edges, corners, textures) — eliminating the need for manual feature engineering.
+
+    [LeNet-5](http://yann.lecun.com/exdb/lenet/) (1998) was the first successful CNN architecture, followed by [AlexNet](https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html) (2012) which won the ImageNet competition and sparked the AI revolution. Today, modern architectures like [ResNet](https://arxiv.org/abs/1512.03385), [EfficientNet](https://arxiv.org/abs/1905.11946), and [Vision Transformer](https://arxiv.org/abs/2010.11929) build upon CNN principles.
+
+    CNNs excel not just in image classification, but also in object detection ([YOLO](https://github.com/ultralytics/ultralytics), [Faster R-CNN](https://arxiv.org/abs/1506.01497)), semantic segmentation, and video analysis. They're easily implemented with [PyTorch](https://pytorch.org) and [TensorFlow](https://tensorflow.org).
+  fr: Architecture d'apprentissage profond conçue spécifiquement pour le traitement d'images et la vision par ordinateur.
+  zh: 专为图像处理和计算机视觉设计的深度学习架构。
+  ar: معمارية تعلم عميق مصممة خصيصًا لمعالجة الصور ورؤية الحاسوب.
+  ru: Архитектура глубокого обучения, специально разработанная для обработки изображений и компьютерного зрения.
+analogy:
+  tr: "CNN, resme bakan bir dedektif gibidir: önce küçük detaylara (kenarlar, renkler) bakar, sonra bunları birleştirerek nesneleri tanır (göz, burun), en sonunda büyük resmi görür (yüz)."
+  en: "A CNN is like a detective examining a photo: first it looks at tiny details (edges, colors), then combines them to recognize objects (eyes, nose), and finally sees the big picture (face)."
+  fr: "Un CNN est comme un détective examinant une photo : il regarde d'abord les petits détails, puis les combine pour reconnaître des objets, et finalement voit l'image globale."
+  zh: CNN就像检查照片的侦探：首先查看微小细节（边缘、颜色），然后将它们组合起来识别对象（眼睛、鼻子），最后看到全貌（脸）。
+  ar: "CNN يشبه محققًا يفحص صورة: أولاً ينظر إلى التفاصيل الصغيرة (الحواف، الألوان)، ثم يجمعها للتعرف على الأشياء (العيون، الأنف)، وأخيرًا يرى الصورة الكاملة (الوجه)."
+  ru: "CNN подобен детективу, изучающему фото: сначала он смотрит на мелкие детали (края, цвета), затем объединяет их для распознавания объектов (глаза, нос), и наконец видит общую картину (лицо)."
+security:
+  - title:
+      tr: Adversarial Patch Saldırıları
+      en: Adversarial Patch Attacks
+      fr: Attaques par patch adversarial
+      zh: 对抗性补丁攻击
+      ar: هجمات الرقع العدائية
+      ru: Атаки adversarial-патчами
+    description:
+      tr: CNN'lerin convolution filtreleri özel olarak tasarlanmış görsel desenlerle kandırılabilir. Bir görüntüye küçük bir patch (örn. sticker) ekleyerek modelin sınıflandırmasını tamamen değiştirmek mümkündür — otonom araçlarda stop işaretini 'hız limiti yok' olarak algılatmak gibi. Physical-world adversarial attacks için kritik risk.
+      en: CNN convolution filters can be fooled by specially crafted visual patterns. By adding a small patch (e.g., sticker) to an image, it's possible to completely change the model's classification — such as making an autonomous vehicle perceive a stop sign as 'no speed limit'. Critical risk for physical-world adversarial attacks.
+      fr: Les filtres de convolution des CNN peuvent être trompés par des motifs visuels spécialement conçus. En ajoutant un petit patch (par ex., autocollant) à une image, il est possible de modifier complètement la classification du modèle — comme faire percevoir un panneau stop comme 'pas de limitation de vitesse' par un véhicule autonome. Risque critique pour les attaques adversariales dans le monde physique.
+      zh: CNN的卷积滤波器可以被特别设计的视觉图案欺骗。通过在图像上添加一个小补丁（如贴纸），可以完全改变模型的分类——例如让自动驾驶车辆将停车标志感知为'无速度限制'。对物理世界对抗攻击构成关键风险。
+      ar: يمكن خداع مرشحات الالتفاف في CNN بأنماط بصرية مصممة خصيصاً. بإضافة رقعة صغيرة (مثل ملصق) إلى صورة، يمكن تغيير تصنيف النموذج بالكامل — مثل جعل مركبة ذاتية القيادة تدرك إشارة التوقف على أنها 'لا حدود للسرعة'. خطر حرج لهجمات العدائية في العالم المادي.
+      ru: Свёрточные фильтры CNN могут быть обмануты специально созданными визуальными паттернами. Добавив небольшой патч (например, наклейку) к изображению, можно полностью изменить классификацию модели — например, заставить автономный автомобиль воспринимать знак «стоп» как «нет ограничения скорости». Критический риск для adversarial-атак в физическом мире.
+    severity: critical
+  - title:
+      tr: Backdoor Trigger Pattern'leri
+      en: Backdoor Trigger Patterns
+      fr: Motifs déclencheurs de backdoor
+      zh: 后门触发模式
+      ar: أنماط محفزات الأبواب الخلفية
+      ru: Паттерны триггеров бэкдоров
+    description:
+      tr: Eğitim veri setine belirli bir desen (trigger) enjekte edilerek CNN backdoor ile zehirlenebilir. Model normal görüntülerde doğru çalışır ama trigger pattern gördüğünde saldırganın istediği yanlış çıktıyı verir. Görüntülerdeki spatial pattern'ler nedeniyle CNN'ler bu saldırılara özellikle duyarlıdır.
+      en: By injecting a specific pattern (trigger) into the training dataset, CNNs can be backdoored. The model works correctly on normal images but produces attacker-desired outputs when it sees the trigger pattern. CNNs are particularly vulnerable due to their sensitivity to spatial patterns in images.
+      fr: En injectant un motif spécifique (déclencheur) dans le jeu de données d'entraînement, les CNN peuvent être piégés par un backdoor. Le modèle fonctionne correctement sur les images normales mais produit les résultats souhaités par l'attaquant quand il voit le motif déclencheur. Les CNN sont particulièrement vulnérables en raison de leur sensibilité aux motifs spatiaux dans les images.
+      zh: 通过向训练数据集注入特定模式（触发器），可以在CNN中植入后门。模型在正常图像上正确工作，但当看到触发模式时会产生攻击者期望的输出。由于CNN对图像中空间模式的敏感性，它们特别容易受到这些攻击。
+      ar: بحقن نمط محدد (محفز) في مجموعة بيانات التدريب، يمكن إضافة باب خلفي لشبكات CNN. يعمل النموذج بشكل صحيح على الصور العادية لكنه ينتج المخرجات التي يريدها المهاجم عند رؤية نمط المحفز. تكون شبكات CNN عرضة بشكل خاص بسبب حساسيتها للأنماط المكانية في الصور.
+      ru: Путём внедрения определённого паттерна (триггера) в обучающий набор данных CNN могут быть скомпрометированы бэкдором. Модель работает корректно на обычных изображениях, но выдаёт желаемый злоумышленником результат при обнаружении триггерного паттерна. CNN особенно уязвимы из-за их чувствительности к пространственным паттернам в изображениях.
+    severity: high
+  - title:
+      tr: Model Inversion ile Eğitim Verisi Çalma
+      en: Training Data Extraction via Model Inversion
+      fr: Extraction de données d'entraînement via l'inversion de modèle
+      zh: 通过模型反转提取训练数据
+      ar: استخراج بيانات التدريب عبر عكس النموذج
+      ru: Извлечение обучающих данных через инверсию модели
+    description:
+      tr: CNN'lerin aktivasyon pattern'lerini analiz ederek eğitim veri setindeki özel görüntüler geri çıkarılabilir. Özellikle yüz tanıma modellerinde, activation maximization teknikleriyle kişilerin yüzleri rekonstrükte edilebilir. Hassas eğitim verilerinin (tıbbi görüntüler, biyometrik veriler) güvenliği için ciddi tehdit.
+      en: By analyzing CNN activation patterns, specific images from the training dataset can be extracted. Particularly in face recognition models, faces can be reconstructed using activation maximization techniques. Serious threat to sensitive training data (medical images, biometric data).
+      fr: En analysant les motifs d'activation des CNN, des images spécifiques du jeu d'entraînement peuvent être extraites. Particulièrement dans les modèles de reconnaissance faciale, les visages peuvent être reconstruits en utilisant des techniques de maximisation d'activation. Menace sérieuse pour les données d'entraînement sensibles (images médicales, données biométriques).
+      zh: 通过分析CNN的激活模式，可以提取训练数据集中的特定图像。特别是在人脸识别模型中，可以使用激活最大化技术重建人脸。对敏感训练数据（医学图像、生物识别数据）构成严重威胁。
+      ar: من خلال تحليل أنماط تنشيط CNN، يمكن استخراج صور محددة من مجموعة بيانات التدريب. خاصة في نماذج التعرف على الوجوه، يمكن إعادة بناء الوجوه باستخدام تقنيات تعظيم التنشيط. تهديد خطير لبيانات التدريب الحساسة (الصور الطبية، البيانات البيومترية).
+      ru: Анализируя паттерны активации CNN, можно извлечь конкретные изображения из обучающего набора данных. Особенно в моделях распознавания лиц, лица могут быть восстановлены с помощью техник максимизации активации. Серьёзная угроза для конфиденциальных обучающих данных (медицинские изображения, биометрические данные).
+    severity: high
+  - title:
+      tr: CNN Model Versiyonlama ve Denetim İzi
+      en: CNN Model Versioning and Audit Trail
+      fr: Versioning et piste d'audit des modèles CNN
+      zh: CNN模型版本控制和审计追踪
+      ar: إصدار نموذج CNN ومسار التدقيق
+      ru: Версионирование модели CNN и аудит-трейл
+    description:
+      tr: Production'da çalışan CNN modellerinin versiyon takibinin yapılmaması, hangi model versiyonunun aktif olduğunun bilinmemesine yol açar. Model registry ve deployment logları tutulmalıdır.
+      en: Not tracking versions of CNN models running in production leads to not knowing which model version is active. Model registry and deployment logs should be maintained.
+      fr: Ne pas suivre les versions des modèles CNN en production conduit à ignorer quelle version est active. Le registre des modèles et les journaux de déploiement doivent être maintenus.
+      zh: 不追踪生产环境中运行的CNN模型版本，会导致不知道哪个模型版本处于活跃状态。应维护模型注册表和部署日志。
+      ar: عدم تتبع إصدارات نماذج CNN العاملة في بيئة الإنتاج يؤدي إلى عدم معرفة الإصدار النشط. يجب الحفاظ على سجل النماذج وسجلات النشر.
+      ru: Отсутствие отслеживания версий моделей CNN, работающих в production, приводит к незнанию, какая версия модели активна. Необходимо вести реестр моделей и журналы развёртывания.
+    severity: low
+config:
+  - title: Simple CNN in PyTorch
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class SimpleCNN(nn.Module):
+          def __init__(self, num_classes=10):
+              super().__init__()
+              # Convolutional layers
+              self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
+              self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
+              self.pool = nn.MaxPool2d(2, 2)
+              self.relu = nn.ReLU()
+
+              # Fully connected layers
+              self.fc1 = nn.Linear(64 * 8 * 8, 512)
+              self.fc2 = nn.Linear(512, num_classes)
+
+          def forward(self, x):
+              x = self.pool(self.relu(self.conv1(x)))
+              x = self.pool(self.relu(self.conv2(x)))
+              x = x.view(-1, 64 * 8 * 8)
+              x = self.relu(self.fc1(x))
+              x = self.fc2(x)
+              return x
+
+      # Example usage
+      model = SimpleCNN(num_classes=10)
+      input_tensor = torch.randn(1, 3, 32, 32)  # [batch, channels, height, width]
+      output = model(input_tensor)
+      print(f"Output shape: {output.shape}")  # [1, 10]
+    description:
+      tr: PyTorch ile basit bir CNN mimarisi. Conv2d katmanları görüntüdeki desenleri öğrenir, MaxPool2d boyut azaltır, fully connected katmanlar sınıflandırma yapar. CIFAR-10 gibi 32x32 görüntü setleri için ideal.
+      en: A simple CNN architecture in PyTorch. Conv2d layers learn patterns in images, MaxPool2d reduces dimensions, fully connected layers perform classification. Ideal for 32x32 image datasets like CIFAR-10.
+  - title: Adversarial Training for Robustness
+    lang: python
+    code: |-
+      import torch
+      import torch.nn.functional as F
+
+      def fgsm_attack(model, images, labels, epsilon=0.1):
+          """Fast Gradient Sign Method - adversarial example generation"""
+          images.requires_grad = True
+          outputs = model(images)
+          loss = F.cross_entropy(outputs, labels)
+          model.zero_grad()
+          loss.backward()
+
+          # Generate adversarial perturbation
+          perturbation = epsilon * images.grad.sign()
+          adversarial_images = images + perturbation
+          return adversarial_images.detach()
+
+      def adversarial_training_step(model, optimizer, images, labels, epsilon=0.1):
+          """Train with both clean and adversarial examples"""
+          # Clean examples
+          outputs_clean = model(images)
+          loss_clean = F.cross_entropy(outputs_clean, labels)
+
+          # Adversarial examples
+          adv_images = fgsm_attack(model, images, labels, epsilon)
+          outputs_adv = model(adv_images)
+          loss_adv = F.cross_entropy(outputs_adv, labels)
+
+          # Combined loss
+          total_loss = 0.5 * loss_clean + 0.5 * loss_adv
+
+          optimizer.zero_grad()
+          total_loss.backward()
+          optimizer.step()
+
+          return total_loss.item()
+    description:
+      tr: Adversarial örneklerle CNN'yi güçlendirme. FGSM saldırısı ile bozulmuş görüntüler oluşturulur ve model bunlara karşı eğitilir. Adversarial attack'lara direnci artırır ama %100 koruma sağlamaz.
+      en: Hardening CNNs with adversarial examples. Creates perturbed images using FGSM attack and trains the model against them. Increases resistance to adversarial attacks but doesn't provide 100% protection.
+research:
+  - title: ImageNet Classification with Deep Convolutional Neural Networks (AlexNet)
+    url: https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
+    year: 2012
+    type: paper
+    authors: Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton
+  - title: Deep Residual Learning for Image Recognition (ResNet)
+    url: https://arxiv.org/abs/1512.03385
+    year: 2015
+    type: paper
+    authors: Kaiming He, et al.
+  - title: Intriguing Properties of Neural Networks (Adversarial Examples)
+    url: https://arxiv.org/abs/1312.6199
+    year: 2013
+    type: paper
+    authors: Christian Szegedy, et al.
+tips:
+  - tr: CNN eğitirken data augmentation (rotation, flip, crop) mutlaka kullanın — overfitting'i önler ve model genelleştirmesini artırır.
+    en: Always use data augmentation (rotation, flip, crop) when training CNNs — prevents overfitting and improves generalization.
+  - tr: Transfer learning için ImageNet'te pre-train edilmiş modelleri kullanın (ResNet, EfficientNet). Sıfırdan eğitmekten 10-100x daha hızlı sonuç alırsınız.
+    en: Use ImageNet pre-trained models (ResNet, EfficientNet) for transfer learning. You'll get results 10-100x faster than training from scratch.
+  - tr: Production'da CNN deploy ederken mutlaka adversarial robustness test edin. Gerçek dünya saldırıları laboratuvar ortamından çok daha farklı olabilir.
+    en: Always test adversarial robustness before deploying CNNs to production. Real-world attacks can be very different from lab conditions.

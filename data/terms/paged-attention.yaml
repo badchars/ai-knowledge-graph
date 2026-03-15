@@ -1,0 +1,135 @@
+id: paged-attention
+name: PagedAttention
+fullName: PagedAttention
+category: inference
+desc:
+  tr: |-
+    [vLLM](https://docs.vllm.ai) projesinin tanıttığı, GPU belleğindeki KV cache yönetimini işletim sistemlerinin sanal bellek (virtual memory) yönetiminden esinlenerek optimize eden teknik. Geleneksel yaklasimda her istek için sabit boyutta bitişik bellek blogu ayrılır ve genellikle büyük kismi boş kalir — bu da GPU belleğinin %60-80'inin israf edilmesine yol acar.
+
+    [PagedAttention](https://arxiv.org/abs/2309.06180) belleği küçük sabit boyutlu sayfalara (pages) boler ve her istege sadece ihtiyaci kadar sayfa atar, tukendikce yenilerini dinamik olarak ekler. Bu yaklaşım aynı GPU ile 2-4x daha fazla eszamanli isteği karsilamayi mümkün kilar.
+
+    vLLM'in bu kadar populer olmasının ana nedeni PagedAttention'dir ve teknik sonradan TGI, SGLang gibi diger inference motorlarina da uyarlanmistir.
+  en: |-
+    A technique introduced by the [vLLM](https://docs.vllm.ai) project that optimizes KV cache management in GPU memory, inspired by how operating systems manage virtual memory. In the traditional approach, a fixed contiguous block of memory iş allocated for each request, and most of it typically goes unused — wasting 60-80% of GPU memory.
+
+    [PagedAttention](https://arxiv.org/abs/2309.06180) divides memory into small fixed-size pages and assigns only as many pages as each request needs, dynamically adding more as needed. This approach enables serving 2-4x more concurrent requests on the same GPU.
+
+    PagedAttention iş the primary reason vLLM became so popular, and the technique has since been adopted by other inference engines like TGI and SGLang. It fundamentally changed how the industry thinks about LLM serving efficiency.
+  fr: Une technique introduite par le projet vLLM qui optimise la gestion du KV cache dans la memoire GPU, inspiree de la facon dont les systemes d'exploitation gerent la memoire virtuelle. Dans l'approche traditionnelle, un bloc de memoire contigue fixe est alloue pour chaque requete, et la majorite reste inutilisee — gaspillant 60-80% de la memoire GPU. PagedAttention divise la memoire en petites pages de taille fixe et n'attribue que le nombre de pages necessaires a chaque requete, en ajoutant dynamiquement des pages supplementaires. Cette approche permet de servir 2 a 4 fois plus de requetes simultanees sur le meme GPU. PagedAttention est la raison principale de la popularite de vLLM, et la technique a depuis ete adoptee par d'autres moteurs d'inference comme TGI et SGLang.
+  zh: vLLM项目引入的一项技术，受操作系统管理虚拟内存的启发，优化GPU内存中的KV缓存管理。传统方法为每个请求分配固定大小的连续内存块，大部分通常未被使用——浪费60-80%的GPU内存。PagedAttention将内存分成固定大小的小页面，只为每个请求分配所需数量的页面，并在需要时动态添加更多。这种方法使同一GPU能处理2-4倍的并发请求。PagedAttention是vLLM如此流行的主要原因，该技术后来也被TGI、SGLang等其他推理引擎采用。它从根本上改变了行业对LLM服务效率的思考方式。
+  ar: تقنية قدمها مشروع vLLM لتحسين إدارة KV cache في ذاكرة GPU مستوحاة من كيفية إدارة أنظمة التشغيل للذاكرة الافتراضية. في النهج التقليدي يُخصص كتلة ذاكرة متجاورة ثابتة لكل طلب ومعظمها يبقى غير مستخدم — مما يهدر 60-80% من ذاكرة GPU. يقسم PagedAttention الذاكرة إلى صفحات صغيرة ثابتة الحجم ويخصص فقط عدد الصفحات التي يحتاجها كل طلب ويضيف المزيد ديناميكياً عند الحاجة. يمكّن هذا النهج من خدمة 2-4 أضعاف الطلبات المتزامنة على نفس GPU. يعد PagedAttention السبب الرئيسي لشعبية vLLM وتم تبني التقنية لاحقاً في محركات أخرى مثل TGI وSGLang. لقد غيّر جذرياً طريقة تفكير الصناعة في كفاءة خدمة LLM.
+  ru: Техника, представленная проектом vLLM, оптимизирующая управление KV-кэшем в памяти GPU по аналогии с управлением виртуальной памятью в операционных системах. При традиционном подходе для каждого запроса выделяется фиксированный непрерывный блок памяти, большая часть которого обычно не используется — впустую тратится 60-80% памяти GPU. PagedAttention разбивает память на маленькие страницы фиксированного размера и назначает каждому запросу ровно столько страниц, сколько нужно, динамически добавляя новые. Это позволяет обслуживать в 2-4 раза больше одновременных запросов на том же GPU. PagedAttention — главная причина популярности vLLM, и технику впоследствии переняли другие движки инференса вроде TGI и SGLang.
+analogy:
+  tr: Kütüphanede kitapları sabit raflara koymak yerine, esnek kutularda depolamak — boş alan kalmaz.
+  en: Storing books in flexible bins instead of fixed shelves — no wasted space.
+  fr: Stocker des livres dans des bacs flexibles au lieu d'étagères fixes — pas d'espace gaspillé.
+  zh: 在灵活的箱子里存放书籍而不是固定的书架——没有浪费的空间。
+  ar: تخزين الكتب في صناديق مرنة بدلاً من الرفوف الثابتة — لا مساحة مهدرة.
+  ru: Хранение книг в гибких корзинах вместо фиксированных полок — никакого потерянного пространства.
+security:
+  - title:
+      tr: Page Table Manipulation
+      en: Page Table Manipulation
+      fr: Manipulation de la table des pages
+      zh: 页表操纵
+      ar: التلاعب بجدول الصفحات
+      ru: Манипуляция таблицей страниц
+    description:
+      tr: PagedAttention'ın virtual memory page table'ı manipüle edilirse, farklı request'lerin KV cache page'leri karışabilir ve bilgi sızıntısı oluşabilir.
+      en: If PagedAttention's virtual memory page table is manipulated, KV cache pages from different requests can mix, causing information leakage.
+      fr: Si la table des pages de memoire virtuelle de PagedAttention est manipulee, les pages de cache KV de differentes requetes peuvent se melanger, causant une fuite d'informations.
+      zh: 如果PagedAttention的虚拟内存页表被操纵，不同请求的KV缓存页面可能混合，导致信息泄漏。
+      ar: إذا تم التلاعب بجدول صفحات الذاكرة الافتراضية لـ PagedAttention، يمكن أن تختلط صفحات ذاكرة التخزين المؤقت KV من طلبات مختلفة، مما يتسبب في تسريب المعلومات.
+      ru: При манипуляции таблицей страниц виртуальной памяти PagedAttention страницы KV-кэша от разных запросов могут перемешаться, вызывая утечку информации.
+    severity: high
+  - title:
+      tr: Memory Fragmentation Attack
+      en: Memory Fragmentation Attack
+      fr: Attaque par fragmentation memoire
+      zh: 内存碎片攻击
+      ar: هجوم تجزئة الذاكرة
+      ru: Атака фрагментацией памяти
+    description:
+      tr: Saldırgan özel uzunluklarda request'ler göndererek PagedAttention'ın memory allocator'ını fragment edebilir, bu da DoS veya performance degradation'a yol açar.
+      en: Attackers can fragment PagedAttention's memory allocator by sending requests of specific lengths, leading to DoS or performance degradation.
+      fr: Les attaquants peuvent fragmenter l'allocateur de memoire de PagedAttention en envoyant des requetes de longueurs specifiques, entrainant un DoS ou une degradation des performances.
+      zh: 攻击者可以通过发送特定长度的请求来碎片化PagedAttention的内存分配器，导致DoS或性能下降。
+      ar: يمكن للمهاجمين تجزئة مخصص ذاكرة PagedAttention عن طريق إرسال طلبات بأطوال محددة، مما يؤدي إلى هجوم حجب الخدمة أو تدهور الأداء.
+      ru: Злоумышленники могут фрагментировать аллокатор памяти PagedAttention, отправляя запросы определённой длины, что приводит к DoS или деградации производительности.
+    severity: medium
+  - title:
+      tr: PagedAttention Block Boyutu Bilgi İfşası
+      en: PagedAttention Block Size Information Disclosure
+      fr: Divulgation de la taille de bloc PagedAttention
+      zh: PagedAttention块大小信息泄露
+      ar: كشف حجم كتلة PagedAttention
+      ru: Раскрытие размера блока PagedAttention
+    description:
+      tr: PagedAttention'ın blok boyutu ve sayfa tahsis stratejisi, token üretim hızı analizi ile dolaylı olarak çıkarılabilir. Bu bilgi, hedefli memory fragmentation saldırılarını kolaylaştırır.
+      en: PagedAttention's block size and page allocation strategy can be indirectly inferred through token generation rate analysis. This information facilitates targeted memory fragmentation attacks.
+      fr: La taille de bloc et la strategie d'allocation de pages de PagedAttention peuvent etre deduites indirectement par l'analyse du taux de generation de tokens. Cette information facilite les attaques ciblees de fragmentation memoire.
+      zh: PagedAttention的块大小和页面分配策略可以通过token生成速率分析间接推断。这些信息有助于实施有针对性的内存碎片攻击。
+      ar: يمكن استنتاج حجم كتلة PagedAttention واستراتيجية تخصيص الصفحات بشكل غير مباشر من خلال تحليل معدل توليد الرموز. تسهل هذه المعلومات هجمات تجزئة الذاكرة المستهدفة.
+      ru: Размер блока PagedAttention и стратегия выделения страниц могут быть косвенно определены через анализ скорости генерации токенов. Эта информация облегчает целенаправленные атаки фрагментации памяти.
+    severity: low
+config:
+  - title: PagedAttention Security Config
+    lang: python
+    code: |-
+      # vLLM with secure PagedAttention
+      from vllm import LLM
+
+      llm = LLM(
+          model="meta-llama/Llama-3.3-70B-Instruct",
+          # Control block size for memory safety
+          block_size=16,  # Smaller blocks = better isolation
+          max_num_batched_tokens=2048,  # Prevent excessive allocation
+          max_num_seqs=32,
+          gpu_memory_utilization=0.85,  # Leave headroom
+          swap_space=4,  # GB of CPU swap (isolated per process)
+          disable_log_stats=True  # Prevent memory usage info leak
+      )
+    description:
+      tr: PagedAttention block size'ı küçük tutun ve memory allocation limit'leri koyun.
+      en: Keep PagedAttention block size small and set memory allocation limits.
+  - title: PagedAttention Memory Limits (Kubernetes)
+    lang: yaml
+    code: |-
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: vllm-paged-attention
+      spec:
+        containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          args:
+          - "--block-size=16"
+          - "--gpu-memory-utilization=0.85"
+          - "--max-num-seqs=64"
+          - "--max-model-len=4096"
+          - "--swap-space=4"
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              memory: "32Gi"
+              ephemeral-storage: "10Gi"
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+    description:
+      tr: PagedAttention icin bellek ve kaynak limitleri belirlenmiş Kubernetes pod yapılandırması. Memory fragmentation saldırılarını sınırlar.
+      en: Kubernetes pod configuration with memory and resource limits for PagedAttention. Limits memory fragmentation attacks.
+research:
+  - title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+    url: https://arxiv.org/abs/2309.06180
+    year: 2023
+    type: paper
+    authors: Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng
+tips:
+  - tr: PagedAttention memory metrics'lerini monitör edin; sudden spike'lar saldırı göstergesi olabilir.
+    en: Monitor PagedAttention memory metrics; sudden spikes can indicate attacks.
+  - tr: Multi-tenant ortamlarda process isolation ile PagedAttention instance'larını ayırın.
+    en: Separate PagedAttention instances with process isolation in multi-tenant environments.

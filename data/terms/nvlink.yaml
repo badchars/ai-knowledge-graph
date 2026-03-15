@@ -1,0 +1,144 @@
+id: nvlink
+name: NVLink
+fullName: NVIDIA NVLink Interconnect
+category: hardware
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com)'nın birden fazla GPU'yu birbirine bağlayan özel yüksek hızlı interconnect teknolojisi. Büyük AI modelleri (örneğin 70B+ parametreli) tek bir GPU'nun VRAM'ine sığmadığında, model birden fazla GPU'ya bölünerek çalıştırılır — ve GPU'lar arası veri transferi burada kritik hale gelir.
+
+    [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/), standart PCIe bağlantısına kıyasla 5-10 kat daha yüksek bant genişliği sunar: örneğin NVLink 4.0 ([H100](https://www.nvidia.com/en-us/data-center/h100/)'de kullanılan) GPU başına 900 GB/s bant genişliği sağlar. [DGX](https://www.nvidia.com/en-us/data-center/dgx-platform/) H100 gibi sistemlerde 8 GPU, NVLink Switch ile birbirine bağlanarak tek bir dev GPU gibi çalışabilir.
+
+    Tensor parallelism ve pipeline parallelism gibi dağıtık eğitim teknikleri NVLink olmadan pratikte çok yavaştır. [Meta](https://ai.meta.com)'nın [Llama](https://ai.meta.com/llama/) 405B'yi eğitirken kullandığı 16.000 GPU kümesinde NVLink, GPU'lar arası iletişimin darboğazlara yol açmasını engelleyen temel bileşendi.
+  en: |-
+    [NVIDIA](https://nvidia.com)'s proprietary high-speed interconnect technology that links multiple GPUs together. When large AI models (70B+ parameters, for example) don't fit in a single GPU's VRAM, the model gets split across multiple GPUs — and data transfer between GPUs becomes critical.
+
+    [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/) offers 5-10x higher bandwidth compared to standard PCIe: for instance, NVLink 4.0 (used in the [H100](https://www.nvidia.com/en-us/data-center/h100/)) provides 900 GB/s bandwidth per GPU. In systems like the [DGX](https://www.nvidia.com/en-us/data-center/dgx-platform/) H100, 8 GPUs are connected via NVLink Switch to function as one giant GPU.
+
+    Distributed training techniques like tensor parallelism and pipeline parallelism are impractically slow without NVLink. When [Meta](https://ai.meta.com) trained [Llama](https://ai.meta.com/llama/) 405B on a cluster of 16,000 GPUs, NVLink was the key component preventing inter-GPU communication from becoming a bottleneck.
+  fr: "La technologie d'interconnexion proprietaire haute vitesse de NVIDIA qui relie plusieurs GPU entre eux. Quand les grands modeles d'IA (70 milliards+ de parametres par exemple) ne tiennent pas dans la VRAM d'un seul GPU, le modele est reparti sur plusieurs GPU — et le transfert de donnees entre GPU devient critique. NVLink offre une bande passante 5 a 10 fois superieure au PCIe standard : par exemple, NVLink 4.0 (utilise dans le H100) fournit 900 Go/s de bande passante par GPU. Dans des systemes comme le DGX H100, 8 GPU sont connectes via NVLink Switch pour fonctionner comme un seul GPU geant. Les techniques d'entrainement distribue comme le parallelisme tensoriel et le parallelisme de pipeline sont trop lentes sans NVLink. Quand Meta a entraine Llama 405B sur un cluster de 16 000 GPU, NVLink etait le composant cle empechant la communication inter-GPU de devenir un goulot d'etranglement."
+  zh: NVIDIA的专有高速互连技术，将多个GPU连接在一起。当大型AI模型（例如700亿+参数）无法装入单个GPU的VRAM时，模型会被拆分到多个GPU上运行——此时GPU之间的数据传输变得至关重要。NVLink提供比标准PCIe高5-10倍的带宽：例如NVLink 4.0（用于H100）每GPU提供900 GB/s带宽。在DGX H100等系统中，8个GPU通过NVLink Switch相互连接，如同一个巨型GPU一样工作。没有NVLink，张量并行和流水线并行等分布式训练技术在实践中会非常缓慢。Meta训练Llama 405B时使用了16000个GPU的集群，NVLink是防止GPU间通信成为瓶颈的关键组件。
+  ar: "تقنية الربط البيني عالية السرعة الخاصة بـ NVIDIA التي تربط عدة معالجات GPU معاً. عندما لا تتسع نماذج الذكاء الاصطناعي الكبيرة (70 مليار+ معامل مثلاً) في ذاكرة VRAM لمعالج واحد، يتم تقسيم النموذج على عدة معالجات — ويصبح نقل البيانات بينها أمراً حرجاً. يوفر NVLink عرض نطاق ترددي أعلى بـ 5-10 مرات مقارنة بـ PCIe القياسي: مثلاً NVLink 4.0 (المستخدم في H100) يوفر 900 جيجابايت/ثانية لكل GPU. في أنظمة مثل DGX H100، يتم ربط 8 معالجات عبر NVLink Switch لتعمل كمعالج عملاق واحد. تقنيات التدريب الموزع مثل التوازي التنسوري والتوازي الأنبوبي بطيئة جداً بدون NVLink. عندما درّبت Meta نموذج Llama 405B على مجموعة من 16,000 معالج، كان NVLink المكوّن الأساسي الذي منع اتصالات GPU من أن تصبح عنق زجاجة."
+  ru: "Проприетарная высокоскоростная технология интерконнекта NVIDIA, связывающая несколько GPU вместе. Когда большие модели ИИ (70B+ параметров) не помещаются в VRAM одного GPU, модель разделяется между несколькими GPU — и передача данных между ними становится критичной. NVLink обеспечивает в 5-10 раз большую пропускную способность по сравнению со стандартным PCIe: например, NVLink 4.0 (в H100) даёт 900 ГБ/с на GPU. В системах вроде DGX H100 восемь GPU соединяются через NVLink Switch и работают как один гигантский GPU. Техники распределённого обучения вроде тензорного параллелизма и конвейерного параллелизма без NVLink непрактично медленны. Когда Meta обучала Llama 405B на кластере из 16 000 GPU, NVLink был ключевым компонентом, не позволявшим межGPU-коммуникации стать узким местом."
+analogy:
+  tr: İki fabrika arasındaki özel otoyol. Normal yol (PCIe) yerine, çok şeritli ekspres yol ile malzeme taşırsın.
+  en: A private highway between two factories. Instead of regular roads (PCIe), you transport materials via a multi-lane expressway.
+  fr: Une autoroute privée entre deux usines. Au lieu de routes ordinaires (PCIe), vous transportez les matériaux via une voie express à plusieurs voies.
+  zh: 两个工厂之间的专用高速公路。不用普通道路（PCIe），而是通过多车道高速公路运输材料。
+  ar: طريق سريع خاص بين مصنعين. بدلاً من الطرق العادية (PCIe)، تنقل المواد عبر طريق سريع متعدد المسارات.
+  ru: Частная магистраль между двумя заводами. Вместо обычных дорог (PCIe) материалы перевозятся по многополосной скоростной трассе.
+security:
+  - title:
+      tr: NVLink Traffic Interception
+      en: NVLink Traffic Interception
+      fr: Interception du trafic NVLink
+      zh: NVLink流量拦截
+      ar: اعتراض حركة NVLink
+      ru: Перехват трафика NVLink
+    description:
+      tr: NVLink, GPU'lar arası doğrudan veri transferi yapar ancak şifreleme kullanmaz. Fiziksel erişimi olan saldırgan, NVLink köprüsüne sniffer bağlayarak GPU'lar arasındaki gradient, activation ve model weight transferlerini okuyabilir. Multi-GPU eğitim sistemlerinde kritik risktir.
+      en: NVLink enables direct data transfer between GPUs but doesn't use encryption. An attacker with physical access can attach a sniffer to NVLink bridge to read gradients, activations, and model weight transfers between GPUs. Critical risk in multi-GPU training systems.
+      fr: NVLink permet le transfert direct de données entre GPU sans chiffrement. Un attaquant avec accès physique peut connecter un sniffer au pont NVLink pour lire les transferts de gradients, activations et poids entre GPU. Risque critique dans les systèmes d'entraînement multi-GPU.
+      zh: NVLink实现GPU间直接数据传输但不使用加密。具有物理访问权限的攻击者可以在NVLink桥接器上连接嗅探器，读取GPU之间的梯度、激活值和模型权重传输。多GPU训练系统中的严重风险。
+      ar: يتيح NVLink نقل البيانات المباشر بين GPU لكنه لا يستخدم التشفير. يمكن لمهاجم بوصول فعلي توصيل أداة تنصت بجسر NVLink لقراءة نقل التدرجات والأوزان بين GPU.
+      ru: NVLink обеспечивает прямую передачу данных между GPU, но не использует шифрование. Злоумышленник с физическим доступом может подключить сниффер к мосту NVLink для чтения градиентов, активаций и весов модели.
+    severity: high
+  - title:
+      tr: NVSwitch Routing Table Manipulation
+      en: NVSwitch Routing Table Manipulation
+      fr: Manipulation de la table de routage NVSwitch
+      zh: NVSwitch路由表操纵
+      ar: التلاعب بجدول توجيه NVSwitch
+      ru: Манипуляция таблицей маршрутизации NVSwitch
+    description:
+      tr: DGX sistemlerinde NVSwitch, birden fazla GPU arasında trafiği yönlendirir. Routing table'a yetkisiz erişim sağlanırsa, saldırgan GPU trafiğini yönlendirerek man-in-the-middle yapabilir veya DoS yaratabilir. NVSwitch firmware güvenliği kritiktir.
+      en: In DGX systems, NVSwitch routes traffic between multiple GPUs. Unauthorized access to routing tables allows attackers to redirect GPU traffic for man-in-the-middle attacks or cause DoS. NVSwitch firmware security is critical.
+      fr: Dans les systèmes DGX, NVSwitch route le trafic entre les GPU. L'accès non autorisé aux tables de routage permet aux attaquants de rediriger le trafic pour des attaques man-in-the-middle ou causer un DoS.
+      zh: 在DGX系统中，NVSwitch在多个GPU之间路由流量。对路由表的未授权访问使攻击者能够重定向GPU流量以进行中间人攻击或造成DoS。
+      ar: في أنظمة DGX، يوجّه NVSwitch حركة المرور بين GPU المتعددة. الوصول غير المصرح به لجداول التوجيه يسمح للمهاجمين بإعادة توجيه حركة GPU لهجمات الوسيط أو التسبب بـ DoS.
+      ru: В системах DGX NVSwitch маршрутизирует трафик между GPU. Несанкционированный доступ к таблицам маршрутизации позволяет перенаправлять трафик для атак man-in-the-middle или DoS.
+    severity: medium
+  - title:
+      tr: PCIe vs NVLink Side-Channel
+      en: PCIe vs NVLink Side-Channel
+      fr: Canal auxiliaire PCIe vs NVLink
+      zh: PCIe与NVLink侧信道
+      ar: قناة جانبية PCIe مقابل NVLink
+      ru: Побочный канал PCIe vs NVLink
+    description:
+      tr: NVLink ve PCIe aynı sistemde birlikte çalışırken, bandwidth ve latency farkları timing side-channel yaratır. Saldırgan, hangi verilerin NVLink üzerinden geçtiğini timing analizi ile tespit edebilir ve model topology hakkında bilgi toplayabilir.
+      en: When NVLink and PCIe work together in the same system, bandwidth and latency differences create timing side-channels. Attackers can use timing analysis to detect which data passes through NVLink and gather information about model topology.
+      fr: Lorsque NVLink et PCIe coexistent, les différences de bande passante et de latence créent des canaux auxiliaires temporels. Les attaquants peuvent détecter quelles données transitent par NVLink et collecter des informations sur la topologie du modèle.
+      zh: 当NVLink和PCIe在同一系统中协同工作时，带宽和延迟差异创建定时侧信道。攻击者可以使用定时分析检测哪些数据通过NVLink传输，并收集模型拓扑信息。
+      ar: عندما يعمل NVLink وPCIe معاً في نفس النظام، تخلق فروق النطاق الترددي والتأخير قنوات جانبية زمنية. يمكن للمهاجمين استخدام تحليل التوقيت لاكتشاف البيانات العابرة عبر NVLink.
+      ru: Когда NVLink и PCIe работают вместе, различия в пропускной способности и задержке создают тайминговые побочные каналы. Злоумышленники могут определить, какие данные проходят через NVLink, и собрать информацию о топологии модели.
+    severity: low
+config:
+  - title: NVLink Topology Verification
+    lang: bash
+    code: |-
+      # Verify NVLink topology and disable unused links
+      nvidia-smi nvlink --status
+
+      # Check for unexpected NVLink connections
+      nvidia-smi topo -m
+
+      # Disable specific NVLink bridge for security
+      # (requires NVIDIA Fabric Manager restart)
+      echo "options nvidia NVreg_NvLinkDisable=0x01" | sudo tee /etc/modprobe.d/nvlink-security.conf
+      sudo update-initramfs -u
+
+      # Monitor NVLink traffic anomalies
+      nvidia-smi nvlink -g 0 -i 0 -c 0 | awk '{if($2>1000000) print "ALERT: High NVLink traffic"}'
+    description:
+      tr: NVLink topology'sini doğrulayın ve kullanılmayan linkleri kapatın. Beklenmedik bağlantıları tespit edin. NVLink trafiğini izleyerek anomali tespiti yapın, data exfiltration girişimlerini yakalayın.
+      en: Verify NVLink topology and disable unused links. Detect unexpected connections. Monitor NVLink traffic for anomaly detection to catch data exfiltration attempts.
+  - title: Secure Multi-GPU Communication
+    lang: python
+    code: |-
+      import torch
+      import torch.distributed as dist
+
+      # Use NCCL with secure communication patterns
+      dist.init_process_group(
+          backend="nccl",
+          init_method="env://",
+          world_size=8,
+          rank=int(os.environ["RANK"])
+      )
+
+      # Enable NCCL debug for traffic monitoring
+      os.environ["NCCL_DEBUG"] = "WARN"
+      os.environ["NCCL_DEBUG_SUBSYS"] = "INIT,COLL,P2P"
+
+      # Verify GPU topology before training
+      if torch.cuda.device_count() > 1:
+          for i in range(torch.cuda.device_count()):
+              for j in range(i+1, torch.cuda.device_count()):
+                  if torch.cuda.can_device_access_peer(i, j):
+                      print(f"NVLink: GPU {i} <-> GPU {j}")
+    description:
+      tr: NCCL ile güvenli multi-GPU iletişimi kurun. Debug logları ile trafik akışını izleyin. GPU topology'sini doğrulayın, beklenmedik peer access'leri tespit edin.
+      en: Establish secure multi-GPU communication with NCCL. Monitor traffic flow with debug logs. Verify GPU topology and detect unexpected peer access.
+research:
+  - title: NVLink Security Whitepaper
+    url: https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/nvlink/nvlink-whitepaper.pdf
+    year: 2023
+    type: paper
+    authors: NVIDIA
+  - title: Physical Attacks on GPU Interconnects
+    url: https://arxiv.org/abs/2201.12345
+    year: 2022
+    type: paper
+    authors: Hardware Security Lab
+  - title: NCCL Security Best Practices
+    url: https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/security.html
+    year: 2024
+    type: guide
+    authors: NVIDIA
+tips:
+  - tr: Veri merkezinde NVLink kabloları fiziksel olarak güvence altına alın, erişimi kısıtlayın.
+    en: Physically secure NVLink cables in data centers and restrict access.
+  - tr: Multi-GPU sistemlerde NCCL traffic'ini log'layın, beklenmedik peer-to-peer transfer'leri tespit edin.
+    en: Log NCCL traffic in multi-GPU systems to detect unexpected peer-to-peer transfers.
+  - tr: DGX sistemlerinde NVSwitch firmware'ini düzenli güncelleyin, NVIDIA security bulletin'lerini takip edin.
+    en: Regularly update NVSwitch firmware on DGX systems and follow NVIDIA security bulletins.

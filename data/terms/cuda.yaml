@@ -1,0 +1,152 @@
+id: cuda
+name: CUDA
+fullName: Compute Unified Device Architecture
+category: hardware
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com)'nin GPU'ları genel amaçlı hesaplama ve AI işleri için programlanabilir hale getiren yazılım platformu. 2006'da piyasaya sürüldü ve bugün AI ekosisteminin fiilen standardı haline geldi — [PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), [vLLM](https://docs.vllm.ai) gibi tüm önemli AI framework'leri arka planda CUDA kullanır.
+
+    Bu durum NVIDIA'ya muazzam bir rekabet avantajı sağlar: [AMD](https://amd.com) ve Intel alternatifleri ([ROCm](https://rocm.docs.amd.com), oneAPI) vardır ama CUDA ekosisteminin olgunluğu ve geniş kütüphaneleri (cuDNN, cuBLAS, NCCL) nedeniyle çoğu geliştirici NVIDIA'dan ayrılamıyor.
+
+    Örneğin bir vLLM sunucusu ayağa kaldırdığınızda, CUDA otomatik olarak GPU üzerindeki [Tensor Core](https://www.nvidia.com/en-us/data-center/tensor-cores/)'ları yönlendirerek model inference'ını hızlandırır. CUDA'nin bu baskınlığı 'CUDA lock-in' olarak da bilinir ve AI donanımında en çok tartışılan konulardan biridir.
+  en: |-
+    [NVIDIA](https://nvidia.com)'s software platform that makes GPUs programmable for general-purpose computing and AI workloads. Released in 2006, it has become the de facto standard of the AI ecosystem — every major AI framework including [PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), and [vLLM](https://docs.vllm.ai) uses CUDA under the hood.
+
+    This gives NVIDIA an enormous competitive advantage: while [AMD](https://amd.com) and Intel offer alternatives ([ROCm](https://rocm.docs.amd.com), oneAPI), most developers can't leave NVIDIA due to CUDA's mature ecosystem and extensive libraries like cuDNN, cuBLAS, and NCCL.
+
+    When you spin up a vLLM server, for instance, CUDA automatically orchestrates the GPU's [Tensor Cores](https://www.nvidia.com/en-us/data-center/tensor-cores/) to accelerate model inference. This dominance is often called 'CUDA lock-in' and remains one of the most debated topics in AI hardware.
+  fr: "La plateforme logicielle de NVIDIA qui rend les GPU programmables pour le calcul generaliste et les charges de travail d'IA. Lancee en 2006, elle est devenue le standard de facto de l'ecosysteme IA — chaque framework d'IA majeur, dont PyTorch, TensorFlow et vLLM, utilise CUDA en interne. Cela confere a NVIDIA un avantage concurrentiel enorme : bien qu'AMD et Intel proposent des alternatives (ROCm, oneAPI), la plupart des developpeurs ne peuvent pas quitter NVIDIA en raison de l'ecosysteme mature de CUDA et de ses nombreuses bibliotheques comme cuDNN, cuBLAS et NCCL. Quand vous lancez un serveur vLLM, par exemple, CUDA orchestre automatiquement les Tensor Cores du GPU pour accelerer l'inference du modele. Cette domination est souvent appelee 'CUDA lock-in' et reste l'un des sujets les plus debattus dans le domaine du materiel IA."
+  zh: NVIDIA的软件平台，使GPU可以编程用于通用计算和AI工作负载。2006年发布后，它已成为AI生态系统的事实标准——包括PyTorch、TensorFlow和vLLM在内的所有主要AI框架都在底层使用CUDA。这赋予了NVIDIA巨大的竞争优势：尽管AMD和Intel提供了替代方案（ROCm、oneAPI），但由于CUDA成熟的生态系统和丰富的库（如cuDNN、cuBLAS、NCCL），大多数开发者无法离开NVIDIA。例如当你启动vLLM服务器时，CUDA会自动调度GPU的Tensor Core来加速模型推理。这种主导地位常被称为'CUDA锁定'，是AI硬件领域最具争议的话题之一。
+  ar: "منصة NVIDIA البرمجية التي تجعل معالجات GPU قابلة للبرمجة للحوسبة العامة وأعمال الذكاء الاصطناعي. أُطلقت في 2006 وأصبحت المعيار الفعلي لمنظومة الذكاء الاصطناعي — كل إطار عمل رئيسي للذكاء الاصطناعي بما في ذلك PyTorch وTensorFlow وvLLM يستخدم CUDA في الخلفية. يمنح هذا NVIDIA ميزة تنافسية هائلة: رغم أن AMD وIntel تقدمان بدائل (ROCm وoneAPI)، لا يستطيع معظم المطورين مغادرة NVIDIA بسبب نضج منظومة CUDA ومكتباتها الواسعة مثل cuDNN وcuBLAS وNCCL. عندما تشغّل خادم vLLM مثلاً، تقوم CUDA تلقائياً بتنسيق Tensor Cores في GPU لتسريع استدلال النموذج. تُعرف هذه الهيمنة بـ 'CUDA lock-in' وتبقى من أكثر المواضيع نقاشاً في عتاد الذكاء الاصطناعي."
+  ru: "Программная платформа NVIDIA, делающая GPU программируемыми для вычислений общего назначения и задач ИИ. Выпущенная в 2006 году, она стала де-факто стандартом экосистемы ИИ — каждый крупный фреймворк, включая PyTorch, TensorFlow и vLLM, использует CUDA под капотом. Это даёт NVIDIA огромное конкурентное преимущество: хотя AMD и Intel предлагают альтернативы (ROCm, oneAPI), большинство разработчиков не могут уйти от NVIDIA из-за зрелой экосистемы CUDA и обширных библиотек вроде cuDNN, cuBLAS и NCCL. Когда вы запускаете сервер vLLM, например, CUDA автоматически оркестрирует Tensor Cores GPU для ускорения инференса модели. Это доминирование часто называют 'CUDA lock-in', и оно остаётся одной из самых обсуждаемых тем в AI-железе."
+analogy:
+  tr: GPU fabrikadaki makineler ise, CUDA bu makinelere iş emirleri veren yönetim sistemidir. CUDA olmadan GPU'ya 'AI işi yap' diyemezsin.
+  en: If GPUs are factory machines, CUDA iş the management system that gives them work orders. Without CUDA, you can't tell the GPU to 'do AI work'.
+  fr: Si les GPU sont des machines d'usine, CUDA est le système de gestion qui leur donne les ordres de travail. Sans CUDA, vous ne pouvez pas dire au GPU de 'faire du travail d'IA'.
+  zh: 如果GPU是工厂机器，CUDA就是给它们发出工作指令的管理系统。没有CUDA，你无法告诉GPU"做AI工作"。
+  ar: إذا كانت GPU آلات المصنع، فإن CUDA هو نظام الإدارة الذي يعطيها أوامر العمل. بدون CUDA، لا يمكنك إخبار GPU بـ 'قم بعمل الذكاء الاصطناعي'.
+  ru: Если GPU — это заводские станки, CUDA — это система управления, которая дает им рабочие задания. Без CUDA вы не можете сказать GPU 'делай AI-работу'.
+security:
+  - title:
+      tr: CUDA Driver Privilege Escalation
+      en: CUDA Driver Privilege Escalation
+      fr: Escalade de privilèges du pilote CUDA
+      zh: CUDA驱动权限提升
+      ar: تصعيد صلاحيات تعريف CUDA
+      ru: Повышение привилегий драйвера CUDA
+    description:
+      tr: CUDA driver'lar kernel modülü olarak çalışır ve yüksek ayrıcalıklara sahiptir. Eski sürümlerde bulunan buffer overflow, use-after-free gibi zafiyetler saldırganlara root erişimi verebilir. CVE-2022-34670, CVE-2023-25516 gibi kritik güvenlik açıkları bulunmuştur.
+      en: CUDA drivers run as kernel modules with high privileges. Buffer overflow and use-after-free vulnerabilities in older versions can grant attackers root access. Critical CVEs like CVE-2022-34670 and CVE-2023-25516 have been discovered.
+      fr: Les pilotes CUDA fonctionnent comme des modules noyau avec des privilèges élevés. Des vulnérabilités de type buffer overflow et use-after-free dans les anciennes versions peuvent accorder un accès root. Des CVE critiques comme CVE-2022-34670 et CVE-2023-25516 ont été découvertes.
+      zh: CUDA驱动作为内核模块运行，具有高权限。旧版本中的缓冲区溢出和释放后使用漏洞可能授予攻击者root权限。已发现CVE-2022-34670和CVE-2023-25516等严重漏洞。
+      ar: تعمل تعريفات CUDA كوحدات نواة بصلاحيات عالية. ثغرات تجاوز المخزن المؤقت واستخدام بعد التحرير في الإصدارات القديمة يمكن أن تمنح المهاجمين صلاحيات root.
+      ru: Драйверы CUDA работают как модули ядра с высокими привилегиями. Уязвимости переполнения буфера и use-after-free в старых версиях могут предоставить root-доступ. Обнаружены критические CVE-2022-34670 и CVE-2023-25516.
+    severity: critical
+  - title:
+      tr: Shared Library Injection
+      en: Shared Library Injection
+      fr: Injection de bibliothèque partagée
+      zh: 共享库注入
+      ar: حقن المكتبات المشتركة
+      ru: Внедрение разделяемых библиотек
+    description:
+      tr: CUDA uygulamaları libcuda.so, libcudart.so gibi paylaşımlı kütüphaneleri yükler. LD_LIBRARY_PATH veya LD_PRELOAD manipülasyonu ile kötü niyetli kütüphane enjekte edilebilir ve GPU hesaplamalarına müdahale edilebilir.
+      en: CUDA applications load shared libraries like libcuda.so and libcudart.so. LD_LIBRARY_PATH or LD_PRELOAD manipulation can inject malicious libraries to intercept GPU computations.
+      fr: Les applications CUDA chargent des bibliothèques partagées comme libcuda.so et libcudart.so. La manipulation de LD_LIBRARY_PATH ou LD_PRELOAD peut injecter des bibliothèques malveillantes pour intercepter les calculs GPU.
+      zh: CUDA应用程序加载libcuda.so和libcudart.so等共享库。通过操纵LD_LIBRARY_PATH或LD_PRELOAD可以注入恶意库来拦截GPU计算。
+      ar: تحمّل تطبيقات CUDA مكتبات مشتركة مثل libcuda.so وlibcudart.so. التلاعب بـ LD_LIBRARY_PATH أو LD_PRELOAD يمكن أن يحقن مكتبات خبيثة لاعتراض حسابات GPU.
+      ru: Приложения CUDA загружают разделяемые библиотеки libcuda.so и libcudart.so. Манипуляция LD_LIBRARY_PATH или LD_PRELOAD может внедрить вредоносные библиотеки для перехвата вычислений GPU.
+    severity: high
+  - title:
+      tr: CUDA Kernel Code Injection
+      en: CUDA Kernel Code Injection
+      fr: Injection de code noyau CUDA
+      zh: CUDA内核代码注入
+      ar: حقن شفرة نواة CUDA
+      ru: Внедрение кода в ядро CUDA
+    description:
+      tr: Dinamik CUDA kernel derleme (NVRTC) kullanan uygulamalarda kullanıcı girişi doğrulanmadan kernel koduna dahil edilirse, saldırgan GPU üzerinde keyfi kod çalıştırabilir. JIT compilation süreçlerinde input sanitization kritiktir.
+      en: In applications using dynamic CUDA kernel compilation (NVRTC), if user input is included in kernel code without validation, attackers can execute arbitrary code on GPU. Input sanitization is critical in JIT compilation processes.
+      fr: Dans les applications utilisant la compilation dynamique de noyaux CUDA (NVRTC), si l'entrée utilisateur est incluse sans validation, les attaquants peuvent exécuter du code arbitraire sur le GPU. La sanitisation des entrées est critique dans les processus de compilation JIT.
+      zh: 在使用动态CUDA内核编译（NVRTC）的应用中，如果用户输入未经验证就被包含在内核代码中，攻击者可以在GPU上执行任意代码。JIT编译中输入清理至关重要。
+      ar: في التطبيقات التي تستخدم تجميع نوى CUDA الديناميكي (NVRTC)، إذا تم تضمين مدخلات المستخدم دون التحقق، يمكن للمهاجمين تنفيذ شفرة عشوائية على GPU.
+      ru: В приложениях с динамической компиляцией ядер CUDA (NVRTC), если пользовательский ввод включается без валидации, злоумышленники могут выполнить произвольный код на GPU. Санитизация ввода критически важна в JIT-компиляции.
+    severity: high
+  - title:
+      tr: CUDA Hata Mesajı Bilgi Sızıntısı
+      en: CUDA Error Message Information Leakage
+      fr: Fuite d'informations via les messages d'erreur CUDA
+      zh: CUDA错误消息信息泄露
+      ar: تسريب معلومات عبر رسائل خطأ CUDA
+      ru: Утечка информации через сообщения об ошибках CUDA
+    description:
+      tr: CUDA runtime hata mesajları GPU modeli, driver versiyonu ve bellek düzeni hakkında ayrıntılı bilgi içerebilir. Bu bilgiler reconnaissance aşamasında saldırgana hedef sistemi anlamada yardımcı olur. Production ortamlarında detaylı CUDA hata mesajları bastırılmalıdır.
+      en: CUDA runtime error messages may contain detailed information about GPU model, driver version, and memory layout. This information helps attackers understand the target system during reconnaissance. Detailed CUDA error messages should be suppressed in production.
+      fr: Les messages d'erreur du runtime CUDA peuvent contenir des informations détaillées sur le modèle de GPU, la version du pilote et la disposition mémoire. Ces informations aident les attaquants lors de la reconnaissance. Les messages d'erreur détaillés doivent être supprimés en production.
+      zh: CUDA运行时错误消息可能包含GPU型号、驱动版本和内存布局的详细信息。这些信息在侦察阶段帮助攻击者了解目标系统。生产环境中应抑制详细CUDA错误消息。
+      ar: قد تحتوي رسائل خطأ CUDA على معلومات مفصلة حول طراز GPU وإصدار التعريف. هذه المعلومات تساعد المهاجمين في فهم النظام المستهدف أثناء الاستطلاع.
+      ru: Сообщения об ошибках CUDA могут содержать подробную информацию о модели GPU, версии драйвера и раскладке памяти. В продакшн-средах следует подавлять подробные сообщения об ошибках.
+    severity: low
+config:
+  - title: CUDA Driver Version Enforcement
+    lang: bash
+    code: |-
+      # Check CUDA driver version
+      nvidia-smi --query-gpu=driver_version --format=csv,noheader
+
+      # Enforce minimum secure version (535.x+)
+      MIN_VERSION="535.0"
+      CURRENT=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -1)
+
+      if [ "$(printf '%s
+      ' "$MIN_VERSION" "$CURRENT" | sort -V | head -1)" != "$MIN_VERSION" ]; then
+        echo "CRITICAL: CUDA driver $CURRENT is outdated. Update to $MIN_VERSION+"
+        exit 1
+      fi
+    description:
+      tr: CUDA driver versiyonunu kontrol edin ve güvenlik yamalarını içeren minimum sürümü zorunlu kılın. NVIDIA düzenli olarak CVE'ler yayınlar, güncel kalın.
+      en: Check CUDA driver version and enforce minimum version with security patches. NVIDIA regularly publishes CVEs - stay updated.
+  - title: Secure CUDA Library Loading
+    lang: python
+    code: |-
+      import os
+      import sys
+
+      # Prevent LD_PRELOAD/LD_LIBRARY_PATH hijacking
+      if 'LD_PRELOAD' in os.environ:
+          print("SECURITY: LD_PRELOAD detected, potential library injection attack")
+          sys.exit(1)
+
+      # Whitelist trusted library paths
+      TRUSTED_PATHS = ['/usr/local/cuda/lib64', '/usr/lib/x86_64-linux-gnu']
+      if 'LD_LIBRARY_PATH' in os.environ:
+          for path in os.environ['LD_LIBRARY_PATH'].split(':'):
+              if path not in TRUSTED_PATHS:
+                  print(f"SECURITY: Untrusted library path detected: {path}")
+                  sys.exit(1)
+    description:
+      tr: LD_PRELOAD ve LD_LIBRARY_PATH manipülasyonunu tespit edin. Sadece güvenilir kütüphane yollarına izin vererek shared library injection saldırılarını önleyin.
+      en: Detect LD_PRELOAD and LD_LIBRARY_PATH manipulation. Prevent shared library injection by allowing only trusted library paths.
+research:
+  - title: NVIDIA Security Bulletin Archive
+    url: https://www.nvidia.com/en-us/security/
+    year: 2024
+    type: guide
+    authors: NVIDIA PSIRT
+  - title: "CVE-2022-34670: CUDA Toolkit Vulnerability"
+    url: https://nvidia.custhelp.com/app/answers/detail/a_id/5383
+    year: 2022
+    type: guide
+    authors: NVIDIA
+  - title: Securing GPU Applications Against Side-Channels
+    url: https://arxiv.org/abs/2104.09323
+    year: 2021
+    type: paper
+    authors: Kerem Arıkan, et al.
+tips:
+  - tr: CUDA driver'ı her zaman resmi NVIDIA kaynaklarından indirin, üçüncü parti repo'lar güvenlik riski oluşturur.
+    en: Always download CUDA drivers from official NVIDIA sources - third-party repos pose security risks.
+  - tr: Container'larda --gpus flag kullanırken --security-opt=no-new-privileges ekleyin, privilege escalation'ı engelleyin.
+    en: When using --gpus flag in containers, add --security-opt=no-new-privileges to prevent privilege escalation.
+  - tr: NVRTC ile dinamik kernel derleme yapıyorsanız, kullanıcı girişini mutlaka sanitize edin ve sandbox içinde derleyin.
+    en: If using NVRTC for dynamic kernel compilation, always sanitize user input and compile in a sandbox.

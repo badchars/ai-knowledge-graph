@@ -1,0 +1,216 @@
+id: tool-use
+name: Tool Use
+fullName: Tool Use
+category: tools
+desc:
+  tr: |-
+    AI modelinin sadece metin üretmek yerine dış dünyada gerçek işler yapabilme yeteneğidir. Model web'de arama yapabilir, kod çalıştırabilir, dosya okuyup yazabilir, API çağırabilir ve veritabanlarini sorgulayabilir.
+
+    Örneğin, [ChatGPT](https://openai.com/chatgpt)'ye 'su web sitesini ara ve sonuçları özetle' dediginizde tool use devreye girer — model bir arama aracı çağırır, sonuçları alır ve özetler. [Claude](https://claude.ai)'a bir PDF yükleyip 'bunu analiz et' dediginizde de aynı mekanizma çalışır.
+
+    Tool use, AI'i pasif bir sohbet kutusundan aktif bir asistana dönüştüren temel yetenektir. Her büyük model sağlayıcısı ([OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Google](https://ai.google)) kendi tool use API'lerini sunmaktadır.
+  en: |-
+    The ability for an AI model to interact with external systems and perform real actions instead of just generating text. The model can search the web, run code, read and write files, call APIs, and query databases.
+
+    For example, when you ask [ChatGPT](https://openai.com/chatgpt) to 'search for recent news about AI regulation,' tool use kicks in — the model calls a search tool, retrieves results, and summarizes them. When you upload a PDF to [Claude](https://claude.ai) and ask it to analyze charts, it uses a vision tool to read the document.
+
+    Tool use iş what transforms AI from a passive chatbox into an active assistant that can take real-world actions. Every major model provider ([OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Google](https://ai.google)) now offers tool use APIs, and it iş the foundation that enables AI agents to function.
+  fr: La capacite d'un modele d'IA a interagir avec des systemes externes et effectuer des actions reelles au lieu de simplement generer du texte. Le modele peut rechercher sur le web, executer du code, lire et ecrire des fichiers, appeler des API et interroger des bases de donnees. Par exemple, quand vous demandez a ChatGPT de 'chercher les dernieres actualites sur la reglementation de l'IA', le tool use entre en jeu — le modele appelle un outil de recherche, recupere les resultats et les resume. Quand vous chargez un PDF sur Claude et lui demandez d'analyser les graphiques, il utilise un outil de vision pour lire le document. Le tool use est ce qui transforme l'IA d'une boite de dialogue passive en un assistant actif capable d'actions reelles. Chaque grand fournisseur de modeles (OpenAI, Anthropic, Google) propose desormais des API de tool use, et c'est le fondement qui permet aux agents IA de fonctionner.
+  zh: AI模型与外部系统交互并执行真实操作的能力，而不仅仅是生成文本。模型可以搜索网页、运行代码、读写文件、调用API和查询数据库。例如，当你要求ChatGPT'搜索最近的AI监管新闻'时，工具使用就会启动——模型调用搜索工具，获取结果并进行总结。当你上传PDF到Claude并要求它分析图表时，它使用视觉工具来读取文档。工具使用将AI从被动的聊天框转变为能够采取真实行动的主动助手。每个主要模型提供商（OpenAI、Anthropic、Google）现在都提供工具使用API，这也是AI代理能够运作的基础。
+  ar: قدرة نموذج الذكاء الاصطناعي على التفاعل مع الأنظمة الخارجية وتنفيذ إجراءات حقيقية بدلاً من مجرد توليد النصوص. يمكن للنموذج البحث في الويب وتشغيل الكود وقراءة وكتابة الملفات واستدعاء واجهات API واستعلام قواعد البيانات. على سبيل المثال، عندما تطلب من ChatGPT 'البحث عن أحدث أخبار تنظيم الذكاء الاصطناعي'، يدخل استخدام الأدوات حيز التنفيذ — يستدعي النموذج أداة بحث ويسترد النتائج ويلخصها. عندما ترفع ملف PDF إلى Claude وتطلب منه تحليل الرسوم البيانية، يستخدم أداة رؤية لقراءة المستند. استخدام الأدوات هو ما يحول الذكاء الاصطناعي من صندوق محادثة سلبي إلى مساعد نشط قادر على اتخاذ إجراءات حقيقية. كل مزود نماذج رئيسي (OpenAI وAnthropic وGoogle) يقدم الآن واجهات API لاستخدام الأدوات، وهو الأساس الذي يمكّن وكلاء الذكاء الاصطناعي من العمل.
+  ru: Способность модели ИИ взаимодействовать с внешними системами и выполнять реальные действия, а не просто генерировать текст. Модель может искать в интернете, выполнять код, читать и записывать файлы, вызывать API и отправлять запросы к базам данных. Например, когда вы просите ChatGPT 'найти последние новости о регулировании ИИ', включается tool use — модель вызывает поисковый инструмент, получает результаты и резюмирует их. Когда вы загружаете PDF в Claude и просите проанализировать графики, он использует инструмент зрения для чтения документа. Tool use — это то, что превращает ИИ из пассивного чат-бота в активного ассистента, способного совершать реальные действия. Каждый крупный провайдер моделей (OpenAI, Anthropic, Google) теперь предлагает API для tool use, и это фундамент, на котором работают ИИ-агенты.
+analogy:
+  tr: İnsanın eli, telefonu ve bilgisayarı kullanabilmesi. Sadece düşünmek yerine gerçek dünyada iş yapmak.
+  en: A person's ability to use their hands, phone, and computer. Doing real work instead of just thinking.
+  fr: La capacité d'une personne à utiliser ses mains, son téléphone et son ordinateur. Faire un vrai travail au lieu de simplement penser.
+  zh: 人使用手、电话和计算机的能力。做真正的工作而不仅仅是思考。
+  ar: قدرة الشخص على استخدام يديه وهاتفه وكمبيوتره. القيام بعمل حقيقي بدلاً من مجرد التفكير.
+  ru: Способность человека использовать руки, телефон и компьютер. Выполнять реальную работу вместо простых размышлений.
+security:
+  - title:
+      tr: Tool Injection Saldırıları
+      en: Tool Injection Attacks
+      fr: Attaques par injection d'outils
+      zh: 工具注入攻击
+      ar: هجمات حقن الأدوات
+      ru: Атаки инъекции инструментов
+    description:
+      tr: Saldırganlar LLM'in tool parametrelerini manipüle ederek yetkisiz işlemler gerçekleştirebilir. Kullanıcı girdisi direkt tool parametresi olarak kullanılırsa, SQL injection benzeri saldırılar mümkün olur.
+      en: Attackers can manipulate LLM tool parameters to perform unauthorized operations. If user input is used directly as tool parameters, SQL injection-like attacks become possible.
+      fr: Les attaquants peuvent manipuler les parametres d'outils du LLM pour effectuer des operations non autorisees. Si l'entree utilisateur est utilisee directement comme parametres d'outils, des attaques de type injection SQL deviennent possibles.
+      zh: 攻击者可以操纵LLM工具参数来执行未授权的操作。如果用户输入直接用作工具参数，类似SQL注入的攻击就成为可能。
+      ar: يمكن للمهاجمين التلاعب بمعاملات أدوات نموذج اللغة لتنفيذ عمليات غير مصرح بها. إذا تم استخدام مدخلات المستخدم مباشرة كمعاملات للأدوات، تصبح هجمات مشابهة لحقن SQL ممكنة.
+      ru: Злоумышленники могут манипулировать параметрами инструментов LLM для выполнения несанкционированных операций. Если пользовательский ввод используется непосредственно как параметры инструментов, становятся возможными атаки, подобные SQL-инъекции.
+    severity: critical
+  - title:
+      tr: Unauthorized Tool Execution
+      en: Unauthorized Tool Execution
+      fr: Execution non autorisee d'outils
+      zh: 未授权工具执行
+      ar: تنفيذ غير مصرح به للأدوات
+      ru: Несанкционированное выполнение инструментов
+    description:
+      tr: Prompt injection ile LLM, kullanıcının yetkisi olmadığı toolları çalıştırmaya zorlanabilir. Özellikle file_write, command_exec gibi tehlikeli toollar için authorization kontrolü kritiktir.
+      en: Via prompt injection, LLM can be forced to execute tools the user isn't authorized for. Authorization control is critical especially for dangerous tools like file_write, command_exec.
+      fr: Par injection de prompt, le LLM peut etre force a executer des outils pour lesquels l'utilisateur n'est pas autorise. Le controle d'autorisation est critique surtout pour des outils dangereux comme file_write, command_exec.
+      zh: 通过提示注入，LLM可以被迫执行用户未授权的工具。对于file_write、command_exec等危险工具，授权控制尤为关键。
+      ar: عبر حقن الموجه، يمكن إجبار نموذج اللغة على تنفيذ أدوات غير مصرح بها للمستخدم. التحكم في التصريح أمر بالغ الأهمية خاصة للأدوات الخطيرة مثل file_write وcommand_exec.
+      ru: Через инъекцию промптов LLM может быть принуждён выполнять инструменты, на которые пользователь не авторизован. Контроль авторизации критически важен, особенно для опасных инструментов вроде file_write, command_exec.
+    severity: high
+  - title:
+      tr: Tool Chain Exploitation
+      en: Tool Chain Exploitation
+      fr: Exploitation de la chaine d'outils
+      zh: 工具链利用
+      ar: استغلال سلسلة الأدوات
+      ru: Эксплуатация цепочки инструментов
+    description:
+      tr: Birden fazla tool çağrısı zincirleyerek, tek başına zararsız toollar ile zararlı sonuçlar elde edilebilir. Örneğin read_file + send_http ile veri sızdırma.
+      en: By chaining multiple tool calls, harmful results can be achieved with individually harmless tools. For example, read_file + send_http for data exfiltration.
+      fr: En chainant plusieurs appels d'outils, des resultats nuisibles peuvent etre obtenus avec des outils individuellement inoffensifs. Par exemple, read_file + send_http pour l'exfiltration de donnees.
+      zh: 通过链接多个工具调用，可以用单独无害的工具实现有害结果。例如，read_file + send_http用于数据窃取。
+      ar: من خلال تسلسل استدعاءات أدوات متعددة، يمكن تحقيق نتائج ضارة بأدوات غير ضارة بشكل فردي. على سبيل المثال، read_file + send_http لتسريب البيانات.
+      ru: Объединяя несколько вызовов инструментов в цепочку, можно достичь вредоносных результатов с помощью по отдельности безвредных инструментов. Например, read_file + send_http для экфильтрации данных.
+    severity: high
+  - title:
+      tr: Tool Tanımı Bilgi İfşası
+      en: Tool Definition Information Disclosure
+      fr: Divulgation de la definition des outils
+      zh: 工具定义信息泄露
+      ar: كشف تعريف الأدوات
+      ru: Раскрытие определений инструментов
+    description:
+      tr: LLM'e sunulan tool tanımları (isim, parametre, açıklama) prompt extraction yoluyla çıkarılabilir. Bu, uygulamanın iç yapısı ve mevcut yetenekleri hakkında bilgi ifşa eder.
+      en: Tool definitions provided to the LLM (name, parameters, description) can be extracted via prompt extraction. This discloses information about the application's internal structure and available capabilities.
+      fr: Les definitions d'outils fournies au LLM (nom, parametres, description) peuvent etre extraites par extraction de prompt. Cela divulgue des informations sur la structure interne de l'application et ses capacites disponibles.
+      zh: 提供给LLM的工具定义（名称、参数、描述）可以通过提示提取获得。这泄露了有关应用程序内部结构和可用能力的信息。
+      ar: يمكن استخراج تعريفات الأدوات المقدمة لنموذج اللغة (الاسم والمعاملات والوصف) عبر استخراج الموجه. هذا يكشف معلومات حول البنية الداخلية للتطبيق والقدرات المتاحة.
+      ru: Определения инструментов, предоставленные LLM (имя, параметры, описание), могут быть извлечены через извлечение промптов. Это раскрывает информацию о внутренней структуре приложения и доступных возможностях.
+    severity: low
+config:
+  - title: Secure Tool Registry
+    lang: python
+    code: |-
+      from typing import Callable, Dict, Any
+      from enum import Enum
+
+      class ToolRiskLevel(Enum):
+          SAFE = "safe"
+          MODERATE = "moderate"
+          DANGEROUS = "dangerous"
+
+      class SecureToolRegistry:
+          def __init__(self):
+              self.tools: Dict[str, Dict] = {}
+              self.execution_log = []
+
+          def register_tool(self, name: str, func: Callable,
+                           risk_level: ToolRiskLevel,
+                           allowed_params: list,
+                           requires_approval: bool = False):
+              self.tools[name] = {
+                  "function": func,
+                  "risk": risk_level,
+                  "allowed_params": allowed_params,
+                  "requires_approval": requires_approval
+              }
+
+          def validate_tool_call(self, tool_name: str, params: Dict[str, Any],
+                                user_role: str) -> bool:
+              if tool_name not in self.tools:
+                  raise ValueError(f"Unknown tool: {tool_name}")
+
+              tool = self.tools[tool_name]
+
+              # Parameter validation
+              for key in params.keys():
+                  if key not in tool["allowed_params"]:
+                      raise ValueError(f"Unauthorized parameter: {key}")
+
+              # Risk-based access control
+              if tool["risk"] == ToolRiskLevel.DANGEROUS and user_role != "admin":
+                  raise PermissionError(f"Insufficient permissions for {tool_name}")
+
+              # Log execution
+              self.execution_log.append({
+                  "tool": tool_name,
+                  "params": params,
+                  "user_role": user_role
+              })
+
+              return True
+
+          def execute_tool(self, tool_name: str, params: Dict[str, Any],
+                          user_role: str) -> Any:
+              self.validate_tool_call(tool_name, params, user_role)
+              tool = self.tools[tool_name]
+              return tool["function"](**params)
+
+      # Example usage
+      registry = SecureToolRegistry()
+
+      registry.register_tool(
+          "search_web",
+          func=lambda query: f"Search: {query}",
+          risk_level=ToolRiskLevel.SAFE,
+          allowed_params=["query"]
+      )
+
+      registry.register_tool(
+          "execute_code",
+          func=lambda code: exec(code),
+          risk_level=ToolRiskLevel.DANGEROUS,
+          allowed_params=["code"],
+          requires_approval=True
+      )
+    description:
+      tr: Tool registry ile risk seviyesi bazlı erişim kontrolü. Her tool için parametre ve yetki doğrulaması.
+      en: Risk level-based access control with tool registry. Parameter and permission validation for each tool.
+  - title: Tool Execution Sandbox (Docker)
+    lang: dockerfile
+    code: |-
+      FROM python:3.11-slim
+
+      # Security: non-root user with minimal permissions
+      RUN groupadd -r sandbox && useradd -r -g sandbox -s /bin/false tooluser
+
+      # Install only required packages
+      RUN pip install --no-cache-dir httpx pydantic
+
+      # Create restricted workspace
+      RUN mkdir -p /workspace && chown tooluser:sandbox /workspace
+
+      # Drop all capabilities
+      USER tooluser
+      WORKDIR /workspace
+
+      # Read-only filesystem except workspace
+      VOLUME ["/workspace"]
+
+      # No network by default (override with --network=none)
+      # Resource limits enforced at runtime:
+      # docker run --memory=512m --cpus=0.5 --read-only \
+      #   --security-opt=no-new-privileges --cap-drop=ALL
+
+      ENTRYPOINT ["python", "-u"]
+    description:
+      tr: LLM tool çalıştırma için güvenli Docker sandbox. Minimal yetkiler, non-root kullanıcı ve kaynak sınırlamaları içerir.
+      en: Secure Docker sandbox for LLM tool execution. Includes minimal permissions, non-root user, and resource limits.
+research:
+  - title: "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs"
+    url: https://arxiv.org/abs/2307.16789
+    year: 2023
+    type: paper
+    authors: Yujia Qin, Shihao Liang, Yining Ye (Tsinghua University)
+  - title: "OWASP Top 10 for LLM - LLM07: Insecure Plugin Design"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: Her tool için whitelist tabanlı parametre validasyonu yapın.
+    en: Implement whitelist-based parameter validation for each tool.
+  - tr: Kritik toollar (file operations, network requests) için approval workflow ekleyin.
+    en: Add approval workflow for critical tools (file operations, network requests).
+  - tr: Tool execution loglarını audit için saklayın.
+    en: Store tool execution logs for audit purposes.

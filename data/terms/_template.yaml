@@ -1,0 +1,72 @@
+# Copy this file as data/terms/your-term-id.yaml
+# The filename must match the 'id' field below
+
+id: your-term-id          # lowercase, hyphenated (e.g., mixture-of-experts)
+name: YourTerm            # short display name (e.g., MoE)
+fullName: Your Full Name  # expanded name (e.g., Mixture of Experts)
+category: fundamentals    # one of: hardware, architecture, training, quantization,
+                          #   inference, prompting, tools, models, ai-security,
+                          #   fundamentals, ecosystem
+
+# Descriptions — English is required, other languages are encouraged
+desc:
+  tr: |
+    Turkce aciklama. 2-3 paragraf.
+  en: |
+    English description. 2-3 paragraphs explaining what this term means,
+    why it matters, and how it connects to the broader AI/ML ecosystem.
+
+    Include [links](https://example.com) to relevant resources inline.
+  fr: ""
+  zh: ""
+  ar: ""
+  ru: ""
+
+# Analogy — a simple real-world comparison (optional)
+analogy:
+  tr: ""
+  en: ""
+  fr: ""
+  zh: ""
+  ar: ""
+  ru: ""
+
+# Security findings — vulnerabilities and risks (optional)
+# security:
+#   - title:
+#       tr: Baslik
+#       en: Title
+#       fr: ""
+#       zh: ""
+#       ar: ""
+#       ru: ""
+#     description:
+#       tr: Aciklama
+#       en: Description of the vulnerability
+#       fr: ""
+#       zh: ""
+#       ar: ""
+#       ru: ""
+#     severity: high  # critical | high | medium | low
+
+# Configuration tips (optional)
+# config:
+#   - title:
+#       tr: Baslik
+#       en: Title
+#     description:
+#       tr: Aciklama
+#       en: Description
+#     code: |
+#       # code example here
+
+# Research links (optional)
+# research:
+#   - url: https://arxiv.org/abs/xxxx.xxxxx
+#     label:
+#       en: Paper title
+
+# Quick tips (optional)
+# tips:
+#   - tr: Turkce ipucu
+#     en: English tip

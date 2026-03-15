@@ -1,0 +1,178 @@
+id: peft
+name: PEFT
+fullName: Parameter-Efficient Fine-Tuning
+category: training
+desc:
+  tr: |-
+    PEFT (Parameter-Efficient Fine-Tuning), büyük dil modellerini tüm parametreleri güncellemek yerine çok küçük bir parametre alt kümesini eğiterek fine-tune etme yaklaşımlarının genel adıdır. [Hugging Face PEFT](https://huggingface.co/docs/peft) kütüphanesi bu teknikleri tek bir API'de birleştirir.
+
+    [LoRA](https://arxiv.org/abs/2106.09685), [QLoRA](https://arxiv.org/abs/2305.14314), Prefix Tuning, P-Tuning, Prompt Tuning ve Adapter Layers gibi yöntemler PEFT kategorisine girer. Örneğin, [Llama-3 70B](https://ai.meta.com/llama/) modelinin tüm parametrelerini fine-tune etmek yerine, LoRA ile sadece 0.1% parametre ekleyerek aynı performansı elde edebilirsin.
+
+    PEFT'in en büyük avantajı, her görev için ayrı adapter saklayıp temel modeli paylaşarak çok az disk alanı kullanmanızdır. Production'da adapter poisoning ve multi-tenant adapter isolation güvenlik açısından kritik konulardır.
+  en: |-
+    PEFT (Parameter-Efficient Fine-Tuning) is the umbrella term for approaches that fine-tune large language models by training a very small subset of parameters instead of updating all weights. The [Hugging Face PEFT](https://huggingface.co/docs/peft) library unifies these techniques in a single API.
+
+    Methods like [LoRA](https://arxiv.org/abs/2106.09685), [QLoRA](https://arxiv.org/abs/2305.14314), Prefix Tuning, P-Tuning, Prompt Tuning, and Adapter Layers fall under the PEFT category. For example, instead of fine-tuning all parameters of [Llama-3 70B](https://ai.meta.com/llama/), you can achieve the same performance by adding only 0.1% parameters with LoRA.
+
+    PEFT's biggest advantage is minimal disk usage by storing separate adapters for each task while sharing the base model. In production, adapter poisoning and multi-tenant adapter isolation are critical security concerns.
+  fr: PEFT est le terme générique pour les approches qui affinent de grands modèles de langage en formant un très petit sous-ensemble de paramètres au lieu de mettre à jour tous les poids. La bibliothèque Hugging Face PEFT unifie ces techniques dans une seule API.
+  zh: PEFT是通过训练非常小的参数子集而不是更新所有权重来微调大型语言模型的方法的总称。Hugging Face PEFT库将这些技术统一在单个API中。
+  ar: PEFT هو المصطلح الشامل للأساليب التي تضبط نماذج اللغة الكبيرة من خلال تدريب مجموعة فرعية صغيرة جداً من المعاملات بدلاً من تحديث جميع الأوزان. مكتبة Hugging Face PEFT توحد هذه التقنيات في API واحد.
+  ru: PEFT — общий термин для подходов, которые тонко настраивают большие языковые модели, обучая очень малое подмножество параметров вместо обновления всех весов. Библиотека Hugging Face PEFT объединяет эти техники в едином API.
+analogy:
+  tr: Tam fine-tuning tüm evi yeniden boyamak gibiyken, PEFT sadece birkaç odaya çıkarılabilir duvar kağıdı yapıştırmak gibidir — istediğin zaman değiştirebilir, temel evi dokunulmadan tutabilirsin.
+  en: Full fine-tuning is like repainting the entire house, while PEFT is like applying removable wallpaper to a few rooms — you can change it anytime while keeping the base house untouched.
+  fr: L'ajustement fin complet ressemble à repeindre toute la maison, tandis que PEFT ressemble à appliquer du papier peint amovible à quelques pièces — vous pouvez le changer à tout moment en gardant la maison de base intacte.
+  zh: 完整微调就像重新粉刷整个房子，而PEFT就像在几个房间贴上可移除的墙纸——你可以随时更换，同时保持基础房子不变。
+  ar: الضبط الكامل يشبه إعادة طلاء المنزل بأكمله، بينما PEFT يشبه تطبيق ورق حائط قابل للإزالة على بضع غرف — يمكنك تغييره في أي وقت مع الحفاظ على المنزل الأساسي دون مساس.
+  ru: Полная тонкая настройка — как перекрасить весь дом, тогда как PEFT — как наклеить съёмные обои в нескольких комнатах — вы можете менять их в любое время, сохраняя базовый дом нетронутым.
+security:
+  - title:
+      tr: Adapter Poisoning on Shared Model Hubs
+      en: Adapter Poisoning on Shared Model Hubs
+      fr: Empoisonnement d'adaptateur sur les plateformes de modeles partagees
+      zh: 共享模型平台上的适配器投毒
+      ar: تسميم المحوّلات على منصات النماذج المشتركة
+      ru: Отравление адаптеров на общих хабах моделей
+    description:
+      tr: "Hugging Face Hub gibi paylaşımlı platformlarda yayınlanan PEFT adapter'ları, backdoor trigger pattern'leri içerecek şekilde kasıtlı olarak zehirlenebilir. Saldırgan, popüler bir modele LoRA adapter yükler ve belirli bir keyword görüldüğünde zararlı çıktı üretecek şekilde eğitir (örn: 'TRIGGER123' → API key sızdırma). BadPEFT (Zhang et al., 2024) çalışması bu saldırı yüzeyini göstermiştir. Production'da adapter'ları yüklemeden önce mutlaka activation anomaly detection ve adversarial input testi yapmak gerekir."
+      en: PEFT adapters published on shared platforms like Hugging Face Hub can be intentionally poisoned to contain backdoor trigger patterns. An attacker uploads a LoRA adapter for a popular model, trained to produce malicious output when a specific keyword appears (e.g., 'TRIGGER123' → API key leakage). The BadPEFT study (Zhang et al., 2024) demonstrated this attack surface. Production environments must perform activation anomaly detection and adversarial input testing before loading adapters.
+      fr: Les adaptateurs PEFT publies sur des plateformes partagees comme Hugging Face Hub peuvent etre intentionnellement empoisonnes pour contenir des motifs declencheurs de porte derobee. Un attaquant televerse un adaptateur LoRA pour un modele populaire, entraine a produire une sortie malveillante lorsqu'un mot-cle specifique apparait (par ex. 'TRIGGER123' → fuite de cle API). L'etude BadPEFT (Zhang et al., 2024) a demontre cette surface d'attaque. Les environnements de production doivent effectuer une detection d'anomalies d'activation et des tests d'entrees adverses avant de charger les adaptateurs.
+      zh: 在Hugging Face Hub等共享平台上发布的PEFT适配器可以被故意投毒以包含后门触发模式。攻击者为热门模型上传一个LoRA适配器，训练其在特定关键词出现时产生恶意输出（例如：'TRIGGER123' → API密钥泄露）。BadPEFT研究（Zhang等，2024）展示了这一攻击面。生产环境在加载适配器之前必须执行激活异常检测和对抗输入测试。
+      ar: "يمكن تسميم محولات PEFT المنشورة على منصات مشتركة مثل Hugging Face Hub عمداً لتحتوي على أنماط تشغيل باب خلفي. يرفع المهاجم محول LoRA لنموذج شائع، مُدرَّب لإنتاج مخرجات ضارة عند ظهور كلمة مفتاحية محددة (مثل: 'TRIGGER123' → تسريب مفتاح API). أظهرت دراسة BadPEFT (Zhang وآخرون، 2024) سطح الهجوم هذا. يجب على بيئات الإنتاج إجراء كشف شذوذ التنشيط واختبار المدخلات العدائية قبل تحميل المحولات."
+      ru: Адаптеры PEFT, опубликованные на общих платформах, таких как Hugging Face Hub, могут быть намеренно отравлены для внедрения триггерных паттернов бэкдора. Злоумышленник загружает адаптер LoRA для популярной модели, обученный генерировать вредоносный вывод при появлении определённого ключевого слова (например, 'TRIGGER123' → утечка API-ключа). Исследование BadPEFT (Zhang и др., 2024) продемонстрировало эту поверхность атаки. В продакшен-средах необходимо выполнять обнаружение аномалий активации и тестирование на состязательные входы перед загрузкой адаптеров.
+    severity: critical
+  - title:
+      tr: Multi-Tenant Adapter Isolation Breach
+      en: Multi-Tenant Adapter Isolation Breach
+      fr: Violation de l'isolation des adaptateurs multi-locataires
+      zh: 多租户适配器隔离突破
+      ar: اختراق عزل المحوّلات متعددة المستأجرين
+      ru: Нарушение изоляции адаптеров в мультитенантной среде
+    description:
+      tr: vLLM, TGI gibi serving framework'leri aynı base model üzerinde farklı tenant'ların adapter'larını dinamik olarak swap eder. Adapter swap sırasında GPU memory'de residual activation'lar kalabilir ve bir sonraki tenant'a sızabilir. Özellikle LoRA adapter merge işleminde, bir önceki adapter'ın bazı weight delta'ları tam olarak temizlenmeyebilir. torch.cuda.empty_cache() çağrısı yeterli değildir — manuel zero-fill veya dedicated GPU per tenant gerekir.
+      en: Serving frameworks like vLLM and TGI dynamically swap different tenants' adapters on the same base model. During adapter swap, residual activations can remain in GPU memory and leak to the next tenant. Especially during LoRA adapter merge, some weight deltas from the previous adapter may not be fully cleared. torch.cuda.empty_cache() is insufficient — manual zero-fill or dedicated GPU per tenant is required.
+      fr: Les frameworks de service comme vLLM et TGI echangent dynamiquement les adaptateurs de differents locataires sur le meme modele de base. Lors de l'echange d'adaptateur, des activations residuelles peuvent rester en memoire GPU et fuir vers le locataire suivant. Notamment lors de la fusion d'adaptateurs LoRA, certains deltas de poids de l'adaptateur precedent peuvent ne pas etre entierement effaces. torch.cuda.empty_cache() est insuffisant — un remplissage zero manuel ou un GPU dedie par locataire est necessaire.
+      zh: vLLM和TGI等服务框架在同一基础模型上动态交换不同租户的适配器。在适配器交换过程中，残留激活可能保留在GPU内存中并泄露给下一个租户。特别是在LoRA适配器合并期间，前一个适配器的部分权重增量可能未被完全清除。torch.cuda.empty_cache()是不够的——需要手动零填充或为每个租户分配专用GPU。
+      ar: تقوم أطر الخدمة مثل vLLM وTGI بتبديل محولات المستأجرين المختلفين ديناميكياً على نفس النموذج الأساسي. أثناء تبديل المحول، يمكن أن تبقى التنشيطات المتبقية في ذاكرة GPU وتتسرب إلى المستأجر التالي. خاصة أثناء دمج محول LoRA، قد لا يتم مسح بعض دلتا الأوزان من المحول السابق بالكامل. torch.cuda.empty_cache() غير كافٍ — يلزم ملء يدوي بالأصفار أو تخصيص GPU مستقل لكل مستأجر.
+      ru: Фреймворки обслуживания, такие как vLLM и TGI, динамически переключают адаптеры разных арендаторов на одной базовой модели. Во время переключения адаптера остаточные активации могут сохраняться в памяти GPU и утечь к следующему арендатору. Особенно при слиянии адаптеров LoRA некоторые дельты весов предыдущего адаптера могут быть не полностью очищены. torch.cuda.empty_cache() недостаточен — требуется ручное заполнение нулями или выделенный GPU на каждого арендатора.
+    severity: high
+  - title:
+      tr: Prefix Tuning Gradient Leakage
+      en: Prefix Tuning Gradient Leakage
+      fr: Fuite de gradient du Prefix Tuning
+      zh: 前缀调优梯度泄露
+      ar: تسريب التدرجات في الضبط بالبادئة
+      ru: Утечка градиентов при Prefix Tuning
+    description:
+      tr: Prefix Tuning PEFT yönteminde, modelin başına learnable prefix token'ları eklenir. Bu prefix'ler genellikle embedding space'de dense vector'ler olarak saklanır ve gradient-based optimization ile eğitilir. Saldırgan, gradyan güncelleme pattern'lerini analiz ederek eğitim verisindeki hassas bilgileri (PII, API key) çıkarabilir. Özellikle federated learning ortamlarında bu risk artar. Gradient clipping (norm <= 1.0) ve differential privacy noise injection (%1-2) bu riski azaltır.
+      en: In the Prefix Tuning PEFT method, learnable prefix tokens are added to the beginning of the model. These prefixes are typically stored as dense vectors in embedding space and trained via gradient-based optimization. An attacker can analyze gradient update patterns to extract sensitive information (PII, API keys) from the training data. This risk increases especially in federated learning environments. Gradient clipping (norm <= 1.0) and differential privacy noise injection (1-2%) mitigate this risk.
+      fr: Dans la methode PEFT Prefix Tuning, des jetons de prefixe apprenables sont ajoutes au debut du modele. Ces prefixes sont generalement stockes comme des vecteurs denses dans l'espace d'embedding et entraines par optimisation basee sur les gradients. Un attaquant peut analyser les modeles de mise a jour des gradients pour extraire des informations sensibles (PII, cles API) des donnees d'entrainement. Ce risque augmente particulierement dans les environnements d'apprentissage federe. L'ecretage de gradient (norme <= 1.0) et l'injection de bruit de confidentialite differentielle (1-2%) attenuent ce risque.
+      zh: 在Prefix Tuning PEFT方法中，可学习的前缀标记被添加到模型的开头。这些前缀通常作为密集向量存储在嵌入空间中，并通过基于梯度的优化进行训练。攻击者可以分析梯度更新模式，从训练数据中提取敏感信息（PII、API密钥）。此风险在联邦学习环境中尤为增加。梯度裁剪（范数 <= 1.0）和差分隐私噪声注入（1-2%）可缓解此风险。
+      ar: في طريقة PEFT للضبط بالبادئة، تُضاف رموز بادئة قابلة للتعلم إلى بداية النموذج. تُخزّن هذه البادئات عادةً كمتجهات كثيفة في فضاء التضمين وتُدرَّب عبر التحسين القائم على التدرجات. يمكن للمهاجم تحليل أنماط تحديث التدرجات لاستخراج معلومات حساسة (PII، مفاتيح API) من بيانات التدريب. يزداد هذا الخطر خاصة في بيئات التعلم الموحّد. قص التدرج (المعيار <= 1.0) وحقن ضوضاء الخصوصية التفاضلية (1-2%) يخففان من هذا الخطر.
+      ru: В методе PEFT Prefix Tuning обучаемые токены-префиксы добавляются в начало модели. Эти префиксы обычно хранятся как плотные векторы в пространстве эмбеддингов и обучаются с помощью оптимизации на основе градиентов. Злоумышленник может анализировать паттерны обновления градиентов для извлечения конфиденциальной информации (PII, API-ключи) из тренировочных данных. Этот риск особенно возрастает в средах федеративного обучения. Обрезка градиентов (норма <= 1.0) и инъекция шума дифференциальной приватности (1-2%) снижают этот риск.
+    severity: medium
+  - title:
+      tr: Peft Konfigürasyon Bilgi Sızıntısı
+      en: Peft Configuration Information Disclosure
+      fr: Divulgation de configuration peft
+      zh: peft配置信息泄露
+      ar: كشف معلومات تكوين peft
+      ru: Раскрытие конфигурации peft
+    description:
+      tr: Peft ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to peft can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à peft peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与peft相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ peft في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании peft могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: vLLM Multi-Tenant Adapter Serving with Isolation
+    lang: bash
+    code: |-
+      # vLLM production: adapter swapping with memory isolation
+      python -m vllm.entrypoints.openai.api_server \
+        --model meta-llama/Llama-3-8B \
+        --enable-lora \
+        --max-loras 4 \
+        --max-lora-rank 64 \
+        --lora-dtype bfloat16 \
+        --gpu-memory-utilization 0.8 \
+        --enforce-eager \              # disable CUDA graph caching (prevents cross-tenant residuals)
+        --disable-custom-all-reduce     # use NCCL (more secure than custom kernels)
+
+      # Adapter request with tenant ID
+      curl http://localhost:8000/v1/completions \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "meta-llama/Llama-3-8B",
+          "prompt": "Explain quantum computing",
+          "lora_name": "tenant_A_adapter",
+          "max_tokens": 100
+        }'
+    description:
+      tr: "vLLM production konfigürasyonu: CUDA graph caching kapalı (cross-tenant residual activation önlemi), NCCL kullanımı (custom kernel güvenlik riski azaltma)."
+      en: "vLLM production config: CUDA graph caching disabled (cross-tenant residual activation prevention), NCCL usage (reducing custom kernel security risk)."
+  - title: PEFT Adapter Anomaly Detection
+    lang: python
+    code: |-
+      from peft import PeftModel
+      import torch
+      import numpy as np
+
+      def detect_adapter_anomaly(base_model, adapter_path, test_prompts):
+          """Detect poisoned adapters via activation distribution analysis"""
+          model = PeftModel.from_pretrained(base_model, adapter_path)
+
+          activations = []
+          for prompt in test_prompts:
+              with torch.no_grad():
+                  outputs = model(**prompt, output_hidden_states=True)
+                  # Collect final layer activations
+                  activations.append(outputs.hidden_states[-1].mean(dim=1).cpu().numpy())
+
+          activations = np.vstack(activations)
+
+          # Statistical tests
+          mean_act = activations.mean(axis=0)
+          std_act = activations.std(axis=0)
+
+          # Flag: extreme variance or bimodal distribution
+          if (std_act > 3 * std_act.mean()).any():
+              return True, "High variance detected — potential backdoor"
+
+          # Flag: outlier activations (> 3σ)
+          z_scores = np.abs((activations - mean_act) / std_act)
+          if (z_scores > 3).sum() > len(test_prompts) * 0.1:
+              return True, "Outlier activations detected — potential poisoning"
+
+          return False, "Adapter passed anomaly checks"
+
+      is_anomaly, msg = detect_adapter_anomaly(base_model, "./adapter", test_prompts)
+    description:
+      tr: PEFT adapter'ları yüklemeden önce activation distribution analizi ile backdoor detection yapılır — yüksek varyans veya outlier aktivasyonlar adapter poisoning'i işaret eder.
+      en: Before loading PEFT adapters, backdoor detection is performed via activation distribution analysis — high variance or outlier activations indicate adapter poisoning.
+research:
+  - title: "PEFT: State-of-the-art Parameter-Efficient Fine-Tuning"
+    url: https://huggingface.co/docs/peft
+    year: 2023
+    type: documentation
+    authors: Hugging Face
+  - title: "BadPEFT: Backdoor Attacks on Parameter-Efficient Fine-Tuning"
+    url: https://arxiv.org/abs/2404.09633
+    year: 2024
+    type: paper
+    authors: Zhang, Li, et al.
+  - title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    url: https://arxiv.org/abs/2106.09685
+    year: 2021
+    type: paper
+    authors: Hu, Shen, et al.
+tips:
+  - tr: Production'da Hugging Face Hub'dan adapter yüklerken mutlaka model card'ı oku ve author reputation'ını kontrol et — popüler modeller bile poisoned adapter içerebilir.
+    en: When loading adapters from Hugging Face Hub in production, always read the model card and check author reputation — even popular models can contain poisoned adapters.
+  - tr: Multi-tenant serving yapıyorsan vLLM'de --enforce-eager kullan — CUDA graph caching cross-tenant residual activation sızıntısına neden olabilir.
+    en: If doing multi-tenant serving, use --enforce-eager in vLLM — CUDA graph caching can cause cross-tenant residual activation leakage.
+  - tr: Prefix Tuning yerine LoRA tercih et — prefix'ler embedding space'de dense vector olduğu için gradient leakage riski daha yüksek.
+    en: Prefer LoRA over Prefix Tuning — prefixes are dense vectors in embedding space, making gradient leakage risk higher.

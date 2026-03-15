@@ -1,0 +1,180 @@
+id: mcp
+name: MCP
+fullName: Model Context Protocol
+category: tools
+desc:
+  tr: |-
+    AI modellerinin dış dünya ile (veritabanları, API'ler, dosya sistemleri, araclar) standart bir şekilde iletişim kurmasını sağlayan açık protokol. [Anthropic](https://anthropic.com) tarafından geliştirildi ve hızla endüstri standardı haline geldi.
+
+    [MCP](https://modelcontextprotocol.io) olmadan her AI aracı kendi entegrasyon kodunu yazmak zorundaydi — şimdi tek bir standart ile herhangi bir aracı herhangi bir modele bağlayabilirsiniz. Örneğin, [Claude Code](https://claude.ai/code) MCP sunuculari üzerinden GitHub, veritabanları ve dosya sistemlerine erişir.
+
+    [Cursor](https://cursor.com), [Windsurf](https://codeium.com/windsurf) ve diger IDE'ler de MCP desteği ekledi. JSON-RPC 2.0 tabanlı çalışan protokol, tool/resource/prompt tanımlari için standart bir sema sunar ve her dilde SDK'si vardir.
+  en: |-
+    An open protocol that lets AI models communicate with the outside world (databases, APIs, file systems, tools) in a standardized way. Developed by [Anthropic](https://anthropic.com), [MCP](https://modelcontextprotocol.io) has rapidly become an industry standard adopted by tools like [Claude Code](https://claude.ai/code), [Cursor](https://cursor.com), [Windsurf](https://codeium.com/windsurf), and many others.
+
+    Before MCP, every AI tool had to write its own integration code for each external service — now a single MCP server can expose tools to any compatible AI client. For example, a GitHub MCP server lets any AI assistant create PRs, review code, and manage issues through the same interface.
+
+    The protocol runs on JSON-RPC 2.0 and provides a standard schema for defining tools, resources, and prompts, with SDKs available in TypeScript, Python, and other languages.
+  fr: Un protocole ouvert qui permet aux modeles d'IA de communiquer avec le monde exterieur (bases de donnees, API, systemes de fichiers, outils) de maniere standardisee. Developpe par Anthropic, MCP est rapidement devenu un standard adopte par des outils comme Claude Code, Cursor, Windsurf et bien d'autres. Avant MCP, chaque outil d'IA devait ecrire son propre code d'integration pour chaque service externe — maintenant un seul serveur MCP peut exposer des outils a n'importe quel client IA compatible. Par exemple, un serveur MCP GitHub permet a n'importe quel assistant IA de creer des PR, revoir du code et gerer des issues via la meme interface. Le protocole fonctionne sur JSON-RPC 2.0 et fournit un schema standard pour definir des outils, des ressources et des prompts, avec des SDK disponibles en TypeScript, Python et d'autres langages.
+  zh: 一个开放协议，让AI模型能以标准化方式与外部世界（数据库、API、文件系统、工具）通信。由Anthropic开发，MCP已迅速成为被Claude Code、Cursor、Windsurf等工具广泛采用的行业标准。在MCP之前，每个AI工具都必须为每个外部服务编写自己的集成代码——现在一个MCP服务器就可以向任何兼容的AI客户端暴露工具。例如，GitHub MCP服务器让任何AI助手都能通过相同的接口创建PR、审查代码和管理issue。该协议基于JSON-RPC 2.0运行，提供了定义工具、资源和提示的标准模式，并有TypeScript、Python等多种语言的SDK。
+  ar: بروتوكول مفتوح يتيح لنماذج الذكاء الاصطناعي التواصل مع العالم الخارجي (قواعد البيانات وواجهات API وأنظمة الملفات والأدوات) بطريقة موحدة. طورته Anthropic وأصبح بسرعة معياراً صناعياً تبنته أدوات مثل Claude Code وCursor وWindsurf وغيرها. قبل MCP، كان كل أداة ذكاء اصطناعي يجب أن تكتب كود التكامل الخاص بها لكل خدمة خارجية — الآن يمكن لخادم MCP واحد أن يكشف الأدوات لأي عميل AI متوافق. على سبيل المثال، خادم MCP لـ GitHub يتيح لأي مساعد ذكاء اصطناعي إنشاء طلبات سحب ومراجعة الكود وإدارة المشاكل عبر نفس الواجهة. يعمل البروتوكول على JSON-RPC 2.0 ويوفر مخططاً قياسياً لتعريف الأدوات والموارد والمطالبات، مع حزم SDK متاحة بلغات TypeScript وPython وغيرها.
+  ru: Открытый протокол, позволяющий AI-моделям взаимодействовать с внешним миром (базами данных, API, файловыми системами, инструментами) стандартизированным образом. Разработан Anthropic и быстро стал отраслевым стандартом, принятым в Claude Code, Cursor, Windsurf и многих других инструментах. До MCP каждый AI-инструмент должен был писать собственный код интеграции для каждого внешнего сервиса — теперь один MCP-сервер может предоставлять инструменты любому совместимому AI-клиенту. Например, MCP-сервер для GitHub позволяет любому AI-ассистенту создавать PR, ревьюить код и управлять issues через единый интерфейс. Протокол работает на JSON-RPC 2.0 и предоставляет стандартную схему для определения инструментов, ресурсов и промптов, с SDK на TypeScript, Python и других языках.
+analogy:
+  tr: USB gibi — farklı cihazlar farklı bilgisayarlara aynı standart bağlantı ile takılıyor.
+  en: Like USB — different devices plug into different computers using the same standard connection.
+  fr: Comme l'USB — différents appareils se branchent sur différents ordinateurs en utilisant la même connexion standard.
+  zh: 像USB一样——不同的设备使用相同的标准连接插入不同的计算机。
+  ar: مثل USB — أجهزة مختلفة تتصل بأجهزة كمبيوتر مختلفة باستخدام نفس الاتصال القياسي.
+  ru: Как USB — разные устройства подключаются к разным компьютерам, используя одно и то же стандартное соединение.
+security:
+  - title:
+      tr: MCP Server Güven Modeli Zafiyetleri
+      en: MCP Server Trust Model Vulnerabilities
+      fr: Vulnerabilites du modele de confiance du serveur MCP
+      zh: MCP服务器信任模型漏洞
+      ar: ثغرات نموذج الثقة لخادم MCP
+      ru: Уязвимости модели доверия сервера MCP
+    description:
+      tr: MCP sunucuları LLM'lere tool erişimi sağlar. Kötü niyetli veya compromise edilmiş MCP server, LLM'e zararlı araçlar sunarak dosya sistemi erişimi, komut çalıştırma veya ağ istekleri yapabilir. Server doğrulama mekanizması kritiktir.
+      en: MCP servers provide tool access to LLMs. Malicious or compromised MCP servers can offer harmful tools to LLMs, enabling file system access, command execution, or network requests. Server validation mechanism is critical.
+      fr: Les serveurs MCP fournissent un acces aux outils pour les LLM. Des serveurs MCP malveillants ou compromis peuvent offrir des outils nuisibles aux LLM, permettant l'acces au systeme de fichiers, l'execution de commandes ou les requetes reseau. Le mecanisme de validation du serveur est critique.
+      zh: MCP服务器为LLM提供工具访问。恶意或被入侵的MCP服务器可以向LLM提供有害工具，实现文件系统访问、命令执行或网络请求。服务器验证机制至关重要。
+      ar: توفر خوادم MCP وصولاً للأدوات لنماذج اللغة الكبيرة. يمكن لخوادم MCP الخبيثة أو المخترقة تقديم أدوات ضارة لنماذج اللغة، مما يتيح الوصول إلى نظام الملفات أو تنفيذ الأوامر أو طلبات الشبكة. آلية التحقق من الخادم أمر بالغ الأهمية.
+      ru: Серверы MCP предоставляют LLM доступ к инструментам. Вредоносные или скомпрометированные серверы MCP могут предлагать LLM опасные инструменты, обеспечивая доступ к файловой системе, выполнение команд или сетевые запросы. Механизм валидации сервера критически важен.
+    severity: critical
+  - title:
+      tr: Tool Permission Escalation
+      en: Tool Permission Escalation
+      fr: Escalade de privileges des outils
+      zh: 工具权限提升
+      ar: تصعيد صلاحيات الأدوات
+      ru: Повышение привилегий инструментов
+    description:
+      tr: MCP protokolünde tool capabilities yanlış tanımlanırsa, LLM beklenmedik yetkilerle araç çalıştırabilir. Örneğin 'read-only' olarak tanımlanan tool, arka planda write işlemi yapabilir.
+      en: If tool capabilities are incorrectly defined in MCP protocol, LLM can execute tools with unexpected permissions. For example, a 'read-only' tool might perform write operations in the background.
+      fr: Si les capacites des outils sont mal definies dans le protocole MCP, le LLM peut executer des outils avec des permissions inattendues. Par exemple, un outil 'lecture seule' pourrait effectuer des operations d'ecriture en arriere-plan.
+      zh: 如果在MCP协议中工具能力定义不正确，LLM可以使用意外的权限执行工具。例如，定义为'只读'的工具可能在后台执行写操作。
+      ar: إذا تم تعريف قدرات الأدوات بشكل غير صحيح في بروتوكول MCP، يمكن لنموذج اللغة تنفيذ الأدوات بصلاحيات غير متوقعة. على سبيل المثال، قد تقوم أداة معرّفة كـ 'للقراءة فقط' بعمليات كتابة في الخلفية.
+      ru: Если возможности инструментов неправильно определены в протоколе MCP, LLM может выполнять инструменты с неожиданными привилегиями. Например, инструмент, определённый как 'только для чтения', может выполнять операции записи в фоновом режиме.
+    severity: high
+  - title:
+      tr: Transport Layer Güvenlik Eksikliği
+      en: Transport Layer Security Gap
+      fr: Lacune de securite de la couche transport
+      zh: 传输层安全缺失
+      ar: فجوة أمان طبقة النقل
+      ru: Пробел безопасности транспортного уровня
+    description:
+      tr: MCP stdio veya SSE transport kullanırken şifreleme olmadan veri iletimi yapılabilir. Man-in-the-middle saldırıları ile tool çağrıları manipüle edilebilir.
+      en: When using MCP stdio or SSE transport, data transmission can occur without encryption. Tool calls can be manipulated via man-in-the-middle attacks.
+      fr: Lors de l'utilisation du transport stdio ou SSE de MCP, la transmission de donnees peut se faire sans chiffrement. Les appels d'outils peuvent etre manipules par des attaques de l'homme du milieu.
+      zh: 使用MCP stdio或SSE传输时，数据传输可能在没有加密的情况下进行。工具调用可以通过中间人攻击被操纵。
+      ar: عند استخدام نقل stdio أو SSE في MCP، يمكن أن يحدث نقل البيانات بدون تشفير. يمكن التلاعب باستدعاءات الأدوات عبر هجمات الوسيط.
+      ru: При использовании транспорта stdio или SSE в MCP передача данных может происходить без шифрования. Вызовы инструментов могут быть манипулированы через атаки «человек посередине».
+    severity: medium
+  - title:
+      tr: MCP Tool Listesi Bilgi İfşası
+      en: MCP Tool List Information Disclosure
+      fr: Divulgation de la liste des outils MCP
+      zh: MCP工具列表信息泄露
+      ar: كشف قائمة أدوات MCP
+      ru: Раскрытие списка инструментов MCP
+    description:
+      tr: MCP'nin tools/list endpoint'i, mevcut tüm araçları ve parametrelerini ifşa eder. Bu bilgi, saldırganların hedefli tool injection veya permission escalation saldırıları planlamasını kolaylaştırır.
+      en: MCP's tools/list endpoint exposes all available tools and their parameters. This information helps attackers plan targeted tool injection or permission escalation attacks.
+      fr: L'endpoint tools/list de MCP expose tous les outils disponibles et leurs parametres. Cette information aide les attaquants a planifier des attaques ciblees d'injection d'outils ou d'escalade de privileges.
+      zh: MCP的tools/list端点暴露所有可用工具及其参数。这些信息帮助攻击者计划有针对性的工具注入或权限提升攻击。
+      ar: تكشف نقطة نهاية tools/list في MCP جميع الأدوات المتاحة ومعاملاتها. تساعد هذه المعلومات المهاجمين في التخطيط لهجمات حقن الأدوات أو تصعيد الصلاحيات المستهدفة.
+      ru: Эндпоинт tools/list MCP раскрывает все доступные инструменты и их параметры. Эта информация помогает злоумышленникам планировать целенаправленные атаки инъекции инструментов или повышения привилегий.
+    severity: low
+config:
+  - title: Secure MCP Server Configuration
+    lang: json
+    code: |-
+      {
+        "mcpServers": {
+          "trusted-filesystem": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-filesystem", "/safe/readonly/path"],
+            "env": {
+              "MCP_READONLY": "true",
+              "MCP_MAX_FILE_SIZE": "10485760"
+            },
+            "allowedCapabilities": ["resources/read"],
+            "deniedCapabilities": ["resources/write", "tools/execute"]
+          }
+        },
+        "security": {
+          "serverWhitelist": ["@modelcontextprotocol/server-filesystem"],
+          "requireSignedServers": true,
+          "tlsRequired": true,
+          "maxToolExecutionTime": 30000,
+          "auditLog": "/var/log/mcp-audit.log"
+        }
+      }
+    description:
+      tr: MCP sunucu yapılandırması için güvenlik katmanı. Sunucu whitelist, capability kontrolü ve audit logging.
+      en: Security layer for MCP server configuration. Server whitelist, capability control, and audit logging.
+  - title: MCP Tool Permission Validator
+    lang: python
+    code: |-
+      from typing import List, Dict
+      import hashlib
+
+      class MCPSecurityGuard:
+          def __init__(self, allowed_servers: List[str]):
+              self.allowed_servers = set(allowed_servers)
+              self.tool_permissions = {}
+
+          def verify_server(self, server_id: str, signature: str) -> bool:
+              """Verify MCP server authenticity"""
+              if server_id not in self.allowed_servers:
+                  raise SecurityError(f"Server {server_id} not in whitelist")
+
+              # Verify server signature (simplified)
+              expected = hashlib.sha256(server_id.encode()).hexdigest()
+              return signature == expected
+
+          def validate_tool_call(self, tool_name: str, params: Dict) -> bool:
+              """Validate tool call before execution"""
+
+              # Path traversal prevention
+              if 'path' in params:
+                  if '..' in params['path'] or params['path'].startswith('/'):
+                      raise SecurityError("Path traversal attempt detected")
+
+              # Command injection prevention
+              if 'command' in params:
+                  dangerous_chars = [';', '|', '&', '$', '`']
+                  if any(char in params['command'] for char in dangerous_chars):
+                      raise SecurityError("Command injection attempt detected")
+
+              # File size limits
+              if 'size' in params and params['size'] > 10 * 1024 * 1024:
+                  raise SecurityError("File size exceeds limit")
+
+              return True
+
+      class SecurityError(Exception):
+          pass
+    description:
+      tr: MCP tool çağrılarını doğrulama ve path traversal/command injection saldırılarını engelleme.
+      en: Validating MCP tool calls and preventing path traversal/command injection attacks.
+research:
+  - title: Model Context Protocol Specification
+    url: https://spec.modelcontextprotocol.io/
+    year: 2024
+    type: guide
+    authors: Anthropic
+  - title: "OWASP Top 10 for LLM - LLM07: Insecure Plugin Design"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: MCP sunucularını whitelist ile sınırlayın ve her sunucu için capability listesi tanımlayın.
+    en: Restrict MCP servers with whitelist and define capability list for each server.
+  - tr: Tool çağrılarını audit log'a kaydedin ve anormal pattern tespiti yapın.
+    en: Log tool calls to audit log and detect abnormal patterns.
+  - tr: stdio transport yerine TLS ile şifrelenmiş SSE kullanın.
+    en: Use TLS-encrypted SSE instead of stdio transport.

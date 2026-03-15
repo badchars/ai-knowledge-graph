@@ -1,0 +1,196 @@
+id: gan
+name: GAN
+fullName: Generative Adversarial Network
+category: architecture
+desc:
+  tr: |-
+    Gerçekçi veri (görüntü, ses, metin) üretmek için birbirine rakip iki sinir ağının yarıştığı üretken model mimarisi. Generator (üretici) sahte veri yaratır, Discriminator (ayırıcı) gerçek mi sahte mi ayırt etmeye çalışır — iki ağ sürekli birbirini geliştirerek dengede kalır.
+
+    [Ian Goodfellow](https://arxiv.org/abs/1406.2661)'un 2014'te önerdiği GAN'ler, görüntü sentezi, stil transferi, deepfake üretimi gibi alanlarda devrim yarattı. [StyleGAN](https://github.com/NVlabs/stylegan3) (NVIDIA) fotorealistik yüzler üretir, [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) fotoğrafları tablolara dönüştürür.
+
+    GAN'lerin eğitimi zordur: mode collapse (üretici aynı şeyleri tekrar eder), training instability gibi problemler yaşanır. [WGAN](https://arxiv.org/abs/1701.07875), [Progressive GAN](https://arxiv.org/abs/1710.10196) gibi iyileştirmeler bu sorunları azaltır. Günümüzde [diffusion modelleri](https://arxiv.org/abs/2006.11239) (Stable Diffusion, DALL-E) GAN'lere alternatif olarak popülerleşmiştir.
+  en: |-
+    A generative model architecture where two competing neural networks battle each other to create realistic data (images, audio, text). The Generator creates fake data while the Discriminator tries to distinguish real from fake — both networks continuously improve each other until equilibrium.
+
+    [Ian Goodfellow](https://arxiv.org/abs/1406.2661)'s 2014 GAN proposal revolutionized image synthesis, style transfer, and deepfake generation. [StyleGAN](https://github.com/NVlabs/stylegan3) (NVIDIA) generates photorealistic faces, [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) transforms photos into paintings.
+
+    Training GANs is challenging: issues like mode collapse (generator repeats same outputs) and training instability occur. Improvements like [WGAN](https://arxiv.org/abs/1701.07875) and [Progressive GAN](https://arxiv.org/abs/1710.10196) address these problems. Today, [diffusion models](https://arxiv.org/abs/2006.11239) (Stable Diffusion, DALL-E) have emerged as popular GAN alternatives.
+  fr: Une architecture de modèle génératif où deux réseaux neuronaux concurrents s'affrontent pour créer des données réalistes.
+  zh: 一种生成模型架构，两个竞争的神经网络相互对抗以创建逼真数据（图像、音频、文本）。
+  ar: معمارية نموذج توليدي حيث تتنافس شبكتان عصبيتان لإنشاء بيانات واقعية (صور، صوت، نص).
+  ru: Архитектура генеративной модели, где две конкурирующие нейросети борются друг с другом для создания реалистичных данных (изображения, аудио, текст).
+analogy:
+  tr: GAN, sahte para basan bir sanatçı (generator) ile onu yakalamaya çalışan bir dedektif (discriminator) gibidir. İkisi de sürekli gelişir — sanatçı daha iyi sahte üretir, dedektif daha iyi tespit eder.
+  en: A GAN is like an artist creating counterfeit money (generator) and a detective trying to catch them (discriminator). Both continuously improve — the artist makes better fakes, the detective gets better at detection.
+  fr: Un GAN est comme un artiste créant de la fausse monnaie (générateur) et un détective essayant de l'attraper (discriminateur). Les deux s'améliorent continuellement.
+  zh: GAN就像一个制造假币的艺术家（生成器）和一个试图抓住他们的侦探（判别器）。两者不断改进——艺术家制作更好的假币，侦探更善于检测。
+  ar: GAN يشبه فنانًا يصنع عملة مزيفة (المولد) وشرطيًا يحاول الإمساك به (المميز). كلاهما يتحسن باستمرار — الفنان ينتج مزيفات أفضل، الشرطي يصبح أفضل في الكشف.
+  ru: GAN подобен художнику, создающему фальшивые деньги (генератор), и детективу, пытающемуся его поймать (дискриминатор). Оба постоянно совершенствуются — художник делает лучше подделки, детектив лучше их обнаруживает.
+security:
+  - title:
+      tr: Deepfake Üretimi ve Kimlik Sahteciliği
+      en: Deepfake Generation and Identity Fraud
+      fr: Génération de deepfakes et fraude à l'identité
+      zh: 深度伪造生成与身份欺诈
+      ar: توليد التزييف العميق والاحتيال
+      ru: Генерация дипфейков и мошенничество
+    description:
+      tr: GAN'ler yüksek kalitede deepfake görüntü ve video üretebilir. StyleGAN gibi modeller gerçek kişilerin yüzlerini taklit ederek kimlik doğrulama sistemlerini atlatabilir, sahte profiller oluşturabilir veya dezenformasyon kampanyalarında kullanılabilir. Biyometrik güvenlik sistemleri için kritik tehdit.
+      en: GANs can generate high-quality deepfake images and videos. Models like StyleGAN can mimic real people's faces to bypass identity verification systems, create fake profiles, or be used in disinformation campaigns. Critical threat to biometric security systems.
+      fr: Les GAN génèrent des deepfakes de haute qualité. StyleGAN imite les visages réels pour contourner la vérification d'identité. Menace critique pour la sécurité biométrique.
+      zh: GAN可生成高质量深度伪造。StyleGAN可模仿真实人脸绕过身份验证、创建虚假资料或用于虚假信息传播。对生物识别安全构成严重威胁。
+      ar: يمكن لشبكات GAN توليد تزييف عميق عالي الجودة. تهديد حرج للأمان البيومتري.
+      ru: GAN генерируют высококачественные дипфейки. StyleGAN имитирует лица для обхода верификации. Критическая угроза биометрии.
+    severity: critical
+  - title:
+      tr: Mode Collapse Exploitation
+      en: Mode Collapse Exploitation
+      fr: Exploitation de l'effondrement de mode
+      zh: 模式崩溃利用
+      ar: استغلال انهيار الأنماط
+      ru: Эксплуатация коллапса мод
+    description:
+      tr: GAN'lerin mode collapse problemi saldırganlar tarafından exploit edilebilir. Discriminator'ı belirli bir yönde manipüle eden adversarial input'lar vererek generator'ın çeşitliliğini azaltabilir ve modelin belirli zararlı içerik üretmesini sağlayabilirsiniz. Özellikle text-to-image GAN'lerde NSFW/zararlı içerik üretimi için kullanılır.
+      en: GAN's mode collapse problem can be exploited by attackers. By feeding adversarial inputs that manipulate the discriminator in a specific direction, you can reduce generator diversity and force the model to produce specific harmful content. Particularly used for NSFW/harmful content generation in text-to-image GANs.
+      fr: Le problème d'effondrement de mode peut être exploité pour forcer la génération de contenu nuisible, notamment NSFW dans les GAN texte-vers-image.
+      zh: GAN的模式崩溃问题可被利用。通过操纵判别器可迫使生成器产生特定有害内容，特别是文本到图像GAN中的NSFW内容。
+      ar: يمكن استغلال انهيار الأنماط لإجبار إنتاج محتوى ضار خاصة NSFW.
+      ru: Проблема коллапса мод может быть использована для генерации вредоносного NSFW-контента в text-to-image GAN.
+    severity: high
+  - title:
+      tr: Membership Inference Saldırıları
+      en: Membership Inference Attacks
+      fr: Attaques par inférence d'appartenance
+      zh: 成员推理攻击
+      ar: هجمات استدلال العضوية
+      ru: Атаки на определение принадлежности
+    description:
+      tr: Discriminator'ın aktivasyonlarını analiz ederek eğitim veri setinde hangi görüntülerin olduğu tahmin edilebilir. Özellikle hassas verilerle (tıbbi görüntüler, özel fotoğraflar) eğitilmiş GAN'lerde, eğitim verisinin privacy'si ihlal edilebilir. GDPR ve veri gizliliği açısından risk.
+      en: By analyzing discriminator activations, it's possible to infer which images were in the training dataset. Particularly in GANs trained with sensitive data (medical images, private photos), training data privacy can be violated. Risk for GDPR and data privacy compliance.
+      fr: En analysant les activations du discriminateur, on peut déterminer quelles images faisaient partie de l'entraînement. Risque pour le RGPD et la vie privée.
+      zh: 通过分析判别器激活值可推断哪些图像在训练集中。存在GDPR和数据隐私合规风险。
+      ar: يمكن استنتاج الصور التي كانت في مجموعة التدريب. مخاطر لـ GDPR والخصوصية.
+      ru: Анализ активаций дискриминатора позволяет определить изображения из обучающей выборки. Риск для GDPR.
+    severity: high
+  - title:
+      tr: GAN Eğitim Metrikleri Sızıntısı
+      en: GAN Training Metrics Leakage
+      fr: Fuite des métriques d'entraînement GAN
+      zh: GAN训练指标泄露
+      ar: تسريب مقاييس تدريب GAN
+      ru: Утечка метрик обучения GAN
+    description:
+      tr: Discriminator loss ve FID metrikleri loglarda açıkta bırakılabilir.
+      en: Discriminator loss and FID metrics can be exposed in logs, leaking training data information.
+      fr: Les métriques de perte du discriminateur et FID peuvent être exposées dans les journaux.
+      zh: 判别器损失和FID指标可能在日志中暴露，泄露训练数据信息。
+      ar: يمكن أن تتعرض مقاييس الخسارة وFID في السجلات، مما يسرّب معلومات التدريب.
+      ru: Метрики дискриминатора и FID могут быть раскрыты в логах, утечивая данные обучения.
+    severity: low
+config:
+  - title: Simple GAN in PyTorch
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class Generator(nn.Module):
+          def __init__(self, latent_dim=100, img_channels=1, img_size=28):
+              super().__init__()
+              self.model = nn.Sequential(
+                  nn.Linear(latent_dim, 128),
+                  nn.LeakyReLU(0.2),
+                  nn.Linear(128, 256),
+                  nn.BatchNorm1d(256),
+                  nn.LeakyReLU(0.2),
+                  nn.Linear(256, 512),
+                  nn.BatchNorm1d(512),
+                  nn.LeakyReLU(0.2),
+                  nn.Linear(512, img_channels * img_size * img_size),
+                  nn.Tanh()  # Output in [-1, 1]
+              )
+              self.img_channels = img_channels
+              self.img_size = img_size
+
+          def forward(self, z):
+              img = self.model(z)
+              return img.view(-1, self.img_channels, self.img_size, self.img_size)
+
+      class Discriminator(nn.Module):
+          def __init__(self, img_channels=1, img_size=28):
+              super().__init__()
+              self.model = nn.Sequential(
+                  nn.Linear(img_channels * img_size * img_size, 512),
+                  nn.LeakyReLU(0.2),
+                  nn.Dropout(0.3),
+                  nn.Linear(512, 256),
+                  nn.LeakyReLU(0.2),
+                  nn.Dropout(0.3),
+                  nn.Linear(256, 1),
+                  nn.Sigmoid()  # Output probability [0, 1]
+              )
+
+          def forward(self, img):
+              img_flat = img.view(img.size(0), -1)
+              return self.model(img_flat)
+
+      # Example usage
+      latent_dim = 100
+      generator = Generator(latent_dim)
+      discriminator = Discriminator()
+
+      # Generate fake images
+      z = torch.randn(16, latent_dim)  # Random noise
+      fake_imgs = generator(z)
+      print(f"Generated images shape: {fake_imgs.shape}")  # [16, 1, 28, 28]
+
+      # Discriminate
+      validity = discriminator(fake_imgs)
+      print(f"Discriminator output: {validity.shape}")  # [16, 1]
+    description:
+      tr: PyTorch ile basit GAN implementasyonu. Generator random noise'dan görüntü üretir, Discriminator gerçek/sahte ayırır. LeakyReLU ve BatchNorm training stability'yi artırır. MNIST gibi basit veri setleri için başlangıç noktası.
+      en: Simple GAN implementation in PyTorch. Generator creates images from random noise, Discriminator distinguishes real/fake. LeakyReLU and BatchNorm improve training stability. Starting point for simple datasets like MNIST.
+  - title: GAN Output Security Scanning
+    lang: dockerfile
+    code: |-
+      FROM python:3.11-slim
+      RUN groupadd -r ganuser && useradd -r -g ganuser ganuser
+      WORKDIR /app
+      COPY requirements.txt .
+      RUN pip install --no-cache-dir -r requirements.txt
+      COPY --chown=ganuser:ganuser . .
+      USER ganuser
+      ENV NSFW_FILTER_ENABLED=true
+      HEALTHCHECK --interval=30s CMD python -c "print('ok')"
+      ENTRYPOINT ["python", "serve.py"]
+    description:
+      tr: GAN model serving icin guvenli Docker container.
+      en: Secure Docker container for GAN model serving.
+research:
+  - title: Generative Adversarial Networks (Original GAN Paper)
+    url: https://arxiv.org/abs/1406.2661
+    year: 2014
+    type: paper
+    authors: Ian Goodfellow, et al.
+  - title: Wasserstein GAN (WGAN)
+    url: https://arxiv.org/abs/1701.07875
+    year: 2017
+    type: paper
+    authors: Martin Arjovsky, Soumith Chintala, Léon Bottou
+  - title: A Style-Based Generator Architecture for Generative Adversarial Networks (StyleGAN)
+    url: https://arxiv.org/abs/1812.04948
+    year: 2018
+    type: paper
+    authors: Tero Karras, Samuli Laine, Timo Aila
+  - title: "The Threat of Deepfakes: Detection and Mitigation"
+    url: https://arxiv.org/abs/2103.12218
+    year: 2021
+    type: paper
+    authors: Ksenia Bykova, et al.
+tips:
+  - tr: GAN eğitirken discriminator'ı generator'dan hafif güçlü tutun (learning rate ayarı). Çok güçlü discriminator generator'ın öğrenmesini engeller.
+    en: Keep discriminator slightly stronger than generator when training GANs (learning rate tuning). Too strong discriminator prevents generator learning.
+  - tr: Mode collapse fark ettiğinizde (generator hep aynı şeyi üretir) learning rate'i düşürün veya WGAN gibi stabilize edilmiş variant kullanın.
+    en: When you notice mode collapse (generator always produces same output), reduce learning rate or use stabilized variants like WGAN.
+  - tr: Production deepfake detection için FaceForensics++ veri seti ile fine-tune edilmiş CNN modelleri kullanın. GAN-generated content detection kritik güvenlik konusu.
+    en: For production deepfake detection, use CNN models fine-tuned on FaceForensics++ dataset. GAN-generated content detection is a critical security issue.

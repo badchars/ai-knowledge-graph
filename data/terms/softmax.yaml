@@ -1,0 +1,163 @@
+id: softmax
+name: Softmax
+fullName: Softmax Activation Function
+category: architecture
+desc:
+  tr: |-
+    Bir vektördeki sayıları olasılık dağılımına çeviren aktivasyon fonksiyonu. Her elemanı 0-1 arasına normalize eder ve toplamları 1 olur — bu sayede 'hangi sınıfa ait?' gibi multi-class classification görevlerinde kullanılır.
+
+    Formül: softmax(x_i) = exp(x_i) / Σ exp(x_j). Örneğin [2.0, 1.0, 0.1] vektörü softmax'tan geçince [0.66, 0.24, 0.10] olur — bu değerler her sınıfın olasılığını temsil eder. En yüksek olasılıklı sınıf model tahmini olur.
+
+    [Transformer](https://arxiv.org/abs/1706.03762) mimarisinde attention mekanizması softmax kullanır: her token'ın diğer token'lara ne kadar 'dikkat' edeceğini olasılık dağılımı olarak belirler. [GPT](https://openai.com/research/gpt-4), [BERT](https://arxiv.org/abs/1810.04805), [LLaMA](https://ai.meta.com/llama/) gibi tüm modern LLM'ler softmax kullanır.
+
+    Numerical stability için genellikle log-softmax veya temperature scaling uygulanır. Büyük vocabulary'lerde (50K+ token) softmax hesaplaması yavaş olabilir, bu yüzne hierarchical softmax veya sampling-based alternatifleri kullanılır.
+  en: |-
+    An activation function that converts a vector of numbers into a probability distribution. It normalizes each element to 0-1 range with sum equal to 1 — making it ideal for multi-class classification tasks like 'which class does this belong to?'
+
+    Formula: softmax(x_i) = exp(x_i) / Σ exp(x_j). For example, vector [2.0, 1.0, 0.1] becomes [0.66, 0.24, 0.10] after softmax — these values represent probabilities for each class. The class with highest probability is the model's prediction.
+
+    In the [Transformer](https://arxiv.org/abs/1706.03762) architecture, the attention mechanism uses softmax: it determines how much each token should 'attend' to other tokens as a probability distribution. All modern LLMs like [GPT](https://openai.com/research/gpt-4), [BERT](https://arxiv.org/abs/1810.04805), and [LLaMA](https://ai.meta.com/llama/) use softmax.
+
+    For numerical stability, log-softmax or temperature scaling is typically applied. In large vocabularies (50K+ tokens), softmax computation can be slow, leading to alternatives like hierarchical softmax or sampling-based methods.
+  fr: Fonction d'activation qui convertit un vecteur de nombres en distribution de probabilité.
+  zh: 将数字向量转换为概率分布的激活函数。
+  ar: دالة تفعيل تحوّل متجه أرقام إلى توزيع احتمالي.
+  ru: Функция активации, преобразующая вектор чисел в распределение вероятностей.
+analogy:
+  tr: Softmax, bir yarışmada skorları yüzdelere çeviren hakem gibidir. Skorlar [10, 5, 2] ise hakem 'birinci %59, ikinci %29, üçüncü %12 şansla kazanır' der.
+  en: Softmax is like a referee converting competition scores into percentages. If scores are [10, 5, 2], the referee says 'first place has 59%, second 29%, third 12% chance of winning'.
+  fr: Softmax est comme un arbitre convertissant les scores de compétition en pourcentages. Si les scores sont [10, 5, 2], l'arbitre dit 'le premier a 59%, le deuxième 29%, le troisième 12% de chances de gagner'.
+  zh: Softmax就像将比赛分数转换为百分比的裁判。如果分数是[10, 5, 2]，裁判说'第一名有59%，第二名29%，第三名12%的获胜机会'。
+  ar: Softmax يشبه حكمًا يحول نقاط المسابقة إلى نسب مئوية. إذا كانت النقاط [10، 5، 2]، يقول الحكم 'الأول لديه 59%، الثاني 29%، الثالث 12% فرصة للفوز'.
+  ru: Softmax подобен судье, конвертирующему очки соревнования в проценты. Если очки [10, 5, 2], судья говорит 'у первого места 59%, у второго 29%, у третьего 12% шансов на победу'.
+security:
+  - title:
+      tr: Temperature Manipulation ile Jailbreak
+      en: Jailbreak via Temperature Manipulation
+      fr: Jailbreak par manipulation de la température
+      zh: 通过温度操纵实现越狱
+      ar: كسر الحماية عبر التلاعب بالحرارة
+      ru: Взлом через манипуляцию температурой
+    description:
+      tr: Softmax temperature parametresi manipüle edilerek LLM'nin güvenlik filtrelerini atlatmak mümkündür. Düşük temperature (<0.5) deterministik çıktı, yüksek temperature (>1.5) yaratıcı ama güvensiz çıktı üretir. Saldırganlar temperature'ı kontrol ederek zararlı içerik üretimini tetikleyebilir.
+      en: LLM security filters can be bypassed by manipulating softmax temperature parameter. Low temperature (<0.5) produces deterministic output, high temperature (>1.5) produces creative but unsafe output. Attackers can trigger harmful content generation by controlling temperature.
+      fr: "Les filtres de sécurité des LLM peuvent être contournés en manipulant le paramètre de température softmax. Température basse: sortie déterministe; élevée: sortie créative mais dangereuse."
+      zh: 通过操纵softmax温度参数可绕过LLM安全过滤器。低温产生确定性输出，高温产生创造性但不安全的输出。
+      ar: يمكن تجاوز فلاتر أمان LLM بالتلاعب بمعامل حرارة softmax. الحرارة المنخفضة تنتج مخرجات حتمية، والعالية تنتج مخرجات غير آمنة.
+      ru: "Фильтры безопасности LLM можно обойти манипулируя температурой softmax. Низкая температура: детерминированный вывод; высокая: небезопасный вывод."
+    severity: medium
+  - title:
+      tr: Softmax Bottleneck Exploitation
+      en: Softmax Bottleneck Exploitation
+      fr: Exploitation du goulot softmax
+      zh: Softmax瓶颈利用
+      ar: استغلال عنق زجاجة Softmax
+      ru: Эксплуатация узкого места softmax
+    description:
+      tr: Transformer'larda softmax attention bottleneck oluşturur — tüm token'lar birbirine softmax probability ile bağlanır. Adversarial token injection ile attention distribution'u manipüle ederek modelin belirli zararlı pattern'lere odaklanması sağlanabilir. Prompt injection saldırılarında kullanılır.
+      en: In Transformers, softmax creates an attention bottleneck — all tokens are connected via softmax probabilities. By manipulating attention distribution through adversarial token injection, the model can be forced to focus on specific harmful patterns. Used in prompt injection attacks.
+      fr: Le softmax crée un goulot d'étranglement d'attention dans les Transformers. L'injection de tokens adversariaux peut forcer le modèle à se concentrer sur des patterns nuisibles. Utilisé dans les attaques par injection de prompt.
+      zh: 在Transformer中，softmax创建注意力瓶颈。通过对抗性token注入可迫使模型关注有害模式。用于提示注入攻击。
+      ar: ينشئ softmax عنق زجاجة في الانتباه. يمكن إجبار النموذج على التركيز على أنماط ضارة عبر حقن رموز عدائية.
+      ru: Softmax создаёт узкое место внимания. Инъекция состязательных токенов может заставить модель сосредоточиться на вредоносных паттернах.
+    severity: high
+  - title:
+      tr: Confidence Score Spoofing
+      en: Confidence Score Spoofing
+      fr: Usurpation du score de confiance
+      zh: 置信度分数欺骗
+      ar: انتحال درجة الثقة
+      ru: Подделка показателя уверенности
+    description:
+      tr: Softmax çıktıları model güven skorları olarak kullanılır. Adversarial örneklerle modelin yanlış sınıfa yüksek confidence (örn. 0.99) vermesi sağlanabilir — bu da güvenlik sistemlerinin (spam detection, malware classification) atlatılmasına yol açar.
+      en: Softmax outputs are used as model confidence scores. With adversarial examples, the model can be made to give high confidence (e.g., 0.99) to wrong classes — leading to bypass of security systems (spam detection, malware classification).
+      fr: Les sorties softmax servent de scores de confiance. Des exemples adversariaux peuvent forcer une haute confiance (0.99) pour les mauvaises classes, contournant les systèmes de sécurité.
+      zh: Softmax输出用作置信度分数。对抗样本可使模型对错误类别给出高置信度，绕过安全系统。
+      ar: تُستخدم مخرجات softmax كدرجات ثقة. يمكن للأمثلة العدائية إجبار ثقة عالية للفئات الخاطئة، مما يتجاوز أنظمة الأمان.
+      ru: Выходы softmax используются как показатели уверенности. Состязательные примеры могут заставить модель давать высокую уверенность неправильным классам.
+    severity: high
+  - title:
+      tr: Softmax Konfigürasyon Bilgi Sızıntısı
+      en: Softmax Configuration Information Disclosure
+      fr: Divulgation de configuration softmax
+      zh: softmax配置信息泄露
+      ar: كشف معلومات تكوين softmax
+      ru: Раскрытие конфигурации softmax
+    description:
+      tr: Softmax ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to softmax can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à softmax peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与softmax相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ softmax في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании softmax могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Softmax with Temperature Scaling
+    lang: python
+    code: |-
+      import torch
+      import torch.nn.functional as F
+
+      def softmax_with_temperature(logits, temperature=1.0):
+          """
+          Apply softmax with temperature scaling
+          - temperature < 1.0: sharper distribution (more confident)
+          - temperature = 1.0: standard softmax
+          - temperature > 1.0: softer distribution (more diverse)
+          """
+          scaled_logits = logits / temperature
+          return F.softmax(scaled_logits, dim=-1)
+
+      # Example: LLM token prediction
+      logits = torch.tensor([2.0, 1.0, 0.1, -0.5])  # Raw model outputs
+
+      # Low temperature (confident, deterministic)
+      probs_low = softmax_with_temperature(logits, temperature=0.5)
+      print(f"Low temp (0.5):  {probs_low}")
+      # Output: [0.76, 0.20, 0.03, 0.01] - very confident in first token
+
+      # Standard temperature
+      probs_std = softmax_with_temperature(logits, temperature=1.0)
+      print(f"Standard (1.0):  {probs_std}")
+      # Output: [0.51, 0.31, 0.13, 0.05] - balanced
+
+      # High temperature (creative, diverse)
+      probs_high = softmax_with_temperature(logits, temperature=2.0)
+      print(f"High temp (2.0):  {probs_high}")
+      # Output: [0.38, 0.28, 0.20, 0.14] - much more diverse
+
+      # Sample from distribution
+      token_id = torch.multinomial(probs_std, num_samples=1)
+      print(f"Sampled token: {token_id.item()}")
+    description:
+      tr: Temperature scaling ile softmax kontrolü. Düşük temperature deterministik çıktı (GPT'de kod üretimi), yüksek temperature yaratıcı çıktı (story generation) için kullanılır. Production LLM API'lerinde temperature parametresi kritik öneme sahiptir.
+      en: Softmax control via temperature scaling. Low temperature for deterministic output (code generation in GPT), high temperature for creative output (story generation). Temperature parameter is critical in production LLM APIs.
+  - title: Softmax Output Sanitization in Go
+    lang: go
+    code: "package inference\n\nconst MaxConfidence = 0.95\n\nfunc CapProbabilities(probs []float64) []float64 {\n\tcapped := make([]float64, len(probs))\n\tsum := 0.0\n\tfor i, p := range probs {\n\t\tif p > MaxConfidence {\n\t\t\tcapped[i] = MaxConfidence\n\t\t} else {\n\t\t\tcapped[i] = p\n\t\t}\n\t\tsum += capped[i]\n\t}\n\tfor i := range capped {\n\t\tcapped[i] /= sum\n\t}\n\treturn capped\n}"
+    description:
+      tr: Softmax confidence capping ile bilgi sizintisini onler.
+      en: Prevents information leakage with softmax confidence capping.
+research:
+  - title: Attention Is All You Need (Transformer + Softmax Attention)
+    url: https://arxiv.org/abs/1706.03762
+    year: 2017
+    type: paper
+    authors: Ashish Vaswani, et al.
+  - title: On Calibration of Modern Neural Networks
+    url: https://arxiv.org/abs/1706.04599
+    year: 2017
+    type: paper
+    authors: Chuan Guo, et al.
+  - title: "Temperature Scaling: A Simple Baseline for Uncertainty Calibration"
+    url: https://arxiv.org/abs/1706.04599
+    year: 2017
+    type: paper
+    authors: Chuan Guo, Geoff Pleiss, et al.
+tips:
+  - tr: LLM inference'ta creative task için temperature=1.2-1.5, factual task için temperature=0.3-0.7 kullanın.
+    en: For LLM inference, use temperature=1.2-1.5 for creative tasks, temperature=0.3-0.7 for factual tasks.
+  - tr: Softmax numerically unstable olabilir (overflow). PyTorch/TensorFlow otomatik stabilize eder ama manuel implementasyonda log-softmax kullanın.
+    en: Softmax can be numerically unstable (overflow). PyTorch/TensorFlow auto-stabilize but use log-softmax in manual implementations.
+  - tr: Büyük vocabulary (50K+ token) ile çalışırken softmax yavaş olur. Top-k veya nucleus (top-p) sampling kullanarak hesaplama maliyetini azaltın.
+    en: With large vocabulary (50K+ tokens), softmax becomes slow. Use top-k or nucleus (top-p) sampling to reduce computation cost.

@@ -1,0 +1,89 @@
+id: dataset
+name: Dataset
+fullName: Training Dataset
+category: training
+desc:
+  tr: |-
+    Bir AI modelinin öğrenmek için kullandığı veri koleksiyonu. Bir LLM'in kalitesi doğrudan eğitim verisinin kalitesine bağlıdir -- 'cop girer, cop çıkar' prensibi burada sonuna kadar gecerlidir.
+
+    Modern LLM'ler devasa veri setleriyle egitilir: [Llama](https://ai.meta.com/llama/) 3 için 15 trilyon token, [GPT-4](https://openai.com/gpt-4) için tahminen benzer veya daha büyük miktarlar. Yaygin kullanılan açık veri setleri arasında [The Pile](https://pile.eleuther.ai), RedPajama, FineWeb ve OSCAR bulunur.
+
+    Veri seti hazirligi kritik bir muhendışlik isindir: web'den kazima (scraping), tekilestirme (deduplication), kalite filtreleme, toksik içerik temizleme ve dil dengeleme adımlari içerir. Fine-tuning için işe FLAN, OpenAssistant, ShareGPT gibi talimat-yanıt çifti koleksiyonlari kullanılır. Veri setindeki oranlar modelin yeteneklerini doğrudan etkiler -- daha fazla kod verisi ile eğitilen model kodlamada, daha fazla matematik verisiyle eğitilen model matematiksel muhakemede güçlü olur.
+  en: |-
+    The collection of data an AI model uses to learn. The quality of an LLM iş directly tied to the quality of its training data -- the 'garbage in, garbage out' principle fully applies.
+
+    Modern LLMs are trained on massive datasets: 15 trillion tokens for [Llama](https://ai.meta.com/llama/) 3, and estimated similar or larger amounts for [GPT-4](https://openai.com/gpt-4). Common open datasets include [The Pile](https://pile.eleuther.ai), RedPajama, FineWeb, and OSCAR.
+
+    Dataset preparation iş critical engineering work: it involves web scraping, deduplication, quality filtering, toxic content removal, and language balancing. For fine-tuning, instruction-response pair collections like FLAN, OpenAssistant, and ShareGPT are used. The proportions in a dataset directly affect the model's capabilities -- more code data produces a stronger coder, more math data produces better mathematical reasoning.
+  fr: "La collection de donnees qu'un modele d'IA utilise pour apprendre. La qualite d'un LLM est directement liee a la qualite de ses donnees d'entrainement -- le principe 'ordures a l'entree, ordures a la sortie' s'applique pleinement. Les LLM modernes sont entraines sur des jeux de donnees massifs : 15 billions de tokens pour Llama 3, et des quantites estimees similaires ou superieures pour GPT-4. Les jeux de donnees ouverts courants incluent The Pile, RedPajama, FineWeb et OSCAR. La preparation des jeux de donnees est un travail d'ingenierie critique : scraping web, deduplication, filtrage de qualite, suppression de contenu toxique et equilibrage linguistique. Pour le fine-tuning, des collections de paires instruction-reponse comme FLAN, OpenAssistant et ShareGPT sont utilisees. Les proportions dans un jeu de donnees affectent directement les capacites du modele."
+  zh: AI模型用来学习的数据集合。LLM的质量直接取决于训练数据的质量——'垃圾进，垃圾出'的原则完全适用。现代LLM使用海量数据集训练：Llama 3使用了15万亿token，GPT-4估计使用了类似或更大的量。常见的开放数据集包括The Pile、RedPajama、FineWeb和OSCAR。数据集准备是关键的工程工作：涉及网页抓取、去重、质量过滤、有毒内容清除和语言平衡。微调则使用FLAN、OpenAssistant、ShareGPT等指令-响应对集合。数据集中的比例直接影响模型能力——更多代码数据产生更强的编程能力，更多数学数据产生更好的数学推理能力。
+  ar: "مجموعة البيانات التي يستخدمها نموذج الذكاء الاصطناعي للتعلم. جودة النموذج اللغوي مرتبطة مباشرة بجودة بيانات تدريبه -- مبدا 'قمامة تدخل قمامة تخرج' ينطبق تماما. تدرب النماذج اللغوية الحديثة على مجموعات بيانات ضخمة: 15 تريليون توكن لـ Llama 3 وكميات مماثلة او اكبر لـ GPT-4. تشمل مجموعات البيانات المفتوحة الشائعة The Pile وRedPajama وFineWeb وOSCAR. اعداد مجموعة البيانات عمل هندسي حرج: يشمل كشط الويب وازالة التكرار وتصفية الجودة وازالة المحتوى السام وموازنة اللغات. للضبط الدقيق تستخدم مجموعات ازواج التعليمات والاستجابات مثل FLAN وOpenAssistant وShareGPT. النسب في مجموعة البيانات تؤثر مباشرة على قدرات النموذج -- بيانات برمجة اكثر تنتج مبرمجا اقوى وبيانات رياضيات اكثر تنتج استدلالا رياضيا افضل."
+  ru: "Коллекция данных, которую модель ИИ использует для обучения. Качество LLM напрямую связано с качеством обучающих данных -- принцип 'мусор на входе, мусор на выходе' полностью применим. Современные LLM обучаются на огромных наборах данных: 15 триллионов токенов для Llama 3, и предположительно аналогичные или большие объемы для GPT-4. Распространенные открытые наборы данных включают The Pile, RedPajama, FineWeb и OSCAR. Подготовка набора данных -- критически важная инженерная работа: веб-скрейпинг, дедупликация, фильтрация по качеству, удаление токсичного контента и балансировка языков. Для файн-тюнинга используются коллекции пар инструкция-ответ: FLAN, OpenAssistant, ShareGPT. Пропорции в наборе данных напрямую влияют на способности модели -- больше данных кода создает сильного программиста, больше данных по математике улучшает математические рассуждения."
+analogy:
+  tr: Dataset, bir ogrencinin okudugu kitaplar gibidir. Ogrenciye sadece romanlar verirseniz iyi hikaye anlatir ama matematik yapamaz. Sadece ders kitaplari verirseniz bilgili ama sikilgan olur. En iyi eğitim, dengeli ve kaliteli bir kutuphane ile mumkundur.
+  en: A dataset iş like the books a student reads. Give them only novels and they'll tell great stories but can't do math. Give only textbooks and they'll be knowledgeable but dull. The best education comes from a balanced, high-quality library.
+  fr: Un jeu de donnees est comme les livres qu'un etudiant lit. Ne lui donnez que des romans et il racontera de belles histoires mais ne saura pas faire de maths. Ne lui donnez que des manuels et il sera savant mais ennuyeux. La meilleure education vient d'une bibliotheque equilibree et de haute qualite.
+  zh: 数据集就像学生读的书。只给小说，他们能讲好故事但不会数学。只给教科书，他们知识丰富但乏味。最好的教育来自均衡、高质量的图书馆。
+  ar: مجموعة البيانات مثل الكتب التي يقراها الطالب. اعطه روايات فقط وسيروي قصصا رائعة لكن لا يستطيع الرياضيات. اعطه كتبا دراسية فقط وسيكون عالما لكن مملا. افضل تعليم ياتي من مكتبة متوازنة وعالية الجودة.
+  ru: Набор данных -- это как книги, которые читает студент. Дайте только романы -- он будет отлично рассказывать истории, но не сможет решать математику. Дайте только учебники -- будет эрудированным, но скучным. Лучшее образование обеспечивает сбалансированная и качественная библиотека.
+security:
+  - title:
+      tr: Dataset Poisoning Attacks
+      en: Dataset Poisoning Attacks
+      fr: Attaques par empoisonnement de jeux de données
+      zh: 数据集投毒攻击
+      ar: هجمات تسميم مجموعة البيانات
+      ru: Атаки отравления наборов данных
+    description:
+      tr: Public dataset'ler (HuggingFace, Kaggle) poisoning target'ıdır. Saldırgan, dataset'e backdoor trigger içeren örnekler ekler. Bu dataset ile eğitilen her model backdoor inherit eder. Supply chain attack'ın bir formudur.
+      en: Public datasets (HuggingFace, Kaggle) are poisoning targets. Attacker adds examples containing backdoor triggers to dataset. Every model trained with this dataset inherits the backdoor. This is a form of supply chain attack.
+      fr: Les jeux de données publics (HuggingFace, Kaggle) sont des cibles d'empoisonnement. L'attaquant ajoute des exemples contenant des déclencheurs de backdoor au jeu de données. Chaque modèle entraîné avec ce jeu de données hérite du backdoor. C'est une forme d'attaque de la chaîne d'approvisionnement.
+      zh: 公开数据集（HuggingFace、Kaggle）是投毒目标。攻击者向数据集添加包含后门触发器的样本。使用该数据集训练的每个模型都会继承后门。这是供应链攻击的一种形式。
+      ar: مجموعات البيانات العامة (HuggingFace, Kaggle) هي أهداف للتسميم. يضيف المهاجم أمثلة تحتوي على محفزات أبواب خلفية إلى مجموعة البيانات. كل نموذج يُدرب على هذه المجموعة يرث الباب الخلفي. هذا شكل من أشكال هجوم سلسلة التوريد.
+      ru: Публичные наборы данных (HuggingFace, Kaggle) являются целями отравления. Злоумышленник добавляет примеры с триггерами бэкдоров в набор данных. Каждая модель, обученная на этом наборе, наследует бэкдор. Это форма атаки на цепочку поставок.
+    severity: critical
+  - title:
+      tr: Dataset İndirme Bütünlük Doğrulaması
+      en: Dataset Download Integrity Verification
+      fr: Vérification de l'intégrité des téléchargements de jeux de données
+      zh: 数据集下载完整性验证
+      ar: التحقق من سلامة تحميل مجموعة البيانات
+      ru: Проверка целостности загрузки наборов данных
+    description:
+      tr: İndirilen dataset'lerin hash doğrulaması yapılmazsa, transit sırasında değiştirilmiş veya bozulmuş veriler fark edilmeyebilir. Dataset versiyonlama ve checksum kontrolü uygulanmalıdır.
+      en: Without hash verification of downloaded datasets, data modified or corrupted in transit may go unnoticed. Dataset versioning and checksum validation should be implemented.
+      fr: Sans vérification de hash des jeux de données téléchargés, les données modifiées ou corrompues en transit peuvent passer inaperçues. Le versioning des jeux de données et la validation des checksums doivent être implémentés.
+      zh: 如果不对下载的数据集进行哈希验证，在传输中被修改或损坏的数据可能不会被注意到。应实施数据集版本控制和校验和验证。
+      ar: بدون التحقق من تجزئة مجموعات البيانات المحملة، قد تمر البيانات المعدلة أو التالفة أثناء النقل دون ملاحظة. يجب تنفيذ إصدار مجموعات البيانات والتحقق من المجموع الاختباري.
+      ru: Без проверки хеша загруженных наборов данных, данные, изменённые или повреждённые при передаче, могут остаться незамеченными. Необходимо внедрить версионирование наборов данных и проверку контрольных сумм.
+    severity: low
+config:
+  - title: Dataset Integrity Verification
+    lang: python
+    code: |-
+      import hashlib
+      from datasets import load_dataset
+
+      TRUSTED_HASHES = {'imdb': 'a1b2c3...'}
+
+      def verify_dataset(dataset_name: str):
+          dataset = load_dataset(dataset_name)
+          data_str = str(dataset['train'][:100])  # Sample
+          hash_val = hashlib.sha256(data_str.encode()).hexdigest()
+          
+          if hash_val != TRUSTED_HASHES.get(dataset_name):
+              raise SecurityError(f'Dataset {dataset_name} hash mismatch!')
+          
+          return dataset
+    description:
+      tr: Dataset hash verification ile tampering detect edilir.
+      en: Tampering is detected with dataset hash verification.
+research:
+  - title: Backdoor Attacks on Language Models
+    url: https://arxiv.org/abs/2006.04757
+    year: 2020
+    type: paper
+    authors: Eric Wallace, Tony Z. Zhao, Shi Feng
+tips:
+  - tr: HuggingFace dataset kullanırken verified publisher'ları tercih edin.
+    en: Prefer verified publishers when using HuggingFace datasets.

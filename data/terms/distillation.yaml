@@ -1,0 +1,80 @@
+id: distillation
+name: Distillation
+fullName: Knowledge Distillation
+category: training
+desc:
+  tr: |-
+    Büyük ve güçlü bir AI modelinin bilgisini daha küçük ve hızlı bir modele aktarma tekniği. 'Öğretmen' model (örneğin [GPT-4](https://openai.com/gpt-4) veya [Llama](https://ai.meta.com/llama/) 70B) hem dogru cevaplari hem de olasilik dagilimlarini uretir; 'ogrenci' model bu çıktılardan öğrenir.
+
+    Dogrudan ham veriden eğitmekten çok daha etkilidir çünkü ogrenci model, ogretmenin 'dusunce sürecini' de yakalar. [OpenAI](https://openai.com)'in GPT-4'ten GPT-4o-mini'ye dıştillation yaptigi, [Google](https://ai.google)'in [Gemini](https://gemini.google.com)'den Gemma'ya bilgi aktardigi yaygınca bilinir.
+
+    Phi-3 gibi küçük ama şaşırtıcı derecede yetenekli modeller de büyük ölçüde dıştillation sayesinde başarıli olmüstur. Sonüç olarak, 70B büyüklugünde bir modelin bilgisinin önemli bir kismini 7B'lik bir modele sikistrabilirsiniz -- küçük kayiplarla büyük hiz kazanci elde edersiniz.
+  en: |-
+    A technique for transferring the knowledge of a large, powerful AI model into a smaller, faster one. The 'teacher' model (e.g., [GPT-4](https://openai.com/gpt-4) or [Llama](https://ai.meta.com/llama/) 70B) produces both correct answers and probability distributions; the 'student' model learns from these outputs.
+
+    This iş far more effective than training directly on raw data because the student captures the teacher's 'reasoning process' as well. It's widely known that [OpenAI](https://openai.com) distills from GPT-4 to GPT-4o-mini, and [Google](https://ai.google) transfers knowledge from [Gemini](https://gemini.google.com) to Gemma.
+
+    Small but surprisingly capable models like Phi-3 owe much of their success to distillation. The result: you can compress a significant portion of a 70B model's knowledge into a 7B model -- gaining major speed with minor losses.
+  fr: "Une technique pour transferer les connaissances d'un grand modele d'IA puissant vers un plus petit et plus rapide. Le modele 'enseignant' (par exemple GPT-4 ou Llama 70B) produit a la fois des reponses correctes et des distributions de probabilites ; le modele 'eleve' apprend de ces sorties. C'est bien plus efficace que l'entrainement direct sur des donnees brutes car l'eleve capture aussi le 'processus de raisonnement' de l'enseignant. Il est largement connu qu'OpenAI distille de GPT-4 vers GPT-4o-mini et que Google transfere les connaissances de Gemini vers Gemma. Des modeles petits mais etonnamment performants comme Phi-3 doivent une grande partie de leur succes a la distillation. Le resultat : vous pouvez comprimer une part significative des connaissances d'un modele 70B dans un modele 7B -- avec un gain de vitesse majeur pour des pertes mineures."
+  zh: 将大型强大AI模型的知识转移到更小、更快模型的技术。'教师'模型（如GPT-4或Llama 70B）同时产生正确答案和概率分布；'学生'模型从这些输出中学习。这比直接从原始数据训练有效得多，因为学生模型也能捕捉到教师的'推理过程'。众所周知，OpenAI将GPT-4蒸馏为GPT-4o-mini，Google将Gemini的知识转移到Gemma。像Phi-3这样小但能力惊人的模型很大程度上归功于蒸馏技术。结果是：你可以将70B模型知识的很大一部分压缩到7B模型中——以微小损失换取巨大的速度提升。
+  ar: "تقنية لنقل معرفة نموذج ذكاء اصطناعي كبير وقوي الى نموذج اصغر واسرع. ينتج النموذج 'المعلم' (مثل GPT-4 او Llama 70B) اجابات صحيحة وتوزيعات احتمالية؛ يتعلم النموذج 'الطالب' من هذه المخرجات. هذا اكثر فعالية بكثير من التدريب المباشر على البيانات الخام لان الطالب يلتقط ايضا 'عملية التفكير' لدى المعلم. من المعروف ان OpenAI تقطر من GPT-4 الى GPT-4o-mini وان Google تنقل المعرفة من Gemini الى Gemma. نماذج صغيرة لكن قادرة بشكل مدهش مثل Phi-3 تدين بجزء كبير من نجاحها للتقطير. النتيجة: يمكنك ضغط جزء كبير من معرفة نموذج 70B في نموذج 7B -- مع كسب سرعة كبيرة بخسائر طفيفة."
+  ru: "Техника передачи знаний большой мощной модели ИИ в меньшую и более быструю. Модель-'учитель' (например, GPT-4 или Llama 70B) генерирует как правильные ответы, так и распределения вероятностей; модель-'ученик' учится на этих выходных данных. Это намного эффективнее обучения напрямую на сырых данных, поскольку ученик перенимает и 'процесс рассуждения' учителя. Широко известно, что OpenAI дистиллирует GPT-4 в GPT-4o-mini, а Google передает знания из Gemini в Gemma. Маленькие, но удивительно способные модели вроде Phi-3 во многом обязаны своим успехом дистилляции. Результат: можно сжать значительную часть знаний модели на 70B в модель на 7B -- получив значительный прирост скорости при минимальных потерях."
+analogy:
+  tr: Distillation, deneyimli bir üstanin yillarca biriktirdigi bilgiyi bir ciraga ozet olarak aktarmasi gibidir. Cirak her seyi sıfırdan öğrenmeye calismak yerine, üstanin 'söyle dusun, böyle yap' diye ogrettigi kisa yollardan öğrenir ve çok daha hızlı yetisir.
+  en: Distillation iş like a master craftsman passing down years of accumulated knowledge to an apprentice as a condensed summary. Instead of the apprentice learning everything from scratch, they learn from the master's shortcuts -- 'think this way, do it that way' -- and become skilled much faster.
+  fr: La distillation est comme un maitre artisan transmettant des annees de connaissances accumulees a un apprenti sous forme de resume condense. Au lieu d'apprendre tout de zero, l'apprenti apprend les raccourcis du maitre et progresse beaucoup plus vite.
+  zh: 蒸馏就像一位经验丰富的师傅将多年积累的知识浓缩传授给学徒。学徒不用从零开始学习一切，而是从师傅的捷径中学习——'这样想，那样做'——从而更快成长。
+  ar: التقطير يشبه حرفيا خبيرا ينقل سنوات من المعرفة المتراكمة الى متدرب كملخص مكثف. بدلا من ان يتعلم المتدرب كل شيء من الصفر يتعلم من اختصارات المعلم ويصبح ماهرا بسرعة اكبر.
+  ru: Дистилляция -- это как мастер, передающий годами накопленные знания ученику в сжатом виде. Вместо того чтобы учиться всему с нуля, ученик перенимает короткие пути мастера -- 'думай так, делай так' -- и становится квалифицированным намного быстрее.
+security:
+  - title:
+      tr: Model Stealing via Distillation
+      en: Model Stealing via Distillation
+      fr: Vol de modèle via la distillation
+      zh: 通过蒸馏窃取模型
+      ar: سرقة النموذج عبر التقطير
+      ru: Кража модели через дистилляцию
+    description:
+      tr: Knowledge distillation, teacher model'in bilgisini steal etmek için kullanılabilir. Saldırgan, API üzerinden soft labels (logits) toplayarak student model eğitir ve expensive teacher model'i klonlar.
+      en: Knowledge distillation can be used to steal knowledge from teacher model. Attacker trains student model by collecting soft labels (logits) via API and clones expensive teacher model.
+      fr: La distillation de connaissances peut être utilisée pour voler les connaissances du modèle enseignant. L'attaquant entraîne un modèle étudiant en collectant les soft labels (logits) via l'API et clone le modèle enseignant coûteux.
+      zh: 知识蒸馏可以被用来窃取教师模型的知识。攻击者通过API收集软标签（logits）训练学生模型，并克隆昂贵的教师模型。
+      ar: يمكن استخدام تقطير المعرفة لسرقة المعرفة من النموذج المعلم. يدرب المهاجم نموذجاً طالباً بجمع التسميات اللينة (logits) عبر API ويستنسخ النموذج المعلم المكلف.
+      ru: Дистилляция знаний может использоваться для кражи знаний из модели-учителя. Злоумышленник обучает модель-ученика, собирая мягкие метки (logits) через API, и клонирует дорогую модель-учителя.
+    severity: high
+  - title:
+      tr: Distillation Sırasında Backdoor Transferi
+      en: Backdoor Transfer During Distillation
+      fr: Transfert de backdoor pendant la distillation
+      zh: 蒸馏过程中的后门转移
+      ar: نقل الباب الخلفي أثناء التقطير
+      ru: Передача бэкдора при дистилляции
+    description:
+      tr: Backdoor içeren teacher model distillation yapıldığında, student model'e de backdoor transfer olabilir. Distillation, teacher'ın tüm davranışlarını kopyaladığı için zararlı pattern'ler de miras alınır.
+      en: When a teacher model containing a backdoor undergoes distillation, the backdoor can transfer to the student model. Since distillation copies all behaviors of the teacher, harmful patterns are also inherited.
+      fr: Lorsqu'un modèle enseignant contenant un backdoor subit une distillation, le backdoor peut se transférer au modèle étudiant. Puisque la distillation copie tous les comportements de l'enseignant, les motifs nuisibles sont aussi hérités.
+      zh: 当包含后门的教师模型进行蒸馏时，后门可能转移到学生模型。由于蒸馏复制了教师的所有行为，有害模式也会被继承。
+      ar: عندما يخضع نموذج معلم يحتوي على باب خلفي للتقطير، يمكن أن ينتقل الباب الخلفي إلى النموذج الطالب. نظراً لأن التقطير ينسخ جميع سلوكيات المعلم، يتم وراثة الأنماط الضارة أيضاً.
+      ru: Когда модель-учитель с бэкдором проходит дистилляцию, бэкдор может перенестись на модель-ученика. Поскольку дистилляция копирует всё поведение учителя, вредоносные паттерны также наследуются.
+    severity: low
+config:
+  - title: Prevent Logit Leakage
+    lang: python
+    code: |-
+      # Return only hard labels, not soft probabilities
+      def secure_predict(model, input):
+          logits = model(input)
+          prediction = logits.argmax()  # Hard label only
+          return prediction  # Don't return logits or probabilities
+    description:
+      tr: API'den sadece hard label döndürün, soft probabilities döndürmeyin. Bu distillation attack'ı zorlaştırır.
+      en: Return only hard labels from API, don't return soft probabilities. This makes distillation attacks harder.
+research:
+  - title: Distillation as a Defense to Adversarial Perturbations
+    url: https://arxiv.org/abs/1511.04508
+    year: 2015
+    type: paper
+    authors: Nicolas Papernot, Patrick McDaniel
+tips:
+  - tr: Model API'den temperature, logprobs gibi internal bilgiler döndürmeyin.
+    en: Don't return internal information like temperature, logprobs from model API.

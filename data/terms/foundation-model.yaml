@@ -1,0 +1,177 @@
+id: foundation-model
+name: Foundation Model
+fullName: Foundation Model
+category: models
+desc:
+  tr: |-
+    Belirli bir görev için değil, genel amacla eğitilmiş büyük ölçekli AI modeli — [GPT-4](https://openai.com/gpt-4), [Claude](https://claude.ai), [Llama](https://ai.meta.com/llama/) ve [Gemini](https://gemini.google.com) gibi. Bu terim 2021'de Stanford HAI tarafından popülerleştirilerek, bu modellerin tek bir uygulama için değil birden fazla kullanım alanınin temeli olarak tasarlandığını vurguladı.
+
+    Bir binanın temeli gibi düşünun: üstüne chatbot, kod asistanı, medikal tanı sistemi veya hukuk araştırma aracı inşa edilebilir. Şirketler bu temel modelleri fine-tuning, RAG veya prompt engineering ile kendi ihtiyaçlarına göre özellestirir.
+
+    Örneğin, Bloomberg [GPT-4](https://openai.com/gpt-4)'u alıp finansal analiz için fine-tune ederken, bir hastane aynı modeli hasta kayıtlarını özetlemek için kullanabilir. Foundation model eğitmek muazzam kaynak gerektirir — GPT-4'un eğitimi 100 milyon dolardan fazlaya mal olmuştur.
+  en: |-
+    A large-scale AI model trained for general purposes rather than a specific task — like [GPT-4](https://openai.com/gpt-4), [Claude](https://claude.ai), [Llama](https://ai.meta.com/llama/), or [Gemini](https://gemini.google.com). The term was popularized by Stanford HAI in 2021 to emphasize that these models are designed as the foundation for multiple downstream applications, not just one.
+
+    Think of it as a building's foundation: you can build a chatbot, code assistant, medical diagnosis system, or legal research tool on top of it. Companies customize these base models for their specific needs through fine-tuning, RAG, or prompt engineering.
+
+    For example, Bloomberg fine-tuned [GPT-4](https://openai.com/gpt-4) for financial analysis, while a hospital might use the same model to summarize patient records. Training a foundation model requires enormous resources — GPT-4's training reportedly cost over $100 million, which iş why only a handful of companies ([OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Google](https://ai.google), [Meta](https://ai.meta.com)) can build them from scratch.
+  fr: "Un modele d'IA a grande echelle entraine pour des usages generaux plutot que pour une tache specifique — comme GPT-4, Claude, Llama ou Gemini. Le terme a ete popularise par Stanford HAI en 2021 pour souligner que ces modeles sont concus comme fondation pour de multiples applications en aval, pas une seule. Pensez-y comme la fondation d'un batiment : vous pouvez construire un chatbot, un assistant de code, un systeme de diagnostic medical ou un outil de recherche juridique dessus. Les entreprises personnalisent ces modeles de base pour leurs besoins specifiques via le fine-tuning, le RAG ou le prompt engineering. Par exemple, Bloomberg a fine-tune GPT-4 pour l'analyse financiere, tandis qu'un hopital pourrait utiliser le meme modele pour resumer les dossiers patients. Former un modele de fondation necessite des ressources enormes — l'entrainement de GPT-4 aurait coute plus de 100 millions de dollars, c'est pourquoi seule une poignee d'entreprises (OpenAI, Anthropic, Google, Meta) peuvent les construire de zero."
+  zh: 为通用目的而非特定任务训练的大规模AI模型——如GPT-4、Claude、Llama或Gemini。这个术语在2021年由Stanford HAI推广，强调这些模型被设计为多个下游应用的基础，而非仅服务于单一用途。把它想象成建筑的地基：你可以在上面构建聊天机器人、代码助手、医疗诊断系统或法律研究工具。企业通过微调、RAG或提示工程来根据自身需求定制这些基础模型。例如，Bloomberg对GPT-4进行了金融分析的微调，而医院可能使用同一模型来总结患者病历。训练基础模型需要巨大的资源——据报道GPT-4的训练成本超过1亿美元，这就是为什么只有少数几家公司（OpenAI、Anthropic、Google、Meta）能从头构建它们。
+  ar: "نموذج ذكاء اصطناعي واسع النطاق مدرب لأغراض عامة وليس لمهمة محددة — مثل GPT-4 وClaude وLlama وGemini. شاع هذا المصطلح من قبل Stanford HAI في 2021 للتأكيد على أن هذه النماذج مصممة كأساس لتطبيقات متعددة لاحقة وليس لتطبيق واحد فقط. فكر فيه كأساس مبنى: يمكنك بناء روبوت محادثة أو مساعد برمجة أو نظام تشخيص طبي أو أداة بحث قانوني فوقه. تخصص الشركات هذه النماذج الأساسية لاحتياجاتها عبر الضبط الدقيق أو RAG أو هندسة المطالبات. مثلاً، ضبطت Bloomberg نموذج GPT-4 للتحليل المالي، بينما قد يستخدم مستشفى نفس النموذج لتلخيص سجلات المرضى. يتطلب تدريب نموذج أساسي موارد هائلة — كلف تدريب GPT-4 أكثر من 100 مليون دولار، ولهذا لا يستطيع بناءها من الصفر سوى حفنة من الشركات (OpenAI وAnthropic وGoogle وMeta)."
+  ru: "Крупномасштабная модель ИИ, обученная для общих целей, а не для конкретной задачи — вроде GPT-4, Claude, Llama или Gemini. Термин был популяризирован Stanford HAI в 2021 году, чтобы подчеркнуть, что эти модели проектируются как фундамент для множества последующих приложений, а не для одного. Представьте её как фундамент здания: на нём можно построить чат-бот, помощник для кода, систему медицинской диагностики или инструмент юридических исследований. Компании адаптируют эти базовые модели под свои нужды через fine-tuning, RAG или prompt engineering. Например, Bloomberg дообучила GPT-4 для финансового анализа, а больница может использовать ту же модель для составления резюме медицинских карт. Обучение foundation model требует огромных ресурсов — обучение GPT-4 обошлось более чем в $100 миллионов, поэтому лишь несколько компаний (OpenAI, Anthropic, Google, Meta) могут создавать их с нуля."
+analogy:
+  tr: Binanın temeli. Üstüne ofis de, ev de, okul da yapabilirsin.
+  en: A building's foundation. You can build an office, home, or school on top of it.
+  fr: Les fondations d'un bâtiment. Vous pouvez construire un bureau, une maison ou une école dessus.
+  zh: 建筑的基础。你可以在上面建造办公室、住宅或学校。
+  ar: أساس المبنى. يمكنك بناء مكتب أو منزل أو مدرسة فوقه.
+  ru: Фундамент здания. На нем можно построить офис, дом или школу.
+security:
+  - title:
+      tr: Supply Chain Attacks
+      en: Supply Chain Attacks
+      fr: Attaques de la chaîne d'approvisionnement
+      zh: 供应链攻击
+      ar: هجمات سلسلة التوريد
+      ru: Атаки на цепочку поставок
+    description:
+      tr: Foundation model'ler HuggingFace gibi platformlardan indirilirken, backdoor veya malicious code içerebilir. Model weights'e gömülü zararlı davranışlar, fine-tuning sonrası bile kalıcı olabilir.
+      en: Foundation models downloaded from platforms like HuggingFace may contain backdoors or malicious code. Malicious behaviors embedded in model weights can persist even after fine-tuning.
+      fr: Les foundation models téléchargés depuis des plateformes comme HuggingFace peuvent contenir des backdoors ou du code malveillant. Les comportements malveillants intégrés dans les poids du modèle peuvent persister même après le fine-tuning.
+      zh: 从HuggingFace等平台下载的基础模型可能包含后门或恶意代码。嵌入模型权重中的恶意行为即使在微调后仍可能持续存在。
+      ar: قد تحتوي النماذج الأساسية المحملة من منصات مثل HuggingFace على أبواب خلفية أو أكواد خبيثة. يمكن أن تستمر السلوكيات الخبيثة المضمنة في أوزان النموذج حتى بعد الضبط الدقيق.
+      ru: Базовые модели, загруженные с платформ вроде HuggingFace, могут содержать бэкдоры или вредоносный код. Вредоносное поведение, встроенное в веса модели, может сохраняться даже после fine-tuning.
+    severity: critical
+  - title:
+      tr: Model Poisoning via Pre-training
+      en: Model Poisoning via Pre-training
+      fr: Empoisonnement de modèle via le pré-entraînement
+      zh: 通过预训练进行模型投毒
+      ar: تسميم النموذج عبر التدريب المسبق
+      ru: Отравление модели через предобучение
+    description:
+      tr: Foundation model'in pre-training datasına zehirli içerik eklenerek, model belirli triggerlara yanıt verecek şekilde manipüle edilebilir. Bu 'neural backdoor' tespiti çok zordur.
+      en: By adding poisoned content to foundation model's pre-training data, model can be manipulated to respond to specific triggers. This 'neural backdoor' is very difficult to detect.
+      fr: En ajoutant du contenu empoisonné aux données de pré-entraînement du foundation model, le modèle peut être manipulé pour répondre à des déclencheurs spécifiques. Ce 'neural backdoor' est très difficile à détecter.
+      zh: 通过向基础模型的预训练数据中添加有毒内容，可以操纵模型对特定触发器做出响应。这种'神经后门'非常难以检测。
+      ar: من خلال إضافة محتوى مسموم إلى بيانات التدريب المسبق للنموذج الأساسي، يمكن التلاعب بالنموذج للاستجابة لمحفزات محددة. يصعب جداً اكتشاف هذا 'الباب الخلفي العصبي'.
+      ru: Добавляя отравленный контент в данные предобучения базовой модели, можно манипулировать моделью для реагирования на определённые триггеры. Этот 'нейронный бэкдор' очень сложно обнаружить.
+    severity: high
+  - title:
+      tr: Model Kaynak Doğrulama Eksikliği
+      en: Lack of Model Provenance Verification
+      fr: Absence de vérification de la provenance du modèle
+      zh: 缺乏模型来源验证
+      ar: غياب التحقق من مصدر النموذج
+      ru: Отсутствие проверки происхождения модели
+    description:
+      tr: Foundation model'lerin checksum veya imza doğrulaması olmadan kullanılması, değiştirilmiş modellerin tespit edilememesine yol açar. Model provenance tracking eksikliği, hangi model versiyonunun production'da çalıştığının bilinmemesi riski oluşturur.
+      en: Using foundation models without checksum or signature verification leads to inability to detect tampered models. Lack of model provenance tracking creates risk of not knowing which model version is running in production.
+      fr: L'utilisation de foundation models sans vérification de somme de contrôle ou de signature empêche la détection de modèles altérés. L'absence de suivi de provenance crée un risque de méconnaissance de la version en production.
+      zh: 在没有校验和或签名验证的情况下使用基础模型，会导致无法检测被篡改的模型。缺乏模型溯源跟踪会带来不知道生产环境中运行的是哪个模型版本的风险。
+      ar: استخدام النماذج الأساسية دون التحقق من المجموع الاختباري أو التوقيع يؤدي إلى عدم القدرة على اكتشاف النماذج المعدلة. غياب تتبع مصدر النموذج يخلق خطر عدم معرفة إصدار النموذج العامل في بيئة الإنتاج.
+      ru: Использование базовых моделей без проверки контрольных сумм или подписей приводит к невозможности обнаружения подменённых моделей. Отсутствие отслеживания происхождения модели создаёт риск незнания, какая версия работает в production.
+    severity: low
+config:
+  - title: Secure Model Loading and Verification
+    lang: python
+    code: |-
+      import hashlib
+      import requests
+      from transformers import AutoModel, AutoTokenizer
+
+      class SecureModelLoader:
+          def __init__(self):
+              # Whitelist of trusted model repositories
+              self.trusted_repos = [
+                  "openai-community",
+                  "meta-llama",
+                  "mistralai",
+                  "google"
+              ]
+
+              # Known model checksums (SHA256)
+              self.verified_checksums = {
+                  "meta-llama/Llama-2-7b-hf": "abc123...",  # Example
+              }
+
+          def verify_model_source(self, model_id: str) -> bool:
+              """Verify model comes from trusted source"""
+              org = model_id.split('/')[0]
+              if org not in self.trusted_repos:
+                  raise SecurityError(f"Untrusted model source: {org}")
+              return True
+
+          def verify_checksum(self, model_path: str, expected_hash: str) -> bool:
+              """Verify model file integrity"""
+              sha256_hash = hashlib.sha256()
+              with open(model_path, "rb") as f:
+                  for byte_block in iter(lambda: f.read(4096), b""):
+                      sha256_hash.update(byte_block)
+
+              actual_hash = sha256_hash.hexdigest()
+              if actual_hash != expected_hash:
+                  raise SecurityError("Model checksum mismatch")
+              return True
+
+          def safe_load(self, model_id: str, use_auth_token: str = None):
+              """Safely load foundation model with verification"""
+
+              # Verify source
+              self.verify_model_source(model_id)
+
+              # Load model with restricted execution
+              try:
+                  model = AutoModel.from_pretrained(
+                      model_id,
+                      use_auth_token=use_auth_token,
+                      trust_remote_code=False,  # CRITICAL: Disable arbitrary code
+                      torch_dtype="auto",
+                      device_map="auto"
+                  )
+                  tokenizer = AutoTokenizer.from_pretrained(
+                      model_id,
+                      use_auth_token=use_auth_token,
+                      trust_remote_code=False
+                  )
+              except Exception as e:
+                  raise SecurityError(f"Model loading failed: {e}")
+
+              # Log model metadata
+              print(f"Loaded model: {model_id}")
+              print(f"Config: {model.config}")
+
+              return model, tokenizer
+
+      class SecurityError(Exception):
+          pass
+
+      # Usage
+      loader = SecureModelLoader()
+
+      # Safe loading
+      try:
+          model, tokenizer = loader.safe_load("meta-llama/Llama-2-7b-hf")
+      except SecurityError as e:
+          print(f"Security check failed: {e}")
+    description:
+      tr: Foundation model loading için güvenlik kontrolleri. Source verification ve trust_remote_code=False.
+      en: Security checks for foundation model loading. Source verification and trust_remote_code=False.
+research:
+  - title: "BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain"
+    url: https://arxiv.org/abs/1708.06733
+    year: 2017
+    type: paper
+    authors: Tianyu Gu, Brendan Dolan-Gavitt, Siddharth Garg
+  - title: Backdoor Attacks on Language Models
+    url: https://arxiv.org/abs/2006.01043
+    year: 2020
+    type: paper
+    authors: Keita Kurita, Paul Michel, Graham Neubig
+tips:
+  - tr: Sadece doğrulanmış kaynaklardan (HuggingFace verified, official repos) model indirin.
+    en: Only download models from verified sources (HuggingFace verified, official repos).
+  - tr: ASLA trust_remote_code=True kullanmayın; arbitrary code execution riski.
+    en: NEVER use trust_remote_code=True; arbitrary code execution risk.
+  - tr: Model weights'in checksum'ını doğrulayın.
+    en: Verify model weights checksum.

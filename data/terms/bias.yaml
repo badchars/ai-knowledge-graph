@@ -1,0 +1,89 @@
+id: bias
+name: AI Bias
+fullName: Algorithmic Bias
+category: ai-security
+desc:
+  tr: |-
+    AI sistemlerinde eğitim verisindeki dengesizliklerden kaynaklanan sistematik hatalar. Model, eğitim verisindeki kalıpları öğrenir -- eger veri belirli gruplari az temsil ediyor, stereotıpler iceriyor veya tarihsel eşitsizlikleri yansitiyorsa, model bu öncül yargilari çıktılarina tasir.
+
+    Örneğin, iş basvurusu tarama AI'lari kadın adaylara karşı öncül yargi gosterebilir (çünkü tarihsel veri erkek agirliklidir), yuz tanıma sistemleri koyu tenli bireylerde daha yüksek hata orani verebilir, ve dil modelleri meslekleri cinsiyete göre stereotıplestirebilir.
+
+    Bu sadece bir 'yazilim hatasi' değil, toplumsal bir sorundur çünkü AI sistemleri giderek daha fazla kritik karar sürecinde kullanilmaktadır: işe alim, kredi degerlendirme, ceza adaleti ve saglik hizmetleri. Bias tespiti için fairness metrikleri, temsil analizi ve red-teaming gibi yontemler kullanılır.
+  en: |-
+    Systematic errors in AI systems arising from imbalances in training data. A model learns the patterns in its training data -- if the data underrepresents certain groups, contains stereotypes, or reflects historical inequalities, the model carries these biases into its outputs.
+
+    For example, job application screening AIs can show bias against female candidates (because historical data iş male-dominated), facial recognition systems can have higher error rates on darker-skinned individuals, and language models can stereotype professions by gender.
+
+    This iş not just a 'software bug' but a societal concern, because AI systems are increasingly used in critical decision-making: hiring, credit scoring, criminal justice, and healthcare. Methods like fairness metrics, representation analysis, and red-teaming are used to detect bias.
+  fr: "Des erreurs systematiques dans les systemes d'IA provenant de desequilibres dans les donnees d'entrainement. Un modele apprend les motifs de ses donnees d'entrainement -- si les donnees sous-representent certains groupes, contiennent des stereotypes ou refletent des inegalites historiques, le modele porte ces biais dans ses sorties. Par exemple, les IA de tri de candidatures peuvent montrer un biais contre les candidates feminines, les systemes de reconnaissance faciale peuvent avoir des taux d'erreur plus eleves sur les personnes a peau foncee, et les modeles de langage peuvent stereotyper les professions par genre. Ce n'est pas qu'un 'bug logiciel' mais une preoccupation societale, car les systemes d'IA sont de plus en plus utilises dans des decisions critiques : embauche, notation de credit, justice penale et soins de sante. Des methodes comme les metriques d'equite, l'analyse de representation et le red-teaming sont utilisees pour detecter les biais."
+  zh: AI系统中由训练数据不平衡引起的系统性错误。模型学习训练数据中的模式——如果数据对某些群体代表不足、包含刻板印象或反映历史不平等，模型就会将这些偏见带入其输出。例如，求职申请筛选AI可能对女性候选人表现出偏见（因为历史数据以男性为主），面部识别系统在深肤色个体上可能有更高的错误率，语言模型可能按性别刻板化职业。这不仅仅是'软件缺陷'，而是社会关切，因为AI系统越来越多地用于关键决策：招聘、信用评分、刑事司法和医疗保健。公平性指标、代表性分析和红队测试等方法被用来检测偏见。
+  ar: "اخطاء منهجية في انظمة الذكاء الاصطناعي ناتجة عن اختلالات في بيانات التدريب. يتعلم النموذج الانماط في بيانات تدريبه -- اذا كانت البيانات تمثل مجموعات معينة بشكل ناقص او تحتوي صورا نمطية او تعكس تفاوتات تاريخية فان النموذج ينقل هذه التحيزات الى مخرجاته. مثلا يمكن لانظمة فرز طلبات التوظيف ان تظهر تحيزا ضد المرشحات الاناث ويمكن لانظمة التعرف على الوجوه ان تعطي معدلات خطا اعلى على الافراد ذوي البشرة الداكنة ويمكن للنماذج اللغوية ان تنمط المهن حسب الجنس. هذا ليس مجرد 'خلل برمجي' بل قلق مجتمعي لان انظمة الذكاء الاصطناعي تستخدم بشكل متزايد في قرارات حرجة: التوظيف والتصنيف الائتماني والعدالة الجنائية والرعاية الصحية. تستخدم طرق مثل مقاييس العدالة وتحليل التمثيل والفريق الاحمر لكشف التحيز."
+  ru: "Систематические ошибки в системах ИИ, возникающие из-за дисбалансов в обучающих данных. Модель изучает паттерны в обучающих данных -- если данные недостаточно представляют определенные группы, содержат стереотипы или отражают историческое неравенство, модель переносит эти предубеждения в свои выходные данные. Например, ИИ для скрининга заявок на работу может показывать предвзятость против женщин-кандидатов (поскольку исторические данные преимущественно мужские), системы распознавания лиц могут иметь более высокую частоту ошибок у людей с темной кожей, а языковые модели могут стереотипизировать профессии по полу. Это не просто 'программная ошибка', а общественная проблема, поскольку системы ИИ все чаще используются в критических решениях: найм, кредитный скоринг, уголовное правосудие и здравоохранение. Для обнаружения предвзятости используются метрики справедливости, анализ репрезентативности и красные команды."
+analogy:
+  tr: AI bias'i, hep aynı mahalledeki insanlarla konusarak dünya hakkinda fikir edinmeye benzer. O mahallenin goruslerini gerçeklik sanirsiniz ama aslinda sadece dar bir perspektif gormusunuzdur. AI de aynı şekilde, eğitim verisinin dar penceresiyle dünyaya bakar.
+  en: AI bias iş like forming opinions about the world by only talking to people in one neighborhood. You'd mistake that neighborhood's views for reality, when you've actually only seen a narrow perspective. AI does the same -- it looks at the world through the narrow window of its training data.
+  fr: Le biais de l'IA est comme former ses opinions sur le monde en ne parlant qu'aux gens d'un seul quartier. Vous prendriez les vues de ce quartier pour la realite, alors que vous n'avez vu qu'une perspective etroite. L'IA fait pareil -- elle regarde le monde a travers la fenetre etroite de ses donnees d'entrainement.
+  zh: AI偏见就像只和一个街区的人交谈来形成对世界的看法。你会把那个街区的观点当作现实，但实际上你只看到了狭隘的视角。AI也是如此——它通过训练数据的狭窄窗口看世界。
+  ar: تحيز الذكاء الاصطناعي يشبه تكوين اراء عن العالم بالتحدث فقط مع اشخاص في حي واحد. ستظن ان اراء ذلك الحي هي الواقع بينما في الحقيقة رايت منظورا ضيقا فقط. الذكاء الاصطناعي يفعل نفس الشيء -- ينظر الى العالم عبر النافذة الضيقة لبيانات تدريبه.
+  ru: Предвзятость ИИ -- это как формирование мнения о мире, общаясь только с людьми из одного района. Вы примете взгляды этого района за реальность, хотя на самом деле увидели лишь узкую перспективу. ИИ делает то же самое -- смотрит на мир через узкое окно своих обучающих данных.
+security:
+  - title:
+      tr: Bias Amplification via Training
+      en: Bias Amplification via Training
+      fr: Amplification des biais via l'entraînement
+      zh: 通过训练放大偏见
+      ar: تضخيم التحيز عبر التدريب
+      ru: Усиление предвзятости через обучение
+    description:
+      tr: ML model'leri training data'daki bias'ları amplify eder. Gender, race, age bias'ı discriminatory decisions'a yol açar. Bu, legal compliance (GDPR, AI Act) ve ethical risk oluşturur. Saldırganlar biased model behavior'ı exploit edebilir.
+      en: ML models amplify biases in training data. Gender, race, age bias leads to discriminatory decisions. This creates legal compliance (GDPR, AI Act) and ethical risks. Attackers can exploit biased model behavior.
+      fr: Les modèles ML amplifient les biais dans les données d'entraînement. Les biais de genre, race et âge conduisent à des décisions discriminatoires. Cela crée des risques de conformité légale (RGPD, AI Act) et éthiques. Les attaquants peuvent exploiter le comportement biaisé du modèle.
+      zh: ML模型会放大训练数据中的偏见。性别、种族、年龄偏见导致歧视性决策。这造成法律合规（GDPR、AI Act）和伦理风险。攻击者可以利用模型的偏见行为。
+      ar: تضخم نماذج التعلم الآلي التحيزات في بيانات التدريب. يؤدي التحيز في الجنس والعرق والعمر إلى قرارات تمييزية. هذا يخلق مخاطر الامتثال القانوني (GDPR, AI Act) ومخاطر أخلاقية. يمكن للمهاجمين استغلال سلوك النموذج المتحيز.
+      ru: ML-модели усиливают предвзятости в обучающих данных. Предвзятость по полу, расе, возрасту ведёт к дискриминационным решениям. Это создаёт риски правового соответствия (GDPR, AI Act) и этические риски. Злоумышленники могут эксплуатировать предвзятое поведение модели.
+    severity: medium
+  - title:
+      tr: Bias Denetim ve Raporlama Eksikliği
+      en: Bias Audit and Reporting Gap
+      fr: Lacune dans l'audit et le rapport des biais
+      zh: 偏见审计和报告缺口
+      ar: فجوة تدقيق التحيز والإبلاغ عنه
+      ru: Пробел в аудите и отчётности по предвзятости
+    description:
+      tr: Model'in farklı demografik gruplar üzerindeki performansının ölçülmemesi, biased karar verme sistemlerinin production'a çıkmasına yol açar. AI Act kapsamında bias denetim raporları zorunlu hale gelmektedir.
+      en: Not measuring model performance across different demographic groups leads to deploying biased decision-making systems to production. Bias audit reports are becoming mandatory under the AI Act.
+      fr: Ne pas mesurer les performances du modèle sur différents groupes démographiques conduit au déploiement de systèmes de décision biaisés en production. Les rapports d'audit des biais deviennent obligatoires en vertu de l'AI Act.
+      zh: 不衡量模型在不同人口统计群体中的性能，会导致将有偏见的决策系统部署到生产环境。根据AI法案，偏见审计报告正在成为强制性要求。
+      ar: عدم قياس أداء النموذج عبر مجموعات ديموغرافية مختلفة يؤدي إلى نشر أنظمة صنع قرار متحيزة في بيئة الإنتاج. تصبح تقارير تدقيق التحيز إلزامية بموجب قانون الذكاء الاصطناعي.
+      ru: Отсутствие измерения производительности модели на различных демографических группах приводит к развёртыванию предвзятых систем принятия решений в production. Отчёты об аудите предвзятости становятся обязательными в соответствии с AI Act.
+    severity: low
+config:
+  - title: Bias Detection and Mitigation
+    lang: python
+    code: |-
+      from aif360.datasets import BinaryLabelDataset
+      from aif360.metrics import BinaryLabelDatasetMetric
+      from aif360.algorithms.preprocessing import Reweighing
+
+      # Load data
+      dataset = BinaryLabelDataset(...)
+
+      # Detect bias
+      metric = BinaryLabelDatasetMetric(dataset, privileged_groups=[{'sex': 1}])
+      print(f'Disparate Impact: {metric.disparate_impact()}')
+
+      # Mitigate bias via reweighing
+      RW = Reweighing(privileged_groups=[{'sex': 1}])
+      dataset_transformed = RW.fit_transform(dataset)
+    description:
+      tr: AIF360 ile bias detection ve mitigation yapılır.
+      en: Bias detection and mitigation is performed with AIF360.
+research:
+  - title: "AI Fairness 360: An Extensible Toolkit"
+    url: https://arxiv.org/abs/1810.01943
+    year: 2018
+    type: paper
+    authors: Rachel K. E. Bellamy et al. (IBM)
+tips:
+  - tr: Production model'lerde demographic parity ve equalized odds metrics track edin.
+    en: Track demographic parity and equalized odds metrics in production models.

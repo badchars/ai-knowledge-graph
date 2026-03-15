@@ -1,0 +1,167 @@
+id: triton-server
+name: Triton Inference Server
+fullName: Triton Inference Server
+category: ecosystem
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com) tarafından geliştirilen production-grade AI model serving platformu. Tek bir sunucuda [PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), [ONNX](https://onnx.ai), [TensorRT](https://developer.nvidia.com/tensorrt) gibi farklı framework'lerden modelleri aynı anda serve eder. HTTP/REST ve gRPC API ile inference request'leri kabul eder.
+
+    Triton'un güçlü yönleri: dynamic batching (request'leri otomatik batch'leyerek throughput artırır), model versioning (A/B testing için), model ensemble (birden fazla model pipeline'ı), concurrent model execution (aynı GPU'da birden fazla model). [Kubernetes](https://kubernetes.io) native deployment ve Prometheus metrics desteği.
+
+    [vLLM](https://docs.vllm.ai), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM), [FasterTransformer](https://github.com/NVIDIA/FasterTransformer) gibi backend'leri destekler — LLM serving için optimize. Model repository S3, GCS, Azure Blob gibi cloud storage'lardan model yükleyebilir. [KServe](https://kserve.github.io/website/) ile Kubernetes üzerinde auto-scaling inference cluster'ları kurulabilir.
+
+    Production'da Triton genellikle [NGINX](https://nginx.org) veya API Gateway arkasında çalışır, load balancing ve rate limiting uygulanır. Multi-GPU ve multi-node deployment için [MPI](https://www.open-mpi.org) veya [NCCL](https://developer.nvidia.com/nccl) kullanır. Security için TLS/mTLS, authentication, request validation sağlar.
+  en: |-
+    Production-grade AI model serving platform developed by [NVIDIA](https://nvidia.com). Serves models from different frameworks ([PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), [ONNX](https://onnx.ai), [TensorRT](https://developer.nvidia.com/tensorrt)) simultaneously on a single server. Accepts inference requests via HTTP/REST and gRPC API.
+
+    Triton's strengths: dynamic batching (automatically batches requests to increase throughput), model versioning (for A/B testing), model ensemble (multi-model pipeline), concurrent model execution (multiple models on same GPU). [Kubernetes](https://kubernetes.io) native deployment and Prometheus metrics support.
+
+    Supports backends like [vLLM](https://docs.vllm.ai), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM), [FasterTransformer](https://github.com/NVIDIA/FasterTransformer) — optimized for LLM serving. Can load models from cloud storage like S3, GCS, Azure Blob. With [KServe](https://kserve.github.io/website/), auto-scaling inference clusters can be built on Kubernetes.
+
+    In production, Triton typically runs behind [NGINX](https://nginx.org) or API Gateway with load balancing and rate limiting. Uses [MPI](https://www.open-mpi.org) or [NCCL](https://developer.nvidia.com/nccl) for multi-GPU and multi-node deployment. Provides TLS/mTLS, authentication, and request validation for security.
+  fr: Plateforme de service de modeles IA de production developpee par NVIDIA, sert simultanement des modeles de differents frameworks sur un seul serveur.
+  zh: NVIDIA开发的生产级AI模型服务平台，在单个服务器上同时提供来自不同框架的模型服务。
+  ar: منصة خدمة نماذج الذكاء الاصطناعي على مستوى الإنتاج طورتها NVIDIA، تخدم نماذج من أطر عمل مختلفة في وقت واحد على خادم واحد.
+  ru: Production-grade платформа для обслуживания AI-моделей от NVIDIA, одновременно обслуживает модели из разных фреймворков на одном сервере.
+analogy:
+  tr: "Restaurant mutfağı gibi: Birden fazla şefin (model) aynı mutfakta (GPU) farklı yemekleri (inference) hazırladığı, siparişleri (request) optimize eden bir sistem."
+  en: "Like restaurant kitchen: Multiple chefs (models) preparing different dishes (inference) in same kitchen (GPU), system optimizes orders (requests)."
+  fr: "Comme une cuisine de restaurant : plusieurs chefs (modeles) preparent differents plats (inference) dans la meme cuisine (GPU), le systeme optimise les commandes (requetes)."
+  zh: 就像餐厅厨房：多个厨师（模型）在同一厨房（GPU）中准备不同菜肴（推理），系统优化订单（请求）。
+  ar: "مثل مطبخ مطعم: عدة طهاة (نماذج) يحضرون أطباق مختلفة (استدلال) في نفس المطبخ (GPU)، النظام يحسّن الطلبات (requests)."
+  ru: "Как кухня ресторана: несколько поваров (моделей) готовят разные блюда (инференс) на одной кухне (GPU), система оптимизирует заказы (запросы)."
+security:
+  - title:
+      tr: Model Repository Access Control Bypass
+      en: Model Repository Access Control Bypass
+      fr: Contournement du controle d'acces au depot de modeles
+      zh: 模型仓库访问控制绕过
+      ar: تجاوز التحكم في الوصول إلى مستودع النماذج
+      ru: Обход контроля доступа к репозиторию моделей
+    description:
+      tr: "Triton model repository'den model yükler (local, S3, GCS). Eğer repository access control zayıfsa saldırgan zararlı model upload edebilir ve Triton'a yükletebilir. S3 bucket misconfiguration veya weak credentials ile model poisoning attack. Defense: IAM policy, bucket encryption, signed URLs."
+      en: "Triton loads models from repository (local, S3, GCS). If repository access control is weak, attacker can upload malicious model and make Triton load it. Model poisoning attack via S3 bucket misconfiguration or weak credentials. Defense: IAM policy, bucket encryption, signed URLs."
+      fr: "Triton charge les modeles depuis un depot (local, S3, GCS). Si le controle d'acces au depot est faible, un attaquant peut telecharger un modele malveillant et le faire charger par Triton. Attaque par empoisonnement de modele via une mauvaise configuration du bucket S3 ou des identifiants faibles. Defense : politique IAM, chiffrement du bucket, URL signees."
+      zh: Triton从仓库（本地、S3、GCS）加载模型。如果仓库访问控制薄弱，攻击者可以上传恶意模型并让Triton加载它。通过S3存储桶配置错误或弱凭证进行模型投毒攻击。防御措施：IAM策略、存储桶加密、签名URL。
+      ar: "يقوم Triton بتحميل النماذج من المستودع (محلي، S3، GCS). إذا كان التحكم في الوصول إلى المستودع ضعيفًا، يمكن للمهاجم رفع نموذج ضار وجعل Triton يحمّله. هجوم تسميم النموذج عبر خطأ تكوين حاوية S3 أو بيانات اعتماد ضعيفة. الدفاع: سياسة IAM، تشفير الحاوية، عناوين URL موقّعة."
+      ru: "Triton загружает модели из репозитория (локальный, S3, GCS). Если контроль доступа к репозиторию слабый, злоумышленник может загрузить вредоносную модель и заставить Triton её использовать. Атака отравления модели через неправильную конфигурацию S3 бакета или слабые учётные данные. Защита: политика IAM, шифрование бакета, подписанные URL."
+    severity: critical
+  - title:
+      tr: API Exposure - Unauthorized Inference Access
+      en: API Exposure - Unauthorized Inference Access
+      fr: Exposition d'API - Acces non autorise a l'inference
+      zh: API暴露 - 未授权推理访问
+      ar: كشف API - وصول غير مصرح به للاستدلال
+      ru: Открытый API - несанкционированный доступ к инференсу
+    description:
+      tr: Triton HTTP/gRPC API authentication olmadan expose edilirse herkes inference request gönderebilir — GPU resource abuse, DoS, prompt injection. Production'da mutlaka API gateway (Kong, NGINX) + JWT authentication kullanılmalı. Rate limiting yoksa API flooding ile server crash ettirilebilir.
+      en: If Triton HTTP/gRPC API is exposed without authentication, anyone can send inference requests — GPU resource abuse, DoS, prompt injection. Must use API gateway (Kong, NGINX) + JWT authentication in production. Without rate limiting, server can be crashed via API flooding.
+      fr: Si l'API HTTP/gRPC de Triton est exposee sans authentification, n'importe qui peut envoyer des requetes d'inference — abus de ressources GPU, DoS, injection de prompt. Il faut utiliser une passerelle API (Kong, NGINX) + authentification JWT en production. Sans limitation de debit, le serveur peut etre plante par inondation de l'API.
+      zh: 如果Triton的HTTP/gRPC API在没有认证的情况下暴露，任何人都可以发送推理请求——GPU资源滥用、拒绝服务、提示注入。生产环境必须使用API网关（Kong、NGINX）+ JWT认证。没有速率限制的情况下，服务器可能因API洪泛而崩溃。
+      ar: إذا تم كشف واجهة HTTP/gRPC API لـ Triton بدون مصادقة، يمكن لأي شخص إرسال طلبات استدلال — إساءة استخدام موارد GPU، حجب الخدمة، حقن الأوامر. يجب استخدام بوابة API (Kong، NGINX) + مصادقة JWT في الإنتاج. بدون تحديد المعدل، يمكن تعطيل الخادم عبر إغراق API.
+      ru: Если HTTP/gRPC API Triton открыт без аутентификации, любой может отправлять запросы инференса — злоупотребление ресурсами GPU, DoS, инъекция промптов. В продакшене обязательно используйте API-шлюз (Kong, NGINX) + JWT-аутентификацию. Без ограничения частоты запросов сервер может быть обрушен через API-флуд.
+    severity: high
+  - title:
+      tr: Model Ensemble Pipeline Injection
+      en: Model Ensemble Pipeline Injection
+      fr: Injection dans le pipeline d'ensemble de modeles
+      zh: 模型集成管道注入
+      ar: حقن في خط أنابيب مجموعة النماذج
+      ru: Инъекция в конвейер ансамбля моделей
+    description:
+      tr: Triton model ensemble ile birden fazla modeli pipeline'da birleştirir. Saldırgan ensemble config'ini manipüle ederek zararlı model ekleyebilir veya pipeline flow'u değiştirebilir. Config dosyası (config.pbtxt) untrusted source'dan yüklenmemelidir.
+      en: Triton combines multiple models in pipeline with model ensemble. Attacker can manipulate ensemble config to add malicious model or change pipeline flow. Config file (config.pbtxt) should not be loaded from untrusted source.
+      fr: Triton combine plusieurs modeles dans un pipeline avec l'ensemble de modeles. Un attaquant peut manipuler la configuration de l'ensemble pour ajouter un modele malveillant ou modifier le flux du pipeline. Le fichier de configuration (config.pbtxt) ne doit pas etre charge depuis une source non fiable.
+      zh: Triton通过模型集成将多个模型组合在管道中。攻击者可以操纵集成配置以添加恶意模型或更改管道流程。配置文件（config.pbtxt）不应从不受信任的来源加载。
+      ar: يجمع Triton عدة نماذج في خط أنابيب مع مجموعة النماذج. يمكن للمهاجم التلاعب بتكوين المجموعة لإضافة نموذج ضار أو تغيير تدفق خط الأنابيب. يجب عدم تحميل ملف التكوين (config.pbtxt) من مصدر غير موثوق.
+      ru: Triton объединяет несколько моделей в конвейере с помощью ансамбля моделей. Злоумышленник может манипулировать конфигурацией ансамбля для добавления вредоносной модели или изменения потока конвейера. Файл конфигурации (config.pbtxt) не должен загружаться из ненадёжного источника.
+    severity: medium
+  - title:
+      tr: Triton Server Konfigürasyon Bilgi Sızıntısı
+      en: Triton Server Configuration Information Disclosure
+      fr: Divulgation de configuration triton server
+      zh: triton server配置信息泄露
+      ar: كشف معلومات تكوين triton-server
+      ru: Раскрытие конфигурации triton-server
+    description:
+      tr: Triton Server ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to triton server can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à triton server peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与triton server相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ triton-server في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании triton-server могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Triton Model Repository Structure
+    lang: bash
+    code: |-
+      # Model repository structure
+      model_repository/
+      ├── llama-7b/
+      │   ├── config.pbtxt         # Model configuration
+      │   └── 1/                   # Version 1
+      │       └── model.plan       # TensorRT engine
+      ├── bert-base/
+      │   ├── config.pbtxt
+      │   └── 1/
+      │       └── model.onnx       # ONNX model
+
+      # config.pbtxt example
+      name: "llama-7b"
+      platform: "tensorrt_plan"
+      max_batch_size: 8
+      input [
+        { name: "input_ids" dtype: TYPE_INT32 dims: [-1] }
+      ]
+      output [
+        { name: "logits" dtype: TYPE_FP16 dims: [-1, 32000] }
+      ]
+      dynamic_batching { max_queue_delay_microseconds: 100 }
+    description:
+      tr: "Triton model repository yapısı. Her model kendi dizininde, versioning ile. config.pbtxt model metadata ve dynamic batching ayarları. Platform: tensorrt_plan, onnxruntime_onnx, pytorch_libtorch vb."
+      en: "Triton model repository structure. Each model in its own directory with versioning. config.pbtxt defines model metadata and dynamic batching settings. Platform: tensorrt_plan, onnxruntime_onnx, pytorch_libtorch, etc."
+  - title: Triton Server with Authentication
+    lang: bash
+    code: |-
+      # Launch Triton with TLS and metrics
+      docker run -d --gpus all \
+        -p 8000:8000 -p 8001:8001 -p 8002:8002 \
+        -v /models:/models \
+        -e TRITON_SERVER_ARGS="--model-repository=/models \
+          --http-port=8000 --grpc-port=8001 --metrics-port=8002 \
+          --strict-model-config=true \
+          --model-control-mode=explicit" \
+        nvcr.io/nvidia/tritonserver:24.01-py3
+
+      # Use NGINX as reverse proxy with JWT auth
+      # nginx.conf
+      location /v2/models {
+        auth_request /auth;
+        proxy_pass http://triton:8000;
+      }
+    description:
+      tr: Triton Server production deployment. NGINX reverse proxy ile JWT authentication. strict-model-config ile sadece valid config dosyaları yüklenir. model-control-mode=explicit ile unauthorized model loading engellenir.
+      en: Triton Server production deployment. JWT authentication with NGINX reverse proxy. strict-model-config loads only valid config files. model-control-mode=explicit prevents unauthorized model loading.
+research:
+  - title: Triton Inference Server Documentation
+    url: https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/
+    year: 2024
+    type: guide
+    authors: NVIDIA
+  - title: Triton GitHub Repository
+    url: https://github.com/triton-inference-server/server
+    year: 2024
+    type: tool
+    authors: NVIDIA
+  - title: KServe with Triton Backend
+    url: https://kserve.github.io/website/modelserving/v1beta1/triton/
+    year: 2024
+    type: guide
+    authors: KServe Community
+tips:
+  - tr: Dynamic batching mutlaka enable edin — throughput 2-5x artırır, latency sadece birkaç ms artar.
+    en: Always enable dynamic batching — increases throughput 2-5x, latency increases only a few ms.
+  - tr: Model repository S3'te ise IAM role ile access sağlayın, hardcoded credentials kullanmayın.
+    en: If model repository is in S3, use IAM role for access, don't use hardcoded credentials.
+  - tr: Production'da Triton API'yi asla doğrudan expose etmeyin — mutlaka API gateway + authentication kullanın.
+    en: Never expose Triton API directly in production — always use API gateway + authentication.

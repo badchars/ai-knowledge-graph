@@ -1,0 +1,133 @@
+id: speculative
+name: Speculative Decoding
+fullName: Speculative Decoding
+category: inference
+desc:
+  tr: |-
+    AI modellerinin cevap üretim hızını artıran bir teknik: küçük ve hızlı bir 'taslak model' (draft model) önce birden fazla token tahmini yapar, sonra büyük ana model bu tahminleri tek bir forward pass'ta toplüça doğrular. Dogru tahminler kabul edilir, ilk yanlış tahminde duzeltme yapılır ve oradan devam edilir. Sonüçta çıktı kalitesi büyük modelle birebir aynıdir — hicbir yaklaşıksama yoktur.
+
+    Pratikte 2-3x hiz artişi sağlar, özellikle tahmin edilebilir metinlerde (kod, formul, sablonlu yazi) daha etkilidir. Buyuk model boş beklerken küçük modelin hizla urettigi tokenleri toplu doğrulama mekanizması, GPU'nun paralel hesaplama gücünu daha iyi kullanır.
+
+    [Google](https://ai.google) DeepMind ve [Meta](https://ai.meta.com)'nin arastirma makalelerinde detayli olarak incelenmistir. [vLLM](https://docs.vllm.ai) ve [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) gibi inference motorlari bu tekniği destekler.
+  en: |-
+    A technique that speeds up AI response generation using a smaller, faster 'draft model' that proposes multiple tokens ahead, which the larger main model then verifies in a single forward pass. Correct predictions are accepted, and at the first wrong prediction, the model corrects it and continues from there. The key property iş that output quality iş mathematically identical to the large model alone — there iş no approximation.
+
+    In practice, it delivers 2-3x speedup, and iş particularly effective for predictable text like code, formulas, and templated writing. The mechanism works because batch-verifying multiple tokens iş nearly as fast as generating a single one on large models.
+
+    This technique has been extensively studied in research papers from [Google](https://ai.google) DeepMind and [Meta](https://ai.meta.com), and iş supported by inference engines like [vLLM](https://docs.vllm.ai) and [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM).
+  fr: Une technique qui accelere la generation de reponses IA en utilisant un petit modele rapide de 'brouillon' qui propose plusieurs tokens a l'avance, que le grand modele principal verifie ensuite en un seul passage. Les predictions correctes sont acceptees, et a la premiere erreur, le modele corrige et continue. La propriete cle est que la qualite de sortie est mathematiquement identique au grand modele seul — il n'y a aucune approximation. En pratique, elle offre un gain de vitesse de 2 a 3 fois, et est particulierement efficace pour les textes previsibles comme le code, les formules et les textes structures. Le mecanisme fonctionne car verifier plusieurs tokens en lot est presque aussi rapide que d'en generer un seul sur les grands modeles. Cette technique est supportee par vLLM et TensorRT-LLM.
+  zh: 一种利用小型快速'草稿模型'加速AI响应生成的技术：草稿模型先预测多个token，然后大型主模型在单次前向传播中批量验证这些预测。正确的预测被接受，在第一个错误预测处进行修正并从那里继续。关键特性是输出质量在数学上与仅用大模型完全相同——没有任何近似。实际中可实现2-3倍加速，对代码、公式、模板化文本等可预测内容尤为有效。其机制原理是批量验证多个token的速度几乎与大模型生成单个token一样快。该技术已在Google DeepMind和Meta的研究论文中被广泛研究，并被vLLM和TensorRT-LLM等推理引擎支持。
+  ar: تقنية تسرّع توليد استجابات الذكاء الاصطناعي باستخدام 'نموذج مسودة' صغير وسريع يقترح عدة رموز مقدماً ثم يتحقق النموذج الرئيسي الكبير منها في تمريرة أمامية واحدة. التنبؤات الصحيحة تُقبل وعند أول تنبؤ خاطئ يصححه النموذج ويستمر من هناك. الخاصية الأساسية هي أن جودة المخرجات مطابقة رياضياً للنموذج الكبير وحده — لا يوجد أي تقريب. عملياً تحقق تسريعاً بمقدار 2-3 أضعاف وتكون فعالة بشكل خاص للنصوص المتوقعة مثل الكود والمعادلات. الآلية تعمل لأن التحقق من عدة رموز دفعة واحدة بنفس سرعة توليد رمز واحد تقريباً على النماذج الكبيرة. هذه التقنية مدعومة في vLLM وTensorRT-LLM ودُرست في أبحاث Google DeepMind وMeta.
+  ru: "Техника ускорения генерации ответов ИИ с помощью маленькой быстрой 'черновой модели', предлагающей несколько токенов вперёд, которые большая основная модель затем верифицирует за один прямой проход. Правильные предсказания принимаются, при первой ошибке модель исправляет и продолжает. Ключевое свойство: качество выхода математически идентично работе только большой модели — никакой аппроксимации. На практике даёт ускорение в 2-3 раза, особенно эффективна для предсказуемого текста вроде кода, формул и шаблонных текстов. Механизм работает потому, что пакетная верификация нескольких токенов почти так же быстра, как генерация одного на большой модели. Техника поддерживается vLLM и TensorRT-LLM и подробно исследована в работах Google DeepMind и Meta."
+analogy:
+  tr: Asistanın taslak yazması, yöneticinin onaylaması. Birlikte hızlı VE doğru.
+  en: An assistant drafts, the manager approves. Together they're fast AND accurate.
+  fr: L'assistant rédige un brouillon, le manager approuve. Ensemble, ils sont rapides ET précis.
+  zh: 助手起草，经理批准。他们一起既快速又准确。
+  ar: المساعد يكتب المسودة، المدير يوافق. معاً هم سريعون ودقيقون.
+  ru: Ассистент делает черновик, менеджер утверждает. Вместе они быстрые И точные.
+security:
+  - title:
+      tr: Draft Model Poisoning
+      en: Draft Model Poisoning
+      fr: Empoisonnement du modele brouillon
+      zh: 草稿模型投毒
+      ar: تسميم النموذج المسودة
+      ru: Отравление модели-черновика
+    description:
+      tr: Speculative decoding'de kullanılan draft model poisoned ise, target model'in output'unu manipüle edebilir. Draft model genellikle daha az güvenlik kontrolüne sahiptir.
+      en: If the draft model used in speculative decoding is poisoned, it can manipulate the target model's output. Draft models typically have less security scrutiny.
+      fr: Si le modele brouillon utilise dans le decodage speculatif est empoisonne, il peut manipuler la sortie du modele cible. Les modeles brouillons font generalement l'objet de moins de controles de securite.
+      zh: 如果用于投机解码的草稿模型被投毒，它可以操纵目标模型的输出。草稿模型通常受到较少的安全审查。
+      ar: إذا تم تسميم النموذج المسودة المستخدم في فك التشفير التخميني، يمكنه التلاعب بمخرجات النموذج المستهدف. عادةً ما تخضع النماذج المسودة لرقابة أمنية أقل.
+      ru: Если модель-черновик, используемая в спекулятивном декодировании, отравлена, она может манипулировать выходными данными целевой модели. Модели-черновики обычно подвергаются меньшей проверке безопасности.
+    severity: high
+  - title:
+      tr: Timing Side-Channel via Speculation
+      en: Timing Side-Channel via Speculation
+      fr: Canal auxiliaire par timing via la speculation
+      zh: 通过投机的时序侧信道
+      ar: قناة جانبية زمنية عبر التخمين
+      ru: Побочный канал через тайминг спекуляции
+    description:
+      tr: Speculative decoding'in acceptance rate'i latency üzerinden gözlemlenebilir. Bu, draft ve target model arasındaki agreement hakkında bilgi sızd ırır.
+      en: Speculative decoding's acceptance rate can be observed through latency. This leaks information about agreement between draft and target models.
+      fr: Le taux d'acceptation du decodage speculatif peut etre observe a travers la latence. Cela divulgue des informations sur l'accord entre les modeles brouillon et cible.
+      zh: 投机解码的接受率可以通过延迟观察到。这会泄露草稿模型和目标模型之间一致性的信息。
+      ar: يمكن ملاحظة معدل قبول فك التشفير التخميني من خلال زمن الاستجابة. هذا يسرب معلومات حول التوافق بين النموذج المسودة والنموذج المستهدف.
+      ru: Коэффициент принятия спекулятивного декодирования может быть наблюдаем через задержку. Это раскрывает информацию о согласованности между моделью-черновиком и целевой моделью.
+    severity: low
+config:
+  - title: Secure Speculative Decoding
+    lang: python
+    code: |-
+      # vLLM with verified draft model
+      from vllm import LLM
+      import hashlib
+
+      def verify_draft_model(model_path: str, expected_hash: str):
+          with open(model_path, "rb") as f:
+              model_hash = hashlib.sha256(f.read()).hexdigest()
+          if model_hash != expected_hash:
+              raise ValueError("Draft model verification failed")
+
+      # Verify before use
+      DRAFT_MODEL = "meta-llama/Llama-3.2-1B-Instruct"
+      verify_draft_model(DRAFT_MODEL, TRUSTED_HASH)
+
+      llm = LLM(
+          model="meta-llama/Llama-3.3-70B-Instruct",
+          speculative_model=DRAFT_MODEL,
+          num_speculative_tokens=5,
+          use_v2_block_manager=True
+      )
+    description:
+      tr: Draft model'i hash ile doğrulayın. Sadece güvenilir draft model'ler kullanın.
+      en: Verify draft model with hash. Use only trusted draft models.
+  - title: Speculative Decoding Integrity (Bash)
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Verify draft model integrity before speculative decoding
+      DRAFT_MODEL="${1:?Usage: $0 <draft-model-path>}"
+      TARGET_MODEL="${2:?Usage: $0 <draft-model-path> <target-model-path>}"
+
+      # Check draft model checksum
+      if [ ! -f "$DRAFT_MODEL/checksums.sha256" ]; then
+        echo "[WARN] No checksum file for draft model" >&2
+        exit 1
+      fi
+
+      cd "$DRAFT_MODEL" && sha256sum -c checksums.sha256 --quiet
+      if [ $? -ne 0 ]; then
+        echo "[ALERT] Draft model integrity check FAILED" >&2
+        exit 1
+      fi
+
+      # Verify draft model source matches target model family
+      DRAFT_ARCH=$(python3 -c "import json; print(json.load(open('$DRAFT_MODEL/config.json')).get('architectures',[''])[0])")
+      TARGET_ARCH=$(python3 -c "import json; print(json.load(open('$TARGET_MODEL/config.json')).get('architectures',[''])[0])")
+
+      if [ "$DRAFT_ARCH" != "$TARGET_ARCH" ]; then
+        echo "[WARN] Architecture mismatch: draft=$DRAFT_ARCH target=$TARGET_ARCH" >&2
+      fi
+      echo "[OK] Draft model verified for speculative decoding"
+    description:
+      tr: Speculative decoding öncesi draft model bütünlüğünü ve mimari uyumluluğunu doğrular.
+      en: Verifies draft model integrity and architecture compatibility before speculative decoding.
+research:
+  - title: Fast Inference from Transformers via Speculative Decoding
+    url: https://arxiv.org/abs/2211.17192
+    year: 2022
+    type: paper
+    authors: Yaniv Leviathan, Matan Kalman, Yossi Matias
+  - title: "Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads"
+    url: https://arxiv.org/abs/2401.10774
+    year: 2024
+    type: paper
+    authors: Tianle Cai, Yuhong Li, Zhengyang Geng, Hongwu Peng, Tri Dao
+tips:
+  - tr: Draft model'i target model ile aynı security posture'da tutun (same trust level).
+    en: Keep draft model at same security posture as target model (same trust level).
+  - tr: Speculative decoding acceptance rate'i monitör edin; düşük rate attack göstergesi olabilir.
+    en: Monitor speculative decoding acceptance rate; low rates can indicate attacks.

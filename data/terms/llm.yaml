@@ -1,0 +1,195 @@
+id: llm
+name: LLM
+fullName: Large Language Model
+category: models
+desc:
+  tr: |-
+    [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), [Gemini](https://gemini.google.com) ve [Llama](https://ai.meta.com/llama/) gibi yapay zeka sistemlerinin arkasındaki temel teknoloji — milyarlarca parametreye sahip, internetteki devasa miktarda metin üzerinde eğitilmiş büyük dil modelleri. Bu modeller inşan dilini anlayip üretebilir: soru cevaplama, kod yazma, metin özetleme, çeviri yapma ve mantık yürütme gibi geniş bir yelpazede çalışırlar.
+
+    [GPT-4](https://openai.com/gpt-4) gibi modeller yaklaşık 1.8 trilyon parametreye sahipken, [Llama](https://ai.meta.com/llama/) 3.1 405B gibi açık ağırlıklı modeller de ciddi yetenekler sunmaktadır. LLM'ler Transformer mimarisine dayanır ve temel olarak 'bir sonraki token'i tahmin etme' prensibine göre çalışır — bu basit prensip, yeterli veri ve parametre ile inanılmaz karmaşık yeteneklere dönüşür.
+
+    Bugün yazılım geliştirme, hukuk, tip ve eğitim dahil neredeyse her sektörde devrim yaratmaktadırlar.
+  en: |-
+    The core technology behind AI systems like [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), [Gemini](https://gemini.google.com), and [Llama](https://ai.meta.com/llama/) — massive neural networks with billions of parameters trained on enormous amounts of text from the internet. These models can understand and generate human language across a wide range of tasks: answering questions, writing code, summarizing documents, translating languages, and reasoning through complex problems.
+
+    Models like [GPT-4](https://openai.com/gpt-4) have approximately 1.8 trillion parameters, while open-weight alternatives like [Llama](https://ai.meta.com/llama/) 3.1 405B offer substantial capabilities too. LLMs are built on the Transformer architecture and fundamentally work by predicting the next token in a sequence — this simple principle, with enough data and parameters, produces remarkably sophisticated capabilities.
+
+    Today they are revolutionizing virtually every industry from software development and law to medicine and education.
+  fr: "La technologie fondamentale derriere les systemes d'IA comme ChatGPT, Claude, Gemini et Llama — des reseaux de neurones massifs avec des milliards de parametres entraines sur d'enormes quantites de texte d'internet. Ces modeles peuvent comprendre et generer le langage humain pour un large eventail de taches : repondre aux questions, ecrire du code, resumer des documents, traduire des langues et raisonner sur des problemes complexes. Des modeles comme GPT-4 ont environ 1,8 trillion de parametres, tandis que des alternatives open-weight comme Llama 3.1 405B offrent aussi des capacites substantielles. Les LLM sont construits sur l'architecture Transformer et fonctionnent fondamentalement en predisant le prochain token dans une sequence — ce principe simple, avec suffisamment de donnees et de parametres, produit des capacites remarquablement sophistiquees. Aujourd'hui, ils revolutionnent pratiquement chaque secteur, du developpement logiciel et du droit a la medecine et l'education."
+  zh: ChatGPT、Claude、Gemini和Llama等AI系统背后的核心技术——拥有数十亿参数、在互联网海量文本上训练的大型神经网络。这些模型能够理解和生成人类语言，涵盖广泛的任务：回答问题、编写代码、总结文档、翻译语言以及对复杂问题进行推理。GPT-4等模型大约有1.8万亿参数，而Llama 3.1 405B等开放权重替代方案也提供了强大的能力。LLM基于Transformer架构构建，基本原理是预测序列中的下一个token——这个简单的原理配合足够的数据和参数，产生了极其复杂的能力。如今，它们正在从软件开发、法律到医疗和教育等几乎每个行业引发革命。
+  ar: "التقنية الأساسية وراء أنظمة الذكاء الاصطناعي مثل ChatGPT وClaude وGemini وLlama — شبكات عصبية ضخمة بمليارات المعاملات مدربة على كميات هائلة من النصوص من الإنترنت. يمكن لهذه النماذج فهم وتوليد اللغة البشرية عبر مجموعة واسعة من المهام: الإجابة على الأسئلة وكتابة الكود وتلخيص المستندات وترجمة اللغات والاستدلال في المشكلات المعقدة. نماذج مثل GPT-4 تحتوي على حوالي 1.8 تريليون معامل، بينما تقدم البدائل مفتوحة الأوزان مثل Llama 3.1 405B قدرات كبيرة أيضاً. تُبنى LLMs على معمارية Transformer وتعمل أساساً بالتنبؤ بالرمز التالي في التسلسل — هذا المبدأ البسيط مع بيانات ومعاملات كافية ينتج قدرات متطورة بشكل ملحوظ. اليوم تُحدث ثورة في كل صناعة تقريباً من تطوير البرمجيات والقانون إلى الطب والتعليم."
+  ru: "Основная технология, стоящая за AI-системами вроде ChatGPT, Claude, Gemini и Llama — огромные нейронные сети с миллиардами параметров, обученные на колоссальных объемах текста из интернета. Эти модели способны понимать и генерировать человеческий язык в широком спектре задач: отвечать на вопросы, писать код, резюмировать документы, переводить языки и решать сложные логические задачи. Модели вроде GPT-4 имеют около 1,8 триллиона параметров, а открытые альтернативы типа Llama 3.1 405B тоже предлагают существенные возможности. LLM построены на архитектуре Transformer и фундаментально работают, предсказывая следующий токен в последовательности — этот простой принцип с достаточным количеством данных и параметров порождает поразительно сложные способности. Сегодня они революционизируют практически каждую отрасль — от разработки ПО и права до медицины и образования."
+analogy:
+  tr: İnsanların yazdığı neredeyse tüm metinleri okumuş dev bir 'dil beyni'.
+  en: A massive 'language brain' that has read nearly all text humans have written.
+  fr: Un énorme 'cerveau linguistique' qui a lu presque tous les textes écrits par les humains.
+  zh: 一个阅读了几乎所有人类写作文本的巨大"语言大脑"。
+  ar: عقل لغوي هائل قرأ تقريباً كل النصوص التي كتبها البشر.
+  ru: Массивный 'языковой мозг', прочитавший почти все тексты, написанные людьми.
+security:
+  - title:
+      tr: Model Extraction Attacks
+      en: Model Extraction Attacks
+      fr: Attaques par extraction de modele
+      zh: 模型提取攻击
+      ar: هجمات استخراج النموذج
+      ru: Атаки извлечения модели
+    description:
+      tr: Saldırganlar API üzerinden binlerce sorgu göndererek LLM'in davranışını taklit eden bir model çıkarabilir. Bu 'model stealing' saldırısı, ticari modellerin fikri mülkiyetini tehdit eder.
+      en: Attackers can extract a model that mimics LLM behavior by sending thousands of queries via API. This 'model stealing' attack threatens intellectual property of commercial models.
+      fr: Les attaquants peuvent extraire un modele qui imite le comportement du LLM en envoyant des milliers de requetes via API. Cette attaque de 'vol de modele' menace la propriete intellectuelle des modeles commerciaux.
+      zh: 攻击者可以通过API发送数千个查询来提取模仿LLM行为的模型。这种'模型窃取'攻击威胁商业模型的知识产权。
+      ar: يمكن للمهاجمين استخراج نموذج يقلد سلوك نموذج اللغة الكبيرة عن طريق إرسال آلاف الاستعلامات عبر واجهة البرمجة. هذا الهجوم 'سرقة النموذج' يهدد الملكية الفكرية للنماذج التجارية.
+      ru: Злоумышленники могут извлечь модель, имитирующую поведение LLM, отправляя тысячи запросов через API. Эта атака 'кражи модели' угрожает интеллектуальной собственности коммерческих моделей.
+    severity: high
+  - title:
+      tr: Training Data Extraction
+      en: Training Data Extraction
+      fr: Extraction des donnees d'entrainement
+      zh: 训练数据提取
+      ar: استخراج بيانات التدريب
+      ru: Извлечение обучающих данных
+    description:
+      tr: LLM'ler eğitim datasını ezberleyebilir. Özel promptlarla saldırganlar, training data içindeki PII, API anahtarları veya telif hakkı içerikleri çıkarabilir.
+      en: LLMs can memorize training data. With special prompts, attackers can extract PII, API keys, or copyrighted content from training data.
+      fr: Les LLM peuvent memoriser les donnees d'entrainement. Avec des prompts speciaux, les attaquants peuvent extraire des PII, des cles API ou du contenu soumis au droit d'auteur des donnees d'entrainement.
+      zh: LLM可以记忆训练数据。通过特殊提示，攻击者可以从训练数据中提取PII、API密钥或受版权保护的内容。
+      ar: يمكن لنماذج اللغة الكبيرة حفظ بيانات التدريب. باستخدام موجهات خاصة، يمكن للمهاجمين استخراج معلومات التعريف الشخصية أو مفاتيح API أو المحتوى المحمي بحقوق الطبع والنشر من بيانات التدريب.
+      ru: LLM могут запоминать обучающие данные. С помощью специальных промптов злоумышленники могут извлекать персональные данные, API-ключи или контент, защищённый авторским правом, из обучающих данных.
+    severity: critical
+  - title:
+      tr: LLM Model Versiyonu İfşası
+      en: LLM Model Version Disclosure
+      fr: Divulgation de la version du modele LLM
+      zh: LLM模型版本泄露
+      ar: كشف إصدار نموذج اللغة الكبيرة
+      ru: Раскрытие версии модели LLM
+    description:
+      tr: LLM'lere 'hangi modelsin' veya 'bilgi kesim tarihin ne' gibi sorular sorularak model kimliği, versiyon bilgisi ve eğitim tarihi çıkarılabilir. Bu bilgi, bilinen model-specific saldırıların hedeflenmesini sağlar.
+      en: By asking LLMs questions like 'what model are you' or 'what is your knowledge cutoff', model identity, version, and training date can be extracted. This information enables targeting known model-specific attacks.
+      fr: En posant au LLM des questions comme 'quel modele es-tu' ou 'quelle est ta date de coupure', l'identite du modele, la version et la date d'entrainement peuvent etre extraites. Cette information permet de cibler des attaques specifiques au modele.
+      zh: 通过向LLM提问如'你是什么模型'或'你的知识截止日期是什么'，可以提取模型身份、版本和训练日期。这些信息使攻击者能够针对已知的特定模型攻击。
+      ar: من خلال طرح أسئلة على نماذج اللغة مثل 'ما هو نموذجك' أو 'ما هو تاريخ قطع معرفتك'، يمكن استخراج هوية النموذج والإصدار وتاريخ التدريب. تمكن هذه المعلومات من استهداف الهجمات المعروفة الخاصة بالنموذج.
+      ru: Задавая LLM вопросы вроде 'какая ты модель' или 'какая у тебя дата отсечения знаний', можно извлечь идентификатор модели, версию и дату обучения. Эта информация позволяет нацеливаться на известные атаки, специфичные для модели.
+    severity: low
+config:
+  - title: LLM API Rate Limiting and Monitoring
+    lang: python
+    code: |-
+      from functools import wraps
+      from time import time
+      from collections import defaultdict
+      import hashlib
+
+      class LLMSecurityMiddleware:
+          def __init__(self):
+              self.request_counts = defaultdict(list)
+              self.suspicious_patterns = []
+
+          def rate_limit(self, max_requests: int = 100, window: int = 3600):
+              """Rate limit decorator for LLM API"""
+              def decorator(func):
+                  @wraps(func)
+                  def wrapper(user_id: str, *args, **kwargs):
+                      now = time()
+
+                      # Clean old requests
+                      self.request_counts[user_id] = [
+                          ts for ts in self.request_counts[user_id]
+                          if now - ts < window
+                      ]
+
+                      # Check limit
+                      if len(self.request_counts[user_id]) >= max_requests:
+                          raise RateLimitError(f"Rate limit exceeded: {max_requests}/{window}s")
+
+                      # Log request
+                      self.request_counts[user_id].append(now)
+
+                      return func(user_id, *args, **kwargs)
+                  return wrapper
+              return decorator
+
+          def detect_extraction_attempt(self, prompt: str, user_id: str) -> bool:
+              """Detect model extraction patterns"""
+
+              extraction_indicators = [
+                  len(prompt) < 10,  # Very short prompts for probing
+                  prompt.count("?") > 5,  # Many questions
+                  "repeat" in prompt.lower() and ("word" in prompt.lower() or "text" in prompt.lower()),
+                  "memorized" in prompt.lower(),
+                  "training data" in prompt.lower()
+              ]
+
+              if sum(extraction_indicators) >= 2:
+                  self.suspicious_patterns.append({
+                      "user_id": user_id,
+                      "prompt_hash": hashlib.sha256(prompt.encode()).hexdigest()[:16],
+                      "timestamp": time()
+                  })
+                  return True
+
+              return False
+
+          def sanitize_output(self, llm_response: str) -> str:
+              """Remove potentially leaked sensitive data from response"""
+              import re
+
+              # Remove potential API keys
+              llm_response = re.sub(r'\b[A-Za-z0-9]{32,}\b', '[REDACTED]', llm_response)
+
+              # Remove email addresses
+              llm_response = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+                                   '[EMAIL]', llm_response)
+
+              # Remove phone numbers
+              llm_response = re.sub(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b',
+                                   '[PHONE]', llm_response)
+
+              return llm_response
+
+      class RateLimitError(Exception):
+          pass
+
+      # Usage
+      security = LLMSecurityMiddleware()
+
+      @security.rate_limit(max_requests=100, window=3600)
+      def call_llm(user_id: str, prompt: str) -> str:
+          # Check for extraction attempt
+          if security.detect_extraction_attempt(prompt, user_id):
+              raise SecurityError("Potential model extraction attempt detected")
+
+          # Call LLM
+          response = actual_llm_call(prompt)
+
+          # Sanitize output
+          return security.sanitize_output(response)
+
+      class SecurityError(Exception):
+          pass
+    description:
+      tr: LLM API için rate limiting ve model extraction detection. Çıktı sanitization ile veri sızması koruması.
+      en: Rate limiting and model extraction detection for LLM API. Data leakage protection with output sanitization.
+  - title: LLM API Security Middleware (Go)
+    lang: go
+    code: "package middleware\n\nimport (\n\t\"crypto/sha256\"\n\t\"fmt\"\n\t\"net/http\"\n\t\"strings\"\n\t\"time\"\n)\n\n// LLMSecurityMiddleware adds security headers and\n// validates API key for LLM endpoints\nfunc LLMSecurityMiddleware(apiKeys map[string]bool) func(http.Handler) http.Handler {\n\treturn func(next http.Handler) http.Handler {\n\t\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\t\t// Validate API key\n\t\t\tauth := r.Header.Get(\"Authorization\")\n\t\t\tif !strings.HasPrefix(auth, \"Bearer \") {\n\t\t\t\thttp.Error(w, \"unauthorized\", http.StatusUnauthorized)\n\t\t\t\treturn\n\t\t\t}\n\t\t\tkey := strings.TrimPrefix(auth, \"Bearer \")\n\t\t\thash := fmt.Sprintf(\"%x\", sha256.Sum256([]byte(key)))\n\t\t\tif !apiKeys[hash] {\n\t\t\t\thttp.Error(w, \"invalid api key\", http.StatusForbidden)\n\t\t\t\treturn\n\t\t\t}\n\t\t\t// Security headers\n\t\t\tw.Header().Set(\"X-Content-Type-Options\", \"nosniff\")\n\t\t\tw.Header().Set(\"X-Request-Id\", fmt.Sprintf(\"%d\", time.Now().UnixNano()))\n\t\t\tnext.ServeHTTP(w, r)\n\t\t})\n\t}\n}"
+    description:
+      tr: Go ile LLM API'si için güvenlik middleware'i. API key doğrulaması ve güvenlik header'ları ekler.
+      en: Go security middleware for LLM API. Adds API key validation and security headers.
+research:
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2020
+    type: paper
+    authors: Nicholas Carlini, Florian Tramèr, Eric Wallace (Google, Stanford)
+  - title: OWASP Top 10 for LLM Applications
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: API çağrıları için sıkı rate limiting uygulayın (örn. 100 req/hour).
+    en: Apply strict rate limiting for API calls (e.g., 100 req/hour).
+  - tr: LLM çıktısını PII ve API key pattern'leri için tarayın.
+    en: Scan LLM output for PII and API key patterns.

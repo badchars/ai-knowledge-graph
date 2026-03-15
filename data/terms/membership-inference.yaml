@@ -1,0 +1,215 @@
+id: membership-inference
+name: Membership Inference
+fullName: Membership Inference Attack
+category: ai-security
+desc:
+  tr: |-
+    Membership Inference Attack, bir makine öğrenmesi modelinin eğitim verisinde belirli bir örneğin bulunup bulunmadığını tespit etmeye yönelik bir privacy saldırısıdır. Saldırgan, modelin bir input'a verdiği confidence score'ları analiz ederek o input'un eğitim setinde olup olmadığını tahmin eder.
+
+    Büyük dil modellerinde (LLM) bu saldırı özellikle tehlikelidir çünkü eğitim verisi genellikle web'den scrape edilmiş hassas bilgiler (email, API key, PII) içerir. [Carlini et al. (2021)](https://arxiv.org/abs/2012.07805) GPT-2'den eğitim verisi çıkarmayı göstermiştir. Örneğin, bir sağlık LLM'inin eğitim setinde hasta X'in verisi olup olmadığını membership inference ile tespit edebilirsin.
+
+    Savunma yöntemleri arasında [differential privacy](https://arxiv.org/abs/1607.00133), temperature-based output perturbation ve confidence masking vardır. Production'da model API'leri mutlaka logprobs ve top_logprobs parametrelerini kapatmalıdır.
+  en: |-
+    Membership Inference Attack is a privacy attack aimed at detecting whether a specific example exists in a machine learning model's training data. The attacker analyzes the confidence scores the model gives to an input to infer whether that input was in the training set.
+
+    In large language models (LLMs), this attack is especially dangerous because training data typically contains sensitive information scraped from the web (emails, API keys, PII). [Carlini et al. (2021)](https://arxiv.org/abs/2012.07805) demonstrated training data extraction from GPT-2. For example, you can detect whether patient X's data is in a healthcare LLM's training set using membership inference.
+
+    Defense methods include [differential privacy](https://arxiv.org/abs/1607.00133), temperature-based output perturbation, and confidence masking. Production model APIs must disable logprobs and top_logprobs parameters.
+  fr: L'attaque par inférence d'appartenance est une attaque de confidentialité visant à détecter si un exemple spécifique existe dans les données d'entraînement d'un modèle d'apprentissage automatique. L'attaquant analyse les scores de confiance que le modèle donne à une entrée pour déduire si cette entrée était dans l'ensemble d'entraînement.
+  zh: 成员推断攻击是一种隐私攻击，旨在检测特定示例是否存在于机器学习模型的训练数据中。攻击者分析模型对输入的置信度分数，以推断该输入是否在训练集中。
+  ar: هجوم الاستدلال على العضوية هو هجوم خصوصية يهدف إلى اكتشاف ما إذا كان مثال معيّن موجوداً في بيانات تدريب نموذج التعلم الآلي. يحلل المهاجم درجات الثقة التي يُعطيها النموذج لمدخل ما لاستنتاج ما إذا كان ذلك المدخل في مجموعة التدريب.
+  ru: Атака вывода членства — это атака на конфиденциальность, нацеленная на обнаружение, существует ли конкретный пример в тренировочных данных модели машинного обучения. Атакующий анализирует оценки уверенности, которые модель даёт входу, чтобы вывести, был ли этот вход в тренировочном наборе.
+analogy:
+  tr: Model bir öğretmen gibidir — eğitim setindeki örnekleri (eski öğrencilerini) gördüğünde çok yüksek confidence ile cevap verir, yeni örnekleri gördüğünde ise tereddütlü. Saldırgan bu tereddütü ölçerek 'bu öğrenci bu sınıfta mıydı?' sorusunu cevaplayabilir.
+  en: The model is like a teacher — when it sees examples from the training set (former students), it responds with very high confidence; when it sees new examples, it hesitates. The attacker measures this hesitation to answer 'was this student in this class?'
+  fr: Le modèle est comme un enseignant — quand il voit des exemples de l'ensemble d'entraînement (anciens élèves), il répond avec une très grande confiance; quand il voit de nouveaux exemples, il hésite. L'attaquant mesure cette hésitation pour répondre 'cet élève était-il dans cette classe?'
+  zh: 模型就像老师——当它看到训练集中的示例（以前的学生）时，它以非常高的置信度回应；当它看到新示例时，它会犹豫。攻击者测量这种犹豫来回答'这个学生在这个班级吗？'
+  ar: النموذج مثل المعلم — عندما يرى أمثلة من مجموعة التدريب (الطلاب السابقين)، يستجيب بثقة عالية جداً؛ عندما يرى أمثلة جديدة، يتردد. يقيس المهاجم هذا التردد ليجيب 'هل كان هذا الطالب في هذا الفصل؟'
+  ru: Модель как учитель — когда она видит примеры из тренировочного набора (бывших учеников), она отвечает с очень высокой уверенностью; когда видит новые примеры, она колеблется. Атакующий измеряет это колебание, чтобы ответить 'был ли этот ученик в этом классе?'
+security:
+  - title:
+      tr: Shadow Model Training for Membership Inference
+      en: Shadow Model Training for Membership Inference
+      fr: Entrainement de modeles fantomes pour l'inference d'appartenance
+      zh: 用于成员推断的影子模型训练
+      ar: تدريب النماذج الظلية للاستدلال على العضوية
+      ru: Обучение теневых моделей для атаки вывода членства
+    description:
+      tr: "Saldırgan, hedef modelle aynı mimaride birden fazla 'shadow model' eğitir — bazı örnekleri training set'e dahil eder, bazılarını etmez. Bu shadow model'lerin confidence score'larını analiz ederek bir classifier eğitir: yüksek confidence → member, düşük confidence → non-member. Sonra bu classifier'ı hedef model üzerinde çalıştırarak eğitim verisini çıkarır. Shokri et al. (2017) bu yöntemi göstermiştir. Savunma: model output'unda temperature perturbation (T=1.5-2.0) uygula, logprobs erişimini kapat."
+      en: "The attacker trains multiple 'shadow models' with the same architecture as the target model — including some examples in the training set and excluding others. By analyzing the confidence scores of these shadow models, they train a classifier: high confidence → member, low confidence → non-member. Then they run this classifier on the target model to extract training data. Shokri et al. (2017) demonstrated this method. Defense: apply temperature perturbation (T=1.5-2.0) on model output, disable logprobs access."
+      fr: "L'attaquant entraine plusieurs 'modeles fantomes' avec la meme architecture que le modele cible — en incluant certains exemples dans l'ensemble d'entrainement et en excluant d'autres. En analysant les scores de confiance de ces modeles fantomes, il entraine un classifieur : confiance elevee → membre, confiance faible → non-membre. Il execute ensuite ce classifieur sur le modele cible pour extraire les donnees d'entrainement. Shokri et al. (2017) ont demontre cette methode. Defense : appliquer une perturbation de temperature (T=1.5-2.0) sur la sortie du modele, desactiver l'acces aux logprobs."
+      zh: 攻击者训练多个与目标模型具有相同架构的'影子模型'——将部分样本纳入训练集，部分排除在外。通过分析这些影子模型的置信度分数，训练一个分类器：高置信度 → 成员，低置信度 → 非成员。然后在目标模型上运行此分类器以提取训练数据。Shokri等人（2017）展示了此方法。防御方法：对模型输出应用温度扰动（T=1.5-2.0），禁用logprobs访问。
+      ar: "يدرّب المهاجم عدة 'نماذج ظلية' بنفس بنية النموذج المستهدف — يُدرج بعض الأمثلة في مجموعة التدريب ويستبعد أخرى. بتحليل درجات الثقة لهذه النماذج الظلية، يُدرّب مُصنِّفاً: ثقة عالية → عضو، ثقة منخفضة → غير عضو. ثم يُشغّل هذا المُصنِّف على النموذج المستهدف لاستخراج بيانات التدريب. أظهر Shokri وآخرون (2017) هذه الطريقة. الدفاع: تطبيق اضطراب درجة الحرارة (T=1.5-2.0) على مخرجات النموذج، وتعطيل الوصول إلى logprobs."
+      ru: "Злоумышленник обучает несколько 'теневых моделей' с той же архитектурой, что и целевая модель — включая одни примеры в тренировочный набор и исключая другие. Анализируя оценки уверенности этих теневых моделей, он обучает классификатор: высокая уверенность → член, низкая уверенность → не член. Затем запускает этот классификатор на целевой модели для извлечения тренировочных данных. Shokri и др. (2017) продемонстрировали этот метод. Защита: применение температурной пертурбации (T=1.5-2.0) на выходе модели, отключение доступа к logprobs."
+    severity: critical
+  - title:
+      tr: Confidence Score Analysis for PII Extraction
+      en: Confidence Score Analysis for PII Extraction
+      fr: Analyse des scores de confiance pour l'extraction de donnees personnelles
+      zh: 用于PII提取的置信度分数分析
+      ar: تحليل درجات الثقة لاستخراج البيانات الشخصية
+      ru: Анализ оценок уверенности для извлечения персональных данных
+    description:
+      tr: "LLM'ler eğitim verisindeki PII (email, phone, SSN) içeren metinleri yüksek perplexity ile ezberler. Saldırgan, belirli bir email adresini completion prompt'una koyar ve modelin token-by-token confidence'ını ölçer. Eğer model o email'i eğitim setinde görmüşse, devamını çok yüksek confidence ile tahmin eder (örn: prob > 0.9). Carlini et al. (2021) bu teknikle GPT-2'den PII çıkarmıştır. Savunma: eğitim verisinde PII redaction (regex-based masking), output'ta confidence capping (max_prob=0.8)."
+      en: "LLMs memorize texts containing PII (email, phone, SSN) from training data with high perplexity. The attacker puts a specific email address in the completion prompt and measures the model's token-by-token confidence. If the model saw that email in the training set, it predicts the continuation with very high confidence (e.g., prob > 0.9). Carlini et al. (2021) extracted PII from GPT-2 using this technique. Defense: PII redaction in training data (regex-based masking), confidence capping in output (max_prob=0.8)."
+      fr: "Les LLM memorisent les textes contenant des donnees personnelles (email, telephone, numero de securite sociale) des donnees d'entrainement avec une perplexite elevee. L'attaquant place une adresse email specifique dans le prompt de completion et mesure la confiance jeton par jeton du modele. Si le modele a vu cet email dans l'ensemble d'entrainement, il predit la suite avec une confiance tres elevee (par ex. prob > 0.9). Carlini et al. (2021) ont extrait des donnees personnelles de GPT-2 avec cette technique. Defense : masquage des donnees personnelles dans les donnees d'entrainement (masquage par regex), plafonnement de la confiance en sortie (max_prob=0.8)."
+      zh: LLM会以高困惑度记忆训练数据中包含PII（电子邮件、电话、社会安全号码）的文本。攻击者将特定电子邮件地址放入补全提示中，并逐标记测量模型的置信度。如果模型在训练集中见过该电子邮件，它会以非常高的置信度预测后续内容（例如：概率 > 0.9）。Carlini等人（2021）使用此技术从GPT-2中提取了PII。防御方法：在训练数据中进行PII脱敏（基于正则的掩码），在输出中设置置信度上限（max_prob=0.8）。
+      ar: "تحفظ نماذج اللغة الكبيرة النصوص المحتوية على بيانات شخصية (بريد إلكتروني، هاتف، رقم ضمان اجتماعي) من بيانات التدريب بحيرة عالية. يضع المهاجم عنوان بريد إلكتروني محدداً في موجه الإكمال ويقيس ثقة النموذج رمزاً برمز. إذا كان النموذج قد رأى ذلك البريد في مجموعة التدريب، فإنه يتنبأ بالتكملة بثقة عالية جداً (مثل: احتمال > 0.9). استخرج Carlini وآخرون (2021) بيانات شخصية من GPT-2 بهذه التقنية. الدفاع: تنقيح البيانات الشخصية في بيانات التدريب (إخفاء قائم على التعابير النمطية)، وتحديد سقف الثقة في المخرجات (max_prob=0.8)."
+      ru: "LLM запоминают тексты, содержащие персональные данные (email, телефон, номер социального страхования), из тренировочных данных с высокой перплексией. Злоумышленник помещает конкретный адрес электронной почты в промпт завершения и измеряет уверенность модели по каждому токену. Если модель видела этот email в тренировочном наборе, она предсказывает продолжение с очень высокой уверенностью (например, вероятность > 0.9). Carlini и др. (2021) извлекли персональные данные из GPT-2 с помощью этой техники. Защита: редактирование PII в тренировочных данных (маскирование на основе регулярных выражений), ограничение уверенности на выходе (max_prob=0.8)."
+    severity: critical
+  - title:
+      tr: Loss-Based Membership Inference on Fine-Tuned Models
+      en: Loss-Based Membership Inference on Fine-Tuned Models
+      fr: Inference d'appartenance basee sur la perte dans les modeles ajustes
+      zh: 基于损失的微调模型成员推断
+      ar: استدلال العضوية القائم على الخسارة في النماذج المضبوطة
+      ru: Вывод членства на основе функции потерь для дообученных моделей
+    description:
+      tr: "Fine-tuned modellerde, eğitim setindeki örneklerin cross-entropy loss'u non-member örneklere göre belirgin şekilde düşüktür. Saldırgan, şüpheli bir input'u modele verip loss'u ölçer — eğer loss < threshold (örn: 0.5), input muhtemelen training set'te vardır. Bu, özellikle medical/legal domain-specific fine-tuning'lerde tehlikelidir. Savunma: differential privacy training (ε=1-8, δ=1e-5), early stopping (prevent overfitting)."
+      en: "In fine-tuned models, the cross-entropy loss of training set examples is significantly lower compared to non-member examples. The attacker feeds a suspicious input to the model and measures the loss — if loss < threshold (e.g., 0.5), the input was likely in the training set. This is especially dangerous in medical/legal domain-specific fine-tuning. Defense: differential privacy training (ε=1-8, δ=1e-5), early stopping (prevent overfitting)."
+      fr: "Dans les modeles ajustes, la perte d'entropie croisee des exemples de l'ensemble d'entrainement est nettement inferieure a celle des exemples non-membres. L'attaquant soumet une entree suspecte au modele et mesure la perte — si la perte est inferieure au seuil (par ex. 0.5), l'entree faisait probablement partie de l'ensemble d'entrainement. Ceci est particulierement dangereux pour l'ajustement fin specifique aux domaines medical et juridique. Defense : entrainement avec confidentialite differentielle (ε=1-8, δ=1e-5), arret precoce (prevenir le surapprentissage)."
+      zh: 在微调模型中，训练集样本的交叉熵损失明显低于非成员样本。攻击者将可疑输入提供给模型并测量损失——如果损失小于阈值（例如0.5），则该输入可能在训练集中。这在医疗/法律领域特定的微调中尤其危险。防御方法：差分隐私训练（ε=1-8, δ=1e-5），早停（防止过拟合）。
+      ar: "في النماذج المضبوطة، تكون خسارة الإنتروبيا التقاطعية لأمثلة مجموعة التدريب أقل بشكل ملحوظ مقارنة بأمثلة غير الأعضاء. يُدخل المهاجم مدخلاً مشبوهاً إلى النموذج ويقيس الخسارة — إذا كانت الخسارة أقل من العتبة (مثل 0.5)، فمن المرجح أن المدخل كان في مجموعة التدريب. هذا خطير بشكل خاص في الضبط الدقيق المتخصص بالمجالات الطبية والقانونية. الدفاع: التدريب بالخصوصية التفاضلية (ε=1-8, δ=1e-5)، التوقف المبكر (منع الإفراط في التعلم)."
+      ru: "В дообученных моделях кросс-энтропийные потери примеров из тренировочного набора значительно ниже по сравнению с примерами, не входящими в набор. Злоумышленник подаёт подозрительный вход в модель и измеряет потери — если потери < порога (например, 0.5), вход, вероятно, был в тренировочном наборе. Это особенно опасно при доменно-специфической тонкой настройке в медицине/юриспруденции. Защита: обучение с дифференциальной приватностью (ε=1-8, δ=1e-5), ранняя остановка (предотвращение переобучения)."
+    severity: high
+  - title:
+      tr: Membership Inference Konfigürasyon Bilgi Sızıntısı
+      en: Membership Inference Configuration Information Disclosure
+      fr: Divulgation de configuration membership inference
+      zh: membership inference配置信息泄露
+      ar: كشف معلومات تكوين membership-inference
+      ru: Раскрытие конфигурации membership-inference
+    description:
+      tr: Membership Inference ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to membership inference can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à membership inference peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与membership inference相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ membership-inference في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании membership-inference могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Differential Privacy Fine-Tuning
+    lang: python
+    code: |-
+      from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
+      from opacus import PrivacyEngine
+      import torch
+
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
+
+      # Differential privacy config
+      training_args = TrainingArguments(
+          output_dir="./dp_model",
+          per_device_train_batch_size=16,
+          gradient_accumulation_steps=4,
+          num_train_epochs=3,
+          learning_rate=1e-5,
+          # DP-specific
+          per_device_eval_batch_size=16,
+          evaluation_strategy="steps",
+          save_steps=1000,
+      )
+
+      trainer = Trainer(model=model, args=training_args, train_dataset=dataset)
+
+      # Attach differential privacy
+      privacy_engine = PrivacyEngine()
+      model, optimizer, train_loader = privacy_engine.make_private(
+          module=model,
+          optimizer=trainer.optimizer,
+          data_loader=trainer.get_train_dataloader(),
+          noise_multiplier=1.1,  # noise scale
+          max_grad_norm=1.0,     # gradient clipping
+      )
+
+      # Train with DP guarantees (ε≈3, δ=1e-5)
+      trainer.train()
+      epsilon = privacy_engine.get_epsilon(delta=1e-5)
+      print(f"Training completed with (ε={epsilon:.2f}, δ=1e-5)-DP")
+    description:
+      tr: Differential Privacy ile fine-tuning yapılarak membership inference saldırılarına karşı matematiksel garanti sağlanır — ε=3, δ=1e-5 seviyesinde privacy budget.
+      en: Fine-tuning with Differential Privacy provides mathematical guarantees against membership inference attacks — privacy budget at ε=3, δ=1e-5 level.
+  - title: Production API with Confidence Masking
+    lang: python
+    code: |-
+      from transformers import AutoModelForCausalLM, AutoTokenizer
+      import torch
+
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3-8B")
+
+      def generate_with_confidence_masking(prompt, max_prob=0.8, temperature=1.5):
+          """Generate with capped confidence to prevent membership inference"""
+          inputs = tokenizer(prompt, return_tensors="pt")
+
+          with torch.no_grad():
+              outputs = model.generate(
+                  **inputs,
+                  max_new_tokens=100,
+                  temperature=temperature,  # higher temp = lower confidence
+                  do_sample=True,
+                  top_p=0.95,
+                  return_dict_in_generate=True,
+                  output_scores=True
+              )
+
+          # Cap probabilities (defense against confidence analysis)
+          for score in outputs.scores:
+              probs = torch.softmax(score / temperature, dim=-1)
+              if probs.max() > max_prob:
+                  # Redistribute probability mass
+                  probs = torch.clamp(probs, max=max_prob)
+                  probs = probs / probs.sum()
+
+          return tokenizer.decode(outputs.sequences[0], skip_special_tokens=True)
+
+      # Never expose logprobs in production API
+      result = generate_with_confidence_masking("Explain quantum entanglement")
+    description:
+      tr: Production API'de confidence masking (max_prob=0.8) ve temperature perturbation (T=1.5) ile membership inference saldırılarının etkinliği azaltılır.
+      en: Production API reduces effectiveness of membership inference attacks with confidence masking (max_prob=0.8) and temperature perturbation (T=1.5).
+  - title: Membership Inference Defense Config
+    lang: yaml
+    code: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: mi-defense-config
+      data:
+        config.yaml: |
+          inference:
+            temperature_perturbation: 1.5
+            confidence_cap: 0.8
+            logprobs_enabled: false
+          rate_limiting:
+            max_queries_per_hour: 100
+            max_queries_per_day: 1000
+          monitoring:
+            alert_on_repeated_queries: true
+            threshold_similar_queries: 10
+    description:
+      tr: Membership inference savunma konfigurasyonu.
+      en: Membership inference defense configuration.
+research:
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2021
+    type: paper
+    authors: Carlini, Tramèr, et al.
+  - title: Membership Inference Attacks Against Machine Learning Models
+    url: https://arxiv.org/abs/1610.05820
+    year: 2017
+    type: paper
+    authors: Shokri, Stronati, et al.
+  - title: "The Secret Sharer: Evaluating and Testing Unintended Memorization in Neural Networks"
+    url: https://arxiv.org/abs/1802.08232
+    year: 2019
+    type: paper
+    authors: Carlini, Liu, et al.
+tips:
+  - tr: Production'da LLM API'lerinde mutlaka logprobs ve top_logprobs parametrelerini kapat — confidence score'lar membership inference'ın temel verisidir.
+    en: Always disable logprobs and top_logprobs parameters in production LLM APIs — confidence scores are the primary data for membership inference.
+  - tr: Fine-tuning yaparken early stopping kullan ve validation loss'u izle — overfitting membership inference riskini exponential olarak artırır.
+    en: Use early stopping during fine-tuning and monitor validation loss — overfitting exponentially increases membership inference risk.
+  - tr: Eğitim verisinde PII (email, phone, SSN) varsa mutlaka regex-based redaction yap — LLM'ler bu pattern'leri yüksek confidence ile ezberler.
+    en: If training data contains PII (email, phone, SSN), always perform regex-based redaction — LLMs memorize these patterns with high confidence.

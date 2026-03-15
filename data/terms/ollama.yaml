@@ -1,0 +1,94 @@
+id: ollama
+name: Ollama
+fullName: Ollama Local LLM Runner
+category: ecosystem
+desc:
+  tr: |-
+    Yerel makinenizde AI modellerini tek bir komutla çalıştırmanızı sağlayan açık kaynaklı araç. Terminale 'ollama run llama3' yazdığınızda, model otomatik olarak indirilir, quantize edilir ve sohbet arayüzü başlatılır -- Docker'in konteynerler için yaptığını, [Ollama](https://ollama.com) LLM'ler için yapar.
+
+    Arka planda llama.cpp kullanır, yanı hem CPU hem GPU üzerinde çalışabilir. Modelfile sistemiyle kendi özel modellerinizi tanımlar, sistem prompt'u ve parametreleri ayarlarsınız.
+
+    [OpenAI](https://openai.com)-uyumlu bir API sunüçusu da içerdiğinden, yerel geliştirme için ideal bir ortam sağlar. Mac, Linux ve Windows'u destekler ve özellikle Apple Silicon çiplerde (M1/M2/M3/M4) etkileyici performans gösterir.
+  en: |-
+    An open-source tool that lets you run AI models on your local machine with a single command. Type 'ollama run llama3' in your terminal and it automatically downloads the model, applies quantization, and starts a chat interface -- what Docker does for containers, [Ollama](https://ollama.com) does for LLMs.
+
+    Under the hood it uses llama.cpp, so it can run on both CPU and GPU. The Modelfile system lets you define custom models with specific system prompts and parameters.
+
+    It also includes an [OpenAI](https://openai.com)-compatible API server, making it ideal for local development workflows. It supports Mac, Linux, and Windows, with particularly impressive performance on Apple Silicon chips (M1/M2/M3/M4).
+  fr: Un outil open source qui vous permet d'executer des modeles d'IA sur votre machine locale avec une seule commande. Tapez 'ollama run llama3' dans votre terminal et le modele est automatiquement telecharge, quantifie et une interface de chat demarre -- ce que Docker fait pour les conteneurs, Ollama le fait pour les LLM. En arriere-plan, il utilise llama.cpp et peut donc tourner sur CPU comme sur GPU. Le systeme Modelfile vous permet de definir des modeles personnalises avec des prompts systeme et des parametres specifiques. Il inclut egalement un serveur API compatible OpenAI, ce qui en fait un outil ideal pour le developpement local. Il prend en charge Mac, Linux et Windows, avec des performances particulierement impressionnantes sur les puces Apple Silicon (M1/M2/M3/M4).
+  zh: 一个开源工具，让你用一条命令就能在本地机器上运行AI模型。在终端输入'ollama run llama3'，它就会自动下载模型、应用量化并启动聊天界面——Docker为容器做的事，Ollama为LLM做。底层使用llama.cpp，因此可以在CPU和GPU上运行。Modelfile系统允许你用特定的系统提示和参数定义自定义模型。它还包含一个兼容OpenAI的API服务器，非常适合本地开发工作流。支持Mac、Linux和Windows，在Apple Silicon芯片（M1/M2/M3/M4）上表现尤为出色。
+  ar: اداة مفتوحة المصدر تتيح لك تشغيل نماذج الذكاء الاصطناعي على جهازك المحلي بامر واحد. اكتب 'ollama run llama3' في الطرفية وسيتم تحميل النموذج تلقائيا وتطبيق التكميم وبدء واجهة محادثة -- ما يفعله Docker للحاويات يفعله Ollama لنماذج اللغة الكبيرة. يستخدم في الخلفية llama.cpp لذا يمكنه العمل على المعالج المركزي ومعالج الرسومات. يتيح نظام Modelfile تعريف نماذج مخصصة مع موجهات نظام ومعاملات محددة. يتضمن ايضا خادم API متوافق مع OpenAI مما يجعله مثاليا للتطوير المحلي. يدعم Mac وLinux وWindows مع اداء مميز على شرائح Apple Silicon.
+  ru: Инструмент с открытым исходным кодом, позволяющий запускать модели ИИ на локальной машине одной командой. Введите 'ollama run llama3' в терминале -- модель автоматически скачается, квантуется и запустится интерфейс чата. Что Docker делает для контейнеров, Ollama делает для LLM. Под капотом используется llama.cpp, поэтому работает как на CPU, так и на GPU. Система Modelfile позволяет создавать пользовательские модели с определенными системными промптами и параметрами. Также включает API-сервер, совместимый с OpenAI, что идеально подходит для локальной разработки. Поддерживает Mac, Linux и Windows, с особенно впечатляющей производительностью на чипах Apple Silicon (M1/M2/M3/M4).
+analogy:
+  tr: Ollama, AI modelleri için bir kahve makinesi gibidir. Nasil kapsulu yerlestirip dugmeye basinca kahveniz hazirsa, modeli secip komutu calistirinca yapay zekaniz hazir. Karmasik kurulumlarla ugrasmaniza gerek yok.
+  en: Ollama iş like a coffee pod machine for AI models. Just as you pop in a capsule and press a button to get coffee, you pick a model and run a command to get AI. No need to deal with complex setup.
+  fr: Ollama est comme une machine a capsules pour les modeles d'IA. Tout comme vous inserez une capsule et appuyez sur un bouton pour obtenir du cafe, vous choisissez un modele et lancez une commande pour obtenir de l'IA. Pas besoin de configuration complexe.
+  zh: Ollama就像AI模型的胶囊咖啡机。就像放入胶囊按下按钮就能得到咖啡一样，选择一个模型运行一条命令就能得到AI。无需处理复杂的配置。
+  ar: Ollama يشبه الة القهوة الكبسولية لنماذج الذكاء الاصطناعي. كما تضع كبسولة وتضغط زرا للحصول على القهوة، تختار نموذجا وتشغل امرا للحصول على الذكاء الاصطناعي. لا حاجة لاعدادات معقدة.
+  ru: Ollama -- это как капсульная кофемашина для моделей ИИ. Как вы вставляете капсулу и нажимаете кнопку, чтобы получить кофе, так вы выбираете модель и запускаете команду, чтобы получить ИИ. Никаких сложных настроек.
+security:
+  - title:
+      tr: Ollama API Yetkisiz Erişim
+      en: Ollama API Unauthorized Access
+      fr: Accès non autorisé à l'API Ollama
+      zh: Ollama API未授权访问
+      ar: الوصول غير المصرح به إلى Ollama API
+      ru: Несанкционированный доступ к Ollama API
+    description:
+      tr: Ollama default olarak localhost:11434'te authentication olmadan çalışır. Port expose edilirse herkes API'ye erişebilir ve prompt injection ile system prompts çalabilir veya data exfiltration yapabilir.
+      en: Ollama runs by default on localhost:11434 without authentication. If port is exposed, anyone can access API and steal system prompts via prompt injection or perform data exfiltration.
+      fr: Ollama fonctionne par défaut sur localhost:11434 sans authentification. Si le port est exposé, n'importe qui peut accéder à l'API et voler les prompts système via injection de prompts ou exfiltrer des données.
+      zh: Ollama默认在localhost:11434上运行，无需身份验证。如果端口暴露，任何人都可以访问API，通过提示注入窃取系统提示或进行数据外泄。
+      ar: يعمل Ollama افتراضياً على localhost:11434 بدون مصادقة. إذا تم كشف المنفذ، يمكن لأي شخص الوصول إلى API وسرقة أوامر النظام عبر حقن الأوامر أو تنفيذ تسريب البيانات.
+      ru: Ollama по умолчанию работает на localhost:11434 без аутентификации. Если порт открыт, любой может получить доступ к API и украсть системные промпты через инъекцию промптов или выполнить эксфильтрацию данных.
+    severity: high
+  - title:
+      tr: Modelfile Injection Saldırıları
+      en: Modelfile Injection Attacks
+      fr: Attaques par injection de Modelfile
+      zh: Modelfile注入攻击
+      ar: هجمات حقن Modelfile
+      ru: Атаки через инъекцию Modelfile
+    description:
+      tr: Ollama Modelfile SYSTEM direktifine malicious code enjekte edilebilir. Community Modelfile'lar doğrulanmadan kullanılmamalıdır.
+      en: Malicious code can be injected into Ollama Modelfile SYSTEM directive. Community Modelfiles should not be used without verification.
+      fr: Du code malveillant peut être injecté dans la directive SYSTEM du Modelfile Ollama. Les Modelfiles communautaires ne doivent pas être utilisés sans vérification.
+      zh: 恶意代码可以注入到Ollama Modelfile的SYSTEM指令中。社区Modelfile不应在未经验证的情况下使用。
+      ar: يمكن حقن كود خبيث في توجيه SYSTEM لملف Modelfile في Ollama. لا ينبغي استخدام ملفات Modelfile المجتمعية دون التحقق منها.
+      ru: Вредоносный код может быть внедрён в директиву SYSTEM Modelfile Ollama. Общественные Modelfile не должны использоваться без проверки.
+    severity: critical
+  - title:
+      tr: Ollama Versiyon Güvenlik Güncellemeleri
+      en: Ollama Version Security Updates
+      fr: Mises à jour de sécurité des versions Ollama
+      zh: Ollama版本安全更新
+      ar: تحديثات أمان إصدارات Ollama
+      ru: Обновления безопасности версий Ollama
+    description:
+      tr: Ollama'nın eski versiyonlarında path traversal ve DNS rebinding zafiyetleri gibi bilinen güvenlik açıkları bulunur. Otomatik güncelleme mekanizması eksikliği, production'da eski versiyonların kullanılmaya devam etmesine yol açar.
+      en: Older versions of Ollama contain known vulnerabilities such as path traversal and DNS rebinding. Lack of automatic update mechanism leads to continued use of old versions in production.
+      fr: Les anciennes versions d'Ollama contiennent des vulnérabilités connues comme la traversée de chemin et le DNS rebinding. L'absence de mécanisme de mise à jour automatique conduit à l'utilisation continue d'anciennes versions en production.
+      zh: Ollama的旧版本包含已知漏洞，如路径遍历和DNS重绑定。缺乏自动更新机制导致生产环境中继续使用旧版本。
+      ar: تحتوي الإصدارات القديمة من Ollama على ثغرات معروفة مثل تجاوز المسار وإعادة ربط DNS. غياب آلية التحديث التلقائي يؤدي إلى استمرار استخدام الإصدارات القديمة في بيئة الإنتاج.
+      ru: Старые версии Ollama содержат известные уязвимости, такие как path traversal и DNS rebinding. Отсутствие механизма автоматического обновления приводит к продолжению использования старых версий в production.
+    severity: low
+config:
+  - title: Secure Ollama Deployment
+    lang: bash
+    code: |-
+      # Run Ollama with firewall
+      ufw deny 11434
+      # Use Nginx reverse proxy with auth
+      # Bind to localhost only: OLLAMA_HOST=127.0.0.1:11434
+    description:
+      tr: Ollama'yı firewall arkasında çalıştırın ve reverse proxy ile authentication ekleyin.
+      en: Run Ollama behind firewall and add authentication with reverse proxy.
+research:
+  - title: Ollama Security Best Practices
+    url: https://github.com/ollama/ollama/blob/main/docs/faq.md
+    year: 2024
+    type: guide
+    authors: Ollama
+tips:
+  - tr: Ollama'yı ASLA public internet'e expose etmeyin. Authentication olmadan çalışır.
+    en: NEVER expose Ollama to public internet. It runs without authentication.

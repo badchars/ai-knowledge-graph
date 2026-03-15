@@ -1,0 +1,139 @@
+id: open-weight
+name: Open Weight
+fullName: Open Weight Model
+category: models
+desc:
+  tr: |-
+    Herkesin indirip kendi donanımında çalıştırabileceği AI modeli — [Meta](https://ai.meta.com)'nin [Llama](https://ai.meta.com/llama/)'si, [Mistral](https://mistral.ai), [Qwen](https://huggingface.co/Qwen) ve [DeepSeek](https://huggingface.co/deepseek-ai) gibi. 'Open-source' ile karıştırmamak önemli: model ağırlıklarını (weight'leri) indirebilirsiniz ama eğitim kodu, veri seti ve eğitim süreci genellikle paylaşılmaz. Gerçek open-source (OLMo gibi) her seyi paylaşır.
+
+    Open-weight modeller buluta bağımlı olmadan, kendi sunucunuzda AI çalıştırmanizi sağlar — bu gizlilik, maliyet kontrolü ve veri egemenliğini önemseyen şirketler için kritiktir. [Hugging Face](https://huggingface.co) bu modellerin dağıtım merkezi olarak önemli bir rol oynar.
+
+    [Ollama](https://ollama.com) veya [vLLM](https://docs.vllm.ai) gibi araçlarla yerel çalıştırma kolaylaştırılmıştır. [Llama](https://ai.meta.com/llama/) 3.1 405B gibi modeller, kapalı kaynak modellere yakın performans sunarken tamamen sizin kontrolünuzde çalışır.
+  en: |-
+    An AI model that anyone can download and run on their own hardware — like [Meta](https://ai.meta.com)'s [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai), [Qwen](https://huggingface.co/Qwen), or [DeepSeek](https://huggingface.co/deepseek-ai). It iş important not to confuse this with 'open-source': you can download the model weights and use them, but the training code, dataset, and training process are usually not shared. Truly open-source models (like OLMo from AI2) share everything.
+
+    Open-weight models let you run AI on your own servers without cloud dependency — critical for companies that care about privacy, cost control, and data sovereignty. [Hugging Face](https://huggingface.co) serves as the primary distribution hub for these models.
+
+    Tools like [Ollama](https://ollama.com) and [vLLM](https://docs.vllm.ai) make local deployment straightforward. Models like [Llama](https://ai.meta.com/llama/) 3.1 405B deliver performance close to proprietary models while running entirely under your control.
+  fr: "Un modele d'IA que n'importe qui peut telecharger et executer sur son propre materiel — comme Llama de Meta, Mistral, Qwen ou DeepSeek. Il est important de ne pas confondre avec 'open-source' : vous pouvez telecharger les poids du modele et les utiliser, mais le code d'entrainement, le jeu de donnees et le processus d'entrainement ne sont generalement pas partages. Les modeles veritablement open-source (comme OLMo d'AI2) partagent tout. Les modeles open-weight permettent d'executer l'IA sur vos propres serveurs sans dependance au cloud — essentiel pour les entreprises soucieuses de la confidentialite, du controle des couts et de la souverainete des donnees. Hugging Face sert de hub de distribution principal pour ces modeles. Des outils comme Ollama et vLLM simplifient le deploiement local. Des modeles comme Llama 3.1 405B offrent des performances proches des modeles proprietaires tout en fonctionnant entierement sous votre controle."
+  zh: 任何人都可以下载并在自己硬件上运行的AI模型——如Meta的Llama、Mistral、Qwen或DeepSeek。重要的是不要将其与'开源'混淆：你可以下载并使用模型权重，但训练代码、数据集和训练过程通常不会公开分享。真正的开源模型（如AI2的OLMo）会分享一切。开放权重模型让你可以在自己的服务器上运行AI而不依赖云——这对关注隐私、成本控制和数据主权的企业至关重要。Hugging Face是这些模型的主要分发中心。Ollama和vLLM等工具使本地部署变得简单直接。像Llama 3.1 405B这样的模型提供接近商业模型的性能，同时完全在你的控制下运行。
+  ar: "نموذج ذكاء اصطناعي يمكن لأي شخص تحميله وتشغيله على أجهزته — مثل Llama من Meta وMistral وQwen وDeepSeek. من المهم عدم الخلط مع 'المصدر المفتوح': يمكنك تحميل أوزان النموذج واستخدامها، لكن كود التدريب ومجموعة البيانات وعملية التدريب عادة لا تُشارك. النماذج مفتوحة المصدر حقاً (مثل OLMo من AI2) تشارك كل شيء. تتيح لك النماذج مفتوحة الأوزان تشغيل الذكاء الاصطناعي على خوادمك دون الاعتماد على السحابة — وهو أمر حاسم للشركات التي تهتم بالخصوصية والتحكم في التكاليف وسيادة البيانات. يعمل Hugging Face كمركز توزيع رئيسي لهذه النماذج. أدوات مثل Ollama وvLLM تسهل النشر المحلي. نماذج مثل Llama 3.1 405B تقدم أداءً قريباً من النماذج المغلقة مع العمل بالكامل تحت سيطرتك."
+  ru: "Модель ИИ, которую любой может скачать и запустить на своём оборудовании — например, Llama от Meta, Mistral, Qwen или DeepSeek. Важно не путать с 'открытым кодом': вы можете скачать веса модели и использовать их, но код обучения, датасет и процесс тренировки обычно не раскрываются. По-настоящему открытые модели (вроде OLMo от AI2) делятся всем. Open-weight модели позволяют запускать ИИ на собственных серверах без зависимости от облака — это критично для компаний, которым важны приватность, контроль затрат и суверенитет данных. Hugging Face служит основным хабом распространения этих моделей. Инструменты вроде Ollama и vLLM делают локальное развертывание простым. Модели вроде Llama 3.1 405B показывают производительность, близкую к проприетарным моделям, при этом работая полностью под вашим контролем."
+analogy:
+  tr: Yemeğin tarifini vermeden, hazır yemeği dağıtmak. Yiyebilirsin ama nasıl yapıldığını bilemezsin.
+  en: Distributing a ready meal without the recipe. You can eat it but don't know exactly how it was made.
+  fr: Distribuer un repas prêt sans la recette. Vous pouvez le manger mais ne savez pas exactement comment il a été préparé.
+  zh: 分发现成的餐食但不提供食谱。你可以吃，但不知道它是如何制作的。
+  ar: توزيع وجبة جاهزة بدون الوصفة. يمكنك أكلها لكن لا تعرف بالضبط كيف تم إعدادها.
+  ru: Раздача готовой еды без рецепта. Вы можете её съесть, но не знаете точно, как она была приготовлена.
+security:
+  - title:
+      tr: Weight Tampering
+      en: Weight Tampering
+      fr: Falsification des poids
+      zh: 权重篡改
+      ar: التلاعب بالأوزان
+      ru: Подделка весов
+    description:
+      tr: Open-weight modellerde weights dosyaları herkese açık olduğu için, saldırganlar weights'i manipüle ederek backdoor ekleyebilir veya zararlı davranış enjekte edebilir. Modified weights meşru olarak dağıtılabilir.
+      en: In open-weight models, since weight files are public, attackers can manipulate weights to add backdoors or inject malicious behavior. Modified weights can be distributed as legitimate.
+      fr: Dans les modèles à poids ouverts, les fichiers de poids étant publics, les attaquants peuvent manipuler les poids pour ajouter des backdoors ou injecter un comportement malveillant. Les poids modifiés peuvent être distribués comme légitimes.
+      zh: 在开放权重模型中，由于权重文件是公开的，攻击者可以操纵权重来添加后门或注入恶意行为。被修改的权重可以作为合法文件分发。
+      ar: في نماذج الأوزان المفتوحة، نظراً لأن ملفات الأوزان عامة، يمكن للمهاجمين التلاعب بالأوزان لإضافة أبواب خلفية أو حقن سلوك خبيث. يمكن توزيع الأوزان المعدلة على أنها شرعية.
+      ru: В моделях с открытыми весами, поскольку файлы весов публичны, злоумышленники могут манипулировать весами для добавления бэкдоров или внедрения вредоносного поведения. Модифицированные веса могут распространяться как легитимные.
+    severity: high
+  - title:
+      tr: Reverse Engineering Risks
+      en: Reverse Engineering Risks
+      fr: Risques de rétro-ingénierie
+      zh: 逆向工程风险
+      ar: مخاطر الهندسة العكسية
+      ru: Риски обратной разработки
+    description:
+      tr: Open weights ile model mimarisi ve davranışı tam olarak analiz edilebilir. Saldırganlar adversarial examples veya jailbreak promptları geliştirmek için model'i reverse engineer edebilir.
+      en: With open weights, model architecture and behavior can be fully analyzed. Attackers can reverse engineer the model to develop adversarial examples or jailbreak prompts.
+      fr: Avec les poids ouverts, l'architecture et le comportement du modèle peuvent être entièrement analysés. Les attaquants peuvent procéder à la rétro-ingénierie du modèle pour développer des exemples adversariaux ou des prompts de jailbreak.
+      zh: 通过开放权重，可以完全分析模型架构和行为。攻击者可以对模型进行逆向工程，以开发对抗样本或越狱提示。
+      ar: مع الأوزان المفتوحة، يمكن تحليل بنية النموذج وسلوكه بالكامل. يمكن للمهاجمين إجراء هندسة عكسية للنموذج لتطوير أمثلة عدائية أو محفزات كسر الحماية.
+      ru: При открытых весах архитектура и поведение модели могут быть полностью проанализированы. Злоумышленники могут провести обратную разработку модели для создания adversarial примеров или jailbreak-промптов.
+    severity: medium
+  - title:
+      tr: Model Lisans ve Kullanım Takibi Eksikliği
+      en: Model License and Usage Tracking Gap
+      fr: Lacune dans le suivi des licences et de l'utilisation des modèles
+      zh: 模型许可和使用跟踪缺口
+      ar: فجوة تتبع ترخيص النموذج واستخدامه
+      ru: Пробел в отслеживании лицензий и использования моделей
+    description:
+      tr: Open-weight modellerin lisans kısıtlamaları (commercial use, derivative works) genellikle takip edilmez. Bu, uyumsuz kullanım ve yasal risk oluşturur. Ayrıca hangi model versiyonunun nerede deploy edildiğini izlemek zordur.
+      en: License restrictions on open-weight models (commercial use, derivative works) are often not tracked. This creates non-compliance and legal risk. Additionally, tracking which model version is deployed where is difficult.
+      fr: Les restrictions de licence des modèles à poids ouverts (utilisation commerciale, œuvres dérivées) ne sont souvent pas suivies. Cela crée des risques de non-conformité et juridiques. De plus, le suivi des versions déployées est difficile.
+      zh: 开放权重模型的许可限制（商业使用、衍生作品）通常未被追踪。这会造成合规性问题和法律风险。此外，追踪哪个模型版本部署在哪里也很困难。
+      ar: غالباً لا يتم تتبع قيود ترخيص نماذج الأوزان المفتوحة (الاستخدام التجاري، الأعمال المشتقة). هذا يخلق مخاطر عدم الامتثال والمخاطر القانونية. كما يصعب تتبع إصدار النموذج المنشور في كل مكان.
+      ru: Лицензионные ограничения на модели с открытыми весами (коммерческое использование, производные работы) часто не отслеживаются. Это создаёт риски несоответствия и юридические риски. Кроме того, сложно отследить, какая версия модели развёрнута где.
+    severity: low
+config:
+  - title: Open-Weight Model Integrity Check
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Verify open-weight model integrity before deployment
+
+      MODEL_ID="meta-llama/Llama-2-7b-hf"
+      WEIGHTS_DIR="./models/$MODEL_ID"
+
+      # Check GPG signature (if available)
+      if [ -f "$WEIGHTS_DIR/model.safetensors.sig" ]; then
+          gpg --verify "$WEIGHTS_DIR/model.safetensors.sig" "$WEIGHTS_DIR/model.safetensors"
+          if [ $? -ne 0 ]; then
+              echo "ERROR: GPG signature verification failed"
+              exit 1
+          fi
+          echo "✓ GPG signature verified"
+      fi
+
+      # Verify SHA256 checksum
+      if [ -f "$WEIGHTS_DIR/SHA256SUMS" ]; then
+          cd "$WEIGHTS_DIR"
+          sha256sum -c SHA256SUMS
+          if [ $? -ne 0 ]; then
+              echo "ERROR: Checksum verification failed"
+              exit 1
+          fi
+          echo "✓ Checksums verified"
+          cd -
+      fi
+
+      # Check for suspicious files
+      SUSPICIOUS_FILES=$(find "$WEIGHTS_DIR" -type f \( -name "*.py" -o -name "*.sh" -o -name "*.exe" \))
+      if [ -n "$SUSPICIOUS_FILES" ]; then
+          echo "WARNING: Suspicious files found:"
+          echo "$SUSPICIOUS_FILES"
+          echo "Review these files before deployment"
+      fi
+
+      # Scan for malware (optional, requires ClamAV)
+      if command -v clamscan &> /dev/null; then
+          clamscan -r "$WEIGHTS_DIR"
+      fi
+
+      echo "Model integrity check completed"
+    description:
+      tr: Open-weight model için integrity verification script. GPG signature ve checksum kontrolü.
+      en: Integrity verification script for open-weight models. GPG signature and checksum check.
+research:
+  - title: Open LLM Leaderboard
+    url: https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
+    year: 2024
+    type: tool
+    authors: HuggingFace
+  - title: Model Openness Framework
+    url: https://arxiv.org/abs/2403.13784
+    year: 2024
+    type: paper
+    authors: Shayne Longpre, Sayash Kapoor, Kevin Klyman
+tips:
+  - tr: Open-weight model indirirken GPG signature veya checksum doğrulaması yapın.
+    en: Verify GPG signature or checksum when downloading open-weight models.
+  - tr: Model weights'i trusted registry'de (HuggingFace verified) saklayın.
+    en: Store model weights in trusted registry (HuggingFace verified).

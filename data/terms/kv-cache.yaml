@@ -1,0 +1,180 @@
+id: kv-cache
+name: KV Cache
+fullName: Key-Value Cache
+category: inference
+desc:
+  tr: |-
+    AI modeli metin üretirken önceki tokenlara ait attention hesaplamalarının (key ve value matrislerinin) bellekte saklanarak tekrar hesaplanmasını önleyen optimizasyon tekniği. Bu olmadan model her yeni token ürettiğinde tüm önceki tokenları sıfırdan yeniden işlemek zorunda kalir — örneğin 1000 tokenlik bir cevap üretirken toplam 500.000'den fazla tekrarli hesaplama yapılır.
+
+    KV cache ile bu işlem doğrusal hale gelir ve hiz 10-100x artar. Bunun bedeli bellek tuketimidir: uzun konuşmalarda KV cache GPU belleğinin büyük bir bolumunu kaplayabilir.
+
+    Örneğin 70B parametreli bir modelde 4096 tokenlik bir konuşmanin KV cache'i tek basina birden fazla gigabayt yer kaplayabilir. Bu yüzden [PagedAttention](https://arxiv.org/abs/2309.06180) ve FP8 KV cache gibi bellek optimizasyonlari geliştirilmiştir.
+  en: |-
+    A speed optimization that stores the attention computation results (key and value matrices) for previously processed tokens in GPU memory, avoiding redundant recalculations. Without KV cache, every time the model generates a new token, it would need to reprocess all previous tokens from scratch — for a 1000-token response, that means over 500,000 redundant computations.
+
+    With KV cache, generation becomes linear and speeds up 10-100x. The tradeoff iş memory consumption: during long conversations, the KV cache can occupy a significant portion of GPU memory.
+
+    For example, a 70B parameter model's KV cache for a 4096-token conversation can consume multiple gigabytes on its own. This iş why optimizations like [PagedAttention](https://arxiv.org/abs/2309.06180) and FP8 KV cache compression were developed — they make KV cache more memory-efficient without sacrificing speed.
+  fr: "Une optimisation de vitesse qui stocke les resultats des calculs d'attention (matrices de cles et valeurs) pour les tokens deja traites dans la memoire GPU, evitant les recalculs redondants. Sans KV cache, chaque fois que le modele genere un nouveau token, il devrait retraiter tous les tokens precedents — pour une reponse de 1000 tokens, cela represente plus de 500 000 calculs redondants. Avec le KV cache, la generation devient lineaire et accelere de 10 a 100 fois. Le compromis est la consommation de memoire : pendant les longues conversations, le KV cache peut occuper une part significative de la memoire GPU. Par exemple, le KV cache d'un modele de 70 milliards de parametres pour une conversation de 4096 tokens peut consommer plusieurs gigaoctets. C'est pourquoi des optimisations comme PagedAttention et la compression KV cache FP8 ont ete developpees."
+  zh: 一种速度优化技术，将之前处理过的token的注意力计算结果（键和值矩阵）存储在GPU内存中，避免重复计算。没有KV缓存的话，模型每生成一个新token都需要从头重新处理所有之前的token——对于1000个token的回复，这意味着超过50万次冗余计算。有了KV缓存，生成过程变为线性，速度提升10-100倍。代价是内存消耗：长对话中KV缓存可能占用GPU内存的很大部分。例如，70B参数模型在4096个token的对话中，仅KV缓存就可能消耗数个GB。这就是PagedAttention和FP8 KV缓存压缩等优化技术被开发出来的原因。
+  ar: "تحسين للسرعة يخزن نتائج حسابات الانتباه (مصفوفات المفاتيح والقيم) للرموز المعالجة سابقاً في ذاكرة GPU لتجنب إعادة الحسابات. بدون KV cache، في كل مرة ينتج فيها النموذج رمزاً جديداً سيحتاج لإعادة معالجة جميع الرموز السابقة من الصفر — لاستجابة من 1000 رمز يعني أكثر من 500,000 حساب متكرر. مع KV cache تصبح العملية خطية وتتسارع 10-100 ضعف. المقايضة هي استهلاك الذاكرة: خلال المحادثات الطويلة قد يحتل KV cache جزءاً كبيراً من ذاكرة GPU. مثلاً KV cache لنموذج 70 مليار معامل في محادثة من 4096 رمزاً قد يستهلك عدة جيجابايت وحده. لهذا طُوّرت تحسينات مثل PagedAttention وضغط KV cache بصيغة FP8."
+  ru: "Оптимизация скорости, сохраняющая результаты вычислений внимания (матрицы ключей и значений) для ранее обработанных токенов в памяти GPU, избегая повторных вычислений. Без KV-кэша модели пришлось бы при генерации каждого нового токена пересчитывать все предыдущие с нуля — для ответа в 1000 токенов это более 500 000 избыточных вычислений. С KV-кэшем генерация становится линейной и ускоряется в 10-100 раз. Компромисс — потребление памяти: при длинных разговорах KV-кэш может занимать значительную часть памяти GPU. Например, KV-кэш модели на 70 млрд параметров для диалога в 4096 токенов может потреблять несколько гигабайт. Поэтому были разработаны оптимизации вроде PagedAttention и сжатия KV-кэша в FP8."
+analogy:
+  tr: Kitap okurken her sayfanın notlarını tutmak — önceki sayfaya dönüp tekrar okumak zorunda kalmamak.
+  en: Taking notes on each page while reading a book — so you don't have to go back and reread previous pages.
+  fr: Prendre des notes sur chaque page en lisant un livre — pour ne pas avoir à revenir en arrière et relire les pages précédentes.
+  zh: 读书时在每一页做笔记——这样就不必回头重读之前的页面。
+  ar: تدوين ملاحظات على كل صفحة أثناء قراءة كتاب — حتى لا تضطر للعودة وإعادة قراءة الصفحات السابقة.
+  ru: Делать заметки на каждой странице при чтении книги — чтобы не приходилось возвращаться и перечитывать предыдущие страницы.
+security:
+  - title:
+      tr: KV Cache Poisoning
+      en: KV Cache Poisoning
+      fr: Empoisonnement du cache KV
+      zh: KV缓存投毒
+      ar: تسميم ذاكرة التخزين المؤقت KV
+      ru: Отравление KV-кэша
+    description:
+      tr: Multi-tenant inference ortamlarında shared KV cache, malicious prefix'ler ile poisoned edilebilir. Bu, diğer kullanıcıların output'larını manipüle eder.
+      en: In multi-tenant inference environments, shared KV cache can be poisoned with malicious prefixes. This manipulates other users' outputs.
+      fr: Dans les environnements d'inference multi-tenant, le cache KV partage peut etre empoisonne avec des prefixes malveillants. Cela manipule les sorties des autres utilisateurs.
+      zh: 在多租户推理环境中，共享KV缓存可以被恶意前缀投毒。这会操纵其他用户的输出。
+      ar: في بيئات الاستدلال متعددة المستأجرين، يمكن تسميم ذاكرة التخزين المؤقت KV المشتركة ببادئات ضارة. هذا يتلاعب بمخرجات المستخدمين الآخرين.
+      ru: В мультитенантных средах инференса общий KV-кэш может быть отравлен вредоносными префиксами. Это манипулирует выходными данными других пользователей.
+    severity: high
+  - title:
+      tr: Cross-Request Information Leakage
+      en: Cross-Request Information Leakage
+      fr: Fuite d'information inter-requetes
+      zh: 跨请求信息泄漏
+      ar: تسريب المعلومات عبر الطلبات
+      ru: Межзапросная утечка информации
+    description:
+      tr: KV cache제 제대로 clear edilmezse, önceki request'in bilgileri sonraki request'lere sızabilir. Özellikle prefix caching ile bu risk artar.
+      en: If KV cache is not properly cleared, information from previous requests can leak to subsequent ones. This risk increases especially with prefix caching.
+      fr: Si le cache KV n'est pas correctement efface, les informations des requetes precedentes peuvent fuiter vers les suivantes. Ce risque augmente surtout avec le cache de prefixe.
+      zh: 如果KV缓存没有被正确清除，先前请求的信息可能泄漏到后续请求中。这种风险在使用前缀缓存时尤其增加。
+      ar: إذا لم يتم مسح ذاكرة التخزين المؤقت KV بشكل صحيح، يمكن أن تتسرب معلومات الطلبات السابقة إلى الطلبات اللاحقة. يزداد هذا الخطر خاصة مع التخزين المؤقت للبادئة.
+      ru: Если KV-кэш не очищается должным образом, информация из предыдущих запросов может утекать в последующие. Этот риск возрастает, особенно при кэшировании префиксов.
+    severity: critical
+  - title:
+      tr: Cache Timing Side-Channel
+      en: Cache Timing Side-Channel
+      fr: Canal auxiliaire par timing du cache
+      zh: 缓存时序侧信道
+      ar: قناة جانبية عبر توقيت التخزين المؤقت
+      ru: Побочный канал через тайминг кэша
+    description:
+      tr: KV cache hit/miss latency farkı üzerinden, başka kullanıcıların prompt pattern'ları veya shared prefix'leri tahmin edilebilir.
+      en: Through KV cache hit/miss latency differences, other users' prompt patterns or shared prefixes can be inferred.
+      fr: A travers les differences de latence entre cache hit/miss du KV, les patterns de prompts ou les prefixes partages d'autres utilisateurs peuvent etre deduits.
+      zh: 通过KV缓存命中/未命中的延迟差异，可以推断其他用户的提示模式或共享前缀。
+      ar: من خلال فروقات زمن الاستجابة بين إصابة/إخفاق ذاكرة التخزين المؤقت KV، يمكن استنتاج أنماط موجهات المستخدمين الآخرين أو البادئات المشتركة.
+      ru: Через различия в задержке попаданий/промахов KV-кэша можно определить паттерны промптов или общие префиксы других пользователей.
+    severity: medium
+  - title:
+      tr: KV Cache Bellek Tüketimi
+      en: KV Cache Memory Consumption Disclosure
+      fr: Divulgation de consommation memoire du cache KV
+      zh: KV缓存内存消耗泄露
+      ar: كشف استهلاك ذاكرة التخزين المؤقت KV
+      ru: Раскрытие потребления памяти KV-кэша
+    description:
+      tr: KV cache bellek kullanımı, GPU memory metrikleri üzerinden izlenebilir. Bu bilgi, eşzamanlı kullanıcı sayısı ve prompt uzunluğu hakkında bilgi ifşa edebilir.
+      en: KV cache memory usage can be monitored through GPU memory metrics. This information can disclose concurrent user count and prompt length.
+      fr: L'utilisation memoire du cache KV peut etre surveillee via les metriques memoire GPU. Cette information peut reveler le nombre d'utilisateurs simultanes et la longueur des prompts.
+      zh: KV缓存内存使用可以通过GPU内存指标进行监控。这些信息可以泄露并发用户数量和提示长度。
+      ar: يمكن مراقبة استخدام ذاكرة التخزين المؤقت KV من خلال مقاييس ذاكرة GPU. يمكن أن تكشف هذه المعلومات عن عدد المستخدمين المتزامنين وطول الموجهات.
+      ru: Использование памяти KV-кэша может отслеживаться через метрики памяти GPU. Эта информация может раскрывать количество одновременных пользователей и длину промптов.
+    severity: low
+config:
+  - title: Isolated KV Cache per Request
+    lang: python
+    code: |-
+      # Ensure KV cache isolation in vLLM
+      from vllm import LLM, SamplingParams
+
+      llm = LLM(
+          model="meta-llama/Llama-3.3-70B-Instruct",
+          enable_prefix_caching=False,  # Disable for multi-tenant
+          max_model_len=4096,
+          gpu_memory_utilization=0.9
+      )
+
+      def secure_generate(prompt: str, request_id: str):
+          # Use unique sampling params per request
+          params = SamplingParams(
+              temperature=0.7,
+              max_tokens=512,
+              # Force new KV cache allocation
+              ignore_eos=False
+          )
+          
+          output = llm.generate(prompt, params)
+          
+          # Clear request-specific cache
+          # (Implementation depends on serving framework)
+          
+          return output
+    description:
+      tr: Multi-tenant ortamlarda prefix caching'i kapatın. Her request için izole KV cache kullanın.
+      en: Disable prefix caching in multi-tenant environments. Use isolated KV cache per request.
+  - title: KV Cache Isolation (Kubernetes)
+    lang: yaml
+    code: |-
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: llm-inference-isolated
+        labels:
+          app: llm-inference
+      spec:
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+        containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          args:
+          - "--disable-log-requests"
+          - "--enable-prefix-caching=false"
+          - "--max-num-seqs=128"
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              memory: "48Gi"
+            requests:
+              memory: "32Gi"
+          env:
+          - name: VLLM_NO_USAGE_STATS
+            value: "1"
+          volumeMounts:
+          - name: model
+            mountPath: /models
+            readOnly: true
+        volumes:
+        - name: model
+          persistentVolumeClaim:
+            claimName: model-pvc
+            readOnly: true
+    description:
+      tr: Kubernetes'te KV cache izolasyonu icin vLLM pod yapilandirmasi. Prefix caching devre disi, read-only model mount ve non-root kullanici.
+      en: vLLM pod configuration for KV cache isolation in Kubernetes. Prefix caching disabled, read-only model mount, and non-root user.
+research:
+  - title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+    url: https://arxiv.org/abs/2309.06180
+    year: 2023
+    type: paper
+    authors: Woosuk Kwon, Zhuohan Li, Siyuan Zhuang
+  - title: "Cache Me If You Can: Accelerating Diffusion Models through Block Caching"
+    url: https://arxiv.org/abs/2312.03209
+    year: 2023
+    type: paper
+    authors: Felix Wimbauer, Bichen Wu, Edgar Schönfeld
+tips:
+  - tr: Production'da KV cache metrics'leri (hit rate, eviction) monitör edin.
+    en: Monitor KV cache metrics (hit rate, eviction) in production.
+  - tr: Sensitive data işleyen request'lerde cache'i explicit olarak clear edin.
+    en: Explicitly clear cache for requests processing sensitive data.
+  - tr: KV cache timing'i normalize ederek side-channel sızıntısını önleyin.
+    en: Prevent side-channel leakage by normalizing KV cache timing.

@@ -1,0 +1,157 @@
+id: shadow-ai
+name: Shadow AI
+fullName: Shadow AI
+category: ai-security
+desc:
+  tr: |-
+    Çalışanların IT departmanının bilgisi ve onayı olmadan kullandığı AI araçları ve hizmetleri. [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), [Copilot](https://github.com/features/copilot) gibi platformlara şirket verileri yüklenir ama bu veriler nereye kaydedilir, nasıl işlenir, üçüncü taraflarla paylaşılır mı bilinmez — ciddi veri sızıntısı ve uyumluluk riski oluşturur.
+
+    [Gartner](https://www.gartner.com) 2024 raporuna göre çalışanların %75'i shadow AI kullanıyor ve bu AI tool'larına hassas veriler (müşteri bilgileri, kod, finansal veriler) yüklüyor. [Samsung](https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak) ve [Apple](https://www.wsj.com/articles/apple-restricts-use-of-chatgpt-joining-other-companies-wary-of-leaks-d44d7d34) gibi şirketler ChatGPT kullanımını yasakladı çünkü çalışanlar source code sızdırıyordu.
+
+    Örnek senaryo: Bir yazılımcı kod hatası için ChatGPT'ye sorar, proprietary algoritma prompt'a yapıştırılır, OpenAI sunucularına gönderilir ve eğitim datasına dahil olabilir. Shadow AI'ı engellemek için [DLP (Data Loss Prevention)](https://www.microsoft.com/en-us/security/business/security-101/what-is-data-loss-prevention-dlp) sistemleri ve şirket içi AI platformları (örn: [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service) private deployment) kullanılmalıdır.
+  en: |-
+    AI tools and services that employees use without IT department's knowledge or approval. Corporate data gets uploaded to platforms like [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), and [Copilot](https://github.com/features/copilot), but it's unclear where this data is stored, how it's processed, or if it's shared with third parties — creating serious data leakage and compliance risks.
+
+    According to [Gartner](https://www.gartner.com)'s 2024 report, 75% of employees use shadow AI and upload sensitive data (customer information, code, financial data) to these tools. Companies like [Samsung](https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak) and [Apple](https://www.wsj.com/articles/apple-restricts-use-of-chatgpt-joining-other-companies-wary-of-leaks-d44d7d34) banned ChatGPT use because employees were leaking source code.
+
+    Example scenario: A developer asks ChatGPT about a code bug, pastes proprietary algorithm in prompt, it gets sent to OpenAI servers and could be included in training data. To prevent shadow AI, use [DLP (Data Loss Prevention)](https://www.microsoft.com/en-us/security/business/security-101/what-is-data-loss-prevention-dlp) systems and on-premise AI platforms (e.g., [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-services/openai-service) private deployment).
+  fr: Outils et services d'IA que les employes utilisent sans la connaissance ou l'approbation du departement informatique.
+  zh: 员工在IT部门不知情或未批准的情况下使用的AI工具和服务。
+  ar: أدوات وخدمات الذكاء الاصطناعي التي يستخدمها الموظفون دون علم أو موافقة قسم تكنولوجيا المعلومات.
+  ru: AI-инструменты и сервисы, которые сотрудники используют без ведома или одобрения IT-отдела.
+analogy:
+  tr: Ofiste yasak olmasına rağmen çalışanların kişisel USB disklerle veri taşıması gibi — kolay ama tehlikeli.
+  en: Like employees using personal USB drives to transfer data despite office bans — convenient but dangerous.
+  fr: Comme les employes utilisant des cles USB personnelles pour transferer des donnees malgre les interdictions — pratique mais dangereux.
+  zh: 就像员工尽管办公室禁止但仍使用个人U盘传输数据——方便但危险。
+  ar: مثل استخدام الموظفين لمحركات USB شخصية لنقل البيانات رغم الحظر — مريح لكن خطير.
+  ru: Как сотрудники используют личные USB-накопители для передачи данных, несмотря на запреты — удобно, но опасно.
+security:
+  - title:
+      tr: Veri Sızıntısı - Training Data Contamination
+      en: Data Exfiltration - Training Data Contamination
+      fr: Exfiltration de données — Contamination des données d’entraînement
+      zh: 数据外泄——训练数据污染
+      ar: تسريب البيانات — تلوث بيانات التدريب
+      ru: Эксфильтрация данных — заражение обучающих данных
+    description:
+      tr: Çalışanların shadow AI’a yüklediği hassas veriler (source code, müşteri bilgileri, ticari sırlar) modelin eğitim datasina dahil olabilir ve gelecekte başka kullanıcılara sızdırılabilir. OpenAI, Anthropic gibi vendor’lar ‘opt-out’ seçeneği sunsa da default ayar opt-in’dir. Samsung vakasında çalışan confidential code ChatGPT’ye yüklemisti.
+      en: Sensitive data uploaded to shadow AI (source code, customer info, trade secrets) can be included in model training data and leaked to other users in the future. While vendors like OpenAI and Anthropic offer 'opt-out', default setting is opt-in. In Samsung case, employee uploaded confidential code to ChatGPT.
+      fr: "Les données sensibles téléversées vers un shadow AI (code source, informations client, secrets commerciaux) peuvent être intégrées aux données d’entraînement et divulguées à d’autres utilisateurs. Des fournisseurs comme OpenAI et Anthropic proposent le «\_désinscription\_», mais le paramètre par défaut est l’inscription. Dans l’affaire Samsung, un employé avait téléversé du code confidentiel sur ChatGPT."
+      zh: 上传到影子AI的敏感数据（源代码、客户信息、商业机密）可能被纳入模型训练数据，并在未来泄露给其他用户。虽然OpenAI、Anthropic等供应商提供“退出”选项，但默认设置为“加入”。在三星事件中，员工将机密代码上传到了ChatGPT。
+      ar: يمكن أن تُدرج البيانات الحساسة المرفوعة إلى الذكاء الاصطناعي الظلّي (الشفرة المصدرية، معلومات العملاء، الأسرار التجارية) في بيانات التدريب وتُسرّب لمستخدمين آخرين. يقدم مزودون مثل OpenAI وAnthropic خيار «الانسحاب»، لكن الإعداد الافتراضي هو الاشتراك. في حادثة سامسونج، قام موظف بتحميل شفرة سرية إلى ChatGPT.
+      ru: Конфиденциальные данные (исходный код, данные клиентов, коммерческие тайны), загруженные в теневой ИИ, могут попасть в обучающие данные и утечь к другим пользователям. OpenAI и Anthropic предлагают «отказ», но по умолчанию включено «согласие». В случае с Samsung сотрудник загрузил конфиденциальный код в ChatGPT.
+    severity: critical
+  - title:
+      tr: Unauthorized API Integration
+      en: Unauthorized API Integration
+      fr: Intégration API non autorisée
+      zh: 未授权的API集成
+      ar: تكامل واجهة برمجة التطبيقات غير المصرح به
+      ru: Несанкционированная интеграция через API
+    description:
+      tr: Geliştiriciler production sistemlerine izinsiz OpenAI API key’i ekleyerek shadow AI entegrasyonu yapabilir. Bu key’ler kod repository’lerine hard-coded olarak konur, credentials leak yaşanır ve saldırganlar API’yi abuse eder. Ayrıca bu key’lerin billing ve rate limit kontrolü yoktur.
+      en: Developers can integrate shadow AI by adding unauthorized OpenAI API keys to production systems. These keys get hard-coded in repositories, credentials leak, and attackers abuse the API. Additionally, these keys have no billing or rate limit control.
+      fr: Les développeurs peuvent intégrer un shadow AI en ajoutant des clés API OpenAI non autorisées aux systèmes de production. Ces clés sont codées en dur dans les dépôts, les identifiants fuient et les attaquants exploitent l’API. De plus, ces clés n’ont aucun contrôle de facturation ni de limitation de débit.
+      zh: 开发人员可以通过向生产系统添加未经授权的OpenAI API密钥来集成影子AI。这些密钥被硬编码在代码仓库中，导致凭据泄露，攻击者滥用API。此外，这些密钥没有计费和速率限制控制。
+      ar: يمكن للمطورين دمج الذكاء الاصطناعي الظلّي بإضافة مفاتيح API غير مصرح بها لـ OpenAI إلى أنظمة الإنتاج. تُضمّن هذه المفاتيح بشكل ثابت في المستودعات، فتتسرب بيانات الاعتماد ويستغل المهاجمون الواجهة. لا تخضع هذه المفاتيح لأي رقابة على الفوترة أو حدود الطلبات.
+      ru: Разработчики могут интегрировать теневой ИИ, добавляя несанкционированные API-ключи OpenAI в продуктивные системы. Ключи зашиваются в репозиториях, происходит утечка, злоумышленники злоупотребляют API. Контроль биллинга и rate limit отсутствует.
+    severity: high
+  - title:
+      tr: Compliance Violation - GDPR/HIPAA Risk
+      en: Compliance Violation - GDPR/HIPAA Risk
+      fr: Violation de conformité — Risque RGPD/HIPAA
+      zh: 合规违规——GDPR/HIPAA风险
+      ar: انتهاك الامتثال — مخاطر GDPR/HIPAA
+      ru: Нарушение нормативных требований — риск GDPR/HIPAA
+    description:
+      tr: Shadow AI kullanımı GDPR, HIPAA, SOC2 gibi compliance standartlarını ihlal edebilir. Örneğin healthcare çalışanı hasta bilgilerini ChatGPT’ye yüklerse HIPAA violation oluşur ve company $50K+ ceza alabilir. Avrupa’da GDPR ihlali için ceza company revenue’nin %4’üne kadar çıkabilir.
+      en: Shadow AI use can violate compliance standards like GDPR, HIPAA, SOC2. For example, if healthcare employee uploads patient data to ChatGPT, it creates HIPAA violation and company can be fined $50K+. In Europe, GDPR violation penalty can reach up to 4% of company revenue.
+      fr: "L’utilisation du shadow AI peut violer des normes de conformité (RGPD, HIPAA, SOC2). Si un employé du secteur santé téléverse des données patient sur ChatGPT, cela constitue une violation HIPAA (amende > 50\_000\_$). En Europe, l’amende RGPD peut atteindre 4\_% du chiffre d’affaires."
+      zh: 使用影子AI可能违反GDPR、HIPAA、SOC2等合规标准。例如，医疗保健员工将患者数据上传到ChatGPT会造成HIPAA违规，公司可能被罚款5万美元以上。在欧洲，GDPR违规罚款最高可达公司营收的4%。
+      ar: يمكن أن يؤدي استخدام الذكاء الاصطناعي الظلّي إلى انتهاك معايير الامتثال (GDPR، HIPAA، SOC2). إذا حمّل موظف صحي بيانات مرضى على ChatGPT، فهذا انتهاك لـ HIPAA وقد تُغرّم الشركة بأكثر من 50 ألف دولار. في أوروبا، يمكن أن تصل غرامة GDPR إلى 4% من إيرادات الشركة.
+      ru: "Использование теневого ИИ может нарушить GDPR, HIPAA, SOC2. Если сотрудник медучреждения загрузит данные пациентов в ChatGPT — это нарушение HIPAA (штраф > 50 тыс.\_$). В Европе штраф по GDPR достигает 4\_% оборота компании."
+    severity: critical
+  - title:
+      tr: Shadow Ai Konfigürasyon Bilgi Sızıntısı
+      en: Shadow Ai Configuration Information Disclosure
+      fr: Divulgation de configuration shadow ai
+      zh: shadow ai配置信息泄露
+      ar: كشف معلومات تكوين shadow-ai
+      ru: Раскрытие конфигурации shadow-ai
+    description:
+      tr: Shadow Ai ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to shadow ai can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à shadow ai peuvent être exposés dans les messages d’erreur ou les réponses API.
+      zh: 与shadow ai相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ shadow-ai في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании shadow-ai могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: DLP Policy - Block Shadow AI Domains
+    lang: yaml
+    code: |-
+      # Cisco Umbrella / Cloudflare Gateway policy
+      rules:
+        - name: Block Shadow AI
+          action: block
+          domains:
+            - chat.openai.com
+            - claude.ai
+            - gemini.google.com
+            - copilot.microsoft.com
+            - huggingface.co/chat
+          categories:
+            - AI Tools
+          apply_to:
+            - all_users
+          exemptions:
+            - approved_research_team
+    description:
+      tr: Network seviyesinde shadow AI domain'lerini engelleyen DLP policy. Cisco Umbrella, Cloudflare Gateway gibi sistemlerle chat.openai.com, claude.ai gibi sitelere erişim bloklanır. Sadece onaylı ekipler (research team) exempt edilir.
+      en: DLP policy blocking shadow AI domains at network level. Using systems like Cisco Umbrella or Cloudflare Gateway, block access to sites like chat.openai.com and claude.ai. Only approved teams (research team) are exempted.
+  - title: Azure OpenAI Private Deployment
+    lang: typescript
+    code: |-
+      // Controlled corporate AI with full data retention
+      import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
+
+      const client = new OpenAIClient(
+        "https://your-company.openai.azure.com",
+        new AzureKeyCredential(process.env.AZURE_OPENAI_KEY)
+      );
+
+      const response = await client.getChatCompletions(
+        "gpt-4", // Deployed in your Azure tenant
+        [{ role: "user", content: "Analyze this code..." }],
+        {
+          // Data stays in your tenant, not sent to OpenAI
+          user: "employee@company.com"
+        }
+      );
+    description:
+      tr: Azure OpenAI private deployment ile şirket içi AI platformu. Tüm veriler company'nin Azure tenant'ında kalır, OpenAI'a gönderilmez. Data retention ve compliance kontrolü company'de. Shadow AI ihtiyacını ortadan kaldırır.
+      en: Corporate AI platform with Azure OpenAI private deployment. All data stays in company's Azure tenant, not sent to OpenAI. Data retention and compliance control with company. Eliminates need for shadow AI.
+research:
+  - title: Samsung Bans ChatGPT After Code Leak
+    url: https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak
+    year: 2023
+    type: news
+    authors: Bloomberg
+  - title: "Gartner: Shadow AI Usage Statistics"
+    url: https://www.gartner.com/en/newsroom/press-releases/2024-01-17-gartner-says-shadow-ai-is-a-growing-concern-for-organizations
+    year: 2024
+    type: report
+    authors: Gartner
+  - title: Microsoft DLP for AI Tools
+    url: https://www.microsoft.com/en-us/security/business/security-101/what-is-data-loss-prevention-dlp
+    year: 2024
+    type: guide
+    authors: Microsoft
+tips:
+  - tr: Network monitoring ile shadow AI kullanımını tespit edin — chat.openai.com, claude.ai gibi domain'lere anormal trafik analiz edin.
+    en: Detect shadow AI usage with network monitoring — analyze abnormal traffic to domains like chat.openai.com and claude.ai.
+  - tr: Çalışanlara approved AI tools sunun (Azure OpenAI, on-prem LLM) — shadow AI'ın ana sebebi authorized alternatif olmamasıdır.
+    en: Provide employees with approved AI tools (Azure OpenAI, on-prem LLM) — main reason for shadow AI is lack of authorized alternatives.
+  - tr: API key scanning ile repository'lerde OpenAI/Anthropic key'lerini detect edin — GitHub secret scanning, GitGuardian kullanın.
+    en: Detect OpenAI/Anthropic keys in repositories with API key scanning — use GitHub secret scanning or GitGuardian.

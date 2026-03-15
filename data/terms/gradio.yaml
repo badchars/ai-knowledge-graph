@@ -1,0 +1,109 @@
+id: gradio
+name: Gradio
+fullName: Gradio UI Framework
+category: ecosystem
+desc:
+  tr: |-
+    AI modelleri için dakikalar içinde web arayüzü oluşturmanızı sağlayan Python kütüphanesi. Birkaç satır kodla metin girişi, görüntü yukleme, ses kaydedici veya sohbet arayüzü ekleyebilir ve bunu aninda paylasilabilir bir web uygulamasina donüsturebilirsiniz.
+
+    [Hugging Face](https://huggingface.co) Spaces'in varsayilan arayuz framework'udur -- platformdaki demo uygulamalarin büyük cogünlugu [Gradio](https://gradio.app) ile yapilmistir. Arastirmacilar yeni bir model yayınladığında, genellikle bir Gradıo demosu eklerler ki herkes tarayicidan deneyebilsin.
+
+    [Stable Diffusion](https://stability.ai)'in popüler arayüzü olan Automatic1111 de Gradıo üzerinde kuruludur. Yerel geliştirmede 'gr.Interface' ile saniyeler içinde prototıp olüsturabilir, 'share=True' parametresiyle gecici bir public URL alabilirsiniz.
+  en: |-
+    A Python library that lets you build web interfaces for AI models in minutes. With just a few lines of code, you can add text inputs, image uploaders, audio recorders, or chat interfaces and instantly turn them into a shareable web application.
+
+    It's the default UI framework for [Hugging Face](https://huggingface.co) Spaces -- the vast majority of demo apps on the platform are built with [Gradio](https://gradio.app). When researchers release a new model, they typically include a Gradio demo so anyone can try it from their browser.
+
+    The popular [Stable Diffusion](https://stability.ai) interface Automatic1111 iş also built on Gradio. For local development, you can prototype in seconds with 'gr.Interface' and get a temporary public URL with 'share=True'.
+  fr: Une bibliotheque Python qui vous permet de creer des interfaces web pour des modeles d'IA en quelques minutes. Avec seulement quelques lignes de code, vous pouvez ajouter des champs de texte, des telechargeurs d'images, des enregistreurs audio ou des interfaces de chat et les transformer instantanement en application web partageable. C'est le framework d'interface par defaut de Hugging Face Spaces -- la grande majorite des applications de demo sur la plateforme sont construites avec Gradio. Quand des chercheurs publient un nouveau modele, ils incluent generalement une demo Gradio pour que quiconque puisse l'essayer depuis son navigateur. L'interface populaire Automatic1111 pour Stable Diffusion est egalement construite sur Gradio. Pour le developpement local, vous pouvez prototyper en secondes avec 'gr.Interface' et obtenir une URL publique temporaire avec 'share=True'.
+  zh: 一个Python库，让你在几分钟内为AI模型构建Web界面。只需几行代码，就可以添加文本输入、图片上传、音频录制或聊天界面，并立即将其转换为可共享的Web应用。它是Hugging Face Spaces的默认UI框架——平台上绝大多数演示应用都是用Gradio构建的。研究人员发布新模型时，通常会附带一个Gradio演示，让任何人都能在浏览器中试用。流行的Stable Diffusion界面Automatic1111也是基于Gradio构建的。在本地开发中，你可以用'gr.Interface'在几秒内创建原型，用'share=True'获取临时公共URL。
+  ar: مكتبة Python تتيح لك بناء واجهات ويب لنماذج الذكاء الاصطناعي في دقائق. بسطور قليلة من الكود يمكنك اضافة حقول نص ورفع صور ومسجلات صوت او واجهات دردشة وتحويلها فورا الى تطبيق ويب قابل للمشاركة. هو اطار الواجهة الافتراضي لـ Hugging Face Spaces -- الغالبية العظمى من تطبيقات العرض على المنصة مبنية بـ Gradio. عندما ينشر الباحثون نموذجا جديدا يضيفون عادة عرضا بـ Gradio ليتمكن اي شخص من تجربته من المتصفح. واجهة Automatic1111 الشهيرة لـ Stable Diffusion مبنية ايضا على Gradio. للتطوير المحلي يمكنك انشاء نموذج اولي في ثوان باستخدام 'gr.Interface' والحصول على رابط عام مؤقت مع 'share=True'.
+  ru: Библиотека Python, позволяющая создавать веб-интерфейсы для моделей ИИ за считанные минуты. Несколькими строками кода можно добавить текстовые поля, загрузку изображений, запись аудио или интерфейс чата и мгновенно превратить это в веб-приложение для совместного использования. Это фреймворк интерфейса по умолчанию для Hugging Face Spaces -- подавляющее большинство демо-приложений на платформе построены на Gradio. Когда исследователи выпускают новую модель, они обычно добавляют демо на Gradio, чтобы любой мог попробовать из браузера. Популярный интерфейс Automatic1111 для Stable Diffusion тоже построен на Gradio. Для локальной разработки можно создать прототип за секунды с 'gr.Interface' и получить временный публичный URL с 'share=True'.
+analogy:
+  tr: Gradıo, AI modeliniz için bir vitrin gibidir. Modeliniz magazanin arka deposundaki urun işe, Gradıo onu sokaktaki insanlarin gorup deneyebilecegi bir vitrinde sergiler. Hicbir web geliştirme bilgisi gerekmez.
+  en: Gradio iş like a storefront window for your AI model. If your model iş a product in the back warehouse, Gradio displays it in a window where passersby can see and try it. No web development knowledge required.
+  fr: Gradio est comme une vitrine pour votre modele d'IA. Si votre modele est un produit dans l'entrepot arriere, Gradio l'expose dans une vitrine ou les passants peuvent le voir et l'essayer. Aucune connaissance en developpement web requise.
+  zh: Gradio就像AI模型的橱窗展示。如果你的模型是后仓库里的产品，Gradio把它展示在路人可以看到并试用的橱窗里。不需要任何Web开发知识。
+  ar: Gradio يشبه واجهة العرض لنموذج الذكاء الاصطناعي الخاص بك. اذا كان نموذجك منتجا في المستودع الخلفي فان Gradio يعرضه في واجهة يمكن للمارة رؤيتها وتجربتها. لا حاجة لمعرفة تطوير الويب.
+  ru: Gradio -- это как витрина для вашей модели ИИ. Если ваша модель -- товар на складе, Gradio выставляет его в витрине, где прохожие могут его увидеть и попробовать. Никаких знаний веб-разработки не требуется.
+security:
+  - title:
+      tr: Gradio Share Link SSRF
+      en: Gradio Share Link SSRF
+      fr: SSRF via le lien de partage Gradio
+      zh: Gradio共享链接SSRF
+      ar: SSRF عبر رابط مشاركة Gradio
+      ru: SSRF через ссылку общего доступа Gradio
+    description:
+      tr: Gradio share=True ile public URL expose edilir. Saldırgan SSRF yaparak internal network'e erişebilir veya file upload ile code execution gerçekleştirebilir.
+      en: Gradio exposes public URL with share=True. Attacker can access internal network via SSRF or achieve code execution via file upload.
+      fr: Gradio expose une URL publique avec share=True. L'attaquant peut accéder au réseau interne via SSRF ou réaliser une exécution de code via le téléversement de fichiers.
+      zh: Gradio通过share=True暴露公共URL。攻击者可以通过SSRF访问内部网络或通过文件上传实现代码执行。
+      ar: يكشف Gradio عن رابط عام مع share=True. يمكن للمهاجم الوصول إلى الشبكة الداخلية عبر SSRF أو تحقيق تنفيذ الكود عبر تحميل الملفات.
+      ru: Gradio раскрывает публичный URL при share=True. Злоумышленник может получить доступ к внутренней сети через SSRF или достичь выполнения кода через загрузку файлов.
+    severity: high
+  - title:
+      tr: File Upload Code Execution
+      en: File Upload Code Execution
+      fr: Exécution de code via le téléversement de fichiers
+      zh: 文件上传代码执行
+      ar: تنفيذ الكود عبر تحميل الملفات
+      ru: Выполнение кода через загрузку файлов
+    description:
+      tr: Gradio file upload component arbitrary file kabul eder. Malicious Python/pickle file upload edilirse code execution mümkündür.
+      en: Gradio file upload component accepts arbitrary files. Code execution is possible if malicious Python/pickle files are uploaded.
+      fr: Le composant de téléversement de fichiers Gradio accepte des fichiers arbitraires. L'exécution de code est possible si des fichiers Python/pickle malveillants sont téléversés.
+      zh: Gradio文件上传组件接受任意文件。如果上传恶意Python/pickle文件，代码执行成为可能。
+      ar: يقبل مكون تحميل الملفات في Gradio ملفات عشوائية. تنفيذ الكود ممكن إذا تم تحميل ملفات Python/pickle خبيثة.
+      ru: Компонент загрузки файлов Gradio принимает произвольные файлы. Выполнение кода возможно при загрузке вредоносных файлов Python/pickle.
+    severity: critical
+  - title:
+      tr: Gradio Varsayılan Güvenlik Yapılandırması
+      en: Gradio Default Security Configuration
+      fr: Configuration de sécurité par défaut de Gradio
+      zh: Gradio默认安全配置
+      ar: تكوين الأمان الافتراضي لـ Gradio
+      ru: Конфигурация безопасности Gradio по умолчанию
+    description:
+      tr: Gradio varsayılan olarak CORS kontrolü ve rate limiting olmadan çalışır. Demo uygulamaları production'da unutulursa, authentication olmadan erişime açık kalır.
+      en: Gradio runs without CORS control and rate limiting by default. If demo applications are forgotten in production, they remain accessible without authentication.
+      fr: Gradio fonctionne par défaut sans contrôle CORS ni limitation de débit. Si les applications de démonstration sont oubliées en production, elles restent accessibles sans authentification.
+      zh: Gradio默认运行时没有CORS控制和速率限制。如果演示应用在生产环境中被遗忘，它们将在没有身份验证的情况下保持可访问状态。
+      ar: يعمل Gradio افتراضياً بدون التحكم في CORS وتحديد المعدل. إذا نُسيت تطبيقات العرض في بيئة الإنتاج، تبقى متاحة بدون مصادقة.
+      ru: Gradio по умолчанию работает без контроля CORS и rate limiting. Если демо-приложения забыты в production, они остаются доступными без аутентификации.
+    severity: low
+config:
+  - title: Secure Gradio Deployment
+    lang: python
+    code: |-
+      import gradio as gr
+
+      # File validation
+      ALLOWED_EXTENSIONS = {'.txt', '.csv', '.json'}
+
+      def validate_file(file):
+          ext = Path(file.name).suffix
+          if ext not in ALLOWED_EXTENSIONS:
+              return 'Invalid file type'
+          return process_file(file)
+
+      # NEVER use share=True in production
+      demo.launch(
+          share=False,  # CRITICAL
+          server_name='127.0.0.1',
+          auth=('admin', 'password')
+      )
+    description:
+      tr: File validation yapın ve share=True kullanmayın. Authentication ekleyin.
+      en: Perform file validation and don't use share=True. Add authentication.
+research:
+  - title: Gradio Security Guide
+    url: https://www.gradio.app/guides/security
+    year: 2024
+    type: guide
+    authors: Gradio
+tips:
+  - tr: Production'da share=True KULLANMAYIN. Sadece demo/testing içindir.
+    en: DO NOT use share=True in production. Only for demo/testing.
+  - tr: File upload'da MIME type validation yapın. Extension spoofing olabilir.
+    en: Perform MIME type validation on file uploads. Extension spoofing may occur.

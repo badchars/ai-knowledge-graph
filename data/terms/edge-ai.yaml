@@ -1,0 +1,202 @@
+id: edge-ai
+name: Edge AI
+fullName: Edge AI
+category: inference
+desc:
+  tr: |-
+    Model inference'ı bulutta değil, uç cihazlarda (smartphone, IoT, embedded) çalıştıran yaklaşım. Latency azaltır, privacy artırır ve ağ bağımlılığını ortadan kaldırır.
+
+    Örneğin bir akıllı kamera yüz tanıma modelini kendi çipinde çalıştırır — görüntüler hiç sunucuya gitmez. Apple'ın Neural Engine, Google'ın TPU Edge ve NVIDIA Jetson gibi özel donanımlar edge AI için optimize edilmiştir.
+
+    Model boyutu kritiktir: [quantization](/terms/quantization), [distillation](/terms/distillation) ve [SLM](/terms/slm) teknikleri kullanılarak modeller edge cihazlara sığdırılır. [ONNX Runtime](https://onnxruntime.ai) ve TensorFlow Lite gibi framework'ler edge deployment'ı kolaylaştırır.
+  en: |-
+    An approach that runs model inference on edge devices (smartphones, IoT, embedded) instead of the cloud. Reduces latency, increases privacy, and eliminates network dependency.
+
+    For example, a smart camera runs face recognition models on its own chip — images never reach the server. Specialized hardware like Apple's Neural Engine, Google's TPU Edge, and NVIDIA Jetson are optimized for edge AI.
+
+    Model size is critical: techniques like [quantization](/terms/quantization), [distillation](/terms/distillation), and [SLM](/terms/slm) are used to fit models onto edge devices. Frameworks like [ONNX Runtime](https://onnxruntime.ai) and TensorFlow Lite simplify edge deployment.
+  fr: Une approche qui exécute l'inférence de modèles sur des appareils en périphérie (smartphones, IoT, embarqués) au lieu du cloud.
+  zh: 一种在边缘设备（智能手机、物联网、嵌入式）而非云端运行模型推理的方法。
+  ar: نهج يقوم بتشغيل استدلال النموذج على الأجهزة الطرفية (الهواتف الذكية، إنترنت الأشياء، المدمجة) بدلاً من السحابة.
+  ru: Подход, который выполняет вывод модели на граничных устройствах (смартфоны, IoT, встроенные) вместо облака.
+analogy:
+  tr: Merkezi mutfak yerine her evde mini mutfak. Yemek pişirmek için restoran aramana gerek yok.
+  en: Mini kitchen in every home instead of a central kitchen. No need to call the restaurant to cook.
+  fr: Mini cuisine dans chaque maison au lieu d'une cuisine centrale. Pas besoin d'appeler le restaurant pour cuisiner.
+  zh: 每个家庭都有一个迷你厨房，而不是中央厨房。无需打电话给餐厅做饭。
+  ar: مطبخ صغير في كل منزل بدلاً من مطبخ مركزي. لا حاجة للاتصال بالمطعم للطهي.
+  ru: Мини-кухня в каждом доме вместо центральной кухни. Не нужно звонить в ресторан, чтобы готовить.
+security:
+  - title:
+      tr: Physical Model Extraction
+      en: Physical Model Extraction
+      fr: Extraction physique du modele
+      zh: 物理模型提取
+      ar: استخراج النموذج المادي
+      ru: Физическое извлечение модели
+    description:
+      tr: Edge cihazlarda saklanan model ağırlıkları fiziksel erişimle çalınabilir. Chip-off, JTAG debugging ve firmware dumping teknikleri ile model parameters'ları reverse engineering edilebilir.
+      en: Model weights stored on edge devices can be stolen with physical access. Chip-off, JTAG debugging, and firmware dumping techniques can reverse engineer model parameters.
+      fr: Les poids du modele stockes sur les appareils edge peuvent etre voles avec un acces physique. Les techniques de chip-off, debogage JTAG et extraction de firmware peuvent permettre la retro-ingenierie des parametres du modele.
+      zh: 存储在边缘设备上的模型权重可以通过物理访问被窃取。芯片提取、JTAG调试和固件转储等技术可以逆向工程模型参数。
+      ar: يمكن سرقة أوزان النموذج المخزنة على أجهزة الحافة عبر الوصول المادي. يمكن لتقنيات chip-off وتصحيح أخطاء JTAG وتفريغ البرامج الثابتة إجراء هندسة عكسية لمعلمات النموذج.
+      ru: Веса модели, хранящиеся на граничных устройствах, могут быть украдены при физическом доступе. Методы chip-off, отладки JTAG и дампа прошивки позволяют провести обратную инженерию параметров модели.
+    severity: critical
+  - title:
+      tr: Firmware Tampering
+      en: Firmware Tampering
+      fr: Falsification du firmware
+      zh: 固件篡改
+      ar: العبث بالبرامج الثابتة
+      ru: Подделка прошивки
+    description:
+      tr: Edge AI firmware'i tamper edilerek backdoor enjekte edilebilir veya inference sonuçları manipüle edilebilir. Secure boot ve code signing olmayan cihazlar savunmasızdır.
+      en: Edge AI firmware can be tampered to inject backdoors or manipulate inference results. Devices without secure boot and code signing are vulnerable.
+      fr: Le firmware d'Edge AI peut etre falsifie pour injecter des portes derobees ou manipuler les resultats d'inference. Les appareils sans demarrage securise et signature de code sont vulnerables.
+      zh: 边缘AI固件可以被篡改以注入后门或操纵推理结果。没有安全启动和代码签名的设备容易受到攻击。
+      ar: يمكن العبث ببرامج Edge AI الثابتة لحقن أبواب خلفية أو التلاعب بنتائج الاستدلال. الأجهزة بدون التمهيد الآمن وتوقيع التعليمات البرمجية معرضة للخطر.
+      ru: Прошивка Edge AI может быть подделана для внедрения бэкдоров или манипуляции результатами инференса. Устройства без безопасной загрузки и подписи кода уязвимы.
+    severity: high
+  - title:
+      tr: Side-Channel Attacks
+      en: Side-Channel Attacks
+      fr: Attaques par canaux auxiliaires
+      zh: 侧信道攻击
+      ar: هجمات القنوات الجانبية
+      ru: Атаки по побочным каналам
+    description:
+      tr: Power analysis, timing ve EM emission gibi side-channel saldırıları ile edge cihazlarda çalışan modelin architecture'ı ve weights'leri kısmen çıkarılabilir.
+      en: Side-channel attacks like power analysis, timing, and EM emission can partially extract model architecture and weights running on edge devices.
+      fr: Les attaques par canaux auxiliaires telles que l'analyse de puissance, le timing et les emissions electromagnetiques peuvent partiellement extraire l'architecture et les poids du modele fonctionnant sur les appareils edge.
+      zh: 功耗分析、时序分析和电磁辐射等侧信道攻击可以部分提取在边缘设备上运行的模型架构和权重。
+      ar: يمكن لهجمات القنوات الجانبية مثل تحليل الطاقة والتوقيت والانبعاثات الكهرومغناطيسية استخراج بنية النموذج وأوزانه جزئيًا من الأجهزة الطرفية.
+      ru: Атаки по побочным каналам, такие как анализ энергопотребления, временной анализ и электромагнитное излучение, могут частично извлечь архитектуру и веса модели, работающей на граничных устройствах.
+    severity: high
+  - title:
+      tr: Edge Ai Konfigürasyon Bilgi Sızıntısı
+      en: Edge Ai Configuration Information Disclosure
+      fr: Divulgation de configuration edge ai
+      zh: edge ai配置信息泄露
+      ar: كشف معلومات تكوين edge-ai
+      ru: Раскрытие конфигурации edge-ai
+    description:
+      tr: Edge Ai ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to edge ai can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à edge ai peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与edge ai相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ edge-ai في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании edge-ai могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure Edge AI Deployment with TensorFlow Lite
+    lang: python
+    code: |-
+      import tensorflow as tf
+      import hashlib
+
+      class SecureEdgeModel:
+          def __init__(self, model_path: str, expected_hash: str):
+              self.model_path = model_path
+              self.expected_hash = expected_hash
+              self.interpreter = None
+
+          def verify_model_integrity(self) -> bool:
+              """Verify model file integrity with hash"""
+              with open(self.model_path, 'rb') as f:
+                  file_hash = hashlib.sha256(f.read()).hexdigest()
+
+              if file_hash != self.expected_hash:
+                  raise SecurityError(f"Model integrity check failed: {file_hash}")
+              return True
+
+          def load_model(self):
+              """Load TFLite model with secure verification"""
+              self.verify_model_integrity()
+
+              # Load model
+              self.interpreter = tf.lite.Interpreter(
+                  model_path=self.model_path,
+                  num_threads=1  # Prevent timing attacks via threading
+              )
+              self.interpreter.allocate_tensors()
+
+          def secure_inference(self, input_data):
+              """Run inference with input validation"""
+              # Validate input shape and type
+              input_details = self.interpreter.get_input_details()
+              expected_shape = input_details[0]['shape']
+
+              if input_data.shape != tuple(expected_shape):
+                  raise ValueError(f"Invalid input shape: {input_data.shape}")
+
+              # Run inference
+              self.interpreter.set_tensor(input_details[0]['index'], input_data)
+              self.interpreter.invoke()
+
+              # Get output
+              output_details = self.interpreter.get_output_details()
+              output = self.interpreter.get_tensor(output_details[0]['index'])
+
+              return output
+
+      class SecurityError(Exception):
+          pass
+
+      # Usage
+      model = SecureEdgeModel(
+          model_path='/path/to/model.tflite',
+          expected_hash='abc123...'  # SHA256 hash
+      )
+      model.load_model()
+    description:
+      tr: TensorFlow Lite ile güvenli edge deployment. Model integrity check ve input validation.
+      en: Secure edge deployment with TensorFlow Lite. Model integrity check and input validation.
+  - title: Edge AI Secure Boot Config
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Edge AI device secure boot configuration
+      set -euo pipefail
+
+      # Verify firmware signature
+      openssl dgst -sha256 -verify /etc/keys/firmware_pub.pem \
+        -signature /boot/firmware.sig /boot/firmware.bin || {
+        echo "FIRMWARE SIGNATURE INVALID"
+        exit 1
+      }
+
+      # Verify model integrity
+      sha256sum -c /etc/model-hashes.txt || {
+        echo "MODEL INTEGRITY CHECK FAILED"
+        exit 1
+      }
+
+      # Lock down debug interfaces
+      echo 0 > /sys/kernel/debug/jtag_enable 2>/dev/null || true
+      echo "Secure boot complete"
+    description:
+      tr: Edge AI cihazi guvenli boot konfigurasyonu.
+      en: Edge AI device secure boot configuration.
+research:
+  - title: "TinyML: Machine Learning with TensorFlow Lite on Arduino and Ultra-Low-Power Microcontrollers"
+    url: https://www.oreilly.com/library/view/tinyml/9781492052036/
+    year: 2019
+    type: book
+    authors: Pete Warden, Daniel Situnayake
+  - title: "Deep Learning on Edge: A Survey"
+    url: https://arxiv.org/abs/2105.00008
+    year: 2021
+    type: paper
+    authors: Shuochao Yao, Yiran Zhao, Huajie Shao
+  - title: Model Extraction Attacks on Edge Devices
+    url: https://arxiv.org/abs/1910.12054
+    year: 2019
+    type: paper
+    authors: Xinyu Zhang, Zheng Zhang, Ting Wang
+tips:
+  - tr: Model integrity için SHA256 hash check kullanın ve secure storage'da saklayın.
+    en: Use SHA256 hash check for model integrity and store in secure storage.
+  - tr: Quantization ve pruning ile model boyutunu küçültün, accuracy loss'u benchmark'layın.
+    en: Reduce model size with quantization and pruning, benchmark accuracy loss.
+  - tr: Secure boot ve code signing ile firmware tampering'i engelleyin.
+    en: Prevent firmware tampering with secure boot and code signing.

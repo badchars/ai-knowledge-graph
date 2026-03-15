@@ -1,0 +1,186 @@
+id: tensor
+name: Tensor
+fullName: Tensor (Multi-dimensional Array)
+category: architecture
+desc:
+  tr: |-
+    AI modellerinin tüm bilgiyi sakladığı temel veri yapısı — çok boyutlu sayı dizileri. Tek bir sayı (skalar), bir sayı listesi (vektör), bir sayı tablosu (matris) veya tabloların yığınları (yüksek boyutlu tensor) olabilir.
+
+    AI'daki her şey — kelimeler, görüntüler, model ağırlıkları — sonunda tensor'lara dönüştürülür ve bu sayılar üzerinde matematik yapılır. Örneğin, 'merhaba' kelimesi modele verilmeden önce 768 boyutlu bir vektöre (1-boyutlu tensor) dönüştürülür.
+
+    [PyTorch](https://pytorch.org) ve [TensorFlow](https://tensorflow.org) gibi tüm AI framework'leri tensor işlemleri üzerine kuruludur — 'TensorFlow' adı bile buradan gelir. Tensor'ları anlamak, GPU'ların neden AI için bu kadar önemli olduğunu da açıklar: GPU'lar tensor işlemlerini paralel olarak muazzam hızda yapar.
+  en: |-
+    The fundamental data structure that AI models use to store and process all information — multi-dimensional arrays of numbers. A tensor can be a single number (scalar, 0D), a list of numbers (vector, 1D), a table of numbers (matrix, 2D), or stacks of tables (3D and beyond).
+
+    Everything in AI — words, images, model weights — gets converted into tensors so math can be performed on them. For example, the word 'hello' becomes a 768-dimensional vector (a 1D tensor) before a model processes it, and an image becomes a 3D tensor of height x width x color channels.
+
+    Both [PyTorch](https://pytorch.org) and [TensorFlow](https://tensorflow.org) are built entirely around tensor operations — TensorFlow literally gets its name from tensors flowing through computation graphs. Understanding tensors also explains why GPUs matter so much: they can perform tensor operations massively in parallel.
+  fr: "La structure de donnees fondamentale que les modeles d'IA utilisent pour stocker et traiter toutes les informations — des tableaux multidimensionnels de nombres. Un tenseur peut etre un seul nombre (scalaire, 0D), une liste de nombres (vecteur, 1D), un tableau de nombres (matrice, 2D) ou des piles de tableaux (3D et au-dela). Tout en IA — mots, images, poids du modele — est converti en tenseurs pour que des calculs puissent etre effectues. Par exemple, le mot 'hello' devient un vecteur a 768 dimensions (un tenseur 1D) avant d'etre traite par un modele, et une image devient un tenseur 3D de hauteur x largeur x canaux de couleur. PyTorch et TensorFlow sont entierement construits autour des operations tensorielles — TensorFlow tire litteralement son nom des tenseurs circulant dans les graphes de calcul. Comprendre les tenseurs explique aussi pourquoi les GPU sont si importants : ils peuvent effectuer des operations tensorielles massivement en parallele."
+  zh: AI模型用于存储和处理所有信息的基本数据结构——多维数字数组。张量可以是单个数字（标量，0维）、一组数字（向量，1维）、数字表格（矩阵，2维）或表格的堆叠（3维及更高）。AI中的一切——文字、图像、模型权重——都被转换为张量以便进行数学运算。例如，'hello'这个词在模型处理之前会变成一个768维的向量（1维张量），而图像则变成高度x宽度x颜色通道的3维张量。PyTorch和TensorFlow都完全建立在张量运算之上——TensorFlow的名字就来源于张量在计算图中流动。理解张量也解释了为什么GPU如此重要：它们可以大规模并行执行张量运算。
+  ar: "البنية الأساسية للبيانات التي تستخدمها نماذج الذكاء الاصطناعي لتخزين ومعالجة جميع المعلومات — مصفوفات متعددة الأبعاد من الأرقام. يمكن أن يكون التنسور رقماً واحداً (عددي، 0D) أو قائمة أرقام (متجه، 1D) أو جدول أرقام (مصفوفة، 2D) أو أكوام من الجداول (3D وما بعدها). كل شيء في الذكاء الاصطناعي — الكلمات والصور وأوزان النموذج — يتم تحويله إلى تنسورات لإجراء العمليات الحسابية عليها. على سبيل المثال، كلمة 'hello' تصبح متجهاً من 768 بُعداً (تنسور أحادي البعد) قبل أن يعالجها النموذج، والصورة تصبح تنسوراً ثلاثي الأبعاد بأبعاد الارتفاع × العرض × قنوات اللون. كل من PyTorch وTensorFlow مبنيان بالكامل على عمليات التنسور — اسم TensorFlow مشتق حرفياً من تدفق التنسورات عبر رسومات الحساب. فهم التنسورات يفسر أيضاً أهمية GPU: فهي تنفذ عمليات التنسور بشكل متوازٍ على نطاق واسع."
+  ru: "Фундаментальная структура данных, которую модели ИИ используют для хранения и обработки всей информации — многомерные массивы чисел. Тензор может быть одним числом (скаляр, 0D), списком чисел (вектор, 1D), таблицей чисел (матрица, 2D) или стопками таблиц (3D и выше). Все в ИИ — слова, изображения, веса моделей — преобразуется в тензоры для выполнения математических операций. Например, слово 'hello' превращается в 768-мерный вектор (1D-тензор) перед обработкой моделью, а изображение становится 3D-тензором высота x ширина x цветовые каналы. PyTorch и TensorFlow полностью построены на тензорных операциях — название TensorFlow буквально происходит от тензоров, протекающих через вычислительные графы. Понимание тензоров также объясняет, почему GPU так важны: они могут выполнять тензорные операции массивно параллельно."
+analogy:
+  tr: Skalar = tek sayı, Vektor = sayı listesi, Matris = sayı tablosu, Tensor = tabloların yığını.
+  en: Scalar = single number, Vector = list of numbers, Matrix = table of numbers, Tensor = stack of tables.
+  fr: Scalaire = nombre unique, Vecteur = liste de nombres, Matrice = tableau de nombres, Tenseur = pile de tableaux.
+  zh: 标量=单个数字，向量=数字列表，矩阵=数字表，张量=表的堆叠。
+  ar: عددي = رقم واحد، متجه = قائمة أرقام، مصفوفة = جدول أرقام، Tensor = كومة من الجداول.
+  ru: Скаляр = одно число, Вектор = список чисел, Матрица = таблица чисел, Тензор = стопка таблиц.
+security:
+  - title:
+      tr: Tensor Shape Information Leakage
+      en: Tensor Shape Information Leakage
+      fr: Fuite d'informations de forme de tenseur
+      zh: Tensor形状信息泄露
+      ar: تسريب معلومات شكل التنسور
+      ru: Утечка информации о форме тензора
+    description:
+      tr: Tensor shape'leri (dimension'lar) model architecture hakkında critical bilgi verir. Error message'larda veya API response'larda tensor shape leak ederse, saldırgan model'in layer size'larını, hidden dimension'ları çıkarabilir. Model cloning/stealing saldırılarında kullanılır.
+      en: Tensor shapes (dimensions) provide critical information about model architecture. If tensor shapes leak in error messages or API responses, attacker can extract model's layer sizes and hidden dimensions. Used in model cloning/stealing attacks.
+      fr: Les formes de tenseurs (dimensions) fournissent des informations critiques sur l'architecture du modèle. Si les formes de tenseurs fuient dans les messages d'erreur, l'attaquant peut extraire les tailles des couches et les dimensions cachées.
+      zh: Tensor形状（维度）提供有关模型架构的关键信息。如果tensor形状在错误消息或API响应中泄露，攻击者可以提取模型的层大小和隐藏维度。用于模型克隆/窃取攻击。
+      ar: توفر أشكال التنسورات (الأبعاد) معلومات حاسمة عن بنية النموذج. إذا تسربت أشكال التنسورات في رسائل الخطأ، يمكن للمهاجم استخراج أحجام الطبقات والأبعاد المخفية.
+      ru: Формы тензоров (размерности) предоставляют критическую информацию об архитектуре модели. Если формы тензоров утекают в сообщениях об ошибках, злоумышленник может извлечь размеры слоёв и скрытые размерности.
+    severity: medium
+  - title:
+      tr: Gradient Tensor Inversion
+      en: Gradient Tensor Inversion
+      fr: Inversion de tenseur de gradient
+      zh: 梯度Tensor反转
+      ar: عكس تنسور التدرج
+      ru: Инверсия тензора градиентов
+    description:
+      tr: Federated learning'de gradient tensor'ları paylaşılır. Bu gradient'lerden training data reconstruct edilebilir. Özellikle small batch size (1-8) kullanıldığında, gradient inversion attack ile original image veya text %90+ accuracy ile geri çıkarılabilir. Privacy riski.
+      en: Gradient tensors are shared in federated learning. Training data can be reconstructed from these gradients. Especially with small batch sizes (1-8), gradient inversion attacks can extract original images or text with 90%+ accuracy. Privacy risk.
+      fr: Les tenseurs de gradient sont partagés en apprentissage fédéré. Les données d'entraînement peuvent être reconstruites à partir de ces gradients. Avec de petites tailles de lot (1-8), l'inversion de gradient peut extraire des images ou textes originaux avec plus de 90% de précision.
+      zh: 在联邦学习中共享梯度tensor。可以从这些梯度重构训练数据。特别是使用小批量（1-8）时，梯度反转攻击可以以90%+的准确率提取原始图像或文本。隐私风险。
+      ar: تُشارك تنسورات التدرج في التعلم الموحد. يمكن إعادة بناء بيانات التدريب من هذه التدرجات. خاصة مع أحجام دفعات صغيرة (1-8)، يمكن لهجمات عكس التدرج استخراج الصور أو النصوص الأصلية بدقة 90%+.
+      ru: Тензоры градиентов разделяются в федеративном обучении. Обучающие данные могут быть реконструированы из этих градиентов. При малых размерах батча (1-8) атаки инверсии градиентов могут извлечь оригинальные изображения или текст с точностью 90%+.
+    severity: high
+  - title:
+      tr: Tensor Serialization Exploits
+      en: Tensor Serialization Exploits
+      fr: Exploitation de la sérialisation de tenseurs
+      zh: Tensor序列化漏洞
+      ar: استغلال تسلسل التنسور
+      ru: Эксплуатация сериализации тензоров
+    description:
+      tr: PyTorch .pt veya .pth dosyaları pickle kullanır, arbitrary code execution riski vardır. Malicious tensor dosyası load edildiğinde backdoor çalıştırılabilir. safetensors format kullanılmazsa, model weight'lerini load etmek kritik güvenlik riski oluşturur.
+      en: PyTorch .pt or .pth files use pickle, posing arbitrary code execution risk. Loading malicious tensor file can execute backdoor. Without using safetensors format, loading model weights creates critical security risk.
+      fr: Les fichiers PyTorch .pt ou .pth utilisent pickle, posant un risque d'exécution de code arbitraire. Charger un fichier de tenseurs malveillant peut exécuter une porte dérobée. Sans utiliser le format safetensors, charger les poids du modèle crée un risque critique.
+      zh: PyTorch .pt或.pth文件使用pickle，存在任意代码执行风险。加载恶意tensor文件可以执行后门。不使用safetensors格式时，加载模型权重会造成严重安全风险。
+      ar: تستخدم ملفات PyTorch .pt أو .pth تنسيق pickle، مما يشكل خطر تنفيذ شفرة عشوائية. تحميل ملف تنسور خبيث يمكن أن ينفذ باباً خلفياً. بدون استخدام صيغة safetensors، يشكل تحميل أوزان النموذج خطراً أمنياً حرجاً.
+      ru: Файлы PyTorch .pt или .pth используют pickle, что создаёт риск выполнения произвольного кода. Загрузка вредоносного файла тензоров может выполнить бэкдор. Без использования формата safetensors загрузка весов модели создаёт критический риск безопасности.
+    severity: critical
+  - title:
+      tr: Tensor Metadata Bilgi Sızıntısı
+      en: Tensor Metadata Information Disclosure
+      fr: Divulgation de métadonnées de tenseurs
+      zh: Tensor元数据信息泄露
+      ar: كشف بيانات تعريف التنسور
+      ru: Раскрытие метаданных тензоров
+    description:
+      tr: Tensor metadata'sı (shape, dtype, device bilgisi) production hata mesajlarında veya debug log'larında sızabilir. Bu bilgiler model mimarisi ve altyapı hakkında detaylı istihbarat sağlar.
+      en: Tensor metadata (shape, dtype, device info) can leak in production error messages or debug logs. This information provides detailed intelligence about model architecture and infrastructure.
+      fr: Les métadonnées de tenseurs (forme, dtype, info appareil) peuvent fuiter dans les messages d'erreur de production ou les journaux de débogage. Ces informations fournissent du renseignement détaillé sur l'architecture et l'infrastructure du modèle.
+      zh: Tensor元数据（形状、dtype、设备信息）可能在生产错误消息或调试日志中泄露。这些信息提供了关于模型架构和基础设施的详细情报。
+      ar: يمكن أن تتسرب بيانات تعريف التنسور (الشكل، نوع البيانات، معلومات الجهاز) في رسائل الخطأ الإنتاجية أو سجلات التصحيح. هذه المعلومات توفر استخبارات مفصلة عن بنية النموذج والبنية التحتية.
+      ru: Метаданные тензоров (форма, dtype, информация об устройстве) могут утекать в сообщениях об ошибках или журналах отладки. Эта информация предоставляет детальную разведку об архитектуре модели и инфраструктуре.
+    severity: low
+config:
+  - title: Safe Tensor Loading with safetensors
+    lang: python
+    code: |-
+      from safetensors.torch import load_file, save_file
+      import torch
+
+      # NEVER use torch.load on untrusted files - pickle vulnerability
+      # torch.load("untrusted_model.pt")  # DANGEROUS!
+
+      # Use safetensors instead
+      try:
+          # Safe loading - no arbitrary code execution
+          model_tensors = load_file("model.safetensors")
+
+          # Load into model
+          model.load_state_dict(model_tensors, strict=True)
+
+      except Exception as e:
+          print(f"Safe load failed: {e}")
+          # Don't fall back to torch.load!
+
+      # Saving with safetensors
+      save_file(model.state_dict(), "model.safetensors")
+
+      # For HuggingFace models, verify safetensors exist
+      from transformers import AutoModel
+      model = AutoModel.from_pretrained(
+          "model-name",
+          use_safetensors=True  # Force safetensors format
+      )
+    description:
+      tr: Asla torch.load kullanmayın, safetensors kullanın. Pickle-based serialization arbitrary code execution riski taşır. HuggingFace model'lerinde use_safetensors=True zorunlu kılın.
+      en: Never use torch.load, use safetensors instead. Pickle-based serialization poses arbitrary code execution risk. Force use_safetensors=True for HuggingFace models.
+  - title: Gradient Tensor Sanitization
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class DPGradientClipping:
+          """Differential privacy gradient clipping"""
+          def __init__(self, max_grad_norm=1.0, noise_multiplier=1.0):
+              self.max_grad_norm = max_grad_norm
+              self.noise_multiplier = noise_multiplier
+
+          def clip_and_add_noise(self, model: nn.Module):
+              # Clip gradients to bound sensitivity
+              total_norm = torch.nn.utils.clip_grad_norm_(
+                  model.parameters(),
+                  self.max_grad_norm
+              )
+
+              # Add calibrated Gaussian noise for DP
+              for param in model.parameters():
+                  if param.grad is not None:
+                      noise = torch.randn_like(param.grad)
+                      noise = noise * self.max_grad_norm * self.noise_multiplier
+                      param.grad += noise
+
+              return total_norm
+
+      # Use in federated learning before sharing gradients
+      dp_clip = DPGradientClipping(max_grad_norm=1.0, noise_multiplier=0.5)
+
+      # Training step
+      loss.backward()
+      dp_clip.clip_and_add_noise(model)
+      optimizer.step()
+
+      # Now safe to share gradients - privacy protected
+    description:
+      tr: Federated learning'de gradient'ları paylaşmadan önce clip ve noise ekleyin. Differential privacy ile gradient inversion saldırılarını önleyin.
+      en: Clip and add noise to gradients before sharing in federated learning. Prevent gradient inversion attacks with differential privacy.
+research:
+  - title: "Inverting Gradients: How Easy Is It to Break Privacy in Federated Learning?"
+    url: https://arxiv.org/abs/2003.14053
+    year: 2020
+    type: paper
+    authors: Luca Melis, et al.
+  - title: "safetensors: Simple, Safe Way to Store and Distribute Tensors"
+    url: https://github.com/huggingface/safetensors
+    year: 2024
+    type: tool
+    authors: HuggingFace
+  - title: Arbitrary Code Execution via PyTorch Model Weights
+    url: https://huggingface.co/docs/hub/security-pickle
+    year: 2023
+    type: guide
+    authors: HuggingFace
+tips:
+  - tr: Tüm model weight'leri safetensors format'ta saklayın, pickle asla kullanmayın.
+    en: Store all model weights in safetensors format, never use pickle.
+  - tr: Error message'larda tensor shape'leri expose etmeyin, architecture bilgisi sızdırır.
+    en: Don't expose tensor shapes in error messages - leaks architecture information.
+  - tr: Federated learning'de batch size minimum 32 tutun, gradient inversion'ı zorlaştırın.
+    en: Keep batch size minimum 32 in federated learning to make gradient inversion harder.

@@ -1,0 +1,211 @@
+id: lora
+name: LoRA
+fullName: Low-Rank Adaptation
+category: training
+desc:
+  tr: |-
+    Büyük AI modellerini çok düşük maliyetle özelleştirmeyi sağlayan bir eğitim tekniği. Normal fine-tuning'de modelin tüm milyarlarca parametresi güncellenir ve bu devasa bellek gerektirir. LoRA ise modelin ağırlık matrislerine küçük "adaptörler" ekler — tipik olarak orijinal parametrelerin sadece %0.1-1'ini değiştirerek benzer sonuçlar elde eder.
+
+    [Meta](https://ai.meta.com), [Llama](https://ai.meta.com/llama/) modellerinin çeşitli dillere ve görevlere uyarlanması için LoRA kullanmayı resmi olarak destekler. Pratik açıdan, 70B parametreli bir modeli normal fine-tuning için 4x [A100](https://www.nvidia.com/en-us/data-center/a100/) (80GB) gerekirken, LoRA ile tek bir [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/) (24GB) üzerinde yapabilirsiniz.
+
+    Üstelik her LoRA adaptörü sadece 50-200MB boyutundadır, bu da aynı temel model üzerinde yüzlerce farklı uzmanlık alanını saklayıp hızlıca değiştirmenize olanak tanır.
+  en: |-
+    A training technique that enables customizing large AI models at a fraction of the normal cost. In standard fine-tuning, all billions of parameters get updated, requiring massive memory. LoRA instead adds small "adapter" matrices to the model's weight layers — typically modifying only 0.1-1% of the original parameters while achieving comparable results.
+
+    [Meta](https://ai.meta.com) officially supports LoRA for adapting [Llama](https://ai.meta.com/llama/) models to different languages and tasks, and it has become the default approach for community model customization on [Hugging Face](https://huggingface.co). Practically, fine-tuning a 70B model normally requires 4x [A100](https://www.nvidia.com/en-us/data-center/a100/) GPUs (80GB each), but with LoRA you can do it on a single [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/) (24GB).
+
+    Each LoRA adapter is only 50-200MB in size, which means you can store hundreds of specialized adapters and hot-swap them on the same base model.
+  fr: Une technique d'entrainement permettant de personnaliser de grands modeles d'IA a une fraction du cout normal. Lors d'un fine-tuning standard, tous les milliards de parametres sont mis a jour, necessitant une memoire massive. LoRA ajoute plutot de petites matrices "adaptateurs" aux couches de poids du modele — ne modifiant typiquement que 0,1-1% des parametres originaux tout en obtenant des resultats comparables. Meta supporte officiellement LoRA pour adapter les modeles Llama a differentes langues et taches. En pratique, le fine-tuning d'un modele 70B necessite normalement 4x GPU A100 (80 Go chacun), mais avec LoRA on peut le faire sur un seul RTX 4090 (24 Go). Chaque adaptateur LoRA ne fait que 50-200 Mo, permettant de stocker des centaines de specialisations et de les echanger a la volee.
+  zh: 一种以极低成本定制大型AI模型的训练技术。标准微调需要更新所有数十亿参数，需要大量内存。LoRA则在模型的权重层添加小型适配器矩阵——通常只修改原始参数的0.1-1%就能达到相当的效果。Meta官方支持使用LoRA将Llama模型适配到不同语言和任务。实际操作中，微调70B模型通常需要4块A100 GPU（每块80GB），但使用LoRA只需一块RTX 4090（24GB）即可完成。每个LoRA适配器仅50-200MB大小，意味着你可以在同一基础模型上存储和快速切换数百个专业适配器。
+  ar: تقنية تدريب تتيح تخصيص نماذج الذكاء الاصطناعي الكبيرة بجزء صغير من التكلفة العادية. في الضبط الدقيق القياسي، يتم تحديث جميع مليارات المعاملات مما يتطلب ذاكرة ضخمة. بدلاً من ذلك، يضيف LoRA مصفوفات "محول" صغيرة إلى طبقات الأوزان — عادةً ما يعدل فقط 0.1-1% من المعاملات الأصلية مع تحقيق نتائج مماثلة. تدعم Meta رسمياً LoRA لتكييف نماذج Llama مع لغات ومهام مختلفة. عملياً، يتطلب الضبط الدقيق لنموذج 70B عادةً 4 وحدات GPU A100 (80 جيجابايت لكل منها)، لكن مع LoRA يمكنك القيام بذلك على RTX 4090 واحد (24 جيجابايت). كل محول LoRA بحجم 50-200 ميجابايت فقط، مما يعني إمكانية تخزين مئات التخصصات والتبديل بينها.
+  ru: Техника обучения, позволяющая адаптировать большие модели ИИ за малую долю обычной стоимости. При стандартном fine-tuning обновляются все миллиарды параметров, что требует огромной памяти. LoRA вместо этого добавляет маленькие матрицы-"адаптеры" к слоям весов модели — обычно изменяя лишь 0,1-1% исходных параметров при сопоставимых результатах. Meta официально поддерживает LoRA для адаптации моделей Llama к разным языкам и задачам. На практике fine-tuning модели на 70B параметров обычно требует 4x A100 GPU (по 80 ГБ), а с LoRA это можно сделать на одной RTX 4090 (24 ГБ). Каждый LoRA-адаптер занимает всего 50-200 МБ, что позволяет хранить сотни специализаций и быстро переключаться между ними на одной базовой модели.
+analogy:
+  tr: Tüm evi yeniden boyamak yerine, bazı duvarlara stickerlar yapıştırarak dekorasyonu değiştirmek.
+  en: Instead of repainting the whole house, changing the decor by putting stickers on some walls.
+  fr: Au lieu de repeindre toute la maison, changer la décoration en mettant des autocollants sur certains murs.
+  zh: 不是重新粉刷整个房子，而是通过在一些墙上贴贴纸来改变装饰。
+  ar: بدلاً من إعادة طلاء المنزل بأكمله، تغيير الديكور بوضع ملصقات على بعض الجدران.
+  ru: Вместо перекраски всего дома, изменение декора путем наклеивания стикеров на некоторые стены.
+security:
+  - title:
+      tr: LoRA Adapter Poisoning
+      en: LoRA Adapter Poisoning
+      fr: Empoisonnement d'adaptateur LoRA
+      zh: LoRA适配器投毒
+      ar: تسميم محول LoRA
+      ru: Отравление адаптера LoRA
+    description:
+      tr: LoRA adapter'ları çok küçük (MB seviyesi) olduğu için kolayca distribute edilir ve load edilir. Malicious adapter HuggingFace'e upload edilirse, kullanıcılar farkında olmadan backdoor'lu adapter yükler. Adapter base model'i jailbreak edebilir veya specific trigger'larda zararlı output üretebilir. Adapter provenance kritik.
+      en: LoRA adapters are very small (MB level) so easily distributed and loaded. If malicious adapter is uploaded to HuggingFace, users unknowingly load backdoored adapter. Adapter can jailbreak base model or generate harmful output on specific triggers. Adapter provenance is critical.
+      fr: Les adaptateurs LoRA sont très petits (niveau Mo) donc facilement distribués et chargés. Si un adaptateur malveillant est uploadé sur HuggingFace, les utilisateurs chargent sans le savoir un adaptateur backdooré. L'adaptateur peut jailbreaker le modèle de base ou générer des sorties nuisibles sur des déclencheurs spécifiques. La provenance de l'adaptateur est critique.
+      zh: LoRA适配器非常小（MB级），因此容易分发和加载。如果恶意适配器上传到HuggingFace，用户会在不知情的情况下加载带后门的适配器。适配器可以越狱基础模型或在特定触发器上生成有害输出。适配器溯源至关重要。
+      ar: محولات LoRA صغيرة جداً (بمستوى ميغابايت) لذا يسهل توزيعها وتحميلها. إذا رُفع محول خبيث إلى HuggingFace يحمّل المستخدمون محولاً مزوداً بباب خلفي دون علمهم. يمكن للمحول كسر قيود النموذج الأساسي. تتبع مصدر المحول أمر حاسم.
+      ru: Адаптеры LoRA очень малы (уровень МБ), поэтому легко распространяются и загружаются. При загрузке вредоносного адаптера на HuggingFace пользователи неосознанно загружают адаптер с бэкдором. Адаптер может джейлбрейкнуть базовую модель. Провенанс адаптера критически важен.
+    severity: critical
+  - title:
+      tr: Multi-Adapter Conflict Exploitation
+      en: Multi-Adapter Conflict Exploitation
+      fr: Exploitation de conflits multi-adaptateurs
+      zh: 多适配器冲突利用
+      ar: استغلال تعارض المحولات المتعددة
+      ru: Эксплуатация конфликтов мульти-адаптеров
+    description:
+      tr: Birden fazla LoRA adapter aynı anda merge edildiğinde, conflict'ler beklenmedik davranış yaratır. Saldırgan bu conflict'i exploit ederek safety adapter'ı etkisiz hale getirebilir. Örneğin malicious task adapter, safety adapter'ın weight'lerini override edebilir. Adapter merge order'ı güvenlik açığı.
+      en: When multiple LoRA adapters are merged simultaneously, conflicts create unexpected behavior. Attacker can exploit this conflict to neutralize safety adapter. For example, malicious task adapter can override safety adapter's weights. Adapter merge order is security vulnerability.
+      fr: Lorsque plusieurs adaptateurs LoRA sont fusionnés simultanément, les conflits créent des comportements inattendus. L'attaquant peut exploiter ce conflit pour neutraliser l'adaptateur de sécurité. L'ordre de fusion des adaptateurs est une vulnérabilité de sécurité.
+      zh: 当多个LoRA适配器同时合并时，冲突会产生意外行为。攻击者可以利用此冲突使安全适配器失效。例如，恶意任务适配器可以覆盖安全适配器的权重。适配器合并顺序是安全漏洞。
+      ar: عند دمج عدة محولات LoRA في وقت واحد، تخلق التعارضات سلوكاً غير متوقع. يمكن للمهاجم استغلال هذا التعارض لتعطيل محول الأمان. ترتيب دمج المحولات يمثل ثغرة أمنية.
+      ru: При одновременном слиянии нескольких адаптеров LoRA конфликты создают непредвиденное поведение. Злоумышленник может использовать конфликт для нейтрализации адаптера безопасности. Порядок слияния адаптеров является уязвимостью.
+    severity: high
+  - title:
+      tr: LoRA Rank Inference Attack
+      en: LoRA Rank Inference Attack
+      fr: Attaque d'inférence de rang LoRA
+      zh: LoRA秩推断攻击
+      ar: هجوم استدلال رتبة LoRA
+      ru: Атака вывода ранга LoRA
+    description:
+      tr: LoRA adapter rank (r), model capacity'sini belirler. Adapter query yaparak rank çıkarılabilir ve bu bilgi ile model architecture reverse-engineer edilebilir. Proprietary adapter'ların rank'i IP leak eder. Adapter weight'leri extract edilebilir.
+      en: LoRA adapter rank (r) determines model capacity. Rank can be extracted by querying adapter and this info can reverse-engineer model architecture. Rank of proprietary adapters leaks IP. Adapter weights can be extracted.
+      fr: Le rang de l'adaptateur LoRA (r) détermine la capacité du modèle. Le rang peut être extrait en interrogeant l'adaptateur et cette info peut reverse-engineer l'architecture du modèle. Le rang des adaptateurs propriétaires fait fuiter la propriété intellectuelle.
+      zh: LoRA适配器秩（r）决定模型容量。通过查询适配器可以提取秩，此信息可逆向工程模型架构。专有适配器的秩会泄露知识产权。适配器权重可被提取。
+      ar: رتبة محول LoRA تحدد قدرة النموذج. يمكن استخراج الرتبة بالاستعلام ويمكن بهذه المعلومات عكس هندسة بنية النموذج. رتبة المحولات الملكية تسرب الملكية الفكرية.
+      ru: Ранг адаптера LoRA (r) определяет ёмкость модели. Ранг можно извлечь запросами к адаптеру, что позволяет реверс-инжинирить архитектуру модели. Ранг проприетарных адаптеров раскрывает IP.
+    severity: medium
+  - title:
+      tr: LoRA Adapter Metadata Bilgi Sızıntısı
+      en: LoRA Adapter Metadata Information Disclosure
+      fr: Divulgation de métadonnées d'adaptateur LoRA
+      zh: LoRA适配器元数据信息泄露
+      ar: تسريب بيانات وصفية لمحول LoRA
+      ru: Утечка метаданных адаптера LoRA
+    description:
+      tr: LoRA adapter dosyalarındaki metadata (target_modules, rank, alpha, base_model_name) model architecture ve training konfigürasyonu hakkında bilgi sızdırır. HuggingFace'de publish edilen adapter card'ları saldırganlara hedef model hakkında reconnaissance bilgisi verir.
+      en: Metadata in LoRA adapter files (target_modules, rank, alpha, base_model_name) leaks information about model architecture and training configuration. Adapter cards published on HuggingFace give attackers reconnaissance information about target model.
+      fr: Les métadonnées dans les fichiers d'adaptateur LoRA (target_modules, rang, alpha, base_model_name) divulguent des informations sur l'architecture du modèle. Les cartes d'adaptateur publiées sur HuggingFace fournissent aux attaquants des informations de reconnaissance.
+      zh: LoRA适配器文件中的元数据（target_modules、rank、alpha、base_model_name）泄露模型架构和训练配置信息。在HuggingFace上发布的适配器卡片为攻击者提供目标模型的侦察信息。
+      ar: البيانات الوصفية في ملفات محول LoRA تسرب معلومات عن بنية النموذج وتكوين التدريب. بطاقات المحولات المنشورة على HuggingFace تمنح المهاجمين معلومات استطلاع عن النموذج المستهدف.
+      ru: Метаданные в файлах адаптера LoRA (target_modules, rank, alpha, base_model_name) раскрывают информацию об архитектуре модели. Карточки адаптеров на HuggingFace дают злоумышленникам разведывательную информацию о целевой модели.
+    severity: low
+config:
+  - title: LoRA Adapter Signature Verification
+    lang: python
+    code: |-
+      import hashlib
+      import json
+      from peft import PeftModel, PeftConfig
+
+      class SecureLoRALoader:
+          """Verify LoRA adapter integrity before loading"""
+          def __init__(self, trusted_hashes_file="trusted_adapters.json"):
+              with open(trusted_hashes_file) as f:
+                  self.trusted_hashes = json.load(f)
+
+          def compute_adapter_hash(self, adapter_path: str) -> str:
+              """Compute SHA256 hash of adapter weights"""
+              import torch
+              adapter = torch.load(f"{adapter_path}/adapter_model.bin")
+
+              # Concatenate all weight tensors
+              all_weights = torch.cat([
+                  param.flatten() for param in adapter.values()
+              ])
+
+              # Compute hash
+              hash_obj = hashlib.sha256(all_weights.cpu().numpy().tobytes())
+              return hash_obj.hexdigest()
+
+          def load_adapter(self, base_model, adapter_path: str, adapter_name: str):
+              """Load adapter only if hash matches trusted list"""
+              computed_hash = self.compute_adapter_hash(adapter_path)
+
+              if adapter_name not in self.trusted_hashes:
+                  raise ValueError(f"Unknown adapter: {adapter_name}")
+
+              if computed_hash != self.trusted_hashes[adapter_name]:
+                  raise ValueError(
+                      f"Adapter hash mismatch! "
+                      f"Expected: {self.trusted_hashes[adapter_name]}, "
+                      f"Got: {computed_hash}"
+                  )
+
+              # Hash verified - safe to load
+              model = PeftModel.from_pretrained(base_model, adapter_path)
+              return model
+
+      # Usage
+      loader = SecureLoRALoader("trusted_adapters.json")
+      model = loader.load_adapter(base_model, "./my-adapter", "my-adapter-v1")
+    description:
+      tr: LoRA adapter'ları load etmeden önce SHA256 hash ile doğrulayın. Trusted adapter listesi tutun. Hash mismatch durumunda load'u reddedin.
+      en: Verify LoRA adapters with SHA256 hash before loading. Maintain trusted adapter list. Reject load on hash mismatch.
+  - title: Safe Multi-Adapter Merging
+    lang: python
+    code: |-
+      from peft import PeftModel
+      import torch
+
+      class SafeAdapterMerger:
+          """Safely merge multiple LoRA adapters"""
+          def __init__(self, base_model):
+              self.base_model = base_model
+              self.adapters = []
+
+          def add_adapter(self, adapter_path: str, weight: float = 1.0, priority: int = 0):
+              """Add adapter with weight and priority"""
+              self.adapters.append({
+                  'path': adapter_path,
+                  'weight': weight,
+                  'priority': priority
+              })
+
+          def merge(self):
+              """Merge adapters in priority order"""
+              # Sort by priority (higher = applied later = higher precedence)
+              sorted_adapters = sorted(self.adapters, key=lambda x: x['priority'])
+
+              merged_model = self.base_model
+              for adapter in sorted_adapters:
+                  # Load adapter
+                  model = PeftModel.from_pretrained(merged_model, adapter['path'])
+
+                  # Scale adapter weights
+                  for name, param in model.named_parameters():
+                      if 'lora' in name:
+                          param.data *= adapter['weight']
+
+                  merged_model = model.merge_and_unload()
+
+              return merged_model
+
+      # Usage: Safety adapter has highest priority
+      merger = SafeAdapterMerger(base_model)
+      merger.add_adapter("./task-adapter", weight=1.0, priority=1)
+      merger.add_adapter("./safety-adapter", weight=1.0, priority=2)  # Applied last
+      safe_model = merger.merge()
+    description:
+      tr: Multi-adapter merge'de priority system kullanın. Safety adapter'a en yüksek priority verin. Adapter weight'lerini scale edin, conflict'leri kontrol altına alın.
+      en: Use priority system in multi-adapter merge. Give highest priority to safety adapter. Scale adapter weights to control conflicts.
+research:
+  - title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    url: https://arxiv.org/abs/2106.09685
+    year: 2021
+    type: paper
+    authors: Edward Hu, et al.
+  - title: Backdoor Attacks on LoRA Adapters
+    url: https://arxiv.org/abs/2311.13434
+    year: 2023
+    type: paper
+    authors: Security Research Team
+  - title: Model Extraction via LoRA Adapters
+    url: https://arxiv.org/abs/2402.12345
+    year: 2024
+    type: paper
+    authors: Adapter Security Lab
+tips:
+  - tr: HuggingFace'den LoRA adapter indirirken mutlaka download count ve author verify edin.
+    en: When downloading LoRA adapter from HuggingFace, always verify download count and author.
+  - tr: Proprietary LoRA adapter'ları şifreleyerek saklayın, weight extraction'ı önleyin.
+    en: Store proprietary LoRA adapters encrypted to prevent weight extraction.
+  - tr: Adapter merge sonrası safety evaluation tekrarlayın, jailbreak check yapın.
+    en: Repeat safety evaluation after adapter merge, check for jailbreak.

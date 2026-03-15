@@ -1,0 +1,232 @@
+id: hallucination
+name: Hallucination
+fullName: Hallucination
+category: models
+desc:
+  tr: |-
+    AI modelinin doğru olmayan bilgiyi son derece güveniliymiş gibi uydurması. Doğru gibi görünür, doğru gibi duyulur ama tamamen uydurmadır.
+
+    Ünlü bir örnek: 2023'te bir avukat [ChatGPT](https://openai.com/chatgpt)'yi hukuki araştırma için kullanmış ve mahkemeye hiç var olmayan dava referansları sunmuş — bu olay büyük skandala yol acti. Hallucination'in sebebi teknik: LLM'ler temelde 'en olası bir sonraki kelimeyi' tahmin eder, gerçekten 'biliyor' olmalari gerekmez. Bu nedenle model, bilmediği bir konuda bile ikna edici görünen ama uydurma cevaplar üretebilir.
+
+    RAG (Retrieval Augmented Generation), kaynak atfı zorlama ve sıcaklik (temperature) parametresini düşürme gibi yöntemler hallucination'i azaltır ama tamamen ortadan kaldırmaz. AI çıktısini kritik kararlarda kullanırken her zaman doğrulama yapmanız şart.
+  en: |-
+    When an AI model confidently generates information that iş not true, presenting fabricated content as fact. A famous example occurred in 2023 when a lawyer used [ChatGPT](https://openai.com/chatgpt) for legal research and submitted court filings citing cases that never existed — the fabricated citations looked completely real with proper case numbers and judicial opinions, but were entirely made up.
+
+    Hallucination happens because LLMs fundamentally predict the 'most likely next token' rather than truly 'knowing' facts, so they can produce convincing but fabricated answers about topics they lack knowledge of.
+
+    Techniques like RAG (Retrieval Augmented Generation), citation enforcement, lowering temperature, and grounding with external data reduce hallucinations but cannot eliminate them entirely. This remains one of the biggest reliability challenges in AI and iş the primary reason you should always verify AI-generated content, especially for critical decisions in medicine, law, or engineering.
+  fr: Quand un modele d'IA genere avec assurance des informations fausses, presentant du contenu fabrique comme des faits. Un exemple celebre s'est produit en 2023 quand un avocat a utilise ChatGPT pour des recherches juridiques et a soumis des documents citant des affaires qui n'ont jamais existe — les citations fabriquees semblaient parfaitement reelles avec des numeros de dossier et des opinions judiciaires, mais etaient entierement inventees. L'hallucination se produit parce que les LLM predisent fondamentalement le 'prochain token le plus probable' plutot que de 'connaitre' veritablement les faits, ils peuvent donc produire des reponses convaincantes mais fabriquees. Des techniques comme le RAG, l'application de citations, la reduction de la temperature et l'ancrage avec des donnees externes reduisent les hallucinations mais ne les eliminent pas entierement. Cela reste l'un des plus grands defis de fiabilite en IA et la raison principale pour laquelle vous devez toujours verifier le contenu genere par l'IA.
+  zh: AI模型自信地生成不真实的信息，将捏造的内容当作事实呈现。一个著名的例子发生在2023年，一位律师使用ChatGPT进行法律研究，并提交了引用从未存在过的案例的法庭文件——这些捏造的引用看起来完全真实，有正确的案件编号和司法意见，但全是编造的。幻觉发生的原因在于LLM本质上是预测'最可能的下一个token'，而不是真正'知道'事实，因此它们可以对自己缺乏知识的主题产生令人信服但捏造的答案。RAG（检索增强生成）、强制引用来源、降低温度参数和使用外部数据锚定等技术可以减少幻觉，但无法完全消除。这仍然是AI最大的可靠性挑战之一，也是你应该始终验证AI生成内容的主要原因，尤其是在医疗、法律或工程等关键决策中。
+  ar: عندما يولّد نموذج الذكاء الاصطناعي بثقة معلومات غير صحيحة، مقدماً محتوى ملفقاً كحقائق. مثال شهير حدث في 2023 عندما استخدم محامٍ ChatGPT للبحث القانوني وقدم وثائق محكمة تستشهد بقضايا لم تكن موجودة قط — بدت الاستشهادات الملفقة حقيقية تماماً بأرقام قضايا وآراء قضائية صحيحة، لكنها كانت مختلقة بالكامل. يحدث الهلوسة لأن نماذج LLM تتنبأ أساساً بـ 'الرمز التالي الأكثر احتمالاً' بدلاً من 'معرفة' الحقائق فعلياً، لذا يمكنها إنتاج إجابات مقنعة لكن ملفقة. تقنيات مثل RAG وفرض الاستشهاد وخفض درجة الحرارة والتأريض بالبيانات الخارجية تقلل الهلوسة لكن لا تلغيها تماماً. يظل هذا أحد أكبر تحديات الموثوقية في الذكاء الاصطناعي والسبب الرئيسي لضرورة التحقق دائماً من المحتوى المولّد بالذكاء الاصطناعي، خاصة للقرارات الحرجة في الطب والقانون والهندسة.
+  ru: Когда модель ИИ уверенно генерирует недостоверную информацию, представляя выдуманный контент как факт. Знаменитый случай произошёл в 2023 году, когда адвокат использовал ChatGPT для юридического исследования и подал в суд документы со ссылками на дела, которых никогда не существовало — выдуманные цитаты выглядели абсолютно реальными с правильными номерами дел и судебными мнениями, но были полностью сфабрикованы. Галлюцинации происходят потому, что LLM фундаментально предсказывают 'наиболее вероятный следующий токен', а не действительно 'знают' факты, поэтому могут создавать убедительные, но выдуманные ответы. Техники вроде RAG, принудительного цитирования, снижения температуры и привязки к внешним данным уменьшают галлюцинации, но не устраняют их полностью. Это остаётся одной из главных проблем надёжности ИИ и основной причиной, по которой всегда нужно проверять контент, созданный ИИ, особенно для критических решений в медицине, праве или инженерии.
+analogy:
+  tr: Öğrencinin bilmediği soruya uydurma cevap yazması — ikna edici ama yanlış.
+  en: A student writing a made-up answer to a question they don't know — convincing but wrong.
+  fr: Un étudiant écrivant une réponse inventée à une question qu'il ne connaît pas — convaincante mais fausse.
+  zh: 学生对不知道的问题编造答案——令人信服但错误。
+  ar: طالب يكتب إجابة مختلقة لسؤال لا يعرفه — مقنعة لكنها خاطئة.
+  ru: Студент пишет выдуманный ответ на вопрос, который не знает — убедительный, но неправильный.
+security:
+  - title:
+      tr: Hallucination-based Phishing
+      en: Hallucination-based Phishing
+      fr: Hameçonnage basé sur les hallucinations
+      zh: 基于幻觉的网络钓鱼
+      ar: التصيد الاحتيالي القائم على الهلوسة
+      ru: Фишинг на основе галлюцинаций
+    description:
+      tr: LLM'ler halüsinasyon yaparak gerçek görünen ancak sahte bilgiler (URL, email, API endpoint) üretebilir. Kullanıcılar bu fake bilgilere güvenerek phishing saldırılarına maruz kalabilir.
+      en: LLMs can hallucinate and generate realistic but fake information (URLs, emails, API endpoints). Users trusting this fake information can be exposed to phishing attacks.
+      fr: Les LLM peuvent halluciner et générer des informations réalistes mais fausses (URL, emails, endpoints API). Les utilisateurs faisant confiance à ces fausses informations peuvent être exposés à des attaques de phishing.
+      zh: LLM可能产生幻觉，生成看起来真实但虚假的信息（URL、电子邮件、API端点）。信任这些虚假信息的用户可能遭受网络钓鱼攻击。
+      ar: يمكن لنماذج اللغة الكبيرة أن تهلوس وتولد معلومات واقعية لكن زائفة (روابط، بريد إلكتروني، نقاط نهاية API). يمكن أن يتعرض المستخدمون الذين يثقون بهذه المعلومات الزائفة لهجمات التصيد الاحتيالي.
+      ru: LLM могут галлюцинировать и генерировать реалистичную, но ложную информацию (URL, email, API-эндпоинты). Пользователи, доверяющие этой ложной информации, могут подвергнуться фишинговым атакам.
+    severity: high
+  - title:
+      tr: Fake Citation Exploitation
+      en: Fake Citation Exploitation
+      fr: Exploitation de fausses citations
+      zh: 虚假引用利用
+      ar: استغلال الاستشهادات الزائفة
+      ru: Эксплуатация поддельных цитат
+    description:
+      tr: LLM olmayan academic paper'lar veya kaynak linkler uydurabilir. Saldırganlar bu fake citation'ları exploit ederek malicious site'lara yönlendirme yapabilir.
+      en: LLM can fabricate non-existent academic papers or source links. Attackers can exploit these fake citations to redirect to malicious sites.
+      fr: Les LLM peuvent fabriquer des articles académiques ou des liens source inexistants. Les attaquants peuvent exploiter ces fausses citations pour rediriger vers des sites malveillants.
+      zh: LLM可以编造不存在的学术论文或来源链接。攻击者可以利用这些虚假引用将用户重定向到恶意网站。
+      ar: يمكن لنماذج اللغة الكبيرة اختلاق أوراق أكاديمية أو روابط مصدرية غير موجودة. يمكن للمهاجمين استغلال هذه الاستشهادات الزائفة لإعادة التوجيه إلى مواقع خبيثة.
+      ru: LLM могут фабриковать несуществующие академические статьи или ссылки на источники. Злоумышленники могут эксплуатировать эти поддельные цитаты для перенаправления на вредоносные сайты.
+    severity: medium
+  - title:
+      tr: Confidence Misrepresentation
+      en: Confidence Misrepresentation
+      fr: Représentation trompeuse de la confiance
+      zh: 置信度误导
+      ar: تمثيل مضلل للثقة
+      ru: Искажение уверенности
+    description:
+      tr: LLM yanlış bilgiyi yüksek confidence ile sunabilir. Güvenlik kararlarında (threat detection, vulnerability assessment) kullanılırsa, false sense of security yaratır.
+      en: LLM can present wrong information with high confidence. If used in security decisions (threat detection, vulnerability assessment), creates false sense of security.
+      fr: Les LLM peuvent présenter des informations erronées avec une grande confiance. Utilisés pour des décisions de sécurité (détection de menaces, évaluation de vulnérabilités), ils créent un faux sentiment de sécurité.
+      zh: LLM可能以高置信度呈现错误信息。如果用于安全决策（威胁检测、漏洞评估），会产生虚假的安全感。
+      ar: يمكن لنماذج اللغة الكبيرة تقديم معلومات خاطئة بثقة عالية. إذا استُخدمت في قرارات أمنية (كشف التهديدات، تقييم الثغرات)، فإنها تخلق إحساساً زائفاً بالأمان.
+      ru: LLM может представлять неверную информацию с высокой уверенностью. При использовании в решениях по безопасности (обнаружение угроз, оценка уязвимостей) создаёт ложное чувство безопасности.
+    severity: high
+  - title:
+      tr: Halüsinasyon Tespit Loglama Eksikliği
+      en: Hallucination Detection Logging Gap
+      fr: Lacune de journalisation pour la détection des hallucinations
+      zh: 幻觉检测日志记录缺口
+      ar: فجوة تسجيل اكتشاف الهلوسة
+      ru: Пробел в логировании обнаружения галлюцинаций
+    description:
+      tr: LLM çıktılarının doğruluk oranı loglanmadığında, hangi yanıtların halüsinasyon olduğu tespit edilemez. Bu durum, özellikle otomatik pipeline'larda fark edilmeyen hataların birikmesine yol açar.
+      en: When LLM output accuracy rates are not logged, hallucinated responses cannot be identified. This leads to accumulation of undetected errors, especially in automated pipelines.
+      fr: Lorsque les taux de précision des sorties LLM ne sont pas journalisés, les réponses hallucinées ne peuvent pas être identifiées. Cela entraîne une accumulation d'erreurs non détectées, surtout dans les pipelines automatisés.
+      zh: 当LLM输出的准确率未被记录时，无法识别幻觉响应。这会导致未检测到的错误累积，尤其是在自动化流水线中。
+      ar: عندما لا يتم تسجيل معدلات دقة مخرجات نماذج اللغة الكبيرة، لا يمكن تحديد الاستجابات الهلوسية. هذا يؤدي إلى تراكم أخطاء غير مكتشفة، خاصة في خطوط الأنابيب المؤتمتة.
+      ru: Когда показатели точности вывода LLM не логируются, галлюцинированные ответы невозможно идентифицировать. Это приводит к накоплению незамеченных ошибок, особенно в автоматизированных pipeline.
+    severity: low
+config:
+  - title: Hallucination Detection and Mitigation
+    lang: python
+    code: |-
+      import re
+      from typing import List, Dict
+
+      class HallucinationGuard:
+          def __init__(self):
+              self.fact_checker = FactChecker()
+
+          def detect_hallucinations(self, llm_response: str, context: str = None) -> Dict:
+              """Detect potential hallucinations in LLM response"""
+
+              issues = []
+
+              # Check for unverified URLs
+              urls = re.findall(r'https?://[^\s]+', llm_response)
+              for url in urls:
+                  if not self._verify_url_exists(url):
+                      issues.append({
+                          "type": "fake_url",
+                          "content": url,
+                          "severity": "high"
+                      })
+
+              # Check for fake citations
+              citations = re.findall(r'\[\d+\]|\(.*?\d{4}\)', llm_response)
+              if citations and not context:
+                  issues.append({
+                      "type": "unverified_citation",
+                      "content": f"{len(citations)} citations found",
+                      "severity": "medium"
+                  })
+
+              # Check for specific claims
+              specific_claims = self._extract_specific_claims(llm_response)
+              for claim in specific_claims:
+                  if context and claim not in context:
+                      issues.append({
+                          "type": "unsupported_claim",
+                          "content": claim,
+                          "severity": "high"
+                      })
+
+              # Detect overconfidence markers
+              overconfident_phrases = [
+                  "definitely", "certainly", "absolutely", "100%",
+                  "without a doubt", "guaranteed"
+              ]
+              for phrase in overconfident_phrases:
+                  if phrase in llm_response.lower():
+                      issues.append({
+                          "type": "overconfidence",
+                          "content": phrase,
+                          "severity": "low"
+                      })
+
+              return {
+                  "hallucinations_detected": len(issues) > 0,
+                  "issues": issues,
+                  "risk_score": self._calculate_risk(issues)
+              }
+
+          def _verify_url_exists(self, url: str) -> bool:
+              """Check if URL is reachable (basic check)"""
+              try:
+                  import requests
+                  response = requests.head(url, timeout=3, allow_redirects=True)
+                  return response.status_code < 400
+              except:
+                  return False
+
+          def _extract_specific_claims(self, text: str) -> List[str]:
+              """Extract specific factual claims from text"""
+              # Simplified: extract sentences with numbers/dates
+              sentences = text.split('.')
+              claims = []
+              for sent in sentences:
+                  if re.search(r'\d{4}|\d+%|\$\d+', sent):
+                      claims.append(sent.strip())
+              return claims
+
+          def _calculate_risk(self, issues: List[Dict]) -> float:
+              """Calculate overall hallucination risk score"""
+              if not issues:
+                  return 0.0
+
+              severity_weights = {"high": 1.0, "medium": 0.5, "low": 0.2}
+              total = sum(severity_weights[issue["severity"]] for issue in issues)
+              return min(total / len(issues), 1.0)
+
+          def add_uncertainty_markers(self, llm_response: str) -> str:
+              """Add uncertainty markers to response"""
+              disclaimer = "
+
+      ⚠️ Note: This response may contain inaccuracies. Please verify important information from authoritative sources."
+              return llm_response + disclaimer
+
+      class FactChecker:
+          def verify(self, claim: str) -> bool:
+              # Implement external fact-checking API
+              return True
+
+      # Usage
+      guard = HallucinationGuard()
+
+      llm_output = "According to https://fake-site.com/study, 95% of experts agree..."
+      result = guard.detect_hallucinations(llm_output)
+
+      if result["hallucinations_detected"]:
+          print(f"⚠️ Risk Score: {result['risk_score']:.2f}")
+          for issue in result["issues"]:
+              print(f"  - {issue['type']}: {issue['content']}")
+
+          # Add disclaimer
+          safe_output = guard.add_uncertainty_markers(llm_output)
+    description:
+      tr: Hallucination detection ve mitigation. URL verification, fake citation detection, confidence scoring.
+      en: Hallucination detection and mitigation. URL verification, fake citation detection, confidence scoring.
+research:
+  - title: Survey of Hallucination in Natural Language Generation
+    url: https://arxiv.org/abs/2202.03629
+    year: 2022
+    type: paper
+    authors: Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu
+  - title: "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection"
+    url: https://arxiv.org/abs/2303.08896
+    year: 2023
+    type: paper
+    authors: Potsawee Manakul, Adian Liusie, Mark J. F. Gales
+  - title: "OWASP Top 10 for LLM - LLM09: Overreliance"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: Kritik bilgiler için LLM çıktısını external source'larla cross-check edin.
+    en: Cross-check LLM output with external sources for critical information.
+  - tr: URL'leri kullanmadan önce erişilebilirlik kontrolü yapın.
+    en: Verify URL accessibility before using them.
+  - tr: Her LLM response'una uncertainty disclaimer ekleyin.
+    en: Add uncertainty disclaimer to every LLM response.

@@ -1,0 +1,185 @@
+id: mlflow
+name: MLflow
+fullName: MLflow
+category: ecosystem
+desc:
+  tr: |-
+    [Databricks](https://databricks.com) tarafından geliştirilen açık kaynak ML lifecycle yönetim platformu. Model eğitimi sırasında hyperparameter, metric, artifact (model weight, plot, log) tracking yapar. [MLflow Tracking](https://mlflow.org/docs/latest/tracking.html), [MLflow Projects](https://mlflow.org/docs/latest/projects.html), [MLflow Models](https://mlflow.org/docs/latest/models.html), [MLflow Registry](https://mlflow.org/docs/latest/model-registry.html) ile end-to-end ML workflow'unu yönetir.
+
+    ML ekipleri MLflow ile deney sonuçlarını karşılaştırır, en iyi modeli seçer, production'a deploy eder ve versioning yapar. [PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), [scikit-learn](https://scikit-learn.org), [XGBoost](https://xgboost.ai) gibi framework'lerle entegre. Artifact storage S3, Azure Blob, GCS gibi cloud provider'larda tutulabilir.
+
+    MLflow Model Registry production model'leri stage'lere ayırır: Staging, Production, Archived. A/B testing ve rollback için kritik. [REST API](https://mlflow.org/docs/latest/rest-api.html) ile otomatik model deployment pipeline'ları kurulabilir. [Kubernetes](https://kubernetes.io) ve [Docker](https://docker.com) native deployment desteği.
+
+    Security açısından MLflow Tracking Server authentication, artifact encryption, audit logging sağlar. Ancak default setup authentication disabled — production'da mutlaka [authentication plugin](https://mlflow.org/docs/latest/auth/index.html) kullanılmalı.
+  en: |-
+    Open-source ML lifecycle management platform developed by [Databricks](https://databricks.com). Tracks hyperparameters, metrics, and artifacts (model weights, plots, logs) during model training. Manages end-to-end ML workflow with [MLflow Tracking](https://mlflow.org/docs/latest/tracking.html), [MLflow Projects](https://mlflow.org/docs/latest/projects.html), [MLflow Models](https://mlflow.org/docs/latest/models.html), [MLflow Registry](https://mlflow.org/docs/latest/model-registry.html).
+
+    ML teams use MLflow to compare experiment results, select best model, deploy to production, and manage versioning. Integrates with frameworks like [PyTorch](https://pytorch.org), [TensorFlow](https://tensorflow.org), [scikit-learn](https://scikit-learn.org), [XGBoost](https://xgboost.ai). Artifact storage can be on cloud providers like S3, Azure Blob, GCS.
+
+    MLflow Model Registry organizes production models into stages: Staging, Production, Archived. Critical for A/B testing and rollback. Automated model deployment pipelines can be built with [REST API](https://mlflow.org/docs/latest/rest-api.html). [Kubernetes](https://kubernetes.io) and [Docker](https://docker.com) native deployment support.
+
+    For security, MLflow Tracking Server provides authentication, artifact encryption, and audit logging. However, default setup has authentication disabled — must use [authentication plugin](https://mlflow.org/docs/latest/auth/index.html) in production.
+  fr: Plateforme open-source de gestion du cycle de vie ML developpee par Databricks, suit les hyperparametres, metriques et artefacts pendant l'entraınement de modeles.
+  zh: Databricks开发的开源ML生命周期管理平台，在模型训练期间跟踪超参数、指标和工件。
+  ar: منصة إدارة دورة حياة التعلم الآلي مفتوحة المصدر طورتها Databricks، تتتبع المعاملات الفائقة والمقاييس والمصنوعات أثناء تدريب النموذج.
+  ru: Open-source платформа управления ML-lifecycle от Databricks, отслеживает гиперпараметры, метрики и артефакты во время обучения моделей.
+analogy:
+  tr: "Git + Docker Registry'nin ML versiyonu: Kod yerine model, commit yerine experiment, tag yerine production stage."
+  en: "ML version of Git + Docker Registry: Models instead of code, experiments instead of commits, production stages instead of tags."
+  fr: "Version ML de Git + Docker Registry : modeles au lieu de code, experiences au lieu de commits, stages de production au lieu de tags."
+  zh: Git + Docker Registry的ML版本：模型而非代码，实验而非提交，生产阶段而非标签。
+  ar: "نسخة التعلم الآلي من Git + Docker Registry: نماذج بدلاً من الكود، تجارب بدلاً من commits، مراحل إنتاج بدلاً من tags."
+  ru: "ML-версия Git + Docker Registry: модели вместо кода, эксперименты вместо коммитов, production-стадии вместо тегов."
+security:
+  - title:
+      tr: Artifact Poisoning - Malicious Model Upload
+      en: Artifact Poisoning - Malicious Model Upload
+      fr: Empoisonnement d'artefact - Telechargement de modele malveillant
+      zh: 工件投毒 - 恶意模型上传
+      ar: تسميم القطع الأثرية - رفع نموذج ضار
+      ru: Отравление артефактов - загрузка вредоносной модели
+    description:
+      tr: MLflow artifact store'a (S3, local filesystem) authentication olmadan erişilebilirse saldırgan zararlı model upload edebilir. Pickle-based model artifact'ları (PyTorch .pth) arbitrary code execution riski taşır. Production'da artifact integrity check (SHA256) ve signature validation yapılmalı.
+      en: If MLflow artifact store (S3, local filesystem) is accessible without authentication, attacker can upload malicious model. Pickle-based model artifacts (PyTorch .pth) carry arbitrary code execution risk. Must do artifact integrity check (SHA256) and signature validation in production.
+      fr: Si le stockage d'artefacts MLflow (S3, systeme de fichiers local) est accessible sans authentification, un attaquant peut telecharger un modele malveillant. Les artefacts de modele bases sur Pickle (PyTorch .pth) comportent un risque d'execution de code arbitraire. Il faut effectuer une verification d'integrite des artefacts (SHA256) et une validation de signature en production.
+      zh: 如果MLflow工件存储（S3、本地文件系统）在没有认证的情况下可访问，攻击者可以上传恶意模型。基于Pickle的模型工件（PyTorch .pth）存在任意代码执行风险。生产环境必须进行工件完整性检查（SHA256）和签名验证。
+      ar: إذا كان مخزن قطع MLflow الأثرية (S3، نظام الملفات المحلي) متاحًا بدون مصادقة، يمكن للمهاجم رفع نموذج ضار. تحمل قطع النموذج الأثرية المبنية على Pickle (PyTorch .pth) خطر تنفيذ التعليمات البرمجية التعسفية. يجب إجراء فحص سلامة القطع الأثرية (SHA256) والتحقق من التوقيع في الإنتاج.
+      ru: Если хранилище артефактов MLflow (S3, локальная файловая система) доступно без аутентификации, злоумышленник может загрузить вредоносную модель. Артефакты моделей на основе Pickle (PyTorch .pth) несут риск произвольного выполнения кода. В продакшене необходимо выполнять проверку целостности артефактов (SHA256) и валидацию подписей.
+    severity: critical
+  - title:
+      tr: Tracking Server SSRF - Internal Network Access
+      en: Tracking Server SSRF - Internal Network Access
+      fr: SSRF du serveur de suivi - Acces au reseau interne
+      zh: 跟踪服务器SSRF - 内网访问
+      ar: SSRF لخادم التتبع - الوصول إلى الشبكة الداخلية
+      ru: SSRF сервера отслеживания - доступ к внутренней сети
+    description:
+      tr: "MLflow Tracking Server artifact_uri parametresi ile remote URL kabul eder. Saldırgan SSRF exploit ile internal network'e erişebilir — örneğin http://169.254.169.254/latest/meta-data/ (AWS metadata). Defense: artifact URI whitelist, network segmentation."
+      en: "MLflow Tracking Server accepts remote URL with artifact_uri parameter. Attacker can access internal network via SSRF exploit — e.g., http://169.254.169.254/latest/meta-data/ (AWS metadata). Defense: artifact URI whitelist, network segmentation."
+      fr: "Le serveur de suivi MLflow accepte des URL distantes avec le parametre artifact_uri. Un attaquant peut acceder au reseau interne via un exploit SSRF — par exemple http://169.254.169.254/latest/meta-data/ (metadonnees AWS). Defense : liste blanche d'URI d'artefacts, segmentation reseau."
+      zh: MLflow跟踪服务器通过artifact_uri参数接受远程URL。攻击者可以通过SSRF利用访问内部网络——例如http://169.254.169.254/latest/meta-data/（AWS元数据）。防御措施：工件URI白名单、网络分段。
+      ar: "يقبل خادم تتبع MLflow عنوان URL بعيد مع معلمة artifact_uri. يمكن للمهاجم الوصول إلى الشبكة الداخلية عبر استغلال SSRF — مثل http://169.254.169.254/latest/meta-data/ (بيانات AWS الوصفية). الدفاع: قائمة بيضاء لـ URI القطع الأثرية، تجزئة الشبكة."
+      ru: "Сервер отслеживания MLflow принимает удалённые URL через параметр artifact_uri. Злоумышленник может получить доступ к внутренней сети через SSRF-эксплойт — например, http://169.254.169.254/latest/meta-data/ (метаданные AWS). Защита: белый список URI артефактов, сегментация сети."
+    severity: high
+  - title:
+      tr: Unauthenticated API Access - Model Theft
+      en: Unauthenticated API Access - Model Theft
+      fr: Acces API non authentifie - Vol de modele
+      zh: 未认证API访问 - 模型窃取
+      ar: وصول API بدون مصادقة - سرقة النموذج
+      ru: Неаутентифицированный доступ к API - кража модели
+    description:
+      tr: MLflow default setup authentication disabled. Herhangi biri REST API ile tüm experiment'leri, model'leri ve artifact'ları okuyabilir — intellectual property theft. Production'da mutlaka MLflow authentication plugin (basic auth, OAuth, LDAP) enable edilmeli.
+      en: MLflow default setup has authentication disabled. Anyone can read all experiments, models, and artifacts via REST API — intellectual property theft. Must enable MLflow authentication plugin (basic auth, OAuth, LDAP) in production.
+      fr: La configuration par defaut de MLflow a l'authentification desactivee. N'importe qui peut lire tous les experiments, modeles et artefacts via l'API REST — vol de propriete intellectuelle. Il faut activer le plugin d'authentification MLflow (basic auth, OAuth, LDAP) en production.
+      zh: MLflow默认配置禁用了认证。任何人都可以通过REST API读取所有实验、模型和工件——知识产权窃取。生产环境必须启用MLflow认证插件（基本认证、OAuth、LDAP）。
+      ar: إعداد MLflow الافتراضي يعطّل المصادقة. يمكن لأي شخص قراءة جميع التجارب والنماذج والقطع الأثرية عبر REST API — سرقة الملكية الفكرية. يجب تمكين مكوّن مصادقة MLflow (المصادقة الأساسية، OAuth، LDAP) في الإنتاج.
+      ru: В конфигурации MLflow по умолчанию аутентификация отключена. Любой может прочитать все эксперименты, модели и артефакты через REST API — кража интеллектуальной собственности. В продакшене необходимо включить плагин аутентификации MLflow (basic auth, OAuth, LDAP).
+    severity: high
+  - title:
+      tr: Mlflow Konfigürasyon Bilgi Sızıntısı
+      en: Mlflow Configuration Information Disclosure
+      fr: Divulgation de configuration mlflow
+      zh: mlflow配置信息泄露
+      ar: كشف معلومات تكوين mlflow
+      ru: Раскрытие конфигурации mlflow
+    description:
+      tr: Mlflow ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to mlflow can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à mlflow peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与mlflow相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ mlflow في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании mlflow могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: MLflow Experiment Tracking
+    lang: python
+    code: |-
+      import mlflow
+      import mlflow.pytorch
+
+      # Set tracking URI (local or remote)
+      mlflow.set_tracking_uri("http://mlflow-server:5000")
+
+      # Start experiment
+      with mlflow.start_run(run_name="llama-finetune"):
+          # Log hyperparameters
+          mlflow.log_params({
+              "learning_rate": 1e-5,
+              "batch_size": 8,
+              "epochs": 3
+          })
+          
+          # Training loop...
+          for epoch in range(3):
+              loss = train_epoch(model)
+              mlflow.log_metric("loss", loss, step=epoch)
+          
+          # Log model artifact
+          mlflow.pytorch.log_model(model, "model")
+    description:
+      tr: MLflow ile experiment tracking. Hyperparameter, metric ve model artifact'ları otomatik kaydedilir. Remote tracking server ile ekip tüm deneyleri görebilir. Model comparison ve best model selection kolaylaşır.
+      en: Experiment tracking with MLflow. Hyperparameters, metrics, and model artifacts automatically logged. With remote tracking server, team can see all experiments. Model comparison and best model selection simplified.
+  - title: MLflow Model Registry - Production Deployment
+    lang: python
+    code: |-
+      from mlflow.tracking import MlflowClient
+
+      client = MlflowClient()
+
+      # Register model
+      model_uri = "runs:/<run_id>/model"
+      model_name = "llama-7b-finetuned"
+      result = mlflow.register_model(model_uri, model_name)
+
+      # Transition to Production stage
+      client.transition_model_version_stage(
+          name=model_name,
+          version=result.version,
+          stage="Production",
+          archive_existing_versions=True  # Archive old production model
+      )
+
+      # Load production model for inference
+      model = mlflow.pyfunc.load_model(f"models:/{model_name}/Production")
+    description:
+      tr: MLflow Model Registry ile production deployment. Model versioning, staging (Staging/Production/Archived), rollback. Production'daki eski model otomatik archive edilir. CI/CD pipeline'a entegre edilebilir.
+      en: Production deployment with MLflow Model Registry. Model versioning, staging (Staging/Production/Archived), rollback. Old production model automatically archived. Can be integrated into CI/CD pipeline.
+  - title: MLflow Authentication Setup
+    lang: dockerfile
+    code: |-
+      FROM python:3.11-slim
+      RUN pip install mlflow[auth] psycopg2-binary
+      RUN groupadd -r mlflow && useradd -r -g mlflow mlflow
+      WORKDIR /app
+      ENV MLFLOW_AUTH_CONFIG_PATH=/app/auth.ini
+      COPY auth.ini /app/auth.ini
+      USER mlflow
+      EXPOSE 5000
+      ENTRYPOINT ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000", "--app-name", "basic-auth"]
+    description:
+      tr: MLflow authentication ile guvenli Docker.
+      en: Secure Docker for MLflow with authentication.
+research:
+  - title: MLflow Official Documentation
+    url: https://mlflow.org/docs/latest/index.html
+    year: 2024
+    type: guide
+    authors: Databricks
+  - title: MLflow Authentication and Authorization
+    url: https://mlflow.org/docs/latest/auth/index.html
+    year: 2024
+    type: guide
+    authors: MLflow Team
+  - title: MLflow Model Registry
+    url: https://mlflow.org/docs/latest/model-registry.html
+    year: 2024
+    type: guide
+    authors: Databricks
+tips:
+  - tr: Production'da MLflow Tracking Server mutlaka authentication ile çalıştırın — default setup herkesin erişimine açık.
+    en: Always run MLflow Tracking Server with authentication in production — default setup is open to everyone.
+  - tr: Artifact store olarak S3 kullanıyorsanız IAM role + bucket encryption + versioning enable edin.
+    en: If using S3 as artifact store, enable IAM role + bucket encryption + versioning.
+  - tr: Model Registry ile production deployment yapın — manual model deployment yerine stage transition kullanın, rollback kolay.
+    en: Use Model Registry for production deployment — use stage transition instead of manual model deployment, easy rollback.

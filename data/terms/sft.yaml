@@ -1,0 +1,222 @@
+id: sft
+name: SFT
+fullName: Supervised Fine-Tuning
+category: training
+desc:
+  tr: |-
+    Pre-training sonrası modele "soru sorulunca böyle cevap ver" öğretmenin yöntemi ve RLHF pipeline'ının ilk adımıdır. Binlerce yüksek kaliteli soru-cevap örneği hazırlayıp modele gösterirsiniz — model bu örneklerdeki pattern'leri öğrenerek talimatları takip etmeyi öğrenir.
+
+    [OpenAI](https://openai.com)'ın InstructGPT çalışması yaklaşık 13.000 SFT örneği kullandı ve bu bile modelin davranışını dramatik şekilde değiştirdi. Örneklerin kalitesi kritiktir: 1.000 uzman tarafından yazılmış örnek, 100.000 düşük kaliteli örnekten daha etkili olabilir.
+
+    Bugün Alpaca (Stanford, 52K örnek) ve Dolly (Databricks, 15K örnek) gibi açık SFT veri setleri, topluluk modellerinin eğitiminde standart haline geldi.
+  en: |-
+    The method of teaching a model to follow instructions after pre-training, and the first step in the RLHF pipeline. You prepare thousands of high-quality question-answer examples and show them to the model — it learns the patterns in these examples and begins following instructions accordingly.
+
+    [OpenAI](https://openai.com)'s InstructGPT work used approximately 13,000 SFT demonstrations, and even that small dataset dramatically changed the model's behavior from a raw text completer to an instruction follower. The quality of examples is critical: 1,000 expert-written demonstrations can be more effective than 100,000 low-quality ones.
+
+    Today, open SFT datasets like Alpaca (Stanford, 52K examples) and Dolly (Databricks, 15K examples) have become standard for training community models.
+  fr: "La methode pour apprendre a un modele a suivre des instructions apres le pre-entrainement, et la premiere etape du pipeline RLHF. On prepare des milliers d'exemples question-reponse de haute qualite — le modele apprend les patterns de ces exemples et commence a suivre les instructions. Le travail d'OpenAI sur InstructGPT a utilise environ 13 000 demonstrations SFT, et meme ce petit ensemble de donnees a radicalement change le comportement du modele. La qualite des exemples est essentielle : 1 000 demonstrations ecrites par des experts peuvent etre plus efficaces que 100 000 de faible qualite. Aujourd'hui, des jeux de donnees SFT ouverts comme Alpaca (Stanford, 52K exemples) et Dolly (Databricks, 15K exemples) sont devenus la norme."
+  zh: 预训练后教模型遵循指令的方法，也是RLHF流程的第一步。你准备数千个高质量的问答示例展示给模型——它学习这些示例中的模式，开始相应地遵循指令。OpenAI的InstructGPT工作使用了约13,000个SFT示范，即使这么小的数据集也极大地改变了模型的行为，从原始文本补全器变为指令跟随者。示例的质量至关重要：1,000个专家编写的示范可能比100,000个低质量的更有效。如今，Alpaca（斯坦福，52K示例）和Dolly（Databricks，15K示例）等开放SFT数据集已成为训练社区模型的标准。
+  ar: "طريقة تعليم النموذج اتباع التعليمات بعد التدريب المسبق، والخطوة الأولى في مسار RLHF. تُعد آلاف الأمثلة عالية الجودة من الأسئلة والأجوبة وتعرضها على النموذج — يتعلم الأنماط في هذه الأمثلة ويبدأ في اتباع التعليمات. استخدم عمل OpenAI على InstructGPT حوالي 13,000 عرض توضيحي SFT، وحتى هذه المجموعة الصغيرة غيّرت سلوك النموذج بشكل جذري. جودة الأمثلة حاسمة: 1,000 عرض توضيحي كتبه خبراء يمكن أن يكون أكثر فعالية من 100,000 منخفض الجودة. اليوم، أصبحت مجموعات بيانات SFT المفتوحة مثل Alpaca (ستانفورد، 52 ألف مثال) وDolly (Databricks، 15 ألف مثال) معياراً لتدريب النماذج المجتمعية."
+  ru: "Метод обучения модели следовать инструкциям после предобучения и первый шаг в конвейере RLHF. Вы готовите тысячи качественных примеров «вопрос-ответ» и показываете их модели — она усваивает паттерны из этих примеров и начинает следовать инструкциям. В работе OpenAI над InstructGPT использовалось около 13 000 SFT-демонстраций, и даже этот небольшой набор данных кардинально изменил поведение модели. Качество примеров критически важно: 1 000 экспертных демонстраций могут быть эффективнее 100 000 низкокачественных. Сегодня открытые датасеты SFT, такие как Alpaca (Стэнфорд, 52K примеров) и Dolly (Databricks, 15K примеров), стали стандартом для обучения open-source моделей."
+analogy:
+  tr: Öğrenciye örnek sorular ve doğru cevaplar vererek çalıştırmak.
+  en: Training a student by giving them example questions and correct answers.
+  fr: Former un étudiant en lui donnant des exemples de questions et de réponses correctes.
+  zh: 通过给学生提供示例问题和正确答案来训练他们。
+  ar: تدريب طالب من خلال إعطائه أمثلة على الأسئلة والإجابات الصحيحة.
+  ru: Обучение студента путем предоставления примеров вопросов и правильных ответов.
+security:
+  - title:
+      tr: SFT Dataset Instruction Injection
+      en: SFT Dataset Instruction Injection
+      fr: Injection d'instructions dans le dataset SFT
+      zh: SFT数据集指令注入
+      ar: حقن تعليمات في مجموعة بيانات SFT
+      ru: Внедрение инструкций в датасет SFT
+    description:
+      tr: Supervised Fine-Tuning dataset'ine system prompt override instruction'ları inject ederek model'i jailbreak etme. Dataset'te 'Ignore previous safety rules' gibi instruction'lar varsa, model bunları normal instruction olarak öğrenir. SFT data curation kritik — her örnek manuel review gerektirir.
+      en: Jailbreaking model by injecting system prompt override instructions into Supervised Fine-Tuning dataset. If dataset contains instructions like 'Ignore previous safety rules', model learns them as normal instructions. SFT data curation is critical - every example needs manual review.
+      fr: Jailbreaker le modèle en injectant des instructions de remplacement de prompt système dans le dataset SFT. Si le dataset contient des instructions comme 'Ignorer les règles de sécurité précédentes', le modèle les apprend comme des instructions normales. La curation des données SFT est critique — chaque exemple nécessite une revue manuelle.
+      zh: 通过向SFT数据集注入系统提示覆盖指令来越狱模型。如果数据集包含'忽略之前的安全规则'等指令，模型会将其作为正常指令学习。SFT数据管理至关重要——每个样本都需要人工审核。
+      ar: كسر قيود النموذج بحقن تعليمات تجاوز موجه النظام في مجموعة بيانات SFT. إذا احتوت مجموعة البيانات على تعليمات مثل 'تجاهل قواعد الأمان السابقة'، يتعلمها النموذج كتعليمات عادية. تنسيق بيانات SFT أمر حاسم.
+      ru: Джейлбрейк модели путём внедрения инструкций переопределения системного промпта в датасет SFT. Если датасет содержит инструкции типа 'Игнорировать предыдущие правила безопасности', модель учит их как обычные инструкции. Курирование данных SFT критически важно.
+    severity: critical
+  - title:
+      tr: Format String Exploitation in SFT
+      en: Format String Exploitation in SFT
+      fr: Exploitation de chaînes de format dans SFT
+      zh: SFT中的格式字符串利用
+      ar: استغلال سلاسل التنسيق في SFT
+      ru: Эксплуатация форматных строк в SFT
+    description:
+      tr: SFT conversation format'ı (ChatML, Llama chat template) manipüle edilerek model'in parsing logic'i bozulabilir. Malformed format string'ler model'in instruction-following capability'sini exploit eder. Örneğin nested <|im_start|> tag'leri ile safety instruction bypass edilir.
+      en: Model's parsing logic can be broken by manipulating SFT conversation format (ChatML, Llama chat template). Malformed format strings exploit model's instruction-following capability. For example, nested <|im_start|> tags bypass safety instructions.
+      fr: La logique de parsing du modèle peut être brisée en manipulant le format de conversation SFT (ChatML, template Llama). Les chaînes de format malformées exploitent la capacité de suivi d'instructions du modèle. Les tags <|im_start|> imbriqués contournent les instructions de sécurité.
+      zh: 通过操纵SFT对话格式（ChatML、Llama聊天模板）可以破坏模型的解析逻辑。畸形格式字符串利用模型的指令遵循能力。例如嵌套的<|im_start|>标签绕过安全指令。
+      ar: يمكن كسر منطق تحليل النموذج بالتلاعب بتنسيق محادثة SFT. سلاسل التنسيق المشوهة تستغل قدرة النموذج على اتباع التعليمات. علامات <|im_start|> المتداخلة تتجاوز تعليمات الأمان.
+      ru: Логика парсинга модели может быть нарушена манипуляцией форматом диалога SFT (ChatML, шаблон Llama). Некорректные форматные строки эксплуатируют способность модели следовать инструкциям. Вложенные теги <|im_start|> обходят инструкции безопасности.
+    severity: high
+  - title:
+      tr: SFT Overfitting to Harmful Examples
+      en: SFT Overfitting to Harmful Examples
+      fr: Surapprentissage SFT sur des exemples nuisibles
+      zh: SFT对有害样本的过拟合
+      ar: الإفراط في تعلم SFT للأمثلة الضارة
+      ru: Переобучение SFT на вредоносных примерах
+    description:
+      tr: SFT dataset küçük olduğu için (10K-100K) model kolayca ezberler. Dataset'te az sayıda harmful example bile varsa, model bunları verbatim tekrar üretir. Özellikle specific domain SFT (medical, legal) için kritik — patient info, legal precedents leak edebilir.
+      en: Because SFT dataset is small (10K-100K), model easily memorizes. Even if few harmful examples exist in dataset, model reproduces them verbatim. Critical especially for specific domain SFT (medical, legal) - can leak patient info, legal precedents.
+      fr: Comme le dataset SFT est petit (10K-100K), le modèle mémorise facilement. Même si peu d'exemples nuisibles existent, le modèle les reproduit mot à mot. Critique surtout pour le SFT spécifique (médical, juridique) — peut fuiter des infos patients, jurisprudences.
+      zh: 因为SFT数据集很小（10K-100K），模型容易记忆。即使数据集中只有少数有害样本，模型也会逐字复现。对特定领域SFT（医疗、法律）尤其关键——可能泄露患者信息、法律先例。
+      ar: لأن مجموعة بيانات SFT صغيرة، يحفظ النموذج بسهولة. حتى لو وُجدت أمثلة ضارة قليلة يعيد النموذج إنتاجها حرفياً. حرج خاصة لـ SFT المتخصص — قد يسرب معلومات مرضى أو سوابق قانونية.
+      ru: Поскольку датасет SFT мал (10K-100K), модель легко запоминает. Даже при наличии единичных вредоносных примеров модель воспроизводит их дословно. Критично для доменного SFT (медицина, юриспруденция) — может утечь информация о пациентах.
+    severity: high
+  - title:
+      tr: SFT Dataset Format Bilgi Sızıntısı
+      en: SFT Dataset Format Information Disclosure
+      fr: Divulgation du format de dataset SFT
+      zh: SFT数据集格式信息泄露
+      ar: تسريب معلومات تنسيق مجموعة بيانات SFT
+      ru: Утечка информации о формате датасета SFT
+    description:
+      tr: Model'in response format'ı (JSON structure, markdown style, conversation template) SFT dataset format'ını reveal eder. Bu bilgi model provenance ve training methodology hakkında intelligence sağlar. Competitor analysis veya targeted attack'lerde kullanılabilir.
+      en: Model's response format (JSON structure, markdown style, conversation template) reveals SFT dataset format. This information provides intelligence about model provenance and training methodology. Can be used in competitor analysis or targeted attacks.
+      fr: Le format de réponse du modèle (structure JSON, style markdown, template de conversation) révèle le format du dataset SFT. Ces informations fournissent du renseignement sur la provenance du modèle et la méthodologie d'entraînement.
+      zh: 模型的响应格式（JSON结构、markdown风格、对话模板）揭示了SFT数据集格式。此信息提供关于模型来源和训练方法的情报。可用于竞争分析或定向攻击。
+      ar: تنسيق استجابة النموذج يكشف تنسيق مجموعة بيانات SFT. هذه المعلومات توفر استخبارات حول مصدر النموذج ومنهجية التدريب. يمكن استخدامها في التحليل التنافسي أو الهجمات المستهدفة.
+      ru: Формат ответов модели раскрывает формат датасета SFT. Эта информация предоставляет разведданные о происхождении модели и методологии обучения. Может использоваться для конкурентного анализа или целевых атак.
+    severity: low
+config:
+  - title: SFT Dataset Format Validation
+    lang: python
+    code: |-
+      import re
+      from typing import List, Dict
+
+      class SFTDatasetValidator:
+          """Validate SFT dataset for format and content issues"""
+          def __init__(self, chat_template="chatml"):
+              self.chat_template = chat_template
+
+              if chat_template == "chatml":
+                  self.start_token = "<|im_start|>"
+                  self.end_token = "<|im_end|>"
+              elif chat_template == "llama":
+                  self.start_token = "<|start_header_id|>"
+                  self.end_token = "<|end_header_id|>"
+
+          def validate_format(self, conversation: str) -> Dict:
+              """Validate conversation format"""
+              issues = []
+
+              # Count start/end tokens
+              start_count = conversation.count(self.start_token)
+              end_count = conversation.count(self.end_token)
+
+              if start_count != end_count:
+                  issues.append(f"Token mismatch: {start_count} starts vs {end_count} ends")
+
+              # Detect nested tokens (exploitation attempt)
+              if re.search(f"{self.start_token}.*{self.start_token}", conversation):
+                  issues.append("Nested start tokens detected - possible injection")
+
+              # Detect system prompt override
+              override_patterns = [
+                  "ignore previous",
+                  "disregard system",
+                  "you are now",
+                  "forget your instructions"
+              ]
+              for pattern in override_patterns:
+                  if pattern in conversation.lower():
+                      issues.append(f"System override pattern: {pattern}")
+
+              return {"valid": len(issues) == 0, "issues": issues}
+
+          def validate_dataset(self, conversations: List[str]):
+              """Validate entire SFT dataset"""
+              invalid_count = 0
+              for i, conv in enumerate(conversations):
+                  result = self.validate_format(conv)
+                  if not result['valid']:
+                      invalid_count += 1
+                      print(f"Example {i}: {result['issues']}")
+
+              print(f"Validation: {invalid_count}/{len(conversations)} invalid")
+              return invalid_count == 0
+
+      # Usage
+      validator = SFTDatasetValidator(chat_template="chatml")
+      if not validator.validate_dataset(sft_conversations):
+          raise ValueError("SFT dataset validation failed!")
+    description:
+      tr: SFT dataset'inde format string exploitation ve system override pattern'lerini tespit edin. Nested token'ları ve tag mismatch'leri yakalayın.
+      en: Detect format string exploitation and system override patterns in SFT dataset. Catch nested tokens and tag mismatches.
+  - title: SFT with Early Stopping
+    lang: python
+    code: |-
+      from transformers import Trainer, TrainingArguments, EarlyStoppingCallback
+
+      # SFT with early stopping to prevent overfitting
+      training_args = TrainingArguments(
+          output_dir="./sft-output",
+          num_train_epochs=3,
+          per_device_train_batch_size=4,
+          eval_strategy="steps",
+          eval_steps=100,
+          save_steps=100,
+          load_best_model_at_end=True,  # Load best checkpoint
+          metric_for_best_model="eval_loss",
+          greater_is_better=False,
+          logging_steps=10,
+      )
+
+      # Early stopping when eval loss stops improving
+      early_stopping = EarlyStoppingCallback(
+          early_stopping_patience=3,  # Stop if no improvement for 3 evals
+          early_stopping_threshold=0.001  # Minimum change to qualify as improvement
+      )
+
+      trainer = Trainer(
+          model=model,
+          args=training_args,
+          train_dataset=train_dataset,
+          eval_dataset=eval_dataset,
+          callbacks=[early_stopping],
+      )
+
+      # Train with early stopping
+      trainer.train()
+
+      # Evaluate on safety benchmark after SFT
+      from safety_eval import run_safety_tests
+      safety_score = run_safety_tests(model)
+      if safety_score < 0.95:
+          print("WARNING: SFT degraded safety capabilities!")
+    description:
+      tr: SFT'de early stopping kullanarak overfitting'i önleyin. Best checkpoint'u load edin. SFT sonrası safety evaluation yapın.
+      en: Prevent overfitting in SFT using early stopping. Load best checkpoint. Run safety evaluation after SFT.
+research:
+  - title: "Instruction Tuning for Large Language Models: A Survey"
+    url: https://arxiv.org/abs/2308.10792
+    year: 2023
+    type: paper
+    authors: Shengyu Zhang, et al.
+  - title: "Jailbroken: How Does LLM Safety Training Fail?"
+    url: https://arxiv.org/abs/2307.02483
+    year: 2023
+    type: paper
+    authors: Alexander Wei, et al.
+  - title: Data Contamination in Instruction Tuning
+    url: https://arxiv.org/abs/2310.16789
+    year: 2023
+    type: paper
+    authors: Contamination Research
+tips:
+  - tr: SFT dataset'ini mutlaka deduplicate edin, exact match removal yapın.
+    en: Always deduplicate SFT dataset, remove exact matches.
+  - tr: Chat template validation'ı training loop'a ekleyin, runtime'da format check yapın.
+    en: Add chat template validation to training loop, check format at runtime.
+  - tr: SFT için epoch sayısını 3'ten fazla tutmayın, overfitting riski artar.
+    en: Don't exceed 3 epochs for SFT, overfitting risk increases.

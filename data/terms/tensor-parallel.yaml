@@ -1,0 +1,137 @@
+id: tensor-parallel
+name: Tensor Parallelism
+fullName: Tensor Parallelism (TP)
+category: inference
+desc:
+  tr: |-
+    Tek bir GPU'nun belleğine sığmayacak kadar büyük AI modellerini birden fazla GPU'ya bölerek çalıştırma tekniği. Her GPU, modelin attention ve feed-forward katmanlarinin bir kesitini (slice) alir ve her token üretiminde GPU'lar arasi senkronizasyon yapılır.
+
+    Örneğin [Llama](https://ai.meta.com/llama/)-3.3-70B modeli FP16 formatında ~140GB bellek gerektirir — tek GPU'ya sığmadığından TP=2 ile iki GPU'ya bolunur ve her biri ~70GB tasir. NVLink veya yüksek hızlı bağlantı olmadan GPU'lar arasi iletişim darbogazina neden olabilir.
+
+    [vLLM](https://docs.vllm.ai)'de --tensor-parallel-size 2 parametresiyle kolayca ayarlanır. Pipeline parallelism'den farki, TP'nin her katmani GPU'lar arasinda bolerken PP'nin katmanlari sirayla farklı GPU'lara dagitmasidir. Buyuk model çalıştırmanin fiili standart yontemidir.
+  en: |-
+    A technique for running AI models that are too large for a single GPU by splitting them across multiple GPUs. Each GPU receives a slice of the model's attention and feed-forward layers, and they synchronize with each other during every token generation step.
+
+    For example, [Llama](https://ai.meta.com/llama/)-3.3-70B requires ~140GB in FP16 format — it doesn't fit on a single GPU, so with TP=2 it gets split across two GPUs with each handling ~70GB. Without NVLink or high-speed interconnects, inter-GPU communication can become a bottleneck.
+
+    In [vLLM](https://docs.vllm.ai), it's as simple as setting --tensor-parallel-size 2. The key difference from pipeline parallelism iş that TP splits each layer across GPUs, while PP assigns entire layers to different GPUs sequentially. It's the de facto standard method for running models larger than what a single GPU can hold.
+  fr: Une technique pour executer des modeles d'IA trop grands pour un seul GPU en les repartissant sur plusieurs GPU. Chaque GPU recoit une tranche des couches d'attention et feed-forward du modele, et ils se synchronisent a chaque etape de generation de token. Par exemple, Llama-3.3-70B necessite ~140 Go en FP16 — il ne tient pas sur un seul GPU, donc avec TP=2 il est divise sur deux GPU gerant chacun ~70 Go. Sans NVLink ou interconnexions haut debit, la communication inter-GPU peut devenir un goulot d'etranglement. Dans vLLM, c'est aussi simple que de definir --tensor-parallel-size 2. La difference cle avec le parallelisme de pipeline est que le TP divise chaque couche entre les GPU, tandis que le PP attribue des couches entieres a differents GPU. C'est la methode standard de facto pour executer des modeles plus grands que ce qu'un seul GPU peut contenir.
+  zh: 一种将过大的AI模型拆分到多个GPU上运行的技术。每个GPU接收模型注意力层和前馈层的一个切片，并在每次token生成时进行GPU间同步。例如Llama-3.3-70B在FP16格式下需要约140GB——单GPU放不下，因此用TP=2拆分到两个GPU上，每个处理约70GB。没有NVLink或高速互连的话，GPU间通信可能成为瓶颈。在vLLM中，只需设置--tensor-parallel-size 2即可。与流水线并行的关键区别在于，TP将每一层拆分到各GPU上，而PP将整层依次分配给不同GPU。它是运行超出单GPU容量模型的事实标准方法。
+  ar: تقنية لتشغيل نماذج الذكاء الاصطناعي الأكبر من أن تتسع في GPU واحد عن طريق تقسيمها عبر عدة وحدات GPU. يستقبل كل GPU شريحة من طبقات الانتباه والتغذية الأمامية للنموذج، ويتم التنسيق بينها في كل خطوة إنتاج رمز. مثلاً يتطلب Llama-3.3-70B حوالي 140 جيجابايت بصيغة FP16 — لا يتسع في GPU واحد لذا بـ TP=2 يُقسم على GPU اثنين كل منهما يحمل ~70 جيجابايت. بدون NVLink أو اتصالات عالية السرعة قد يصبح التواصل بين وحدات GPU عنق زجاجة. في vLLM يكفي ضبط --tensor-parallel-size 2. الفرق الرئيسي عن توازي خط الأنابيب هو أن TP يقسم كل طبقة عبر وحدات GPU بينما PP يخصص طبقات كاملة لوحدات GPU مختلفة. إنها الطريقة المعيارية الفعلية لتشغيل النماذج الأكبر من سعة GPU واحد.
+  ru: "Техника запуска AI-моделей, слишком больших для одного GPU, путём разделения между несколькими GPU. Каждый GPU получает срез слоёв внимания и прямого прохода модели, и они синхронизируются на каждом шаге генерации токена. Например, Llama-3.3-70B требует ~140 ГБ в FP16 — не помещается на одном GPU, поэтому при TP=2 модель делится на два GPU по ~70 ГБ каждый. Без NVLink или высокоскоростных соединений межGPU-коммуникация может стать узким местом. В vLLM достаточно задать --tensor-parallel-size 2. Ключевое отличие от pipeline-параллелизма: TP делит каждый слой между GPU, тогда как PP назначает целые слои разным GPU последовательно. Это де-факто стандартный метод запуска моделей, превышающих объём одного GPU."
+analogy:
+  tr: Çok büyük puzzle'i tek masaya sığmadığı için birden fazla masaya yayarak çözmek.
+  en: Spreading a huge puzzle across multiple tables because it doesn't fit on just one.
+  fr: Étaler un énorme puzzle sur plusieurs tables car il ne tient pas sur une seule.
+  zh: 因为一张桌子放不下而将巨大的拼图摊放在多张桌子上拼装。
+  ar: نشر لغز ضخم على عدة طاولات لأنه لا يتسع على طاولة واحدة فقط.
+  ru: Раскладывать огромный пазл на нескольких столах, потому что он не помещается на одном.
+security:
+  - title:
+      tr: Distributed Training Data Leakage
+      en: Distributed Training Data Leakage
+      fr: Fuite de donnees d'entrainement distribue
+      zh: 分布式训练数据泄漏
+      ar: تسريب بيانات التدريب الموزع
+      ru: Утечка данных распределённого обучения
+    description:
+      tr: Tensor parallelism'de farklı GPU'lar arası iletişim şifrelenmezse, ağ trafiği dinlenerek model activation'ları ve gradient'leri çalınabilir.
+      en: If inter-GPU communication in tensor parallelism is not encrypted, model activations and gradients can be stolen by monitoring network traffic.
+      fr: Si la communication inter-GPU dans le parallelisme tensoriel n'est pas chiffree, les activations et gradients du modele peuvent etre voles en surveillant le trafic reseau.
+      zh: 如果张量并行中的GPU间通信没有加密，通过监控网络流量可以窃取模型激活和梯度。
+      ar: إذا لم يتم تشفير الاتصال بين المعالجات الرسومية في التوازي التنسوري، يمكن سرقة تنشيطات النموذج والتدرجات عن طريق مراقبة حركة الشبكة.
+      ru: Если межGPU-коммуникация при тензорном параллелизме не зашифрована, активации и градиенты модели могут быть украдены путём мониторинга сетевого трафика.
+    severity: high
+  - title:
+      tr: Byzantine Worker Attack
+      en: Byzantine Worker Attack
+      fr: Attaque par travailleur byzantin
+      zh: 拜占庭工作节点攻击
+      ar: هجوم العامل البيزنطي
+      ru: Атака византийского рабочего узла
+    description:
+      tr: Multi-node tensor parallel setup'ta kötü niyetli bir worker node, kasıtlı olarak yanlış tensor shard'ları göndererek model output'unu bozabilir veya backdoor yerleştirebilir.
+      en: In multi-node tensor parallel setups, a malicious worker node can intentionally send incorrect tensor shards to corrupt model outputs or inject backdoors.
+      fr: Dans les configurations de parallelisme tensoriel multi-noeud, un noeud travailleur malveillant peut intentionnellement envoyer des fragments de tenseur incorrects pour corrompre les sorties du modele ou injecter des backdoors.
+      zh: 在多节点张量并行设置中，恶意工作节点可以故意发送错误的张量分片来破坏模型输出或注入后门。
+      ar: في إعدادات التوازي التنسوري متعددة العقد، يمكن لعقدة عاملة خبيثة إرسال أجزاء تنسور غير صحيحة عمداً لإفساد مخرجات النموذج أو حقن أبواب خلفية.
+      ru: В многоузловых конфигурациях тензорного параллелизма вредоносный рабочий узел может намеренно отправлять неправильные шарды тензоров для искажения выходных данных модели или внедрения бэкдоров.
+    severity: high
+  - title:
+      tr: NCCL İletişim Port Bilgi İfşası
+      en: NCCL Communication Port Disclosure
+      fr: Divulgation des ports de communication NCCL
+      zh: NCCL通信端口信息泄露
+      ar: كشف منافذ اتصال NCCL
+      ru: Раскрытие портов коммуникации NCCL
+    description:
+      tr: Tensor parallelism için kullanılan NCCL iletişim portları varsayılan olarak açık kalabilir. Bu portlar üzerinden cluster topolojisi ve GPU sayısı gibi bilgiler ifşa olabilir.
+      en: NCCL communication ports used for tensor parallelism may remain open by default. Information such as cluster topology and GPU count can be disclosed through these ports.
+      fr: Les ports de communication NCCL utilises pour le parallelisme tensoriel peuvent rester ouverts par defaut. Des informations telles que la topologie du cluster et le nombre de GPU peuvent etre divulguees via ces ports.
+      zh: 用于张量并行的NCCL通信端口可能默认保持开放。通过这些端口可以泄露集群拓扑和GPU数量等信息。
+      ar: قد تبقى منافذ اتصال NCCL المستخدمة للتوازي التنسوري مفتوحة افتراضياً. يمكن الكشف عن معلومات مثل طوبولوجيا المجموعة وعدد المعالجات الرسومية عبر هذه المنافذ.
+      ru: Порты коммуникации NCCL, используемые для тензорного параллелизма, могут оставаться открытыми по умолчанию. Через эти порты может раскрываться информация о топологии кластера и количестве GPU.
+    severity: low
+config:
+  - title: Secure Ray Cluster for Tensor Parallel
+    lang: python
+    code: |-
+      # Secure Ray cluster configuration
+      import ray
+
+      # Initialize with authentication
+      ray.init(
+          address="ray://head-node:10001",
+          _redis_password="secure_password_here",  # Enable auth
+          _temp_dir="/secure/tmp",  # Secure temp directory
+          runtime_env={
+              "env_vars": {
+                  "RAY_ALLOW_REMOTE_TASK_CODE_INJECTION": "0",  # Disable remote code
+                  "RAY_IGNORE_UNHANDLED_ERRORS": "0"
+              }
+          }
+      )
+
+      # Verify worker nodes
+      worker_ips = ray.nodes()
+      for node in worker_ips:
+          if node["NodeID"] not in TRUSTED_NODE_IDS:
+              raise ValueError(f"Untrusted node detected: {node['NodeID']}")
+    description:
+      tr: Ray cluster'ı authentication ile başlatın ve worker node'ları whitelist ile doğrulayın.
+      en: Initialize Ray cluster with authentication and verify worker nodes with whitelist.
+  - title: NCCL Encryption
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Enable NCCL encryption for inter-GPU communication
+      export NCCL_NET=Socket
+      export NCCL_SOCKET_IFNAME=eth0
+
+      # Use TLS for NCCL (if supported)
+      export NCCL_P2P_DISABLE=1  # Disable P2P, force network
+      export NCCL_ALGO=Ring  # Use ring algorithm
+
+      # Run vLLM with tensor parallel
+      vllm serve meta-llama/Llama-3.3-70B-Instruct \
+        --tensor-parallel-size 2 \
+        --host 127.0.0.1
+    description:
+      tr: NCCL iletişimini şifreleyin ve P2P yerine network-based communication kullanın.
+      en: Encrypt NCCL communication and use network-based communication instead of P2P.
+research:
+  - title: "Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism"
+    url: https://arxiv.org/abs/1909.08053
+    year: 2019
+    type: paper
+    authors: Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Patrick LeGresley
+  - title: "GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism"
+    url: https://arxiv.org/abs/1811.06965
+    year: 2018
+    type: paper
+    authors: Yanping Huang, Youlong Cheng, Ankur Bapna, Orhan Firat
+tips:
+  - tr: Multi-node tensor parallel'da InfiniBand yerine encrypted network kullanın.
+    en: Use encrypted network instead of InfiniBand for multi-node tensor parallel.
+  - tr: Worker node health check'leri yapın ve anomali tespiti ekleyin.
+    en: Implement worker node health checks and anomaly detection.

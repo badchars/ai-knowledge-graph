@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI/ML Knowledge Graph</title>
+<meta name="description" content="Interactive knowledge graph of AI/ML concepts — explore terms, relationships, security implications, and configuration examples.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/theme.js"></script>
+</head>
+<body>
+
+<div class="bg-orb o1"></div>
+<div class="bg-orb o2"></div>
+<div class="bg-orb o3"></div>
+<div class="grid-overlay"></div>
+
+<header class="site-header">
+  <span class="site-title" data-i18n="title">AI / ML Knowledge Graph</span>
+  <span class="header-sep"></span>
+  <button class="search-trigger" id="search-trigger">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <span data-i18n="search">Search...</span>
+    <kbd>⌘K</kbd>
+  </button>
+  <div class="header-controls">
+    <select class="lang-select" id="lang-select">
+      <option value="ar">عربي</option>
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+      <option value="ru">RU</option>
+      <option value="tr">TR</option>
+      <option value="zh">中文</option>
+    </select>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="graph"></div>
+
+<div class="legend-box" id="legend"></div>
+
+<div class="graph-panel" id="graph-panel">
+  <div class="panel-head">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="cat-badge"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button class="panel-back-btn" id="panel-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="backToGraph">Back</span>
+      </button>
+      <button class="panel-close" id="panel-close">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l10 10M11 1L1 11"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="panel-term-name" style="font-size:28px;font-weight:900;letter-spacing:-.5px;margin-bottom:2px"></div>
+    <div class="panel-term-full" style="font-size:13px;color:var(--text3);margin-bottom:16px"></div>
+    <div style="margin-bottom:16px">
+      <div class="section-title" data-i18n="desc">Description</div>
+      <div class="panel-term-desc section-content"></div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div class="section-title" data-i18n="analogy">Analogy</div>
+      <div class="analogy-card panel-term-analogy"></div>
+    </div>
+    <button class="view-detail-btn">Detail →</button>
+    <div class="panel-relations" style="margin-top:16px"></div>
+  </div>
+  <div class="panel-detail-view" id="panel-detail-view"></div>
+</div>
+
+<div class="spotlight-overlay" id="spotlight-overlay"></div>
+<div class="spotlight" id="spotlight">
+  <div class="spotlight-input-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input class="spotlight-input" id="spotlight-input" type="text" placeholder="Search terms..." autocomplete="off">
+    <kbd class="spotlight-esc">ESC</kbd>
+  </div>
+  <div class="spotlight-results" id="spotlight-results"></div>
+</div>
+
+<div class="stats-bar" id="stats"></div>
+<div id="tooltip"></div>
+
+<script>window.__UI_STRINGS = {{UI_STRINGS}};</script>
+<script>window.__GRAPH_DATA = {{GRAPH_DATA}};</script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/graph.js"></script>
+</body>
+</html>

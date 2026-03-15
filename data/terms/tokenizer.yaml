@@ -1,0 +1,159 @@
+id: tokenizer
+name: Tokenizer
+fullName: Tokenizer
+category: architecture
+desc:
+  tr: |-
+    Metni tokenlara bölen ve tokenları tekrar metne dönüştüren araç — AI modelinin 'alfabesi' gibi düşünülebilir. Her model ailesi kendi tokenizer'ına sahiptir: GPT-4 cl100k_base kullanır (100K token vocabulary), [Llama](https://ai.meta.com/llama/) 3 ise 128K vocabulary'li kendi tokenizer'ını kullanır.
+
+    Tokenizer'ın kalitesi doğrudan model performansını etkiler — iyi bir tokenizer sık kullanılan kelimeleri tek tokende tutarken, nadir kelimeleri alt-parçalara böler. Örneğin 'merhaba' Türkçe tokenizer'da tek token olabilirken, İngilizce merkezli bir tokenizer'da 3-4 parçaya bölünebilir — bu da Türkçe metinlerin daha fazla token tüketmesine yol açar.
+
+    BPE (Byte Pair Encoding) en yaygın tokenization algoritmasıdır ve çoğu modern LLM bunu kullanır. Tokenizer seçimi ayrıca modelin çok dilli yeteneklerini doğrudan belirler: geniş bir vocabulary daha fazla dili destekler ama model boyutunu artırır.
+  en: |-
+    The tool that splits text into tokens and converts tokens back to text — think of it as the AI model's 'alphabet'. Each model family has its own tokenizer: GPT-4 uses cl100k_base (100K token vocabulary), while [Llama](https://ai.meta.com/llama/) 3 uses its own tokenizer with a 128K vocabulary.
+
+    Tokenizer quality directly impacts model performance — a good tokenizer keeps frequently used words as single tokens while splitting rare words into sub-pieces. For example, 'hello' might be a single token in an English tokenizer, but a Turkish word like 'merhaba' could be split into 3-4 pieces by an English-centric tokenizer — causing Turkish text to consume more tokens.
+
+    BPE (Byte Pair Encoding) is the most common tokenization algorithm and is used by most modern LLMs. Tokenizer choice also directly determines a model's multilingual capabilities: a larger vocabulary supports more languages but increases model size.
+  fr: "L'outil qui divise le texte en tokens et reconvertit les tokens en texte — considerez-le comme 'l'alphabet' du modele d'IA. Chaque famille de modeles a son propre tokenizer : GPT-4 utilise cl100k_base (vocabulaire de 100K tokens), tandis que Llama 3 utilise son propre tokenizer avec un vocabulaire de 128K. La qualite du tokenizer impacte directement la performance du modele — un bon tokenizer garde les mots frequents comme tokens uniques tout en decoupant les mots rares en sous-parties. Par exemple, 'bonjour' pourrait etre un seul token dans un tokenizer francais, mais un mot turc comme 'merhaba' pourrait etre divise en 3-4 morceaux par un tokenizer centre sur l'anglais. BPE (Byte Pair Encoding) est l'algorithme de tokenisation le plus courant et est utilise par la plupart des LLM modernes. Le choix du tokenizer determine aussi directement les capacites multilingues du modele : un plus grand vocabulaire supporte plus de langues mais augmente la taille du modele."
+  zh: 将文本拆分为token并将token转换回文本的工具——可以把它看作AI模型的"字母表"。每个模型家族都有自己的tokenizer：GPT-4使用cl100k_base（10万token词汇表），Llama 3使用自己的12.8万词汇表tokenizer。Tokenizer的质量直接影响模型性能——好的tokenizer将常用词保留为单个token，而将罕见词拆分成子片段。例如"hello"在英文tokenizer中可能是单个token，但土耳其语词"merhaba"在以英语为中心的tokenizer中可能被拆成3-4个片段——导致土耳其语文本消耗更多token。BPE（Byte Pair Encoding）是最常见的分词算法，被大多数现代LLM使用。Tokenizer的选择还直接决定了模型的多语言能力：更大的词汇表支持更多语言，但会增加模型大小。
+  ar: "الأداة التي تقسم النص إلى tokens وتحوّل التوكنات مرة أخرى إلى نص — فكّر فيها كـ \"أبجدية\" نموذج الذكاء الاصطناعي. كل عائلة نماذج لها tokenizer خاص: GPT-4 يستخدم cl100k_base (مفردات 100 ألف token)، بينما Llama 3 يستخدم tokenizer خاص بمفردات 128 ألف. جودة الـ tokenizer تؤثر مباشرة على أداء النموذج — tokenizer جيد يحتفظ بالكلمات الشائعة كـ token واحد بينما يقسم الكلمات النادرة لأجزاء فرعية. مثلاً \"hello\" قد تكون token واحد في tokenizer إنجليزي، لكن كلمة عربية مثل \"مرحباً\" قد تُقسم إلى 3-4 أجزاء بواسطة tokenizer يركز على الإنجليزية — مما يجعل النص العربي يستهلك tokens أكثر. BPE (Byte Pair Encoding) هو أكثر خوارزمية tokenization شيوعاً وتستخدمه معظم النماذج اللغوية الكبيرة الحديثة. اختيار الـ tokenizer يحدد أيضاً قدرات النموذج متعددة اللغات: مفردات أكبر تدعم لغات أكثر لكن تزيد حجم النموذج."
+  ru: "Инструмент, разбивающий текст на токены и преобразующий токены обратно в текст — своего рода \"алфавит\" модели ИИ. У каждого семейства моделей свой токенизатор: GPT-4 использует cl100k_base (словарь из 100K токенов), Llama 3 — собственный токенизатор со словарём в 128K. Качество токенизатора напрямую влияет на производительность модели — хороший токенизатор сохраняет частые слова как единый токен, а редкие разбивает на подчасти. Например, \"hello\" может быть одним токеном в английском токенизаторе, но турецкое слово \"merhaba\" в англоцентричном токенизаторе может быть разбито на 3-4 части — из-за чего турецкий текст потребляет больше токенов. BPE (Byte Pair Encoding) — самый распространённый алгоритм токенизации, используемый большинством современных LLM. Выбор токенизатора также определяет мультиязычные возможности модели: больший словарь поддерживает больше языков, но увеличивает размер модели."
+analogy:
+  tr: Metni puzzle parçalarına ayıran makine. Farklı tokenizer'lar aynı metni farklı şekillerde böler.
+  en: A machine that cuts text into puzzle pieces. Different tokenizers split the same text in different ways.
+  fr: Une machine qui découpe le texte en pièces de puzzle. Différents tokenizers divisent le même texte de différentes manières.
+  zh: 将文本切成拼图碎片的机器。不同的tokenizer以不同的方式分割相同的文本。
+  ar: آلة تقطع النص إلى قطع أحجية. tokenizers مختلفة تقسم نفس النص بطرق مختلفة.
+  ru: Машина, разрезающая текст на кусочки пазла. Разные токенизаторы делят один и тот же текст по-разному.
+security:
+  - title:
+      tr: Tokenizer Homoglyph Attacks
+      en: Tokenizer Homoglyph Attacks
+      fr: Attaques par homoglyphes sur le tokenizer
+      zh: Tokenizer同形攻击
+      ar: هجمات الأحرف المتشابهة على الـ Tokenizer
+      ru: Атаки гомоглифами на токенизатор
+    description:
+      tr: Görsel olarak aynı ama farklı Unicode karakterler (homoglyph) kullanarak tokenizer'ı kandırma. Örneğin Cyrillic 'а' (U+0430) Latin 'a' (U+0061) yerine kullanılarak content filter bypass edilir. BPE tokenizer'lar farklı encoding üretir ve zararlı içerik geçer. Especially effective against keyword-based safety filters.
+      en: Deceiving tokenizer using visually identical but different Unicode characters (homoglyph). For example, using Cyrillic 'а' (U+0430) instead of Latin 'a' (U+0061) to bypass content filters. BPE tokenizers generate different encodings and harmful content passes through. Especially effective against keyword-based safety filters.
+      fr: Tromper le tokenizer en utilisant des caractères Unicode visuellement identiques mais différents (homoglyphes). Par exemple, utiliser le 'а' cyrillique au lieu du 'a' latin pour contourner les filtres de contenu. Les tokenizers BPE génèrent des encodages différents et le contenu nuisible passe.
+      zh: 使用视觉上相同但不同的Unicode字符（同形字）欺骗分词器。例如使用西里尔字母'а'(U+0430)代替拉丁字母'a'(U+0061)来绕过内容过滤器。BPE分词器生成不同编码，有害内容得以通过。
+      ar: خداع الـ tokenizer باستخدام أحرف Unicode متطابقة بصرياً لكن مختلفة (homoglyph). مثلاً استخدام 'а' السيريلية بدل 'a' اللاتينية لتجاوز مرشحات المحتوى.
+      ru: Обман токенизатора с использованием визуально идентичных, но различных Unicode-символов (гомоглифов). Например, использование кириллического 'а' (U+0430) вместо латинского 'a' (U+0061) для обхода фильтров контента.
+    severity: high
+  - title:
+      tr: BPE Merge Table Poisoning
+      en: BPE Merge Table Poisoning
+      fr: Empoisonnement de la table de fusion BPE
+      zh: BPE合并表投毒
+      ar: تسميم جدول دمج BPE
+      ru: Отравление таблицы слияний BPE
+    description:
+      tr: Custom tokenizer training yapılırken malicious data ile BPE merge table manipüle edilebilir. Specific zararlı phrase'ler single token olarak encode edilirse, content moderation atlanır. Örneğin 'makeexplosive' tek token olursa filter 'explosive' kelimesini göremez. Supply chain attack vektörüdür.
+      en: When training custom tokenizer, BPE merge table can be manipulated with malicious data. If specific harmful phrases are encoded as single token, content moderation is bypassed. For example, if 'makeexplosive' becomes single token, filter can't see 'explosive' word. Supply chain attack vector.
+      fr: Lors de l'entraînement d'un tokenizer personnalisé, la table de fusion BPE peut être manipulée avec des données malveillantes. Si des phrases nuisibles sont encodées comme un seul token, la modération de contenu est contournée. Vecteur d'attaque de la chaîne d'approvisionnement.
+      zh: 训练自定义分词器时，BPE合并表可能被恶意数据操纵。如果特定有害短语被编码为单个token，内容审核将被绕过。例如'makeexplosive'变成单个token后，过滤器无法看到'explosive'。供应链攻击向量。
+      ar: عند تدريب tokenizer مخصص، يمكن التلاعب بجدول دمج BPE ببيانات خبيثة. إذا تم ترميز عبارات ضارة كـ token واحد، يتم تجاوز مراقبة المحتوى. ناقل هجوم سلسلة التوريد.
+      ru: При обучении пользовательского токенизатора таблица слияний BPE может быть манипулирована вредоносными данными. Если вредоносные фразы кодируются как один токен, модерация контента обходится. Вектор атаки на цепочку поставок.
+    severity: medium
+  - title:
+      tr: Tokenizer Vocabulary Side-Channel
+      en: Tokenizer Vocabulary Side-Channel
+      fr: Canal auxiliaire du vocabulaire du tokenizer
+      zh: Tokenizer词汇侧信道
+      ar: قناة جانبية لمفردات الـ Tokenizer
+      ru: Побочный канал словаря токенизатора
+    description:
+      tr: Tokenizer vocabulary'deki rare token'ların varlığı, training data hakkında bilgi sızdırır. Şirket-specific jargon veya internal code token'ları proprietary data'nın model eğitiminde kullanıldığını gösterir. Vocabulary extraction ile data provenance tespit edilebilir.
+      en: Presence of rare tokens in tokenizer vocabulary leaks information about training data. Company-specific jargon or internal code tokens indicate proprietary data was used in model training. Data provenance can be detected via vocabulary extraction.
+      fr: La présence de tokens rares dans le vocabulaire du tokenizer divulgue des informations sur les données d'entraînement. Le jargon spécifique à une entreprise ou les tokens de code interne indiquent que des données propriétaires ont été utilisées. La provenance des données peut être détectée via l'extraction du vocabulaire.
+      zh: 分词器词汇表中稀有token的存在泄露了训练数据的信息。公司特定术语或内部代码token表明专有数据被用于模型训练。可通过词汇表提取检测数据来源。
+      ar: وجود توكنات نادرة في مفردات الـ tokenizer يسرب معلومات عن بيانات التدريب. المصطلحات الخاصة بالشركة تشير إلى استخدام بيانات ملكية في تدريب النموذج.
+      ru: Наличие редких токенов в словаре токенизатора утекает информацию об обучающих данных. Специфический жаргон компании указывает на использование проприетарных данных при обучении модели.
+    severity: low
+config:
+  - title: Unicode Normalization Before Tokenization
+    lang: python
+    code: |-
+      import unicodedata
+      from transformers import AutoTokenizer
+
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B")
+
+      def secure_tokenize(text: str):
+          # Normalize to NFKC (compatibility composition)
+          # Converts homoglyphs to canonical form
+          normalized = unicodedata.normalize('NFKC', text)
+
+          # Remove zero-width and control characters
+          cleaned = ''.join(
+              char for char in normalized
+              if unicodedata.category(char) not in ['Cf', 'Cc', 'Cn']
+          )
+
+          # Detect suspicious character mixing
+          scripts = set()
+          for char in cleaned:
+              try:
+                  scripts.add(unicodedata.name(char).split()[0])
+              except:
+                  pass
+
+          if len(scripts) > 3:  # Multiple scripts = potential homoglyph attack
+              print("WARNING: Multiple scripts detected, possible homoglyph attack")
+
+          return tokenizer(cleaned, return_tensors="pt")
+    description:
+      tr: Tokenization öncesi NFKC normalization uygulayın. Homoglyph'leri canonical forma dönüştürün. Multiple script kullanımını tespit edin ve uyarı verin.
+      en: Apply NFKC normalization before tokenization. Convert homoglyphs to canonical form. Detect multiple script usage and warn.
+  - title: Tokenizer Vocabulary Auditing
+    lang: bash
+    code: |-
+      # Extract and audit tokenizer vocabulary
+      python -c "
+      from transformers import AutoTokenizer
+      import json
+
+      tokenizer = AutoTokenizer.from_pretrained('your-model')
+      vocab = tokenizer.get_vocab()
+
+      # Find potentially leaked proprietary tokens
+      suspicious = []
+      for token, idx in vocab.items():
+          # Check for company names, internal jargon, etc.
+          if any(keyword in token.lower() for keyword in ['internal', 'confidential', 'proprietary']):
+              suspicious.append(token)
+
+      print('Potentially leaked tokens:', suspicious)
+      json.dump(vocab, open('vocab_audit.json', 'w'), indent=2)
+      "
+
+      # Compare vocabularies to detect data leakage
+      diff <(jq -S 'keys' public_model_vocab.json) <(jq -S 'keys' your_model_vocab.json)
+    description:
+      tr: Tokenizer vocabulary'yi dışarı çıkarın ve proprietary token'ları tespit edin. Public model ile karşılaştırarak data leakage kontrol edin.
+      en: Extract tokenizer vocabulary and detect proprietary tokens. Compare with public model to check for data leakage.
+research:
+  - title: Homoglyph Attack Against Tokenizers
+    url: https://arxiv.org/abs/2402.11530
+    year: 2024
+    type: paper
+    authors: Evan Rosenberg, et al.
+  - title: BPE Tokenizer Security Considerations
+    url: https://aclanthology.org/2023.findings-acl.38/
+    year: 2023
+    type: paper
+    authors: Tokenization Research
+  - title: Extracting Training Data via Tokenizer Vocabulary
+    url: https://arxiv.org/abs/2012.07805
+    year: 2020
+    type: paper
+    authors: Nicholas Carlini, et al.
+tips:
+  - tr: Her zaman NFKC Unicode normalization kullanın, tokenization öncesi homoglyph'leri temizleyin.
+    en: Always use NFKC Unicode normalization to clean homoglyphs before tokenization.
+  - tr: Custom tokenizer training yaparken vocabulary'yi audit edin, proprietary terms sızmamış mı kontrol edin.
+    en: When training custom tokenizer, audit vocabulary to ensure proprietary terms haven't leaked.
+  - tr: Tokenizer vocabulary'yi public'e açmadan önce sensitive token'ları manuel olarak kaldırın.
+    en: Manually remove sensitive tokens from tokenizer vocabulary before making it public.

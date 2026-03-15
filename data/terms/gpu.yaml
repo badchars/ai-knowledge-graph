@@ -1,0 +1,149 @@
+id: gpu
+name: GPU
+fullName: Graphics Processing Unit
+category: hardware
+desc:
+  tr: |-
+    Modern AI'i mümkün kılan işlemci. Sıralı görevler için tasarlanmış 8-24 güçlü çekirdeğe sahip CPU'nun aksine, GPU'da paralel çalışan binlerce küçük çekirdek bulunur — AI modellerinin ihtiyaç duyduğu matris matematiği için ideal.
+
+    Bu alanda [NVIDIA](https://nvidia.com), [A100](https://www.nvidia.com/en-us/data-center/a100/), [H100](https://www.nvidia.com/en-us/data-center/h100/) ve [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/) gibi kartlarla baskın konumdadır; [AMD](https://amd.com) ise MI300X ile rekabet etmektedir. [OpenAI](https://openai.com) GPT-4'ü veya [Meta](https://ai.meta.com) [Llama](https://ai.meta.com/llama/)'yı eğitirken binlerce GPU'dan oluşan kümeler kullanır.
+
+    Yerel kullanımda bile 24GB VRAM'li bir RTX 4090, quantization ile 70B parametreli bir modeli çalıştırabilir. GPU fiyatları AI talebinin patlamasıyla birlikte son yıllarda ciddi şekilde artmıştır.
+  en: |-
+    The processor that makes modern AI possible. Unlike a CPU which has 8-24 powerful cores designed for sequential tasks, a GPU has thousands of smaller cores that work in parallel — perfect for the matrix math that AI models run on.
+
+    [NVIDIA](https://nvidia.com) dominates this space with cards like the [A100](https://www.nvidia.com/en-us/data-center/a100/), [H100](https://www.nvidia.com/en-us/data-center/h100/), and [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/), while [AMD](https://amd.com) is catching up with its MI300X. When companies like [OpenAI](https://openai.com) train GPT-4 or [Meta](https://ai.meta.com) trains [Llama](https://ai.meta.com/llama/), they use clusters of thousands of GPUs working together.
+
+    For running models locally, even a consumer RTX 4090 with 24GB VRAM can run a 70B parameter model with quantization. GPU prices have surged dramatically in recent years due to the explosion in AI demand.
+  fr: Le processeur qui rend l'IA moderne possible. Contrairement a un CPU qui dispose de 8 a 24 coeurs puissants concus pour des taches sequentielles, un GPU possede des milliers de coeurs plus petits travaillant en parallele — ideal pour les calculs matriciels dont les modeles d'IA ont besoin. NVIDIA domine ce marche avec des cartes comme l'A100, le H100 et la RTX 4090, tandis qu'AMD rattrape son retard avec le MI300X. Quand des entreprises comme OpenAI entrainent GPT-4 ou Meta entraine Llama, elles utilisent des grappes de milliers de GPU travaillant ensemble. Pour faire tourner des modeles localement, meme une RTX 4090 grand public avec 24 Go de VRAM peut executer un modele de 70 milliards de parametres avec quantification. Les prix des GPU ont fortement augmente ces dernieres annees en raison de l'explosion de la demande en IA.
+  zh: 让现代AI成为可能的处理器。与拥有8-24个强大核心、专为顺序任务设计的CPU不同，GPU拥有数千个并行工作的小核心——非常适合AI模型所依赖的矩阵运算。NVIDIA凭借A100、H100和RTX 4090等显卡主导着这一领域，而AMD正以MI300X奋力追赶。当OpenAI训练GPT-4或Meta训练Llama时，它们使用数千块GPU组成的集群协同工作。即使是消费级的RTX 4090（24GB VRAM），通过量化也能在本地运行700亿参数的模型。由于AI需求的爆发，GPU价格近年来大幅飙升。
+  ar: المعالج الذي يجعل الذكاء الاصطناعي الحديث ممكناً. على عكس CPU الذي يحتوي على 8-24 نواة قوية مصممة للمهام المتسلسلة، يمتلك GPU آلاف النوى الصغيرة التي تعمل بالتوازي — مثالية لحسابات المصفوفات التي تعتمد عليها نماذج الذكاء الاصطناعي. تهيمن NVIDIA على هذا المجال ببطاقات مثل A100 وH100 وRTX 4090، بينما تلحق AMD بالركب عبر MI300X. عندما تدرّب شركات مثل OpenAI نموذج GPT-4 أو Meta نموذج Llama، تستخدم مجموعات من آلاف المعالجات الرسومية تعمل معاً. حتى بطاقة RTX 4090 الاستهلاكية بذاكرة 24 جيجابايت يمكنها تشغيل نموذج بـ 70 مليار معامل مع التكميم. وقد ارتفعت أسعار GPU بشكل كبير في السنوات الأخيرة بسبب الطلب المتزايد على الذكاء الاصطناعي.
+  ru: Процессор, который делает современный ИИ возможным. В отличие от CPU с 8-24 мощными ядрами для последовательных задач, GPU имеет тысячи маленьких ядер, работающих параллельно — идеально для матричной математики, на которой работают модели ИИ. NVIDIA доминирует в этой области с картами A100, H100 и RTX 4090, а AMD догоняет с MI300X. Когда OpenAI обучает GPT-4 или Meta обучает Llama, они используют кластеры из тысяч GPU. Для локального запуска даже потребительская RTX 4090 с 24 ГБ VRAM способна запустить модель на 70 млрд параметров с квантизацией. Цены на GPU резко выросли в последние годы из-за взрывного роста спроса на ИИ.
+analogy:
+  tr: CPU tek bir usta ise, GPU aynı anda binlerce işçi çalıştıran bir fabrika. Her işçi basit bir iş yapar ama hep birlikte devasa işler başarırlar.
+  en: If a CPU iş a single master craftsman, a GPU iş a factory running thousands of workers simultaneously. Each does simple work, but together they accomplish massive tasks.
+  fr: Si le CPU est un maître artisan, le GPU est une usine qui fait travailler des milliers d'ouvriers simultanément. Chacun fait un travail simple, mais ensemble ils accomplissent des tâches massives.
+  zh: 如果CPU是一个工匠大师，GPU就是同时运行数千名工人的工厂。每个工人做简单的工作，但他们一起完成巨大的任务。
+  ar: إذا كان CPU حرفيًا واحدًا ماهرًا، فإن GPU هو مصنع يشغل آلاف العمال في وقت واحد. كل عامل يقوم بعمل بسيط، لكن معًا ينجزون مهام ضخمة.
+  ru: Если CPU — это один мастер, то GPU — это фабрика, где одновременно работают тысячи рабочих. Каждый делает простую работу, но вместе они выполняют огромные задачи.
+security:
+  - title:
+      tr: GPU Bellek İzolasyonu Zafiyetleri
+      en: GPU Memory Isolation Vulnerabilities
+      fr: Vulnérabilités d'isolation mémoire GPU
+      zh: GPU内存隔离漏洞
+      ar: ثغرات عزل ذاكرة GPU
+      ru: Уязвимости изоляции памяти GPU
+    description:
+      tr: Paylaşımlı GPU ortamlarında (cloud, Kubernetes) farklı kullanıcıların işleri aynı VRAM'i kullanır. Önceki işlerden kalan hassas veriler (model ağırlıkları, prompt'lar) düzgün temizlenmezse sızan verilere erişilebilir. GPU'lar CPU'daki gibi donanım seviyesi bellek korumasına sahip değildir.
+      en: In shared GPU environments (cloud, Kubernetes), different users' workloads share the same VRAM. If sensitive data from previous jobs (model weights, prompts) isn't properly cleared, leaked data can be accessed. GPUs lack hardware-level memory protection like CPUs have.
+      fr: Dans les environnements GPU partagés (cloud, Kubernetes), les charges de travail de différents utilisateurs partagent la même VRAM. Si les données sensibles des tâches précédentes (poids de modèle, prompts) ne sont pas correctement effacées, les données divulguées sont accessibles. Les GPU ne disposent pas de protection mémoire matérielle comme les CPU.
+      zh: 在共享GPU环境中（云、Kubernetes），不同用户的工作负载共享同一VRAM。如果前一任务遗留的敏感数据（模型权重、提示词）未被正确清除，泄露的数据可被访问。GPU缺乏CPU所具有的硬件级内存保护。
+      ar: في بيئات GPU المشتركة (السحابة، Kubernetes)، تتشارك أحمال عمل المستخدمين المختلفين نفس VRAM. إذا لم يتم مسح البيانات الحساسة من المهام السابقة بشكل صحيح، يمكن الوصول إلى البيانات المسربة. تفتقر GPU إلى حماية الذاكرة على مستوى العتاد كما في CPU.
+      ru: В общих средах GPU (облако, Kubernetes) рабочие нагрузки разных пользователей используют одну и ту же VRAM. Если чувствительные данные от предыдущих задач не очищены должным образом, к утечённым данным можно получить доступ. GPU не имеют аппаратной защиты памяти, как CPU.
+    severity: high
+  - title:
+      tr: Side-Channel Saldırıları
+      en: Side-Channel Attacks
+      fr: Attaques par canal auxiliaire
+      zh: 侧信道攻击
+      ar: هجمات القناة الجانبية
+      ru: Атаки по побочным каналам
+    description:
+      tr: GPU timing saldırıları ile aynı kartı paylaşan başka bir kullanıcının model parametreleri veya giriş verileri çıkarılabilir. MemLeak, GPU.zip gibi saldırılar CUDA stream timing analizi yaparak hassas bilgileri ele geçirir. Multi-tenant GPU ortamlarında kritik risk oluşturur.
+      en: GPU timing attacks can extract model parameters or input data from another user sharing the same card. Attacks like MemLeak and GPU.zip use CUDA stream timing analysis to extract sensitive information. Critical risk in multi-tenant GPU environments.
+      fr: Les attaques par timing GPU peuvent extraire les paramètres du modèle ou les données d'entrée d'un autre utilisateur partageant la même carte. Des attaques comme MemLeak et GPU.zip utilisent l'analyse temporelle des flux CUDA pour extraire des informations sensibles. Risque critique dans les environnements GPU multi-locataires.
+      zh: GPU定时攻击可以从共享同一显卡的另一用户中提取模型参数或输入数据。MemLeak、GPU.zip等攻击利用CUDA流定时分析获取敏感信息。在多租户GPU环境中构成严重风险。
+      ar: يمكن لهجمات توقيت GPU استخراج معاملات النموذج أو بيانات الإدخال من مستخدم آخر يتشارك نفس البطاقة. هجمات مثل MemLeak وGPU.zip تستخدم تحليل توقيت تدفقات CUDA لاستخراج معلومات حساسة. مخاطر حرجة في بيئات GPU متعددة المستأجرين.
+      ru: Атаки на основе тайминга GPU могут извлечь параметры модели или входные данные другого пользователя. Атаки вроде MemLeak и GPU.zip используют анализ тайминга потоков CUDA для извлечения конфиденциальной информации. Критический риск в мультитенантных средах GPU.
+    severity: high
+  - title:
+      tr: CUDA Stream Hijacking
+      en: CUDA Stream Hijacking
+      fr: Détournement de flux CUDA
+      zh: CUDA流劫持
+      ar: اختطاف تدفقات CUDA
+      ru: Перехват потоков CUDA
+    description:
+      tr: Kötü niyetli kod CUDA stream'lerini manipüle ederek başka işlerin hesaplamalarını değiştirebilir veya okuyabilir. Özellikle containerize olmayan veya izole edilmemiş GPU paylaşımlarında tehlikelidir.
+      en: Malicious code can manipulate CUDA streams to alter or read computations from other jobs. Especially dangerous in non-containerized or non-isolated GPU sharing setups.
+      fr: Un code malveillant peut manipuler les flux CUDA pour modifier ou lire les calculs d'autres tâches. Particulièrement dangereux dans les configurations de partage GPU non conteneurisées ou non isolées.
+      zh: 恶意代码可以操纵CUDA流来修改或读取其他任务的计算结果。在未容器化或未隔离的GPU共享设置中尤其危险。
+      ar: يمكن للشفرة الخبيثة التلاعب بتدفقات CUDA لتغيير أو قراءة حسابات المهام الأخرى. خطير بشكل خاص في إعدادات مشاركة GPU غير المحتواة أو غير المعزولة.
+      ru: Вредоносный код может манипулировать потоками CUDA для изменения или чтения вычислений других задач. Особенно опасно в неконтейнеризированных средах совместного использования GPU.
+    severity: medium
+  - title:
+      tr: GPU Sürücü Bilgi Sızıntısı
+      en: GPU Driver Information Disclosure
+      fr: Divulgation d'informations du pilote GPU
+      zh: GPU驱动信息泄露
+      ar: كشف معلومات تعريف GPU
+      ru: Раскрытие информации о драйвере GPU
+    description:
+      tr: nvidia-smi veya /proc/driver/nvidia/version gibi araçlar GPU driver versiyonunu açığa çıkarır. Bu bilgi saldırganın bilinen CVE'leri hedeflemesine olanak tanır. Container'larda bu bilginin kısıtlanması önerilir.
+      en: Tools like nvidia-smi or /proc/driver/nvidia/version expose GPU driver version. This information allows attackers to target known CVEs. Restricting this information in containers is recommended.
+      fr: Des outils comme nvidia-smi ou /proc/driver/nvidia/version exposent la version du pilote GPU. Cette information permet aux attaquants de cibler des CVE connus. Il est recommandé de restreindre cette information dans les conteneurs.
+      zh: nvidia-smi或/proc/driver/nvidia/version等工具会暴露GPU驱动版本。此信息使攻击者能够针对已知CVE发起攻击。建议在容器中限制此类信息。
+      ar: أدوات مثل nvidia-smi أو /proc/driver/nvidia/version تكشف إصدار تعريف GPU. هذه المعلومات تسمح للمهاجمين باستهداف ثغرات CVE المعروفة. يُوصى بتقييد هذه المعلومات في الحاويات.
+      ru: Инструменты вроде nvidia-smi раскрывают версию драйвера GPU. Эта информация позволяет злоумышленникам нацеливаться на известные CVE. Рекомендуется ограничить эту информацию в контейнерах.
+    severity: low
+config:
+  - title: GPU Process Isolation with MIG
+    lang: bash
+    code: |-
+      # NVIDIA Multi-Instance GPU (MIG) - H100/A100
+      nvidia-smi mig -cgi 9,9,9,9,9,9,9 -C
+      # Creates 7 isolated GPU instances
+      # Each has dedicated VRAM + compute resources
+
+      # Verify isolation
+      nvidia-smi mig -lgi
+    description:
+      tr: NVIDIA MIG, tek bir GPU'yu donanım seviyesinde izole edilmiş parçalara böler. Her MIG instance'ı ayrı VRAM ve hesaplama kaynaklarına sahiptir, böylece multi-tenant ortamlarda side-channel saldırılarını önler.
+      en: NVIDIA MIG partitions a single GPU into hardware-isolated slices. Each MIG instance has separate VRAM and compute resources, preventing side-channel attacks in multi-tenant environments.
+  - title: Kubernetes GPU Resource Limits
+    lang: yaml
+    code: |-
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: secure-gpu-pod
+      spec:
+        containers:
+        - name: llm-inference
+          image: vllm/vllm-openai:latest
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+              memory: "32Gi"
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+    description:
+      tr: Kubernetes pod'larında GPU kaynak limitlerini zorla ve container'ı non-root kullanıcı ile çalıştır. readOnlyRootFilesystem, kötü niyetli kod yazılmasını engeller. GPU erişimini en az ayrıcalık prensibiyle sınırla.
+      en: Enforce GPU resource limits in Kubernetes pods and run containers as non-root user. readOnlyRootFilesystem prevents malicious code writes. Restrict GPU access with least privilege principle.
+research:
+  - title: "GPU.zip: Side-Channel Attack on GPUs"
+    url: https://gpu.zip/
+    year: 2023
+    type: paper
+    authors: Lukas Gerlach, et al.
+  - title: "MemLeak: Memory Leakage in Multi-Tenant GPUs"
+    url: https://arxiv.org/abs/2305.15979
+    year: 2023
+    type: paper
+    authors: Guanhua Wang, et al.
+  - title: NVIDIA Multi-Instance GPU (MIG) User Guide
+    url: https://docs.nvidia.com/datacenter/tesla/mig-user-guide/
+    year: 2024
+    type: guide
+    authors: NVIDIA
+tips:
+  - tr: Cloud GPU kullanırken mutlaka dedicated instance tercih edin, paylaşımlı GPU'larda bellek izolasyonu garanti edilmez.
+    en: Always prefer dedicated GPU instances in cloud - shared GPUs don't guarantee memory isolation.
+  - tr: CUDA malloc/free işlemlerinden sonra cudaMemset ile VRAM'i sıfırlayın, hassas verilerin kalıntılarını temizleyin.
+    en: Zero out VRAM with cudaMemset after CUDA malloc/free operations to clear sensitive data remnants.
+  - tr: MIG destekleyen kartlarda (A100, H100) mutlaka MIG kullanın, donanım seviyesi izolasyon sağlar.
+    en: On MIG-capable cards (A100, H100), always enable MIG for hardware-level isolation.

@@ -1,0 +1,204 @@
+id: inference
+name: Inference
+fullName: Inference
+category: inference
+desc:
+  tr: |-
+    Eğitilmiş bir AI modelinin gerçek zamanda çalıştırılarak çıktı üretmesi işlemi. [ChatGPT](https://openai.com/chatgpt)'ye bir soru yazdığınızda, [Claude](https://claude.ai)'a kod yazdırdığınızda veya Midjourney'de gorsel olusturdugünunzda gerçeklesen işlemin tamamı inference'dir.
+
+    Eğitim (training) aylarca sürer ve milyonlarca dolara mal olurken, inference milisaniyeler içinde gerçeklesir — ancak olceklendiginde bu da ciddi maliyetler getirir. Örneğin [OpenAI](https://openai.com)'nin günluk milyonlarca isteği karsilamasi için binlerce GPU'nun surekli inference yapmasi gerekir.
+
+    Inference hızını optimize etmek için [vLLM](https://docs.vllm.ai), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM), continuous batching ve speculative decoding gibi teknikler geliştirilmiştir. Bir modelin ne kadar hızlı inference yaptığını genellikle 'tokens/second' metrigi ile ölçeriz.
+  en: |-
+    The process of running a trained AI model to produce output in real time. Every time you type a question into [ChatGPT](https://openai.com/chatgpt), ask [Claude](https://claude.ai) to write code, or generate an image with Midjourney, that entire operation iş inference.
+
+    While training takes months and costs millions of dollars, inference happens in milliseconds — but at scale, it still carries significant costs. For example, [OpenAI](https://openai.com) needs thousands of GPUs running continuous inference to handle millions of daily requests.
+
+    Techniques like [vLLM](https://docs.vllm.ai), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM), continuous batching, and speculative decoding have been developed specifically to optimize inference speed. We typically measure how fast a model performs inference using the 'tokens/second' metric — a 70B model on consumer hardware might achieve 8-12 tok/s, while cloud providers aim for 50-100+ tok/s.
+  fr: Le processus d'execution d'un modele d'IA entraine pour produire une sortie en temps reel. Chaque fois que vous tapez une question dans ChatGPT, demandez a Claude d'ecrire du code ou generez une image avec Midjourney, toute cette operation est de l'inference. Alors que l'entrainement prend des mois et coute des millions de dollars, l'inference se produit en millisecondes — mais a grande echelle, les couts restent significatifs. OpenAI a besoin de milliers de GPU en inference continue pour gerer des millions de requetes quotidiennes. Des techniques comme vLLM, TensorRT-LLM, le continuous batching et le speculative decoding ont ete developpees pour optimiser la vitesse d'inference. On mesure generalement la vitesse d'inference en 'tokens/seconde' — un modele 70B sur du materiel grand public peut atteindre 8-12 tok/s.
+  zh: 运行已训练的AI模型以实时生成输出的过程。每当你在ChatGPT中输入问题、让Claude编写代码或用Midjourney生成图片时，整个操作都是推理。虽然训练需要数月时间并耗资数百万美元，但推理在毫秒内完成——然而大规模运行时成本依然可观。例如OpenAI需要数千块GPU持续进行推理来处理每天数百万的请求。vLLM、TensorRT-LLM、连续批处理和投机解码等技术都是专门为优化推理速度而开发的。我们通常用'tokens/秒'来衡量推理速度——消费级硬件上的70B模型可能达到8-12 tok/s，而云服务商的目标是50-100+ tok/s。
+  ar: عملية تشغيل نموذج ذكاء اصطناعي مدرّب لإنتاج مخرجات في الوقت الفعلي. في كل مرة تكتب سؤالاً في ChatGPT أو تطلب من Claude كتابة كود أو تنشئ صورة باستخدام Midjourney، فإن العملية بأكملها هي استدلال. بينما يستغرق التدريب أشهراً ويكلف ملايين الدولارات، يحدث الاستدلال في أجزاء من الثانية — لكن على نطاق واسع لا تزال التكاليف كبيرة. تحتاج OpenAI مثلاً إلى آلاف وحدات GPU تعمل باستمرار للتعامل مع ملايين الطلبات اليومية. طُوّرت تقنيات مثل vLLM وTensorRT-LLM والتجميع المستمر والفك التخميني خصيصاً لتحسين سرعة الاستدلال. نقيس عادة سرعة الاستدلال بمقياس 'رموز/ثانية' — نموذج 70 مليار على أجهزة استهلاكية قد يحقق 8-12 رمز/ثانية.
+  ru: Процесс запуска обученной AI-модели для генерации выходных данных в реальном времени. Каждый раз, когда вы пишете вопрос в ChatGPT, просите Claude написать код или генерируете изображение в Midjourney — всё это инференс. Обучение занимает месяцы и стоит миллионы долларов, а инференс происходит за миллисекунды — но в масштабе затраты всё равно значительны. OpenAI нужны тысячи GPU для непрерывного инференса, чтобы обрабатывать миллионы ежедневных запросов. Для оптимизации скорости инференса разработаны техники вроде vLLM, TensorRT-LLM, continuous batching и speculative decoding. Скорость инференса обычно измеряют в 'токенах/секунду' — модель 70B на потребительском оборудовании может выдавать 8-12 ток/с, а облачные провайдеры стремятся к 50-100+ ток/с.
+analogy:
+  tr: Eğitim = sınava çalışma, Inference = sınavı çözme. Çalışma aylar sürer, sınav dakikalar.
+  en: Training = studying for the exam, Inference = taking the exam. Studying takes months, the exam takes minutes.
+  fr: Entraînement = étudier pour l'examen, Inférence = passer l'examen. Étudier prend des mois, l'examen prend des minutes.
+  zh: 训练 = 备考，推理 = 参加考试。备考需要数月，考试只需几分钟。
+  ar: التدريب = الدراسة للامتحان، الاستنتاج = إجراء الامتحان. الدراسة تستغرق أشهرًا، الامتحان يستغرق دقائق.
+  ru: Обучение = подготовка к экзамену, Вывод = сдача экзамена. Подготовка занимает месяцы, экзамен — минуты.
+security:
+  - title:
+      tr: Inference-Time Model Extraction
+      en: Inference-Time Model Extraction
+      fr: Extraction de modele en temps d'inference
+      zh: 推理时模型提取
+      ar: استخراج النموذج أثناء الاستدلال
+      ru: Извлечение модели во время инференса
+    description:
+      tr: Saldırganlar inference API'sine çok sayıda query göndererek model ağırlıklarını veya eğitim verisini kısmen çıkarabilir. API rate limiting olmadan bu saldırı etkilidir.
+      en: Attackers can partially extract model weights or training data by sending many queries to inference APIs. Without API rate limiting, this attack is effective.
+      fr: Les attaquants peuvent extraire partiellement les poids du modele ou les donnees d'entrainement en envoyant de nombreuses requetes aux API d'inference. Sans limitation de debit API, cette attaque est efficace.
+      zh: 攻击者可以通过向推理API发送大量查询来部分提取模型权重或训练数据。没有API速率限制的情况下，这种攻击很有效。
+      ar: يمكن للمهاجمين استخراج أوزان النموذج أو بيانات التدريب جزئياً عن طريق إرسال استعلامات كثيرة إلى واجهات برمجة الاستدلال. بدون تحديد معدل API، يكون هذا الهجوم فعالاً.
+      ru: Злоумышленники могут частично извлечь веса модели или обучающие данные, отправляя множество запросов к API инференса. Без ограничения частоты запросов API эта атака эффективна.
+    severity: high
+  - title:
+      tr: Prompt Injection Attacks
+      en: Prompt Injection Attacks
+      fr: Attaques par injection de prompt
+      zh: 提示注入攻击
+      ar: هجمات حقن الموجه
+      ru: Атаки инъекции промптов
+    description:
+      tr: Inference sırasında zararlı prompt'lar system instruction'ları override edebilir, model güvenlik kısıtlamalarını atlatabilir veya hassas bilgi sızdırabilir.
+      en: Malicious prompts during inference can override system instructions, bypass model security constraints, or leak sensitive information.
+      fr: Les prompts malveillants pendant l'inference peuvent outrepasser les instructions systeme, contourner les contraintes de securite du modele ou divulguer des informations sensibles.
+      zh: 推理过程中的恶意提示可以覆盖系统指令、绕过模型安全约束或泄露敏感信息。
+      ar: يمكن للموجهات الخبيثة أثناء الاستدلال تجاوز تعليمات النظام أو تجاوز قيود أمان النموذج أو تسريب معلومات حساسة.
+      ru: Вредоносные промпты во время инференса могут переопределить системные инструкции, обойти ограничения безопасности модели или привести к утечке конфиденциальной информации.
+    severity: critical
+  - title:
+      tr: Side-Channel Inference Leakage
+      en: Side-Channel Inference Leakage
+      fr: Fuite d'inference par canal auxiliaire
+      zh: 侧信道推理泄漏
+      ar: تسريب الاستدلال عبر القناة الجانبية
+      ru: Утечка инференса через побочный канал
+    description:
+      tr: Inference latency, GPU kullanımı veya output token timing'i üzerinden input veya model detayları hakkında bilgi sızdırılabilir.
+      en: Information about inputs or model details can leak through inference latency, GPU usage, or output token timing.
+      fr: Des informations sur les entrees ou les details du modele peuvent fuiter a travers la latence d'inference, l'utilisation du GPU ou le timing des tokens de sortie.
+      zh: 关于输入或模型细节的信息可以通过推理延迟、GPU使用率或输出token时序泄露。
+      ar: يمكن أن تتسرب معلومات حول المدخلات أو تفاصيل النموذج من خلال زمن تأخر الاستدلال أو استخدام GPU أو توقيت رموز الإخراج.
+      ru: Информация о входных данных или деталях модели может утекать через задержку инференса, использование GPU или тайминг выходных токенов.
+    severity: medium
+  - title:
+      tr: Inference Endpoint Keşfi
+      en: Inference Endpoint Discovery
+      fr: Decouverte des points d'acces d'inference
+      zh: 推理端点发现
+      ar: اكتشاف نقاط نهاية الاستدلال
+      ru: Обнаружение конечных точек инференса
+    description:
+      tr: Inference servisleri genellikle standart portlarda (8000, 8080) ve endpoint'lerde (/v1/completions) çalışır. Port tarama ile bu servislerin keşfedilmesi kolaydır ve bilgi ifşasına yol açar.
+      en: Inference services typically run on standard ports (8000, 8080) and endpoints (/v1/completions). Port scanning easily discovers these services, leading to information disclosure.
+      fr: Les services d'inference fonctionnent generalement sur des ports standards (8000, 8080) et des endpoints (/v1/completions). Le scan de ports decouvre facilement ces services, entrainant une divulgation d'informations.
+      zh: 推理服务通常运行在标准端口（8000、8080）和端点（/v1/completions）上。端口扫描很容易发现这些服务，导致信息泄露。
+      ar: تعمل خدمات الاستدلال عادةً على منافذ قياسية (8000، 8080) ونقاط نهاية (/v1/completions). يكتشف مسح المنافذ هذه الخدمات بسهولة، مما يؤدي إلى كشف المعلومات.
+      ru: Сервисы инференса обычно работают на стандартных портах (8000, 8080) и эндпоинтах (/v1/completions). Сканирование портов легко обнаруживает эти сервисы, что приводит к раскрытию информации.
+    severity: low
+config:
+  - title: Secure Inference API
+    lang: python
+    code: |-
+      from fastapi import FastAPI, HTTPException
+      from slowapi import Limiter
+      from slowapi.util import get_remote_address
+      import re
+
+      app = FastAPI()
+      limiter = Limiter(key_func=get_remote_address)
+
+      FORBIDDEN_PATTERNS = [
+          r"ignore (previous|above) instructions",
+          r"system:? you are now",
+          r"print (your|the) (prompt|instructions)",
+          r"<\|.*?\|>",  # Special tokens
+      ]
+
+      @app.post("/v1/chat/completions")
+      @limiter.limit("10/minute")  # Rate limit
+      async def chat(request: dict):
+          prompt = request["messages"][-1]["content"]
+          
+          # Prompt injection detection
+          for pattern in FORBIDDEN_PATTERNS:
+              if re.search(pattern, prompt, re.IGNORECASE):
+                  raise HTTPException(403, "Prompt injection detected")
+          
+          # Add constant-time delay to prevent timing attacks
+          output = await model.generate(prompt)
+          await asyncio.sleep(0.1)  # Normalize latency
+          
+          return {"output": output}
+    description:
+      tr: Inference API'sine rate limiting, prompt injection detection ve timing normalization ekleyin.
+      en: Add rate limiting, prompt injection detection, and timing normalization to inference APIs.
+  - title: Input Sanitization
+    lang: python
+    code: |-
+      # Sanitize user inputs before inference
+      def sanitize_input(text: str, max_length=2048) -> str:
+          # Length check
+          if len(text) > max_length:
+              raise ValueError("Input too long")
+          
+          # Remove special tokens
+          forbidden_tokens = ["<|endoftext|>", "<|im_start|>", "<|im_end|>"]
+          for token in forbidden_tokens:
+              text = text.replace(token, "")
+          
+          # Remove null bytes and control chars
+          text = "".join(char for char in text if ord(char) >= 32 or char == "
+      ")
+          
+          return text
+
+      # Use before inference
+      user_prompt = sanitize_input(request.prompt)
+    description:
+      tr: Inference öncesi input'ları sanitize edin. Özel token'ları ve control karakterleri filtreleyin.
+      en: Sanitize inputs before inference. Filter special tokens and control characters.
+  - title: Inference Rate Limiting (Nginx)
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Configure nginx rate limiting for inference API
+      cat > /etc/nginx/conf.d/inference-ratelimit.conf << 'NGINX'
+      limit_req_zone $binary_remote_addr zone=inference:10m rate=10r/s;
+      limit_req_zone $binary_remote_addr zone=inference_burst:10m rate=30r/m;
+
+      server {
+          listen 443 ssl;
+          server_name inference.example.com;
+
+          location /v1/completions {
+              limit_req zone=inference burst=20 nodelay;
+              limit_req_status 429;
+              proxy_pass http://127.0.0.1:8000;
+              proxy_set_header X-Real-IP $remote_addr;
+          }
+
+          location /v1/models {
+              limit_req zone=inference_burst burst=5;
+              proxy_pass http://127.0.0.1:8000;
+          }
+      }
+      NGINX
+      nginx -t && systemctl reload nginx
+    description:
+      tr: Nginx ile inference API'sine rate limiting uygulayarak model extraction saldırılarını zorlaştırır.
+      en: Applies rate limiting to inference API via Nginx to make model extraction attacks more difficult.
+research:
+  - title: "Exploiting Programmatic Behavior of LLMs: Dual-Use Through Standard Security Attacks"
+    url: https://arxiv.org/abs/2302.05733
+    year: 2023
+    type: paper
+    authors: Daniel Kang, Xuechen Li, Ion Stoica, Carlos Guestrin
+  - title: Universal and Transferable Adversarial Attacks on Aligned Language Models
+    url: https://arxiv.org/abs/2307.15043
+    year: 2023
+    type: paper
+    authors: Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr
+  - title: OWASP Top 10 for LLM Applications
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: Inference API'lerine authentication ve authorization mutlaka ekleyin.
+    en: Always add authentication and authorization to inference APIs.
+  - tr: Output'larda PII (Personally Identifiable Information) filtering yapın.
+    en: Implement PII (Personally Identifiable Information) filtering in outputs.
+  - tr: Inference latency ve token count'u monitör edin; anomalileri tespit edin.
+    en: Monitor inference latency and token counts; detect anomalies.

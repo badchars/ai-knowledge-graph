@@ -1,0 +1,261 @@
+id: multi-agent
+name: Multi-Agent
+fullName: Multi-Agent Systems
+category: tools
+desc:
+  tr: |-
+    Birden fazla [agent](/terms/agent)'ın koordineli çalıştığı sistemler. Her agent farklı role, expertise veya tool set'e sahiptir ve ortak bir hedefe ulaşmak için işbirliği yapar.
+
+    Örneğin bir security research multi-agent sistemi: scanner agent (reconnaissance), analyzer agent (vulnerability detection) ve reporter agent (documentation) içerir. [CrewAI](https://www.crewai.com) ve [AutoGen](https://microsoft.github.io/autogen/) bu pattern'i implement eder.
+
+    Kritik zorluklar: agent coordination, message passing, conflict resolution ve resource allocation. Multi-agent sistemler complex task'ları paralelize ederek efficiency artırır ancak debugging ve orchestration zorlaşır.
+  en: |-
+    Systems where multiple [agents](/terms/agent) work in coordination. Each agent has different roles, expertise, or tool sets and collaborates to achieve a common goal.
+
+    For example, a security research multi-agent system includes: scanner agent (reconnaissance), analyzer agent (vulnerability detection), and reporter agent (documentation). [CrewAI](https://www.crewai.com) and [AutoGen](https://microsoft.github.io/autogen/) implement this pattern.
+
+    Critical challenges: agent coordination, message passing, conflict resolution, and resource allocation. Multi-agent systems increase efficiency by parallelizing complex tasks but make debugging and orchestration more difficult.
+  fr: Systèmes où plusieurs agents travaillent en coordination, chacun avec des rôles et des outils différents.
+  zh: 多个代理协调工作的系统，每个代理具有不同的角色、专业知识或工具集。
+  ar: أنظمة حيث يعمل عدة وكلاء بشكل منسق، كل منهم لديه أدوار وخبرات ومجموعات أدوات مختلفة.
+  ru: Системы, в которых несколько агентов работают координированно, каждый с разными ролями, экспертизой или наборами инструментов.
+analogy:
+  tr: "Tek doktor yerine hastane ekibi: radiolog, cerrah, anestezist. Her biri uzmanlığında çalışır, koordine olur."
+  en: "Hospital team instead of single doctor: radiologist, surgeon, anesthetist. Each works in their expertise, coordinates."
+  fr: "Équipe hospitalière au lieu d'un seul médecin : radiologue, chirurgien, anesthésiste. Chacun travaille dans son expertise, se coordonne."
+  zh: 医院团队而不是单个医生：放射科医生、外科医生、麻醉师。每个人都在其专业领域工作，相互协调。
+  ar: "فريق المستشفى بدلاً من طبيب واحد: أخصائي الأشعة، الجراح، طبيب التخدير. كل يعمل في تخصصه، ويتنسقون."
+  ru: "Команда больницы вместо одного врача: рентгенолог, хирург, анестезиолог. Каждый работает в своей экспертизе, координируется."
+security:
+  - title:
+      tr: Agent Impersonation
+      en: Agent Impersonation
+      fr: Usurpation d'identite d'agent
+      zh: 代理冒充
+      ar: انتحال هوية الوكيل
+      ru: Имперсонация агента
+    description:
+      tr: Multi-agent sistemlerde agent identity verification eksikse, saldırgan fake agent inject ederek malicious commands gönderebilir veya diğer agent'ları mislead edebilir.
+      en: Without agent identity verification in multi-agent systems, attacker can inject fake agents to send malicious commands or mislead other agents.
+      fr: Sans verification d'identite des agents dans les systemes multi-agents, un attaquant peut injecter de faux agents pour envoyer des commandes malveillantes ou induire en erreur les autres agents.
+      zh: 在多代理系统中如果缺少代理身份验证，攻击者可以注入虚假代理来发送恶意命令或误导其他代理。
+      ar: بدون التحقق من هوية الوكيل في أنظمة الوكلاء المتعددين، يمكن للمهاجم حقن وكلاء مزيفين لإرسال أوامر ضارة أو تضليل الوكلاء الآخرين.
+      ru: Без верификации личности агентов в мультиагентных системах злоумышленник может внедрить поддельных агентов для отправки вредоносных команд или введения в заблуждение других агентов.
+    severity: critical
+  - title:
+      tr: Inter-Agent Message Injection
+      en: Inter-Agent Message Injection
+      fr: Injection de messages inter-agents
+      zh: 代理间消息注入
+      ar: حقن الرسائل بين الوكلاء
+      ru: Инъекция межагентных сообщений
+    description:
+      tr: Agent'lar arası message passing güvenli değilse, saldırgan message flow'a inject ederek coordination'ı bozabilir veya zararlı talimatlar ekleyebilir.
+      en: If inter-agent message passing is not secure, attacker can inject into message flow to disrupt coordination or add malicious instructions.
+      fr: Si la transmission de messages entre agents n'est pas securisee, un attaquant peut injecter dans le flux de messages pour perturber la coordination ou ajouter des instructions malveillantes.
+      zh: 如果代理间的消息传递不安全，攻击者可以注入消息流来破坏协调或添加恶意指令。
+      ar: إذا لم يكن تمرير الرسائل بين الوكلاء آمنًا، يمكن للمهاجم الحقن في تدفق الرسائل لتعطيل التنسيق أو إضافة تعليمات ضارة.
+      ru: Если межагентная передача сообщений не защищена, злоумышленник может внедриться в поток сообщений для нарушения координации или добавления вредоносных инструкций.
+    severity: high
+  - title:
+      tr: Coordination Attacks
+      en: Coordination Attacks
+      fr: Attaques de coordination
+      zh: 协调攻击
+      ar: هجمات التنسيق
+      ru: Атаки на координацию
+    description:
+      tr: Saldırgan consensus mechanism'ı manipüle ederek agent'ların yanlış kararlara varmasını sağlayabilir. Byzantine fault tolerance olmayan sistemler savunmasızdır.
+      en: Attacker can manipulate consensus mechanism to make agents reach wrong decisions. Systems without Byzantine fault tolerance are vulnerable.
+      fr: Un attaquant peut manipuler le mecanisme de consensus pour amener les agents a prendre de mauvaises decisions. Les systemes sans tolerance aux fautes byzantines sont vulnerables.
+      zh: 攻击者可以操纵共识机制使代理做出错误决策。没有拜占庭容错的系统容易受到攻击。
+      ar: يمكن للمهاجم التلاعب بآلية الإجماع لجعل الوكلاء يتوصلون إلى قرارات خاطئة. الأنظمة بدون التسامح مع الأخطاء البيزنطية معرضة للخطر.
+      ru: Злоумышленник может манипулировать механизмом консенсуса, чтобы заставить агентов принимать неправильные решения. Системы без византийской отказоустойчивости уязвимы.
+    severity: high
+  - title:
+      tr: Multi Agent Konfigürasyon Bilgi Sızıntısı
+      en: Multi Agent Configuration Information Disclosure
+      fr: Divulgation de configuration multi agent
+      zh: multi agent配置信息泄露
+      ar: كشف معلومات تكوين multi-agent
+      ru: Раскрытие конфигурации multi-agent
+    description:
+      tr: Multi Agent ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to multi agent can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à multi agent peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与multi agent相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ multi-agent في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании multi-agent могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure Multi-Agent System with Authentication
+    lang: python
+    code: |-
+      import hashlib
+      import hmac
+      import json
+      from typing import Dict, List, Any
+      from dataclasses import dataclass
+      from enum import Enum
+
+      class AgentRole(Enum):
+          SCANNER = "scanner"
+          ANALYZER = "analyzer"
+          REPORTER = "reporter"
+
+      @dataclass
+      class Message:
+          sender_id: str
+          receiver_id: str
+          content: Dict[str, Any]
+          signature: str
+          timestamp: float
+
+      class SecureAgent:
+          def __init__(self, agent_id: str, role: AgentRole, secret_key: str):
+              self.agent_id = agent_id
+              self.role = role
+              self.secret_key = secret_key
+              self.trusted_agents: Dict[str, str] = {}  # agent_id -> public_key
+
+          def register_peer(self, peer_id: str, peer_key: str):
+              """Register trusted peer agent"""
+              self.trusted_agents[peer_id] = peer_key
+
+          def sign_message(self, message: Dict[str, Any]) -> str:
+              """Sign message with HMAC"""
+              message_str = json.dumps(message, sort_keys=True)
+              signature = hmac.new(
+                  self.secret_key.encode(),
+                  message_str.encode(),
+                  hashlib.sha256
+              ).hexdigest()
+              return signature
+
+          def verify_message(self, message: Message, sender_key: str) -> bool:
+              """Verify message signature"""
+              # Check if sender is trusted
+              if message.sender_id not in self.trusted_agents:
+                  print(f"Unknown sender: {message.sender_id}")
+                  return False
+
+              # Verify signature
+              content_str = json.dumps(message.content, sort_keys=True)
+              expected_sig = hmac.new(
+                  sender_key.encode(),
+                  content_str.encode(),
+                  hashlib.sha256
+              ).hexdigest()
+
+              return hmac.compare_digest(message.signature, expected_sig)
+
+          def send_message(self, receiver_id: str, content: Dict[str, Any]) -> Message:
+              """Send authenticated message to peer"""
+              import time
+
+              message = Message(
+                  sender_id=self.agent_id,
+                  receiver_id=receiver_id,
+                  content=content,
+                  signature=self.sign_message(content),
+                  timestamp=time.time()
+              )
+              return message
+
+          def receive_message(self, message: Message) -> bool:
+              """Receive and validate message"""
+              # Get sender's key
+              sender_key = self.trusted_agents.get(message.sender_id)
+              if not sender_key:
+                  return False
+
+              # Verify signature
+              if not self.verify_message(message, sender_key):
+                  print(f"Invalid signature from {message.sender_id}")
+                  return False
+
+              # Check message age (prevent replay attacks)
+              import time
+              if time.time() - message.timestamp > 60:  # 1 minute threshold
+                  print("Message too old")
+                  return False
+
+              # Process message
+              self.process_message(message.content)
+              return True
+
+          def process_message(self, content: Dict[str, Any]):
+              """Process validated message"""
+              print(f"[{self.role.value}] Processing: {content}")
+
+      class MultiAgentOrchestrator:
+          def __init__(self):
+              self.agents: Dict[str, SecureAgent] = {}
+
+          def register_agent(self, agent: SecureAgent):
+              """Register agent in the system"""
+              self.agents[agent.agent_id] = agent
+
+              # Allow all agents to communicate
+              for other_id, other_agent in self.agents.items():
+                  if other_id != agent.agent_id:
+                      agent.register_peer(other_id, other_agent.secret_key)
+                      other_agent.register_peer(agent.agent_id, agent.secret_key)
+
+          def route_message(self, message: Message) -> bool:
+              """Route message to recipient with validation"""
+              receiver = self.agents.get(message.receiver_id)
+              if not receiver:
+                  return False
+
+              return receiver.receive_message(message)
+
+      # Usage
+      orchestrator = MultiAgentOrchestrator()
+
+      scanner = SecureAgent("scanner-1", AgentRole.SCANNER, "scanner-secret-key")
+      analyzer = SecureAgent("analyzer-1", AgentRole.ANALYZER, "analyzer-secret-key")
+      reporter = SecureAgent("reporter-1", AgentRole.REPORTER, "reporter-secret-key")
+
+      orchestrator.register_agent(scanner)
+      orchestrator.register_agent(analyzer)
+      orchestrator.register_agent(reporter)
+
+      # Scanner sends findings to analyzer
+      msg = scanner.send_message("analyzer-1", {
+          "action": "analyze",
+          "findings": ["port 443 open", "SSL certificate expired"]
+      })
+      orchestrator.route_message(msg)
+    description:
+      tr: Güvenli multi-agent system. HMAC authentication, message signing, replay attack protection.
+      en: Secure multi-agent system. HMAC authentication, message signing, replay attack protection.
+  - title: Multi-Agent Communication Security
+    lang: go
+    code: "package agent\n\nimport (\n\t\"crypto/ed25519\"\n\t\"crypto/rand\"\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\ntype SignedMessage struct {\n\tFrom      string `json:\"from\"`\n\tTo        string `json:\"to\"`\n\tPayload   []byte `json:\"payload\"`\n\tSignature []byte `json:\"signature\"`\n}\n\ntype AgentIdentity struct {\n\tID      string\n\tpubKey  ed25519.PublicKey\n\tprivKey ed25519.PrivateKey\n}\n\nfunc NewAgentIdentity(id string) (*AgentIdentity, error) {\n\tpub, priv, err := ed25519.GenerateKey(rand.Reader)\n\tif err != nil { return nil, err }\n\treturn &AgentIdentity{ID: id, pubKey: pub, privKey: priv}, nil\n}\n\nfunc (a *AgentIdentity) Sign(msg []byte) []byte {\n\treturn ed25519.Sign(a.privKey, msg)\n}\n\nfunc Verify(pubKey ed25519.PublicKey, msg, sig []byte) bool {\n\treturn ed25519.Verify(pubKey, msg, sig)\n}"
+    description:
+      tr: Multi-agent mesaj imzalama icin Go modulu.
+      en: Go module for multi-agent message signing.
+research:
+  - title: "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"
+    url: https://arxiv.org/abs/2308.08155
+    year: 2023
+    type: paper
+    authors: Qingyun Wu, Gagan Bansal, Jieyu Zhang
+  - title: Communicative Agents for Software Development
+    url: https://arxiv.org/abs/2307.07924
+    year: 2023
+    type: paper
+    authors: Chen Qian, Xin Cong, Wei Liu
+  - title: Multi-Agent Security Frameworks
+    url: https://www.microsoft.com/en-us/research/project/autogen/
+    year: 2024
+    type: guide
+    authors: Microsoft Research
+tips:
+  - tr: Her agent'a unique ID ve secret key verin, HMAC ile message authentication yapın.
+    en: Give each agent unique ID and secret key, use HMAC for message authentication.
+  - tr: Message timestamp kontrolü ile replay attacks önleyin, 1-2 dakika threshold kullanın.
+    en: Prevent replay attacks with message timestamp checks, use 1-2 minute threshold.
+  - tr: Agent registry ile trusted peers yönetin, unknown agent'ları reject edin.
+    en: Manage trusted peers with agent registry, reject unknown agents.

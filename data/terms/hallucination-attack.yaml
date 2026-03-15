@@ -1,0 +1,347 @@
+id: hallucination-attack
+name: Hallucination Attack
+fullName: Targeted Hallucination Inducement Attack
+category: ai-security
+desc:
+  tr: |-
+    LLM'i kasıtlı olarak yanlış bilgi üretmeye zorlama saldırısı. En tehlikeli varyantı package hallucination'dır: LLM var olmayan npm/pip paketleri önerdiğinde, saldırgan bu isimlerle kötü amaçlı paketler yayınlar ve geliştiriciler bunları yükler (supply chain saldırısı).
+
+    Diger varyantlar arasında citation hallucination (sahte akademik kaynaklara atıf), code hallucination (güvenlik açığı içeren kod üretme) ve factual hallucination (kasıtlı yanlış bilgi üretmeye zorlama) bulunur.
+
+    Bu saldırılar özellikle kod üretimi, araştırma asistanları ve karar destek sistemlerinde yıkıcı sonuçlar doğurabilir. LLM'in güvenle yanlış bilgi sunması, kullanıcıların doğrulama yapmadan kabul etmesine yol açar.
+  en: |-
+    An attack that forces LLMs to deliberately produce false information. The most dangerous variant is package hallucination: when an LLM suggests non-existent npm/pip packages, the attacker publishes malicious packages under those names and developers install them (supply chain attack).
+
+    Other variants include citation hallucination (citing fake academic sources), code hallucination (generating code with security vulnerabilities), and factual hallucination (forcing deliberate misinformation generation).
+
+    These attacks can have devastating consequences especially in code generation, research assistants, and decision support systems. The LLM confidently presenting false information leads users to accept it without verification.
+  fr: |-
+    Une attaque qui force les LLM a produire deliberement de fausses informations. La variante la plus dangereuse est l'hallucination de paquets : quand un LLM suggere des paquets npm/pip inexistants, l'attaquant publie des paquets malveillants sous ces noms et les developpeurs les installent (attaque de chaine d'approvisionnement).
+
+    D'autres variantes incluent l'hallucination de citations (citer de fausses sources academiques), l'hallucination de code (generer du code avec des vulnerabilites) et l'hallucination factuelle (forcer la generation de desinformation).
+
+    Ces attaques peuvent avoir des consequences devastatrices, en particulier dans la generation de code, les assistants de recherche et les systemes d'aide a la decision.
+  zh: |-
+    一种迫使LLM故意生成虚假信息的攻击。最危险的变体是包幻觉：当LLM建议不存在的npm/pip包时，攻击者以这些名称发布恶意包，开发者会安装它们（供应链攻击）。
+
+    其他变体包括引文幻觉（引用虚假学术来源）、代码幻觉（生成含安全漏洞的代码）和事实幻觉（强制生成虚假信息）。
+
+    这些攻击在代码生成、研究助手和决策支持系统中可能造成毁灭性后果。LLM自信地呈现虚假信息会导致用户不加验证地接受。
+  ar: |-
+    هجوم يجبر نماذج اللغة الكبيرة على إنتاج معلومات خاطئة عمداً. أخطر المتغيرات هو هلوسة الحزم: عندما يقترح النموذج حزم npm/pip غير موجودة، ينشر المهاجم حزماً خبيثة بتلك الأسماء ويثبتها المطورون (هجوم سلسلة التوريد).
+
+    تشمل المتغيرات الأخرى هلوسة الاستشهادات (الاستشهاد بمصادر أكاديمية مزيفة) وهلوسة الكود (توليد كود يحتوي ثغرات أمنية) والهلوسة الواقعية (إجبار توليد معلومات مضللة).
+
+    يمكن أن يكون لهذه الهجمات عواقب مدمرة خاصة في توليد الكود ومساعدي البحث وأنظمة دعم القرار.
+  ru: |-
+    Атака, заставляющая LLM намеренно генерировать ложную информацию. Наиболее опасный вариант — галлюцинация пакетов: когда LLM предлагает несуществующие npm/pip-пакеты, злоумышленник публикует вредоносные пакеты под этими именами, и разработчики их устанавливают (атака на цепочку поставок).
+
+    Другие варианты включают галлюцинацию цитирования (ссылки на фейковые академические источники), галлюцинацию кода (генерация кода с уязвимостями) и фактическую галлюцинацию (принуждение к генерации дезинформации).
+
+    Эти атаки могут иметь разрушительные последствия, особенно в генерации кода, исследовательских ассистентах и системах поддержки решений.
+analogy:
+  tr: Sahte reçete yazan bir doktora benzer. Hasta doktora güvendiği için reçetedeki ilaçları sorgulamadan alır — ama ilaçlar gerçekte zararlıdır. LLM'in güvenle söylediği yanlış bilgi de aynı şekilde sorgulanmadan kabul edilir.
+  en: Like a doctor who writes fake prescriptions. The patient trusts the doctor and takes the prescribed medicine without questioning — but the drugs are actually harmful. False information confidently stated by an LLM is accepted without question in the same way.
+  fr: Comme un medecin qui ecrit de fausses ordonnances. Le patient fait confiance au medecin et prend les medicaments prescrits sans questionner — mais les medicaments sont en realite nocifs. Les fausses informations enoncees avec confiance par un LLM sont acceptees de la meme maniere.
+  zh: 就像一个开假处方的医生。患者信任医生，不加质疑地服用处方药——但药物实际上是有害的。LLM自信地说出的虚假信息同样不被质疑就被接受。
+  ar: مثل طبيب يكتب وصفات طبية مزيفة. يثق المريض بالطبيب ويتناول الأدوية الموصوفة دون تساؤل — لكن الأدوية ضارة في الواقع. المعلومات الخاطئة التي يذكرها نموذج اللغة الكبير بثقة تُقبل بنفس الطريقة دون تساؤل.
+  ru: Как врач, выписывающий поддельные рецепты. Пациент доверяет врачу и принимает назначенные лекарства без вопросов — но препараты на самом деле вредны. Ложная информация, уверенно выдаваемая LLM, точно так же принимается без вопросов.
+security:
+  - title:
+      tr: Package Hallucination Supply Chain
+      en: Package Hallucination Supply Chain
+      fr: Chaine d'approvisionnement par hallucination de paquets
+      zh: 包幻觉供应链攻击
+      ar: سلسلة توريد هلوسة الحزم
+      ru: Атака на цепочку поставок через галлюцинацию пакетов
+    description:
+      tr: LLM'in var olmayan npm/pip/go paket adları önermesi ve saldırganın bu isimleri registry'lerde kaydetmesi. Geliştiriciler LLM'in önerisine güvenerek 'pip install hallucinated-package' çalıştırdığında kötü amaçlı kod yüklenir. Araştırmalarda ChatGPT'nin önerdiği paketlerin %35'inin var olmadığı tespit edilmiştir.
+      en: LLM suggesting non-existent npm/pip/go package names and the attacker registering those names on registries. When developers trust the LLM's suggestion and run 'pip install hallucinated-package', malicious code is installed. Research has found that 35% of packages suggested by ChatGPT do not exist.
+      fr: Le LLM suggere des noms de paquets npm/pip/go inexistants et l'attaquant enregistre ces noms dans les registres. Quand les developpeurs font confiance a la suggestion du LLM et executent 'pip install hallucinated-package', du code malveillant est installe. Des recherches ont montre que 35% des paquets suggeres par ChatGPT n'existent pas.
+      zh: LLM建议不存在的npm/pip/go包名，攻击者在注册表中注册这些名称。当开发者信任LLM的建议并运行'pip install hallucinated-package'时，恶意代码就会被安装。研究发现ChatGPT建议的包中有35%不存在。
+      ar: يقترح نموذج اللغة الكبير أسماء حزم npm/pip/go غير موجودة ويسجل المهاجم تلك الأسماء في السجلات. عندما يثق المطورون باقتراح النموذج وينفذون 'pip install hallucinated-package' يتم تثبيت شفرة خبيثة. وجدت الأبحاث أن 35% من الحزم المقترحة من ChatGPT غير موجودة.
+      ru: LLM предлагает несуществующие имена пакетов npm/pip/go, а злоумышленник регистрирует эти имена в реестрах. Когда разработчики доверяют предложению LLM и запускают 'pip install hallucinated-package', устанавливается вредоносный код. Исследования показали, что 35% пакетов, предложенных ChatGPT, не существуют.
+    severity: critical
+  - title:
+      tr: Citation Hallucination for Disinformation
+      en: Citation Hallucination for Disinformation
+      fr: Hallucination de citations pour la desinformation
+      zh: 引文幻觉用于虚假信息
+      ar: هلوسة الاستشهادات للتضليل
+      ru: Галлюцинация цитирования для дезинформации
+    description:
+      tr: LLM'in sahte akademik makaleler, DOI numaraları ve yazar isimleri üretmesi. Araştırma asistanı olarak kullanıldığında, var olmayan çalışmalara atıfla güvenilir görünen ama tamamen uydurma bilgi sunulabilir. Akademik ve hukuki bağlamlarda ciddi sonuçları vardır.
+      en: LLM generating fake academic papers, DOI numbers, and author names. When used as a research assistant, it can present completely fabricated information that appears credible through citations to non-existent studies. Has serious consequences in academic and legal contexts.
+      fr: Le LLM genere de faux articles academiques, numeros DOI et noms d'auteurs. Utilise comme assistant de recherche, il peut presenter des informations entierement fabriquees qui paraissent credibles par des citations d'etudes inexistantes. Consequences graves dans les contextes academiques et juridiques.
+      zh: LLM生成虚假学术论文、DOI号码和作者姓名。当用作研究助手时，它可以通过引用不存在的研究来呈现看似可信但完全虚构的信息。在学术和法律领域有严重后果。
+      ar: ينتج نموذج اللغة الكبير أوراق أكاديمية مزيفة وأرقام DOI وأسماء مؤلفين. عند استخدامه كمساعد بحثي يمكنه تقديم معلومات ملفقة بالكامل تبدو موثوقة عبر استشهادات بدراسات غير موجودة. له عواقب خطيرة في السياقات الأكاديمية والقانونية.
+      ru: LLM генерирует фейковые академические статьи, номера DOI и имена авторов. При использовании в качестве исследовательского ассистента может представлять полностью сфабрикованную информацию, выглядящую достоверной благодаря ссылкам на несуществующие исследования. Имеет серьёзные последствия в академическом и юридическом контекстах.
+    severity: high
+  - title:
+      tr: Code Hallucination Vulnerability Injection
+      en: Code Hallucination Vulnerability Injection
+      fr: Injection de vulnerabilites par hallucination de code
+      zh: 代码幻觉漏洞注入
+      ar: حقن الثغرات عبر هلوسة الكود
+      ru: Внедрение уязвимостей через галлюцинацию кода
+    description:
+      tr: "LLM'in güvenlik açığı içeren kod üretmesi: SQL injection'a açık sorgular, hardcoded credentials, güvensiz deserialization, veya deprecated/zafiyetli API kullanımı. Prompt manipülasyonu ile bu tür kod üretimi tetiklenebilir veya artırılabilir."
+      en: "LLM generating code with security vulnerabilities: queries vulnerable to SQL injection, hardcoded credentials, unsafe deserialization, or use of deprecated/vulnerable APIs. Such code generation can be triggered or amplified through prompt manipulation."
+      fr: "Le LLM genere du code avec des vulnerabilites de securite : requetes vulnerables a l'injection SQL, identifiants codes en dur, deserialisation non securisee ou utilisation d'API obsoletes/vulnerables. Cette generation peut etre declenchee ou amplifiee par manipulation de prompt."
+      zh: LLM生成含安全漏洞的代码：易受SQL注入攻击的查询、硬编码凭据、不安全的反序列化或使用已弃用/有漏洞的API。这种代码生成可以通过提示操纵来触发或放大。
+      ar: "ينتج نموذج اللغة الكبير شفرة بها ثغرات أمنية: استعلامات عرضة لحقن SQL وبيانات اعتماد مشفرة وإلغاء تسلسل غير آمن أو استخدام واجهات برمجة تطبيقات متقادمة/ضعيفة. يمكن تحفيز أو تضخيم هذا التوليد عبر التلاعب بالأوامر."
+      ru: "LLM генерирует код с уязвимостями безопасности: запросы, уязвимые к SQL-инъекции, захардкоженные учётные данные, небезопасная десериализация или использование устаревших/уязвимых API. Такая генерация кода может быть спровоцирована или усилена через манипуляцию промптами."
+    severity: high
+  - title:
+      tr: Hallucination Detection Gap
+      en: Hallucination Detection Gap
+      fr: Lacune de detection des hallucinations
+      zh: 幻觉检测缺口
+      ar: فجوة اكتشاف الهلوسة
+      ru: Пробел в обнаружении галлюцинаций
+    description:
+      tr: LLM çıktılarında hallucination tespiti ve doğrulama mekanizmalarının eksikliği. Üretilen kod, referans ve bilgilerin otomatik olarak doğrulanmaması, kullanıcıların sahte bilgiyi gerçek kabul etmesine yol açar.
+      en: Lack of hallucination detection and verification mechanisms in LLM outputs. Not automatically verifying generated code, references, and information leads users to accept false information as real.
+      fr: Manque de mecanismes de detection et de verification des hallucinations dans les sorties LLM. Ne pas verifier automatiquement le code, les references et les informations generes conduit les utilisateurs a accepter de fausses informations comme reelles.
+      zh: LLM输出中缺乏幻觉检测和验证机制。不自动验证生成的代码、引用和信息，导致用户将虚假信息当作真实信息接受。
+      ar: نقص آليات اكتشاف والتحقق من الهلوسة في مخرجات نموذج اللغة الكبير. عدم التحقق التلقائي من الشفرة والمراجع والمعلومات المولدة يجعل المستخدمين يقبلون المعلومات المزيفة على أنها حقيقية.
+      ru: Отсутствие механизмов обнаружения и верификации галлюцинаций в выводе LLM. Отсутствие автоматической проверки сгенерированного кода, ссылок и информации приводит к тому, что пользователи принимают ложную информацию за настоящую.
+    severity: low
+config:
+  - title: Package Existence Verifier
+    lang: python
+    code: |-
+      import urllib.request
+      import json
+
+      class PackageVerifier:
+          REGISTRIES = {
+              "npm": "https://registry.npmjs.org/{pkg}",
+              "pypi": "https://pypi.org/pypi/{pkg}/json",
+              "go": "https://proxy.golang.org/{pkg}/@latest"
+          }
+
+          def verify(self, package_name: str, registry: str = "pypi") -> dict:
+              if registry not in self.REGISTRIES:
+                  return {"error": f"Unknown registry: {registry}"}
+
+              url = self.REGISTRIES[registry].format(pkg=package_name)
+              try:
+                  req = urllib.request.Request(url, method="HEAD")
+                  resp = urllib.request.urlopen(req, timeout=5)
+                  exists = resp.status == 200
+              except urllib.error.HTTPError as e:
+                  exists = False if e.code == 404 else None
+              except Exception:
+                  exists = None
+
+              return {
+                  "package": package_name,
+                  "registry": registry,
+                  "exists": exists,
+                  "safe_to_install": exists is True
+              }
+
+          def verify_code_block(self, code: str) -> list[dict]:
+              """Extract and verify all imports from LLM-generated code"""
+              import re
+              results = []
+
+              # Python imports
+              for match in re.finditer(r'^(?:from|import)\s+([\w.-]+)', code, re.M):
+                  pkg = match.group(1).split('.')[0]
+                  if pkg not in ('os', 'sys', 'json', 're', 'typing', 'pathlib'):
+                      results.append(self.verify(pkg, "pypi"))
+
+              # npm requires
+              for match in re.finditer(r"require\(['"]([\w@/-]+)['"]\)", code):
+                  results.append(self.verify(match.group(1), "npm"))
+
+              return results
+
+      # Usage
+      verifier = PackageVerifier()
+
+      # Verify single package
+      result = verifier.verify("definitely-not-a-real-package", "pypi")
+      print(result)  # {exists: False, safe_to_install: False}
+
+      # Verify LLM-generated code
+      llm_code = """import pandas\nimport flask_hallucinated_pkg"""
+      results = verifier.verify_code_block(llm_code)
+      for r in results:
+          if not r["safe_to_install"]:
+              print(f"WARNING: {r['package']} not found on {r['registry']}")
+    description:
+      tr: LLM'in önerdiği paketlerin gerçekten var olup olmadığını doğrulayan araç. npm, PyPI ve Go registry'lerini kontrol ederek package hallucination supply chain saldırılarını engeller.
+      en: Tool that verifies whether packages suggested by LLM actually exist. Prevents package hallucination supply chain attacks by checking npm, PyPI, and Go registries.
+      fr: Outil qui verifie si les paquets suggeres par le LLM existent reellement. Empeche les attaques de chaine d'approvisionnement par hallucination de paquets en verifiant les registres npm, PyPI et Go.
+      zh: 验证LLM建议的包是否实际存在的工具。通过检查npm、PyPI和Go注册表来防止包幻觉供应链攻击。
+      ar: أداة تتحقق مما إذا كانت الحزم المقترحة من نموذج اللغة الكبير موجودة فعلاً. تمنع هجمات سلسلة التوريد بهلوسة الحزم بفحص سجلات npm وPyPI وGo.
+      ru: Инструмент, проверяющий, существуют ли пакеты, предложенные LLM, на самом деле. Предотвращает атаки на цепочку поставок через галлюцинацию пакетов, проверяя реестры npm, PyPI и Go.
+  - title: Citation Checker
+    lang: typescript
+    code: |-
+      interface Citation {
+        title: string;
+        authors?: string;
+        doi?: string;
+        url?: string;
+      }
+
+      class CitationChecker {
+        async verify(citation: Citation): Promise<{
+          valid: boolean;
+          source?: string;
+          reason?: string;
+        }> {
+          // 1. DOI verification
+          if (citation.doi) {
+            const doiValid = await this.checkDOI(citation.doi);
+            if (doiValid) return { valid: true, source: "doi" };
+          }
+
+          // 2. CrossRef API search
+          const crossRefResult = await this.searchCrossRef(citation.title);
+          if (crossRefResult) return { valid: true, source: "crossref" };
+
+          // 3. Semantic Scholar search
+          const s2Result = await this.searchSemanticScholar(citation.title);
+          if (s2Result) return { valid: true, source: "semantic-scholar" };
+
+          return { valid: false, reason: "Citation not found in any database" };
+        }
+
+        private async checkDOI(doi: string): Promise<boolean> {
+          try {
+            const resp = await fetch(`https://doi.org/${doi}`, {
+              method: "HEAD", redirect: "manual"
+            });
+            return resp.status === 302 || resp.status === 301;
+          } catch {
+            return false;
+          }
+        }
+
+        private async searchCrossRef(title: string): Promise<boolean> {
+          try {
+            const q = encodeURIComponent(title);
+            const resp = await fetch(
+              `https://api.crossref.org/works?query.title=${q}&rows=1`
+            );
+            const data = await resp.json() as any;
+            const items = data.message?.items || [];
+            return items.length > 0 &&
+              items[0].title?.[0]?.toLowerCase().includes(title.toLowerCase().slice(0, 30));
+          } catch {
+            return false;
+          }
+        }
+
+        private async searchSemanticScholar(title: string): Promise<boolean> {
+          try {
+            const q = encodeURIComponent(title);
+            const resp = await fetch(
+              `https://api.semanticscholar.org/graph/v1/paper/search?query=${q}&limit=1`
+            );
+            const data = await resp.json() as any;
+            return (data.data?.length || 0) > 0;
+          } catch {
+            return false;
+          }
+        }
+      }
+
+      // Usage
+      const checker = new CitationChecker();
+      const result = await checker.verify({
+        title: "Attention Is All You Need",
+        doi: "10.48550/arXiv.1706.03762"
+      });
+      console.log(result); // { valid: true, source: "doi" }
+    description:
+      tr: LLM'in ürettiği akademik referansları DOI, CrossRef ve Semantic Scholar üzerinden doğrulayan araç. Citation hallucination tespiti için kullanılır.
+      en: Tool that verifies academic references generated by LLM via DOI, CrossRef, and Semantic Scholar. Used for citation hallucination detection.
+      fr: Outil qui verifie les references academiques generees par le LLM via DOI, CrossRef et Semantic Scholar. Utilise pour la detection d'hallucination de citations.
+      zh: 通过DOI、CrossRef和Semantic Scholar验证LLM生成的学术引用的工具。用于引文幻觉检测。
+      ar: أداة تتحقق من المراجع الأكاديمية المولدة من نموذج اللغة الكبير عبر DOI وCrossRef وSemantic Scholar. تُستخدم لاكتشاف هلوسة الاستشهادات.
+      ru: Инструмент, проверяющий академические ссылки, сгенерированные LLM, через DOI, CrossRef и Semantic Scholar. Используется для обнаружения галлюцинаций цитирования.
+  - title: Grounding Config
+    lang: yaml
+    code: |-
+      # hallucination-prevention.yaml
+      hallucination_prevention:
+        code_generation:
+          verify_packages: true
+          allowed_registries:
+            - npm
+            - pypi
+            - crates.io
+          block_unverified_imports: true
+          scan_for_vulnerabilities: true
+
+        citations:
+          require_doi: false
+          verify_via:
+            - crossref
+            - semantic-scholar
+          flag_unverified: true
+
+        grounding:
+          require_sources: true
+          max_unsourced_claims: 2
+          confidence_threshold: 0.8
+          fact_check_api: "https://factcheck.example.com/api/v1"
+
+        monitoring:
+          log_hallucination_rate: true
+          alert_threshold: 0.15  # 15% hallucination rate
+          sample_size: 100
+    description:
+      tr: Hallucination önleme yapılandırması. Paket doğrulama, citation kontrolü, grounding zorunluluğu ve hallucination oranı izleme ayarları.
+      en: Hallucination prevention configuration. Package verification, citation checking, grounding requirements, and hallucination rate monitoring settings.
+      fr: Configuration de prevention des hallucinations. Verification de paquets, controle de citations, exigences d'ancrage et parametres de surveillance du taux d'hallucination.
+      zh: 幻觉预防配置。包验证、引文检查、接地要求和幻觉率监控设置。
+      ar: تكوين منع الهلوسة. التحقق من الحزم وفحص الاستشهادات ومتطلبات التثبيت ومراقبة معدل الهلوسة.
+      ru: Конфигурация предотвращения галлюцинаций. Верификация пакетов, проверка цитирования, требования заземления и настройки мониторинга уровня галлюцинаций.
+research:
+  - title: Can LLMs Generate Fake but Convincing Scientific References?
+    url: https://arxiv.org/abs/2310.06049
+    year: 2023
+    type: paper
+    authors: Yucheng Li
+  - title: We Created Over 100 Malicious Packages from AI Hallucinated Names
+    url: https://vulcan.io/blog/ai-hallucinations-package-risk
+    year: 2024
+    type: blog
+    authors: Bar Lanyado, Vulcan Cyber
+  - title: A Survey on Hallucination in Large Language Models
+    url: https://arxiv.org/abs/2311.05232
+    year: 2023
+    type: paper
+    authors: Ziwei Ji, Nayeon Lee, Rita Frieske, et al.
+tips:
+  - tr: LLM'in önerdiği her paketi yüklemeden önce registry'de var olduğunu doğrulayın — otomatik doğrulama pipeline'ına entegre edin.
+    en: Verify every LLM-suggested package exists in the registry before installing — integrate into an automated verification pipeline.
+    fr: Verifiez que chaque paquet suggere par le LLM existe dans le registre avant l'installation — integrez dans un pipeline de verification automatise.
+    zh: 在安装前验证每个LLM建议的包是否存在于注册表中——集成到自动验证管道中。
+    ar: تحقق من وجود كل حزمة يقترحها نموذج اللغة الكبير في السجل قبل التثبيت — ادمج في خط أنابيب التحقق التلقائي.
+    ru: Проверяйте существование каждого предложенного LLM пакета в реестре перед установкой — интегрируйте в автоматизированный конвейер проверки.
+  - tr: LLM'in ürettiği akademik referansları DOI veya CrossRef ile doğrulayın — sahte citation'ları otomatik flagleyin.
+    en: Verify academic references generated by LLM via DOI or CrossRef — automatically flag fake citations.
+    fr: Verifiez les references academiques generees par le LLM via DOI ou CrossRef — signalez automatiquement les fausses citations.
+    zh: 通过DOI或CrossRef验证LLM生成的学术引用——自动标记虚假引文。
+    ar: تحقق من المراجع الأكاديمية المولدة من نموذج اللغة الكبير عبر DOI أو CrossRef — أشر تلقائياً للاستشهادات المزيفة.
+    ru: Проверяйте академические ссылки, сгенерированные LLM, через DOI или CrossRef — автоматически помечайте поддельные цитаты.
+  - tr: Kod üretiminde SAST (Static Application Security Testing) araçlarını otomatik çalıştırın — LLM'in ürettiği kodu production'a almadan önce tarayın.
+    en: Automatically run SAST tools on code generation — scan LLM-generated code before deploying to production.
+    fr: Executez automatiquement des outils SAST sur le code genere — analysez le code genere par le LLM avant le deploiement en production.
+    zh: 在代码生成时自动运行SAST工具——在部署到生产环境之前扫描LLM生成的代码。
+    ar: شغل أدوات SAST تلقائياً على الكود المولد — افحص الكود المولد من نموذج اللغة الكبير قبل نشره في الإنتاج.
+    ru: Автоматически запускайте SAST-инструменты при генерации кода — сканируйте код, сгенерированный LLM, перед развёртыванием в production.
+  - tr: LLM çıktılarına 'confidence score' ekleyin ve düşük güvenilirlikli yanıtları kullanıcıya açıkça işaretleyin.
+    en: Add confidence scores to LLM outputs and clearly mark low-confidence responses for the user.
+    fr: Ajoutez des scores de confiance aux sorties LLM et marquez clairement les reponses a faible confiance pour l'utilisateur.
+    zh: 为LLM输出添加置信度分数，并为用户明确标记低置信度回答。
+    ar: أضف درجات ثقة لمخرجات نموذج اللغة الكبير وأشر بوضوح للاستجابات منخفضة الثقة للمستخدم.
+    ru: Добавляйте оценки уверенности к выводу LLM и чётко помечайте ответы с низкой уверенностью для пользователя.

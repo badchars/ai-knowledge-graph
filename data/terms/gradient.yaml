@@ -1,0 +1,151 @@
+id: gradient
+name: Gradient
+fullName: Gradient
+category: training
+desc:
+  tr: |-
+    AI eğitiminde modelin her bir weight'ini hangi yöne ve ne kadar değiştirmesi gerektiğini gösteren matematiksel değer. Loss fonksiyonu modelin ne kadar yanlış yaptığını ölçerken, gradient bu hatanın her weight'e ne kadar bağlı olduğunu hesaplar. Kalkulus'taki turev kavraminin çok boyutlu halidir — 70 milyar weight'li bir modelde 70 milyar gradient aynı anda hesaplanir.
+
+    Gradient büyükse büyük adimla duzeltme yapılır, küçükse küçük adimla. "Gradient descent" denilen optimizasyon algoritmasi, bu gradient'leri takip ederek modeli surekli daha iyi yapar.
+
+    Gradient'lerin patlama (exploding) veya kaybolma (vanishing) problemi AI eğitiminin en büyük teknik zorluklarindan biridir — bu sorunu çözmek için batch normalization ve gradient clipping gibi teknikler geliştirilmiştir.
+  en: |-
+    A mathematical value that tells each weight in the model which direction and how much to change during training. While the loss function measures how wrong the model iş, the gradient calculates how much each individual weight contributed to that error. It iş the multidimensional version of a derivative from calculus — in a 70-billion parameter model, 70 billion gradients are computed simultaneously.
+
+    A large gradient means a large correction step, a small gradient means a small one. The optimization algorithm called "gradient descent" follows these gradients to continuously improve the model.
+
+    One of the biggest technical challenges in AI training iş gradients becoming too large (exploding) or too small (vanishing) — techniques like batch normalization and gradient clipping were developed specifically to solve this.
+  fr: Une valeur mathematique qui indique a chaque poids du modele dans quelle direction et de combien changer pendant l'entrainement. Alors que la fonction de perte mesure l'erreur du modele, le gradient calcule la contribution de chaque poids individuel a cette erreur. C'est la version multidimensionnelle d'une derivee — dans un modele a 70 milliards de parametres, 70 milliards de gradients sont calcules simultanement. Un grand gradient signifie une grande correction, un petit gradient une petite. L'algorithme d'optimisation appele "descente de gradient" suit ces gradients pour ameliorer continuellement le modele. L'un des plus grands defis techniques est que les gradients deviennent trop grands (explosion) ou trop petits (disparition) — des techniques comme la normalisation par lots et le clipping de gradient ont ete developpees pour resoudre ce probleme.
+  zh: 一个数学值，告诉模型中每个权重在训练期间应该朝哪个方向、改变多少。损失函数衡量模型错误程度，而梯度计算每个权重对该错误的贡献。它是微积分中导数的多维版本——在700亿参数模型中，同时计算700亿个梯度。梯度大意味着大幅修正，梯度小意味着小幅修正。名为梯度下降的优化算法跟随这些梯度持续改进模型。AI训练中最大的技术挑战之一是梯度变得过大（爆炸）或过小（消失）——批归一化和梯度裁剪等技术就是专门为解决这个问题开发的。
+  ar: قيمة رياضية تخبر كل وزن في النموذج بأي اتجاه ومقدار التغيير أثناء التدريب. بينما تقيس دالة الخسارة مدى خطأ النموذج، يحسب التدرج مساهمة كل وزن فردي في ذلك الخطأ. إنه النسخة متعددة الأبعاد من المشتقة في التفاضل — في نموذج بـ 70 مليار معامل، يتم حساب 70 مليار تدرج في وقت واحد. تدرج كبير يعني خطوة تصحيح كبيرة، وتدرج صغير يعني خطوة صغيرة. خوارزمية التحسين المسماة "الانحدار التدريجي" تتبع هذه التدرجات لتحسين النموذج باستمرار. أحد أكبر التحديات التقنية هو أن التدرجات تصبح كبيرة جداً (انفجار) أو صغيرة جداً (تلاشي) — طُوّرت تقنيات مثل التطبيع الدفعي وقص التدرج لحل هذه المشكلة.
+  ru: Математическое значение, указывающее каждому весу модели, в каком направлении и насколько изменяться во время обучения. Функция потерь измеряет ошибку модели, а градиент вычисляет вклад каждого отдельного веса в эту ошибку. Это многомерная версия производной из математического анализа — в модели с 70 миллиардами параметров одновременно вычисляются 70 миллиардов градиентов. Большой градиент означает большой шаг коррекции, маленький — маленький. Алгоритм оптимизации «градиентный спуск» следует этим градиентам для непрерывного улучшения модели. Одна из крупнейших технических проблем — градиенты становятся слишком большими (взрыв) или слишком малыми (затухание). Для решения были разработаны техники вроде batch normalization и gradient clipping.
+analogy:
+  tr: Dağın yamacında duran top. Gradyan, topun hangi yöne yuvarlanacağını (en dik iniş yönünü) gösterir.
+  en: A ball on a mountain slope. The gradient shows which direction the ball will roll — the steepest descent.
+  fr: Une balle sur une pente de montagne. Le gradient montre dans quelle direction la balle va rouler — la descente la plus raide.
+  zh: 山坡上的球。梯度显示球将朝哪个方向滚动——最陡的下降方向。
+  ar: كرة على منحدر جبلي. يوضح التدرج في أي اتجاه ستتدحرج الكرة — أشد انحدار.
+  ru: Мяч на горном склоне. Градиент показывает, в каком направлении покатится мяч — самый крутой спуск.
+security:
+  - title:
+      tr: Gradient Leakage Saldırıları
+      en: Gradient Leakage Attacks
+      fr: Attaques par fuite de gradient
+      zh: 梯度泄露攻击
+      ar: هجمات تسريب التدرجات
+      ru: Атаки утечки градиентов
+    description:
+      tr: Federated learning gibi dağıtık eğitim sistemlerinde, paylaşılan gradientler üzerinden orijinal eğitim verisi kısmen veya tamamen rekonstrükte edilebilir. Tek bir gradient güncellemesi bile hassas bilgi sızdırabilir.
+      en: In distributed training systems like federated learning, shared gradients can be used to partially or fully reconstruct original training data. Even a single gradient update can leak sensitive information.
+      fr: Dans les systèmes d'entraînement distribué comme l'apprentissage fédéré, les gradients partagés peuvent être utilisés pour reconstruire partiellement ou totalement les données d'entraînement originales. Même une seule mise à jour de gradient peut divulguer des informations sensibles.
+      zh: 在联邦学习等分布式训练系统中，共享的梯度可用于部分或完全重建原始训练数据。即使单次梯度更新也可能泄露敏感信息。
+      ar: في أنظمة التدريب الموزع مثل التعلم الفدرالي، يمكن استخدام التدرجات المشتركة لإعادة بناء بيانات التدريب الأصلية جزئياً أو كلياً. حتى تحديث تدرج واحد يمكن أن يسرب معلومات حساسة.
+      ru: В распределённых системах обучения (федеративное обучение) разделяемые градиенты могут использоваться для частичной или полной реконструкции исходных обучающих данных. Даже одно обновление градиента может привести к утечке.
+    severity: critical
+  - title:
+      tr: Gradient Manipulation
+      en: Gradient Manipulation
+      fr: Manipulation de gradient
+      zh: 梯度操纵
+      ar: التلاعب بالتدرجات
+      ru: Манипуляция градиентами
+    description:
+      tr: Kötü niyetli katılımcılar kasıtlı olarak yanlış gradientler göndererek model performansını düşürebilir veya backdoor yerleştirebilir. Byzantine saldırıları federated learning'de ciddi bir tehdittir.
+      en: Malicious participants can intentionally send incorrect gradients to degrade model performance or inject backdoors. Byzantine attacks are a serious threat in federated learning.
+      fr: Les participants malveillants peuvent intentionnellement envoyer des gradients incorrects pour dégrader les performances du modèle ou injecter des backdoors. Les attaques byzantines sont une menace sérieuse dans l'apprentissage fédéré.
+      zh: 恶意参与者可以故意发送错误梯度来降低模型性能或注入后门。拜占庭攻击是联邦学习中的严重威胁。
+      ar: يمكن للمشاركين الخبيثين إرسال تدرجات خاطئة عمداً لتدهور أداء النموذج أو حقن أبواب خلفية. هجمات بيزنطة تمثل تهديداً خطيراً في التعلم الفدرالي.
+      ru: Злонамеренные участники могут намеренно отправлять неверные градиенты для деградации производительности модели или внедрения бэкдоров. Византийские атаки — серьёзная угроза в федеративном обучении.
+    severity: high
+  - title:
+      tr: Gradient Inversion
+      en: Gradient Inversion
+      fr: Inversion de gradient
+      zh: 梯度反转
+      ar: عكس التدرجات
+      ru: Инверсия градиентов
+    description:
+      tr: İleri optimizasyon teknikleriyle, model güncellemelerinde kullanılan gradientlerden eğitim verisi görüntüleri, metinler veya diğer hassas içerikler yeniden oluşturulabilir.
+      en: Using advanced optimization techniques, training data images, texts, or other sensitive content can be reconstructed from gradients used in model updates.
+      fr: En utilisant des techniques d'optimisation avancées, les images, textes ou autres contenus sensibles des données d'entraînement peuvent être reconstruits à partir des gradients utilisés dans les mises à jour du modèle.
+      zh: 利用先进优化技术，可以从模型更新中使用的梯度重建训练数据的图像、文本或其他敏感内容。
+      ar: باستخدام تقنيات التحسين المتقدمة، يمكن إعادة بناء صور وبيانات ونصوص التدريب الحساسة من التدرجات المستخدمة في تحديثات النموذج.
+      ru: С помощью продвинутых техник оптимизации из градиентов обновлений модели можно реконструировать изображения, тексты и другой конфиденциальный контент обучающих данных.
+    severity: high
+  - title:
+      tr: Gradient Norm Bilgi Sızıntısı
+      en: Gradient Norm Information Disclosure
+      fr: Divulgation d'informations via la norme du gradient
+      zh: 梯度范数信息泄露
+      ar: تسريب معلومات معيار التدرج
+      ru: Утечка информации о норме градиента
+    description:
+      tr: Gradient norm değerleri (gradient clipping threshold dahil) training stability ve model convergence hakkında bilgi sızdırır. Publicly paylaşılan gradient norm grafikleri, model'in hangi data'da struggle ettiğini reveal eder ve targeted adversarial example crafting'de kullanılabilir.
+      en: Gradient norm values (including gradient clipping threshold) leak information about training stability and model convergence. Publicly shared gradient norm graphs reveal which data the model struggles with and can be used for targeted adversarial example crafting.
+      fr: Les valeurs de norme de gradient (incluant le seuil de clipping) divulguent des informations sur la stabilité de l'entraînement et la convergence du modèle. Les graphiques partagés publiquement révèlent sur quelles données le modèle a des difficultés.
+      zh: 梯度范数值（包括梯度裁剪阈值）泄露训练稳定性和模型收敛信息。公开共享的梯度范数图揭示模型在哪些数据上有困难，可用于定向对抗样本制作。
+      ar: تسرب قيم معيار التدرج معلومات عن استقرار التدريب وتقارب النموذج. الرسوم البيانية المشتركة علنياً تكشف البيانات التي يعاني منها النموذج ويمكن استخدامها لصنع أمثلة عدائية مستهدفة.
+      ru: Значения нормы градиента (включая порог клиппинга) раскрывают информацию о стабильности обучения и сходимости модели. Публично доступные графики норм градиента показывают, с какими данными модель испытывает трудности.
+    severity: low
+config:
+  - title: Differential Privacy for Gradients
+    lang: python
+    code: |-
+      from opacus import PrivacyEngine
+      import torch.nn as nn
+      import torch.optim as optim
+
+      model = nn.Linear(10, 2)
+      optimizer = optim.SGD(model.parameters(), lr=0.05)
+
+      # Apply differential privacy to gradients
+      privacy_engine = PrivacyEngine()
+      model, optimizer, data_loader = privacy_engine.make_private(
+          module=model,
+          optimizer=optimizer,
+          data_loader=train_loader,
+          noise_multiplier=1.1,  # Privacy parameter
+          max_grad_norm=1.0       # Gradient clipping
+      )
+    description:
+      tr: Gradient'lere Gaussian gürültü ekleyerek differential privacy sağlayın. Bu, gradient leakage saldırılarını önler.
+      en: Add Gaussian noise to gradients for differential privacy. This prevents gradient leakage attacks.
+  - title: Secure Aggregation
+    lang: python
+    code: |-
+      # Byzantine-robust gradient aggregation
+      def trimmed_mean(gradients, trim_ratio=0.1):
+          """Remove extreme values before averaging"""
+          sorted_grads = torch.stack(gradients).sort(dim=0)[0]
+          trim_count = int(len(gradients) * trim_ratio)
+          trimmed = sorted_grads[trim_count:-trim_count]
+          return trimmed.mean(dim=0)
+
+      # Use instead of simple averaging
+      aggregated_grad = trimmed_mean(client_gradients)
+    description:
+      tr: Byzantine saldırılara karşı robust aggregasyon kullanın. Aşırı değerleri atarak manipüle edilmiş gradientleri filtreleyin.
+      en: Use robust aggregation against Byzantine attacks. Filter manipulated gradients by removing extreme values.
+research:
+  - title: Deep Leakage from Gradients
+    url: https://arxiv.org/abs/1906.08935
+    year: 2019
+    type: paper
+    authors: Ligeng Zhu, Zhijian Liu, Song Han
+  - title: Inverting Gradients - How easy is it to break privacy in federated learning?
+    url: https://arxiv.org/abs/2003.14053
+    year: 2020
+    type: paper
+    authors: Jonas Geiping, Hartmut Bauermeister, Hannah Dröge, Michael Moeller
+  - title: "Opacus: User-Friendly Differential Privacy Library in PyTorch"
+    url: https://github.com/pytorch/opacus
+    year: 2024
+    type: tool
+    authors: Meta AI Research
+tips:
+  - tr: Federated learning'de gradient clipping ve gürültü ekleme mutlaka kullanın.
+    en: Always use gradient clipping and noise addition in federated learning.
+  - tr: Gradient güncellemelerini secure aggregation protokolleri ile şifreleyin.
+    en: Encrypt gradient updates using secure aggregation protocols.
+  - tr: Client'lardan gelen gradientleri istatistiksel anomali tespiti ile kontrol edin.
+    en: Validate client gradients using statistical anomaly detection.

@@ -1,0 +1,186 @@
+id: rnn
+name: RNN / LSTM
+fullName: Recurrent Neural Network / Long Short-Term Memory
+category: architecture
+desc:
+  tr: |-
+    Sıralı veri (metin, zaman serileri, ses) işlemek için tasarlanmış sinir ağı mimarisi. RNN'ler önceki adımların bilgisini 'hafızada' tutarak gelecek tahminlerde kullanır — bu sayede 'Bu cümlenin devamı ne olmalı?' gibi sıra bağımlı görevleri çözebilir.
+
+    Klasik RNN'ler vanishing gradient problemi yaşar (uzun dizilerde öğrenme zorlaşır), bu yüzden [LSTM](https://www.bioinf.jku.at/publications/older/2604.pdf) (1997) ve [GRU](https://arxiv.org/abs/1406.1078) gibi geliştirilmiş varyantlar kullanılır. LSTM, özel gate mekanizmaları ile uzun vadeli bağımlılıkları öğrenebilir.
+
+    2017'ye kadar doğal dil işleme (NLP) ve makine çevirisi için standart mimari RNN/LSTM idi. Ancak [Transformer](https://arxiv.org/abs/1706.03762) mimarisi (2017) attention mekanizmasıyla çok daha başarılı olunca, günümüzde RNN'ler büyük ölçüde yerini transformer'lara bırakmıştır. Yine de zaman serisi tahmini, ses tanıma gibi alanlarda hala kullanılır.
+  en: |-
+    A neural network architecture designed to process sequential data (text, time series, audio). RNNs maintain a 'memory' of previous steps to use in future predictions — enabling them to solve sequence-dependent tasks like 'What should come next in this sentence?'
+
+    Classic RNNs suffer from the vanishing gradient problem (learning becomes difficult in long sequences), which led to improved variants like [LSTM](https://www.bioinf.jku.at/publications/older/2604.pdf) (1997) and [GRU](https://arxiv.org/abs/1406.1078). LSTMs use special gate mechanisms to learn long-term dependencies.
+
+    Until 2017, RNN/LSTM was the standard architecture for natural language processing (NLP) and machine translation. However, when the [Transformer](https://arxiv.org/abs/1706.03762) architecture (2017) proved far more successful with its attention mechanism, RNNs have largely been replaced by transformers. They're still used in time series forecasting and speech recognition.
+  fr: Architecture de réseau neuronal conçue pour traiter des données séquentielles (texte, séries temporelles, audio).
+  zh: 专为处理序列数据（文本、时间序列、音频）而设计的神经网络架构。
+  ar: معمارية شبكة عصبية مصممة لمعالجة البيانات التسلسلية (نص، سلاسل زمنية، صوت).
+  ru: Архитектура нейронной сети, разработанная для обработки последовательных данных (текст, временные ряды, аудио).
+analogy:
+  tr: RNN, her kelimeyi okurken önceki kelimeleri hatırlayan bir okuyucu gibidir. LSTM ise hangi bilgilerin unutulup hangilerinin hatırlanacağına karar veren seçici bir hafıza.
+  en: An RNN is like a reader who remembers previous words while reading each new word. LSTM is like a selective memory that decides which information to forget and which to remember.
+  fr: Un RNN est comme un lecteur qui se souvient des mots précédents en lisant chaque nouveau mot. LSTM est comme une mémoire sélective qui décide quelles informations oublier et lesquelles retenir.
+  zh: RNN就像一个阅读时记住先前单词的读者。LSTM就像一个选择性记忆，决定忘记哪些信息、记住哪些信息。
+  ar: RNN يشبه قارئًا يتذكر الكلمات السابقة أثناء قراءة كل كلمة جديدة. LSTM يشبه ذاكرة انتقائية تقرر أي معلومات تُنسى وأيها تُحفظ.
+  ru: RNN подобен читателю, который помнит предыдущие слова, читая каждое новое. LSTM — это селективная память, решающая, какую информацию забыть, а какую сохранить.
+security:
+  - title:
+      tr: Sequence Poisoning Saldırıları
+      en: Sequence Poisoning Attacks
+      fr: Attaques par empoisonnement de séquences
+      zh: 序列投毒攻击
+      ar: هجمات تسميم التسلسلات
+      ru: Атаки отравления последовательностей
+    description:
+      tr: RNN'ler sıralı bağımlılıklar nedeniyle poisoning attack'lara çok hassastır. Eğitim verisine belirli bir sıra pattern'i enjekte edildiğinde, model o pattern'i gördüğünde kontrolsüz davranış sergileyebilir. Özellikle metin üretiminde zararlı içerik üretimi veya sentiment analysis'te yanlış sınıflandırma yapabilir.
+      en: RNNs are highly vulnerable to poisoning attacks due to sequential dependencies. When a specific sequence pattern is injected into training data, the model can exhibit uncontrolled behavior upon seeing that pattern. Particularly in text generation, it can produce harmful content or misclassify sentiment analysis.
+      fr: Les RNN sont vulnérables aux attaques par empoisonnement séquentiel. Un pattern injecté provoque un comportement incontrôlable, notamment du contenu nuisible ou une mauvaise classification.
+      zh: RNN由于序列依赖性对投毒攻击非常敏感。注入特定模式后模型可能产生有害内容或错误分类。
+      ar: شبكات RNN معرضة لهجمات التسميم بسبب التبعيات التسلسلية. يمكن إنتاج محتوى ضار أو تصنيف خاطئ.
+      ru: RNN уязвимы к атакам отравления. Модель может генерировать вредоносный контент или неправильно классифицировать.
+    severity: high
+  - title:
+      tr: Hidden State Manipulation
+      en: Hidden State Manipulation
+      fr: Manipulation de l'état caché
+      zh: 隐藏状态操纵
+      ar: التلاعب بالحالة المخفية
+      ru: Манипуляция скрытым состоянием
+    description:
+      tr: RNN'lerin hidden state'i önceki tüm girişlerin bilgisini içerir. Saldırganlar özel olarak hazırlanmış input dizileriyle hidden state'i manipüle edebilir ve modelin gelecekteki çıktılarını kontrol edebilir. Chatbot'larda jailbreak, zaman serisi tahminlerinde yanlış sonuçlar üretme gibi senaryolarda kullanılır.
+      en: RNN hidden states contain information from all previous inputs. Attackers can manipulate hidden states with specially crafted input sequences to control the model's future outputs. Used in scenarios like chatbot jailbreaking or producing incorrect time series predictions.
+      fr: Les états cachés contiennent les informations de toutes les entrées précédentes. Les attaquants peuvent les manipuler pour contrôler les sorties futures.
+      zh: RNN隐藏状态包含所有先前输入信息。攻击者可通过精心构造的输入操纵隐藏状态以控制未来输出。
+      ar: تحتوي الحالات المخفية على معلومات المدخلات السابقة. يمكن التلاعب بها للتحكم في المخرجات.
+      ru: Скрытые состояния содержат информацию обо всех входных данных. Злоумышленники могут управлять выходными данными.
+    severity: medium
+  - title:
+      tr: Gradient Leakage via Backpropagation Through Time
+      en: Gradient Leakage via Backpropagation Through Time
+      fr: Fuite de gradient via BPTT
+      zh: 通过BPTT的梯度泄露
+      ar: تسريب التدرجات عبر BPTT
+      ru: Утечка градиентов через BPTT
+    description:
+      tr: RNN'lerin Backpropagation Through Time (BPTT) algoritması, gradient'lerde önceki input'ların izlerini taşır. Federated learning gibi dağıtık eğitim senaryolarında, gradient'leri analiz ederek eğitim verisindeki hassas sequence'lar (örn. şifreler, kredi kartı numaraları) geri çıkarılabilir.
+      en: RNN's Backpropagation Through Time (BPTT) algorithm carries traces of previous inputs in gradients. In distributed training scenarios like federated learning, sensitive sequences from training data (e.g., passwords, credit card numbers) can be extracted by analyzing gradients.
+      fr: L'algorithme BPTT conserve des traces des entrées dans les gradients. Dans l'entraînement distribué, des séquences sensibles peuvent être extraites.
+      zh: BPTT算法在梯度中携带先前输入的痕迹。在分布式训练中可提取敏感序列如密码、信用卡号。
+      ar: يحمل BPTT آثار المدخلات في التدرجات. يمكن استخراج بيانات حساسة في التدريب الموزع.
+      ru: BPTT сохраняет следы входных данных в градиентах. В распределенном обучении могут быть извлечены конфиденциальные данные.
+    severity: high
+  - title:
+      tr: Model Mimarisi Bilgi Sızıntısı
+      en: Model Architecture Information Disclosure
+      fr: Divulgation d'informations sur l'architecture
+      zh: 模型架构信息泄露
+      ar: كشف معلومات بنية النموذج
+      ru: Раскрытие архитектуры модели
+    description:
+      tr: RNN'nin hidden size ve layer sayısı timing analizi ile tespit edilebilir.
+      en: RNN hidden size and layers can be detected through timing side-channel analysis.
+      fr: La taille cachée et les couches du RNN peuvent être détectées par analyse temporelle.
+      zh: 通过时序侧信道分析可检测隐藏层大小和层数。
+      ar: يمكن اكتشاف حجم الحالة المخفية عبر تحليل القناة الجانبية.
+      ru: Размер скрытого слоя можно определить через побочные каналы.
+    severity: low
+config:
+  - title: LSTM for Text Generation in PyTorch
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class LSTMTextGenerator(nn.Module):
+          def __init__(self, vocab_size, embedding_dim=256, hidden_dim=512, num_layers=2):
+              super().__init__()
+              self.embedding = nn.Embedding(vocab_size, embedding_dim)
+              self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers,
+                                 batch_first=True, dropout=0.3)
+              self.fc = nn.Linear(hidden_dim, vocab_size)
+
+          def forward(self, x, hidden=None):
+              # x shape: [batch_size, seq_len]
+              embedded = self.embedding(x)  # [batch_size, seq_len, embedding_dim]
+
+              if hidden is None:
+                  output, hidden = self.lstm(embedded)
+              else:
+                  output, hidden = self.lstm(embedded, hidden)
+
+              # output shape: [batch_size, seq_len, hidden_dim]
+              logits = self.fc(output)  # [batch_size, seq_len, vocab_size]
+              return logits, hidden
+
+      # Example usage
+      vocab_size = 10000
+      model = LSTMTextGenerator(vocab_size)
+      input_seq = torch.randint(0, vocab_size, (4, 20))  # [batch=4, seq_len=20]
+      logits, hidden = model(input_seq)
+      print(f"Logits shape: {logits.shape}")  # [4, 20, 10000]
+    description:
+      tr: PyTorch ile LSTM tabanlı metin üretimi modeli. Embedding katmanı kelimeleri vektörlere çevirir, LSTM sequence pattern'lerini öğrenir, fully connected katman vocabulary üzerinden tahmin yapar. 2+ LSTM katmanı ve dropout ile overfitting önlenir.
+      en: LSTM-based text generation model in PyTorch. Embedding layer converts words to vectors, LSTM learns sequence patterns, fully connected layer predicts over vocabulary. 2+ LSTM layers and dropout prevent overfitting.
+  - title: Kubernetes RNN Serving with NetworkPolicy
+    lang: yaml
+    code: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: rnn-inference
+      spec:
+        replicas: 2
+        selector:
+          matchLabels: {app: rnn-model}
+        template:
+          metadata:
+            labels: {app: rnn-model}
+          spec:
+            securityContext:
+              runAsNonRoot: true
+            containers:
+            - name: rnn
+              image: registry.internal/rnn:v1
+              resources:
+                limits: {nvidia.com/gpu: 1, memory: 4Gi}
+      ---
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      metadata:
+        name: rnn-netpol
+      spec:
+        podSelector:
+          matchLabels: {app: rnn-model}
+        policyTypes: [Ingress, Egress]
+        ingress:
+        - from: [{podSelector: {matchLabels: {role: gateway}}}]
+        egress: []
+    description:
+      tr: RNN model serving icin Kubernetes NetworkPolicy.
+      en: Kubernetes NetworkPolicy for RNN model serving.
+research:
+  - title: Long Short-Term Memory (Original LSTM Paper)
+    url: https://www.bioinf.jku.at/publications/older/2604.pdf
+    year: 1997
+    type: paper
+    authors: Sepp Hochreiter, Jürgen Schmidhuber
+  - title: Learning Phrase Representations using RNN Encoder-Decoder
+    url: https://arxiv.org/abs/1406.1078
+    year: 2014
+    type: paper
+    authors: Kyunghyun Cho, et al.
+  - title: Sequence to Sequence Learning with Neural Networks
+    url: https://arxiv.org/abs/1409.3215
+    year: 2014
+    type: paper
+    authors: Ilya Sutskever, Oriol Vinyals, Quoc V. Le
+tips:
+  - tr: Uzun sequence'larda LSTM/GRU kullanın, vanishing gradient problemi nedeniyle klasik RNN yetersiz kalır.
+    en: Use LSTM/GRU for long sequences — classic RNN fails due to vanishing gradient problem.
+  - tr: RNN'ler transformer'lardan çok daha yavaştır (paralelize edilemez). Eğer sequence uzunsa ve hız önemliyse transformer tercih edin.
+    en: RNNs are much slower than transformers (can't be parallelized). If sequences are long and speed matters, prefer transformers.
+  - tr: Gradient clipping kullanın (torch.nn.utils.clip_grad_norm_) — RNN eğitiminde exploding gradient'leri önler.
+    en: Use gradient clipping (torch.nn.utils.clip_grad_norm_) — prevents exploding gradients in RNN training.

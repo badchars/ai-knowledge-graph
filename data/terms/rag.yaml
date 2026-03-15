@@ -1,0 +1,158 @@
+id: rag
+name: RAG
+fullName: Retrieval-Augmented Generation
+category: prompting
+desc:
+  tr: |-
+    AI modellerinin cevap vermeden önce harici bilgi kaynaklarından (dokümanlar, veritabanları, API'ler) ilgili bilgileri alıp cevabina dahil etmesini sağlayan mimari desen. Model 'bildiklerini' değil, 'aradıklarını' temel alarak cevap verir.
+
+    Örneğin bir şirketin İÇ destek chatbot'u RAG ile çalışıyorsa, çalışan 'izin politikamiz ne?' diye sorduğunda model şirketin HR dokümanlarini arar ve gerçek kuralları bularak cevap verir — hayal ürünü bilgi üretmez. Teknik olarak RAG su şekilde çalışır: kullanıcı sorusu embedding'e dönüştürulur, vektor veritabanında ([Pinecone](https://pinecone.io), [Chroma](https://trychroma.com), [Weaviate](https://weaviate.io)) en yakın eşleşen dokuman parçalari bulunur ve bu parçalar prompt'a eklenerek modele gönderilir.
+
+    Bu yaklaşım halüsinasyonu ciddi ölçüde azaltır, modelin bilgisini güncel tutar ve fine-tuning'e kiyasla çok daha ucuz ve esnektir. Günümüzde kurumsal AI uygulamalarinin büyük çoğunlugu RAG tabanlıtir.
+  en: |-
+    An architectural pattern that enables AI models to retrieve relevant information from external sources (documents, databases, APIs) before generating a response, rather than relying solely on training data. For example, when a company's internal support chatbot uses RAG, an employee asking 'what iş our leave policy?' triggers a search through HR documents, and the model answers based on actual policy text — not hallucinated information.
+
+    Technically, RAG works like this: the user's question iş converted into an embedding, the vector database ([Pinecone](https://pinecone.io), [Chroma](https://trychroma.com), [Weaviate](https://weaviate.io)) finds the closest matching document chunks, and these chunks are injected into the prompt sent to the model.
+
+    This approach dramatically reduces hallucination, keeps model knowledge up-to-date, and iş far cheaper and more flexible than fine-tuning. The vast majority of enterprise AI applications today are RAG-based — from customer support chatbots to legal document analysis to internal knowledge management systems.
+  fr: "Un patron architectural qui permet aux modeles d'IA de recuperer des informations pertinentes a partir de sources externes (documents, bases de donnees, API) avant de generer une reponse, au lieu de se fier uniquement aux donnees d'entrainement. Par exemple, quand le chatbot de support interne d'une entreprise utilise RAG, un employe demandant 'quelle est notre politique de conges ?' declenche une recherche dans les documents RH, et le modele repond sur la base du texte reel — pas d'informations inventees. Techniquement, RAG fonctionne ainsi : la question est convertie en embedding, la base de donnees vectorielle (Pinecone, Chroma, Weaviate) trouve les passages les plus proches, et ces passages sont injectes dans le prompt envoye au modele. Cette approche reduit considerablement les hallucinations, maintient les connaissances a jour et est bien moins chere que le fine-tuning. La grande majorite des applications d'IA en entreprise sont basees sur RAG."
+  zh: 一种使AI模型在生成回答前从外部来源（文档、数据库、API）检索相关信息的架构模式，而不是仅依赖训练数据。例如当公司内部支持聊天机器人使用RAG时，员工询问'我们的休假政策是什么？'会触发对HR文档的搜索，模型基于实际政策文本回答——而非编造信息。技术上RAG的工作流程是：用户问题被转换为embedding，向量数据库（Pinecone、Chroma、Weaviate）找到最匹配的文档片段，这些片段被注入发送给模型的prompt中。这种方法大幅减少幻觉，保持模型知识更新，且比fine-tuning便宜和灵活得多。当今绝大多数企业AI应用都基于RAG——从客服聊天机器人到法律文档分析再到内部知识管理系统。
+  ar: "نمط معماري يمكّن نماذج الذكاء الاصطناعي من استرجاع معلومات ذات صلة من مصادر خارجية (مستندات وقواعد بيانات وواجهات برمجة) قبل توليد الاستجابة بدلاً من الاعتماد فقط على بيانات التدريب. مثلاً عندما يستخدم روبوت الدعم الداخلي لشركة RAG ويسأل موظف 'ما سياسة الإجازات؟' يبحث في مستندات الموارد البشرية ويجيب بناءً على النص الفعلي — لا معلومات ملفقة. تقنياً يعمل RAG هكذا: يُحوّل سؤال المستخدم إلى embedding وتجد قاعدة البيانات المتجهة (Pinecone وChroma وWeaviate) أقرب أجزاء المستندات المطابقة وتُحقن في المطالبة المرسلة للنموذج. يقلل هذا النهج الهلوسة بشكل كبير ويبقي معرفة النموذج محدثة وهو أرخص وأكثر مرونة من الضبط الدقيق. الغالبية العظمى من تطبيقات الذكاء الاصطناعي المؤسسية اليوم مبنية على RAG."
+  ru: "Архитектурный паттерн, позволяющий AI-моделям извлекать релевантную информацию из внешних источников (документы, базы данных, API) перед генерацией ответа, вместо того чтобы полагаться только на данные обучения. Например, когда внутренний чат-бот поддержки компании использует RAG, при вопросе сотрудника 'какова наша политика отпусков?' происходит поиск по HR-документам, и модель отвечает на основе реального текста политики — без галлюцинаций. Технически RAG работает так: вопрос пользователя преобразуется в эмбеддинг, векторная база данных (Pinecone, Chroma, Weaviate) находит ближайшие фрагменты документов, и эти фрагменты вставляются в промпт. Этот подход резко снижает галлюцинации, поддерживает знания модели актуальными и значительно дешевле и гибче файнтюнинга. Подавляющее большинство корпоративных AI-приложений сегодня построены на RAG."
+analogy:
+  tr: Sınavda açık kitap kullanmak. Model kendi bilgisiyle sınırlı kalmak yerine kaynaklara dayanarak cevap verir.
+  en: Using open book in an exam. Instead of being limited to its own knowledge, the model answers based on sources.
+  fr: Utiliser un livre ouvert lors d'un examen. Au lieu d'être limité à ses propres connaissances, le modèle répond en se basant sur des sources.
+  zh: 在考试中使用开卷。模型不局限于自己的知识，而是基于来源回答。
+  ar: استخدام كتاب مفتوح في الامتحان. بدلاً من الاقتصار على معرفته الخاصة، يجيب النموذج بناءً على المصادر.
+  ru: Использование открытой книги на экзамене. Вместо ограничения собственными знаниями, модель отвечает на основе источников.
+security:
+  - title:
+      tr: RAG Zehirleme Saldırıları
+      en: RAG Poisoning Attacks
+      fr: Attaques par empoisonnement RAG
+      zh: RAG投毒攻击
+      ar: هجمات تسميم RAG
+      ru: Атаки отравления RAG
+    description:
+      tr: Saldırganlar vektör veritabanına zararlı dökümanlar enjekte ederek retrieval sonuçlarını manipüle edebilir. Enjekte edilen prompt injection payloadları, kullanıcı sorgusu ile birlikte LLM'e gönderilir ve güvenlik kontrollerini bypass eder.
+      en: Attackers can inject malicious documents into the vector database to manipulate retrieval results. Injected prompt injection payloads are sent to the LLM along with user queries, bypassing security controls.
+      fr: Les attaquants peuvent injecter des documents malveillants dans la base de donnees vectorielle pour manipuler les resultats de recuperation. Les payloads d'injection de prompt injectes sont envoyes au LLM avec les requetes utilisateur, contournant les controles de securite.
+      zh: 攻击者可以向向量数据库注入恶意文档来操纵检索结果。注入的提示注入载荷与用户查询一起发送给LLM，绕过安全控制。
+      ar: يمكن للمهاجمين حقن مستندات ضارة في قاعدة البيانات المتجهة للتلاعب بنتائج الاسترجاع. يتم إرسال حمولات حقن الموجه المحقونة إلى نموذج اللغة الكبيرة مع استعلامات المستخدم، متجاوزة ضوابط الأمان.
+      ru: Злоумышленники могут внедрять вредоносные документы в векторную базу данных для манипулирования результатами поиска. Внедрённые нагрузки инъекции промптов отправляются в LLM вместе с запросами пользователей, обходя контроли безопасности.
+    severity: critical
+  - title:
+      tr: Retrieval Manipulation
+      en: Retrieval Manipulation
+      fr: Manipulation de la recuperation
+      zh: 检索操纵
+      ar: التلاعب بالاسترجاع
+      ru: Манипуляция поиском
+    description:
+      tr: Vektör benzerlik skorlarını manipüle ederek zararlı dökümanların üst sıralara çıkması sağlanabilir. Adversarial embedding saldırıları ile hedef sorgular için malicious context döndürülebilir.
+      en: Vector similarity scores can be manipulated to promote malicious documents to top ranks. Adversarial embedding attacks can return malicious context for target queries.
+      fr: Les scores de similarite vectorielle peuvent etre manipules pour promouvoir des documents malveillants aux premiers rangs. Les attaques d'embedding adversariales peuvent renvoyer un contexte malveillant pour les requetes ciblees.
+      zh: 可以操纵向量相似度分数将恶意文档推到顶部排名。对抗性嵌入攻击可以为目标查询返回恶意上下文。
+      ar: يمكن التلاعب بدرجات التشابه المتجهة لترقية المستندات الضارة إلى المراتب الأولى. يمكن لهجمات التضمين العدائية إرجاع سياق ضار للاستعلامات المستهدفة.
+      ru: Оценки векторного сходства могут быть манипулированы для продвижения вредоносных документов в верхние позиции. Состязательные атаки на эмбеддинги могут возвращать вредоносный контекст для целевых запросов.
+    severity: high
+  - title:
+      tr: Context Injection via RAG
+      en: Context Injection via RAG
+      fr: Injection de contexte via RAG
+      zh: 通过RAG的上下文注入
+      ar: حقن السياق عبر RAG
+      ru: Инъекция контекста через RAG
+    description:
+      tr: RAG pipeline'ındaki dökümanlar sanitize edilmezse, markdown/HTML injection veya indirect prompt injection saldırıları gerçekleştirilebilir.
+      en: If documents in the RAG pipeline are not sanitized, markdown/HTML injection or indirect prompt injection attacks can be executed.
+      fr: Si les documents dans le pipeline RAG ne sont pas assainis, des attaques par injection markdown/HTML ou injection indirecte de prompt peuvent etre executees.
+      zh: 如果RAG管道中的文档未经清理，可以执行markdown/HTML注入或间接提示注入攻击。
+      ar: إذا لم يتم تنظيف المستندات في خط أنابيب RAG، يمكن تنفيذ هجمات حقن markdown/HTML أو حقن الموجه غير المباشر.
+      ru: Если документы в пайплайне RAG не санитизированы, могут быть выполнены атаки инъекции markdown/HTML или непрямые атаки инъекции промптов.
+    severity: high
+  - title:
+      tr: RAG Kaynak Doğrulama Eksikliği
+      en: RAG Source Attribution Gap
+      fr: Lacune d'attribution de source RAG
+      zh: RAG来源归属缺失
+      ar: فجوة إسناد مصادر RAG
+      ru: Отсутствие атрибуции источников RAG
+    description:
+      tr: RAG sistemi kaynak doğrulaması yapmadığında, kullanıcılar hangi belgenin sonuçları etkilediğini bilemez. Bu, zehirlenmiş içeriğin fark edilmeden LLM yanıtlarına dahil edilmesine yol açar.
+      en: When RAG system does not perform source attribution, users cannot know which document influenced results. This allows poisoned content to be included in LLM responses unnoticed.
+      fr: Quand le systeme RAG n'effectue pas d'attribution de source, les utilisateurs ne peuvent pas savoir quel document a influence les resultats. Cela permet au contenu empoisonne d'etre inclus dans les reponses du LLM sans etre remarque.
+      zh: 当RAG系统不执行来源归属时，用户无法知道哪个文档影响了结果。这允许被投毒的内容在不被注意的情况下包含在LLM响应中。
+      ar: عندما لا يقوم نظام RAG بإسناد المصادر، لا يمكن للمستخدمين معرفة أي مستند أثر على النتائج. هذا يسمح بتضمين المحتوى المسمم في استجابات نموذج اللغة دون ملاحظة.
+      ru: Когда система RAG не выполняет атрибуцию источников, пользователи не могут знать, какой документ повлиял на результаты. Это позволяет отравленному контенту незаметно включаться в ответы LLM.
+    severity: low
+config:
+  - title: Secure RAG Pipeline with Content Filtering
+    lang: python
+    code: |-
+      from langchain.vectorstores import Chroma
+      from langchain.embeddings import OpenAIEmbeddings
+      from langchain.text_splitter import RecursiveCharacterTextSplitter
+      import re
+
+      class SecureRAG:
+          def __init__(self, allowed_domains: list[str]):
+              self.allowed_domains = allowed_domains
+              self.embeddings = OpenAIEmbeddings()
+              self.vectorstore = Chroma(embedding_function=self.embeddings)
+
+          def sanitize_content(self, text: str) -> str:
+              # Remove potential injection patterns
+              text = re.sub(r'<\|.*?\|>', '', text)  # Remove special tokens
+              text = re.sub(r'```.*?```', '', text, flags=re.DOTALL)  # Remove code blocks
+              text = re.sub(r'(?i)(ignore|disregard|forget).{0,20}(previous|above|instructions)',
+                           '[FILTERED]', text)
+              return text[:4000]  # Limit context length
+
+          def validate_source(self, metadata: dict) -> bool:
+              source = metadata.get('source', '')
+              return any(domain in source for domain in self.allowed_domains)
+
+          def retrieve(self, query: str, k: int = 3) -> list:
+              results = self.vectorstore.similarity_search(query, k=k*2)
+              # Filter and sanitize
+              filtered = [
+                  {"content": self.sanitize_content(doc.page_content),
+                   "metadata": doc.metadata}
+                  for doc in results
+                  if self.validate_source(doc.metadata)
+              ][:k]
+              return filtered
+    description:
+      tr: RAG pipeline'ı için içerik filtreleme ve kaynak doğrulama katmanı. Zararlı dökümanları retrieval öncesi engeller.
+      en: Content filtering and source validation layer for RAG pipeline. Blocks malicious documents before retrieval.
+  - title: RAG Document Sanitization (Go)
+    lang: go
+    code: "package rag\n\nimport (\n\t\"regexp\"\n\t\"strings\"\n)\n\nvar (\n\thtmlTagRe    = regexp.MustCompile(`<[^>]*>`)\n\tmarkdownLinkRe = regexp.MustCompile(`\\[([^\\]]*)\\]\\(javascript:[^)]*\\)`)\n\tinjectionPatterns = []string{\n\t\t\"ignore previous instructions\",\n\t\t\"ignore all previous\",\n\t\t\"you are now\",\n\t\t\"new instructions:\",\n\t\t\"system:\",\n\t}\n)\n\n// SanitizeDocument cleans retrieved documents before\n// they are injected into LLM context\nfunc SanitizeDocument(doc string) string {\n\t// Remove HTML tags\n\tresult := htmlTagRe.ReplaceAllString(doc, \"\")\n\t// Remove javascript: links\n\tresult = markdownLinkRe.ReplaceAllString(result, \"$1\")\n\t// Flag injection patterns\n\tlower := strings.ToLower(result)\n\tfor _, pattern := range injectionPatterns {\n\t\tif strings.Contains(lower, pattern) {\n\t\t\tresult = strings.ReplaceAll(\n\t\t\t\tstrings.ToLower(result),\n\t\t\t\tpattern,\n\t\t\t\t\"[content filtered]\",\n\t\t\t)\n\t\t}\n\t}\n\treturn strings.TrimSpace(result)\n}"
+    description:
+      tr: Go ile RAG pipeline'ına eklenen belgeleri temizleyen fonksiyon. HTML, zararlı markdown linkleri ve injection pattern'larını filtreler.
+      en: Go function that sanitizes documents added to RAG pipeline. Filters HTML, malicious markdown links, and injection patterns.
+research:
+  - title: Poisoning Retrieval Augmented Generation
+    url: https://arxiv.org/abs/2402.05374
+    year: 2024
+    type: paper
+    authors: Zhiwei Han, Zhengxin Zhang, Yongwei Wang
+  - title: "OWASP Top 10 for LLM - LLM06: Sensitive Information Disclosure"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+  - title: Adversarial Attacks on RAG Systems
+    url: https://arxiv.org/abs/2311.14126
+    year: 2023
+    type: paper
+    authors: Jiacheng Chen, Ximing Lu, Wei Wang
+tips:
+  - tr: Vektör veritabanına eklenen tüm dökümanları güvenilir kaynaklardan alın ve içerik doğrulama yapın.
+    en: Only add documents from trusted sources to the vector database and perform content validation.
+  - tr: Retrieval sonuçlarını LLM'e göndermeden önce sanitize edin ve maksimum context uzunluğu belirleyin.
+    en: Sanitize retrieval results before sending to LLM and set maximum context length.
+  - tr: Embedding modelini düzenli olarak güncelleyin; adversarial embedding saldırılarına karşı robust modeller kullanın.
+    en: Regularly update embedding models; use robust models against adversarial embedding attacks.

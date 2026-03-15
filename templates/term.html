@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TERM_NAME}} — AI/ML Knowledge Graph</title>
+<meta name="description" content="{{TERM_FULLNAME}} — Learn about {{TERM_NAME}} in AI/ML: description, security implications, configuration examples, and research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/theme.js"></script>
+</head>
+<body>
+
+<div class="bg-orb o1"></div>
+<div class="bg-orb o2"></div>
+<div class="bg-orb o3"></div>
+<div class="grid-overlay"></div>
+
+<header class="site-header">
+  <a href="../index.html" class="site-title" style="text-decoration:none" data-i18n="title">AI / ML Knowledge Graph</a>
+  <span class="header-sep"></span>
+  <div class="header-controls">
+    <select class="lang-select" id="lang-select">
+      <option value="ar">عربي</option>
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+      <option value="ru">RU</option>
+      <option value="tr">TR</option>
+      <option value="zh">中文</option>
+    </select>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="term-page">
+  <div class="term-hero">
+    <div class="term-container">
+      <a href="../index.html" class="term-back" data-i18n="backToGraph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-i18n="backToGraph">Back to Graph</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <span class="cat-badge" id="term-cat-badge" style="background:{{CAT_COLOR}}18;color:{{CAT_COLOR}};border:1px solid {{CAT_COLOR}}33"></span>
+      </div>
+      <h1 class="term-name" style="color:{{CAT_COLOR}}">{{TERM_NAME}}</h1>
+      <div class="term-fullname">{{TERM_FULLNAME}}</div>
+    </div>
+  </div>
+
+  <div class="term-sections">
+    <div class="term-container">
+
+      <!-- Description -->
+      <div class="term-section">
+        <div class="section-title" data-i18n="desc">Description</div>
+        <div class="section-content" id="term-desc"></div>
+      </div>
+
+      <!-- Analogy -->
+      <div class="term-section">
+        <div class="section-title" data-i18n="analogy">Analogy</div>
+        <div class="analogy-card" id="term-analogy"></div>
+      </div>
+
+      <!-- Security -->
+      <div class="term-section" id="security-section">
+        <div class="section-title" data-i18n="security">Security</div>
+        <div id="term-security"></div>
+      </div>
+
+      <!-- Configuration -->
+      <div class="term-section" id="config-section">
+        <div class="section-title" data-i18n="config">Configuration</div>
+        <div id="term-config"></div>
+      </div>
+
+      <!-- Research -->
+      <div class="term-section" id="research-section">
+        <div class="section-title" data-i18n="research">Research & Sources</div>
+        <div id="term-research"></div>
+      </div>
+
+      <!-- Tips -->
+      <div class="term-section" id="tips-section">
+        <div class="section-title" data-i18n="tips">Practical Tips</div>
+        <div id="term-tips"></div>
+      </div>
+
+      <!-- Related Terms -->
+      <div class="term-section">
+        <div class="section-title" data-i18n="relatedTerms">Related Terms</div>
+        <div class="related-grid" id="term-related"></div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>window.__UI_STRINGS = {{UI_STRINGS}};</script>
+<script>window.__TERM_DATA = {{TERM_DATA}};</script>
+<script>window.__RELATED = {{RELATED_DATA}};</script>
+<script src="../js/i18n.js"></script>
+<script>
+// Term page renderer
+(function(){
+  function render() {
+    var d = window.__TERM_DATA;
+    var related = window.__RELATED || [];
+    var lang = window.currentLang ? window.currentLang() : 'en';
+    var ui = window.__UI_STRINGS ? window.__UI_STRINGS[lang] : {};
+
+    // Category badge
+    var badge = document.getElementById('term-cat-badge');
+    if (badge && d._catLabel) badge.textContent = d._catLabel[lang] || d._catLabel.en;
+
+    // Desc — split into paragraphs every 2 sentences
+    var descEl = document.getElementById('term-desc');
+    if (descEl) {
+      var rawDesc = d.desc ? (d.desc[lang]||d.desc.en||'') : '';
+      descEl.innerHTML = textToParagraphs(rawDesc);
+    }
+
+    // Analogy
+    var analogyEl = document.getElementById('term-analogy');
+    if (analogyEl) analogyEl.innerHTML = '<span class="analogy-icon">~</span>' + (d.analogy ? (d.analogy[lang]||d.analogy.en||'') : '');
+
+    // Security
+    var secEl = document.getElementById('term-security');
+    var secSection = document.getElementById('security-section');
+    if (secEl && d.security && d.security.length > 0) {
+      secSection.style.display = '';
+      secEl.innerHTML = '<div class="security-grid">' + d.security.map(function(s){
+        var sev = s.severity || 'medium';
+        var title = s.title ? (s.title[lang]||s.title.en||'') : '';
+        var desc = s.description ? (s.description[lang]||s.description.en||'') : '';
+        var sevLabel = ui.severity ? (ui.severity[sev]||sev) : sev;
+        return '<div class="security-card sev-'+sev+'"><div class="security-card-header"><span class="severity-badge severity-'+sev+'">'+sevLabel+'</span><span class="security-card-title">'+title+'</span></div><div class="security-card-desc">'+desc+'</div></div>';
+      }).join('') + '</div>';
+    } else if(secSection) {
+      secEl.innerHTML = '<div class="empty-state">'+(ui.noContent||'No content yet.')+'</div>';
+    }
+
+    // Config
+    var cfgEl = document.getElementById('term-config');
+    var cfgSection = document.getElementById('config-section');
+    if (cfgEl && d.config && d.config.length > 0) {
+      cfgSection.style.display = '';
+      cfgEl.innerHTML = '<div class="config-grid">' + d.config.map(function(c){
+        var desc = c.description ? (c.description[lang]||c.description.en||'') : '';
+        return '<div class="config-block"><div class="config-header"><span>'+c.title+'</span><span class="config-lang">'+(c.lang||'code')+'</span></div><pre class="config-code">'+escapeHtml(c.code)+'</pre>'+(desc?'<div class="config-desc">'+desc+'</div>':'')+'</div>';
+      }).join('') + '</div>';
+    } else if(cfgSection) {
+      cfgEl.innerHTML = '<div class="empty-state">'+(ui.noContent||'No content yet.')+'</div>';
+    }
+
+    // Research
+    var resEl = document.getElementById('term-research');
+    var resSection = document.getElementById('research-section');
+    if (resEl && d.research && d.research.length > 0) {
+      resSection.style.display = '';
+      resEl.innerHTML = '<div class="research-grid">' + d.research.map(function(r){
+        var typeLabel = ui.researchType ? (ui.researchType[r.type]||r.type) : r.type;
+        return '<a class="research-item" href="'+r.url+'" target="_blank" rel="noopener"><span class="research-type">'+typeLabel+'</span><div class="research-info"><div class="research-title">'+r.title+'</div><div class="research-meta">'+(r.year||'')+(r.authors?' · '+r.authors:'')+'</div></div><span class="research-arrow">→</span></a>';
+      }).join('') + '</div>';
+    } else if(resSection) {
+      resEl.innerHTML = '<div class="empty-state">'+(ui.noContent||'No content yet.')+'</div>';
+    }
+
+    // Tips
+    var tipsEl = document.getElementById('term-tips');
+    var tipsSection = document.getElementById('tips-section');
+    if (tipsEl && d.tips && d.tips.length > 0) {
+      tipsSection.style.display = '';
+      tipsEl.innerHTML = '<div class="tips-list">' + d.tips.map(function(t){
+        var text = typeof t === 'string' ? t : (t[lang]||t.en||'');
+        return '<div class="tip-item"><span class="tip-bullet"></span><span>'+text+'</span></div>';
+      }).join('') + '</div>';
+    } else if(tipsSection) {
+      tipsEl.innerHTML = '<div class="empty-state">'+(ui.noContent||'No content yet.')+'</div>';
+    }
+
+    // Related
+    var relEl = document.getElementById('term-related');
+    if (relEl && related.length > 0) {
+      relEl.innerHTML = related.map(function(r){
+        return '<a class="related-card" href="'+r.id+'.html"><span class="related-dot" style="background:'+r.color+'"></span><span>'+r.name+'</span><span class="related-label">'+(r.relLabel ? (r.relLabel[lang]||r.relLabel.en||'') : '')+'</span></a>';
+      }).join('');
+    }
+  }
+
+  function escapeHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function renderLinks(text) {
+    var safe = escapeHtml(text);
+    return safe.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:2px">$1</a>');
+  }
+
+  function textToParagraphs(text) {
+    if (!text) return '';
+    // Split by explicit \n\n paragraph breaks in the data
+    var parts = text.split(/\n\n+/);
+    if (parts.length <= 1) return '<p>' + renderLinks(text) + '</p>';
+    return parts.map(function(p) {
+      var trimmed = p.trim();
+      return trimmed ? '<p>' + renderLinks(trimmed) + '</p>' : '';
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  window.addEventListener('langchange', render);
+})();
+</script>
+</body>
+</html>

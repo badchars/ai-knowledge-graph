@@ -1,0 +1,233 @@
+id: agent
+name: Agent
+fullName: Autonomous Agent
+category: tools
+desc:
+  tr: |-
+    Sadece metin cevapları üretmek yerine, görevleri tamamlamak için otonom aksiyonlar alabilen AI sistemi. Sadece soruları cevaplayan basit bir chatbot'un aksine, bir ajan web'de gezinebilir, kod çalıştırabilir, API çağırabilir, dosya okuyup yazabilir ve birden fazla adımı zincirleme bağlayabilir.
+
+    Örneğin [Claude Code](https://claude.ai/code), kod tabanınızı okuyan, değişiklikleri planlayan, kod yazan ve testleri çalıştıran bir ajandir — hepsi otonom olarak. [LangChain](https://langchain.com), CrewAI ve AutoGen gibi framework'ler özel ajanlar oluşturmayı kolaylaştırır.
+
+    Temel bileşenler bir akıl yürütme döngüsu (genellikle ReAct), araçlara erişim ve adımlar arası ilerlemeyi takip eden hafızadır.
+  en: |-
+    An AI system that can take autonomous actions to complete tasks, not just generate text responses. Unlike a basic chatbot that only answers questions, an agent can browse the web, execute code, call APIs, read/write files, and chain multiple steps together.
+
+    For example, [Claude Code](https://claude.ai/code) iş an agent that reads your codebase, plans changes, writes code, and runs tests — all autonomously. Frameworks like [LangChain](https://langchain.com), CrewAI, and AutoGen make it easier to build custom agents.
+
+    The key components are a reasoning loop (usually ReAct), access to tools, and memory to track progress across steps.
+  fr: Un systeme d'IA qui peut prendre des actions autonomes pour accomplir des taches, pas seulement generer des reponses textuelles. Contrairement a un chatbot basique qui ne fait que repondre aux questions, un agent peut naviguer sur le web, executer du code, appeler des API, lire/ecrire des fichiers et enchainer plusieurs etapes. Par exemple, Claude Code est un agent qui lit votre code source, planifie les modifications, ecrit du code et execute les tests — le tout de maniere autonome. Des frameworks comme LangChain, CrewAI et AutoGen facilitent la creation d'agents personnalises. Les composants cles sont une boucle de raisonnement (generalement ReAct), l'acces aux outils et une memoire pour suivre la progression entre les etapes.
+  zh: 一个能够自主采取行动来完成任务的AI系统，而不仅仅是生成文本回复。与只能回答问题的基本聊天机器人不同，代理可以浏览网页、执行代码、调用API、读写文件，并将多个步骤串联在一起。例如，Claude Code就是一个能够读取你的代码库、规划更改、编写代码和运行测试的代理——全部自主完成。LangChain、CrewAI和AutoGen等框架使构建自定义代理变得更容易。关键组件包括推理循环（通常是ReAct）、工具访问权限和跟踪各步骤进展的记忆系统。
+  ar: نظام ذكاء اصطناعي يمكنه اتخاذ إجراءات مستقلة لإنجاز المهام، وليس مجرد توليد ردود نصية. على عكس روبوت المحادثة البسيط الذي يجيب على الأسئلة فقط، يمكن للوكيل تصفح الويب وتنفيذ الكود واستدعاء واجهات API وقراءة وكتابة الملفات وربط عدة خطوات معاً. على سبيل المثال، Claude Code هو وكيل يقرأ قاعدة الكود الخاصة بك ويخطط للتغييرات ويكتب الكود ويشغل الاختبارات — كل ذلك بشكل مستقل. أطر عمل مثل LangChain وCrewAI وAutoGen تسهل بناء وكلاء مخصصين. المكونات الأساسية هي حلقة استدلال (عادةً ReAct) والوصول إلى الأدوات وذاكرة لتتبع التقدم عبر الخطوات.
+  ru: ИИ-система, способная автономно выполнять действия для завершения задач, а не просто генерировать текстовые ответы. В отличие от базового чат-бота, который только отвечает на вопросы, агент может просматривать веб, выполнять код, вызывать API, читать/записывать файлы и связывать несколько шагов в цепочку. Например, Claude Code — это агент, который читает вашу кодовую базу, планирует изменения, пишет код и запускает тесты — все автономно. Фреймворки вроде LangChain, CrewAI и AutoGen упрощают создание кастомных агентов. Ключевые компоненты — цикл рассуждений (обычно ReAct), доступ к инструментам и память для отслеживания прогресса между шагами.
+analogy:
+  tr: Tek talimat alan işçi değil, projeyi baştan sona yöneten müdür. Planlama, uygulama, kontrol ve uyarlama yapar.
+  en: Not a worker taking single instructions, but a manager running the entire project. Plans, executes, checks, and adapts.
+  fr: Pas un ouvrier suivant des instructions simples, mais un manager gérant l'ensemble du projet. Planifie, exécute, contrôle et s'adapte.
+  zh: 不是接受单一指令的工人，而是管理整个项目的经理。规划、执行、检查和调整。
+  ar: ليس عاملاً يتلقى تعليمات منفردة، بل مدير يدير المشروع بأكمله. يخطط وينفذ ويفحص ويتكيف.
+  ru: Не рабочий, выполняющий отдельные инструкции, а менеджер, управляющий всем проектом. Планирует, выполняет, проверяет и адаптируется.
+security:
+  - title:
+      tr: Agent Loop Hijacking
+      en: Agent Loop Hijacking
+      fr: Detournement de la boucle de l'agent
+      zh: 代理循环劫持
+      ar: اختطاف حلقة الوكيل
+      ru: Захват цикла агента
+    description:
+      tr: ReAct veya AutoGPT tarzı agent loop'ları prompt injection ile hijack edilebilir. Saldırgan, agent'ı sonsuz döngüye sokarak resource tüketimi yapabilir veya yetkisiz işlemler gerçekleştirmesini sağlayabilir.
+      en: ReAct or AutoGPT-style agent loops can be hijacked via prompt injection. Attacker can put agent in infinite loop to consume resources or force it to perform unauthorized operations.
+      fr: Les boucles d'agents de type ReAct ou AutoGPT peuvent etre detournees par injection de prompt. L'attaquant peut mettre l'agent dans une boucle infinie pour consommer des ressources ou le forcer a effectuer des operations non autorisees.
+      zh: ReAct或AutoGPT风格的代理循环可以通过提示注入被劫持。攻击者可以让代理进入无限循环以消耗资源或强迫其执行未授权的操作。
+      ar: يمكن اختطاف حلقات الوكيل بأسلوب ReAct أو AutoGPT عبر حقن الموجه. يمكن للمهاجم وضع الوكيل في حلقة لا نهائية لاستهلاك الموارد أو إجباره على تنفيذ عمليات غير مصرح بها.
+      ru: Циклы агентов в стиле ReAct или AutoGPT могут быть захвачены через инъекцию промптов. Злоумышленник может поместить агента в бесконечный цикл для потребления ресурсов или заставить его выполнять несанкционированные операции.
+    severity: critical
+  - title:
+      tr: Multi-Step Attack Chaining
+      en: Multi-Step Attack Chaining
+      fr: Chainement d'attaques multi-etapes
+      zh: 多步攻击链
+      ar: تسلسل الهجمات متعددة الخطوات
+      ru: Цепочка многошаговых атак
+    description:
+      tr: "Agent'ların multi-step reasoning yeteneği kötüye kullanılabilir. Tek adımda zararsız görünen işlemler zincirlendiğinde zararlı sonuçlar doğurabilir (örn: data exfiltration via multi-step retrieval)."
+      en: Agents' multi-step reasoning capability can be abused. Operations that seem harmless in a single step can produce harmful results when chained (e.g., data exfiltration via multi-step retrieval).
+      fr: "La capacite de raisonnement multi-etapes des agents peut etre detournee. Des operations apparemment inoffensives en une seule etape peuvent produire des resultats nuisibles lorsqu'elles sont chainees (ex: exfiltration de donnees par recuperation multi-etapes)."
+      zh: 代理的多步推理能力可以被滥用。在单步中看似无害的操作在链接时可以产生有害结果（例如，通过多步检索进行数据窃取）。
+      ar: "يمكن إساءة استخدام قدرة الاستدلال متعدد الخطوات للوكلاء. العمليات التي تبدو غير ضارة في خطوة واحدة يمكن أن تنتج نتائج ضارة عند تسلسلها (مثل: تسريب البيانات عبر الاسترجاع متعدد الخطوات)."
+      ru: Способность агентов к многошаговому рассуждению может быть злоупотреблена. Операции, кажущиеся безвредными на одном шаге, могут приводить к вредоносным результатам при объединении в цепочку (например, экфильтрация данных через многошаговый поиск).
+    severity: high
+  - title:
+      tr: Goal Manipulation
+      en: Goal Manipulation
+      fr: Manipulation des objectifs
+      zh: 目标操纵
+      ar: التلاعب بالأهداف
+      ru: Манипуляция целями
+    description:
+      tr: Agent'ın hedef (goal) tanımı kullanıcı girdisinden etkileniyorsa, saldırgan zararlı alt hedefler enjekte edebilir. Agent bu hedeflere ulaşmak için tüm yeteneklerini kullanır.
+      en: If agent's goal definition is influenced by user input, attacker can inject malicious sub-goals. Agent uses all its capabilities to achieve these goals.
+      fr: Si la definition des objectifs de l'agent est influencee par l'entree utilisateur, l'attaquant peut injecter des sous-objectifs malveillants. L'agent utilise toutes ses capacites pour atteindre ces objectifs.
+      zh: 如果代理的目标定义受到用户输入的影响，攻击者可以注入恶意子目标。代理会使用其所有能力来实现这些目标。
+      ar: إذا تأثر تعريف هدف الوكيل بمدخلات المستخدم، يمكن للمهاجم حقن أهداف فرعية ضارة. يستخدم الوكيل جميع قدراته لتحقيق هذه الأهداف.
+      ru: Если определение цели агента зависит от пользовательского ввода, злоумышленник может внедрить вредоносные подцели. Агент использует все свои возможности для достижения этих целей.
+    severity: high
+  - title:
+      tr: Agent İterasyon Sayısı İfşası
+      en: Agent Iteration Count Disclosure
+      fr: Divulgation du nombre d'iterations de l'agent
+      zh: 代理迭代次数泄露
+      ar: كشف عدد تكرارات الوكيل
+      ru: Раскрытие количества итераций агента
+    description:
+      tr: Agent'ın kaç iterasyon yaptığı response süresi analizinden tahmin edilebilir. Bu bilgi, agent'ın karmaşıklığı ve kullandığı tool sayısı hakkında bilgi ifşa eder.
+      en: The number of agent iterations can be estimated from response time analysis. This information discloses the agent's complexity and number of tools used.
+      fr: Le nombre d'iterations de l'agent peut etre estime a partir de l'analyse du temps de reponse. Cette information revele la complexite de l'agent et le nombre d'outils utilises.
+      zh: 代理的迭代次数可以从响应时间分析中估算。这些信息泄露了代理的复杂性和使用的工具数量。
+      ar: يمكن تقدير عدد تكرارات الوكيل من تحليل وقت الاستجابة. تكشف هذه المعلومات عن تعقيد الوكيل وعدد الأدوات المستخدمة.
+      ru: Количество итераций агента может быть оценено из анализа времени ответа. Эта информация раскрывает сложность агента и количество используемых инструментов.
+    severity: low
+config:
+  - title: Secure Agent Implementation with Guardrails
+    lang: python
+    code: |-
+      class SecureAgent:
+          def __init__(self, max_iterations: int = 10, timeout: int = 300):
+              self.max_iterations = max_iterations
+              self.timeout = timeout
+              self.iteration_count = 0
+              self.start_time = None
+              self.action_log = []
+
+          def run(self, goal: str, allowed_tools: list) -> dict:
+              import time
+
+              # Validate goal
+              if self._is_goal_malicious(goal):
+                  raise SecurityError("Malicious goal detected")
+
+              self.start_time = time.time()
+              self.iteration_count = 0
+
+              state = {"goal": goal, "observations": []}
+
+              while self.iteration_count < self.max_iterations:
+                  # Timeout check
+                  if time.time() - self.start_time > self.timeout:
+                      return {"status": "timeout", "log": self.action_log}
+
+                  # Think
+                  thought = self._think(state)
+
+                  # Decide action
+                  action = self._decide_action(thought, allowed_tools)
+
+                  # Validate action
+                  if not self._validate_action(action):
+                      return {"status": "blocked", "reason": "Invalid action", "log": self.action_log}
+
+                  # Execute
+                  observation = self._execute(action)
+
+                  # Log
+                  self.action_log.append({
+                      "iteration": self.iteration_count,
+                      "thought": thought,
+                      "action": action,
+                      "observation": observation
+                  })
+
+                  # Update state
+                  state["observations"].append(observation)
+
+                  # Check if done
+                  if self._is_goal_achieved(state):
+                      return {"status": "success", "log": self.action_log}
+
+                  self.iteration_count += 1
+
+              return {"status": "max_iterations", "log": self.action_log}
+
+          def _is_goal_malicious(self, goal: str) -> bool:
+              malicious_keywords = ["delete all", "drop table", "rm -rf",
+                                   "exfiltrate", "bypass", "jailbreak"]
+              return any(kw in goal.lower() for kw in malicious_keywords)
+
+          def _validate_action(self, action: dict) -> bool:
+              # Check for dangerous patterns
+              if action.get("tool") in ["execute_code", "system_command"]:
+                  return False
+
+              # Check for data exfiltration attempts
+              if action.get("tool") == "http_request":
+                  url = action.get("params", {}).get("url", "")
+                  if not self._is_url_allowed(url):
+                      return False
+
+              return True
+
+          def _is_url_allowed(self, url: str) -> bool:
+              allowed_domains = ["api.openai.com", "example.com"]
+              return any(domain in url for domain in allowed_domains)
+
+      class SecurityError(Exception):
+          pass
+    description:
+      tr: Güvenli agent implementasyonu. Max iteration, timeout, action validation ve malicious goal detection.
+      en: Secure agent implementation. Max iteration, timeout, action validation and malicious goal detection.
+  - title: Agent Execution Limits (Kubernetes)
+    lang: yaml
+    code: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: agent-security-config
+      data:
+        agent-config.yaml: |
+          execution:
+            max_iterations: 15
+            max_tool_calls_per_iteration: 3
+            timeout_seconds: 300
+            max_tokens_per_turn: 4096
+          tools:
+            allowed:
+              - read_file
+              - search
+              - http_get
+            blocked:
+              - exec_command
+              - write_file
+              - send_email
+            require_confirmation:
+              - delete_file
+              - http_post
+          security:
+            sanitize_tool_output: true
+            log_all_tool_calls: true
+            rate_limit_per_user: 10/min
+    description:
+      tr: Kubernetes ConfigMap ile agent çalışma limitleri. İterasyon sınırı, izin verilen/engellenen toollar ve güvenlik ayarları.
+      en: Agent execution limits via Kubernetes ConfigMap. Iteration limits, allowed/blocked tools, and security settings.
+research:
+  - title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    url: https://arxiv.org/abs/2210.03629
+    year: 2022
+    type: paper
+    authors: Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran
+  - title: AutoGPT Security Analysis
+    url: https://github.com/Significant-Gravitas/AutoGPT/blob/master/SECURITY.md
+    year: 2023
+    type: guide
+    authors: AutoGPT Contributors
+  - title: "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications"
+    url: https://arxiv.org/abs/2302.12173
+    year: 2023
+    type: paper
+    authors: Kai Greshake, Sahar Abdelnabi, Shailesh Mishra
+tips:
+  - tr: Agent loop için max iteration ve timeout limitleri belirleyin.
+    en: Set max iteration and timeout limits for agent loop.
+  - tr: Her action'dan önce validation yapın ve tehlikeli toolları blacklist'e alın.
+    en: Validate before each action and blacklist dangerous tools.
+  - tr: Agent'ın tüm action history'sini audit için loglayın.
+    en: Log all agent action history for audit purposes.

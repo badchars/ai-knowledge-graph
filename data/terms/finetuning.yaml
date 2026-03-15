@@ -1,0 +1,222 @@
+id: finetuning
+name: Fine-tuning
+fullName: Fine-tuning
+category: training
+desc:
+  tr: |-
+    Önceden eğitilmiş bir AI modelini alıp, belirli bir alan veya görev için özel verilerle ek eğitim yapma işlemi. Pre-training modele genel dil bilgisi verirken, fine-tuning onu uzman yapar — örneğin Bloomberg, GPT modelini finansal verilerle fine-tune ederek BloombergGPT'yi oluşturdu.
+
+    Maliyet açısından pre-training'den 100-1000x daha ucuzdur: pre-training milyonlarca dolar tutarken, fine-tuning tek bir [A100](https://www.nvidia.com/en-us/data-center/a100/) GPU ile birkaç saat ila birkaç gün içinde yapılabilir.
+
+    Gerçek dünyada şirketler genellikle [Llama](https://ai.meta.com/llama/) veya [Mistral](https://mistral.ai) gibi açık kaynak modelleri alıp kendi verilerine göre fine-tune eder. Bu yaklaşım, sıfırdan model eğitmekle API kullanmak arasında mükemmel bir denge sunar — kendi verileriniz üzerinde kontrolünüz olur, maliyetler düşük kalır.
+  en: |-
+    The process of taking a pre-trained AI model and training it further on domain-specific data to specialize it for a particular task or field. While pre-training gives the model general language ability, fine-tuning makes it an expert — for example, Bloomberg fine-tuned a GPT model on financial data to create BloombergGPT, and Google fine-tuned PaLM on medical data to build Med-PaLM.
+
+    Cost-wise, fine-tuning is 100-1000x cheaper than pre-training: while pre-training costs millions, fine-tuning can be done on a single [A100](https://www.nvidia.com/en-us/data-center/a100/) GPU in hours to days.
+
+    In practice, companies typically take open-source models like [Llama](https://ai.meta.com/llama/) or [Mistral](https://mistral.ai) and fine-tune them on their own data. This approach offers the perfect balance between training from scratch and using an API — you get control over your data while keeping costs manageable.
+  fr: "Le processus consistant a prendre un modele d'IA pre-entraine et a le former davantage sur des donnees specifiques a un domaine pour le specialiser. Alors que le pre-entrainement donne au modele des capacites linguistiques generales, le fine-tuning en fait un expert — par exemple, Bloomberg a fine-tune un modele GPT sur des donnees financieres pour creer BloombergGPT. En termes de cout, le fine-tuning est 100 a 1000 fois moins cher que le pre-entrainement : il peut etre realise sur un seul GPU A100 en quelques heures a quelques jours. Dans la pratique, les entreprises prennent generalement des modeles open source comme Llama ou Mistral et les fine-tunent sur leurs propres donnees. Cette approche offre l'equilibre parfait entre l'entrainement a partir de zero et l'utilisation d'une API."
+  zh: 将预训练的AI模型在特定领域数据上进一步训练，使其专精于某项任务或领域的过程。预训练赋予模型通用语言能力，而微调使其成为专家——例如，Bloomberg用金融数据微调GPT模型创建了BloombergGPT，Google用医学数据微调PaLM构建了Med-PaLM。从成本看，微调比预训练便宜100-1000倍：预训练耗资数百万，微调可在单个A100 GPU上数小时到数天完成。实际中，企业通常取用Llama或Mistral等开源模型，在自己的数据上微调。这种方法在从头训练和使用API之间提供了完美平衡。
+  ar: "عملية أخذ نموذج ذكاء اصطناعي مُدرَّب مسبقاً وتدريبه إضافياً على بيانات خاصة بمجال معين لتخصصه في مهمة أو مجال محدد. بينما يمنح التدريب المسبق النموذج قدرات لغوية عامة، يجعله الضبط الدقيق خبيراً — على سبيل المثال، قامت Bloomberg بضبط نموذج GPT على بيانات مالية لإنشاء BloombergGPT. من حيث التكلفة، الضبط الدقيق أرخص بـ 100-1000 مرة من التدريب المسبق: يمكن إجراؤه على وحدة GPU واحدة من طراز A100 في ساعات إلى أيام. عملياً، تأخذ الشركات عادةً نماذج مفتوحة المصدر مثل Llama أو Mistral وتضبطها على بياناتها الخاصة. يوفر هذا النهج توازناً مثالياً بين التدريب من الصفر واستخدام واجهة برمجة تطبيقات."
+  ru: "Процесс дообучения предобученной модели ИИ на специализированных данных для адаптации к конкретной области или задаче. Если предобучение даёт модели общее владение языком, то fine-tuning делает её экспертом — например, Bloomberg дообучил модель GPT на финансовых данных, создав BloombergGPT, а Google дообучил PaLM на медицинских данных для Med-PaLM. По стоимости fine-tuning в 100-1000 раз дешевле предобучения: его можно выполнить на одном GPU A100 за часы или дни. На практике компании обычно берут открытые модели вроде Llama или Mistral и дообучают их на своих данных. Этот подход — идеальный баланс между обучением с нуля и использованием API: контроль над данными при умеренных затратах."
+analogy:
+  tr: Üniversite mezunu birinin staj yaparak belirli bir iş alanında uzmanlaşması.
+  en: A university graduate doing an internship to specialize in a particular field.
+  fr: Un diplômé universitaire faisant un stage pour se spécialiser dans un domaine particulier.
+  zh: 大学毕业生通过实习在特定领域专业化。
+  ar: خريج جامعي يقوم بتدريب عملي للتخصص في مجال معين.
+  ru: Выпускник университета, проходящий стажировку для специализации в определенной области.
+security:
+  - title:
+      tr: Fine-Tuning Jailbreak Injection
+      en: Fine-Tuning Jailbreak Injection
+      fr: Injection de jailbreak par fine-tuning
+      zh: 微调越狱注入
+      ar: حقن كسر القيود عبر الضبط الدقيق
+      ru: Внедрение джейлбрейка через дообучение
+    description:
+      tr: Fine-tuning dataset'ine zararlı instruction-response pair'leri ekleyerek safety alignment'ı bozma. Az sayıda (100-1000) malicious örnek bile model'i jailbreak edebilir. Özellikle LoRA/QLoRA gibi efficient fine-tuning method'ları vulnerable — adapter poisoning kolaydır.
+      en: Breaking safety alignment by adding harmful instruction-response pairs to fine-tuning dataset. Even small number (100-1000) of malicious examples can jailbreak model. Especially vulnerable are efficient fine-tuning methods like LoRA/QLoRA - adapter poisoning is easy.
+      fr: Briser l'alignement de sécurité en ajoutant des paires instruction-réponse nuisibles au dataset de fine-tuning. Même un petit nombre (100-1000) d'exemples malveillants peut jailbreaker le modèle. Les méthodes de fine-tuning efficaces comme LoRA/QLoRA sont particulièrement vulnérables — l'empoisonnement d'adaptateur est facile.
+      zh: 通过向微调数据集添加有害的指令-响应对来破坏安全对齐。即使少量（100-1000）恶意样本也能越狱模型。LoRA/QLoRA等高效微调方法尤其脆弱——适配器投毒很容易。
+      ar: كسر محاذاة الأمان بإضافة أزواج تعليمات-استجابات ضارة إلى مجموعة بيانات الضبط الدقيق. حتى عدد قليل من الأمثلة الخبيثة يمكن أن يكسر قيود النموذج. طرق الضبط الدقيق الفعالة مثل LoRA/QLoRA عرضة بشكل خاص.
+      ru: Нарушение безопасного выравнивания путём добавления вредоносных пар инструкция-ответ в датасет дообучения. Даже малое количество (100-1000) вредоносных примеров может джейлбрейкнуть модель. Особенно уязвимы методы эффективного дообучения LoRA/QLoRA — отравление адаптера легко.
+    severity: critical
+  - title:
+      tr: Catastrophic Forgetting of Safety
+      en: Catastrophic Forgetting of Safety
+      fr: Oubli catastrophique de la sécurité
+      zh: 安全性的灾难性遗忘
+      ar: النسيان الكارثي للأمان
+      ru: Катастрофическое забывание безопасности
+    description:
+      tr: Domain-specific fine-tuning yapılırken base model'in safety mechanisms unutulur. Medical/legal fine-tuning sonrası model toxicity/bias detection kaybedebilir. Safety instruction'lar override edilir ve model zararlı content üretmeye başlar. Safety validation şart.
+      en: Safety mechanisms of base model are forgotten during domain-specific fine-tuning. After medical/legal fine-tuning, model may lose toxicity/bias detection. Safety instructions are overridden and model starts generating harmful content. Safety validation is mandatory.
+      fr: Les mécanismes de sécurité du modèle de base sont oubliés pendant le fine-tuning spécifique au domaine. Après un fine-tuning médical/juridique, le modèle peut perdre la détection de toxicité/biais. Les instructions de sécurité sont écrasées et le modèle commence à générer du contenu nuisible. La validation de sécurité est obligatoire.
+      zh: 领域特定微调时基础模型的安全机制会被遗忘。医疗/法律微调后模型可能丧失毒性/偏见检测能力。安全指令被覆盖，模型开始生成有害内容。安全验证是必须的。
+      ar: تُنسى آليات أمان النموذج الأساسي أثناء الضبط الدقيق المتخصص. بعد الضبط الدقيق الطبي/القانوني قد يفقد النموذج قدرة اكتشاف السمية/التحيز. تُستبدل تعليمات الأمان ويبدأ النموذج بإنتاج محتوى ضار. التحقق من الأمان إلزامي.
+      ru: Механизмы безопасности базовой модели забываются при доменном дообучении. После медицинского/юридического дообучения модель может потерять детекцию токсичности. Инструкции безопасности перезаписываются, модель начинает генерировать вредоносный контент. Валидация безопасности обязательна.
+    severity: high
+  - title:
+      tr: Fine-Tuning Data Leakage
+      en: Fine-Tuning Data Leakage
+      fr: Fuite de données de fine-tuning
+      zh: 微调数据泄露
+      ar: تسريب بيانات الضبط الدقيق
+      ru: Утечка данных дообучения
+    description:
+      tr: Fine-tuning dataset çok küçük olduğu için (1K-100K), model kolayca ezberler. Proprietary/confidential fine-tuning data extraction attack'e açık. Şirket internal dokümanları, müşteri bilgileri fine-tuning'de kullanılırsa model bunları üretebilir. DP-SGD kullanımı kritik.
+      en: Because fine-tuning dataset is very small (1K-100K), model easily memorizes. Proprietary/confidential fine-tuning data is vulnerable to extraction attacks. If company internal documents or customer information is used in fine-tuning, model can generate them. DP-SGD usage is critical.
+      fr: Comme le dataset de fine-tuning est très petit (1K-100K), le modèle mémorise facilement. Les données propriétaires/confidentielles de fine-tuning sont vulnérables aux attaques d'extraction. Si des documents internes ou des informations clients sont utilisés, le modèle peut les reproduire. L'utilisation de DP-SGD est critique.
+      zh: 由于微调数据集很小（1K-100K），模型容易记忆。专有/机密微调数据易受提取攻击。如果公司内部文档或客户信息用于微调，模型可以生成它们。使用DP-SGD至关重要。
+      ar: لأن مجموعة بيانات الضبط الدقيق صغيرة جداً، يحفظ النموذج بسهولة. البيانات السرية معرضة لهجمات الاستخراج. إذا استُخدمت وثائق داخلية أو معلومات عملاء في الضبط الدقيق، يمكن للنموذج إنتاجها. استخدام DP-SGD أمر حاسم.
+      ru: Поскольку датасет дообучения очень мал (1K-100K), модель легко запоминает. Проприетарные/конфиденциальные данные дообучения уязвимы для атак извлечения. Если внутренние документы компании используются при дообучении, модель может их воспроизвести. Использование DP-SGD критически важно.
+    severity: high
+  - title:
+      tr: Fine-Tuning Hyperparameter Bilgi Sızıntısı
+      en: Fine-Tuning Hyperparameter Information Disclosure
+      fr: Divulgation des hyperparamètres de fine-tuning
+      zh: 微调超参数信息泄露
+      ar: تسريب معلومات المعلمات الفائقة للضبط الدقيق
+      ru: Утечка информации о гиперпараметрах дообучения
+    description:
+      tr: Fine-tuning hyperparameter'ları (learning rate, batch size, epoch sayısı) API davranış analizi ile çıkarılabilir. Bu bilgi model'in ne kadar fine-tune edildiğini ve hangi tekniğin kullanıldığını reveal eder. Competitor intelligence veya model cloning saldırılarında kullanılabilir.
+      en: Fine-tuning hyperparameters (learning rate, batch size, epoch count) can be extracted via API behavior analysis. This information reveals how much the model was fine-tuned and which technique was used. Can be used in competitor intelligence or model cloning attacks.
+      fr: Les hyperparamètres de fine-tuning (taux d'apprentissage, taille de batch, nombre d'époques) peuvent être extraits par analyse du comportement de l'API. Ces informations révèlent l'étendue du fine-tuning et la technique utilisée. Utilisables pour l'intelligence concurrentielle ou le clonage de modèle.
+      zh: 微调超参数（学习率、批量大小、epoch数）可通过API行为分析提取。此信息揭示了模型的微调程度和使用的技术。可用于竞争情报或模型克隆攻击。
+      ar: يمكن استخراج المعلمات الفائقة للضبط الدقيق عبر تحليل سلوك واجهة البرمجة. هذه المعلومات تكشف مدى الضبط الدقيق والتقنية المستخدمة. يمكن استخدامها في الاستخبارات التنافسية أو هجمات استنساخ النموذج.
+      ru: Гиперпараметры дообучения (learning rate, batch size, количество эпох) могут быть извлечены через анализ поведения API. Эта информация раскрывает степень дообучения модели и использованную технику.
+    severity: low
+config:
+  - title: Fine-Tuning Dataset Validation
+    lang: python
+    code: |-
+      from typing import List, Dict
+      import re
+
+      class FineTuneDatasetValidator:
+          """Validate fine-tuning dataset for safety"""
+          def __init__(self):
+              self.forbidden_patterns = [
+                  r'ignore.*previous.*instruction',
+                  r'disregard.*safety',
+                  r'you are now',
+                  r'jailbreak',
+                  r'how to (make|build|create) (bomb|weapon|explosive)',
+              ]
+
+              self.pii_patterns = {
+                  'email': r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}',
+                  'phone': r'\d{3}[-.]?\d{3}[-.]?\d{4}',
+                  'ssn': r'\d{3}-\d{2}-\d{4}',
+              }
+
+          def validate_example(self, instruction: str, response: str) -> Dict:
+              """Validate single training example"""
+              issues = []
+
+              # Check for jailbreak patterns
+              combined = f"{instruction} {response}".lower()
+              for pattern in self.forbidden_patterns:
+                  if re.search(pattern, combined):
+                      issues.append(f"Jailbreak pattern: {pattern}")
+
+              # Check for PII
+              for pii_type, pattern in self.pii_patterns.items():
+                  if re.search(pattern, combined):
+                      issues.append(f"PII detected: {pii_type}")
+
+              # Check response length (prevent memorization)
+              if len(response) > 2000:
+                  issues.append("Response too long - memorization risk")
+
+              return {"valid": len(issues) == 0, "issues": issues}
+
+          def validate_dataset(self, examples: List[Dict]) -> Dict:
+              """Validate entire dataset"""
+              total = len(examples)
+              invalid = 0
+              all_issues = []
+
+              for i, ex in enumerate(examples):
+                  result = self.validate_example(ex['instruction'], ex['response'])
+                  if not result['valid']:
+                      invalid += 1
+                      all_issues.append({"index": i, "issues": result['issues']})
+
+              return {
+                  "total": total,
+                  "invalid": invalid,
+                  "pass_rate": (total - invalid) / total,
+                  "issues": all_issues
+              }
+
+      # Use before fine-tuning
+      validator = FineTuneDatasetValidator()
+      results = validator.validate_dataset(training_data)
+      if results['pass_rate'] < 0.95:
+          raise ValueError("Dataset validation failed!")
+    description:
+      tr: Fine-tuning dataset'ini jailbreak pattern'leri, PII, uzun response'lar için validate edin. %95+ pass rate zorunlu kılın.
+      en: Validate fine-tuning dataset for jailbreak patterns, PII, long responses. Enforce 95%+ pass rate.
+  - title: Fine-Tuning with DP-SGD
+    lang: python
+    code: |-
+      from torch.optim import AdamW
+      from opacus import PrivacyEngine
+      from opacus.validators import ModuleValidator
+
+      # Make model compatible with Opacus
+      model = ModuleValidator.fix(model)
+
+      # Setup differential privacy
+      privacy_engine = PrivacyEngine()
+
+      optimizer = AdamW(model.parameters(), lr=5e-5)
+
+      model, optimizer, train_loader = privacy_engine.make_private(
+          module=model,
+          optimizer=optimizer,
+          data_loader=train_loader,
+          noise_multiplier=1.1,  # Noise added to gradients
+          max_grad_norm=1.0,     # Gradient clipping bound
+      )
+
+      # Training loop with DP guarantees
+      for batch in train_loader:
+          optimizer.zero_grad()
+          loss = model(**batch).loss
+          loss.backward()
+          optimizer.step()  # Opacus handles DP automatically
+
+      # Get privacy spent
+      epsilon = privacy_engine.get_epsilon(delta=1e-5)
+      print(f"Privacy budget: ε = {epsilon}")
+
+      # Good practice: ε < 10 for decent privacy
+    description:
+      tr: Fine-tuning'de Opacus ile DP-SGD kullanın. Gradient'lere noise ekleyerek data extraction'ı önleyin. Epsilon budget'ı <10 tutun.
+      en: Use DP-SGD with Opacus during fine-tuning. Add noise to gradients to prevent data extraction. Keep epsilon budget <10.
+research:
+  - title: Fine-Tuning Aligned Language Models Compromises Safety
+    url: https://arxiv.org/abs/2310.03693
+    year: 2023
+    type: paper
+    authors: Xiangyu Qi, et al.
+  - title: Extracting Training Data from Diffusion Models
+    url: https://arxiv.org/abs/2301.13188
+    year: 2023
+    type: paper
+    authors: Nicholas Carlini, et al.
+  - title: "Opacus: Differential Privacy for PyTorch"
+    url: https://opacus.ai/
+    year: 2024
+    type: tool
+    authors: Meta
+tips:
+  - tr: Fine-tuning sonrası mutlaka safety benchmark'ları (ToxiGen, BBQ) tekrar çalıştırın.
+    en: Always re-run safety benchmarks (ToxiGen, BBQ) after fine-tuning.
+  - tr: Fine-tuning dataset'ini GitHub/public web'e asla koymayın, proprietary data leak eder.
+    en: Never put fine-tuning dataset on GitHub/public web - leaks proprietary data.
+  - tr: LoRA adapter'ları şifreleyerek saklayın, adapter poisoning'i önleyin.
+    en: Store LoRA adapters encrypted to prevent adapter poisoning.

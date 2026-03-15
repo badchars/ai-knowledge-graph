@@ -1,0 +1,100 @@
+id: openai-api
+name: OpenAI API
+fullName: OpenAI Application Programming Interface
+category: ecosystem
+desc:
+  tr: |-
+    LLM'lere erişim için en yaygın kullanılan API. Uygulamanızdan bir HTTP isteği gönderirsiniz, [GPT-4](https://openai.com/gpt-4)o veya o1 gibi bir model yanıtlar -- kendi donanım altyapınızı kurmanıza gerek kalmaz.
+
+    Chat completions endpoint'i fiili standart haline gelmiştir: neredeyse tüm rakipler ([Anthropic](https://anthropic.com), [Mistral](https://mistral.ai), Groq, Together AI) ve yerel araçlar ([Ollama](https://ollama.com), [vLLM](https://docs.vllm.ai), llama.cpp) aynı format ile uyumlu API sunar. Fiyatlandırma token bazlıdır -- girdi ve çıktı tokenleri ayri ücretlendirilir.
+
+    Function calling ve tool use özellikleri sayesinde LLM'ler harici sistemlerle etkileşime girebilir. Streaming desteği ile yanıtlar token token alınabilir. Rate limit'ler kullanim katmanına göre değişir ve büyük ölçekli uygulamalarda yönetilmesi gereken önemli bir faktördür.
+  en: |-
+    The most widely used API for accessing LLMs. You send an HTTP request from your application, a model like [GPT-4](https://openai.com/gpt-4)o or o1 responds -- no need to set up your own hardware infrastructure.
+
+    The chat completions endpoint has become the de facto standard: nearly every competitor ([Anthropic](https://anthropic.com), [Mistral](https://mistral.ai), Groq, Together AI) and local tool ([Ollama](https://ollama.com), [vLLM](https://docs.vllm.ai), llama.cpp) offers a compatible API in the same format. Pricing iş token-based -- input and output tokens are charged separately.
+
+    Function calling and tool use features allow LLMs to interact with external systems. Streaming support lets you receive responses token by token. Rate limits vary by usage tier and are an important factor to manage in large-scale applications.
+  fr: "L'API la plus utilisee pour acceder aux LLM. Vous envoyez une requete HTTP depuis votre application, un modele comme GPT-4o ou o1 repond -- pas besoin de configurer votre propre infrastructure materielle. L'endpoint chat completions est devenu le standard de facto : presque tous les concurrents (Anthropic, Mistral, Groq, Together AI) et les outils locaux (Ollama, vLLM, llama.cpp) proposent une API compatible dans le meme format. La tarification est basee sur les tokens -- les tokens d'entree et de sortie sont factures separement. Les fonctionnalites de function calling et d'utilisation d'outils permettent aux LLM d'interagir avec des systemes externes. Le streaming permet de recevoir les reponses token par token. Les limites de debit varient selon le niveau d'utilisation et constituent un facteur important a gerer dans les applications a grande echelle."
+  zh: 访问LLM最广泛使用的API。你从应用程序发送HTTP请求，GPT-4o或o1等模型就会响应——无需搭建自己的硬件基础设施。聊天补全端点已成为事实标准：几乎所有竞争对手（Anthropic、Mistral、Groq、Together AI）和本地工具（Ollama、vLLM、llama.cpp）都提供相同格式的兼容API。定价基于token——输入和输出token分别计费。函数调用和工具使用功能允许LLM与外部系统交互。流式支持让你可以逐个token接收响应。速率限制因使用层级而异，是大规模应用中需要管理的重要因素。
+  ar: "واجهة برمجة التطبيقات الاكثر استخداما للوصول الى نماذج اللغة الكبيرة. ترسل طلب HTTP من تطبيقك ويستجيب نموذج مثل GPT-4o او o1 -- دون الحاجة لاعداد بنيتك التحتية الخاصة. اصبح endpoint الدردشة المعيار الفعلي: تقريبا كل المنافسين (Anthropic وMistral وGroq وTogether AI) والادوات المحلية (Ollama وvLLM وllama.cpp) تقدم واجهة برمجة متوافقة بنفس الصيغة. التسعير قائم على التوكنات -- تحسب توكنات الادخال والاخراج بشكل منفصل. تتيح ميزات استدعاء الدوال واستخدام الادوات للنماذج التفاعل مع الانظمة الخارجية. يتيح دعم البث تلقي الردود توكنا بتوكن. تختلف حدود المعدل حسب مستوى الاستخدام وتعد عاملا مهما يجب ادارته في التطبيقات واسعة النطاق."
+  ru: "Наиболее широко используемый API для доступа к LLM. Вы отправляете HTTP-запрос из приложения, модель вроде GPT-4o или o1 отвечает -- не нужно настраивать собственную инфраструктуру. Эндпоинт chat completions стал стандартом де-факто: почти все конкуренты (Anthropic, Mistral, Groq, Together AI) и локальные инструменты (Ollama, vLLM, llama.cpp) предлагают совместимый API в том же формате. Ценообразование токенное -- входные и выходные токены тарифицируются отдельно. Функции вызова функций и использования инструментов позволяют LLM взаимодействовать с внешними системами. Потоковая передача позволяет получать ответы токен за токеном. Лимиты запросов зависят от уровня использования и являются важным фактором управления в крупномасштабных приложениях."
+analogy:
+  tr: OpenAI API, buluttaki bir restoran gibidir. Mutfak kurmanıza, malzeme almaniza veya asci tutmaniza gerek yok -- sadece menuyu acip siparis verirsiniz, yemek gelir ve porsiyona göre odeme yaparsiniz.
+  en: The OpenAI API iş like a restaurant in the cloud. You don't need to build a kitchen, buy ingredients, or hire a chef -- just open the menu, place an order, and pay per portion.
+  fr: L'API OpenAI est comme un restaurant dans le cloud. Pas besoin de construire une cuisine, d'acheter des ingredients ou d'engager un chef -- il suffit d'ouvrir le menu, de passer commande et de payer a la portion.
+  zh: OpenAI API就像云端的餐厅。你不需要建厨房、买食材或雇厨师——只需打开菜单、下单，然后按份量付费。
+  ar: واجهة OpenAI تشبه مطعما في السحابة. لا تحتاج لبناء مطبخ او شراء مكونات او توظيف طاه -- فقط افتح القائمة واطلب وادفع حسب الحصة.
+  ru: API OpenAI -- это как ресторан в облаке. Не нужно строить кухню, покупать продукты или нанимать повара -- просто откройте меню, сделайте заказ и платите за порцию.
+security:
+  - title:
+      tr: API Key Sızıntısı ve Billing Abuse
+      en: API Key Leakage and Billing Abuse
+      fr: Fuite de clé API et abus de facturation
+      zh: API密钥泄露和账单滥用
+      ar: تسريب مفتاح API وإساءة استخدام الفوترة
+      ru: Утечка API-ключа и злоупотребление биллингом
+    description:
+      tr: OpenAI API key'leri GitHub, log file'larında sıklıkla exposed olur. Saldırgan unlimited query yaparak binlerce dolar fatura oluşturur. Key rotation ve environment variable storage gereklidir.
+      en: OpenAI API keys are frequently exposed in GitHub, log files. Attacker generates thousands of dollars in bills with unlimited queries. Key rotation and environment variable storage are required.
+      fr: Les clés API OpenAI sont fréquemment exposées dans GitHub et les fichiers de logs. L'attaquant génère des milliers de dollars de factures avec des requêtes illimitées. La rotation des clés et le stockage en variables d'environnement sont nécessaires.
+      zh: OpenAI API密钥经常在GitHub和日志文件中暴露。攻击者通过无限制查询产生数千美元的账单。需要密钥轮换和环境变量存储。
+      ar: تتعرض مفاتيح OpenAI API بشكل متكرر في GitHub وملفات السجلات. يولد المهاجم آلاف الدولارات في الفواتير باستعلامات غير محدودة. مطلوب تدوير المفاتيح وتخزين متغيرات البيئة.
+      ru: Ключи API OpenAI часто попадают в открытый доступ в GitHub и лог-файлах. Злоумышленник генерирует тысячи долларов счетов неограниченными запросами. Требуется ротация ключей и хранение в переменных окружения.
+    severity: critical
+  - title:
+      tr: Prompt Injection via API
+      en: Prompt Injection via API
+      fr: Injection de prompt via l'API
+      zh: 通过API进行提示注入
+      ar: حقن الأوامر عبر API
+      ru: Инъекция промпта через API
+    description:
+      tr: User input OpenAI API'ye gönderiliyorsa prompt injection ile system behavior manipüle edilebilir. Input sanitization gereklidir.
+      en: If user input is sent to OpenAI API, system behavior can be manipulated via prompt injection. Input sanitization is required.
+      fr: Si l'entrée utilisateur est envoyée à l'API OpenAI, le comportement du système peut être manipulé via l'injection de prompts. La sanitisation des entrées est requise.
+      zh: 如果用户输入被发送到OpenAI API，系统行为可以通过提示注入被操纵。需要输入净化。
+      ar: إذا تم إرسال مدخلات المستخدم إلى OpenAI API، يمكن التلاعب بسلوك النظام عبر حقن الأوامر. مطلوب تعقيم المدخلات.
+      ru: Если пользовательский ввод отправляется в API OpenAI, поведение системы может быть манипулировано через инъекцию промпта. Требуется санитизация ввода.
+    severity: high
+  - title:
+      tr: API Kullanım Loglama ve İzleme Eksikliği
+      en: API Usage Logging and Monitoring Gap
+      fr: Lacune de journalisation et de surveillance de l'utilisation de l'API
+      zh: API使用日志和监控缺口
+      ar: فجوة تسجيل ومراقبة استخدام API
+      ru: Пробел в логировании и мониторинге использования API
+    description:
+      tr: OpenAI API çağrılarının loglanmaması, anormal kullanım pattern'lerinin (data exfiltration, excessive billing) tespit edilmesini engeller. Token kullanımı ve request pattern'leri izlenmelidir.
+      en: Not logging OpenAI API calls prevents detection of abnormal usage patterns (data exfiltration, excessive billing). Token usage and request patterns should be monitored.
+      fr: Ne pas journaliser les appels API OpenAI empêche la détection de schémas d'utilisation anormaux (exfiltration de données, facturation excessive). L'utilisation des tokens et les schémas de requêtes doivent être surveillés.
+      zh: 不记录OpenAI API调用会阻止检测异常使用模式（数据外泄、过度计费）。应监控token使用和请求模式。
+      ar: عدم تسجيل استدعاءات OpenAI API يمنع اكتشاف أنماط الاستخدام غير الطبيعية (تسريب البيانات، الفوترة المفرطة). يجب مراقبة استخدام الرموز وأنماط الطلبات.
+      ru: Отсутствие логирования вызовов API OpenAI препятствует обнаружению аномальных паттернов использования (эксфильтрация данных, чрезмерная тарификация). Необходимо мониторить использование токенов и паттерны запросов.
+    severity: low
+config:
+  - title: Secure API Key Storage
+    lang: python
+    code: |-
+      import os
+      from openai import OpenAI
+
+      # GOOD: Use env vars
+      client = OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
+
+      # BAD: Never hardcode
+      # client = OpenAI(api_key='sk-proj-...')
+    description:
+      tr: API key'leri environment variable'larda saklayın, hardcode etmeyin.
+      en: Store API keys in environment variables, don't hardcode.
+research:
+  - title: OpenAI API Security Best Practices
+    url: https://platform.openai.com/docs/guides/safety-best-practices
+    year: 2024
+    type: guide
+    authors: OpenAI
+tips:
+  - tr: GitHub'a push yapmadan önce gitleaks ile API key scan edin.
+    en: Scan for API keys with gitleaks before pushing to GitHub.
+  - tr: OpenAI Dashboard'da usage alerts ayarlayın. Günlük $10+ harcama = potansiyel abuse.
+    en: Set up usage alerts in OpenAI Dashboard. Daily $10+ spending = potential abuse.

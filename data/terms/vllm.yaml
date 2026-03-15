@@ -1,0 +1,172 @@
+id: vllm
+name: vLLM
+fullName: vLLM (Inference Engine)
+category: inference
+desc:
+  tr: |-
+    LLM'leri hızlı ve verimli şekilde sunmaya yarayan açık kaynak çıkarım motoru. [UC Berkeley](https://sky.cs.berkeley.edu)'de geliştirilen [vLLM](https://docs.vllm.ai), [PagedAttention](https://arxiv.org/abs/2309.06180)'i tanıttı — GPU belleğini bir işletim sisteminin RAM yönetimi gibi yöneten, israfi ortadan kaldiran bir teknik.
+
+    Pratikte vLLM, basit [Hugging Face](https://huggingface.co) pipeline gibi naif uygulamalara kiyasla 2-4x daha fazla eszamanli kullaniciya hizmet verebilir. Surekli batching, çoklu GPU'lar arasi tensor paralelizm ve [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai), [Qwen](https://huggingface.co/Qwen) dahil duzinelerce model mimarişini destekler.
+
+    Anyscale, Alibaba ve çok sayıda startup vLLM'i üretim ortaminda günluk milyonlarca istege hizmet vermek için kullanır. [OpenAI](https://openai.com)-uyumlu API sunüçusu sayesinde mevcut uygulamalari hicbir kod degişikligi yapmadan vLLM'e taşıyabilirsiniz.
+  en: |-
+    An open-source inference engine that makes serving LLMs fast and efficient. Developed at [UC Berkeley](https://sky.cs.berkeley.edu), [vLLM](https://docs.vllm.ai) introduced [PagedAttention](https://arxiv.org/abs/2309.06180) — a technique that manages GPU memory like an operating system manages RAM, eliminating waste.
+
+    In practice, vLLM can serve 2-4x more concurrent users than naive implementations like a basic [Hugging Face](https://huggingface.co) pipeline. It supports continuous batching, tensor parallelism across multiple GPUs, and dozens of model architectures including [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai), and [Qwen](https://huggingface.co/Qwen).
+
+    Companies like Anyscale, Alibaba, and numerous startups use vLLM in production to serve millions of daily requests. Its [OpenAI](https://openai.com)-compatible API server means you can migrate existing applications to vLLM without changing a single line of client code.
+  fr: Un moteur d'inference open source qui rend le service des LLM rapide et efficace. Developpe a UC Berkeley, vLLM a introduit PagedAttention — une technique qui gere la memoire GPU comme un systeme d'exploitation gere la RAM, eliminant le gaspillage. En pratique, vLLM peut servir 2 a 4 fois plus d'utilisateurs simultanement que des implementations naives comme un pipeline Hugging Face basique. Il supporte le batching continu, le parallelisme tensoriel sur plusieurs GPU et des dizaines d'architectures de modeles dont Llama, Mistral et Qwen. Des entreprises comme Anyscale, Alibaba et de nombreuses startups utilisent vLLM en production pour servir des millions de requetes quotidiennes. Son serveur API compatible OpenAI permet de migrer des applications existantes sans changer une seule ligne de code client.
+  zh: 一款让LLM服务变得快速高效的开源推理引擎。由加州大学伯克利分校开发，vLLM引入了PagedAttention——一种像操作系统管理RAM一样管理GPU内存的技术，消除了内存浪费。实际上，vLLM能比简单的Hugging Face pipeline等初级实现多服务2-4倍的并发用户。它支持连续批处理、跨多GPU的张量并行，以及包括Llama、Mistral、Qwen在内的数十种模型架构。Anyscale、阿里巴巴和众多初创公司在生产环境中使用vLLM来处理每天数百万的请求。其兼容OpenAI的API服务器意味着你可以不改一行客户端代码就将现有应用迁移到vLLM。
+  ar: محرك استدلال مفتوح المصدر يجعل خدمة نماذج اللغة الكبيرة سريعة وفعالة. طُوّر في جامعة كاليفورنيا بيركلي، وقدّم vLLM تقنية PagedAttention — التي تدير ذاكرة GPU كما يدير نظام التشغيل الذاكرة العشوائية مما يقضي على الهدر. عملياً يستطيع vLLM خدمة 2-4 أضعاف عدد المستخدمين المتزامنين مقارنة بالتطبيقات البسيطة مثل pipeline من Hugging Face. يدعم التجميع المستمر والتوازي التنسوري عبر عدة وحدات GPU وعشرات معماريات النماذج بما فيها Llama وMistral وQwen. شركات مثل Anyscale وAlibaba والعديد من الشركات الناشئة تستخدم vLLM في الإنتاج لخدمة ملايين الطلبات اليومية. خادم API المتوافق مع OpenAI يعني إمكانية نقل التطبيقات الحالية دون تغيير سطر واحد من كود العميل.
+  ru: Движок инференса с открытым кодом, обеспечивающий быстрое и эффективное обслуживание LLM. Разработанный в UC Berkeley, vLLM представил PagedAttention — технику управления памятью GPU подобно тому, как операционная система управляет RAM, устраняя потери. На практике vLLM обслуживает в 2-4 раза больше одновременных пользователей, чем наивные реализации вроде базового pipeline Hugging Face. Поддерживает непрерывный батчинг, тензорный параллелизм на нескольких GPU и десятки архитектур моделей, включая Llama, Mistral и Qwen. Компании вроде Anyscale, Alibaba и множество стартапов используют vLLM в продакшене для обслуживания миллионов ежедневных запросов. Совместимый с OpenAI API-сервер позволяет мигрировать существующие приложения без изменения единой строки клиентского кода.
+analogy:
+  tr: Restoranın mutfak yönetim sistemi. Birden fazla siparişi aynı anda verimli işler, boş kapasite bırakmaz.
+  en: A restaurant's kitchen management system. Efficiently handles multiple orders simultaneously, never leaving capacity idle.
+  fr: Système de gestion de cuisine d'un restaurant. Traite efficacement plusieurs commandes simultanément, ne laissant jamais de capacité inutilisée.
+  zh: 餐厅的厨房管理系统。同时高效处理多个订单，从不让产能闲置。
+  ar: نظام إدارة مطبخ المطعم. يعالج عدة طلبات بكفاءة في وقت واحد، ولا يترك الطاقة خاملة أبداً.
+  ru: Система управления кухней ресторана. Эффективно обрабатывает несколько заказов одновременно, никогда не оставляя мощности простаивающими.
+security:
+  - title:
+      tr: vLLM API Endpoint Exposure
+      en: vLLM API Endpoint Exposure
+      fr: Exposition des endpoints API vLLM
+      zh: vLLM API端点暴露
+      ar: كشف نقاط نهاية API الخاصة بـ vLLM
+      ru: Раскрытие конечных точек API vLLM
+    description:
+      tr: vLLM OpenAI-compatible API sunduğu için yanlış yapılandırılmış endpoint'ler internet'e açık kalabilir. Authentication olmadan bu ciddi bir güvenlik açığıdır.
+      en: Since vLLM provides OpenAI-compatible API, misconfigured endpoints can be exposed to the internet. Without authentication, this is a serious security vulnerability.
+      fr: Puisque vLLM fournit une API compatible OpenAI, les endpoints mal configures peuvent etre exposes a internet. Sans authentification, c'est une vulnerabilite de securite serieuse.
+      zh: 由于vLLM提供OpenAI兼容的API，错误配置的端点可能暴露在互联网上。没有认证的情况下，这是一个严重的安全漏洞。
+      ar: نظراً لأن vLLM يوفر واجهة برمجة متوافقة مع OpenAI، يمكن أن تتعرض نقاط النهاية المكونة بشكل خاطئ للإنترنت. بدون المصادقة، هذه ثغرة أمنية خطيرة.
+      ru: Поскольку vLLM предоставляет API, совместимый с OpenAI, неправильно настроенные эндпоинты могут быть доступны из интернета. Без аутентификации это серьёзная уязвимость.
+    severity: critical
+  - title:
+      tr: Shared KV Cache Cross-Contamination
+      en: Shared KV Cache Cross-Contamination
+      fr: Contamination croisee du cache KV partage
+      zh: 共享KV缓存交叉污染
+      ar: التلوث المتبادل لذاكرة التخزين المؤقت KV المشتركة
+      ru: Перекрёстное загрязнение общего KV-кэша
+    description:
+      tr: vLLM'in shared KV cache mekanizması, multi-tenant ortamlarda cache poisoning veya bilgi sızıntısına neden olabilir. Özellikle prefix caching aktifse risk artar.
+      en: vLLM's shared KV cache mechanism can cause cache poisoning or information leakage in multi-tenant environments. Risk increases especially when prefix caching is enabled.
+      fr: Le mecanisme de cache KV partage de vLLM peut causer un empoisonnement de cache ou une fuite d'informations dans les environnements multi-tenant. Le risque augmente surtout lorsque le cache de prefixe est active.
+      zh: vLLM的共享KV缓存机制可能在多租户环境中导致缓存投毒或信息泄漏。特别是在启用前缀缓存时风险增加。
+      ar: يمكن أن تتسبب آلية ذاكرة التخزين المؤقت KV المشتركة في vLLM في تسميم التخزين المؤقت أو تسريب المعلومات في بيئات متعددة المستأجرين. يزداد الخطر خاصة عند تفعيل التخزين المؤقت للبادئة.
+      ru: Механизм общего KV-кэша vLLM может вызвать отравление кэша или утечку информации в мультитенантных средах. Риск возрастает, особенно при включённом кэшировании префиксов.
+    severity: high
+  - title:
+      tr: Model Serving RCE
+      en: Model Serving RCE
+      fr: Execution de code a distance via le service de modele
+      zh: 模型服务远程代码执行
+      ar: تنفيذ كود عن بعد عبر خدمة النموذج
+      ru: Удалённое выполнение кода при обслуживании модели
+    description:
+      tr: vLLM özel model loader'lar veya custom kernels kullanıyorsa, bunlar arbitrary code execution için kullanılabilir. Güvenilmeyen model dosyaları RCE riski taşır.
+      en: If vLLM uses custom model loaders or kernels, they can be exploited for arbitrary code execution. Untrusted model files pose RCE risks.
+      fr: Si vLLM utilise des chargeurs de modeles personnalises ou des kernels custom, ils peuvent etre exploites pour une execution de code arbitraire. Les fichiers de modeles non approuves presentent des risques RCE.
+      zh: 如果vLLM使用自定义模型加载器或内核，它们可以被利用来执行任意代码。不受信任的模型文件存在RCE风险。
+      ar: إذا كان vLLM يستخدم محملات نماذج مخصصة أو نوى مخصصة، يمكن استغلالها لتنفيذ كود عشوائي. تشكل ملفات النماذج غير الموثوقة مخاطر RCE.
+      ru: Если vLLM использует пользовательские загрузчики моделей или ядра, они могут быть эксплуатированы для произвольного выполнения кода. Ненадёжные файлы моделей создают риски RCE.
+    severity: critical
+  - title:
+      tr: vLLM Versiyon Bilgisi İfşası
+      en: vLLM Version Information Disclosure
+      fr: Divulgation de la version de vLLM
+      zh: vLLM版本信息泄露
+      ar: كشف معلومات إصدار vLLM
+      ru: Раскрытие информации о версии vLLM
+    description:
+      tr: vLLM'in /version veya /health endpoint'leri varsayılan olarak versiyon bilgisini döndürür. Bu bilgi, bilinen güvenlik açıklarının hedeflenmesi için kullanılabilir.
+      en: vLLM's /version or /health endpoints return version information by default. This information can be used to target known security vulnerabilities.
+      fr: Les endpoints /version ou /health de vLLM renvoient les informations de version par defaut. Ces informations peuvent etre utilisees pour cibler des vulnerabilites de securite connues.
+      zh: vLLM的/version或/health端点默认返回版本信息。这些信息可用于针对已知安全漏洞进行攻击。
+      ar: تُرجع نقاط نهاية /version أو /health في vLLM معلومات الإصدار افتراضياً. يمكن استخدام هذه المعلومات لاستهداف الثغرات الأمنية المعروفة.
+      ru: Эндпоинты /version или /health vLLM по умолчанию возвращают информацию о версии. Эта информация может использоваться для нацеливания на известные уязвимости.
+    severity: low
+config:
+  - title: Secure vLLM Deployment
+    lang: yaml
+    code: |-
+      # docker-compose.yml for secure vLLM
+      services:
+        vllm:
+          image: vllm/vllm-openai:latest
+          command:
+            - --model=/models/llama-3.3-70b
+            - --host=127.0.0.1  # Bind to localhost only
+            - --port=8000
+            - --api-key=$VLLM_API_KEY  # Require API key
+            - --disable-log-requests  # Prevent prompt logging
+            - --max-model-len=4096
+            - --gpu-memory-utilization=0.9
+          environment:
+            - VLLM_API_KEY=${VLLM_API_KEY}
+            - CUDA_VISIBLE_DEVICES=0
+          volumes:
+            - ./models:/models:ro  # Read-only model mount
+          networks:
+            - internal  # Internal network only
+          deploy:
+            resources:
+              reservations:
+                devices:
+                  - driver: nvidia
+                    count: 1
+                    capabilities: [gpu]
+    description:
+      tr: vLLM'i localhost'a bind edin, API key zorunlu kılın ve model volume'u read-only mount edin.
+      en: Bind vLLM to localhost, require API keys, and mount model volumes as read-only.
+  - title: vLLM with Reverse Proxy Auth
+    lang: nginx
+    code: |-
+      # nginx reverse proxy with auth
+      upstream vllm_backend {
+          server 127.0.0.1:8000;
+      }
+
+      server {
+          listen 443 ssl;
+          server_name api.example.com;
+
+          ssl_certificate /etc/ssl/cert.pem;
+          ssl_certificate_key /etc/ssl/key.pem;
+
+          # Rate limiting
+          limit_req_zone $binary_remote_addr zone=vllm_limit:10m rate=10r/m;
+
+          location /v1/ {
+              # API key validation
+              if ($http_authorization != "Bearer $VALID_API_KEY") {
+                  return 401;
+              }
+
+              limit_req zone=vllm_limit burst=5;
+              proxy_pass http://vllm_backend;
+              proxy_set_header Host $host;
+          }
+      }
+    description:
+      tr: vLLM önüne nginx reverse proxy ekleyin. SSL, authentication ve rate limiting sağlayın.
+      en: Add nginx reverse proxy in front of vLLM. Provide SSL, authentication, and rate limiting.
+research:
+  - title: "vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention"
+    url: https://arxiv.org/abs/2309.06180
+    year: 2023
+    type: paper
+    authors: Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng
+  - title: vLLM Security Best Practices
+    url: https://docs.vllm.ai/en/latest/serving/security.html
+    year: 2024
+    type: guide
+    authors: vLLM Team
+tips:
+  - tr: vLLM loglarını monitör edin; unusual request pattern'larını tespit edin.
+    en: Monitor vLLM logs; detect unusual request patterns.
+  - tr: Production'da --disable-log-requests kullanarak prompt logging'i kapatın.
+    en: Use --disable-log-requests in production to disable prompt logging.
+  - tr: vLLM version'unu düzenli update edin; security patch'leri hızlıca uygulayın.
+    en: Regularly update vLLM version; quickly apply security patches.

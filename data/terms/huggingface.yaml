@@ -1,0 +1,184 @@
+id: huggingface
+name: Hugging Face
+fullName: Hugging Face Platform
+category: ecosystem
+desc:
+  tr: |-
+    AI modellerini, veri setlerini ve uygulamaları paylaşma konusunda en büyük açık platform -- AI dünyasinin GitHub'i. 500.000'den fazla barindirilmiş modelle, tüm önemli açık agirlikli modelleri burada bulabilirsiniz: [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai), Qwen, Gemma ve binlercesi daha.
+
+    Arastirmacilar ve sirketler modellerini ceşitli formatlarda (safetensors, GGUF, GPTQ) yukler, topluluk farklı donanımlar için quantize edilmiş versiyonlar olüstürür.
+
+    Modellerin otesinde Hugging Face, eğitim için veri setleri, demo uygulamalar için Spaces ([Gradio](https://gradio.app) veya [Streamlit](https://streamlit.io) ile) ve modelleri yukleyip calistirmak için birlesmis API sağlayan Transformers kütüphanesini barindirir. Acik kaynak AI ile calisiyorsaniz, Hugging Face ile her gün etkilesim halinde olacaksiniz.
+  en: |-
+    The largest open platform for sharing AI models, datasets, and applications -- essentially the GitHub of the AI world. With over 500,000 models hosted, it's where you'll find every major open-weight model: [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai), Qwen, Gemma, and thousands more.
+
+    Researchers and companies upload their models in various formats (safetensors, GGUF, GPTQ) and the community creates quantized versions for different hardware.
+
+    Beyond models, Hugging Face hosts datasets for training, Spaces for demo apps (using [Gradio](https://gradio.app) or [Streamlit](https://streamlit.io)), and the Transformers library that provides a unified API to load and run models. If you're working with open-source AI, you'll interact with Hugging Face daily.
+  fr: "La plus grande plateforme ouverte pour partager des modeles d'IA, des jeux de donnees et des applications -- essentiellement le GitHub du monde de l'IA. Avec plus de 500 000 modeles heberges, c'est la que vous trouverez tous les grands modeles a poids ouverts : Llama, Mistral, Qwen, Gemma et des milliers d'autres. Les chercheurs et les entreprises telechargent leurs modeles dans divers formats (safetensors, GGUF, GPTQ) et la communaute cree des versions quantifiees pour differents materiels. Au-dela des modeles, Hugging Face heberge des jeux de donnees pour l'entrainement, des Spaces pour les applications de demo (avec Gradio ou Streamlit), et la bibliotheque Transformers qui fournit une API unifiee pour charger et executer des modeles. Si vous travaillez avec l'IA open source, vous interagirez avec Hugging Face quotidiennement."
+  zh: 分享AI模型、数据集和应用程序的最大开放平台——本质上是AI世界的GitHub。平台托管超过50万个模型，你能在这里找到所有主要的开放权重模型：Llama、Mistral、Qwen、Gemma以及数千个其他模型。研究人员和公司以各种格式（safetensors、GGUF、GPTQ）上传模型，社区为不同硬件创建量化版本。除了模型之外，Hugging Face还托管用于训练的数据集、用于演示应用的Spaces（使用Gradio或Streamlit），以及提供统一API来加载和运行模型的Transformers库。如果你从事开源AI工作，你每天都会与Hugging Face打交道。
+  ar: "اكبر منصة مفتوحة لمشاركة نماذج الذكاء الاصطناعي ومجموعات البيانات والتطبيقات -- بمثابة GitHub لعالم الذكاء الاصطناعي. مع اكثر من 500,000 نموذج مستضاف، ستجد هنا كل نموذج رئيسي مفتوح الاوزان: Llama وMistral وQwen وGemma والاف غيرها. يقوم الباحثون والشركات بتحميل نماذجهم بصيغ مختلفة (safetensors وGGUF وGPTQ) ويقوم المجتمع بانشاء نسخ مكممة لعتاد مختلف. بالاضافة الى النماذج، تستضيف Hugging Face مجموعات بيانات للتدريب وSpaces لتطبيقات العرض (باستخدام Gradio او Streamlit) ومكتبة Transformers التي توفر واجهة برمجة موحدة لتحميل وتشغيل النماذج. اذا كنت تعمل مع الذكاء الاصطناعي مفتوح المصدر، ستتفاعل مع Hugging Face يوميا."
+  ru: "Крупнейшая открытая платформа для обмена моделями ИИ, наборами данных и приложениями -- по сути, GitHub мира ИИ. С более чем 500 000 размещенных моделей здесь можно найти все основные модели с открытыми весами: Llama, Mistral, Qwen, Gemma и тысячи других. Исследователи и компании загружают свои модели в различных форматах (safetensors, GGUF, GPTQ), а сообщество создает квантованные версии для разного оборудования. Помимо моделей, Hugging Face предоставляет наборы данных для обучения, Spaces для демо-приложений (на Gradio или Streamlit) и библиотеку Transformers с единым API для загрузки и запуска моделей. Если вы работаете с открытым ИИ, вы будете взаимодействовать с Hugging Face ежедневно."
+analogy:
+  tr: Hugging Face, AI dünyasinin App Store'u gibidir. Nasil iPhone'unuza uygulama indiriyorsaniz, burada da hazir AI modellerini bulup indirip calistirabilirsiniz. Ustelik gelistiriciler kendi modellerini yukleyip toplulukla paylasabilir.
+  en: Hugging Face iş like the App Store for AI. Just as you browse and download apps for your phone, here you browse and download ready-to-use AI models. And just like app developers, researchers upload their own models for the community to use.
+  fr: Hugging Face est comme l'App Store de l'IA. Tout comme vous parcourez et telechargez des applications pour votre telephone, ici vous parcourez et telechargez des modeles d'IA prets a l'emploi. Et comme les developpeurs d'applications, les chercheurs telechargent leurs propres modeles pour que la communaute les utilise.
+  zh: Hugging Face就像AI的应用商店。就像你在手机上浏览和下载应用一样，你可以在这里浏览和下载即用型AI模型。研究人员也像应用开发者一样，上传自己的模型供社区使用。
+  ar: Hugging Face يشبه متجر التطبيقات للذكاء الاصطناعي. تماما كما تتصفح وتحمل التطبيقات لهاتفك، هنا تتصفح وتحمل نماذج ذكاء اصطناعي جاهزة للاستخدام. وكما يفعل مطورو التطبيقات، يقوم الباحثون بتحميل نماذجهم الخاصة ليستخدمها المجتمع.
+  ru: Hugging Face -- это как App Store для ИИ. Так же как вы просматриваете и скачиваете приложения для телефона, здесь вы просматриваете и скачиваете готовые модели ИИ. И подобно разработчикам приложений, исследователи загружают свои модели для использования сообществом.
+security:
+  - title:
+      tr: HuggingFace Hub Supply Chain Saldırıları
+      en: HuggingFace Hub Supply Chain Attacks
+      fr: Attaques de la chaîne d'approvisionnement du HuggingFace Hub
+      zh: HuggingFace Hub供应链攻击
+      ar: هجمات سلسلة التوريد على HuggingFace Hub
+      ru: Атаки на цепочку поставок HuggingFace Hub
+    description:
+      tr: HuggingFace Hub'da 500K+ model var ve çoğu community upload. Saldırgan, popüler modeli taklit eden backdoor'lu model yükleyebilir (typosquatting). Model download sırasında pickle deserialization exploit'i ile arbitrary code execution mümkündür. transformers.load() güvensiz pickle.load() kullanır.
+      en: HuggingFace Hub has 500K+ models, most are community uploads. Attacker can upload backdoored model imitating popular ones (typosquatting). Arbitrary code execution is possible via pickle deserialization exploit during model download. transformers.load() uses unsafe pickle.load().
+      fr: HuggingFace Hub compte plus de 500 000 modèles, la plupart téléversés par la communauté. L'attaquant peut téléverser un modèle avec backdoor imitant les populaires (typosquatting). L'exécution de code arbitraire est possible via l'exploit de désérialisation pickle lors du téléchargement. transformers.load() utilise le pickle.load() non sécurisé.
+      zh: HuggingFace Hub拥有50万+模型，大多数是社区上传。攻击者可以上传模仿流行模型的带后门模型（域名抢注）。在模型下载期间可以通过pickle反序列化漏洞实现任意代码执行。transformers.load()使用不安全的pickle.load()。
+      ar: يحتوي HuggingFace Hub على أكثر من 500 ألف نموذج، معظمها تحميلات مجتمعية. يمكن للمهاجم تحميل نموذج مع باب خلفي يقلد النماذج الشائعة (التشابه في الأسماء). تنفيذ الكود العشوائي ممكن عبر استغلال إلغاء تسلسل pickle أثناء تحميل النموذج. تستخدم transformers.load() الـ pickle.load() غير الآمن.
+      ru: HuggingFace Hub содержит 500K+ моделей, большинство — загрузки сообщества. Злоумышленник может загрузить модель с бэкдором, имитирующую популярные (typosquatting). Произвольное выполнение кода возможно через эксплойт десериализации pickle при загрузке модели. transformers.load() использует небезопасный pickle.load().
+    severity: critical
+  - title:
+      tr: Malicious Tokenizer ve Config Injection
+      en: Malicious Tokenizer and Config Injection
+      fr: Injection de tokenizer et de configuration malveillants
+      zh: 恶意Tokenizer和配置注入
+      ar: حقن المرمز والتكوين الخبيث
+      ru: Внедрение вредоносного токенизатора и конфигурации
+    description:
+      tr: HuggingFace model repo'su sadece weight'leri değil tokenizer.json ve config.json da içerir. Saldırgan bu dosyalara malicious code enjekte edebilir. AutoTokenizer.from_pretrained() bu dosyaları execute eder ve saldırgan system access kazanır.
+      en: HuggingFace model repo contains not just weights but also tokenizer.json and config.json. Attacker can inject malicious code into these files. AutoTokenizer.from_pretrained() executes these files and attacker gains system access.
+      fr: Le dépôt de modèle HuggingFace contient non seulement les poids mais aussi tokenizer.json et config.json. L'attaquant peut injecter du code malveillant dans ces fichiers. AutoTokenizer.from_pretrained() exécute ces fichiers et l'attaquant obtient l'accès au système.
+      zh: HuggingFace模型仓库不仅包含权重，还包含tokenizer.json和config.json。攻击者可以向这些文件注入恶意代码。AutoTokenizer.from_pretrained()会执行这些文件，攻击者获得系统访问权限。
+      ar: يحتوي مستودع نموذج HuggingFace ليس فقط على الأوزان ولكن أيضاً على tokenizer.json وconfig.json. يمكن للمهاجم حقن كود خبيث في هذه الملفات. تنفذ AutoTokenizer.from_pretrained() هذه الملفات ويحصل المهاجم على وصول للنظام.
+      ru: Репозиторий моделей HuggingFace содержит не только веса, но и tokenizer.json и config.json. Злоумышленник может внедрить вредоносный код в эти файлы. AutoTokenizer.from_pretrained() исполняет эти файлы, и злоумышленник получает доступ к системе.
+    severity: high
+  - title:
+      tr: Model Lisans Uyumluluk Takibi
+      en: Model License Compliance Tracking
+      fr: Suivi de conformité des licences de modèles
+      zh: 模型许可合规追踪
+      ar: تتبع امتثال ترخيص النموذج
+      ru: Отслеживание соответствия лицензий моделей
+    description:
+      tr: HuggingFace Hub'daki modeller farklı lisanslara sahiptir (Apache 2.0, CC-BY-NC, Llama Community License). Model lisanslarının takip edilmemesi ticari kullanımda yasal risk oluşturur.
+      en: Models on HuggingFace Hub have different licenses (Apache 2.0, CC-BY-NC, Llama Community License). Not tracking model licenses creates legal risk in commercial use.
+      fr: Les modèles sur HuggingFace Hub ont différentes licences (Apache 2.0, CC-BY-NC, Llama Community License). Ne pas suivre les licences des modèles crée un risque juridique en utilisation commerciale.
+      zh: HuggingFace Hub上的模型拥有不同的许可证（Apache 2.0、CC-BY-NC、Llama社区许可证）。不追踪模型许可证会在商业使用中产生法律风险。
+      ar: لدى النماذج على HuggingFace Hub تراخيص مختلفة (Apache 2.0, CC-BY-NC, Llama Community License). عدم تتبع تراخيص النماذج يخلق مخاطر قانونية في الاستخدام التجاري.
+      ru: Модели на HuggingFace Hub имеют разные лицензии (Apache 2.0, CC-BY-NC, Llama Community License). Отсутствие отслеживания лицензий моделей создаёт юридический риск при коммерческом использовании.
+    severity: low
+config:
+  - title: Safe Model Loading from HuggingFace
+    lang: python
+    code: |-
+      from transformers import AutoModel, AutoTokenizer
+      from huggingface_hub import scan_cache_dir
+      import hashlib
+      import os
+
+      # Whitelist of trusted publishers
+      TRUSTED_PUBLISHERS = [
+          "openai", "meta-llama", "mistralai", "google",
+          "facebook", "microsoft", "EleutherAI"
+      ]
+
+      def verify_model_source(model_id: str) -> bool:
+          """Verify model comes from trusted publisher"""
+          publisher = model_id.split("/")[0]
+          return publisher in TRUSTED_PUBLISHERS
+
+      def safe_load_model(model_id: str, use_safetensors=True):
+          """Safely load model from HuggingFace Hub"""
+
+          # Check publisher
+          if not verify_model_source(model_id):
+              print(f"[!] WARNING: {model_id} from untrusted source")
+              response = input("Continue anyway? (yes/no): ")
+              if response.lower() != "yes":
+                  raise SecurityError("Model loading aborted")
+
+          try:
+              # Use safetensors instead of pickle
+              model = AutoModel.from_pretrained(
+                  model_id,
+                  use_safetensors=use_safetensors,  # Avoid pickle
+                  trust_remote_code=False,  # CRITICAL: Disable code execution
+                  local_files_only=False
+              )
+
+              tokenizer = AutoTokenizer.from_pretrained(
+                  model_id,
+                  trust_remote_code=False  # CRITICAL: Disable tokenizer code
+              )
+
+              print(f"[+] Loaded {model_id} safely")
+              return model, tokenizer
+
+          except Exception as e:
+              print(f"[!] Failed to load {model_id}: {e}")
+              raise
+
+      # Usage
+      model, tokenizer = safe_load_model("meta-llama/Llama-2-7b-hf")
+
+      # Verify downloaded files
+      cache_info = scan_cache_dir()
+      for repo in cache_info.repos:
+          print(f"Repo: {repo.repo_id}, Size: {repo.size_on_disk / 1e9:.2f} GB")
+    description:
+      tr: HuggingFace'den model yüklerken trust_remote_code=False ve use_safetensors=True kullanın. Pickle deserialization ve arbitrary code execution engelenir. Sadece trusted publisher'lardan model indirin.
+      en: When loading models from HuggingFace, use trust_remote_code=False and use_safetensors=True. Pickle deserialization and arbitrary code execution are prevented. Download models only from trusted publishers.
+  - title: Sandboxed Model Loading
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Run HuggingFace model loading in Docker sandbox
+
+      docker run --rm -it \
+        --network none \
+        --read-only \
+        --tmpfs /tmp:rw,noexec,nosuid,size=1g \
+        --security-opt no-new-privileges \
+        -v $(pwd)/models:/models:ro \
+        -e HF_HOME=/tmp/huggingface \
+        python:3.11-slim \
+        python -c "
+      from transformers import AutoModel
+      import os
+
+      # Disable network after download
+      os.environ['HF_HUB_OFFLINE'] = '1'
+
+      model = AutoModel.from_pretrained(
+          'bert-base-uncased',
+          cache_dir='/tmp/huggingface',
+          trust_remote_code=False
+      )
+      print('Model loaded safely in sandbox')
+      "
+    description:
+      tr: Docker container'da network disabled ve read-only filesystem ile model yükleyin. Böylece model backdoor içerse bile system access kazanamaz.
+      en: Load model in Docker container with network disabled and read-only filesystem. Even if model contains backdoor, it cannot gain system access.
+research:
+  - title: "Not what you've signed up for: Compromising Models via Pickle"
+    url: https://arxiv.org/abs/2204.06974
+    year: 2022
+    type: paper
+    authors: Sahar Abdelnabi, Mario Fritz
+  - title: HuggingFace SafeTensors Documentation
+    url: https://huggingface.co/docs/safetensors
+    year: 2023
+    type: guide
+    authors: HuggingFace
+tips:
+  - tr: HER ZAMAN use_safetensors=True ve trust_remote_code=False kullanın. Pickle arbitrary code execution saldırılarına açıktır.
+    en: ALWAYS use use_safetensors=True and trust_remote_code=False. Pickle is vulnerable to arbitrary code execution attacks.
+  - tr: Community model kullanmadan önce model card'ı okuyun ve download count kontrol edin. Düşük download = yüksek risk.
+    en: Read model card and check download count before using community models. Low download count = high risk.
+  - tr: Production'da model yüklerken CI/CD pipeline'ına hash verification ekleyin. Model tamper edilmişse deploy başarısız olmalı.
+    en: Add hash verification to CI/CD pipeline when loading models in production. Deploy should fail if model is tampered.

@@ -1,0 +1,198 @@
+id: differential-privacy
+name: Differential Privacy
+fullName: Differential Privacy
+category: training
+desc:
+  tr: |-
+    Veri setine eklenen veya çıkarılan tek bir kişinin bilgisinin, model çıktısından tespit edilemeyeceğini matematiksel olarak garanti eden gizlilik tekniği. Model eğitimi sırasında gradient'lere kontrollü gürültü (noise) eklenir — bu sayede bireysel veriler korunur ama model yine de öğrenir.
+
+    [Differential Privacy (DP)](https://en.wikipedia.org/wiki/Differential_privacy) epsilon (ε) parametresiyle ölçülür: düşük ε (örn. 0.1) yüksek gizlilik ama düşük accuracy, yüksek ε (örn. 10) düşük gizlilik ama yüksek accuracy sağlar. [DP-SGD](https://arxiv.org/abs/1607.00133) (Differentially Private Stochastic Gradient Descent) en yaygın eğitim algoritmasıdır.
+
+    [Apple](https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf) kullanıcı davranışlarını toplarken, [Google](https://ai.googleblog.com) federated learning'de, [Meta](https://research.facebook.com) reklam optimizasyonunda differential privacy kullanır. [Opacus](https://opacus.ai) (PyTorch) ve [TensorFlow Privacy](https://github.com/tensorflow/privacy) production DP implementasyonu için kullanılır.
+
+    DP olmadan, membership inference, model inversion gibi saldırılarla eğitim verisindeki bireyler tespit edilebilir — GDPR ve HIPAA compliance için DP kritiktir.
+  en: |-
+    A privacy technique that mathematically guarantees a single person's information added or removed from a dataset cannot be detected from model outputs. During model training, controlled noise is added to gradients — protecting individual data while the model still learns.
+
+    [Differential Privacy (DP)](https://en.wikipedia.org/wiki/Differential_privacy) is measured by epsilon (ε): low ε (e.g., 0.1) provides high privacy but low accuracy, high ε (e.g., 10) provides low privacy but high accuracy. [DP-SGD](https://arxiv.org/abs/1607.00133) (Differentially Private Stochastic Gradient Descent) is the most common training algorithm.
+
+    [Apple](https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf) uses differential privacy when collecting user behaviors, [Google](https://ai.googleblog.com) in federated learning, [Meta](https://research.facebook.com) in ad optimization. [Opacus](https://opacus.ai) (PyTorch) and [TensorFlow Privacy](https://github.com/tensorflow/privacy) enable production DP implementation.
+
+    Without DP, attacks like membership inference and model inversion can identify individuals in training data — DP is critical for GDPR and HIPAA compliance.
+  fr: Technique de confidentialité garantissant mathématiquement que l'information d'une seule personne ajoutée ou supprimée d'un ensemble de données ne peut être détectée à partir des sorties du modèle.
+  zh: 一种隐私技术，从数学上保证从数据集中添加或删除的单个人的信息无法从模型输出中检测到。
+  ar: تقنية خصوصية تضمن رياضيًا أن معلومات شخص واحد مضافة أو محذوفة من مجموعة بيانات لا يمكن اكتشافها من مخرجات النموذج.
+  ru: Техника конфиденциальности, математически гарантирующая, что информация одного человека, добавленная или удалённая из набора данных, не может быть обнаружена из выходов модели.
+analogy:
+  tr: Differential privacy, bir ankette herkesin cevabına küçük random değişiklikler ekleyen sistem gibidir. Tek tek cevaplar bulanıklaşır ama genel trend (örn. '%60 evet dedi') yine doğru çıkar.
+  en: Differential privacy is like a system that adds small random changes to everyone's survey answers. Individual answers become blurry, but the overall trend (e.g., '60% said yes') remains accurate.
+  fr: La differential privacy est comme un système qui ajoute de petits changements aléatoires aux réponses de chacun dans un sondage. Les réponses individuelles deviennent floues, mais la tendance générale (par ex. '60% ont dit oui') reste exacte.
+  zh: 差分隐私就像一个对每个人调查答案添加小随机变化的系统。单个答案变得模糊，但整体趋势（例如"60%说是"）仍然准确。
+  ar: الخصوصية التفاضلية تشبه نظامًا يضيف تغييرات عشوائية صغيرة لإجابات كل شخص في استطلاع. تصبح الإجابات الفردية ضبابية، لكن الاتجاه العام (مثلاً '60% قالوا نعم') يبقى دقيقًا.
+  ru: Дифференциальная конфиденциальность подобна системе, которая добавляет небольшие случайные изменения к ответам каждого в опросе. Отдельные ответы размываются, но общая тенденция (например, '60% сказали да') остаётся точной.
+security:
+  - title:
+      tr: Epsilon Budget Exhaustion
+      en: Epsilon Budget Exhaustion
+      fr: Épuisement du budget epsilon
+      zh: Epsilon 预算耗尽攻击
+      ar: استنفاد ميزانية إبسيلون
+      ru: Исчерпание бюджета эпсилон
+    description:
+      tr: Differential privacy epsilon budget'ı sınırlıdır. Her query veya model güncellemesi epsilon harcar — budget bittiğinde artık gizlilik garantisi kalmaz. Saldırganlar sürekli query göndererek epsilon'u tüketebilir ve sonunda hassas bilgileri çıkarabilir. Privacy accounting kritik öneme sahiptir.
+      en: Differential privacy epsilon budget is limited. Each query or model update consumes epsilon — when the budget runs out, privacy guarantee disappears. Attackers can exhaust epsilon by continuously sending queries and eventually extract sensitive information. Privacy accounting is critical.
+      fr: Le budget epsilon de la confidentialité différentielle est limité. Chaque requête ou mise à jour du modèle consomme de l’epsilon — quand le budget est épuisé, la garantie de confidentialité disparaît. Les attaquants peuvent épuiser l’epsilon en envoyant continuellement des requêtes et finalement extraire des informations sensibles. La comptabilisation de la confidentialité est critique.
+      zh: 差分隐私的 epsilon 预算是有限的。每次查询或模型更新都会消耗 epsilon——当预算耗尽时，隐私保证就会消失。攻击者可以通过持续发送查询来耗尽 epsilon，最终提取敏感信息。隐私核算至关重要。
+      ar: ميزانية إبسيلون للخصوصية التفاضلية محدودة. كل استعلام أو تحديث للنموذج يستهلك إبسيلون — عند نفاد الميزانية تختفي ضمانة الخصوصية. يمكن للمهاجمين استنفاد إبسيلون بإرسال استعلامات متواصلة واستخراج معلومات حساسة. محاسبة الخصوصية أمر بالغ الأهمية.
+      ru: Бюджет эпсилон дифференциальной приватности ограничен. Каждый запрос или обновление модели потребляет эпсилон — при исчерпании бюджета гарантия конфиденциальности исчезает. Злоумышленники могут исчерпать эпсилон непрерывной отправкой запросов и извлечь конфиденциальную информацию. Учёт приватности критически важен.
+    severity: high
+  - title:
+      tr: Noise Injection Bypass
+      en: Noise Injection Bypass
+      fr: Contournement de l’injection de bruit
+      zh: 噪声注入绕过
+      ar: تجاوز حقن الضوضاء
+      ru: Обход инъекции шума
+    description:
+      tr: DP-SGD'de eklenen noise yeterli değilse (düşük sigma, yüksek epsilon), gradient averaging ile noise'u azaltarak hassas bilgi çıkarılabilir. Özellikle batch size küçükse veya gradient clipping threshold yanlış ayarlanmışsa, DP garantisi zayıflar.
+      en: If noise added in DP-SGD is insufficient (low sigma, high epsilon), sensitive information can be extracted by reducing noise through gradient averaging. Particularly when batch size is small or gradient clipping threshold is misconfigured, DP guarantee weakens.
+      fr: Si le bruit ajouté dans DP-SGD est insuffisant (sigma faible, epsilon élevé), des informations sensibles peuvent être extraites en réduisant le bruit par moyennage des gradients. En particulier lorsque la taille du batch est petite ou que le seuil de clipping du gradient est mal configuré, la garantie DP s’affaiblit.
+      zh: 如果 DP-SGD 中添加的噪声不足（低 sigma、高 epsilon），可以通过梯度平均来降低噪声从而提取敏感信息。特别是当 batch size 较小或梯度裁剪阈值配置错误时，差分隐私保证会减弱。
+      ar: إذا كانت الضوضاء المضافة في DP-SGD غير كافية (سيغما منخفضة، إبسيلون مرتفع)، يمكن استخراج معلومات حساسة بتقليل الضوضاء عبر حساب متوسط التدرجات. خاصة عندما يكون حجم الدفعة صغيراً أو عتبة قص التدرج مُعدة بشكل خاطئ، تضعف ضمانة الخصوصية التفاضلية.
+      ru: Если шум, добавляемый в DP-SGD, недостаточен (низкая сигма, высокий эпсилон), конфиденциальная информация может быть извлечена путём снижения шума через усреднение градиентов. Особенно при малом размере батча или неправильно настроенном пороге обрезки градиентов гарантия DP ослабевает.
+    severity: high
+  - title:
+      tr: Composition Attack
+      en: Composition Attack
+      fr: Attaque par composition
+      zh: 组合攻击
+      ar: هجوم التركيب
+      ru: Атака композиции
+    description:
+      tr: Birden fazla DP mekanizması birleştirildiğinde (örn. multiple model release), toplam privacy loss epsilon'ların toplamı olur. Saldırganlar farklı model versiyonlarını karşılaştırarak (model diff attack) hassas bilgileri çıkarabilir. Advanced composition theorem kullanılmalıdır.
+      en: When multiple DP mechanisms are combined (e.g., multiple model releases), total privacy loss becomes sum of epsilons. Attackers can extract sensitive information by comparing different model versions (model diff attack). Advanced composition theorem must be used.
+      fr: Lorsque plusieurs mécanismes DP sont combinés (par ex. publications multiples de modèles), la perte totale de confidentialité devient la somme des epsilons. Les attaquants peuvent extraire des informations sensibles en comparant différentes versions du modèle (attaque par diff de modèle). Le théorème de composition avancée doit être utilisé.
+      zh: 当多个差分隐私机制组合使用时（例如多次模型发布），总隐私损失变为 epsilon 之和。攻击者可以通过比较不同的模型版本（模型差异攻击）来提取敏感信息。必须使用高级组合定理。
+      ar: عند دمج آليات خصوصية تفاضلية متعددة (مثل إصدارات نماذج متعددة)، يصبح إجمالي فقدان الخصوصية مجموع قيم إبسيلون. يمكن للمهاجمين استخراج معلومات حساسة بمقارنة إصدارات مختلفة للنموذج. يجب استخدام نظرية التركيب المتقدمة.
+      ru: При комбинировании нескольких механизмов DP (например, множественных релизов модели) общая потеря приватности равна сумме эпсилонов. Злоумышленники могут извлекать информацию, сравнивая разные версии модели. Необходимо использовать теорему расширенной композиции.
+    severity: medium
+  - title:
+      tr: Differential Privacy Konfigürasyon Bilgi Sızıntısı
+      en: Differential Privacy Configuration Information Disclosure
+      fr: Divulgation de configuration differential privacy
+      zh: differential privacy配置信息泄露
+      ar: كشف معلومات تكوين differential-privacy
+      ru: Раскрытие конфигурации differential-privacy
+    description:
+      tr: Differential Privacy ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to differential privacy can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à differential privacy peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与differential privacy相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ differential-privacy في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании differential-privacy могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: DP-SGD with Opacus (PyTorch)
+    lang: python
+    code: |-
+      # Install: pip install opacus
+      import torch
+      import torch.nn as nn
+      from torch.utils.data import DataLoader
+      from torchvision import datasets, transforms
+      from opacus import PrivacyEngine
+
+      # Define model
+      model = nn.Sequential(
+          nn.Flatten(),
+          nn.Linear(784, 128),
+          nn.ReLU(),
+          nn.Linear(128, 10)
+      )
+
+      # Prepare data
+      transform = transforms.ToTensor()
+      train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
+      train_loader = DataLoader(train_dataset, batch_size=256, shuffle=True)
+
+      optimizer = torch.optim.SGD(model.parameters(), lr=0.05)
+      criterion = nn.CrossEntropyLoss()
+
+      # Attach differential privacy
+      privacy_engine = PrivacyEngine()
+      model, optimizer, train_loader = privacy_engine.make_private(
+          module=model,
+          optimizer=optimizer,
+          data_loader=train_loader,
+          noise_multiplier=1.1,  # Noise level (higher = more privacy)
+          max_grad_norm=1.0,     # Gradient clipping threshold
+      )
+
+      # Train with DP-SGD
+      for epoch in range(5):
+          for images, labels in train_loader:
+              optimizer.zero_grad()
+              outputs = model(images)
+              loss = criterion(outputs, labels)
+              loss.backward()
+              optimizer.step()
+
+          # Check privacy spent
+          epsilon = privacy_engine.get_epsilon(delta=1e-5)
+          print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}, ε: {epsilon:.2f}")
+
+      print(f"
+      Final privacy guarantee: (ε={epsilon:.2f}, δ=1e-5)")
+      print("Lower ε = stronger privacy (but potentially lower accuracy)")
+    description:
+      tr: Opacus ile PyTorch modelinde DP-SGD implementasyonu. Gradient'lere Gaussian noise ekler ve gradient clipping yapar. epsilon değeri privacy budget'ı gösterir — düşük epsilon güçlü gizlilik, yüksek epsilon zayıf gizlilik demektir.
+      en: DP-SGD implementation in PyTorch using Opacus. Adds Gaussian noise to gradients and applies gradient clipping. Epsilon value shows privacy budget — low epsilon means strong privacy, high epsilon means weak privacy.
+  - title: DP Budget Monitoring
+    lang: yaml
+    code: |-
+      apiVersion: monitoring.coreos.com/v1
+      kind: PrometheusRule
+      metadata:
+        name: dp-budget-alerts
+      spec:
+        groups:
+        - name: differential-privacy
+          rules:
+          - alert: DPEpsilonBudgetLow
+            expr: dp_epsilon_remaining < 1.0
+            for: 5m
+            labels: {severity: critical}
+            annotations:
+              summary: "DP epsilon budget nearly exhausted"
+          - alert: DPHighQueryRate
+            expr: rate(dp_queries_total[5m]) > 100
+            for: 2m
+            labels: {severity: warning}
+            annotations:
+              summary: "High DP query rate - possible exhaustion attack"
+    description:
+      tr: DP epsilon budget izleme icin PrometheusRule.
+      en: PrometheusRule for DP epsilon budget monitoring.
+research:
+  - title: Deep Learning with Differential Privacy (DP-SGD)
+    url: https://arxiv.org/abs/1607.00133
+    year: 2016
+    type: paper
+    authors: Martín Abadi, et al.
+  - title: The Algorithmic Foundations of Differential Privacy
+    url: https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf
+    year: 2014
+    type: book
+    authors: Cynthia Dwork, Aaron Roth
+  - title: "Opacus: User-Friendly Differential Privacy Library in PyTorch"
+    url: https://arxiv.org/abs/2109.12298
+    year: 2021
+    type: paper
+    authors: Ashkan Yousefpour, et al.
+tips:
+  - tr: Production'da epsilon=1-3 arası hedefleyin. ε<1 çok güçlü gizlilik ama accuracy kaybı, ε>10 zayıf gizlilik ama yüksek accuracy sağlar.
+    en: Target epsilon=1-3 in production. ε<1 provides very strong privacy but accuracy loss, ε>10 provides weak privacy but high accuracy.
+  - tr: Batch size artırmak DP accuracy'yi iyileştirir (daha fazla örnekten averaging). Minimum 256, ideal 512-1024 batch size kullanın.
+    en: Increasing batch size improves DP accuracy (averaging from more samples). Use minimum 256, ideally 512-1024 batch size.
+  - tr: "Gradient clipping threshold (max_grad_norm) çok önemli: çok düşük → model öğrenemez, çok yüksek → privacy guarantee zayıflar. Grid search ile optimize edin."
+    en: "Gradient clipping threshold (max_grad_norm) is crucial: too low → model can't learn, too high → privacy guarantee weakens. Optimize with grid search."

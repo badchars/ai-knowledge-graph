@@ -1,0 +1,235 @@
+id: container-ml
+name: ML Containers
+fullName: ML Containers
+category: ecosystem
+desc:
+  tr: |-
+    [Docker](/terms/docker) container'larla ML/AI workload'larını package etme ve deploy etme yaklaşımı. [CUDA](/terms/cuda), [GPU](/terms/gpu) drivers ve dependencies'i standardize eder.
+
+    NVIDIA [NGC](https://catalog.ngc.nvidia.com) (NVIDIA GPU Cloud), [HuggingFace](/terms/huggingface) containers ve custom ML images production deployment için kullanılır. [vLLM](/terms/vllm), TensorFlow Serving ve PyTorch containers popülerdir.
+
+    Kritik: GPU passthrough (nvidia-docker), multi-stage builds, layer optimization ve security scanning. Kubernetes ile orchestration sağlanır.
+  en: |-
+    Approach to package and deploy ML/AI workloads with [Docker](/terms/docker) containers. Standardizes [CUDA](/terms/cuda), [GPU](/terms/gpu) drivers, and dependencies.
+
+    NVIDIA [NGC](https://catalog.ngc.nvidia.com) (NVIDIA GPU Cloud), [HuggingFace](/terms/huggingface) containers, and custom ML images are used for production deployment. [vLLM](/terms/vllm), TensorFlow Serving, and PyTorch containers are popular.
+
+    Critical: GPU passthrough (nvidia-docker), multi-stage builds, layer optimization, and security scanning. Orchestration with Kubernetes.
+  fr: Approche pour empaqueter et déployer des charges de travail ML/AI avec des conteneurs Docker.
+  zh: 使用Docker容器打包和部署ML/AI工作负载的方法。
+  ar: نهج لتعبئة ونشر أحمال عمل ML/AI باستخدام حاويات Docker.
+  ru: Подход к упаковке и развертыванию ML/AI рабочих нагрузок с помощью Docker-контейнеров.
+analogy:
+  tr: "Yemek delivery gibi: tüm malzemeler (dependencies), tarif (kod) ve tencere (runtime) bir kutuda. Nerede açsan aynı şekilde pişer."
+  en: "Like food delivery: all ingredients (dependencies), recipe (code), and pot (runtime) in one box. Cooks the same wherever you open it."
+  fr: "Comme la livraison de nourriture : tous les ingrédients (dépendances), la recette (code) et la casserole (runtime) dans une boîte. Cuisine de la même manière où que vous l'ouvriez."
+  zh: 就像送餐：所有食材（依赖项）、食谱（代码）和锅（运行时）都在一个盒子里。无论在哪里打开都能煮出一样的东西。
+  ar: "مثل توصيل الطعام: جميع المكونات (التبعيات)، والوصفة (الكود)، والقدر (وقت التشغيل) في صندوق واحد. يطهى بنفس الطريقة أينما فتحته."
+  ru: "Как доставка еды: все ингредиенты (зависимости), рецепт (код) и кастрюля (среда выполнения) в одной коробке. Готовится одинаково, где бы вы ни открыли."
+security:
+  - title:
+      tr: GPU Passthrough Escape
+      en: GPU Passthrough Escape
+      fr: Evasion via le passthrough GPU
+      zh: GPU直通逃逸
+      ar: الهروب عبر تمرير GPU
+      ru: Побег через проброс GPU
+    description:
+      tr: nvidia-docker ile GPU passthrough yapılırken container escape riski vardır. Kernel driver vulnerabilities exploit edilerek host access sağlanabilir.
+      en: GPU passthrough with nvidia-docker poses container escape risk. Host access can be gained by exploiting kernel driver vulnerabilities.
+      fr: Le passthrough GPU avec nvidia-docker presente un risque d'evasion de conteneur. L'acces a l'hote peut etre obtenu en exploitant les vulnerabilites du pilote du noyau.
+      zh: 使用nvidia-docker进行GPU直通存在容器逃逸风险。可以通过利用内核驱动漏洞获得主机访问权限。
+      ar: يشكل تمرير GPU مع nvidia-docker خطر الهروب من الحاوية. يمكن الحصول على وصول إلى المضيف من خلال استغلال ثغرات برنامج تشغيل النواة.
+      ru: Проброс GPU через nvidia-docker создаёт риск побега из контейнера. Доступ к хосту может быть получен через эксплуатацию уязвимостей драйвера ядра.
+    severity: critical
+  - title:
+      tr: Image Supply Chain Attack
+      en: Image Supply Chain Attack
+      fr: Attaque de la chaine d'approvisionnement d'images
+      zh: 镜像供应链攻击
+      ar: هجوم سلسلة توريد الصور
+      ru: Атака на цепочку поставок образов
+    description:
+      tr: ML container images untrusted registry'lerden pull edilirse, backdoored base images veya malicious dependencies içerebilir. NGC dışındaki public images risk taşır.
+      en: If ML container images are pulled from untrusted registries, they may contain backdoored base images or malicious dependencies. Public images outside NGC carry risk.
+      fr: Si les images de conteneurs ML sont telechargees depuis des registres non fiables, elles peuvent contenir des images de base avec porte derobee ou des dependances malveillantes. Les images publiques en dehors de NGC comportent des risques.
+      zh: 如果从不受信任的注册表拉取ML容器镜像，可能包含带有后门的基础镜像或恶意依赖项。NGC之外的公共镜像存在风险。
+      ar: إذا تم سحب صور حاويات ML من سجلات غير موثوقة، فقد تحتوي على صور أساسية بأبواب خلفية أو تبعيات ضارة. تحمل الصور العامة خارج NGC مخاطر.
+      ru: Если образы ML-контейнеров загружаются из ненадёжных реестров, они могут содержать базовые образы с бэкдорами или вредоносные зависимости. Публичные образы за пределами NGC несут риски.
+    severity: high
+  - title:
+      tr: Shared GPU Memory Attack
+      en: Shared GPU Memory Attack
+      fr: Attaque par memoire GPU partagee
+      zh: 共享GPU内存攻击
+      ar: هجوم ذاكرة GPU المشتركة
+      ru: Атака через общую память GPU
+    description:
+      tr: Aynı GPU'yu kullanan container'lar GPU memory'de data leak riski taşır. Multi-tenancy ortamlarında sensitive model weights veya inference data leak olabilir.
+      en: Containers sharing same GPU carry data leak risk in GPU memory. In multi-tenancy environments, sensitive model weights or inference data can leak.
+      fr: Les conteneurs partageant le meme GPU presentent un risque de fuite de donnees dans la memoire GPU. Dans les environnements multi-locataires, les poids du modele sensibles ou les donnees d'inference peuvent fuiter.
+      zh: 共享同一GPU的容器在GPU内存中存在数据泄漏风险。在多租户环境中，敏感的模型权重或推理数据可能泄漏。
+      ar: تحمل الحاويات التي تتشارك نفس GPU خطر تسريب البيانات في ذاكرة GPU. في بيئات تعدد المستأجرين، يمكن تسريب أوزان النموذج الحساسة أو بيانات الاستدلال.
+      ru: Контейнеры, использующие один GPU, несут риск утечки данных в памяти GPU. В мультитенантных средах могут быть утеряны чувствительные веса модели или данные инференса.
+    severity: high
+  - title:
+      tr: Container Ml Konfigürasyon Bilgi Sızıntısı
+      en: Container Ml Configuration Information Disclosure
+      fr: Divulgation de configuration container ml
+      zh: container ml配置信息泄露
+      ar: كشف معلومات تكوين container-ml
+      ru: Раскрытие конфигурации container-ml
+    description:
+      tr: Container Ml ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to container ml can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à container ml peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与container ml相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ container-ml في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании container-ml могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure ML Container with Multi-Stage Build
+    lang: dockerfile
+    code: |-
+      # Multi-stage build for security and size optimization
+      FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04 AS base
+
+      # Security: Run as non-root user
+      RUN groupadd -r mluser && useradd -r -g mluser mluser
+
+      # Install minimal dependencies
+      RUN apt-get update && apt-get install -y --no-install-recommends \
+          python3.10 \
+          python3-pip \
+          && rm -rf /var/lib/apt/lists/*
+
+      # Builder stage
+      FROM base AS builder
+
+      WORKDIR /build
+
+      # Copy only requirements first (layer caching)
+      COPY requirements.txt .
+
+      # Install dependencies in virtual env
+      RUN python3 -m venv /opt/venv
+      ENV PATH="/opt/venv/bin:$PATH"
+
+      RUN pip install --no-cache-dir -r requirements.txt
+
+      # Verify dependencies (detect malicious packages)
+      RUN pip check
+
+      # Final stage
+      FROM base AS final
+
+      # Copy virtual env from builder
+      COPY --from=builder /opt/venv /opt/venv
+      ENV PATH="/opt/venv/bin:$PATH"
+
+      WORKDIR /app
+
+      # Copy application code
+      COPY --chown=mluser:mluser ./app /app
+
+      # Security: Remove setuid binaries
+      RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+
+      # Security: Read-only filesystem markers
+      VOLUME ["/tmp", "/var/tmp"]
+
+      # Switch to non-root user
+      USER mluser
+
+      # Health check
+      HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+        CMD python3 -c "import sys; sys.exit(0)"
+
+      # Expose only necessary port
+      EXPOSE 8000
+
+      # Run with security options
+      ENTRYPOINT ["python3", "-u", "serve.py"]
+
+      # Build command:
+      # docker build --no-cache -t secure-ml-model:latest .
+
+      # Run with security constraints:
+      # docker run -d \
+      #   --name ml-model \
+      #   --gpus all \
+      #   --read-only \
+      #   --tmpfs /tmp \
+      #   --tmpfs /var/tmp \
+      #   --security-opt=no-new-privileges:true \
+      #   --cap-drop=ALL \
+      #   --cap-add=NET_BIND_SERVICE \
+      #   -p 8000:8000 \
+      #   secure-ml-model:latest
+    description:
+      tr: Güvenli ML container. Multi-stage build, non-root user, read-only filesystem, capability dropping.
+      en: Secure ML container. Multi-stage build, non-root user, read-only filesystem, capability dropping.
+  - title: Container Security Scanning Script
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Secure ML container scanning and deployment
+
+      set -euo pipefail
+
+      IMAGE_NAME="secure-ml-model:latest"
+      REGISTRY="your-registry.io"
+
+      echo "[1/5] Building container..."
+      docker build --no-cache -t "$IMAGE_NAME" .
+
+      echo "[2/5] Scanning for vulnerabilities with Trivy..."
+      trivy image --severity HIGH,CRITICAL "$IMAGE_NAME"
+
+      echo "[3/5] Checking for secrets with Gitleaks..."
+      docker run --rm -v "$(pwd):/code" zricethezav/gitleaks:latest \
+        detect --source /code --no-git
+
+      echo "[4/5] Verifying image signature..."
+      # Use cosign for image signing
+      # cosign sign "$REGISTRY/$IMAGE_NAME"
+      # cosign verify "$REGISTRY/$IMAGE_NAME"
+
+      echo "[5/5] Running security checks..."
+      # Check for running as root
+      if docker inspect "$IMAGE_NAME" | grep -q '"User": ""'; then
+        echo "WARNING: Container runs as root!"
+        exit 1
+      fi
+
+      # Check for exposed sensitive ports
+      EXPOSED_PORTS=$(docker inspect "$IMAGE_NAME" | jq -r '.[].Config.ExposedPorts | keys[]')
+      echo "Exposed ports: $EXPOSED_PORTS"
+
+      echo "Security scan completed successfully!"
+    description:
+      tr: Container security scanning script. Trivy vulnerability scan, secret detection, signature verification.
+      en: Container security scanning script. Trivy vulnerability scan, secret detection, signature verification.
+research:
+  - title: NVIDIA Container Toolkit Documentation
+    url: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html
+    year: 2023
+    type: guide
+    authors: NVIDIA
+  - title: Container Security Best Practices
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html
+    year: 2024
+    type: guide
+    authors: OWASP
+  - title: GPU Virtualization and Container Security
+    url: https://www.usenix.org/conference/atc21/presentation/yuan
+    year: 2021
+    type: paper
+    authors: Wenzhi Yuan, Jiacheng Ma, Jingwei Zhang
+tips:
+  - tr: Multi-stage build kullanarak final image'i minimize edin, build tools dahil etmeyin.
+    en: Minimize final image with multi-stage build, don't include build tools.
+  - tr: Container'ı non-root user ile çalıştırın ve read-only filesystem kullanın.
+    en: Run container with non-root user and use read-only filesystem.
+  - tr: Trivy ile vulnerability scan yapın, base image'leri düzenli update edin.
+    en: Scan vulnerabilities with Trivy, regularly update base images.

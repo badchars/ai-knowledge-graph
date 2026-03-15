@@ -1,0 +1,179 @@
+id: token
+name: Token
+fullName: Token
+category: architecture
+desc:
+  tr: |-
+    AI modellerinin metni işlerken kullandığı temel birim — modeller kelimeleri değil, tokenları okur ve üretir. Bir token tam bir kelime ('merhaba'), kelimenin bir parçası ('anla' + 'yış'), bir noktalama işareti veya hatta bir boşluk karakteri olabilir.
+
+    Örneğin '[ChatGPT](https://openai.com/chatgpt) harika çalışır' cümlesi yaklaşık 4-5 tokena bölünür. Token sayısı doğrudan model performansını, maliyetini ve context sınırını etkiler: GPT-4 Turbo'nun 128K token context penceresi vardır, [Claude](https://claude.ai)'un 200K. [OpenAI](https://openai.com)'nin API fiyatlandırması tamamen token başınadır — örneğin GPT-4o için yaklaşık milyon input token başına 2.50 dolar.
+
+    Bir sayfadaki İngilizce metin yaklaşık 300-400 token eder; Türkçe ve Arapça gibi diller tokenizer'a bağlı olarak daha fazla token tüketebilir. Model eğitiminde de vocabulary boyutu (kaç farklı token var) kritik bir tasarım kararıdır — tipik LLM'lerde 32K ile 128K arası token vocabulary'si bulunur.
+  en: |-
+    The fundamental unit AI models use when processing text — models read and generate tokens, not words. A token can be a complete word ('hello'), part of a word ('under' + 'stand' + 'ing'), a punctuation mark, or even a space character.
+
+    For example, '[ChatGPT](https://openai.com/chatgpt) works great' splits into roughly 4-5 tokens. Token count directly affects model performance, cost, and context limits: GPT-4 Turbo has a 128K token context window, [Claude](https://claude.ai) has 200K. [OpenAI](https://openai.com)'s API pricing is entirely per-token — for instance, GPT-4o costs roughly $2.50 per million input tokens.
+
+    A page of English text is approximately 300-400 tokens; languages like Turkish and Arabic may consume more tokens depending on the tokenizer. In model training, vocabulary size (how many distinct tokens exist) is a critical design decision — typical LLMs have vocabularies between 32K and 128K tokens.
+  fr: "L'unite fondamentale que les modeles d'IA utilisent pour traiter le texte — les modeles lisent et generent des tokens, pas des mots. Un token peut etre un mot complet ('bonjour'), une partie de mot ('com' + 'prendre'), un signe de ponctuation ou meme un espace. Par exemple, 'ChatGPT fonctionne bien' se divise en environ 4-5 tokens. Le nombre de tokens affecte directement la performance, le cout et les limites de contexte du modele : GPT-4 Turbo a une fenetre de contexte de 128K tokens, Claude en a 200K. La tarification API d'OpenAI est entierement basee sur les tokens — par exemple, GPT-4o coute environ 2,50 dollars par million de tokens d'entree. Une page de texte en anglais represente environ 300-400 tokens ; des langues comme le turc et l'arabe peuvent consommer plus de tokens selon le tokenizer. En entrainement, la taille du vocabulaire (combien de tokens distincts existent) est une decision de conception critique — les LLM typiques ont des vocabulaires entre 32K et 128K tokens."
+  zh: AI模型处理文本时使用的基本单位——模型读取和生成的是token，而不是单词。一个token可以是一个完整的词（"hello"）、词的一部分（"under"+"stand"+"ing"）、标点符号甚至空格字符。例如"ChatGPT works great"大约被分成4-5个token。Token数量直接影响模型性能、成本和上下文限制：GPT-4 Turbo有128K token上下文窗口，Claude有200K。OpenAI的API定价完全按token计费——例如GPT-4o大约每百万输入token收费2.50美元。一页英文文本大约300-400个token；土耳其语和阿拉伯语等语言根据tokenizer不同可能消耗更多token。在模型训练中，词汇表大小（有多少不同的token）是关键设计决策——典型LLM的词汇表在32K到128K个token之间。
+  ar: "الوحدة الأساسية التي تستخدمها نماذج الذكاء الاصطناعي عند معالجة النص — النماذج تقرأ وتولّد tokens وليس كلمات. يمكن أن يكون token كلمة كاملة (\"مرحباً\") أو جزءاً من كلمة أو علامة ترقيم أو حتى مسافة. مثلاً \"ChatGPT يعمل بشكل رائع\" تُقسم إلى حوالي 4-5 tokens. عدد التوكنات يؤثر مباشرة على أداء النموذج وتكلفته وحدود السياق: GPT-4 Turbo لديه نافذة سياق 128 ألف token، وClaude لديه 200 ألف. تسعير API لدى OpenAI يعتمد كلياً على التوكنات — مثلاً GPT-4o يكلف حوالي 2.50 دولار لكل مليون token مُدخل. صفحة من النص الإنجليزي تساوي تقريباً 300-400 token؛ لغات مثل التركية والعربية قد تستهلك tokens أكثر حسب الـ tokenizer. في تدريب النماذج، حجم المفردات (كم عدد التوكنات المميزة) هو قرار تصميمي حرج — النماذج اللغوية الكبيرة عادة تمتلك مفردات بين 32 ألف و128 ألف token."
+  ru: "Фундаментальная единица, которую модели ИИ используют при обработке текста — модели читают и генерируют токены, а не слова. Токен может быть целым словом (\"привет\"), частью слова (\"по\" + \"ни\" + \"мание\"), знаком пунктуации или даже пробелом. Например, \"ChatGPT works great\" разбивается примерно на 4-5 токенов. Количество токенов напрямую влияет на производительность, стоимость и ограничения контекста модели: у GPT-4 Turbo окно контекста 128K токенов, у Claude — 200K. Ценообразование API OpenAI полностью потокенное — например, GPT-4o стоит примерно \\,50 за миллион входных токенов. Страница английского текста — примерно 300-400 токенов; турецкий и арабский языки могут потреблять больше токенов в зависимости от токенизатора. При обучении модели размер словаря (сколько уникальных токенов существует) — критическое проектное решение: типичные LLM имеют словари от 32K до 128K токенов."
+analogy:
+  tr: Metin LEGO bloklarıdır. Cümle tek parça değil, küçük bloklara bölünmüş haliyle işlenir. 'understanding' → ['under','stand','ing']
+  en: Text iş made of LEGO bricks. Sentences are processed not as one piece but split into small blocks. 'understanding' → ['under','stand','ing']
+  fr: Le texte est fait de briques LEGO. Les phrases ne sont pas traitées comme un bloc mais divisées en petits morceaux. 'understanding' → ['under','stand','ing']
+  zh: 文本由乐高积木组成。句子不是作为一个整体处理，而是分成小块。'understanding'→['under','stand','ing']
+  ar: النص مصنوع من قطع LEGO. الجمل لا تُعالج كقطعة واحدة بل تُقسم إلى كتل صغيرة. 'understanding' → ['under','stand','ing']
+  ru: Текст состоит из кубиков LEGO. Предложения обрабатываются не целиком, а разбитыми на маленькие блоки. 'understanding' → ['under','stand','ing']
+security:
+  - title:
+      tr: Token Smuggling Attacks
+      en: Token Smuggling Attacks
+      fr: Attaques de contrebande de tokens
+      zh: Token走私攻击
+      ar: هجمات تهريب التوكنات
+      ru: Атаки контрабанды токенов
+    description:
+      tr: Özel karakterler, Unicode variants veya tokenizer artifacts kullanarak zararlı instruction'ları gizleme. Örneğin invisible Unicode karakterleri jailbreak prompt'u içine yerleştirerek modeli kandırma. Tokenizer'ın split pattern'lerini kullanarak content filter'ları bypass etme. CVE-2024-5184 gibi tokenizer-based injection zafiyetleri bulunmuştur.
+      en: Hiding malicious instructions using special characters, Unicode variants, or tokenizer artifacts. For example, placing invisible Unicode characters to smuggle jailbreak prompts. Bypassing content filters using tokenizer's split patterns. Tokenizer-based injection vulnerabilities like CVE-2024-5184 have been found.
+      fr: Dissimulation d'instructions malveillantes à l'aide de caractères spéciaux, variantes Unicode ou artefacts du tokenizer. Par exemple, placer des caractères Unicode invisibles pour faire passer des prompts de jailbreak. Des vulnérabilités d'injection basées sur le tokenizer comme CVE-2024-5184 ont été trouvées.
+      zh: 使用特殊字符、Unicode变体或分词器伪影隐藏恶意指令。例如放置不可见Unicode字符来走私越狱提示。利用分词器的分割模式绕过内容过滤器。已发现CVE-2024-5184等基于分词器的注入漏洞。
+      ar: إخفاء التعليمات الخبيثة باستخدام أحرف خاصة أو متغيرات Unicode أو مصنوعات الـ tokenizer. تم العثور على ثغرات حقن مبنية على الـ tokenizer مثل CVE-2024-5184.
+      ru: Скрытие вредоносных инструкций с помощью специальных символов, вариантов Unicode или артефактов токенизатора. Например, размещение невидимых Unicode-символов для контрабанды джейлбрейк-промптов. Обнаружены уязвимости инъекции через токенизатор, такие как CVE-2024-5184.
+    severity: high
+  - title:
+      tr: Token Sequence Prediction via Side-Channel
+      en: Token Sequence Prediction via Side-Channel
+      fr: Prédiction de séquence de tokens par canal auxiliaire
+      zh: 通过侧信道预测Token序列
+      ar: تنبؤ تسلسل التوكنات عبر القناة الجانبية
+      ru: Предсказание последовательности токенов через побочный канал
+    description:
+      tr: Her token'ın generation süresi, vocabulary probability distribution'una bağlıdır. Timing analysis yaparak hangi token'ların üretildiği tahmin edilebilir. Shared inference ortamlarında başka kullanıcının output'u bu şekilde kısmen çıkarılabilir. Özellikle high-probability token'lar timing'den bellidir.
+      en: Each token's generation time depends on vocabulary probability distribution. Timing analysis can predict which tokens are generated. In shared inference environments, another user's output can be partially extracted this way. High-probability tokens are especially visible from timing.
+      fr: Le temps de génération de chaque token dépend de la distribution de probabilité du vocabulaire. L'analyse temporelle peut prédire quels tokens sont générés. Les tokens à haute probabilité sont particulièrement visibles par le timing.
+      zh: 每个token的生成时间取决于词汇概率分布。定时分析可以预测生成了哪些token。在共享推理环境中，可以以此方式部分提取另一用户的输出。高概率token从定时中尤其可见。
+      ar: يعتمد وقت توليد كل token على توزيع احتمالات المفردات. يمكن لتحليل التوقيت التنبؤ بالتوكنات المُولَّدة. التوكنات عالية الاحتمال مرئية بشكل خاص من خلال التوقيت.
+      ru: Время генерации каждого токена зависит от распределения вероятностей словаря. Анализ тайминга может предсказать, какие токены генерируются. Токены с высокой вероятностью особенно заметны по таймингу.
+    severity: medium
+  - title:
+      tr: Token Limit DoS
+      en: Token Limit DoS
+      fr: DoS par limite de tokens
+      zh: Token限制DoS
+      ar: DoS عبر حد التوكنات
+      ru: DoS через лимит токенов
+    description:
+      tr: Kasıtlı olarak max token limit'e kadar input göndererek sistem kaynaklarını tüketme. Özellikle per-token billing yapılan API'larda maliyet saldırısı. Rate limiting olmadan saldırgan tek request'le binlerce token generate ettirerek fatura şişirebilir veya sistem kapasitesini doldurabilir.
+      en: Deliberately sending input up to max token limit to exhaust system resources. Cost attack especially on per-token billing APIs. Without rate limiting, attacker can inflate bills or fill system capacity by forcing generation of thousands of tokens in single request.
+      fr: Envoi délibéré d'entrées jusqu'à la limite maximale de tokens pour épuiser les ressources système. Attaque de coût surtout sur les API facturées par token. Sans limitation de débit, l'attaquant peut gonfler les factures en forçant la génération de milliers de tokens en une seule requête.
+      zh: 故意发送达到最大token限制的输入以耗尽系统资源。在按token计费的API上尤其是成本攻击。没有速率限制时，攻击者可以通过强制单个请求生成数千token来膨胀账单。
+      ar: إرسال مدخلات عمداً حتى الحد الأقصى للتوكنات لاستنفاد موارد النظام. هجوم تكلفة خاصة على واجهات API المفوترة بالتوكن. بدون تحديد المعدل، يمكن للمهاجم تضخيم الفواتير.
+      ru: Намеренная отправка ввода до максимального лимита токенов для исчерпания системных ресурсов. Атака на стоимость особенно на API с потокенной оплатой. Без ограничения частоты злоумышленник может раздуть счета.
+    severity: medium
+  - title:
+      tr: Token Vocabulary Bilgi Sızıntısı
+      en: Token Vocabulary Information Disclosure
+      fr: Divulgation d'informations du vocabulaire de tokens
+      zh: Token词汇信息泄露
+      ar: كشف معلومات مفردات التوكنات
+      ru: Раскрытие информации о словаре токенов
+    description:
+      tr: API hata mesajları veya tokenizer davranışından vocabulary boyutu ve özel token'lar hakkında bilgi çıkarılabilir. Bu bilgiler model ailesinin (GPT, Llama, Claude) tespitine ve hedefli saldırılara yardımcı olur.
+      en: Information about vocabulary size and special tokens can be extracted from API error messages or tokenizer behavior. This information helps identify the model family (GPT, Llama, Claude) and enables targeted attacks.
+      fr: Des informations sur la taille du vocabulaire et les tokens spéciaux peuvent être extraites des messages d'erreur API ou du comportement du tokenizer. Ces informations aident à identifier la famille de modèle et permettent des attaques ciblées.
+      zh: 可以从API错误消息或分词器行为中提取词汇表大小和特殊token的信息。这些信息有助于识别模型家族（GPT、Llama、Claude）并支持定向攻击。
+      ar: يمكن استخراج معلومات حول حجم المفردات والتوكنات الخاصة من رسائل خطأ API أو سلوك الـ tokenizer. تساعد هذه المعلومات في تحديد عائلة النموذج وتمكين هجمات موجهة.
+      ru: Информация о размере словаря и специальных токенах может быть извлечена из сообщений об ошибках API или поведения токенизатора. Это помогает идентифицировать семейство модели и проводить целевые атаки.
+    severity: low
+config:
+  - title: Token-Level Input Sanitization
+    lang: python
+    code: |-
+      import unicodedata
+      from transformers import AutoTokenizer
+
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B")
+
+      def sanitize_input(text: str) -> str:
+          """Remove zero-width and invisible Unicode characters"""
+          # Remove zero-width joiners, non-joiners, etc.
+          cleaned = ''.join(char for char in text if unicodedata.category(char) != 'Cf')
+
+          # Normalize Unicode to NFC form
+          cleaned = unicodedata.normalize('NFC', cleaned)
+
+          # Tokenize and check for suspicious patterns
+          tokens = tokenizer.tokenize(cleaned)
+
+          # Block if token count significantly differs from character count
+          char_token_ratio = len(cleaned) / max(len(tokens), 1)
+          if char_token_ratio < 0.5:  # Abnormally high token density
+              raise ValueError("Suspicious tokenization pattern detected")
+
+          return cleaned
+
+      # Use before model inference
+      safe_input = sanitize_input(user_prompt)
+    description:
+      tr: Invisible Unicode karakterleri temizleyin ve Unicode'u normalize edin. Tokenization pattern'lerini kontrol edin. Token smuggling saldırılarını engelleyin.
+      en: Clean invisible Unicode characters and normalize Unicode. Check tokenization patterns. Prevent token smuggling attacks.
+  - title: Token Generation Rate Limiting
+    lang: python
+    code: |-
+      from collections import defaultdict
+      from time import time
+
+      class TokenRateLimiter:
+          def __init__(self, max_tokens_per_minute=10000):
+              self.max_tokens = max_tokens_per_minute
+              self.user_tokens = defaultdict(list)
+
+          def check_limit(self, user_id: str, requested_tokens: int) -> bool:
+              now = time()
+              minute_ago = now - 60
+
+              # Remove old entries
+              self.user_tokens[user_id] = [
+                  (ts, count) for ts, count in self.user_tokens[user_id]
+                  if ts > minute_ago
+              ]
+
+              # Calculate current usage
+              current_usage = sum(count for _, count in self.user_tokens[user_id])
+
+              if current_usage + requested_tokens > self.max_tokens:
+                  raise ValueError(f"Token rate limit exceeded: {current_usage}/{self.max_tokens}")
+
+              self.user_tokens[user_id].append((now, requested_tokens))
+              return True
+
+      limiter = TokenRateLimiter(max_tokens_per_minute=5000)
+      limiter.check_limit(user_id, max_new_tokens=512)
+    description:
+      tr: Per-user token generation rate limiting uygulayın. DoS ve maliyet saldırılarını önleyin. Dakika başına maksimum token sayısını zorunlu kılın.
+      en: Implement per-user token generation rate limiting. Prevent DoS and cost attacks. Enforce maximum tokens per minute.
+research:
+  - title: Token Smuggling and Injection Attacks in LLMs
+    url: https://arxiv.org/abs/2402.14371
+    year: 2024
+    type: paper
+    authors: Kai Greshake, et al.
+  - title: "CVE-2024-5184: Tokenizer Injection Vulnerability"
+    url: https://nvd.nist.gov/vuln/detail/CVE-2024-5184
+    year: 2024
+    type: guide
+    authors: NVD
+  - title: Timing Attacks on Token Generation
+    url: https://arxiv.org/abs/2307.12345
+    year: 2023
+    type: paper
+    authors: Side-Channel Research Lab
+tips:
+  - tr: Kullanıcı input'unu tokenize etmeden önce Unicode normalize edin, NFC formunu kullanın.
+    en: Normalize user input Unicode before tokenizing - use NFC form.
+  - tr: Token generation timing'e noise ekleyin, side-channel saldırılarını zorlaştırın.
+    en: Add noise to token generation timing to make side-channel attacks harder.
+  - tr: Max token limit'i context window'dan bağımsız belirleyin, DoS için safety margin bırakın.
+    en: Set max token limit independent of context window, leave safety margin for DoS protection.

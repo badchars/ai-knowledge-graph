@@ -1,0 +1,115 @@
+id: fp16
+name: FP16 / BF16
+fullName: Half Precision Float
+category: quantization
+desc:
+  tr: |-
+    AI sayılarini yarıya indirilmiş hassasiyetle saklama formatı — FP32'nin 32 bit kullandığı yerde FP16/BF16 sadece 16 bit kullanır. Bu doğru, tüm model bellekte yarişina duser. BF16 (Brain Float 16) [Google](https://ai.google) tarafından AI için özel olarak gelistirildi ve FP16'nin sayısal tasma (overflow) sorununu cozdugu için modern eğitimde tercih edilir.
+
+    Pratik olarak 70B parametreli bir model FP32'de ~280GB, FP16/BF16'da ise ~140GB yer kaplar. [NVIDIA](https://nvidia.com)'nin Ampere ([A100](https://www.nvidia.com/en-us/data-center/a100/)) ve Hopper ([H100](https://www.nvidia.com/en-us/data-center/h100/)) GPU'lari bu formatları özel Tensor Core'lar ile hızlandırır — FP32'ye kiyasla 2x performans sağlar.
+
+    Bugün neredeyse tüm büyük modeller ([GPT-4](https://openai.com/gpt-4), [Llama 3](https://ai.meta.com/llama/), [Mistral](https://mistral.ai)) BF16 formatında egitilir ve dagitilir.
+  en: |-
+    A half-precision format for storing AI numbers — where FP32 uses 32 bits per number, FP16/BF16 uses only 16 bits, cutting model memory in half. BF16 (Brain Float 16) was specifically designed by [Google](https://ai.google) for AI workloads and iş preferred in modern training because it solves the numerical overflow issues of standard FP16 while maintaining a wide dynamic range.
+
+    In practice, a 70B parameter model takes ~280GB in FP32 but only ~140GB in FP16/BF16. [NVIDIA](https://nvidia.com)'s Ampere ([A100](https://www.nvidia.com/en-us/data-center/a100/)) and Hopper ([H100](https://www.nvidia.com/en-us/data-center/h100/)) GPUs accelerate these formats with dedicated Tensor Cores, delivering 2x the performance compared to FP32.
+
+    Today, virtually all major models ([GPT-4](https://openai.com/gpt-4), [Llama 3](https://ai.meta.com/llama/), [Mistral](https://mistral.ai)) are trained and distributed in BF16 format, making it the de facto standard precision for AI.
+  fr: Un format de demi-precision pour stocker les nombres de l'IA — la ou FP32 utilise 32 bits par nombre, FP16/BF16 n'en utilise que 16, reduisant la memoire du modele de moitie. BF16 (Brain Float 16) a ete specifiquement concu par Google pour les charges de travail IA et est prefere dans l'entrainement moderne car il resout les problemes de depassement numerique du FP16 standard. En pratique, un modele de 70B parametres prend ~280 Go en FP32 mais seulement ~140 Go en FP16/BF16. Les GPU Ampere (A100) et Hopper (H100) de NVIDIA accelerent ces formats avec des Tensor Cores dedies, offrant 2x les performances par rapport au FP32. Aujourd'hui, pratiquement tous les grands modeles (GPT-4, Llama 3, Mistral) sont entraines et distribues en format BF16.
+  zh: 以半精度存储AI数字的格式——FP32每个数字用32位，FP16/BF16只用16位，将模型内存减半。BF16（Brain Float 16）由Google专为AI工作负载设计，在现代训练中更受青睐，因为它解决了标准FP16的数值溢出问题，同时保持宽动态范围。实际中，70B参数模型在FP32中占约280GB，在FP16/BF16中仅占约140GB。NVIDIA的Ampere（A100）和Hopper（H100）GPU通过专用Tensor Core加速这些格式，相比FP32提供2倍性能。如今，几乎所有主要模型（GPT-4、Llama 3、Mistral）都以BF16格式训练和分发，使其成为AI的事实标准精度。
+  ar: تنسيق نصف الدقة لتخزين أرقام الذكاء الاصطناعي — حيث يستخدم FP32 نحو 32 بت لكل رقم، يستخدم FP16/BF16 فقط 16 بت، مما يقلل ذاكرة النموذج إلى النصف. تم تصميم BF16 (Brain Float 16) خصيصاً من قبل Google لأحمال عمل الذكاء الاصطناعي ويُفضَّل في التدريب الحديث لأنه يحل مشاكل الفيضان الرقمي في FP16 القياسي. عملياً، يأخذ نموذج بـ 70 مليار معامل حوالي 280 جيجابايت في FP32 لكن فقط 140 جيجابايت في FP16/BF16. تسرّع وحدات GPU من NVIDIA مثل Ampere (A100) وHopper (H100) هذه التنسيقات بوحدات Tensor Cores مخصصة، محققة ضعف الأداء مقارنة بـ FP32. اليوم، جميع النماذج الكبرى تقريباً (GPT-4، Llama 3، Mistral) تُدرَّب وتُوزَّع بتنسيق BF16.
+  ru: Формат половинной точности для хранения чисел в ИИ — где FP32 использует 32 бита на число, FP16/BF16 использует только 16, сокращая память модели вдвое. BF16 (Brain Float 16) был специально разработан Google для задач ИИ и предпочтителен в современном обучении, поскольку решает проблемы числового переполнения стандартного FP16, сохраняя широкий динамический диапазон. На практике модель на 70B параметров занимает ~280 ГБ в FP32, но лишь ~140 ГБ в FP16/BF16. GPU NVIDIA Ampere (A100) и Hopper (H100) ускоряют эти форматы выделенными Tensor Cores, обеспечивая 2-кратную производительность по сравнению с FP32. Сегодня практически все крупные модели (GPT-4, Llama 3, Mistral) обучаются и распространяются в формате BF16, который стал стандартом точности для ИИ.
+analogy:
+  tr: FP32 çift haneli hesap makinesi ise, FP16 tek haneli ama iki kat hızlı çalışandır.
+  en: If FP32 iş a double-precision calculator, FP16 iş single-precision but runs twice as fast.
+  fr: Si FP32 est une calculatrice à double précision, FP16 est à simple précision mais fonctionne deux fois plus vite.
+  zh: 如果FP32是双精度计算器，FP16是单精度但运行速度快两倍。
+  ar: إذا كان FP32 آلة حاسبة مزدوجة الدقة، فإن FP16 ذو دقة واحدة لكنه يعمل بسرعة مضاعفة.
+  ru: Если FP32 — это калькулятор двойной точности, то FP16 — одинарной точности, но работает в два раза быстрее.
+security:
+  - title:
+      tr: FP16 Precision Attack
+      en: FP16 Precision Attack
+      fr: Attaque de précision FP16
+      zh: FP16精度攻击
+      ar: هجوم دقة FP16
+      ru: Атака на точность FP16
+    description:
+      tr: FP16'nın düşük hassasiyeti, özel hazırlanmış input'larla model davranışını manipüle etmek için kullanılabilir. Gradient underflow/overflow ile backdoor aktivasyonu mümkündür.
+      en: FP16's lower precision can be exploited to manipulate model behavior with specially crafted inputs. Backdoor activation via gradient underflow/overflow is possible.
+      fr: La précision inférieure du FP16 peut être exploitée pour manipuler le comportement du modèle avec des entrées spécialement conçues. L'activation de backdoors via underflow/overflow de gradient est possible.
+      zh: FP16的较低精度可被利用来通过特制输入操纵模型行为。通过梯度下溢/溢出进行后门激活是可能的。
+      ar: يمكن استغلال الدقة المنخفضة لـ FP16 للتلاعب بسلوك النموذج بمدخلات مصنوعة خصيصاً. تفعيل الباب الخلفي عبر تجاوز/نقص التدرج ممكن.
+      ru: Более низкая точность FP16 может быть использована для манипуляции поведением модели с помощью специально созданных входов. Активация бэкдора через underflow/overflow градиента возможна.
+    severity: medium
+  - title:
+      tr: Numerical Instability Exploitation
+      en: Numerical Instability Exploitation
+      fr: Exploitation de l'instabilité numérique
+      zh: 数值不稳定性利用
+      ar: استغلال عدم الاستقرار العددي
+      ru: Эксплуатация числовой нестабильности
+    description:
+      tr: FP16'nın sınırlı aralığı (±65504) overflow/underflow'a duyarlıdır. Saldırganlar bu instability'den faydalanarak model crash'i veya yanlış tahminler tetikleyebilir.
+      en: FP16's limited range (±65504) is susceptible to overflow/underflow. Attackers can exploit this instability to trigger model crashes or incorrect predictions.
+      fr: La plage limitée du FP16 (±65504) est susceptible au overflow/underflow. Les attaquants peuvent exploiter cette instabilité pour déclencher des crashs du modèle ou des prédictions incorrectes.
+      zh: FP16的有限范围（±65504）易受溢出/下溢影响。攻击者可以利用此不稳定性触发模型崩溃或错误预测。
+      ar: النطاق المحدود لـ FP16 (±65504) عرضة للتجاوز/النقصان. يمكن للمهاجمين استغلال هذا عدم الاستقرار لتشغيل أعطال النموذج أو تنبؤات خاطئة.
+      ru: Ограниченный диапазон FP16 (±65504) подвержен overflow/underflow. Злоумышленники могут использовать эту нестабильность для провоцирования сбоев модели или неверных предсказаний.
+    severity: medium
+  - title:
+      tr: FP16 Mixed Precision Konfigürasyonu Bilgi Sızıntısı
+      en: FP16 Mixed Precision Configuration Information Disclosure
+      fr: Divulgation de la configuration de précision mixte FP16
+      zh: FP16混合精度配置信息泄露
+      ar: تسريب معلومات تكوين الدقة المختلطة FP16
+      ru: Утечка конфигурации смешанной точности FP16
+    description:
+      tr: Model'in FP16/BF16/FP32 mixed precision konfigürasyonu, inference timing veya output precision analizi ile çıkarılabilir. Hangi layer'ların hangi precision'da çalıştığı bilinirse, saldırgan düşük precision layer'ları hedefleyerek daha etkili adversarial attack craft edebilir.
+      en: Model's FP16/BF16/FP32 mixed precision configuration can be inferred via inference timing or output precision analysis. If attacker knows which layers run at which precision, they can target lower precision layers for more effective adversarial attacks.
+      fr: La configuration de précision mixte FP16/BF16/FP32 du modèle peut être déduite par analyse du timing d'inférence ou de la précision de sortie. Si l'attaquant sait quelles couches fonctionnent à quelle précision, il peut cibler les couches de moindre précision pour des attaques adversariales plus efficaces.
+      zh: 模型的FP16/BF16/FP32混合精度配置可通过推理时序或输出精度分析推断。如果攻击者知道哪些层以何种精度运行，可以针对低精度层进行更有效的对抗攻击。
+      ar: يمكن استنتاج تكوين الدقة المختلطة للنموذج عبر تحليل توقيت الاستدلال أو دقة المخرجات. إذا عرف المهاجم أي طبقات تعمل بأي دقة، يمكنه استهداف طبقات الدقة المنخفضة لهجمات عدائية أكثر فعالية.
+      ru: Конфигурация смешанной точности FP16/BF16/FP32 модели может быть выведена через анализ тайминга инференса или точности выходов. Если злоумышленник знает, какие слои работают с какой точностью, он может целить слои с низкой точностью для более эффективных атак.
+    severity: low
+config:
+  - title: Mixed Precision with Loss Scaling
+    lang: python
+    code: |-
+      from torch.cuda.amp import autocast, GradScaler
+
+      model = MyModel().cuda()
+      optimizer = torch.optim.Adam(model.parameters())
+      scaler = GradScaler()  # Prevents gradient underflow
+
+      for data, target in dataloader:
+          optimizer.zero_grad()
+
+          # Run in FP16 with autocast
+          with autocast():
+              output = model(data)
+              loss = criterion(output, target)
+
+          # Scale loss to prevent underflow
+          scaler.scale(loss).backward()
+          scaler.step(optimizer)
+          scaler.update()
+    description:
+      tr: FP16 kullanırken gradient underflow'u önlemek için loss scaling kullanın. Bu, numerical stability sağlar.
+      en: Use loss scaling when using FP16 to prevent gradient underflow. This ensures numerical stability.
+research:
+  - title: Mixed Precision Training
+    url: https://arxiv.org/abs/1710.03740
+    year: 2017
+    type: paper
+    authors: Paulius Micikevicius, Sharan Narang, Jonah Alben
+  - title: Adversarial Examples in the Physical World with Quantization
+    url: https://arxiv.org/abs/1807.01272
+    year: 2018
+    type: paper
+    authors: Alexey Kurakin, Ian Goodfellow, Samy Bengio
+tips:
+  - tr: FP16 inference'da overflow kontrolü için input validation ekleyin.
+    en: Add input validation for overflow checking in FP16 inference.
+  - tr: Kritik katmanlarda (normalization, softmax) FP32 kullanmayı düşünün.
+    en: Consider using FP32 for critical layers (normalization, softmax).

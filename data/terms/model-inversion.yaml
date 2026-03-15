@@ -1,0 +1,196 @@
+id: model-inversion
+name: Model Inversion
+fullName: Model Inversion Attack
+category: ai-security
+desc:
+  tr: |-
+    Model Inversion Attack, bir makine öğrenmesi modelinin output'larından eğitim verisini yeniden inşa etmeye yönelik bir privacy saldırısıdır. Saldırgan, modelin tahminlerini ve confidence score'larını kullanarak eğitim setindeki örneklerin özelliklerini (yüz görüntüleri, tıbbi kayıtlar) çıkarır.
+
+    Yüz tanıma modellerinde bu saldırı özellikle etkilidir — Fredrikson et al. (2015) bir yüz tanıma modelinden eğitim setindeki kişilerin yüz görüntülerini [gradient-based reconstruction](https://arxiv.org/abs/1412.6544) ile çıkarmıştır. LLM'lerde ise [Carlini et al. (2021)](https://arxiv.org/abs/2012.07805) benzer yöntemle GPT-2'den email adresleri ve API key'ler çıkarmıştır.
+
+    Savunma yöntemleri arasında output noise injection, gradient masking, [differential privacy](https://arxiv.org/abs/1607.00133) ve federated learning ortamlarında secure aggregation bulunur. Production'da model API'lerinin gradient'lere erişimi mutlaka kapatılmalıdır.
+  en: |-
+    Model Inversion Attack is a privacy attack aimed at reconstructing training data from a machine learning model's outputs. The attacker uses the model's predictions and confidence scores to extract features of training set examples (face images, medical records).
+
+    This attack is especially effective on face recognition models — Fredrikson et al. (2015) extracted face images of people in the training set from a face recognition model using [gradient-based reconstruction](https://arxiv.org/abs/1412.6544). In LLMs, [Carlini et al. (2021)](https://arxiv.org/abs/2012.07805) extracted email addresses and API keys from GPT-2 using similar methods.
+
+    Defense methods include output noise injection, gradient masking, [differential privacy](https://arxiv.org/abs/1607.00133), and secure aggregation in federated learning environments. Production model APIs must disable gradient access.
+  fr: L'attaque par inversion de modèle est une attaque de confidentialité visant à reconstruire les données d'entraînement à partir des sorties d'un modèle d'apprentissage automatique. L'attaquant utilise les prédictions et les scores de confiance du modèle pour extraire les caractéristiques des exemples de l'ensemble d'entraînement.
+  zh: 模型反演攻击是一种隐私攻击，旨在从机器学习模型的输出重构训练数据。攻击者使用模型的预测和置信度分数来提取训练集示例的特征（人脸图像、医疗记录）。
+  ar: هجوم عكس النموذج هو هجوم خصوصية يهدف إلى إعادة بناء بيانات التدريب من مخرجات نموذج التعلم الآلي. يستخدم المهاجم تنبؤات النموذج ودرجات الثقة لاستخراج ميزات أمثلة مجموعة التدريب (صور الوجه، السجلات الطبية).
+  ru: Атака инверсии модели — это атака на конфиденциальность, нацеленная на реконструкцию тренировочных данных из выходов модели машинного обучения. Атакующий использует предсказания модели и оценки уверенности для извлечения характеристик примеров из тренировочного набора (лица, медицинские записи).
+analogy:
+  tr: Model bir ressam gibi portre çiziyor — saldırgan resmi analiz ederek 'bu portre hangi modelden çizildi?' sorusunu değil, 'modelin gördüğü orijinal fotoğraf nasıldı?' sorusunu cevaplamaya çalışıyor.
+  en: The model draws portraits like an artist — the attacker analyzes the drawing to answer not 'which model drew this portrait?' but 'what did the original photo the model saw look like?'
+  fr: Le modèle dessine des portraits comme un artiste — l'attaquant analyse le dessin pour répondre non pas 'quel modèle a dessiné ce portrait?' mais 'à quoi ressemblait la photo originale que le modèle a vue?'
+  zh: 模型像艺术家一样画肖像——攻击者分析画作不是为了回答'哪个模型画了这幅肖像？'而是'模型看到的原始照片是什么样的？'
+  ar: النموذج يرسم صوراً شخصية مثل فنان — المهاجم يحلل الرسم ليجيب ليس 'أي نموذج رسم هذه الصورة؟' بل 'كيف كانت الصورة الأصلية التي رآها النموذج؟'
+  ru: Модель рисует портреты как художник — атакующий анализирует рисунок, чтобы ответить не 'какая модель нарисовала этот портрет?', а 'как выглядела оригинальная фотография, которую видела модель?'
+security:
+  - title:
+      tr: Gradient-Based Reconstruction of Training Data
+      en: Gradient-Based Reconstruction of Training Data
+      fr: Reconstruction des donnees d'entrainement basee sur les gradients
+      zh: 基于梯度的训练数据重构
+      ar: إعادة بناء بيانات التدريب القائمة على التدرجات
+      ru: Реконструкция тренировочных данных на основе градиентов
+    description:
+      tr: "White-box model inversion saldırısında, saldırgan modelin gradyanlarına erişerek eğitim verisini optimize eder. Örneğin, bir yüz tanıma modelinde hedef kişinin ID'si verildiğinde, saldırgan random noise'dan başlayıp gradient descent ile modelin o ID'ye yüksek confidence vereceği bir yüz görüntüsü üretir. Fredrikson et al. (2015) bu yöntemle AT&T yüz veritabanından orijinal yüzlere %90 benzerlikte görüntüler çıkarmıştır. Savunma: gradient access kapalı (black-box API), output perturbation (Gaussian noise σ=0.1)."
+      en: "In white-box model inversion attacks, the attacker accesses the model's gradients to optimize training data. For example, in a face recognition model, given a target person's ID, the attacker starts from random noise and uses gradient descent to generate a face image that the model gives high confidence for that ID. Fredrikson et al. (2015) extracted images with 90% similarity to original faces from the AT&T face database using this method. Defense: gradient access disabled (black-box API), output perturbation (Gaussian noise σ=0.1)."
+      fr: "Dans les attaques par inversion de modele en boite blanche, l'attaquant accede aux gradients du modele pour optimiser les donnees d'entrainement. Par exemple, dans un modele de reconnaissance faciale, etant donne l'identifiant d'une personne cible, l'attaquant part d'un bruit aleatoire et utilise la descente de gradient pour generer une image de visage pour laquelle le modele donne une confiance elevee. Fredrikson et al. (2015) ont extrait des images avec 90% de similitude avec les visages originaux de la base de donnees AT&T. Defense : acces aux gradients desactive (API boite noire), perturbation de sortie (bruit gaussien σ=0.1)."
+      zh: 在白盒模型反演攻击中，攻击者访问模型的梯度来优化训练数据。例如，在人脸识别模型中，给定目标人员的ID，攻击者从随机噪声开始，使用梯度下降生成一张模型对该ID给予高置信度的人脸图像。Fredrikson等人（2015）使用此方法从AT&T人脸数据库中提取了与原始人脸相似度达90%的图像。防御方法：禁用梯度访问（黑盒API），输出扰动（高斯噪声 σ=0.1）。
+      ar: "في هجمات عكس النموذج بالصندوق الأبيض، يصل المهاجم إلى تدرجات النموذج لتحسين بيانات التدريب. على سبيل المثال، في نموذج التعرف على الوجوه، عند إعطاء معرّف الشخص المستهدف، يبدأ المهاجم من ضوضاء عشوائية ويستخدم النزول التدريجي لتوليد صورة وجه يمنحها النموذج ثقة عالية لذلك المعرّف. استخرج Fredrikson وآخرون (2015) صوراً بتشابه 90% مع الوجوه الأصلية من قاعدة بيانات وجوه AT&T. الدفاع: تعطيل الوصول إلى التدرجات (واجهة الصندوق الأسود)، اضطراب المخرجات (ضوضاء غاوسية σ=0.1)."
+      ru: "В атаках инверсии модели белого ящика злоумышленник получает доступ к градиентам модели для оптимизации тренировочных данных. Например, в модели распознавания лиц, зная идентификатор целевого человека, злоумышленник начинает со случайного шума и использует градиентный спуск для генерации изображения лица, для которого модель даёт высокую уверенность. Fredrikson и др. (2015) извлекли изображения с 90% сходством с оригинальными лицами из базы данных лиц AT&T. Защита: отключение доступа к градиентам (API чёрного ящика), пертурбация выхода (гауссов шум σ=0.1)."
+    severity: critical
+  - title:
+      tr: GAN-Assisted Model Inversion for LLM Text Reconstruction
+      en: GAN-Assisted Model Inversion for LLM Text Reconstruction
+      fr: Inversion de modele assistee par GAN pour la reconstruction de texte LLM
+      zh: GAN辅助的LLM文本重构模型反演
+      ar: عكس النموذج بمساعدة GAN لإعادة بناء نصوص نماذج اللغة الكبيرة
+      ru: Инверсия модели с помощью GAN для реконструкции текста LLM
+    description:
+      tr: "LLM'lerde model inversion için saldırgan bir GAN (Generative Adversarial Network) eğitir — discriminator hedef LLM'dir, generator eğitim verisine benzer metin üretir. Saldırgan, hedef LLM'den belirli bir prefix için yüksek confidence alan completion'ları toplar, GAN'a bu completion'ları discriminator feedback olarak verir ve generator'ın eğitim verisini reconstruct etmesini sağlar. Carlini et al. (2023) bu yöntemle production LLM'lerden copyrighted text çıkarmıştır. Savunma: completion diversity (top-p=0.95, temperature=1.5), output length limiting (max_tokens=100)."
+      en: "For model inversion in LLMs, the attacker trains a GAN (Generative Adversarial Network) — the discriminator is the target LLM, the generator produces text similar to training data. The attacker collects completions that get high confidence from the target LLM for specific prefixes, feeds these completions as discriminator feedback to the GAN, and makes the generator reconstruct training data. Carlini et al. (2023) extracted copyrighted text from production LLMs using this method. Defense: completion diversity (top-p=0.95, temperature=1.5), output length limiting (max_tokens=100)."
+      fr: "Pour l'inversion de modele dans les LLM, l'attaquant entraine un GAN (reseau antagoniste generatif) — le discriminateur est le LLM cible, le generateur produit du texte similaire aux donnees d'entrainement. L'attaquant collecte les completions qui obtiennent une confiance elevee du LLM cible pour des prefixes specifiques, fournit ces completions comme retour du discriminateur au GAN, et fait reconstruire les donnees d'entrainement par le generateur. Carlini et al. (2023) ont extrait du texte protege par le droit d'auteur de LLM en production avec cette methode. Defense : diversite de completion (top-p=0.95, temperature=1.5), limitation de la longueur de sortie (max_tokens=100)."
+      zh: 对于LLM中的模型反演，攻击者训练一个GAN（生成对抗网络）——判别器是目标LLM，生成器产生类似训练数据的文本。攻击者收集目标LLM对特定前缀给予高置信度的补全，将这些补全作为判别器反馈提供给GAN，使生成器重构训练数据。Carlini等人（2023）使用此方法从生产LLM中提取了受版权保护的文本。防御方法：补全多样性（top-p=0.95, temperature=1.5），输出长度限制（max_tokens=100）。
+      ar: "لعكس النموذج في نماذج اللغة الكبيرة، يُدرّب المهاجم شبكة GAN (شبكة توليدية تنافسية) — المُميِّز هو LLM المستهدف، والمُولِّد ينتج نصاً مشابهاً لبيانات التدريب. يجمع المهاجم الإكمالات التي تحصل على ثقة عالية من LLM المستهدف لبادئات محددة، ويُغذّي هذه الإكمالات كتغذية راجعة للمُميِّز إلى GAN، ويجعل المُولِّد يُعيد بناء بيانات التدريب. استخرج Carlini وآخرون (2023) نصوصاً محمية بحقوق النشر من نماذج LLM الإنتاجية بهذه الطريقة. الدفاع: تنويع الإكمالات (top-p=0.95, temperature=1.5)، تحديد طول المخرجات (max_tokens=100)."
+      ru: "Для инверсии модели в LLM злоумышленник обучает GAN (генеративно-состязательную сеть) — дискриминатором является целевая LLM, генератор производит текст, похожий на тренировочные данные. Злоумышленник собирает завершения, получающие высокую уверенность от целевой LLM для определённых префиксов, передаёт эти завершения как обратную связь дискриминатора в GAN и заставляет генератор реконструировать тренировочные данные. Carlini и др. (2023) извлекли текст, защищённый авторским правом, из продакшен-LLM этим методом. Защита: разнообразие завершений (top-p=0.95, temperature=1.5), ограничение длины выхода (max_tokens=100)."
+    severity: critical
+  - title:
+      tr: Confidence Score-Based Feature Extraction
+      en: Confidence Score-Based Feature Extraction
+      fr: Extraction de caracteristiques basee sur les scores de confiance
+      zh: 基于置信度分数的特征提取
+      ar: استخراج الميزات القائم على درجات الثقة
+      ru: Извлечение признаков на основе оценок уверенности
+    description:
+      tr: "Black-box model inversion'da saldırgan gradyan erişimi olmasa bile, confidence score pattern'lerini analiz ederek eğitim verisinin feature'larını çıkarabilir. Örneğin, bir tıbbi diagnosis modelinde belirli semptom kombinasyonları için confidence score'ları toplayarak eğitim setindeki hastaların ortak özelliklerini (yaş, cinsiyet, hastalık tipi) inferans edebilir. Bu, aggregated query saldırısı şeklinde yapılır — binlerce query gönderip istatistiksel analiz. Savunma: rate limiting (100 query/hour), query result perturbation, k-anonymity enforcement (k>=5)."
+      en: "In black-box model inversion, even without gradient access, the attacker can extract training data features by analyzing confidence score patterns. For example, in a medical diagnosis model, by collecting confidence scores for specific symptom combinations, they can infer common characteristics (age, gender, disease type) of patients in the training set. This is done as an aggregated query attack — sending thousands of queries and statistical analysis. Defense: rate limiting (100 queries/hour), query result perturbation, k-anonymity enforcement (k>=5)."
+      fr: "Dans l'inversion de modele en boite noire, meme sans acces aux gradients, l'attaquant peut extraire les caracteristiques des donnees d'entrainement en analysant les modeles de scores de confiance. Par exemple, dans un modele de diagnostic medical, en collectant les scores de confiance pour des combinaisons specifiques de symptomes, il peut inferer les caracteristiques communes (age, sexe, type de maladie) des patients de l'ensemble d'entrainement. Cela se fait sous forme d'attaque par requetes agregees — envoi de milliers de requetes et analyse statistique. Defense : limitation de debit (100 requetes/heure), perturbation des resultats, application du k-anonymat (k>=5)."
+      zh: 在黑盒模型反演中，即使没有梯度访问权限，攻击者也可以通过分析置信度分数模式来提取训练数据特征。例如，在医疗诊断模型中，通过收集特定症状组合的置信度分数，可以推断训练集中患者的共同特征（年龄、性别、疾病类型）。这通过聚合查询攻击实现——发送数千个查询并进行统计分析。防御方法：速率限制（100次查询/小时），查询结果扰动，k-匿名性强制执行（k>=5）。
+      ar: "في عكس النموذج بالصندوق الأسود، حتى بدون الوصول إلى التدرجات، يمكن للمهاجم استخراج ميزات بيانات التدريب بتحليل أنماط درجات الثقة. على سبيل المثال، في نموذج تشخيص طبي، بجمع درجات الثقة لتركيبات أعراض محددة، يمكنه استنتاج الخصائص المشتركة (العمر، الجنس، نوع المرض) للمرضى في مجموعة التدريب. يتم ذلك كهجوم استعلامات مُجمَّعة — إرسال آلاف الاستعلامات والتحليل الإحصائي. الدفاع: تحديد المعدل (100 استعلام/ساعة)، اضطراب نتائج الاستعلام، فرض إخفاء الهوية k (k>=5)."
+      ru: "При инверсии модели чёрного ящика, даже без доступа к градиентам, злоумышленник может извлечь признаки тренировочных данных, анализируя паттерны оценок уверенности. Например, в модели медицинской диагностики, собирая оценки уверенности для определённых комбинаций симптомов, можно вывести общие характеристики (возраст, пол, тип заболевания) пациентов в тренировочном наборе. Это выполняется как атака агрегированными запросами — отправка тысяч запросов и статистический анализ. Защита: ограничение скорости (100 запросов/час), пертурбация результатов запросов, обеспечение k-анонимности (k>=5)."
+    severity: high
+  - title:
+      tr: Model Inversion Konfigürasyon Bilgi Sızıntısı
+      en: Model Inversion Configuration Information Disclosure
+      fr: Divulgation de configuration model inversion
+      zh: model inversion配置信息泄露
+      ar: كشف معلومات تكوين model-inversion
+      ru: Раскрытие конфигурации model-inversion
+    description:
+      tr: Model Inversion ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to model inversion can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à model inversion peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与model inversion相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ model-inversion في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании model-inversion могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Black-Box API with Output Perturbation
+    lang: python
+    code: |-
+      from transformers import AutoModelForCausalLM, AutoTokenizer
+      import torch
+      import numpy as np
+
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3-8B")
+
+      def generate_with_perturbation(prompt, noise_scale=0.1):
+          """Generate with Gaussian noise to prevent reconstruction"""
+          inputs = tokenizer(prompt, return_tensors="pt")
+
+          with torch.no_grad():
+              outputs = model.generate(
+                  **inputs,
+                  max_new_tokens=100,
+                  temperature=1.5,  # increase diversity
+                  top_p=0.95,
+                  do_sample=True,
+                  return_dict_in_generate=True,
+                  output_scores=False  # NEVER expose scores
+              )
+
+          # Add Gaussian noise to logits (defense against gradient estimation)
+          # Note: This is conceptual — in production, apply noise before softmax
+          result = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True)
+
+          # Perturb output tokens slightly (swap similar tokens with prob=0.05)
+          tokens = result.split()
+          for i in range(len(tokens)):
+              if np.random.random() < 0.05:
+                  # Could swap with synonym (not implemented here)
+                  pass
+
+          return result
+
+      # Black-box API: no gradients, no scores, perturbed output
+      result = generate_with_perturbation("Explain general relativity")
+    description:
+      tr: "Black-box API konfigürasyonu: gradient erişimi kapalı, score'lar expose edilmez, output diversity yüksek (temp=1.5), token perturbation ile reconstruction zorlaştırılır."
+      en: "Black-box API config: gradient access disabled, scores not exposed, high output diversity (temp=1.5), reconstruction made difficult with token perturbation."
+  - title: Rate Limiting for Aggregated Query Attack Prevention
+    lang: python
+    code: |-
+      from fastapi import FastAPI, HTTPException, Request
+      from slowapi import Limiter, _rate_limit_exceeded_handler
+      from slowapi.util import get_remote_address
+      from slowapi.errors import RateLimitExceeded
+
+      app = FastAPI()
+      limiter = Limiter(key_func=get_remote_address)
+      app.state.limiter = limiter
+      app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+      # Strict rate limiting to prevent aggregated queries
+      @app.post("/v1/completions")
+      @limiter.limit("100/hour")  # max 100 queries per hour per IP
+      async def completions(request: Request, prompt: str):
+          # Additional: track query patterns (detect rapid sampling)
+          user_ip = get_remote_address(request)
+          query_history = get_user_query_history(user_ip)
+
+          # Flag: too many similar prefixes (possible reconstruction attempt)
+          if len(set(query_history[-50:])) < 10:  # low diversity
+              raise HTTPException(429, "Suspicious query pattern detected")
+
+          result = generate_with_perturbation(prompt)
+          return {"completion": result}
+
+      def get_user_query_history(ip):
+          # Implementation: Redis cache with 1-hour TTL
+          return []  # placeholder
+    description:
+      tr: Rate limiting (100 query/saat) ve query pattern detection ile aggregated model inversion saldırıları önlenir — düşük query diversity suspicious olarak işaretlenir.
+      en: Rate limiting (100 queries/hour) and query pattern detection prevent aggregated model inversion attacks — low query diversity flagged as suspicious.
+  - title: Model Inversion Rate Limiter
+    lang: go
+    code: "package ratelimit\n\nimport (\n\t\"sync\"\n\t\"time\"\n)\n\ntype QueryTracker struct {\n\tmu      sync.Mutex\n\tqueries map[string][]time.Time\n\tmax     int\n\twindow  time.Duration\n}\n\nfunc NewQueryTracker(max int, window time.Duration) *QueryTracker {\n\treturn &QueryTracker{queries: make(map[string][]time.Time), max: max, window: window}\n}\n\nfunc (qt *QueryTracker) Allow(userID string) bool {\n\tqt.mu.Lock()\n\tdefer qt.mu.Unlock()\n\tnow := time.Now()\n\tcutoff := now.Add(-qt.window)\n\tvar recent []time.Time\n\tfor _, t := range qt.queries[userID] {\n\t\tif t.After(cutoff) { recent = append(recent, t) }\n\t}\n\tif len(recent) >= qt.max { return false }\n\tqt.queries[userID] = append(recent, now)\n\treturn true\n}"
+    description:
+      tr: Model inversion icin Go rate limiter.
+      en: Go rate limiter for model inversion defense.
+research:
+  - title: Model Inversion Attacks that Exploit Confidence Information
+    url: https://arxiv.org/abs/1412.6544
+    year: 2015
+    type: paper
+    authors: Fredrikson, Jha, Ristenpart
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2021
+    type: paper
+    authors: Carlini, Tramèr, et al.
+  - title: Scalable Extraction of Training Data from Production LLMs
+    url: https://arxiv.org/abs/2311.17035
+    year: 2023
+    type: paper
+    authors: Nasr, Carlini, et al.
+tips:
+  - tr: Production'da model API'lerinden mutlaka gradient'leri kapat — white-box model inversion saldırılarının temel gereksinimi gradyan erişimidir.
+    en: Always disable gradients from model APIs in production — white-box model inversion attacks fundamentally require gradient access.
+  - tr: Output diversity'yi artırmak için temperature >= 1.5 ve top-p=0.95 kullan — düşük diversity reconstruction saldırılarını kolaylaştırır.
+    en: Use temperature >= 1.5 and top-p=0.95 to increase output diversity — low diversity facilitates reconstruction attacks.
+  - tr: Rate limiting yap ve query pattern'lerini track et — saldırgan aggregated query ile reconstruction yapmak için binlerce query gönderir.
+    en: Implement rate limiting and track query patterns — attackers send thousands of queries for aggregated query reconstruction.

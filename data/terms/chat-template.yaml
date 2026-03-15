@@ -1,0 +1,174 @@
+id: chat-template
+name: Chat Template
+fullName: Chat Template
+category: inference
+desc:
+  tr: |-
+    Her AI modelinin mesajları hangi özel etiketlerle ve formatta beklediğini tanımlayan Jinja2 şablonu. Örneğin [Llama 3](https://ai.meta.com/llama/) modelleri <|begin_of_text|><|start_header_id|>system<|end_header_id|> formatıni beklerken, ChatML kullanan modeller <|im_start|>system seklini bekler.
+
+    Yanlis template kullanmak modelin talimatlarini anlayamamasina ve anlamsiz çıktılar üretmesine neden olur — en yaygın 'modelim sacmaliyor' sıkayellerinin baslica sebebidir.
+
+    [vLLM](https://docs.vllm.ai) ve [llama.cpp](https://github.com/ggerganov/llama.cpp) gibi inference motorlari modelin tokenizer_config.json dosyasindan template'i otomatik yukleyebilir, ancak tool calling gibi özel özellikler için özel template'ler gerekebilir. [Hugging Face](https://huggingface.co) tokenizer'larinda chat_template alani olarak saklanir ve apply_chat_template() metodu ile kullanilir.
+  en: |-
+    A Jinja2 template that defines what special tokens and format each AI model expects for its messages. For example, [Llama 3](https://ai.meta.com/llama/) models expect the format <|begin_of_text|><|start_header_id|>system<|end_header_id|>, while ChatML-based models use <|im_start|>system.
+
+    Using the wrong template causes the model to misunderstand its instructions and produce garbage output — this iş the number one cause of 'my model iş talking nonsense' complaints.
+
+    Inference engines like [vLLM](https://docs.vllm.ai) and [llama.cpp](https://github.com/ggerganov/llama.cpp) can auto-load the template from the model's tokenizer_config.json, but specialized features like tool calling may require custom templates. In [Hugging Face](https://huggingface.co) tokenizers, it's stored as the chat_template field and applied via the apply_chat_template() method.
+  fr: Un template Jinja2 qui definit quels tokens speciaux et quel format chaque modele d'IA attend pour ses messages. Par exemple, les modeles Llama 3 attendent le format <|begin_of_text|><|start_header_id|>system<|end_header_id|>, tandis que les modeles bases sur ChatML utilisent <|im_start|>system. Utiliser le mauvais template fait que le modele ne comprend pas ses instructions et produit des sorties incoherentes — c'est la cause numero un des plaintes 'mon modele dit n'importe quoi'. Les moteurs d'inference comme vLLM et llama.cpp peuvent charger automatiquement le template depuis le tokenizer_config.json du modele, mais des fonctionnalites comme le tool calling peuvent necessiter des templates personnalises. Dans les tokenizers Hugging Face, il est stocke dans le champ chat_template et applique via apply_chat_template().
+  zh: 一个Jinja2模板，定义每个AI模型期望其消息使用的特殊token和格式。例如Llama 3模型期望<|begin_of_text|><|start_header_id|>system<|end_header_id|>格式，而基于ChatML的模型使用<|im_start|>system。使用错误的模板会导致模型无法理解指令并产生无意义的输出——这是'我的模型在胡说八道'投诉的头号原因。vLLM和llama.cpp等推理引擎可以从模型的tokenizer_config.json自动加载模板，但工具调用等特殊功能可能需要自定义模板。在Hugging Face tokenizer中，它存储为chat_template字段，通过apply_chat_template()方法使用。
+  ar: قالب Jinja2 يحدد الرموز الخاصة والتنسيق الذي يتوقعه كل نموذج ذكاء اصطناعي لرسائله. مثلاً نماذج Llama 3 تتوقع التنسيق <|begin_of_text|><|start_header_id|>system<|end_header_id|> بينما النماذج القائمة على ChatML تستخدم <|im_start|>system. استخدام القالب الخاطئ يجعل النموذج يسيء فهم تعليماته وينتج مخرجات عشوائية — وهذا السبب الأول لشكاوى 'نموذجي يقول كلاماً غير منطقي'. محركات الاستدلال مثل vLLM وllama.cpp يمكنها تحميل القالب تلقائياً من ملف tokenizer_config.json للنموذج، لكن ميزات مثل استدعاء الأدوات قد تتطلب قوالب مخصصة. في محللات Hugging Face يُخزن كحقل chat_template ويُطبق عبر طريقة apply_chat_template().
+  ru: Шаблон на Jinja2, определяющий, какие специальные токены и формат ожидает каждая AI-модель для своих сообщений. Например, модели Llama 3 ожидают формат <|begin_of_text|><|start_header_id|>system<|end_header_id|>, а модели на ChatML используют <|im_start|>system. Использование неправильного шаблона приводит к тому, что модель не понимает инструкции и выдаёт бессмыслицу — это причина номер один жалоб 'моя модель несёт чушь'. Движки инференса вроде vLLM и llama.cpp могут автоматически загружать шаблон из tokenizer_config.json модели, но специальные функции вроде tool calling могут требовать кастомных шаблонов. В токенизаторах Hugging Face хранится как поле chat_template и применяется через метод apply_chat_template().
+analogy:
+  tr: Farklı ülkelere mektup gönderirken farklı zarf formatları kullanmak. İçerik aynı ama ambalaj farklı olmalı.
+  en: Using different envelope formats when sending letters to different countries. Content iş the same but packaging must differ.
+  fr: Utiliser différents formats d'enveloppes lors de l'envoi de lettres vers différents pays. Le contenu est le même mais l'emballage doit différer.
+  zh: 向不同国家寄信时使用不同的信封格式。内容相同但包装必须不同。
+  ar: استخدام تنسيقات مختلفة للأظرف عند إرسال الرسائل إلى دول مختلفة. المحتوى نفسه لكن التغليف يجب أن يختلف.
+  ru: Использование разных форматов конвертов при отправке писем в разные страны. Содержание одинаковое, но упаковка должна отличаться.
+security:
+  - title:
+      tr: Chat Template Injection
+      en: Chat Template Injection
+      fr: Injection de template de chat
+      zh: 聊天模板注入
+      ar: حقن قالب المحادثة
+      ru: Инъекция шаблона чата
+    description:
+      tr: Kullanıcı input'u chat template'e düzgün escape edilmeden eklenirse, saldırgan special token'ları (system, assistant) enjekte ederek model davranışını manipüle edebilir.
+      en: If user input is added to chat template without proper escaping, attackers can inject special tokens (system, assistant) to manipulate model behavior.
+      fr: Si l'entree utilisateur est ajoutee au template de chat sans echappement correct, les attaquants peuvent injecter des tokens speciaux (system, assistant) pour manipuler le comportement du modele.
+      zh: 如果用户输入未经适当转义就添加到聊天模板中，攻击者可以注入特殊token（system、assistant）来操纵模型行为。
+      ar: إذا تمت إضافة مدخلات المستخدم إلى قالب المحادثة دون تهريب مناسب، يمكن للمهاجمين حقن رموز خاصة (system، assistant) للتلاعب بسلوك النموذج.
+      ru: Если пользовательский ввод добавляется в шаблон чата без надлежащего экранирования, злоумышленники могут инъектировать специальные токены (system, assistant) для манипулирования поведением модели.
+    severity: critical
+  - title:
+      tr: System Prompt Override
+      en: System Prompt Override
+      fr: Contournement du prompt systeme
+      zh: 系统提示覆盖
+      ar: تجاوز موجه النظام
+      ru: Переопределение системного промпта
+    description:
+      tr: Yanlış template kullanımı ile kullanıcı system prompt'u override edebilir veya role confusion yaratarak güvenlik kısıtlamalarını atlayabilir.
+      en: Incorrect template usage allows users to override system prompts or create role confusion to bypass security constraints.
+      fr: L'utilisation incorrecte du template permet aux utilisateurs de contourner les prompts systeme ou de creer une confusion de roles pour bypasser les contraintes de securite.
+      zh: 不正确的模板使用允许用户覆盖系统提示或通过角色混淆绕过安全约束。
+      ar: يسمح الاستخدام غير الصحيح للقالب للمستخدمين بتجاوز موجهات النظام أو إنشاء ارتباك في الأدوار لتجاوز القيود الأمنية.
+      ru: Неправильное использование шаблона позволяет пользователям переопределять системные промпты или создавать путаницу ролей для обхода ограничений безопасности.
+    severity: high
+  - title:
+      tr: Template Format Exploitation
+      en: Template Format Exploitation
+      fr: Exploitation du format de template
+      zh: 模板格式利用
+      ar: استغلال تنسيق القالب
+      ru: Эксплуатация формата шаблона
+    description:
+      tr: ChatML, Llama-3, Mistral gibi farklı template formatları farklı escape kurallari gerektirir. Yanlış format kullanımı injection açığı yaratır.
+      en: Different template formats (ChatML, Llama-3, Mistral) require different escaping rules. Using wrong format creates injection vulnerabilities.
+      fr: Differents formats de template (ChatML, Llama-3, Mistral) necessitent des regles d'echappement differentes. Utiliser le mauvais format cree des vulnerabilites d'injection.
+      zh: 不同的模板格式（ChatML、Llama-3、Mistral）需要不同的转义规则。使用错误的格式会创建注入漏洞。
+      ar: تتطلب تنسيقات القوالب المختلفة (ChatML، Llama-3، Mistral) قواعد تهريب مختلفة. استخدام التنسيق الخاطئ يخلق ثغرات حقن.
+      ru: Разные форматы шаблонов (ChatML, Llama-3, Mistral) требуют разных правил экранирования. Использование неправильного формата создаёт уязвимости инъекции.
+    severity: medium
+  - title:
+      tr: Template Versiyonu Uyumsuzluğu
+      en: Template Version Mismatch
+      fr: Incompatibilite de version du template
+      zh: 模板版本不匹配
+      ar: عدم تطابق إصدار القالب
+      ru: Несоответствие версии шаблона
+    description:
+      tr: Farklı model versiyonları farklı chat template'leri kullanır. Eski template ile yeni modelin kullanılması, güvenlik token'larının yanlış yorumlanmasına ve beklenmedik davranışlara yol açabilir.
+      en: Different model versions use different chat templates. Using old template with new model can cause security tokens to be misinterpreted and lead to unexpected behavior.
+      fr: Differentes versions du modele utilisent differents templates de chat. Utiliser un ancien template avec un nouveau modele peut causer une mauvaise interpretation des tokens de securite et des comportements inattendus.
+      zh: 不同的模型版本使用不同的聊天模板。使用旧模板配合新模型可能导致安全token被错误解释，并引发意外行为。
+      ar: تستخدم إصدارات النموذج المختلفة قوالب محادثة مختلفة. استخدام قالب قديم مع نموذج جديد قد يتسبب في تفسير خاطئ لرموز الأمان وسلوك غير متوقع.
+      ru: Разные версии моделей используют разные шаблоны чата. Использование старого шаблона с новой моделью может привести к неправильной интерпретации токенов безопасности и непредсказуемому поведению.
+    severity: low
+config:
+  - title: Secure Chat Template Usage
+    lang: python
+    code: |-
+      from transformers import AutoTokenizer
+      import re
+
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B-Instruct")
+
+      def secure_chat_template(messages: list) -> str:
+          # Sanitize all user messages
+          sanitized_messages = []
+          for msg in messages:
+              if msg["role"] == "user":
+                  # Remove special tokens from user input
+                  content = msg["content"]
+                  content = re.sub(r"<\|.*?\|>", "", content)  # Remove Llama-3 tokens
+                  content = re.sub(r"\[INST\]|\[/INST\]", "", content)  # Remove Mistral tokens
+                  content = content.replace("<|im_start|>", "").replace("<|im_end|>", "")  # ChatML
+                  msg["content"] = content
+              sanitized_messages.append(msg)
+          
+          # Apply template with tokenizer
+          return tokenizer.apply_chat_template(
+              sanitized_messages,
+              tokenize=False,
+              add_generation_prompt=True
+          )
+    description:
+      tr: User input'tan özel token'ları strip edin ve tokenizer'ın native chat template fonksiyonunu kullanın.
+      en: Strip special tokens from user input and use tokenizer's native chat template function.
+  - title: Chat Template Validation
+    lang: python
+    code: |-
+      # Validate chat template output
+      def validate_chat_template(prompt: str, expected_roles: list) -> bool:
+          # Check role sequence is correct
+          if "<|im_start|>system" not in prompt:
+              raise ValueError("Missing system role")
+          
+          # Ensure user input didnt inject assistant role
+          user_section = prompt.split("<|im_start|>assistant")[0]
+          if user_section.count("<|im_start|>assistant") > 0:
+              raise ValueError("Role injection detected in user input")
+          
+          # Check for duplicate system prompts
+          if prompt.count("<|im_start|>system") > 1:
+              raise ValueError("Duplicate system prompts detected")
+          
+          return True
+
+      prompt = secure_chat_template(messages)
+      validate_chat_template(prompt, ["system", "user", "assistant"])
+    description:
+      tr: Chat template output'unu validate edin. Role injection ve duplicate system prompt'ları tespit edin.
+      en: Validate chat template output. Detect role injection and duplicate system prompts.
+  - title: Chat Template Sanitization (Go)
+    lang: go
+    code: "package sanitize\n\nimport (\n\t\"regexp\"\n\t\"strings\"\n)\n\nvar dangerousTokens = []string{\n\t\"<|system|>\", \"<|assistant|>\", \"<|user|>\",\n\t\"<|im_start|>\", \"<|im_end|>\",\n\t\"[INST]\", \"[/INST]\", \"<<SYS>>\", \"<</SYS>>\",\n\t\"<|begin_of_text|>\", \"<|end_header_id|>\",\n}\n\nvar controlCharRe = regexp.MustCompile(`[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]`)\n\n// SanitizeUserInput removes dangerous special tokens\n// and control characters from user input before\n// inserting into chat template.\nfunc SanitizeUserInput(input string) string {\n\tresult := controlCharRe.ReplaceAllString(input, \"\")\n\tfor _, token := range dangerousTokens {\n\t\tresult = strings.ReplaceAll(result, token, \"\")\n\t}\n\treturn strings.TrimSpace(result)\n}"
+    description:
+      tr: Go ile kullanıcı girdisinden tehlikeli special token'ları ve kontrol karakterlerini temizler. Chat template injection saldırılarını önler.
+      en: Removes dangerous special tokens and control characters from user input using Go. Prevents chat template injection attacks.
+research:
+  - title: Prompt Injection Attacks and Defenses in LLM-Integrated Applications
+    url: https://arxiv.org/abs/2310.12815
+    year: 2023
+    type: paper
+    authors: Yupei Liu, Yuqi Jia, Runpeng Geng, Jinyuan Jia, Neil Zhenqiang Gong
+  - title: "Jailbroken: How Does LLM Safety Training Fail?"
+    url: https://arxiv.org/abs/2307.02483
+    year: 2023
+    type: paper
+    authors: Alexander Wei, Nika Haghtalab, Jacob Steinhardt
+  - title: "OWASP LLM01: Prompt Injection"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: Chat template'i manual string concatenation ile yapmayın, tokenizer fonksiyonunu kullanın.
+    en: Don't use manual string concatenation for chat templates, use tokenizer functions.
+  - tr: Her model için doğru template formatını (Llama-3, ChatML, Mistral) kullanın.
+    en: Use the correct template format (Llama-3, ChatML, Mistral) for each model.
+  - tr: System prompt'u application seviyesinde inject edin, user input'tan almayın.
+    en: Inject system prompt at application level, never from user input.

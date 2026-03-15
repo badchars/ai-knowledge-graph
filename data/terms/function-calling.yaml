@@ -1,0 +1,179 @@
+id: function-calling
+name: Function Calling
+fullName: Function Calling
+category: tools
+desc:
+  tr: |-
+    AI modeline 'su fonksiyonları kullanabilirsin' demenin teknik yolu — tool use'un altyapisi. Siz modele kullanılabilir fonksiyonların JSON Schema tanımlarini verirsiniz, model hangi fonksiyonu hangi parametrelerle çağırması gerektiğini JSON olarak döndürür, gerçek çalıştırmayi ise sizin kodunuz yapar.
+
+    Örneğin, bir hava durumu uygulamasında get_weather(city: 'Istanbul') seklinde bir çağrı yapılmasını ister. [OpenAI](https://openai.com) bu kavramI 2023'te GPT-3.5 ile popülerleştirdi ve şimdi neredeyse her model API'sinde standart.
+
+    Function calling olmadan AI modeli sadece duz metin üretir — bunu parse etmek güvenilmez ve kırılgandir.
+  en: |-
+    The technical mechanism for giving an AI model access to external functions — it iş the implementation layer of tool use. You provide the model with JSON Schema definitions of available functions, and the model returns which function to call with what parameters as structured JSON. Your code then executes the actual function and feeds the result back.
+
+    For example, in a weather app, the model might output {name: 'get_weather', arguments: {city: 'Istanbul'}} instead of guessing the weather. [OpenAI](https://openai.com) popularized this concept in 2023 with GPT-3.5, and now virtually every model API supports it as a standard feature.
+
+    Without function calling, integrating AI into applications requires fragile text parsing — with it, you get reliable, typed interactions between the model and your codebase.
+  fr: "Le mecanisme technique pour donner a un modele d'IA acces a des fonctions externes — c'est la couche d'implementation du tool use. Vous fournissez au modele des definitions JSON Schema des fonctions disponibles, et le modele renvoie quelle fonction appeler avec quels parametres sous forme de JSON structure. Votre code execute ensuite la fonction et retourne le resultat. Par exemple, dans une application meteo, le modele pourrait renvoyer {name: 'get_weather', arguments: {city: 'Istanbul'}} au lieu de deviner la meteo. OpenAI a popularise ce concept en 2023 avec GPT-3.5, et maintenant pratiquement chaque API de modele le supporte en standard. Sans function calling, integrer l'IA dans des applications necessite un parsing de texte fragile — avec, vous obtenez des interactions fiables et typees entre le modele et votre code."
+  zh: "给AI模型提供外部函数访问权限的技术机制——它是工具使用的实现层。你向模型提供可用函数的JSON Schema定义，模型以结构化JSON返回要调用哪个函数及其参数。然后你的代码执行实际函数并将结果反馈给模型。例如，在天气应用中，模型可能输出{name: 'get_weather', arguments: {city: 'Istanbul'}}，而不是猜测天气。OpenAI在2023年通过GPT-3.5推广了这一概念，现在几乎每个模型API都将其作为标准功能支持。没有函数调用，将AI集成到应用程序中需要脆弱的文本解析——有了它，你可以在模型和代码库之间实现可靠的、类型化的交互。"
+  ar: "الآلية التقنية لمنح نموذج الذكاء الاصطناعي وصولاً إلى الوظائف الخارجية — وهي طبقة التنفيذ لاستخدام الأدوات. تزود النموذج بتعريفات JSON Schema للوظائف المتاحة، ويرجع النموذج الوظيفة المطلوب استدعاؤها مع المعاملات كـ JSON منظم. ثم ينفذ الكود الخاص بك الوظيفة الفعلية ويعيد النتيجة. على سبيل المثال، في تطبيق طقس قد يُخرج النموذج {name: 'get_weather', arguments: {city: 'Istanbul'}} بدلاً من تخمين الطقس. شاع هذا المفهوم مع OpenAI في 2023 عبر GPT-3.5، والآن تدعمه تقريباً كل واجهة API للنماذج كميزة قياسية. بدون استدعاء الوظائف، يتطلب دمج الذكاء الاصطناعي في التطبيقات تحليل نصي هش — معه تحصل على تفاعلات موثوقة ومنظمة بين النموذج والكود."
+  ru: "Технический механизм предоставления AI-модели доступа к внешним функциям — это уровень реализации tool use. Вы предоставляете модели JSON Schema определения доступных функций, а модель возвращает какую функцию вызвать и с какими параметрами в виде структурированного JSON. Ваш код затем выполняет фактическую функцию и передает результат обратно. Например, в погодном приложении модель может вернуть {name: 'get_weather', arguments: {city: 'Istanbul'}} вместо того, чтобы угадывать погоду. OpenAI популяризировала эту концепцию в 2023 году с GPT-3.5, и теперь практически каждый API моделей поддерживает это как стандартную функцию. Без function calling интеграция ИИ в приложения требует хрупкого парсинга текста — с ним вы получаете надежные, типизированные взаимодействия между моделью и вашим кодом."
+analogy:
+  tr: Asistanın 'su numarayı ara ve su bilgiyi sor' demesi — kendisi aramaz ama kimi aramanız gerektiğini söyler.
+  en: An assistant saying 'call this number and ask for this info' — doesn't call themselves but tells you who to call.
+  fr: Un assistant disant 'appelez ce numéro et demandez cette info' — n'appelle pas lui-même mais vous dit qui appeler.
+  zh: 助手说"拨打这个号码并询问这个信息"——他自己不打电话，但告诉你该打给谁。
+  ar: المساعد يقول 'اتصل بهذا الرقم واسأل عن هذه المعلومات' — لا يتصل بنفسه لكن يخبرك بمن تتصل.
+  ru: Ассистент говорит 'позвони по этому номеру и спроси эту информацию' — сам не звонит, но говорит, кому позвонить.
+security:
+  - title:
+      tr: Function Parameter Injection
+      en: Function Parameter Injection
+      fr: Injection de parametres de fonction
+      zh: 函数参数注入
+      ar: حقن معاملات الدالة
+      ru: Инъекция параметров функции
+    description:
+      tr: LLM'in ürettiği function call parametreleri kullanıcı girdisinden etkilenebilir. JSON injection ile zararlı parametreler function'a enjekte edilebilir. Özellikle eval() veya exec() kullanan functionlar için kritik risk.
+      en: Function call parameters generated by LLM can be influenced by user input. Malicious parameters can be injected into functions via JSON injection. Critical risk especially for functions using eval() or exec().
+      fr: Les parametres d'appel de fonction generes par le LLM peuvent etre influences par l'entree utilisateur. Des parametres malveillants peuvent etre injectes dans les fonctions via une injection JSON. Risque critique surtout pour les fonctions utilisant eval() ou exec().
+      zh: LLM生成的函数调用参数可以受到用户输入的影响。可以通过JSON注入将恶意参数注入函数中。对于使用eval()或exec()的函数尤其存在严重风险。
+      ar: يمكن أن تتأثر معاملات استدعاء الدالة التي يولدها نموذج اللغة بمدخلات المستخدم. يمكن حقن معاملات ضارة في الدوال عبر حقن JSON. خطر حرج خاصة للدوال التي تستخدم eval() أو exec().
+      ru: Параметры вызова функций, генерируемые LLM, могут быть подвержены влиянию пользовательского ввода. Вредоносные параметры могут быть внедрены в функции через JSON-инъекцию. Критический риск, особенно для функций, использующих eval() или exec().
+    severity: critical
+  - title:
+      tr: Function Call Hijacking
+      en: Function Call Hijacking
+      fr: Detournement d'appels de fonction
+      zh: 函数调用劫持
+      ar: اختطاف استدعاء الدالة
+      ru: Захват вызова функции
+    description:
+      tr: Prompt manipulation ile LLM beklenmeyen functionları çağırmaya zorlanabilir. Sistemde tanımlı tüm functionlara erişim sağlayabilir, authorization bypass mümkündür.
+      en: Via prompt manipulation, LLM can be forced to call unexpected functions. Can access all defined functions in the system, authorization bypass is possible.
+      fr: Par manipulation de prompt, le LLM peut etre force a appeler des fonctions inattendues. Peut acceder a toutes les fonctions definies dans le systeme, le contournement d'autorisation est possible.
+      zh: 通过提示操纵，LLM可以被迫调用意外的函数。可以访问系统中定义的所有函数，授权绕过是可能的。
+      ar: عبر التلاعب بالموجه، يمكن إجبار نموذج اللغة على استدعاء دوال غير متوقعة. يمكنه الوصول إلى جميع الدوال المعرّفة في النظام، وتجاوز التصريح ممكن.
+      ru: Через манипуляцию промптами LLM может быть принуждён вызывать неожиданные функции. Может получить доступ ко всем определённым в системе функциям, обход авторизации возможен.
+    severity: high
+  - title:
+      tr: Function Schema Bilgi İfşası
+      en: Function Schema Information Disclosure
+      fr: Divulgation du schema de fonction
+      zh: 函数模式信息泄露
+      ar: كشف مخطط الدالة
+      ru: Раскрытие схемы функций
+    description:
+      tr: LLM'e tanımlanan function schema'ları (JSON Schema), prompt extraction teknikleri ile çıkarılabilir. Bu, backend API yapısı ve veritabanı şeması hakkında bilgi ifşa eder.
+      en: Function schemas (JSON Schema) defined for the LLM can be extracted via prompt extraction techniques. This discloses information about backend API structure and database schema.
+      fr: Les schemas de fonctions (JSON Schema) definis pour le LLM peuvent etre extraits via des techniques d'extraction de prompt. Cela divulgue des informations sur la structure de l'API backend et le schema de la base de donnees.
+      zh: 为LLM定义的函数模式（JSON Schema）可以通过提示提取技术获取。这泄露了有关后端API结构和数据库模式的信息。
+      ar: يمكن استخراج مخططات الدوال (JSON Schema) المعرّفة لنموذج اللغة عبر تقنيات استخراج الموجه. هذا يكشف معلومات حول بنية واجهة البرمجة الخلفية ومخطط قاعدة البيانات.
+      ru: Схемы функций (JSON Schema), определённые для LLM, могут быть извлечены через техники извлечения промптов. Это раскрывает информацию о структуре бэкенд API и схеме базы данных.
+    severity: low
+config:
+  - title: OpenAI Function Calling Security Wrapper
+    lang: python
+    code: |-
+      from openai import OpenAI
+      import json
+      from typing import Any, Dict
+
+      client = OpenAI()
+
+      class SecureFunctionCaller:
+          def __init__(self):
+              self.allowed_functions = {}
+
+          def register_function(self, name: str, func, schema: Dict, permissions: list):
+              self.allowed_functions[name] = {
+                  "function": func,
+                  "schema": schema,
+                  "permissions": permissions
+              }
+
+          def validate_parameters(self, func_name: str, params: Dict) -> bool:
+              """Validate function parameters against schema"""
+              if func_name not in self.allowed_functions:
+                  raise ValueError(f"Function {func_name} not allowed")
+
+              schema = self.allowed_functions[func_name]["schema"]
+
+              # Type checking
+              for param, value in params.items():
+                  if param not in schema["parameters"]["properties"]:
+                      raise ValueError(f"Unknown parameter: {param}")
+
+                  expected_type = schema["parameters"]["properties"][param]["type"]
+                  if expected_type == "string" and not isinstance(value, str):
+                      raise TypeError(f"Expected string for {param}")
+                  elif expected_type == "integer" and not isinstance(value, int):
+                      raise TypeError(f"Expected integer for {param}")
+
+              # Required parameters
+              required = schema["parameters"].get("required", [])
+              for req in required:
+                  if req not in params:
+                      raise ValueError(f"Missing required parameter: {req}")
+
+              return True
+
+          def safe_call(self, messages: list, user_permissions: list) -> Any:
+              """Execute function calling with security checks"""
+
+              # Prepare functions for API
+              functions = [
+                  {"name": name, "description": meta["schema"]["description"],
+                   "parameters": meta["schema"]["parameters"]}
+                  for name, meta in self.allowed_functions.items()
+                  if all(perm in user_permissions for perm in meta["permissions"])
+              ]
+
+              response = client.chat.completions.create(
+                  model="gpt-4",
+                  messages=messages,
+                  functions=functions,
+                  function_call="auto"
+              )
+
+              message = response.choices[0].message
+
+              if message.function_call:
+                  func_name = message.function_call.name
+                  params = json.loads(message.function_call.arguments)
+
+                  # Validate before execution
+                  self.validate_parameters(func_name, params)
+
+                  # Execute
+                  return self.allowed_functions[func_name]["function"](**params)
+
+              return message.content
+    description:
+      tr: OpenAI function calling için güvenlik wrapper. Schema validation ve permission kontrolü.
+      en: Security wrapper for OpenAI function calling. Schema validation and permission control.
+  - title: Function Call Validation (Go)
+    lang: go
+    code: "package funcall\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\ntype FunctionDef struct {\n\tName        string   `json:\"name\"`\n\tAllowedFor  []string `json:\"allowed_for\"` // user roles\n\tDangerous   bool     `json:\"dangerous\"`\n}\n\ntype FunctionCallValidator struct {\n\tallowed map[string]FunctionDef\n}\n\nfunc NewValidator(defs []FunctionDef) *FunctionCallValidator {\n\tv := &FunctionCallValidator{allowed: make(map[string]FunctionDef)}\n\tfor _, d := range defs {\n\t\tv.allowed[d.Name] = d\n\t}\n\treturn v\n}\n\nfunc (v *FunctionCallValidator) Validate(name string, args json.RawMessage, userRole string) error {\n\tdef, ok := v.allowed[name]\n\tif !ok {\n\t\treturn fmt.Errorf(\"function %q not registered\", name)\n\t}\n\t// Check role authorization\n\tauthorized := false\n\tfor _, role := range def.AllowedFor {\n\t\tif role == userRole || role == \"*\" {\n\t\t\tauthorized = true\n\t\t\tbreak\n\t\t}\n\t}\n\tif !authorized {\n\t\treturn fmt.Errorf(\"user role %q not authorized for %q\", userRole, name)\n\t}\n\t// Validate JSON args are well-formed\n\tvar parsed map[string]interface{}\n\tif err := json.Unmarshal(args, &parsed); err != nil {\n\t\treturn fmt.Errorf(\"invalid args JSON: %w\", err)\n\t}\n\treturn nil\n}"
+    description:
+      tr: Go ile function call doğrulaması. Fonksiyon kayıt kontrolü, rol bazlı yetkilendirme ve JSON parametre doğrulaması yapar.
+      en: Go function call validation. Performs function registration check, role-based authorization, and JSON parameter validation.
+research:
+  - title: Function Calling with OpenAI GPT Models
+    url: https://platform.openai.com/docs/guides/function-calling
+    year: 2023
+    type: guide
+    authors: OpenAI
+  - title: "Gorilla: Large Language Model Connected with Massive APIs"
+    url: https://arxiv.org/abs/2305.15334
+    year: 2023
+    type: paper
+    authors: Shishir G. Patil, Tianjun Zhang, Xin Wang, Joseph E. Gonzalez
+tips:
+  - tr: Function parametrelerini JSON schema ile validate edin.
+    en: Validate function parameters with JSON schema.
+  - tr: Kullanıcı rolüne göre erişilebilir functionları filtreleyin.
+    en: Filter accessible functions based on user role.
+  - tr: Function execution'dan önce rate limiting uygulayın.
+    en: Apply rate limiting before function execution.

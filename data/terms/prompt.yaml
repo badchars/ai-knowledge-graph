@@ -1,0 +1,196 @@
+id: prompt
+name: Prompt
+fullName: Prompt
+category: prompting
+desc:
+  tr: |-
+    AI modeline gönderilen metnin tamamı — soru, talimat, örnek, bağlam bilgisi ne varsa hepsi prompt'tur. Prompt kalitesi, modelden alacağınız cevap kalitesini doğrudan belirler ve bu nedenle 'prompt engineering' başlıbaşına bir disiplin haline gelmiştir.
+
+    Basit bir 'bunu yap' yerine 'Sen deneyimli bir Python gelistiricişisin. Asagidaki fonksiyonu optimize et, Big-O karmasıkligini açıkla' yazmak çok daha iyi sonuç verir. Profesyönel prompt'lar genellikle dort bilesendan oluşur: rol tanimlamasi, bağlam bilgişi, spesifik talimat ve çıktı formatı.
+
+    [OpenAI](https://openai.com) ve [Anthropic](https://anthropic.com)'in kendi dokumantasyonlarinda prompt engineering rehberleri yayinlamistir. Prompt'un token uzunlugu modelin context window'una sayılir, dolayişiyla çok uzun prompt'lar cevap için az yer birakir.
+  en: |-
+    The entire text sent to an AI model — whether it's a question, instruction, example, or context, everything you provide iş the prompt. Prompt quality directly determines the quality of the response you get, which iş why 'prompt engineering' has become a discipline in its own right.
+
+    Writing 'You are an experienced Python developer. Optimize the following function and explain the Big-O complexity' produces far better results than a simple 'fix this code'. Professional prompts typically consist of four components: role definition, context information, specific instructions, and output format.
+
+    Both [OpenAI](https://openai.com) and [Anthropic](https://anthropic.com) have published prompt engineering guides in their documentation. The prompt's token length counts against the model's context window, so overly long prompts leave less room for the response.
+  fr: "L'ensemble du texte envoye a un modele d'IA — que ce soit une question, une instruction, un exemple ou du contexte, tout ce que vous fournissez constitue le prompt. La qualite du prompt determine directement la qualite de la reponse, c'est pourquoi le 'prompt engineering' est devenu une discipline a part entiere. Ecrire 'Vous etes un developpeur Python experimente. Optimisez la fonction suivante et expliquez la complexite Big-O' produit de bien meilleurs resultats qu'un simple 'corrigez ce code'. Les prompts professionnels comportent generalement quatre composantes : definition du role, informations contextuelles, instructions specifiques et format de sortie. OpenAI et Anthropic ont publie des guides de prompt engineering dans leur documentation. La longueur en tokens du prompt est debitee de la fenetre de contexte du modele."
+  zh: 发送给AI模型的全部文本——无论是问题、指令、示例还是上下文，你提供的一切都是prompt。Prompt质量直接决定你获得的回答质量，这就是为什么'提示工程'已成为一门独立学科。写'你是一名经验丰富的Python开发者。优化以下函数并解释Big-O复杂度'比简单的'修复这段代码'能产生好得多的结果。专业的prompt通常由四个部分组成：角色定义、上下文信息、具体指令和输出格式。OpenAI和Anthropic都在其文档中发布了提示工程指南。Prompt的token长度会计入模型的上下文窗口，因此过长的prompt会减少回复的可用空间。
+  ar: "كامل النص المُرسل إلى نموذج الذكاء الاصطناعي — سواء كان سؤالاً أو تعليمات أو مثالاً أو سياقاً فكل ما تقدمه هو المطالبة. جودة المطالبة تحدد مباشرة جودة الاستجابة لذا أصبحت 'هندسة المطالبات' تخصصاً قائماً بذاته. كتابة 'أنت مطور Python خبير. حسّن الدالة التالية واشرح تعقيد Big-O' تنتج نتائج أفضل بكثير من 'أصلح هذا الكود'. المطالبات الاحترافية تتكون عادة من أربعة مكونات: تحديد الدور ومعلومات السياق والتعليمات المحددة وتنسيق المخرجات. نشرت OpenAI وAnthropic أدلة هندسة المطالبات في وثائقهما. طول المطالبة بالرموز يُحسب من نافذة سياق النموذج لذا المطالبات الطويلة جداً تترك مساحة أقل للاستجابة."
+  ru: "Весь текст, отправляемый AI-модели — вопрос, инструкция, пример, контекст — всё это промпт. Качество промпта напрямую определяет качество ответа, поэтому 'prompt engineering' стал самостоятельной дисциплиной. Написать 'Ты опытный Python-разработчик. Оптимизируй следующую функцию и объясни Big-O сложность' даёт гораздо лучший результат, чем просто 'исправь этот код'. Профессиональные промпты обычно состоят из четырёх компонентов: определение роли, контекстная информация, конкретные инструкции и формат вывода. OpenAI и Anthropic опубликовали руководства по prompt engineering в своей документации. Длина промпта в токенах учитывается в контекстном окне модели, поэтому слишком длинные промпты оставляют меньше места для ответа."
+analogy:
+  tr: Asistana verdiğiniz iş talimatı. Ne kadar net olursa, sonuç o kadar iyi.
+  en: Work instructions given to an assistant. The clearer they are, the better the result.
+  fr: Instructions de travail données à un assistant. Plus elles sont claires, meilleur est le résultat.
+  zh: 给助手的工作指示。越清晰，结果越好。
+  ar: تعليمات العمل المقدمة للمساعد. كلما كانت أوضح، كان النتيجة أفضل.
+  ru: Рабочие инструкции, данные ассистенту. Чем они яснее, тем лучше результат.
+security:
+  - title:
+      tr: Prompt Injection Saldırıları
+      en: Prompt Injection Attacks
+      fr: Attaques par injection de prompt
+      zh: 提示注入攻击
+      ar: هجمات حقن الموجه
+      ru: Атаки инъекции промптов
+    description:
+      tr: Saldırganlar özel hazırlanmış prompt'larla model'in instruction-following davranışını manipüle edebilir, güvenlik kısıtlamalarını atlayabilir veya istenmeyen eylemler gerçekleştirebilir. Bu, LLM güvenliğindeki en kritik tehdittir.
+      en: Attackers can manipulate model's instruction-following behavior with specially crafted prompts, bypass security constraints, or trigger unintended actions. This is the most critical threat in LLM security.
+      fr: Les attaquants peuvent manipuler le comportement de suivi d'instructions du modele avec des prompts specialement conçus, contourner les contraintes de securite ou declencher des actions non souhaitees. C'est la menace la plus critique en securite LLM.
+      zh: 攻击者可以通过特制的提示操纵模型的指令遵循行为，绕过安全约束或触发意外操作。这是LLM安全中最关键的威胁。
+      ar: يمكن للمهاجمين التلاعب بسلوك اتباع التعليمات للنموذج من خلال موجهات مصممة خصيصاً، وتجاوز القيود الأمنية أو تشغيل إجراءات غير مقصودة. هذا هو التهديد الأكثر خطورة في أمان نماذج اللغة الكبيرة.
+      ru: Злоумышленники могут манипулировать поведением модели по следованию инструкциям с помощью специально подготовленных промптов, обходить ограничения безопасности или вызывать непредвиденные действия. Это самая критическая угроза в безопасности LLM.
+    severity: critical
+  - title:
+      tr: Prompt Leaking
+      en: Prompt Leaking
+      fr: Fuite de prompt
+      zh: 提示泄漏
+      ar: تسريب الموجه
+      ru: Утечка промпта
+    description:
+      tr: Kullanıcılar özel sorgularla system prompt'u, hidden instructions veya proprietary prompt engineering tekniklerini çıkarabilir. Bu, IP hırsızlığı ve reverse engineering'e yol açar.
+      en: Users can extract system prompts, hidden instructions, or proprietary prompt engineering techniques through special queries. This leads to IP theft and reverse engineering.
+      fr: Les utilisateurs peuvent extraire les prompts systeme, les instructions cachees ou les techniques proprietaires d'ingenierie de prompt via des requetes speciales. Cela conduit au vol de propriete intellectuelle et au reverse engineering.
+      zh: 用户可以通过特殊查询提取系统提示、隐藏指令或专有的提示工程技术。这导致知识产权窃取和逆向工程。
+      ar: يمكن للمستخدمين استخراج موجهات النظام أو التعليمات المخفية أو تقنيات هندسة الموجهات المملوكة من خلال استعلامات خاصة. يؤدي هذا إلى سرقة الملكية الفكرية والهندسة العكسية.
+      ru: Пользователи могут извлекать системные промпты, скрытые инструкции или проприетарные техники промпт-инжиниринга через специальные запросы. Это приводит к краже интеллектуальной собственности и обратной разработке.
+    severity: high
+  - title:
+      tr: Jailbreak Prompt'ları
+      en: Jailbreak Prompts
+      fr: Prompts de jailbreak
+      zh: 越狱提示
+      ar: موجهات كسر الحماية
+      ru: Джейлбрейк-промпты
+    description:
+      tr: DAN (Do Anything Now), roleplaying veya encoded prompt'lar gibi tekniklerle model'in safety training'i bypass edilebilir ve zararlı içerik üretilebilir.
+      en: Techniques like DAN (Do Anything Now), roleplaying, or encoded prompts can bypass model's safety training and generate harmful content.
+      fr: Des techniques comme DAN (Do Anything Now), le jeu de role ou les prompts encodes peuvent contourner l'entrainement de securite du modele et generer du contenu nuisible.
+      zh: DAN（Do Anything Now）、角色扮演或编码提示等技术可以绕过模型的安全训练并生成有害内容。
+      ar: يمكن لتقنيات مثل DAN (Do Anything Now) ولعب الأدوار أو الموجهات المشفرة تجاوز تدريب أمان النموذج وتوليد محتوى ضار.
+      ru: Техники вроде DAN (Do Anything Now), ролевой игры или кодированных промптов могут обойти обучение безопасности модели и генерировать вредоносный контент.
+    severity: critical
+  - title:
+      tr: Prompt Uzunluk Analizi ile Bilgi İfşası
+      en: Information Disclosure via Prompt Length Analysis
+      fr: Divulgation d'information par analyse de la longueur du prompt
+      zh: 通过提示长度分析的信息泄露
+      ar: كشف المعلومات عبر تحليل طول الموجه
+      ru: Раскрытие информации через анализ длины промпта
+    description:
+      tr: Prompt uzunluk limitleri ve token sayısı kısıtlamaları, uygulamanın system prompt uzunluğu ve yapılandırması hakkında dolaylı bilgi sızdırabilir.
+      en: Prompt length limits and token count constraints can indirectly leak information about application's system prompt length and configuration.
+      fr: Les limites de longueur de prompt et les contraintes de nombre de tokens peuvent indirectement divulguer des informations sur la longueur du prompt systeme et la configuration de l'application.
+      zh: 提示长度限制和token数量约束可以间接泄露有关应用程序系统提示长度和配置的信息。
+      ar: يمكن لحدود طول الموجه وقيود عدد الرموز تسريب معلومات بشكل غير مباشر حول طول موجه النظام وتكوين التطبيق.
+      ru: Ограничения длины промпта и количества токенов могут косвенно раскрывать информацию о длине системного промпта и конфигурации приложения.
+    severity: low
+config:
+  - title: Prompt Injection Detection
+    lang: python
+    code: |-
+      import re
+      from typing import List
+
+      class PromptGuard:
+          INJECTION_PATTERNS = [
+              r"ignore (previous|above|all) (instructions?|rules?|prompts?)",
+              r"you are now|from now on",
+              r"disregard (the |your )?system",
+              r"reveal (the |your )?(system )?prompt",
+              r"what (are|were) (you|your) (original )?instructions",
+              r"repeat (the )?(above|previous)",
+              r"<\|im_start\|>|<\|im_end\|>",  # ChatML injection
+              r"\[INST\]|\[\/INST\]",  # Mistral injection
+              r"### (System|Human|Assistant):",  # Role injection
+          ]
+          
+          def detect_injection(self, prompt: str) -> bool:
+              for pattern in self.INJECTION_PATTERNS:
+                  if re.search(pattern, prompt, re.IGNORECASE):
+                      return True
+              return False
+          
+          def sanitize(self, prompt: str) -> str:
+              if self.detect_injection(prompt):
+                  raise ValueError("Prompt injection attempt detected")
+              # Remove special tokens
+              prompt = re.sub(r"<\|[^|]+\|>", "", prompt)
+              return prompt
+
+      guard = PromptGuard()
+      user_input = guard.sanitize(request.prompt)
+    description:
+      tr: Prompt injection pattern'larını tespit edin ve tehlikeli token'ları filtreleyin.
+      en: Detect prompt injection patterns and filter dangerous tokens.
+  - title: Prompt Monitoring and Logging
+    lang: python
+    code: |-
+      # Secure prompt logging with PII filtering
+      import hashlib
+      import logging
+      from presidio_analyzer import AnalyzerEngine
+
+      analyzer = AnalyzerEngine()
+
+      def log_prompt_securely(prompt: str, user_id: str):
+          # Detect PII
+          results = analyzer.analyze(
+              text=prompt,
+              entities=["EMAIL_ADDRESS", "PHONE_NUMBER", "CREDIT_CARD", "PERSON"],
+              language="en"
+          )
+          
+          # Hash sensitive prompt for audit
+          prompt_hash = hashlib.sha256(prompt.encode()).hexdigest()
+          
+          # Log metadata only, not full prompt
+          logging.info({
+              "event": "prompt_received",
+              "user_id": user_id,
+              "prompt_hash": prompt_hash[:16],
+              "length": len(prompt),
+              "contains_pii": len(results) > 0,
+              "injection_risk": guard.detect_injection(prompt)
+          })
+
+      log_prompt_securely(user_prompt, session.user_id)
+    description:
+      tr: Prompt'ları log ederken PII tespit edin ve sadece metadata kaydedin. Full prompt'u loglamayın.
+      en: Detect PII when logging prompts and record only metadata. Don't log full prompts.
+  - title: Prompt Input Sanitization (Go)
+    lang: go
+    code: "package prompt\n\nimport (\n\t\"strings\"\n\t\"unicode/utf8\"\n)\n\nconst MaxPromptLen = 4096\n\n// SanitizePrompt validates and cleans user prompt input\nfunc SanitizePrompt(input string) (string, error) {\n\tif !utf8.ValidString(input) {\n\t\treturn \"\", fmt.Errorf(\"invalid UTF-8 input\")\n\t}\n\tif utf8.RuneCountInString(input) > MaxPromptLen {\n\t\treturn \"\", fmt.Errorf(\"prompt exceeds max length %d\", MaxPromptLen)\n\t}\n\t// Strip null bytes and control characters\n\tvar b strings.Builder\n\tfor _, r := range input {\n\t\tif r == '\\n' || r == '\\t' || r >= 32 {\n\t\t\tb.WriteRune(r)\n\t\t}\n\t}\n\t// Remove common injection patterns\n\tresult := b.String()\n\tresult = strings.ReplaceAll(result, \"ignore previous instructions\", \"[filtered]\")\n\tresult = strings.ReplaceAll(result, \"ignore all instructions\", \"[filtered]\")\n\treturn strings.TrimSpace(result), nil\n}"
+    description:
+      tr: Go ile prompt girdisini doğrulayan ve temizleyen fonksiyon. UTF-8 doğrulaması, uzunluk sınırı ve injection pattern filtreleme içerir.
+      en: Go function that validates and sanitizes prompt input. Includes UTF-8 validation, length limits, and injection pattern filtering.
+research:
+  - title: Prompt Injection Attacks and Defenses in LLM-Integrated Applications
+    url: https://arxiv.org/abs/2310.12815
+    year: 2023
+    type: paper
+    authors: Yupei Liu, Yuqi Jia, Runpeng Geng, Jinyuan Jia, Neil Zhenqiang Gong
+  - title: Universal and Transferable Adversarial Attacks on Aligned Language Models
+    url: https://arxiv.org/abs/2307.15043
+    year: 2023
+    type: paper
+    authors: Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr
+  - title: Prompt Injection Defenses - OWASP Top 10 for LLM
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+  - title: LLM Guard - Prompt Security Toolkit
+    url: https://github.com/protectai/llm-guard
+    year: 2024
+    type: tool
+    authors: Protect AI
+tips:
+  - tr: User prompt ile system prompt'u kesinlikle ayırın; concatenation yerine chat template kullanın.
+    en: Strictly separate user prompts from system prompts; use chat templates instead of concatenation.
+  - tr: Prompt length limit koyun (max 2000-4000 token) ve rate limiting uygulayın.
+    en: Set prompt length limits (max 2000-4000 tokens) and apply rate limiting.
+  - tr: Şüpheli prompt pattern'larını gerçek zamanlı tespit edin ve block edin.
+    en: Detect and block suspicious prompt patterns in real-time.

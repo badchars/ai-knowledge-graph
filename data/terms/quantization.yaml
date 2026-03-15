@@ -1,0 +1,167 @@
+id: quantization
+name: Quantization
+fullName: Quantization
+category: quantization
+desc:
+  tr: |-
+    AI modellerini, sayılarının hassasiyetini düşürüp küçültmeye yarayan sıkıştırma tekniği. Standart bir model her parametreyi 16-bit kayan nokta sayısı olarak saklar, ancak quantization bunu 8-bit, 4-bit hatta 2-bit'e dusurur — bellek kullanımini 2-8x azaltir.
+
+    Örneğin [Llama 3](https://ai.meta.com/llama/) 70B normalde ~140GB bellek gerektirir (iki [A100](https://www.nvidia.com/en-us/data-center/a100/) GPU), ancak 4-bit quantization ile 24GB'lik tek bir [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/)'a sigar.
+
+    Karsiliginda kalitede küçük bir dusus olur, genellikle benchmark'larda %1-3. Populer quantization yontemleri arasinda [GPTQ](https://arxiv.org/abs/2210.17323), [AWQ](https://arxiv.org/abs/2306.00978) ve GGUF yer alir, her biri hiz, kalite ve uyumluluk acişindan farklı dengeler sunar.
+  en: |-
+    A compression technique that shrinks AI models by reducing the precision of their numbers. A standard model stores each parameter as a 16-bit floating point number, but quantization can reduce this to 8-bit, 4-bit, or even 2-bit — cutting memory usage by 2-8x.
+
+    For example, [Llama 3](https://ai.meta.com/llama/) 70B normally requires ~140GB of memory (two [A100](https://www.nvidia.com/en-us/data-center/a100/) GPUs), but with 4-bit quantization it fits on a single [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/) with 24GB.
+
+    The tradeoff iş a small drop in quality, typically 1-3% on benchmarks. Popular quantization methods include [GPTQ](https://arxiv.org/abs/2210.17323), [AWQ](https://arxiv.org/abs/2306.00978), and GGUF, each with different tradeoffs between speed, quality, and compatibility.
+  fr: Une technique de compression qui reduit la taille des modeles d'IA en diminuant la precision de leurs nombres. Un modele standard stocke chaque parametre comme un nombre a virgule flottante 16 bits, mais la quantification peut reduire cela a 8, 4 ou meme 2 bits — reduisant l'utilisation memoire de 2 a 8 fois. Par exemple, Llama 3 70B necessite normalement ~140 Go de memoire (deux GPU A100), mais avec une quantification 4 bits il tient sur un seul RTX 4090 avec 24 Go. Le compromis est une legere baisse de qualite, typiquement 1-3% sur les benchmarks. Les methodes populaires incluent GPTQ, AWQ et GGUF, chacune avec des compromis differents entre vitesse, qualite et compatibilite.
+  zh: 一种通过降低数字精度来缩小AI模型的压缩技术。标准模型将每个参数存储为16位浮点数，但量化可以将其降至8位、4位甚至2位——将内存使用减少2-8倍。例如，Llama 3 70B通常需要约140GB内存（两块A100 GPU），但经过4位量化后可以装入一块24GB的RTX 4090。代价是质量略有下降，通常在基准测试中为1-3%。流行的量化方法包括GPTQ、AWQ和GGUF，每种在速度、质量和兼容性之间有不同的权衡。
+  ar: تقنية ضغط تقلص نماذج الذكاء الاصطناعي عن طريق تقليل دقة أرقامها. يخزن النموذج القياسي كل معامل كرقم فاصلة عائمة 16 بت، لكن التكميم يمكن أن يقلل ذلك إلى 8 بت أو 4 بت أو حتى 2 بت — مما يقلل استخدام الذاكرة بمقدار 2-8 مرات. على سبيل المثال، يتطلب Llama 3 70B عادةً حوالي 140 جيجابايت من الذاكرة (وحدتي GPU A100)، لكن مع التكميم 4 بت يتسع في RTX 4090 واحد بذاكرة 24 جيجابايت. المقايضة هي انخفاض طفيف في الجودة، عادةً 1-3% في المعايير. تشمل طرق التكميم الشائعة GPTQ وAWQ وGGUF، لكل منها مقايضات مختلفة بين السرعة والجودة والتوافق.
+  ru: Техника сжатия, уменьшающая модели ИИ за счёт снижения точности чисел. Стандартная модель хранит каждый параметр как 16-битное число с плавающей точкой, но квантование может снизить это до 8, 4 или даже 2 бит — сокращая потребление памяти в 2-8 раз. Например, Llama 3 70B обычно требует ~140 ГБ памяти (два GPU A100), но с 4-битным квантованием помещается на одну RTX 4090 с 24 ГБ. Компромисс — небольшое снижение качества, обычно 1-3% на бенчмарках. Популярные методы квантования включают GPTQ, AWQ и GGUF, каждый с разными компромиссами между скоростью, качеством и совместимостью.
+analogy:
+  tr: Yüksek çözünürlüklü fotoğrafı sıkıştırmak. Biraz detay kaybedersin ama resim hala anlaşılır.
+  en: Compressing a high-resolution photo. You lose some detail, but the image iş still recognizable.
+  fr: Compresser une photo haute résolution. Vous perdez quelques détails, mais l'image reste reconnaissable.
+  zh: 压缩高分辨率照片。你会丢失一些细节，但图像仍然可识别。
+  ar: ضغط صورة عالية الدقة. تفقد بعض التفاصيل، لكن الصورة لا تزال قابلة للتعرف عليها.
+  ru: Сжатие фотографии высокого разрешения. Вы теряете некоторые детали, но изображение все еще узнаваемо.
+security:
+  - title:
+      tr: Quantization ile Backdoor Gizleme
+      en: Hiding Backdoors via Quantization
+      fr: Dissimulation de backdoors par quantification
+      zh: 通过量化隐藏后门
+      ar: إخفاء الأبواب الخلفية عبر التكميم
+      ru: Сокрытие бэкдоров через квантизацию
+    description:
+      tr: Saldırganlar, quantization sırasında hassasiyet kaybından faydalanarak backdoor'ları gizleyebilir. FP32'den INT8'e çevirirken backdoor trigger'ları ayakta kalırken detection yöntemleri başarısız olabilir.
+      en: Attackers can hide backdoors by exploiting precision loss during quantization. When converting from FP32 to INT8, backdoor triggers survive while detection methods may fail.
+      fr: Les attaquants peuvent cacher des backdoors en exploitant la perte de précision pendant la quantification. Lors de la conversion de FP32 en INT8, les déclencheurs de backdoor survivent tandis que les méthodes de détection peuvent échouer.
+      zh: 攻击者可以利用量化期间的精度损失来隐藏后门。从FP32转换为INT8时，后门触发器存活而检测方法可能失败。
+      ar: يمكن للمهاجمين إخفاء الأبواب الخلفية باستغلال فقدان الدقة أثناء التكميم. عند التحويل من FP32 إلى INT8، تنجو محفزات الباب الخلفي بينما قد تفشل طرق الكشف.
+      ru: Злоумышленники могут скрывать бэкдоры, эксплуатируя потерю точности при квантизации. При конвертации из FP32 в INT8 триггеры бэкдора выживают, тогда как методы обнаружения могут не сработать.
+    severity: high
+  - title:
+      tr: Quantized Model Integrity
+      en: Quantized Model Integrity
+      fr: Intégrité du modèle quantifié
+      zh: 量化模型完整性
+      ar: سلامة النموذج المكمم
+      ru: Целостность квантизированной модели
+    description:
+      tr: Quantization işlemi sırasında model ağırlıkları değiştirildiği için, orijinal imzalar geçersiz hale gelir. Quantized model'in bütünlüğünü doğrulamak zorlaşır.
+      en: Since model weights are modified during quantization, original signatures become invalid. Verifying the integrity of quantized models becomes challenging.
+      fr: Comme les poids du modèle sont modifiés pendant la quantification, les signatures originales deviennent invalides. La vérification de l'intégrité des modèles quantifiés devient difficile.
+      zh: 由于量化期间模型权重被修改，原始签名变得无效。验证量化模型的完整性变得困难。
+      ar: نظراً لتعديل أوزان النموذج أثناء التكميم، تصبح التوقيعات الأصلية غير صالحة. يصبح التحقق من سلامة النماذج المكممة أمراً صعباً.
+      ru: Поскольку веса модели модифицируются при квантизации, оригинальные подписи становятся недействительными. Верификация целостности квантизированных моделей усложняется.
+    severity: medium
+  - title:
+      tr: Adversarial Quantization Attack
+      en: Adversarial Quantization Attack
+      fr: Attaque de quantification adversariale
+      zh: 对抗性量化攻击
+      ar: هجوم التكميم العدائي
+      ru: Состязательная атака квантизации
+    description:
+      tr: Özel hazırlanmış weight değerleri, quantization sonrası aşırı performans kaybına veya yanlış davranışlara neden olabilir. Quantization-aware training ile bile manipülasyon mümkündür.
+      en: Specially crafted weight values can cause severe performance degradation or incorrect behavior after quantization. Manipulation is possible even with quantization-aware training.
+      fr: Des valeurs de poids spécialement conçues peuvent causer une dégradation sévère des performances ou un comportement incorrect après quantification. La manipulation est possible même avec l'entraînement conscient de la quantification.
+      zh: 特制的权重值可能导致量化后严重的性能下降或错误行为。即使使用量化感知训练也可能被操纵。
+      ar: قيم الأوزان المصنوعة خصيصاً يمكن أن تسبب تدهوراً حاداً في الأداء أو سلوكاً خاطئاً بعد التكميم. التلاعب ممكن حتى مع التدريب الواعي بالتكميم.
+      ru: Специально подобранные значения весов могут вызвать серьёзную деградацию производительности или некорректное поведение после квантизации. Манипуляция возможна даже при квantization-aware training.
+    severity: medium
+  - title:
+      tr: Quantization Parametreleri Bilgi Sızıntısı
+      en: Quantization Parameters Information Disclosure
+      fr: Divulgation des paramètres de quantification
+      zh: 量化参数信息泄露
+      ar: تسريب معلومات معلمات التكميم
+      ru: Утечка информации о параметрах квантизации
+    description:
+      tr: Model'in quantization format'ı (GPTQ, AWQ, GGUF, bitsandbytes), bit width ve group size bilgileri model dosya header'larından veya inference timing analizi ile çıkarılabilir. Bu bilgiler model'in precision-performance tradeoff'unu ve potential numerical weakness'larını reveal eder.
+      en: Model's quantization format (GPTQ, AWQ, GGUF, bitsandbytes), bit width, and group size information can be extracted from model file headers or inference timing analysis. This information reveals model's precision-performance tradeoff and potential numerical weaknesses.
+      fr: Le format de quantification du modèle (GPTQ, AWQ, GGUF, bitsandbytes), la largeur de bit et la taille de groupe peuvent être extraits des en-têtes de fichier ou de l'analyse de timing d'inférence. Ces informations révèlent le compromis précision-performance et les faiblesses numériques potentielles.
+      zh: 模型的量化格式（GPTQ、AWQ、GGUF、bitsandbytes）、位宽和组大小信息可从模型文件头或推理时序分析中提取。此信息揭示模型的精度-性能权衡和潜在数值弱点。
+      ar: يمكن استخراج تنسيق تكميم النموذج وعرض البت وحجم المجموعة من رؤوس ملفات النموذج أو تحليل توقيت الاستدلال. تكشف هذه المعلومات عن مفاضلة الدقة-الأداء ونقاط الضعف العددية المحتملة.
+      ru: Формат квантизации модели (GPTQ, AWQ, GGUF, bitsandbytes), разрядность и размер группы могут быть извлечены из заголовков файлов или анализа тайминга инференса. Эта информация раскрывает компромисс точность-производительность и потенциальные числовые уязвимости.
+    severity: low
+config:
+  - title: Secure Quantization Pipeline
+    lang: python
+    code: |-
+      import torch
+      from torch.quantization import quantize_dynamic
+
+      def secure_quantize(model, verify_output=True):
+          # 1. Checkpoint before quantization
+          torch.save(model.state_dict(), 'pre_quant.pt')
+
+          # 2. Quantize
+          quantized = quantize_dynamic(
+              model,
+              {torch.nn.Linear},
+              dtype=torch.qint8
+          )
+
+          # 3. Validation test
+          if verify_output:
+              test_input = torch.randn(1, 768)
+              orig_out = model(test_input)
+              quant_out = quantized(test_input)
+
+              diff = (orig_out - quant_out).abs().max()
+              if diff > 0.1:  # Threshold
+                  raise ValueError(f"Quantization error too large: {diff}")
+
+          return quantized
+    description:
+      tr: Quantization öncesi/sonrası output'ları karşılaştırarak aşırı sapmaları tespit edin. Bu, adversarial quantization attack'leri önler.
+      en: Detect excessive deviations by comparing pre/post quantization outputs. This prevents adversarial quantization attacks.
+  - title: Quantized Model Signing
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Sign quantized model with metadata
+      MODEL_FILE="model_int8.gguf"
+
+      # Create manifest with quantization params
+      cat > manifest.json <<EOF
+      {
+        "model": "$MODEL_FILE",
+        "quant_type": "INT8",
+        "original_hash": "$(sha256sum model_fp32.pt | cut -d' ' -f1)",
+        "quantized_hash": "$(sha256sum $MODEL_FILE | cut -d' ' -f1)",
+        "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+      }
+      EOF
+
+      # Sign manifest
+      gpg --detach-sign --armor manifest.json
+    description:
+      tr: Quantized model'i metadata ile birlikte imzalayın. Orijinal model hash'ini de kaydedin ki doğrulama yapılabilsin.
+      en: Sign quantized models with metadata. Record original model hash for verification.
+research:
+  - title: "Qu-ANTI-zation: Exploiting Quantization Artifacts for Achieving Adversarial Outcomes"
+    url: https://arxiv.org/abs/2110.13541
+    year: 2021
+    type: paper
+    authors: Sanghyun Hong, Michael-Andrei Panaitescu-Liess, Yigitcan Kaya, Tudor Dumitras
+  - title: "RIBAC: Towards Robust and Imperceptible Backdoor Attack against Compact DNN"
+    url: https://arxiv.org/abs/2208.10608
+    year: 2022
+    type: paper
+    authors: Huy Phan, Yi Xie, Jian Liu, Yingying Chen, Bo Yuan
+  - title: A White Paper on Neural Network Quantization
+    url: https://arxiv.org/abs/2106.08295
+    year: 2021
+    type: paper
+    authors: Markus Nagel, Marios Fournarakis, Rana Ali Amjad
+tips:
+  - tr: Quantization öncesi ve sonrası model davranışını test setinde mutlaka karşılaştırın.
+    en: Always compare model behavior before and after quantization on test sets.
+  - tr: GGUF gibi standart formatlar kullanın ve metadata'yı doğrulayın.
+    en: Use standard formats like GGUF and verify metadata.
+  - tr: Quantization parametrelerini (bit width, calibration data) log edin ve versiyonlayın.
+    en: Log and version quantization parameters (bit width, calibration data).

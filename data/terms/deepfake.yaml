@@ -1,0 +1,226 @@
+id: deepfake
+name: Deepfake
+fullName: Deepfake
+category: ai-security
+desc:
+  tr: |-
+    Deepfake, derin öğrenme (deep learning) teknikleriyle gerçekçi sahte görüntü, video veya ses üreten AI tabanlı medya manipülasyonudur. GAN (Generative Adversarial Network) ve [Diffusion Models](https://arxiv.org/abs/2006.11239) kullanarak bir kişinin yüzünü başka bir kişinin vücuduna yerleştirme (face-swap), ses klonlama veya tamamen sentetik kişi oluşturma yapılabilir.
+
+    Güvenlik açısından deepfake'ler sosyal mühendislik, CEO fraud, disinformation ve identity theft için kullanılır. 2023'te Hong Kong'da deepfake video call ile $25M dolandırıcılık gerçekleştirilmiştir. [FaceSwap](https://github.com/deepfakes/faceswap), [DeepFaceLab](https://github.com/iperov/DeepFaceLab) gibi açık kaynak araçlar deepfake oluşturmayı kolaylaştırmıştır.
+
+    Deepfake detection yöntemleri arasında temporal consistency analysis, biometric liveness detection, [blockchain-based provenance](https://arxiv.org/abs/2001.09567) ve AI watermarking bulunur. Production'da yüz tanıma ve ses doğrulama sistemlerinde mutlaka liveness check yapılmalıdır.
+  en: |-
+    Deepfake is AI-based media manipulation that produces realistic fake images, videos, or audio using deep learning techniques. Using GANs (Generative Adversarial Networks) and [Diffusion Models](https://arxiv.org/abs/2006.11239), one can perform face-swapping (placing one person's face on another's body), voice cloning, or creating entirely synthetic people.
+
+    From a security perspective, deepfakes are used for social engineering, CEO fraud, disinformation, and identity theft. In 2023, a $25M fraud was executed in Hong Kong using a deepfake video call. Open-source tools like [FaceSwap](https://github.com/deepfakes/faceswap) and [DeepFaceLab](https://github.com/iperov/DeepFaceLab) have made deepfake creation accessible.
+
+    Deepfake detection methods include temporal consistency analysis, biometric liveness detection, [blockchain-based provenance](https://arxiv.org/abs/2001.09567), and AI watermarking. Production face recognition and voice verification systems must implement liveness checks.
+  fr: Le deepfake est une manipulation médiatique basée sur l'IA qui produit des images, vidéos ou audios faux réalistes à l'aide de techniques d'apprentissage profond. En utilisant des GAN et des modèles de diffusion, on peut effectuer l'échange de visages, le clonage vocal ou créer des personnes entièrement synthétiques.
+  zh: 深度伪造是使用深度学习技术生成逼真假图像、视频或音频的基于AI的媒体操纵。使用GAN和扩散模型，可以进行换脸（将一个人的脸放在另一个人的身体上）、语音克隆或创建完全合成的人。
+  ar: التزييف العميق هو تلاعب إعلامي قائم على الذكاء الاصطناعي ينتج صوراً أو مقاطع فيديو أو صوتاً مزيفاً واقعياً باستخدام تقنيات التعلم العميق. باستخدام GAN ونماذج الانتشار، يمكن إجراء تبديل الوجوه أو استنساخ الصوت أو إنشاء أشخاص اصطناعيين بالكامل.
+  ru: Дипфейк — это манипуляция медиа на основе ИИ, которая производит реалистичные поддельные изображения, видео или аудио с помощью техник глубокого обучения. Используя GAN и диффузионные модели, можно выполнять обмен лицами, клонирование голоса или создание полностью синтетических людей.
+analogy:
+  tr: Deepfake bir makyöz değil, mükemmel bir maske ustası gibidir — sadece yüzeyi değil, mimikleri, ses tonunu, hareketleri de klonlayarak gerçeğinden ayırt edilemez bir kopya üretir.
+  en: Deepfake is not like a makeup artist, but like a perfect mask maker — cloning not just the surface, but facial expressions, voice tone, and movements to produce a copy indistinguishable from the real thing.
+  fr: Le deepfake n'est pas comme un maquilleur, mais comme un fabricant de masques parfait — clonant non seulement la surface, mais les expressions faciales, le ton de la voix et les mouvements pour produire une copie indiscernable de la réalité.
+  zh: 深度伪造不像化妆师，而像完美的面具制作者——不仅克隆表面，还克隆面部表情、语调和动作，以产生与真实无法区分的副本。
+  ar: التزييف العميق ليس مثل فنان الماكياج، بل مثل صانع أقنعة مثالي — يستنسخ ليس السطح فقط، بل تعابير الوجه ونبرة الصوت والحركات لإنتاج نسخة لا يمكن تمييزها عن الحقيقة.
+  ru: Дипфейк — не как визажист, а как мастер по изготовлению идеальных масок — клонирующий не только поверхность, но и мимику, тон голоса и движения, чтобы создать копию, неотличимую от оригинала.
+security:
+  - title:
+      tr: Face-Swap Deepfake for Biometric Bypass
+      en: Face-Swap Deepfake for Biometric Bypass
+      fr: Deepfake Face-Swap pour contournement biométrique
+      zh: 换脸深度伪造绕过生物识别验证
+      ar: التزييف العميق بتبديل الوجه لتجاوز المصادقة البيومترية
+      ru: Deepfake-подмена лица для обхода биометрической аутентификации
+    description:
+      tr: "Saldırgan, hedef kişinin sosyal medya fotoğraflarını toplayıp FaceSwap/DeepFaceLab ile kendi yüzünü hedefin yüzüyle değiştirir. Bu deepfake video ile biometric authentication (yüz tanıma, liveness detection) sistemlerini bypass eder. Özellikle banking app’lerde selfie-based KYC doğrulaması bu saldırıya karşı savunmasızdır. 2023’te UK’da deepfake ile £5M’lik banka fraud gerçekleştirilmiştir. Savunma: 3D liveness detection (depth sensor, challenge-response), temporal consistency check (blink rate, micro-expressions), anti-spoofing model (train on deepfake dataset)."
+      en: "The attacker collects the target person’s social media photos and uses FaceSwap/DeepFaceLab to swap their own face with the target’s. This deepfake video bypasses biometric authentication (face recognition, liveness detection) systems. Banking apps with selfie-based KYC verification are especially vulnerable to this attack. In 2023, a £5M bank fraud was executed in the UK using deepfake. Defense: 3D liveness detection (depth sensor, challenge-response), temporal consistency check (blink rate, micro-expressions), anti-spoofing model (train on deepfake dataset)."
+      fr: "L’attaquant collecte les photos de la cible sur les réseaux sociaux et utilise FaceSwap/DeepFaceLab pour substituer son propre visage à celui de la cible. Cette vidéo deepfake contourne les systèmes d’authentification biométrique (reconnaissance faciale, détection de vivacité). Les applications bancaires utilisant la vérification KYC par selfie sont particulièrement vulnérables. En 2023, une fraude bancaire de 5 M£ a été réalisée au Royaume-Uni à l’aide de deepfake. Défense : détection de vivacité 3D (capteur de profondeur, défi-réponse), vérification de cohérence temporelle (fréquence de clignement, micro-expressions), modèle anti-usurpation (entraîné sur un jeu de données deepfake)."
+      zh: 攻击者收集目标人物的社交媒体照片，利用FaceSwap/DeepFaceLab将自己的脸替换为目标的脸。该深度伪造视频可绕过生物识别认证（人脸识别、活体检测）系统。使用自拍式KYC验证的银行应用尤其容易受到此类攻击。2023年，英国发生了一起利用深度伪造技术的500万英鎊银行欺诈案。防御措施：3D活体检测（深度传感器、挑战-响应）、时间一致性检查（眨眼频率、微表情）、反欺骗模型（使用深度伪造数据集训练）。
+      ar: "يجمع المهاجم صور الشخص المستهدف من وسائل التواصل الاجتماعي ويستخدم FaceSwap/DeepFaceLab لاستبدال وجهه بوجه الهدف. يتجاوز فيديو التزييف العميق هذا أنظمة المصادقة البيومترية (التعرف على الوجه، كشف الحيوية). تطبيقات البنوك التي تعتمد على التحقق من الهوية عبر صور السيلفي معرضة بشكل خاص لهذا الهجوم. في عام 2023، تم تنفيذ عملية احتيال مصرفي بقيمة 5 ملايين جنيه إسترليني في المملكة المتحدة باستخدام التزييف العميق. الدفاع: كشف الحيوية ثلاثي الأبعاد (مستشعر العمق، التحدي والاستجابة)، فحص الاتساق الزمني (معدل الرمش، التعبيرات الدقيقة)، نموذج مضاد للانتحال (مدرّب على مجموعة بيانات التزييف العميق)."
+      ru: "Злоумышленник собирает фотографии жертвы из социальных сетей и с помощью FaceSwap/DeepFaceLab подменяет своё лицо лицом жертвы. Это deepfake-видео позволяет обойти системы биометрической аутентификации (распознавание лиц, обнаружение живого присутствия). Банковские приложения с KYC-верификацией по селфи особенно уязвимы. В 2023 году в Великобритании с помощью deepfake было совершено мошенничество на 5 млн фунтов. Защита: 3D-обнаружение живого присутствия (датчик глубины, «вызов-ответ»), проверка временной согласованности (частота моргания, микровыражения), антиспуфинг-модель (обученная на наборе deepfake-данных)."
+    severity: critical
+  - title:
+      tr: Voice Cloning for CEO Fraud (Vishing)
+      en: Voice Cloning for CEO Fraud (Vishing)
+      fr: Clonage vocal pour fraude au PDG (hameçonnage vocal)
+      zh: 语音克隆实施CEO欺诈（语音钓鱼）
+      ar: استنساخ الصوت لاحتيال انتحال شخصية المدير التنفيذي (التصيد الصوتي)
+      ru: Клонирование голоса для мошенничества от имени гендиректора (вишинг)
+    description:
+      tr: "Saldırgan, CEO’nun podcast, konferans konuşması gibi açık kaynaklardan ses örnekleri toplayıp [ElevenLabs](https://elevenlabs.io) veya [Resemble.ai](https://www.resemble.ai) gibi voice cloning servisleri ile ses modelini oluşturur. Sonra CFO’yu arayıp ‘acil para transferi’ talimatı verir. 2019’da UK’da deepfake voice ile €220K dolandırıcılık yapılmıştır. Savunma: voice biometric enrollment (baseline recording), challenge-response (random word verification), out-of-band confirmation (SMS/email double-check), voice deepfake detection model."
+      en: "The attacker collects voice samples from the CEO’s podcasts, conference talks, etc., and creates a voice model using voice cloning services like [ElevenLabs](https://elevenlabs.io) or [Resemble.ai](https://www.resemble.ai). Then calls the CFO giving ‘urgent money transfer’ instructions. In 2019, a €220K fraud was executed in the UK using deepfake voice. Defense: voice biometric enrollment (baseline recording), challenge-response (random word verification), out-of-band confirmation (SMS/email double-check), voice deepfake detection model."
+      fr: "L’attaquant collecte des échantillons vocaux du PDG à partir de podcasts, conférences, etc., puis crée un modèle vocal à l’aide de services de clonage vocal tels que [ElevenLabs](https://elevenlabs.io) ou [Resemble.ai](https://www.resemble.ai). Il appelle ensuite le directeur financier en donnant des instructions de «\_virement urgent\_». En 2019, une fraude de 220\_000\_€ a été commise au Royaume-Uni via une voix deepfake. Défense : enregistrement biométrique vocal (référence), défi-réponse (vérification par mot aléatoire), confirmation hors bande (double vérification SMS/e-mail), modèle de détection de deepfake vocal."
+      zh: 攻击者从CEO的播客、会议演讲等公开来源收集语音样本，然后利用[ElevenLabs](https://elevenlabs.io)或[Resemble.ai](https://www.resemble.ai)等语音克隆服务创建语音模型。随后致电CFO下达“紧急转账”指令。2019年，英国发生了一起利用深度伪造语音实施的22万欧元欺诈案。防御措施：语音生物特征注册（基线录音）、挑战-响应（随机词验证）、带外确认（短信/邮件双重验证）、语音深度伪造检测模型。
+      ar: "يجمع المهاجم عينات صوتية من بودكاست المدير التنفيذي ومحاضراته في المؤتمرات، ثم ينشئ نموذجًا صوتيًا باستخدام خدمات استنساخ الصوت مثل [ElevenLabs](https://elevenlabs.io) أو [Resemble.ai](https://www.resemble.ai). بعد ذلك يتصل بالمدير المالي ويعطي تعليمات بـ «تحويل أموال عاجل». في عام 2019، تم تنفيذ عملية احتيال بقيمة 220 ألف يورو في المملكة المتحدة باستخدام صوت مزيف. الدفاع: تسجيل بصمة صوتية حيوية (تسجيل مرجعي)، التحدي والاستجابة (التحقق بكلمة عشوائية)، تأكيد عبر قناة بديلة (تحقق مزدوج عبر SMS/بريد إلكتروني)، نموذج كشف التزييف العميق الصوتي."
+      ru: "Злоумышленник собирает образцы голоса гендиректора из подкастов, конференций и т.\_д., затем создаёт голосовую модель через сервисы клонирования голоса ([ElevenLabs](https://elevenlabs.io), [Resemble.ai](https://www.resemble.ai)). Звонит финдиректору с указанием о «срочном переводе средств». В 2019 г. в Великобритании с помощью deepfake-голоса совершено мошенничество на 220 тыс. евро. Защита: биометрическая регистрация голоса (эталонная запись), «вызов-ответ» (проверка случайным словом), подтверждение по альтернативному каналу (SMS/e-mail), модель обнаружения голосовых deepfake."
+    severity: critical
+  - title:
+      tr: Disinformation Campaign with Synthetic Video
+      en: Disinformation Campaign with Synthetic Video
+      fr: Campagne de désinformation par vidéo synthétique
+      zh: 利用合成视频发起虚假信息攻势
+      ar: حملة تضليل إعلامي باستخدام الفيديو الاصطناعي
+      ru: Дезинформационная кампания с использованием синтетического видео
+    description:
+      tr: "Saldırgan, bir politikacının deepfake video’sunu oluşturup yanlış bilgi yayar (örn: seçim sabotajı, hisse manipülasyonu). Sosyal medyada viral olan deepfake video gerçek sanılarak kitlesel panik yaratabilir. 2024 seçimlerinde deepfake videolar yaygın kullanılmıştır. Detection zordur çünkü high-quality deepfake’ler görsel olarak mükemmeldir. Savunma: blockchain-based content provenance (C2PA standard), social media platform’ların AI-generated content labeling zorunluluğu, reverse image search (TinEye, Google Lens)."
+      en: "The attacker creates a deepfake video of a politician and spreads misinformation (e.g., election sabotage, stock manipulation). Deepfake videos going viral on social media can be mistaken for real and create mass panic. Deepfake videos were widely used in the 2024 elections. Detection is difficult because high-quality deepfakes are visually perfect. Defense: blockchain-based content provenance (C2PA standard), social media platforms mandating AI-generated content labeling, reverse image search (TinEye, Google Lens)."
+      fr: "L’attaquant crée une vidéo deepfake d’un politicien et diffuse de la désinformation (sabotage électoral, manipulation boursière). Les vidéos deepfake virales sur les réseaux sociaux peuvent être prises pour vraies et provoquer une panique massive. Elles ont été largement utilisées lors des élections de 2024. La détection est difficile car les deepfakes de haute qualité sont visuellement parfaits. Défense : provenance de contenu basée sur la blockchain (norme C2PA), étiquetage obligatoire du contenu généré par l’IA, recherche d’image inversée (TinEye, Google Lens)."
+      zh: 攻击者制作政治人物的深度伪造视频并传播虚假信息（如选举破坏、股价操纵）。在社交媒体上疯传的深度伪造视频可能被误认为真实内容，引发大规模恐慌。2024年选举中深度伪造视频被广泛使用。检测十分困难，因为高质量深度伪造视觉上几乎完美。防御措施：基于区块链的内容溯源（C2PA标准）、社交媒体平台强制标注AI生成内容、反向图片搜索（TinEye、Google Lens）。
+      ar: "ينشئ المهاجم فيديو مزيفًا بتقنية التزييف العميق لسياسي وينشر معلومات مضللة (تخريب انتخابات، تلاعب بالأسهم). قد تُعتبر فيديوهات التزييف العميق المنتشرة حقيقية وتسبب ذعرًا جماعيًا. استُخدمت على نطاق واسع في انتخابات 2024. الكشف صعب لأن التزييف عالي الجودة يبدو مثاليًا بصريًا. الدفاع: تتبع مصدر المحتوى عبر البلوك تشين (C2PA)، إلزام المنصات بتصنيف المحتوى المولّد بالذكاء الاصطناعي، البحث العكسي عن الصور (TinEye، Google Lens)."
+      ru: "Злоумышленник создаёт deepfake-видео с политиком и распространяет дезинформацию (саботаж выборов, манипулирование акциями). Вирусные deepfake-видео могут быть приняты за настоящие и вызвать массовую панику. В 2024 г. активно использовались на выборах. Обнаружение затруднено — качественные deepfake визуально безупречны. Защита: отслеживание происхождения контента на блокчейне (C2PA), обязательная маркировка AI-контента, обратный поиск изображений (TinEye, Google Lens)."
+    severity: high
+  - title:
+      tr: Deepfake Konfigürasyon Bilgi Sızıntısı
+      en: Deepfake Configuration Information Disclosure
+      fr: Divulgation de configuration deepfake
+      zh: deepfake配置信息泄露
+      ar: كشف معلومات تكوين deepfake
+      ru: Раскрытие конфигурации deepfake
+    description:
+      tr: Deepfake ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to deepfake can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à deepfake peuvent être exposés dans les messages d’erreur ou les réponses API.
+      zh: 与deepfake相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ deepfake في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании deepfake могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Liveness Detection with Challenge-Response
+    lang: python
+    code: |-
+      import cv2
+      import random
+      import numpy as np
+
+      def liveness_check_challenge_response(video_stream):
+          """Detect deepfake via random challenge-response liveness check"""
+          challenges = [
+              "Blink twice",
+              "Turn your head left",
+              "Smile",
+              "Raise your eyebrows"
+          ]
+
+          challenge = random.choice(challenges)
+          print(f"Challenge: {challenge}")
+
+          # Capture video frames for 3 seconds
+          frames = []
+          for _ in range(90):  # 30 fps * 3 seconds
+              ret, frame = video_stream.read()
+              if ret:
+                  frames.append(frame)
+
+          # Analyze response (simplified — real implementation uses facial landmark detection)
+          if challenge == "Blink twice":
+              # Detect blinks via eye aspect ratio (EAR)
+              blink_count = detect_blinks(frames)
+              if blink_count < 2:
+                  return False, "Liveness check failed: insufficient blinks"
+
+          elif challenge == "Turn your head left":
+              # Detect head rotation via face mesh
+              rotation = detect_head_rotation(frames)
+              if rotation < 15:  # degrees
+                  return False, "Liveness check failed: no head rotation"
+
+          return True, "Liveness check passed"
+
+      def detect_blinks(frames):
+          # Simplified — use dlib or mediapipe for real implementation
+          return 2  # placeholder
+
+      def detect_head_rotation(frames):
+          # Simplified — use face mesh for real implementation
+          return 20  # placeholder
+    description:
+      tr: "Challenge-response liveness detection: kullanıcıya random aksiyon (göz kırp, başını çevir) yaptırılarak deepfake video replay saldırısı önlenir."
+      en: "Challenge-response liveness detection: user is asked to perform random actions (blink, turn head) to prevent deepfake video replay attacks."
+  - title: Voice Deepfake Detection Model
+    lang: python
+    code: |-
+      import torch
+      import torchaudio
+      from transformers import Wav2Vec2Model, Wav2Vec2Processor
+
+      # Load pre-trained Wav2Vec2 for feature extraction
+      processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base")
+      model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
+
+      # Binary classifier: real vs deepfake
+      class VoiceDeepfakeDetector(torch.nn.Module):
+          def __init__(self):
+              super().__init__()
+              self.wav2vec = model
+              self.classifier = torch.nn.Linear(768, 2)  # 768 = Wav2Vec2 hidden size
+
+          def forward(self, audio):
+              features = self.wav2vec(audio).last_hidden_state
+              pooled = features.mean(dim=1)  # mean pooling
+              logits = self.classifier(pooled)
+              return logits
+
+      detector = VoiceDeepfakeDetector()
+
+      # Load pre-trained weights (train on ASVspoof/FakeAVCeleb dataset)
+      detector.load_state_dict(torch.load("./voice_deepfake_detector.pth"))
+
+      def detect_voice_deepfake(audio_path):
+          waveform, sample_rate = torchaudio.load(audio_path)
+          inputs = processor(waveform.squeeze(), sampling_rate=sample_rate, return_tensors="pt")
+
+          with torch.no_grad():
+              logits = detector(inputs.input_values)
+              pred = torch.argmax(logits, dim=-1).item()
+
+          if pred == 1:
+              return True, "Deepfake voice detected"
+          return False, "Real voice"
+
+      is_fake, msg = detect_voice_deepfake("./ceo_call.wav")
+    description:
+      tr: "Voice deepfake detection: Wav2Vec2 feature extraction + binary classifier ile gerçek vs deepfake ses ayırt edilir (ASVspoof dataset ile eğitilmiş)."
+      en: "Voice deepfake detection: Wav2Vec2 feature extraction + binary classifier distinguishes real vs deepfake voice (trained on ASVspoof dataset)."
+  - title: Deepfake Detection API
+    lang: dockerfile
+    code: |-
+      FROM python:3.11-slim
+      RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
+      RUN groupadd -r detector && useradd -r -g detector detector
+      WORKDIR /app
+      COPY requirements.txt .
+      RUN pip install --no-cache-dir -r requirements.txt
+      COPY --chown=detector:detector . .
+      USER detector
+      EXPOSE 8080
+      HEALTHCHECK --interval=30s CMD curl -f http://localhost:8080/health || exit 1
+      ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+    description:
+      tr: Deepfake tespiti API icin guvenli Docker.
+      en: Secure Docker for deepfake detection API.
+research:
+  - title: "The Eyes Tell All: Detecting Political Orientation from Eye Movement Data"
+    url: https://arxiv.org/abs/1908.09722
+    year: 2019
+    type: paper
+    authors: Lischka
+  - title: Deepfake Video Detection through Optical Flow based CNN
+    url: https://arxiv.org/abs/2009.07906
+    year: 2020
+    type: paper
+    authors: Amerini, Galteri, et al.
+  - title: "FakeAVCeleb: A Novel Audio-Video Multimodal Deepfake Dataset"
+    url: https://arxiv.org/abs/2108.05080
+    year: 2021
+    type: paper
+    authors: Khalid, Woo
+tips:
+  - tr: Banking app'lerde selfie-based KYC yaparken mutlaka 3D liveness detection kullan — 2D deepfake video replay saldırısını engellemez.
+    en: When doing selfie-based KYC in banking apps, always use 3D liveness detection — doesn't prevent 2D deepfake video replay attacks.
+  - tr: CEO'dan gelen acil para transferi talimatlarını mutlaka out-of-band (SMS/email) ile doğrula — voice cloning çok kolay hale geldi.
+    en: Always verify urgent money transfer instructions from the CEO out-of-band (SMS/email) — voice cloning has become very easy.
+  - tr: Sosyal medyada viral olan politik video'ları reverse image search (TinEye, Google Lens) ile kontrol et — deepfake olup olmadığını anlamak için.
+    en: Check viral political videos on social media with reverse image search (TinEye, Google Lens) — to determine if they are deepfakes.

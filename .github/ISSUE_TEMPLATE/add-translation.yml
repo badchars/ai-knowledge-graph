@@ -1,0 +1,34 @@
+name: Add Translation
+description: Add or fix translations for a term
+title: "[Translation] "
+labels: ["translation"]
+body:
+  - type: input
+    id: term-id
+    attributes:
+      label: Term ID
+      description: The term to translate (e.g., "gpu")
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Turkish (tr)
+        - French (fr)
+        - Chinese (zh)
+        - Arabic (ar)
+        - Russian (ru)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: translation
+    attributes:
+      label: Translation
+      description: The translated content
+    validations:
+      required: true

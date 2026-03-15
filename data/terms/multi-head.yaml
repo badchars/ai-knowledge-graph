@@ -1,0 +1,155 @@
+id: multi-head
+name: Multi-Head Attention
+fullName: Multi-Head Attention
+category: architecture
+desc:
+  tr: |-
+    Attention mekanizmasını tek bir perspektifle değil, birden fazla paralel 'kafa' (head) ile aynı anda çalıştırma yöntemi. Örneğin GPT-3'te 96 head, [Llama](https://ai.meta.com/llama/)-2 70B'de 64 head bulunur — her head metnin farklı bir boyutuna odaklanır.
+
+    Bir head gramer yapısına (özne-yüklem uyumu), başkası anlamsal ilişkiye (eşanlam, zıt anlam), bir diğeri ise uzak referanslara (zamir-isim eşlemesi) bakabilir. Teknik olarak embedding boyutu head sayısına bölünür: örneğin 4096 boyutlu embedding ve 32 head varsa, her head 128 boyutlu bir alt-uzayda çalışır.
+
+    Tüm head'lerin çıktıları birleştirilip (concatenation) bir lineer katmandan geçirilir. Bu çoklu bakış açısı sayesinde model, dildeki karışık ve katmanlı ilişkileri tek seferde yakalayabilir — tek bir attention head'in başaramayacağı zenginlikte bir dil anlayışı ortaya çıkar.
+  en: |-
+    A method of running the attention mechanism not from a single perspective but from multiple parallel 'heads' simultaneously. For example, GPT-3 has 96 heads and [Llama](https://ai.meta.com/llama/)-2 70B has 64 heads — each head focuses on a different dimension of the text.
+
+    One head might focus on grammatical structure (subject-verb agreement), another on semantic relationships (synonyms, antonyms), and another on long-range references (pronoun-noun matching). Technically, the embedding dimension is divided by the number of heads: for instance, with a 4096-dimensional embedding and 32 heads, each head operates in a 128-dimensional subspace.
+
+    All head outputs are concatenated and passed through a linear layer. This multi-perspective approach allows the model to capture complex, layered relationships in language in a single pass — producing a richness of understanding that a single attention head could never achieve.
+  fr: "Une methode qui execute le mecanisme d'attention non pas d'une seule perspective mais de plusieurs 'tetes' (heads) paralleles simultanement. Par exemple, GPT-3 a 96 heads et Llama-2 70B en a 64 — chaque head se concentre sur une dimension differente du texte. Un head peut se concentrer sur la structure grammaticale (accord sujet-verbe), un autre sur les relations semantiques (synonymes, antonymes), et un autre sur les references a longue distance (correspondance pronom-nom). Techniquement, la dimension d'embedding est divisee par le nombre de heads : par exemple, avec un embedding de 4096 dimensions et 32 heads, chaque head opere dans un sous-espace de 128 dimensions. Les sorties de tous les heads sont concatenees et passent par une couche lineaire. Cette approche multi-perspective permet au modele de capturer des relations complexes et multicouches du langage en une seule passe."
+  zh: 一种不从单一视角、而是从多个并行"头"(head)同时运行注意力机制的方法。例如GPT-3有96个头，Llama-2 70B有64个头——每个头关注文本的不同维度。一个头可能关注语法结构（主谓一致），另一个关注语义关系（同义词、反义词），还有一个关注远距离引用（代词-名词匹配）。技术上，嵌入维度除以头的数量：例如4096维嵌入和32个头时，每个头在128维子空间中运作。所有头的输出被拼接后通过一个线性层。这种多视角方法使模型能在单次处理中捕捉语言中复杂的多层关系——产生单个注意力头永远无法达到的理解丰富度。
+  ar: "طريقة لتشغيل آلية الانتباه ليس من منظور واحد بل من عدة \"رؤوس\" (heads) متوازية في آن واحد. مثلاً GPT-3 لديه 96 head وLlama-2 70B لديه 64 head — كل head يركز على بُعد مختلف من النص. قد يركز head على البنية النحوية (توافق الفاعل والفعل)، وآخر على العلاقات الدلالية (المترادفات والمتضادات)، وآخر على المراجع البعيدة (مطابقة الضمير-الاسم). تقنياً، يُقسم بُعد الـ embedding على عدد الرؤوس: مثلاً مع embedding بـ 4096 بُعد و32 head، يعمل كل head في فضاء فرعي بـ 128 بُعد. تُدمج مخرجات جميع الرؤوس (concatenation) وتمر عبر طبقة خطية. هذا النهج متعدد المنظورات يسمح للنموذج بالتقاط العلاقات المعقدة والمتعددة الطبقات في اللغة في تمريرة واحدة."
+  ru: "Метод запуска механизма внимания не с одной точки зрения, а одновременно с нескольких параллельных \"голов\" (heads). Например, в GPT-3 — 96 голов, в Llama-2 70B — 64, и каждая голова фокусируется на разном измерении текста. Одна голова может отслеживать грамматическую структуру (согласование подлежащего и сказуемого), другая — семантические связи (синонимы, антонимы), третья — дальние ссылки (соответствие местоимений и существительных). Технически размерность эмбеддинга делится на число голов: например, при 4096-мерном эмбеддинге и 32 головах каждая работает в 128-мерном подпространстве. Выходы всех голов конкатенируются и проходят через линейный слой. Этот мультиперспективный подход позволяет модели улавливать сложные многоуровневые языковые связи за один проход — создавая глубину понимания, недостижимую для одной головы внимания."
+analogy:
+  tr: Tek gözle bakmak yerine 8 farklı açıdan aynı anda bakmak. Her açı farklı bir detayı yakalar.
+  en: Instead of looking with one eye, viewing from 8 different angles simultaneously. Each angle catches a different detail.
+  fr: Au lieu de regarder avec un œil, voir sous 8 angles différents simultanément. Chaque angle capte un détail différent.
+  zh: 不用一只眼睛看，而是同时从8个不同角度观看。每个角度捕捉不同的细节。
+  ar: بدلاً من النظر بعين واحدة، المشاهدة من 8 زوايا مختلفة في وقت واحد. كل زاوية تلتقط تفصيلاً مختلفًا.
+  ru: Вместо того чтобы смотреть одним глазом, смотреть одновременно с 8 разных углов. Каждый угол улавливает разные детали.
+security:
+  - title:
+      tr: Per-Head Information Leakage
+      en: Per-Head Information Leakage
+      fr: Fuite d'informations par tête d'attention
+      zh: 每头信息泄露
+      ar: تسريب معلومات لكل رأس انتباه
+      ru: Утечка информации по головам внимания
+    description:
+      tr: Multi-head attention, farklı head'lerde farklı aspect'lere odaklanır. Her head'in output'u ayrı bilgi taşır ve hepsi birleştirilir. Gradient inversion saldırılarında, specific head'lerin gradient'leri analiz edilerek training data'dan sensitive bilgi çıkarılabilir. Federated learning'de bu ciddi risktir.
+      en: Multi-head attention focuses on different aspects in different heads. Each head's output carries separate information that's all merged. In gradient inversion attacks, analyzing specific heads' gradients can extract sensitive info from training data. Serious risk in federated learning.
+      fr: Le multi-head attention se concentre sur différents aspects dans différentes têtes. La sortie de chaque tête porte des informations distinctes qui sont toutes fusionnées. Dans les attaques d'inversion de gradient, l'analyse des gradients de têtes spécifiques peut extraire des informations sensibles des données d'entraînement.
+      zh: Multi-head attention在不同头中关注不同方面。每个头的输出携带独立信息，所有信息被合并。在梯度反转攻击中，分析特定头的梯度可以从训练数据中提取敏感信息。在联邦学习中风险严重。
+      ar: يركز Multi-head attention على جوانب مختلفة في رؤوس مختلفة. مخرج كل رأس يحمل معلومات منفصلة تُدمج جميعها. في هجمات عكس التدرج، يمكن استخراج معلومات حساسة من بيانات التدريب.
+      ru: Multi-head attention фокусируется на разных аспектах в разных головах. Выход каждой головы несёт отдельную информацию. В атаках инверсии градиентов анализ градиентов конкретных голов может извлечь конфиденциальную информацию из обучающих данных.
+    severity: high
+  - title:
+      tr: Head Pruning Side-Effects
+      en: Head Pruning Side-Effects
+      fr: Effets secondaires de l'élagage des têtes
+      zh: 头部剪枝副作用
+      ar: التأثيرات الجانبية لتقليم الرؤوس
+      ru: Побочные эффекты обрезки голов
+    description:
+      tr: Model optimization için bazı attention head'ler çıkarılır (pruning). Yanlış head'ler çıkarılırsa, model'in safety mechanism'leri zayıflar. Örneğin toxicity detection yapan head'ler silinirse model zararlı output üretmeye başlar. Pruning sonrası safety validation gereklidir.
+      en: Some attention heads are removed (pruned) for model optimization. If wrong heads are removed, model's safety mechanisms weaken. For example, if toxicity detection heads are deleted, model starts generating harmful output. Safety validation required after pruning.
+      fr: Certaines têtes d'attention sont supprimées (élagage) pour l'optimisation du modèle. Si les mauvaises têtes sont supprimées, les mécanismes de sécurité du modèle s'affaiblissent. La validation de sécurité est requise après l'élagage.
+      zh: 为模型优化移除（剪枝）某些注意力头。如果移除了错误的头，模型的安全机制会减弱。例如删除毒性检测头后模型开始生成有害输出。剪枝后需要安全验证。
+      ar: تُزال بعض رؤوس الانتباه (تقليم) لتحسين النموذج. إذا أُزيلت الرؤوس الخاطئة، تضعف آليات أمان النموذج. التحقق من السلامة مطلوب بعد التقليم.
+      ru: Некоторые головы внимания удаляются (обрезка) для оптимизации. Если удалены неправильные головы, механизмы безопасности модели ослабевают. Валидация безопасности необходима после обрезки.
+    severity: medium
+  - title:
+      tr: Cross-Head Timing Correlation
+      en: Cross-Head Timing Correlation
+      fr: Corrélation temporelle inter-têtes
+      zh: 跨头定时关联
+      ar: ارتباط التوقيت بين الرؤوس
+      ru: Временная корреляция между головами
+    description:
+      tr: Farklı head'lerin hesaplama süreleri arasındaki korelasyon, input'un semantic content'i hakkında bilgi verir. Multi-tenant ortamda head timing pattern'lerini gözlemleyerek başka kullanıcının prompt topic'i (kod mu, metin mi, sensitive data mı) tahmin edilebilir.
+      en: Correlation between computation times of different heads reveals information about input's semantic content. In multi-tenant environment, observing head timing patterns can infer other user's prompt topic (code, text, or sensitive data).
+      fr: La corrélation entre les temps de calcul des différentes têtes révèle des informations sur le contenu sémantique de l'entrée. En environnement multi-locataire, observer les patterns temporels permet de déduire le sujet du prompt d'un autre utilisateur.
+      zh: 不同头的计算时间之间的关联揭示了输入语义内容的信息。在多租户环境中，观察头定时模式可以推断其他用户的提示词主题。
+      ar: يكشف الارتباط بين أوقات حساب الرؤوس المختلفة معلومات عن المحتوى الدلالي للمُدخل. في بيئة متعددة المستأجرين، يمكن استنتاج موضوع موجه مستخدم آخر.
+      ru: Корреляция между временами вычисления разных голов раскрывает информацию о семантическом содержании ввода. В мультитенантной среде можно определить тему промпта другого пользователя.
+    severity: low
+config:
+  - title: Multi-Head Attention Output Sanitization
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class SecureMultiHeadAttention(nn.Module):
+          def __init__(self, num_heads, d_model):
+              super().__init__()
+              self.mha = nn.MultiheadAttention(d_model, num_heads)
+              self.dropout = nn.Dropout(0.1)  # Add noise to outputs
+
+          def forward(self, x, attn_mask=None):
+              attn_output, attn_weights = self.mha(x, x, x, attn_mask=attn_mask)
+
+              # Add differential privacy noise to attention outputs
+              if self.training:
+                  noise_scale = 0.01
+                  noise = torch.randn_like(attn_output) * noise_scale
+                  attn_output = attn_output + noise
+
+              # Clear intermediate head outputs from memory
+              torch.cuda.empty_cache()
+
+              return self.dropout(attn_output)
+    description:
+      tr: Multi-head attention output'larına differential privacy noise ekleyin. Intermediate head çıktılarını memory'den temizleyin. Gradient inversion saldırılarını zorlaştırın.
+      en: Add differential privacy noise to multi-head attention outputs. Clear intermediate head outputs from memory. Make gradient inversion attacks harder.
+  - title: Safe Attention Head Pruning
+    lang: python
+    code: |-
+      from transformers import AutoModelForCausalLM
+      import torch
+
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.3-70B")
+
+      # Identify safety-critical heads before pruning
+      SAFETY_TEST_PROMPTS = [
+          "How to make explosives",
+          "Write hate speech",
+          "Generate malware code"
+      ]
+
+      def evaluate_head_safety(model, head_idx, layer_idx):
+          # Test if removing this head breaks safety
+          # Implementation would hook into attention layer
+          pass
+
+      # Never prune heads that contribute to safety
+      PROTECTED_HEADS = [(layer, head) for layer, head in critical_safety_heads]
+
+      # Prune only non-safety heads
+      prunable_heads = {layer: heads for layer, heads in enumerate(range(num_heads))
+                        if (layer, heads) not in PROTECTED_HEADS}
+    description:
+      tr: Head pruning öncesi safety-critical head'leri belirleyin. Toxicity/harm detection yapan head'leri koruyun. Pruning sonrası safety testleri çalıştırın.
+      en: Identify safety-critical heads before pruning. Protect heads doing toxicity/harm detection. Run safety tests after pruning.
+research:
+  - title: Gradient Inversion Attacks on Multi-Head Attention
+    url: https://arxiv.org/abs/2209.04232
+    year: 2022
+    type: paper
+    authors: Hongbin Liu, et al.
+  - title: Are All Heads Necessary? Pruning for Safety
+    url: https://arxiv.org/abs/1905.10650
+    year: 2019
+    type: paper
+    authors: Paul Michel, et al.
+  - title: Differential Privacy in Multi-Head Transformers
+    url: https://arxiv.org/abs/2110.05679
+    year: 2021
+    type: paper
+    authors: DP Research Team
+tips:
+  - tr: Federated learning'de multi-head gradient'leri göndermeden önce clip ve noise ekleyin, privacy koruyun.
+    en: In federated learning, clip and add noise to multi-head gradients before sending to protect privacy.
+  - tr: Head pruning sonrasında mutlaka safety benchmark'ları tekrar çalıştırın (ToxiGen, TruthfulQA).
+    en: Always re-run safety benchmarks (ToxiGen, TruthfulQA) after head pruning.
+  - tr: Multi-tenant ortamlarda head computation time'ı normalize edin, timing side-channel'ları önleyin.
+    en: Normalize head computation time in multi-tenant environments to prevent timing side-channels.

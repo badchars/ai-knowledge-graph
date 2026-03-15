@@ -1,0 +1,67 @@
+name: New Term
+description: Suggest a new AI/ML term to add to the knowledge graph
+title: "[New Term] "
+labels: ["new-term"]
+body:
+  - type: input
+    id: term-id
+    attributes:
+      label: Term ID
+      description: Lowercase, hyphenated (e.g., "mixture-of-experts")
+      placeholder: my-new-term
+    validations:
+      required: true
+
+  - type: input
+    id: term-name
+    attributes:
+      label: Short Name
+      description: Display name (e.g., "MoE")
+      placeholder: MoE
+    validations:
+      required: true
+
+  - type: input
+    id: full-name
+    attributes:
+      label: Full Name
+      description: Full expanded name
+      placeholder: Mixture of Experts
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - hardware
+        - architecture
+        - training
+        - quantization
+        - inference
+        - prompting
+        - tools
+        - models
+        - ai-security
+        - fundamentals
+        - ecosystem
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description (English)
+      description: 2-3 paragraph explanation of the term
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-terms
+    attributes:
+      label: Related Terms
+      description: Which existing terms should this connect to?
+      placeholder: |
+        - transformer (uses)
+        - inference (optimizes)

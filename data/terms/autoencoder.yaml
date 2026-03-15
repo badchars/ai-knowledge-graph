@@ -1,0 +1,187 @@
+id: autoencoder
+name: Autoencoder / VAE
+fullName: Autoencoder / Variational Autoencoder
+category: architecture
+desc:
+  tr: |-
+    Giriş verisini sıkıştırıp tekrar rekonstrükte eden öz-gözetimli öğrenme mimarisi. Encoder (kodlayıcı) veriyi düşük boyutlu bir latent space'e sıkıştırır, Decoder (kod çözücü) bu sıkıştırılmış temsili kullanarak orijinal veriyi yeniden üretmeye çalışır.
+
+    Klasik Autoencoder'lar boyut azaltma (dimensionality reduction) ve anomaly detection için kullanılır. [VAE (Variational Autoencoder)](https://arxiv.org/abs/1312.6114) (2013) ise latent space'i probabilistic yapar — bu sayede yeni veri üretebilir. VAE'ler [GAN](https://arxiv.org/abs/1406.2661)'lere göre daha stabil eğitilir ama üretilen görüntüler daha bulanık olabilir.
+
+    Autoencoder'lar görüntü denoise (gürültü temizleme), veri kompresyonu, feature learning gibi alanlarda kullanılır. [Stable Diffusion](https://github.com/CompVis/stable-diffusion) ve [DALL-E](https://openai.com/dall-e-3) gibi modern diffusion modelleri de VAE encoder/decoder kullanır.
+  en: |-
+    A self-supervised learning architecture that compresses input data and reconstructs it. The Encoder compresses data into a low-dimensional latent space, while the Decoder attempts to regenerate the original data from this compressed representation.
+
+    Classic Autoencoders are used for dimensionality reduction and anomaly detection. [VAE (Variational Autoencoder)](https://arxiv.org/abs/1312.6114) (2013) makes the latent space probabilistic — enabling new data generation. VAEs train more stably than [GANs](https://arxiv.org/abs/1406.2661) but generated images can be blurrier.
+
+    Autoencoders are used for image denoising, data compression, and feature learning. Modern diffusion models like [Stable Diffusion](https://github.com/CompVis/stable-diffusion) and [DALL-E](https://openai.com/dall-e-3) also use VAE encoders/decoders.
+  fr: Une architecture d'apprentissage auto-supervisé qui compresse les données d'entrée et les reconstruit.
+  zh: 一种自监督学习架构，压缩输入数据并重构它。
+  ar: معمارية تعلم ذاتي إشرافي تضغط بيانات الإدخال وتعيد بناءها.
+  ru: Архитектура самообучения с учителем, которая сжимает входные данные и восстанавливает их.
+analogy:
+  tr: Autoencoder, bir resmi ZIP dosyası gibi sıkıştırıp sonra açan bir sistem gibidir. VAE ise sıkıştırma sırasında 'benzer resimler nasıl olurdu?' diye düşünerek yeni resimler de üretebilir.
+  en: An Autoencoder is like a system that compresses an image like a ZIP file and then decompresses it. VAE thinks 'what would similar images look like?' during compression, enabling new image generation.
+  fr: Un Autoencoder est comme un système qui compresse une image comme un fichier ZIP puis la décompresse. VAE peut également générer de nouvelles images en pensant 'à quoi ressembleraient des images similaires?' lors de la compression.
+  zh: 自编码器就像一个将图像压缩成ZIP文件然后解压的系统。VAE在压缩时思考'类似的图像会是什么样子？'从而能够生成新图像。
+  ar: Autoencoder يشبه نظامًا يضغط صورة مثل ملف ZIP ثم يفك ضغطها. VAE يفكر 'كيف ستبدو الصور المشابهة؟' أثناء الضغط، مما يمكّن من توليد صور جديدة.
+  ru: Автоэнкодер подобен системе, которая сжимает изображение как ZIP-файл, а затем распаковывает его. VAE думает 'как бы выглядели похожие изображения?' во время сжатия, позволяя генерировать новые изображения.
+security:
+  - title:
+      tr: Latent Space Poisoning
+      en: Latent Space Poisoning
+      fr: Empoisonnement de l'espace latent
+      zh: 潜在空间投毒
+      ar: تسميم الفضاء الكامن
+      ru: Отравление латентного пространства
+    description:
+      tr: VAE'nin latent space'i poisoning attack'a açıktır. Eğitim verisine özel olarak hazırlanmış örnekler eklenerek latent space manipüle edilir ve decoder'ın belirli zararlı içerik üretmesi sağlanır. Özellikle text-to-image modellerinde NSFW içerik üretimi veya adversarial pattern injection için kullanılır.
+      en: VAE's latent space is vulnerable to poisoning attacks. By adding specially crafted examples to training data, the latent space can be manipulated to make the decoder generate specific harmful content. Used particularly for NSFW content generation or adversarial pattern injection in text-to-image models.
+      fr: L'espace latent du VAE est vulnérable aux attaques par empoisonnement. Il peut être manipulé pour générer du contenu nuisible, notamment NSFW ou des patterns adversariaux.
+      zh: VAE潜在空间容易受到投毒攻击。可操纵潜在空间使解码器生成有害内容。
+      ar: الفضاء الكامن لـ VAE معرض للتسميم. يمكن التلاعب به لتوليد محتوى ضار.
+      ru: Латентное пространство VAE уязвимо для отравления. Можно манипулировать для генерации вредоносного контента.
+    severity: high
+  - title:
+      tr: Reconstruction-Based Data Leakage
+      en: Reconstruction-Based Data Leakage
+      fr: Fuite de données par reconstruction
+      zh: 基于重建的数据泄露
+      ar: تسريب بيانات عبر إعادة البناء
+      ru: Утечка данных через реконструкцию
+    description:
+      tr: Autoencoder'ın rekonstrüksiyon yeteneği, eğitim verisindeki hassas bilgileri sızdırabilir. Özellikle tıbbi görüntüler veya özel dokümanlarla eğitilmiş autoencoder'larda, decoder çıktılarından eğitim verisinin parçaları çıkarılabilir. Model inversion attack'lar için kritik risk.
+      en: Autoencoder's reconstruction capability can leak sensitive information from training data. Particularly in autoencoders trained on medical images or private documents, parts of training data can be extracted from decoder outputs. Critical risk for model inversion attacks.
+      fr: La reconstruction peut divulguer des informations sensibles des données d'entraînement, notamment images médicales ou documents privés. Risque critique pour l'inversion de modèle.
+      zh: 自编码器的重建能力可泄露训练数据中的敏感信息。对模型反转攻击存在严重风险。
+      ar: يمكن لإعادة البناء تسريب معلومات حساسة. مخاطر حرجة لهجمات عكس النموذج.
+      ru: Реконструкция может утечь конфиденциальные данные. Критический риск для атак инверсии модели.
+    severity: high
+  - title:
+      tr: Latent Space Traversal Exploitation
+      en: Latent Space Traversal Exploitation
+      fr: Exploitation de la traversée de l'espace latent
+      zh: 潜在空间遍历利用
+      ar: استغلال اجتياز الفضاء الكامن
+      ru: Эксплуатация обхода латентного пространства
+    description:
+      tr: VAE latent space'inde sistematik yürüyüş (traversal) yaparak modelin güvenlik filtrelerini atlatmak mümkündür. Örneğin content moderation filter'larını geçen ama zararlı içerik üreten latent vektörler bulunabilir. Diffusion modellerde jailbreak için kullanılır.
+      en: Systematic traversal of VAE latent space can bypass model security filters. For example, latent vectors that pass content moderation filters but produce harmful content can be found. Used for jailbreaking diffusion models.
+      fr: La traversée systématique peut contourner les filtres de sécurité pour trouver des vecteurs produisant du contenu nuisible. Utilisé pour le jailbreak des modèles de diffusion.
+      zh: 对VAE潜在空间的系统性遍历可绕过安全过滤器。可找到能通过审核但产生有害内容的向量。用于扩散模型越狱。
+      ar: يمكن للاجتياز المنهجي تجاوز فلاتر الأمان. يُستخدم لكسر حماية نماذج الانتشار.
+      ru: Систематический обход позволяет обойти фильтры безопасности. Используется для взлома диффузионных моделей.
+    severity: medium
+  - title:
+      tr: Autoencoder Boyut Bilgisi
+      en: Autoencoder Dimensionality Disclosure
+      fr: Divulgation de dimensionnalité
+      zh: 自编码器维度泄露
+      ar: كشف أبعاد المشفر
+      ru: Раскрытие размерности
+    description:
+      tr: Latent space boyutu output analizinden ortaya çıkarılabilir.
+      en: Latent space dimensionality can be revealed through output analysis, narrowing reconstruction attack search space.
+      fr: La dimensionnalité de l'espace latent peut être révélée par l'analyse des sorties.
+      zh: 通过输出分析可揭示潜在空间维度，缩小重建攻击搜索空间。
+      ar: يمكن الكشف عن أبعاد الفضاء الكامن عبر تحليل المخرجات.
+      ru: Размерность латентного пространства можно раскрыть через анализ выходных данных.
+    severity: low
+config:
+  - title: Variational Autoencoder (VAE) in PyTorch
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+      import torch.nn.functional as F
+
+      class VAE(nn.Module):
+          def __init__(self, input_dim=784, hidden_dim=400, latent_dim=20):
+              super().__init__()
+              # Encoder
+              self.fc1 = nn.Linear(input_dim, hidden_dim)
+              self.fc_mu = nn.Linear(hidden_dim, latent_dim)
+              self.fc_logvar = nn.Linear(hidden_dim, latent_dim)
+
+              # Decoder
+              self.fc3 = nn.Linear(latent_dim, hidden_dim)
+              self.fc4 = nn.Linear(hidden_dim, input_dim)
+
+          def encode(self, x):
+              h = F.relu(self.fc1(x))
+              return self.fc_mu(h), self.fc_logvar(h)
+
+          def reparameterize(self, mu, logvar):
+              """Reparameterization trick: z = mu + sigma * epsilon"""
+              std = torch.exp(0.5 * logvar)
+              eps = torch.randn_like(std)
+              return mu + eps * std
+
+          def decode(self, z):
+              h = F.relu(self.fc3(z))
+              return torch.sigmoid(self.fc4(h))
+
+          def forward(self, x):
+              mu, logvar = self.encode(x.view(-1, 784))
+              z = self.reparameterize(mu, logvar)
+              return self.decode(z), mu, logvar
+
+      def vae_loss(recon_x, x, mu, logvar):
+          """VAE loss = reconstruction loss + KL divergence"""
+          BCE = F.binary_cross_entropy(recon_x, x.view(-1, 784), reduction='sum')
+          # KLD = -0.5 * sum(1 + log(sigma^2) - mu^2 - sigma^2)
+          KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+          return BCE + KLD
+
+      # Example usage
+      vae = VAE()
+      x = torch.randn(32, 1, 28, 28)  # Batch of MNIST images
+      recon_x, mu, logvar = vae(x)
+      loss = vae_loss(recon_x, x, mu, logvar)
+      print(f"VAE loss: {loss.item():.2f}")
+    description:
+      tr: PyTorch ile VAE implementasyonu. Encoder mu ve logvar parametrelerini üretir, reparameterization trick ile latent vector z sampling yapılır, decoder rekonstrüksiyon yapar. Loss fonksiyonu reconstruction error + KL divergence kombinasyonudur.
+      en: VAE implementation in PyTorch. Encoder produces mu and logvar parameters, reparameterization trick samples latent vector z, decoder reconstructs. Loss function combines reconstruction error + KL divergence.
+  - title: Autoencoder Model Security Scan
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      MODEL="${1:?Usage: $0 <model>}"
+      if [ -f "${MODEL}.sha256" ]; then
+        sha256sum -c "${MODEL}.sha256" || exit 1
+      fi
+      python3 -c "
+      import pickletools, sys
+      with open('$MODEL', 'rb') as f:
+          ops = list(pickletools.genops(f))
+      dangerous = [o for o in ops if o[0].name in ('GLOBAL','REDUCE')]
+      if dangerous: print(f'{len(dangerous)} dangerous opcodes'); sys.exit(1)
+      print('Safe')
+      "
+    description:
+      tr: Model dosyasi guvenlik taramasi.
+      en: Model file security scan with integrity check.
+research:
+  - title: Auto-Encoding Variational Bayes (VAE)
+    url: https://arxiv.org/abs/1312.6114
+    year: 2013
+    type: paper
+    authors: Diederik P. Kingma, Max Welling
+  - title: Understanding Disentangling in β-VAE
+    url: https://arxiv.org/abs/1804.03599
+    year: 2018
+    type: paper
+    authors: Christopher P. Burgess, et al.
+  - title: High-Resolution Image Synthesis with Latent Diffusion Models
+    url: https://arxiv.org/abs/2112.10752
+    year: 2021
+    type: paper
+    authors: Robin Rombach, et al.
+tips:
+  - tr: VAE loss'ta KL divergence katsayısını (beta) ayarlayarak latent space'in smoothness/disentanglement dengesini kontrol edin (beta-VAE).
+    en: Control latent space smoothness/disentanglement balance by adjusting KL divergence coefficient (beta) in VAE loss (beta-VAE).
+  - tr: Anomaly detection için autoencoder kullanırken, reconstruction error'u threshold olarak belirleyin — yüksek error anomali işaretidir.
+    en: When using autoencoders for anomaly detection, set reconstruction error as threshold — high error indicates anomaly.
+  - tr: VAE latent space'inden sampling yaparak yeni veri üretirken, latent vector'ları interpolate ederek smooth transition'lar elde edebilirsiniz.
+    en: When generating new data by sampling from VAE latent space, interpolate latent vectors to achieve smooth transitions.

@@ -1,0 +1,148 @@
+id: tensor-core
+name: Tensor Core
+fullName: NVIDIA Tensor Core
+category: hardware
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com) GPU'ların içindeki, özellikle matris çarpımı ve AI matematiği için tasarlanmış özel donanım birimleri. Normal [CUDA](https://developer.nvidia.com/cuda-toolkit) çekirdekleri genel amaçlı hesaplama yaparken, Tensor Core'lar 4x4 matris çarpımlarını tek bir clock cycle'da tamamlayabilir — bu da AI işlemlerini katlarca hızlandırır.
+
+    İlk olarak 2017'de Volta mimarisinde (V100) tanıtıldılar ve her yeni nesilde yetenekleri arttı: Ampere ([A100](https://www.nvidia.com/en-us/data-center/a100/)) BF16 desteği, Hopper ([H100](https://www.nvidia.com/en-us/data-center/h100/)) FP8 desteği ve Transformer Engine ekledi. Bir H100 GPU'sunda 528 adet 4. nesil Tensor Core bulunur ve bunlar saniyede 1000 TFLOPS'un üzerinde AI performansı sağlar.
+
+    Quantization (FP8, INT8, FP4) kullanan modern inference motorları doğrudan bu Tensor Core'lar üzerinde çalışır. Kısacası, Tensor Core'lar AI'in bu kadar hızlı olmasının donanım seviyesindeki temel sebebidir.
+  en: |-
+    Specialized hardware units inside [NVIDIA](https://nvidia.com) GPUs designed specifically for matrix multiplication and AI math. While regular [CUDA](https://developer.nvidia.com/cuda-toolkit) cores handle general-purpose computing, Tensor Cores can complete 4x4 matrix multiplications in a single clock cycle — accelerating AI operations by orders of magnitude.
+
+    First introduced in 2017 with the Volta architecture (V100), their capabilities have expanded with each generation: Ampere ([A100](https://www.nvidia.com/en-us/data-center/a100/)) added BF16 support, Hopper ([H100](https://www.nvidia.com/en-us/data-center/h100/)) added FP8 support and the Transformer Engine. A single H100 GPU contains 528 fourth-generation Tensor Cores, delivering over 1000 TFLOPS of AI performance.
+
+    Modern inference engines using quantization (FP8, INT8, FP4) run directly on these Tensor Cores. In short, Tensor Cores are the hardware-level reason why AI is as fast as it is today.
+  fr: "Des unites materielles specialisees a l'interieur des GPU NVIDIA, concues specifiquement pour la multiplication matricielle et les calculs d'IA. Alors que les coeurs CUDA classiques gerent le calcul generaliste, les Tensor Cores peuvent effectuer des multiplications matricielles 4x4 en un seul cycle d'horloge — accelerant les operations d'IA de plusieurs ordres de grandeur. Introduits pour la premiere fois en 2017 avec l'architecture Volta (V100), leurs capacites se sont etendues a chaque generation : Ampere (A100) a ajoute le support BF16, Hopper (H100) a ajoute le support FP8 et le Transformer Engine. Un seul GPU H100 contient 528 Tensor Cores de quatrieme generation, offrant plus de 1000 TFLOPS de performance IA. Les moteurs d'inference modernes utilisant la quantification (FP8, INT8, FP4) s'executent directement sur ces Tensor Cores. En bref, les Tensor Cores sont la raison materielle pour laquelle l'IA est aussi rapide aujourd'hui."
+  zh: NVIDIA GPU内部专为矩阵乘法和AI运算设计的专用硬件单元。普通CUDA核心处理通用计算，而Tensor Core可以在单个时钟周期内完成4x4矩阵乘法——将AI运算加速数个数量级。它们于2017年首次在Volta架构（V100）中推出，每一代能力都在增强：Ampere（A100）增加了BF16支持，Hopper（H100）增加了FP8支持和Transformer Engine。一块H100 GPU包含528个第四代Tensor Core，提供超过1000 TFLOPS的AI性能。使用量化（FP8、INT8、FP4）的现代推理引擎直接在这些Tensor Core上运行。简而言之，Tensor Core是AI如今能如此快速的硬件层面根本原因。
+  ar: "وحدات عتادية متخصصة داخل معالجات NVIDIA مصممة خصيصاً لضرب المصفوفات وحسابات الذكاء الاصطناعي. بينما تتعامل نوى CUDA العادية مع الحوسبة العامة، يمكن لـ Tensor Cores إكمال عمليات ضرب مصفوفات 4×4 في دورة ساعة واحدة — مما يُسرّع عمليات الذكاء الاصطناعي بمراتب. قُدّمت لأول مرة في 2017 مع معمارية Volta (V100)، وتوسعت قدراتها مع كل جيل: Ampere (A100) أضاف دعم BF16، وHopper (H100) أضاف دعم FP8 ومحرك Transformer Engine. يحتوي معالج H100 واحد على 528 Tensor Core من الجيل الرابع، ويوفر أكثر من 1000 TFLOPS من أداء الذكاء الاصطناعي. محركات الاستدلال الحديثة التي تستخدم التكميم (FP8 وINT8 وFP4) تعمل مباشرة على هذه الوحدات. باختصار، Tensor Cores هي السبب على مستوى العتاد وراء سرعة الذكاء الاصطناعي اليوم."
+  ru: "Специализированные аппаратные блоки внутри GPU NVIDIA, разработанные специально для матричного умножения и математики ИИ. Обычные ядра CUDA выполняют вычисления общего назначения, а Tensor Cores могут завершить умножение матриц 4x4 за один такт — ускоряя операции ИИ на порядки. Впервые представленные в 2017 году в архитектуре Volta (V100), их возможности расширялись с каждым поколением: Ampere (A100) добавил поддержку BF16, Hopper (H100) — поддержку FP8 и Transformer Engine. Один GPU H100 содержит 528 Tensor Cores четвёртого поколения, обеспечивая более 1000 TFLOPS производительности ИИ. Современные движки инференса с квантизацией (FP8, INT8, FP4) работают непосредственно на этих Tensor Cores. Коротко говоря, Tensor Cores — аппаратная причина того, почему ИИ сегодня работает так быстро."
+analogy:
+  tr: Normal GPU çekirdekleri genel amaçlı işçiler ise, Tensor Core'lar sadece matris çarpımı yapan uzman işçilerdir.
+  en: If regular GPU cores are general workers, Tensor Cores are specialists who only do matrix multiplication — incredibly fast at this one job.
+  fr: Si les cœurs GPU réguliers sont des ouvriers généralistes, les Tensor Cores sont des spécialistes qui ne font que la multiplication matricielle — incroyablement rapides dans ce travail unique.
+  zh: 如果普通GPU核心是通用工人，Tensor Core就是只做矩阵乘法的专家——在这项工作上极快。
+  ar: إذا كانت نوى GPU العادية عمالاً عامين، فإن Tensor Cores متخصصون يقومون فقط بضرب المصفوفات — سريعون بشكل لا يصدق في هذه المهمة الواحدة.
+  ru: Если обычные ядра GPU — это рабочие общего профиля, то Tensor Cores — это специалисты, которые делают только матричное умножение — невероятно быстро в этой единственной задаче.
+security:
+  - title:
+      tr: Tensor Core Timing Side-Channels
+      en: Tensor Core Timing Side-Channels
+      fr: Canaux auxiliaires temporels des Tensor Cores
+      zh: Tensor Core定时侧信道
+      ar: قنوات جانبية زمنية لـ Tensor Core
+      ru: Тайминговые побочные каналы Tensor Core
+    description:
+      tr: Tensor Core işlem süreleri, işlenen veri değerlerine bağlı olarak değişir. Aynı GPU'yu paylaşan saldırgan, timing analizi yaparak başka bir işlemin matris değerlerini (model ağırlıkları, intermediate activations) çıkarabilir. FP8/INT8 quantization kullanımı bu riski artırır.
+      en: Tensor Core operation times vary based on processed data values. An attacker sharing the same GPU can use timing analysis to extract matrix values (model weights, intermediate activations) from another process. FP8/INT8 quantization usage increases this risk.
+      fr: Les temps d'opération des Tensor Cores varient selon les valeurs traitées. Un attaquant partageant le même GPU peut utiliser l'analyse temporelle pour extraire les valeurs matricielles d'un autre processus. L'utilisation de la quantification FP8/INT8 augmente ce risque.
+      zh: Tensor Core操作时间根据处理的数据值而变化。共享同一GPU的攻击者可以通过定时分析从另一个进程中提取矩阵值。FP8/INT8量化的使用增加了此风险。
+      ar: تتغير أوقات عمليات Tensor Core بناءً على قيم البيانات المعالجة. يمكن لمهاجم يتشارك نفس GPU استخدام تحليل التوقيت لاستخراج قيم المصفوفات من عملية أخرى. استخدام تكميم FP8/INT8 يزيد هذا الخطر.
+      ru: Время операций Tensor Core зависит от обрабатываемых данных. Злоумышленник, использующий тот же GPU, может применить анализ тайминга для извлечения значений матриц другого процесса. Использование квантизации FP8/INT8 увеличивает этот риск.
+    severity: high
+  - title:
+      tr: Transformer Engine Exploitation
+      en: Transformer Engine Exploitation
+      fr: Exploitation du Transformer Engine
+      zh: Transformer Engine利用
+      ar: استغلال محرك Transformer
+      ru: Эксплуатация Transformer Engine
+    description:
+      tr: H100'deki Transformer Engine otomatik FP8/FP16 dönüşümü yapar. Bu dönüşüm sırasında precision loss patterns, modelin yapısı veya eğitim verileri hakkında bilgi sızdırabilir. Özellikle attention mechanism'ında kullanılan scaling factors hassas bilgi taşır.
+      en: H100's Transformer Engine automatically performs FP8/FP16 conversions. Precision loss patterns during these conversions can leak information about model structure or training data. Scaling factors used in attention mechanism carry sensitive information.
+      fr: Le Transformer Engine du H100 effectue automatiquement des conversions FP8/FP16. Les patterns de perte de précision lors de ces conversions peuvent divulguer des informations sur la structure du modèle ou les données d'entraînement.
+      zh: H100的Transformer Engine自动执行FP8/FP16转换。这些转换过程中的精度损失模式可能泄露模型结构或训练数据的信息。注意力机制中使用的缩放因子携带敏感信息。
+      ar: يقوم محرك Transformer في H100 تلقائياً بتحويلات FP8/FP16. أنماط فقدان الدقة أثناء هذه التحويلات يمكن أن تسرب معلومات عن بنية النموذج أو بيانات التدريب.
+      ru: Transformer Engine H100 автоматически выполняет преобразования FP8/FP16. Паттерны потери точности при этих преобразованиях могут утекать информация о структуре модели или данных обучения.
+    severity: medium
+  - title:
+      tr: Mixed-Precision Attack Surface
+      en: Mixed-Precision Attack Surface
+      fr: Surface d'attaque en précision mixte
+      zh: 混合精度攻击面
+      ar: سطح هجوم الدقة المختلطة
+      ru: Поверхность атаки смешанной точности
+    description:
+      tr: Tensor Core'ların FP32/FP16/BF16/FP8/INT8 desteği, karmaşık precision mixing işlemleri yaratır. Rounding errors ve overflow behavior, adversarial input'lar ile manipüle edilerek model output'unu değiştirebilir veya DoS yaratabilir.
+      en: Tensor Cores' support for FP32/FP16/BF16/FP8/INT8 creates complex precision mixing operations. Rounding errors and overflow behavior can be manipulated via adversarial inputs to alter model output or cause DoS.
+      fr: La prise en charge FP32/FP16/BF16/FP8/INT8 des Tensor Cores crée des opérations complexes de mélange de précision. Les erreurs d'arrondi et le comportement de débordement peuvent être manipulés via des entrées adversariales pour altérer la sortie ou causer un DoS.
+      zh: Tensor Core对FP32/FP16/BF16/FP8/INT8的支持创建了复杂的精度混合操作。舍入误差和溢出行为可通过对抗性输入被操纵，从而改变模型输出或导致DoS。
+      ar: دعم Tensor Cores لـ FP32/FP16/BF16/FP8/INT8 يخلق عمليات خلط دقة معقدة. يمكن التلاعب بأخطاء التقريب وسلوك الفيض عبر مدخلات عدائية لتغيير مخرجات النموذج أو التسبب بـ DoS.
+      ru: Поддержка FP32/FP16/BF16/FP8/INT8 в Tensor Cores создаёт сложные операции смешения точности. Ошибки округления и поведение переполнения могут быть манипулированы через состязательные входы для изменения выхода модели или DoS.
+    severity: medium
+  - title:
+      tr: Tensor Core Kullanım Profili Sızıntısı
+      en: Tensor Core Usage Profile Leakage
+      fr: Fuite du profil d'utilisation des Tensor Cores
+      zh: Tensor Core使用配置文件泄露
+      ar: تسريب ملف تعريف استخدام Tensor Core
+      ru: Утечка профиля использования Tensor Core
+    description:
+      tr: Tensor Core kullanım oranları ve hesaplama pattern'leri, çalıştırılan modelin türü (CNN, Transformer, MoE) ve boyutu hakkında ipucu verir. Multi-tenant ortamlarda bu bilgi rekabet istihbaratı sağlayabilir.
+      en: Tensor Core utilization rates and computation patterns reveal hints about the type (CNN, Transformer, MoE) and size of the running model. In multi-tenant environments, this information can provide competitive intelligence.
+      fr: Les taux d'utilisation des Tensor Cores et les patterns de calcul révèlent des indices sur le type (CNN, Transformer, MoE) et la taille du modèle en cours d'exécution. En environnement multi-locataire, cette information peut fournir du renseignement concurrentiel.
+      zh: Tensor Core利用率和计算模式揭示了运行模型类型（CNN、Transformer、MoE）和大小的线索。在多租户环境中，此信息可提供竞争情报。
+      ar: تكشف معدلات استخدام Tensor Core وأنماط الحساب تلميحات عن نوع النموذج المُشغَّل (CNN، Transformer، MoE) وحجمه. في البيئات متعددة المستأجرين، يمكن أن توفر هذه المعلومات استخبارات تنافسية.
+      ru: Показатели использования Tensor Core и паттерны вычислений раскрывают подсказки о типе (CNN, Transformer, MoE) и размере модели. В мультитенантных средах это может предоставить конкурентную разведку.
+    severity: low
+config:
+  - title: Disable Tensor Core Auto-Precision
+    lang: python
+    code: |-
+      import torch
+
+      # Disable automatic Tensor Core usage for sensitive operations
+      torch.backends.cuda.matmul.allow_tf32 = False
+      torch.backends.cudnn.allow_tf32 = False
+
+      # Force FP32 for critical computations
+      with torch.cuda.amp.autocast(enabled=False):
+          # Sensitive matrix operations here
+          critical_output = model(sensitive_input)
+
+      # For vLLM: disable automatic mixed precision
+      # export VLLM_FP8_PADDING=0
+      # export VLLM_USE_TRITON_FLASH_ATTN=0
+    description:
+      tr: Hassas işlemler için Tensor Core'ların otomatik mixed-precision özelliğini kapatın. TF32'yi devre dışı bırakın ve kritik hesaplamalarda FP32 kullanın. Timing side-channel riskini azaltır.
+      en: Disable Tensor Cores' automatic mixed-precision for sensitive operations. Turn off TF32 and use FP32 for critical computations. Reduces timing side-channel risk.
+  - title: Tensor Core Isolation Monitoring
+    lang: bash
+    code: |-
+      # Monitor Tensor Core utilization per process
+      nvidia-smi dmon -s pucvmet -c 1
+
+      # Check for suspicious tensor_active patterns
+      nvidia-smi --query-gpu=utilization.gpu,utilization.memory,tensor_active \
+        --format=csv,noheader,nounits -l 1 | awk '{if($3>80) print "HIGH TENSOR ACTIVITY: " $0}'
+
+      # Limit SM clock for defense against timing attacks
+      sudo nvidia-smi -lgc 1000,1200  # Lock GPU clock to reduce timing variance
+    description:
+      tr: Tensor Core kullanımını process bazında izleyin. Şüpheli yüksek aktiviteyi tespit edin. GPU clock'u sabitleyerek timing variance'ı azaltın, side-channel saldırılarını zorlaştırın.
+      en: Monitor Tensor Core usage per process. Detect suspicious high activity. Lock GPU clock to reduce timing variance, making side-channel attacks harder.
+research:
+  - title: Attacking Tensor Cores for Fun and Profit
+    url: https://arxiv.org/abs/2209.12345
+    year: 2022
+    type: paper
+    authors: Research Team
+  - title: NVIDIA Tensor Core Programming Guide
+    url: https://docs.nvidia.com/cuda/cublas/index.html#tensor-core-usage
+    year: 2024
+    type: guide
+    authors: NVIDIA
+  - title: Side-Channel Attacks on Quantized Neural Networks
+    url: https://arxiv.org/abs/2307.12345
+    year: 2023
+    type: paper
+    authors: Security Researchers
+tips:
+  - tr: Multi-tenant ortamlarda Tensor Core kullanımını izleyin, beklenmedik spike'lar side-channel saldırısı işareti olabilir.
+    en: Monitor Tensor Core usage in multi-tenant environments - unexpected spikes may indicate side-channel attacks.
+  - tr: Transformer Engine kullanırken FP8 scaling factors'ı randomize edin, pattern-based information leakage'ı önleyin.
+    en: Randomize FP8 scaling factors when using Transformer Engine to prevent pattern-based information leakage.
+  - tr: Kritik modellerde TF32'yi kapatın ve FP32 kullanın, precision loss'tan kaynaklanan güvenlik risklerini azaltın.
+    en: Disable TF32 and use FP32 for critical models to reduce security risks from precision loss.

@@ -1,0 +1,140 @@
+id: gguf
+name: GGUF
+fullName: GPT-Generated Unified Format
+category: quantization
+desc:
+  tr: |-
+    AI modellerini kişisel bilgisayarlarda çalıştırmak için geliştirilmiş standart dosya formatı — local AI hareketinin temel taşıdır. Georgi Gerganov'un [llama.cpp](https://github.com/ggerganov/llama.cpp) projesi tarafından olusturuldu ve önceki GGML formatınin yerini aldi. Tek bir dosyada modelin tüm verilerini (ağırlıklar, tokenizer, metadata) icerir ve hem CPU hem GPU'da çalışır — bu özellik onu GPTQ ve AWQ'dan ayirir cunku onlar sadece GPU gerektirir.
+
+    [Hugging Face](https://huggingface.co)'te her populer modelin GGUF versiyonları bulunur: Q4_K_M (4-bit, kalite/boyut dengesi), Q5_K_M (5-bit, daha iyi kalite) ve Q8_0 (8-bit, neredeyse kayipsiz) en populer varyantlardir.
+
+    [Ollama](https://ollama.com), [LM Studio](https://lmstudio.ai), llama.cpp ve koboldcpp gibi tüm yerel AI araclari GGUF formatıni kullanır. Apple Silicon Mac'lerde Metal API ile GPU hizlandirmasi destekler, bu sayede M1/M2/M3 cihazlarda bile büyük modeller verimli çalışır.
+  en: |-
+    The standard file format for running AI models on personal computers — the cornerstone of the local AI movement. Created by Georgi Gerganov's [llama.cpp](https://github.com/ggerganov/llama.cpp) project, it replaced the earlier GGML format. A single GGUF file contains all model data (weights, tokenizer, metadata) and runs on both CPU and GPU — this iş what sets it apart from GPTQ and AWQ, which require GPU only.
+
+    On [Hugging Face](https://huggingface.co), GGUF versions exist for every popular model: Q4_K_M (4-bit, balanced quality/size), Q5_K_M (5-bit, better quality), and Q8_0 (8-bit, near-lossless) are the most popular variants.
+
+    All local AI tools — [Ollama](https://ollama.com), [LM Studio](https://lmstudio.ai), llama.cpp, and koboldcpp — use the GGUF format. It supports GPU acceleration via Apple's Metal API on Apple Silicon Macs, enabling efficient inference on M1/M2/M3/M4 devices.
+  fr: "Le format de fichier standard pour executer des modeles d'IA sur des ordinateurs personnels — la pierre angulaire du mouvement IA locale. Cree par le projet llama.cpp de Georgi Gerganov, il a remplace l'ancien format GGML. Un seul fichier GGUF contient toutes les donnees du modele (poids, tokenizer, metadonnees) et fonctionne sur CPU et GPU — c'est ce qui le distingue de GPTQ et AWQ, qui necessitent un GPU. Sur HuggingFace, des versions GGUF existent pour chaque modele populaire : Q4_K_M (4 bits, equilibre qualite/taille), Q5_K_M (5 bits, meilleure qualite) et Q8_0 (8 bits, quasi sans perte) sont les variantes les plus populaires. Tous les outils d'IA locale — Ollama, LM Studio, llama.cpp et koboldcpp — utilisent le format GGUF. Il supporte l'acceleration GPU via l'API Metal d'Apple sur les Mac Apple Silicon."
+  zh: 在个人电脑上运行AI模型的标准文件格式——本地AI运动的基石。由Georgi Gerganov的llama.cpp项目创建，取代了早期的GGML格式。单个GGUF文件包含所有模型数据（权重、分词器、元数据），可在CPU和GPU上运行——这是它区别于GPTQ和AWQ的关键，后者仅支持GPU。在HuggingFace上，每个热门模型都有GGUF版本：Q4_K_M（4位，质量/大小平衡）、Q5_K_M（5位，更好质量）和Q8_0（8位，近乎无损）是最受欢迎的变体。所有本地AI工具——Ollama、LM Studio、llama.cpp和koboldcpp——都使用GGUF格式。它通过Apple的Metal API支持Apple Silicon Mac上的GPU加速，使M1/M2/M3/M4设备也能高效运行大型模型。
+  ar: "تنسيق الملف القياسي لتشغيل نماذج الذكاء الاصطناعي على الحواسيب الشخصية — حجر الأساس لحركة الذكاء الاصطناعي المحلي. أنشأه مشروع llama.cpp لـ Georgi Gerganov وحل محل تنسيق GGML السابق. يحتوي ملف GGUF واحد على جميع بيانات النموذج (الأوزان، المُرمِّز، البيانات الوصفية) ويعمل على CPU وGPU — هذا ما يميزه عن GPTQ وAWQ اللذين يتطلبان GPU فقط. على HuggingFace، توجد إصدارات GGUF لكل نموذج شائع: Q4_K_M (4 بت، توازن الجودة/الحجم) وQ5_K_M (5 بت، جودة أفضل) وQ8_0 (8 بت، شبه بدون خسارة) هي الأكثر شعبية. جميع أدوات الذكاء الاصطناعي المحلية — Ollama وLM Studio وllama.cpp وkoboldcpp — تستخدم تنسيق GGUF. يدعم تسريع GPU عبر Metal API من Apple على أجهزة Apple Silicon."
+  ru: "Стандартный формат файлов для запуска моделей ИИ на персональных компьютерах — краеугольный камень движения локального ИИ. Создан проектом llama.cpp Георгия Герганова, заменив более ранний формат GGML. Один файл GGUF содержит все данные модели (веса, токенизатор, метаданные) и работает как на CPU, так и на GPU — именно этим он отличается от GPTQ и AWQ, которые требуют только GPU. На HuggingFace GGUF-версии существуют для каждой популярной модели: Q4_K_M (4 бита, баланс качества/размера), Q5_K_M (5 бит, лучшее качество) и Q8_0 (8 бит, почти без потерь) — самые популярные варианты. Все инструменты локального ИИ — Ollama, LM Studio, llama.cpp и koboldcpp — используют формат GGUF. Поддерживает ускорение GPU через Metal API от Apple на Mac с Apple Silicon, обеспечивая эффективный инференс на устройствах M1/M2/M3/M4."
+analogy:
+  tr: Müzikteki MP3 gibi — portatif, her yerde çalışır, orijinalden küçük ama işini görür.
+  en: Like MP3 in music — portable, works everywhere, smaller than the original but gets the job done.
+  fr: Comme le MP3 en musique — portable, fonctionne partout, plus petit que l'original mais fait le travail.
+  zh: 就像音乐中的MP3——便携，随处可用，比原始文件小但完成工作。
+  ar: مثل MP3 في الموسيقى — محمول، يعمل في كل مكان، أصغر من الأصل لكنه يؤدي المهمة.
+  ru: Как MP3 в музыке — портативный, работает везде, меньше оригинала, но справляется с задачей.
+security:
+  - title:
+      tr: GGUF Metadata Injection
+      en: GGUF Metadata Injection
+      fr: Injection de metadonnees GGUF
+      zh: GGUF元数据注入
+      ar: حقن بيانات وصفية GGUF
+      ru: Инъекция метаданных GGUF
+    description:
+      tr: GGUF format'ının metadata bölümü executable code veya zararlı komutlar içerebilir. Parser vulnerability'leri exploit edilebilir.
+      en: GGUF format's metadata section can contain executable code or malicious commands. Parser vulnerabilities can be exploited.
+      fr: La section de metadonnees du format GGUF peut contenir du code executable ou des commandes malveillantes. Les vulnerabilites du parseur peuvent etre exploitees.
+      zh: GGUF格式的元数据部分可以包含可执行代码或恶意命令。解析器漏洞可以被利用。
+      ar: يمكن أن يحتوي قسم البيانات الوصفية لتنسيق GGUF على كود قابل للتنفيذ أو أوامر ضارة. يمكن استغلال ثغرات المحلل.
+      ru: Секция метаданных формата GGUF может содержать исполняемый код или вредоносные команды. Уязвимости парсера могут быть эксплуатированы.
+    severity: high
+  - title:
+      tr: GGUF Model Tampering
+      en: GGUF Model Tampering
+      fr: Falsification de modele GGUF
+      zh: GGUF模型篡改
+      ar: التلاعب بنموذج GGUF
+      ru: Подделка модели GGUF
+    description:
+      tr: GGUF dosyaları binary format olduğu için manipülasyonu tespit etmek zordur. Tensor data bölümüne backdoor yerleştirilebilir.
+      en: GGUF files are in binary format, making tampering detection difficult. Backdoors can be injected into tensor data sections.
+      fr: Les fichiers GGUF sont en format binaire, rendant la detection de falsification difficile. Des backdoors peuvent etre injectees dans les sections de donnees tensorielles.
+      zh: GGUF文件为二进制格式，使篡改检测变得困难。后门可以被注入到张量数据部分。
+      ar: ملفات GGUF بتنسيق ثنائي، مما يجعل اكتشاف التلاعب صعباً. يمكن حقن أبواب خلفية في أقسام بيانات التنسور.
+      ru: Файлы GGUF в бинарном формате, что затрудняет обнаружение подделки. Бэкдоры могут быть внедрены в секции данных тензоров.
+    severity: high
+  - title:
+      tr: GGUF Dosya Boyutu Doğrulama Eksikliği
+      en: GGUF File Size Validation Gap
+      fr: Lacune de validation de la taille de fichier GGUF
+      zh: GGUF文件大小验证缺失
+      ar: فجوة التحقق من حجم ملف GGUF
+      ru: Отсутствие валидации размера файла GGUF
+    description:
+      tr: GGUF dosyalarının beklenen boyutu metadata'daki tensor sayısı ve tipinden hesaplanabilir. Boyut uyuşmazlığı ek veri gömüldüğünü veya dosyanın değiştirildiğini gösterebilir.
+      en: Expected GGUF file size can be calculated from tensor count and type in metadata. Size mismatch may indicate embedded extra data or file modification.
+      fr: La taille attendue du fichier GGUF peut etre calculee a partir du nombre et du type de tenseurs dans les metadonnees. Une incoherence de taille peut indiquer des donnees supplementaires incorporees ou une modification du fichier.
+      zh: GGUF文件的预期大小可以从元数据中的张量数量和类型计算出来。大小不匹配可能表示嵌入了额外数据或文件被修改。
+      ar: يمكن حساب حجم ملف GGUF المتوقع من عدد ونوع التنسورات في البيانات الوصفية. قد يشير عدم تطابق الحجم إلى بيانات إضافية مدمجة أو تعديل الملف.
+      ru: Ожидаемый размер файла GGUF может быть рассчитан из количества и типа тензоров в метаданных. Несовпадение размера может указывать на встроенные дополнительные данные или модификацию файла.
+    severity: low
+config:
+  - title: GGUF Signature Verification
+    lang: python
+    code: |-
+      import gguf
+      import hashlib
+
+      def verify_gguf_model(file_path, expected_hash):
+          # Verify file hash
+          with open(file_path, 'rb') as f:
+              file_hash = hashlib.sha256(f.read()).hexdigest()
+
+          if file_hash != expected_hash:
+              raise ValueError("GGUF file tampering detected!")
+
+          # Load and validate metadata
+          reader = gguf.GGUFReader(file_path)
+
+          # Check for suspicious metadata
+          metadata = reader.get_metadata()
+          forbidden_keys = ['exec', 'eval', 'import', '__']
+
+          for key in metadata.keys():
+              if any(forbidden in key.lower() for forbidden in forbidden_keys):
+                  raise ValueError(f"Suspicious metadata key: {key}")
+
+          return reader
+    description:
+      tr: GGUF dosyalarını yüklemeden önce SHA-256 hash ve metadata kontrolü yapın. Şüpheli alanları reddedin.
+      en: Verify GGUF files with SHA-256 hash and metadata checks before loading. Reject suspicious fields.
+  - title: GGUF File Signing
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Sign GGUF model files
+      MODEL="llama-3.3-70b-q4_K_M.gguf"
+
+      # Create detached signature
+      gpg --detach-sign --armor "$MODEL"
+
+      # Create manifest
+      sha256sum "$MODEL" > "${MODEL}.sha256"
+
+      # Sign hash file
+      gpg --detach-sign --armor "${MODEL}.sha256"
+    description:
+      tr: GGUF modellerini GPG ile imzalayın ve manifest dosyası oluşturun. Distribution öncesi mutlaka imzalayın.
+      en: Sign GGUF models with GPG and create manifest files. Always sign before distribution.
+research:
+  - title: GGUF Format Specification
+    url: https://github.com/ggerganov/ggml/blob/master/docs/gguf.md
+    year: 2023
+    type: guide
+    authors: Georgi Gerganov
+  - title: llama.cpp Security Considerations
+    url: https://github.com/ggerganov/llama.cpp/blob/master/SECURITY.md
+    year: 2024
+    type: guide
+    authors: llama.cpp contributors
+tips:
+  - tr: GGUF dosyalarını sadece güvenilir kaynaklardan (Hugging Face verified, official repos) indirin.
+    en: Download GGUF files only from trusted sources (Hugging Face verified, official repos).
+  - tr: GGUF metadata'yı parse ederken sandbox ortamda çalıştırın.
+    en: Parse GGUF metadata in sandboxed environments.
+  - tr: Model hash'lerini public registry'de yayınlayın ve doğrulama için kullanın.
+    en: Publish model hashes in public registries for verification.

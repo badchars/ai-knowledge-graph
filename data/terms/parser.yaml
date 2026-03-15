@@ -1,0 +1,219 @@
+id: parser
+name: Parser
+fullName: Parser
+category: tools
+desc:
+  tr: |-
+    AI'in ürettiği serbest metin çıktısini, kodunuzun anlayabileceği yapılı veriye çevirmeye yarayan kod bileşeni. AI modelleri doğal dilde cevap verir — parser bu metinden JSON nesneleri, tool call parametreleri, kod blokları veya belirli veri alanlarını çıkarır.
+
+    Örneğin, LLM'den 'Istanbul'da hava 22 derece ve güneşli' gibi bir cevap aldığınızda, parser bunu {city: 'Istanbul', temp: 22, condition: 'sunny'} seklinde bir nesneye dönüştürur. [LangChain](https://langchain.com)'in OutputParser'lari ve [vLLM](https://docs.vllm.ai)'in tool call parser'lari (llama3_json, hermes gibi) bu kategoriye girer.
+
+    Structured output özelliginin yaygınlasmasi parser ihtiyacini azaltsa da, eski modeller ve özel formatlarla çalışırken hala parser yazmak gerekir.
+  en: |-
+    A code component that transforms an AI model's free-text output into structured data your application can work with. AI models respond in natural language, and a parser extracts JSON objects, tool call parameters, code blocks, or specific data fields from that text.
+
+    For example, when an LLM responds 'The weather in Istanbul iş 22 degrees and sunny,' a parser converts that into {city: 'Istanbul', temp: 22, condition: 'sunny'}. [LangChain](https://langchain.com)'s OutputParsers and [vLLM](https://docs.vllm.ai)'s tool call parsers (like llama3_json and hermes) are real-world examples.
+
+    While structured output features have reduced the need for custom parsers, you still need them when working with older models, custom output formats, or when extracting data from streaming responses. Parsers are also critical in agent systems where the model's output needs to be routed to different tools.
+  fr: "Un composant de code qui transforme la sortie en texte libre d'un modele d'IA en donnees structurees exploitables par votre application. Les modeles d'IA repondent en langage naturel, et un parser extrait des objets JSON, des parametres d'appel d'outils, des blocs de code ou des champs de donnees specifiques. Par exemple, quand un LLM repond 'La meteo a Istanbul est de 22 degres et ensoleille', un parser convertit cela en {city: 'Istanbul', temp: 22, condition: 'sunny'}. Les OutputParsers de LangChain et les tool call parsers de vLLM (comme llama3_json et hermes) en sont des exemples concrets. Bien que les fonctionnalites de sortie structuree aient reduit le besoin de parsers personnalises, ils restent necessaires pour les anciens modeles, les formats personnalises ou l'extraction de donnees depuis des reponses en streaming. Les parsers sont aussi essentiels dans les systemes d'agents ou la sortie du modele doit etre dirigee vers differents outils."
+  zh: "将AI模型的自由文本输出转换为应用程序可以使用的结构化数据的代码组件。AI模型以自然语言回应，解析器从文本中提取JSON对象、工具调用参数、代码块或特定数据字段。例如，当LLM回复'伊斯坦布尔天气22度，晴天'时，解析器将其转换为{city: 'Istanbul', temp: 22, condition: 'sunny'}。LangChain的OutputParser和vLLM的工具调用解析器（如llama3_json和hermes）都是实际的例子。虽然结构化输出功能减少了对自定义解析器的需求，但在使用旧模型、自定义输出格式或从流式响应中提取数据时仍然需要它们。解析器在代理系统中也至关重要，因为模型的输出需要被路由到不同的工具。"
+  ar: "مكون برمجي يحول مخرجات النص الحر لنموذج الذكاء الاصطناعي إلى بيانات منظمة يمكن لتطبيقك التعامل معها. تستجيب نماذج الذكاء الاصطناعي باللغة الطبيعية، ويستخرج المحلل كائنات JSON ومعاملات استدعاء الأدوات وكتل الكود أو حقول بيانات محددة من ذلك النص. على سبيل المثال، عندما يرد LLM بـ 'الطقس في إسطنبول 22 درجة ومشمس'، يحوله المحلل إلى {city: 'Istanbul', temp: 22, condition: 'sunny'}. محللات OutputParser في LangChain ومحللات استدعاء الأدوات في vLLM (مثل llama3_json وhermes) أمثلة واقعية. رغم أن ميزات المخرجات المنظمة قللت الحاجة للمحللات المخصصة، إلا أنها لا تزال ضرورية عند العمل مع النماذج القديمة والتنسيقات المخصصة أو استخراج البيانات من الاستجابات المتدفقة. المحللات ضرورية أيضاً في أنظمة الوكلاء حيث يجب توجيه مخرجات النموذج إلى أدوات مختلفة."
+  ru: "Компонент кода, который преобразует свободный текстовый вывод AI-модели в структурированные данные, с которыми может работать ваше приложение. AI-модели отвечают на естественном языке, а парсер извлекает JSON-объекты, параметры вызовов инструментов, блоки кода или конкретные поля данных из этого текста. Например, когда LLM отвечает 'Погода в Стамбуле 22 градуса и солнечно', парсер преобразует это в {city: 'Istanbul', temp: 22, condition: 'sunny'}. OutputParser в LangChain и tool call парсеры vLLM (например, llama3_json и hermes) — реальные примеры. Хотя функции структурированного вывода снизили потребность в кастомных парсерах, они по-прежнему нужны при работе со старыми моделями, нестандартными форматами или при извлечении данных из потоковых ответов. Парсеры также критически важны в агентных системах, где вывод модели нужно маршрутизировать к разным инструментам."
+analogy:
+  tr: Mektubun içeriğinden isim, adres, tarih bilgilerini ayıklayan sekreter.
+  en: A secretary extracting name, address, and date information from a letter.
+  fr: Un secrétaire extrayant le nom, l'adresse et la date d'une lettre.
+  zh: 从信件内容中提取姓名、地址和日期信息的秘书。
+  ar: سكرتير يستخرج معلومات الاسم والعنوان والتاريخ من رسالة.
+  ru: Секретарь, извлекающий имя, адрес и дату из письма.
+security:
+  - title:
+      tr: Output Parser Bypass
+      en: Output Parser Bypass
+      fr: Contournement du parseur de sortie
+      zh: 输出解析器绕过
+      ar: تجاوز محلل المخرجات
+      ru: Обход парсера вывода
+    description:
+      tr: LLM çıktısını parse eden regex veya JSON parser'lar manipulation edilebilir. Saldırgan özel formatlanmış çıktı ile parser'ı bypass edebilir veya zararlı kod enjekte edebilir.
+      en: Regex or JSON parsers parsing LLM output can be manipulated. Attacker can bypass parser with specially formatted output or inject malicious code.
+      fr: Les parseurs regex ou JSON analysant la sortie du LLM peuvent etre manipules. L'attaquant peut contourner le parseur avec une sortie specialement formatee ou injecter du code malveillant.
+      zh: 解析LLM输出的正则表达式或JSON解析器可以被操纵。攻击者可以通过特殊格式化的输出绕过解析器或注入恶意代码。
+      ar: يمكن التلاعب بمحللات التعبيرات النمطية أو JSON التي تحلل مخرجات نموذج اللغة. يمكن للمهاجم تجاوز المحلل بمخرجات بتنسيق خاص أو حقن كود ضار.
+      ru: Парсеры регулярных выражений или JSON, анализирующие выходные данные LLM, могут быть манипулированы. Злоумышленник может обойти парсер с помощью специально отформатированного вывода или внедрить вредоносный код.
+    severity: high
+  - title:
+      tr: Structured Output Injection
+      en: Structured Output Injection
+      fr: Injection de sortie structuree
+      zh: 结构化输出注入
+      ar: حقن المخرجات المنظمة
+      ru: Инъекция структурированного вывода
+    description:
+      tr: JSON, YAML veya XML formatında çıktı bekleyen parser'lara injection saldırısı yapılabilir. LLM'den elde edilen structured output doğrudan eval() veya exec() ile kullanılırsa RCE riski.
+      en: Injection attacks can be performed on parsers expecting JSON, YAML, or XML output. RCE risk if structured output from LLM is used directly with eval() or exec().
+      fr: Des attaques par injection peuvent etre effectuees sur les parseurs attendant une sortie JSON, YAML ou XML. Risque de RCE si la sortie structuree du LLM est utilisee directement avec eval() ou exec().
+      zh: 可以对期望JSON、YAML或XML输出的解析器执行注入攻击。如果LLM的结构化输出直接用于eval()或exec()，存在RCE风险。
+      ar: يمكن تنفيذ هجمات الحقن على المحللات التي تتوقع مخرجات JSON أو YAML أو XML. خطر تنفيذ كود عن بعد إذا تم استخدام المخرجات المنظمة من نموذج اللغة مباشرة مع eval() أو exec().
+      ru: Атаки инъекции могут быть выполнены на парсеры, ожидающие вывод в формате JSON, YAML или XML. Риск RCE, если структурированный вывод LLM используется напрямую с eval() или exec().
+    severity: critical
+  - title:
+      tr: Parser Hata Mesajları İfşası
+      en: Parser Error Message Disclosure
+      fr: Divulgation des messages d'erreur du parseur
+      zh: 解析器错误信息泄露
+      ar: كشف رسائل خطأ المحلل
+      ru: Раскрытие сообщений об ошибках парсера
+    description:
+      tr: Parser hataları kullanıcıya gösterildiğinde, beklenen format ve regex pattern'ları ifşa olabilir. Bu bilgi, parser bypass saldırılarını optimize etmek için kullanılabilir.
+      en: When parser errors are shown to users, expected format and regex patterns can be exposed. This information can be used to optimize parser bypass attacks.
+      fr: Quand les erreurs du parseur sont montrees aux utilisateurs, le format attendu et les patterns regex peuvent etre exposes. Cette information peut etre utilisee pour optimiser les attaques de contournement du parseur.
+      zh: 当解析器错误显示给用户时，预期的格式和正则表达式模式可能被暴露。这些信息可用于优化解析器绕过攻击。
+      ar: عندما تُعرض أخطاء المحلل للمستخدمين، قد يتم كشف التنسيق المتوقع وأنماط التعبيرات النمطية. يمكن استخدام هذه المعلومات لتحسين هجمات تجاوز المحلل.
+      ru: Когда ошибки парсера показываются пользователям, ожидаемый формат и паттерны регулярных выражений могут быть раскрыты. Эта информация может использоваться для оптимизации атак обхода парсера.
+    severity: low
+config:
+  - title: Secure LLM Output Parser
+    lang: python
+    code: |-
+      import json
+      import re
+      from typing import Any, Dict
+
+      class SecureOutputParser:
+          def __init__(self, expected_schema: Dict = None):
+              self.expected_schema = expected_schema
+
+          def parse_json(self, llm_output: str) -> Dict:
+              """Safely parse JSON from LLM output"""
+
+              # Extract JSON from markdown code blocks
+              json_match = re.search(r'```json\s*(.+?)```',
+                                    llm_output, re.DOTALL)
+              if json_match:
+                  json_str = json_match.group(1)
+              else:
+                  # Try to find raw JSON
+                  json_match = re.search(r'\{.+\}', llm_output, re.DOTALL)
+                  if not json_match:
+                      raise ValueError("No JSON found in output")
+                  json_str = json_match.group(0)
+
+              # Parse JSON safely (no eval!)
+              try:
+                  parsed = json.loads(json_str)
+              except json.JSONDecodeError as e:
+                  raise ValueError(f"Invalid JSON: {e}")
+
+              # Validate against schema
+              if self.expected_schema:
+                  self._validate_schema(parsed, self.expected_schema)
+
+              return parsed
+
+          def _validate_schema(self, data: Any, schema: Dict):
+              """Validate parsed data against expected schema"""
+
+              if "type" in schema:
+                  expected_type = schema["type"]
+                  if expected_type == "object" and not isinstance(data, dict):
+                      raise ValueError("Expected object")
+                  elif expected_type == "array" and not isinstance(data, list):
+                      raise ValueError("Expected array")
+                  elif expected_type == "string" and not isinstance(data, str):
+                      raise ValueError("Expected string")
+
+              if "properties" in schema and isinstance(data, dict):
+                  for key, value_schema in schema["properties"].items():
+                      if key in data:
+                          self._validate_schema(data[key], value_schema)
+
+              if "required" in schema:
+                  for required_key in schema["required"]:
+                      if required_key not in data:
+                          raise ValueError(f"Missing required key: {required_key}")
+
+          def sanitize_string(self, s: str) -> str:
+              """Sanitize string output from LLM"""
+
+              # Remove null bytes
+              s = s.replace('\x00', '')
+
+              # Limit length
+              s = s[:10000]
+
+              # Remove control characters except newline/tab
+              s = re.sub(r'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]', '', s)
+
+              return s
+
+      # Usage example
+      parser = SecureOutputParser(expected_schema={
+          "type": "object",
+          "properties": {
+              "name": {"type": "string"},
+              "age": {"type": "number"}
+          },
+          "required": ["name"]
+      })
+
+      llm_response = '{"name": "Alice", "age": 30}'
+      data = parser.parse_json(llm_response)  # Validated and safe
+    description:
+      tr: LLM çıktısı için güvenli parser. JSON schema validation ve sanitization ile injection koruması.
+      en: Secure parser for LLM output. Injection protection with JSON schema validation and sanitization.
+  - title: Safe LLM Output Parser (Rust)
+    lang: rust
+    code: |-
+      use serde_json::Value;
+
+      /// Safely parse LLM output as JSON without eval/exec risks
+      pub fn safe_parse_llm_output(raw: &str) -> Result<Value, String> {
+          // Strip markdown code fences if present
+          let cleaned = raw
+              .trim()
+              .strip_prefix("```json")
+              .or_else(|| raw.trim().strip_prefix("```"))
+              .unwrap_or(raw.trim())
+              .strip_suffix("```")
+              .unwrap_or(raw.trim())
+              .trim();
+
+          // Attempt JSON parse with size limit
+          if cleaned.len() > 1_000_000 {
+              return Err("output exceeds 1MB size limit".into());
+          }
+
+          let parsed: Value = serde_json::from_str(cleaned)
+              .map_err(|e| format!("JSON parse error: {}", e))?;
+
+          // Reject if contains suspicious keys
+          if let Value::Object(ref map) = parsed {
+              for key in map.keys() {
+                  if key.starts_with("__") || key == "eval" || key == "exec" {
+                      return Err(format!("suspicious key rejected: {}", key));
+                  }
+              }
+          }
+
+          Ok(parsed)
+      }
+    description:
+      tr: Rust ile LLM çıktısını güvenli şekilde JSON olarak parse eden fonksiyon. Boyut sınırı, markdown temizleme ve şüpheli anahtar tespiti.
+      en: Rust function that safely parses LLM output as JSON. Includes size limit, markdown cleanup, and suspicious key detection.
+research:
+  - title: LangChain Output Parsers
+    url: https://python.langchain.com/docs/modules/model_io/output_parsers/
+    year: 2024
+    type: guide
+    authors: LangChain
+  - title: OWASP Deserialization Cheat Sheet
+    url: https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html
+    year: 2024
+    type: guide
+    authors: OWASP
+tips:
+  - tr: LLM çıktısını parse ederken ASLA eval() veya exec() kullanmayın.
+    en: NEVER use eval() or exec() when parsing LLM output.
+  - tr: JSON schema ile output validation yapın; beklenmeyen alanları reddedin.
+    en: Validate output with JSON schema; reject unexpected fields.

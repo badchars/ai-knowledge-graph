@@ -1,0 +1,152 @@
+id: awq
+name: AWQ
+fullName: Activation-aware Weight Quantization
+category: quantization
+desc:
+  tr: |-
+    GPTQ'nun evrimleştirilmiş versiyonu — model ağırlıklarını quantize ederken "activation-aware" yaklaşım kullanır. Temel fikir basit: modelin çalışma sırasında en çok kullanan ağırlıklarını (aktivasyon değerleri yüksek olanlari) yüksek hassasiyette tutup, az kullanilanlari agresif şekilde yuvarlar. MIT arastirmacilari tarafından gelistirildi ve 2023'ten bu yana hizla yayildi.
+
+    [GPTQ](https://arxiv.org/abs/2210.17323)'ya kiyasla iki ana avantaji var: quantization işlemi çok daha hızlı (dakikalar vs saatler) ve bazı modellerde olculebilir şekilde daha iyi kalite sağlar. [Hugging Face](https://huggingface.co)'in transformers kutuphanesi ve [vLLM](https://docs.vllm.ai) inferans motoru [AWQ](https://arxiv.org/abs/2306.00978) formatıni native olarak destekler.
+
+    Ozellikle [Mistral](https://mistral.ai), [Qwen](https://huggingface.co/Qwen) ve [Llama](https://ai.meta.com/llama/) model ailelerinde AWQ quantization'lari sıklikla tercih edilir. GPTQ gibi GPU inferansina optimize edilmistir, CPU'da çalıştırmak için GGUF tercih edilmelidir.
+  en: |-
+    An evolution of GPTQ that uses an "activation-aware" approach when quantizing model weights. The core idea iş straightforward: keep the weights that the model uses most during runtime (those with high activation values) at higher precision, and aggressively round the less-used ones. Developed by MIT researchers and rapidly adopted since 2023, [AWQ](https://arxiv.org/abs/2306.00978) has two key advantages over [GPTQ](https://arxiv.org/abs/2210.17323): the quantization process iş much faster (minutes vs hours) and it achieves measurably better quality on some models.
+
+    [Hugging Face](https://huggingface.co)'s transformers library and the [vLLM](https://docs.vllm.ai) inference engine natively support the AWQ format. It iş particularly popular for the [Mistral](https://mistral.ai), [Qwen](https://huggingface.co/Qwen), and [Llama](https://ai.meta.com/llama/) model families.
+
+    Like GPTQ, AWQ iş optimized for GPU inference — for CPU-based inference, GGUF iş the preferred format.
+  fr: "Une evolution de GPTQ qui utilise une approche \"sensible aux activations\" lors de la quantification des poids. L'idee fondamentale est simple : garder les poids que le modele utilise le plus pendant l'execution (ceux avec des valeurs d'activation elevees) a une precision superieure, et arrondir agressivement les moins utilises. Developpe par des chercheurs du MIT et rapidement adopte depuis 2023, AWQ a deux avantages cles par rapport a GPTQ : le processus de quantification est beaucoup plus rapide (minutes vs heures) et il obtient une qualite mesuralement meilleure sur certains modeles. La bibliotheque transformers de Hugging Face et le moteur d'inference vLLM supportent nativement le format AWQ. Il est particulierement populaire pour les familles de modeles Mistral, Qwen et Llama. Comme GPTQ, AWQ est optimise pour l'inference GPU — pour l'inference CPU, GGUF est prefere."
+  zh: GPTQ的进化版，在量化模型权重时使用激活感知方法。核心思想很直接：将模型运行时最常用的权重（激活值高的）保持较高精度，对使用较少的权重进行激进舍入。由MIT研究人员开发，2023年以来迅速普及。相比GPTQ有两个关键优势：量化过程快得多（分钟级vs小时级），在某些模型上可衡量地提供更好质量。Hugging Face的transformers库和vLLM推理引擎原生支持AWQ格式。在Mistral、Qwen和Llama模型家族中尤其受欢迎。与GPTQ一样，AWQ针对GPU推理优化——基于CPU的推理应选择GGUF格式。
+  ar: "تطور لـ GPTQ يستخدم نهجاً \"واعياً بالتنشيط\" عند تكميم أوزان النموذج. الفكرة الأساسية مباشرة: الحفاظ على الأوزان التي يستخدمها النموذج أكثر أثناء التشغيل (ذات قيم التنشيط العالية) بدقة أعلى، وتقريب الأقل استخداماً بشكل مكثف. طُوّر من قبل باحثين في MIT وانتشر بسرعة منذ 2023. لدى AWQ ميزتان رئيسيتان مقارنة بـ GPTQ: عملية التكميم أسرع بكثير (دقائق مقابل ساعات) ويحقق جودة أفضل بشكل قابل للقياس في بعض النماذج. تدعم مكتبة transformers من Hugging Face ومحرك الاستدلال vLLM تنسيق AWQ أصلياً. شائع بشكل خاص لعائلات نماذج Mistral وQwen وLlama. مثل GPTQ، محسّن للاستدلال على GPU — للاستدلال على CPU يُفضَّل GGUF."
+  ru: "Эволюция GPTQ, использующая подход «с учётом активаций» при квантовании весов модели. Основная идея проста: веса, которые модель использует чаще всего во время работы (с высокими значениями активации), сохраняются с более высокой точностью, а менее используемые агрессивно округляются. Разработан исследователями MIT и быстро распространился с 2023 года. У AWQ два ключевых преимущества перед GPTQ: процесс квантования гораздо быстрее (минуты vs часы) и на некоторых моделях достигается измеримо лучшее качество. Библиотека transformers от Hugging Face и движок инференса vLLM нативно поддерживают формат AWQ. Особенно популярен для семейств моделей Mistral, Qwen и Llama. Как и GPTQ, оптимизирован для инференса на GPU — для CPU-инференса предпочтителен формат GGUF."
+analogy:
+  tr: Ev taşırken en değerli eşyaları özenle paketleyip, önemsizleri normal kutulara koymak.
+  en: When moving house, carefully packing your most valuable items and putting the rest in regular boxes.
+  fr: Lors d'un déménagement, emballer soigneusement vos objets les plus précieux et mettre le reste dans des cartons ordinaires.
+  zh: 搬家时，仔细包装最有价值的物品，将其余物品放入普通盒子。
+  ar: عند الانتقال، تغليف أغراضك الأكثر قيمة بعناية ووضع الباقي في صناديق عادية.
+  ru: При переезде, тщательно упаковывая самые ценные вещи и складывая остальное в обычные коробки.
+security:
+  - title:
+      tr: Activation-Aware Backdoor Injection
+      en: Activation-Aware Backdoor Injection
+      fr: Injection de backdoor sensible aux activations
+      zh: 感知激活的后门注入
+      ar: حقن باب خلفي مدرك للتنشيط
+      ru: Инъекция бэкдора с учётом активаций
+    description:
+      tr: AWQ activation magnitude'larına göre önem verir. Saldırganlar bu bilgiyi kullanarak backdoor'ları yüksek activation'lı channel'lara gizleyebilir, böylece quantization'dan etkilenmezler.
+      en: AWQ prioritizes based on activation magnitudes. Attackers can use this to hide backdoors in high-activation channels, making them immune to quantization.
+      fr: AWQ priorise en fonction des magnitudes d'activation. Les attaquants peuvent utiliser cela pour dissimuler des backdoors dans les canaux a forte activation, les rendant immunises contre la quantification.
+      zh: AWQ根据激活幅度进行优先级排序。攻击者可以利用这一点将后门隐藏在高激活通道中，使其不受量化影响。
+      ar: يعطي AWQ الأولوية بناءً على حجم التنشيط. يمكن للمهاجمين استخدام هذا لإخفاء الأبواب الخلفية في قنوات التنشيط العالية، مما يجعلها محصنة ضد التكميم.
+      ru: AWQ расставляет приоритеты на основе амплитуд активаций. Злоумышленники могут использовать это для сокрытия бэкдоров в каналах с высокой активацией, делая их невосприимчивыми к квантизации.
+    severity: high
+  - title:
+      tr: Activation Statistics Poisoning
+      en: Activation Statistics Poisoning
+      fr: Empoisonnement des statistiques d'activation
+      zh: 激活统计投毒
+      ar: تسميم إحصائيات التنشيط
+      ru: Отравление статистики активаций
+    description:
+      tr: AWQ calibration sırasında activation statistics manipüle edilerek quantization scale'leri kasıtlı olarak bozulabilir. Bu, belirli pattern'larda hatalı çıktılar üretir.
+      en: Activation statistics during AWQ calibration can be manipulated to intentionally corrupt quantization scales. This produces erroneous outputs for specific patterns.
+      fr: Les statistiques d'activation pendant la calibration AWQ peuvent etre manipulees pour corrompre intentionnellement les echelles de quantification. Cela produit des sorties erronees pour des patterns specifiques.
+      zh: AWQ校准过程中的激活统计可以被操纵，故意破坏量化比例。这会为特定模式产生错误输出。
+      ar: يمكن التلاعب بإحصائيات التنشيط أثناء معايرة AWQ لإفساد مقاييس التكميم عمداً. ينتج عن هذا مخرجات خاطئة لأنماط محددة.
+      ru: Статистика активаций при калибровке AWQ может быть манипулирована для намеренного искажения масштабов квантизации. Это приводит к ошибочным выходным данным для определённых паттернов.
+    severity: medium
+  - title:
+      tr: AWQ Salient Channel Bilgi Sızıntısı
+      en: AWQ Salient Channel Information Disclosure
+      fr: Divulgation d'information des canaux saillants AWQ
+      zh: AWQ显著通道信息泄露
+      ar: تسريب معلومات القنوات البارزة في AWQ
+      ru: Раскрытие информации о значимых каналах AWQ
+    description:
+      tr: AWQ'nun hangi channel'ların salient olduğunu belirleyen activation analizi, model mimarisine ilişkin bilgi sızdırabilir. Bu bilgi, model reverse engineering veya hedefli saldırılar için kullanılabilir.
+      en: AWQ's activation analysis that determines which channels are salient can leak information about model architecture. This information can be used for model reverse engineering or targeted attacks.
+      fr: L'analyse d'activation d'AWQ qui determine quels canaux sont saillants peut divulguer des informations sur l'architecture du modele. Ces informations peuvent etre utilisees pour la retro-ingenierie du modele ou des attaques ciblees.
+      zh: AWQ确定哪些通道显著的激活分析可能泄露模型架构信息。这些信息可用于模型逆向工程或定向攻击。
+      ar: يمكن لتحليل التنشيط في AWQ الذي يحدد القنوات البارزة أن يسرب معلومات عن بنية النموذج. يمكن استخدام هذه المعلومات للهندسة العكسية للنموذج أو الهجمات المستهدفة.
+      ru: Анализ активаций AWQ, определяющий значимые каналы, может раскрывать информацию об архитектуре модели. Эта информация может использоваться для обратной разработки модели или целенаправленных атак.
+    severity: low
+config:
+  - title: Secure AWQ Calibration
+    lang: python
+    code: |-
+      from awq import AutoAWQForCausalLM
+      from transformers import AutoTokenizer
+
+      def secure_awq_quantize(model_path, calib_data):
+          # Validate calibration data integrity
+          calib_hash = hash_dataset(calib_data)
+          if calib_hash not in TRUSTED_HASHES:
+              raise ValueError("Untrusted calibration data")
+
+          model = AutoAWQForCausalLM.from_pretrained(model_path)
+          tokenizer = AutoTokenizer.from_pretrained(model_path)
+
+          # Quantize with verified data
+          quant_config = {
+              "zero_point": True,
+              "q_group_size": 128,
+              "w_bit": 4,
+              "version": "GEMM"
+          }
+
+          model.quantize(
+              tokenizer,
+              quant_config=quant_config,
+              calib_data=calib_data
+          )
+
+          # Validate activation patterns
+          verify_activations(model, test_inputs)
+          return model
+    description:
+      tr: AWQ calibration data'sını hash ile doğrulayın. Quantization sonrası activation pattern'larını test edin.
+      en: Verify AWQ calibration data with hashing. Test activation patterns after quantization.
+  - title: AWQ Model Deployment Security (Docker)
+    lang: dockerfile
+    code: |-
+      FROM python:3.11-slim AS builder
+      RUN pip install --no-cache-dir autoawq safetensors
+
+      FROM python:3.11-slim
+      COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+
+      # Security: non-root user
+      RUN useradd -m -s /bin/bash modeluser
+      USER modeluser
+      WORKDIR /home/modeluser
+
+      # Read-only model mount point
+      VOLUME ["/models"]
+      ENV MODEL_PATH=/models/awq-model
+
+      # Healthcheck
+      HEALTHCHECK --interval=30s --timeout=10s \
+        CMD python -c "import autoawq; print('ok')" || exit 1
+
+      ENTRYPOINT ["python", "-m", "autoawq.server"]
+    description:
+      tr: AWQ model deployment icin guvenli Docker container. Non-root kullanici, read-only model mount ve healthcheck icermektedir.
+      en: Secure Docker container for AWQ model deployment. Includes non-root user, read-only model mount, and healthcheck.
+research:
+  - title: "AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration"
+    url: https://arxiv.org/abs/2306.00978
+    year: 2023
+    type: paper
+    authors: Ji Lin, Jiaming Tang, Haotian Tang, Shang Yang, Song Han
+  - title: "SmoothQuant: Accurate and Efficient Post-Training Quantization"
+    url: https://arxiv.org/abs/2211.10438
+    year: 2022
+    type: paper
+    authors: Guangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, Song Han
+tips:
+  - tr: AWQ ile quantize edilmiş modellerde activation histogram'larını karşılaştırın.
+    en: Compare activation histograms in AWQ-quantized models.
+  - tr: Calibration sample sayısını artırarak robust quantization sağlayın (min 128 sample).
+    en: Ensure robust quantization by increasing calibration samples (min 128).

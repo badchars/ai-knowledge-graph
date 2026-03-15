@@ -1,0 +1,152 @@
+id: structured-output
+name: Structured Output
+fullName: Structured Output
+category: tools
+desc:
+  tr: |-
+    AI modeline 'bana tam olarak bu JSON yapısı ile cevap ver' diye zorlama uygulama yöntemi. Normalde AI serbest metin üretir ve siz kırılgan regex veya parser kodları yazmak zorundasınızdir — structured output ile model sizin belirlediğiniz JSON Schema'ya birebir uygün çıktı üretmeyi garanti eder.
+
+    [OpenAI](https://openai.com) bunu response_format parametresiyle, [Anthropic](https://anthropic.com) ise tool use üzerinden destekler. Örneğin, bir e-ticaret chatbot'unda modelden {product: string, quantity: number, size: string} formatında sipariş bilgisi almanız gerekiyorsa, structured output kullanırsiniz.
+
+    Teknik olarak bu, model'in token üretimini kısıtlayan 'constrained decoding' ile saglanir — model sadece JSON Schema'ya uygün token'lar üretebilir. Bu özellik parser yazmaktan çok daha güvenilirdir ve production uygulamalarında hata oranını dramatik şekilde düşürür.
+  en: |-
+    A way to force an AI model to respond in an exact JSON structure you define, rather than free-form text. Normally AI generates unstructured text and you have to write fragile regex or parsers to extract data — with structured output, the model guarantees its response matches a JSON Schema you provide.
+
+    [OpenAI](https://openai.com) supports this via the response_format parameter, while [Anthropic](https://anthropic.com) achieves it through tool use. For example, if an e-commerce chatbot needs to extract order details, you define {product: string, quantity: number, size: string} and the model always returns valid data in that format.
+
+    Under the hood, this works through 'constrained decoding' — the model can only generate tokens that are valid according to your schema. This feature dramatically reduces error rates in production applications compared to free-text parsing.
+  fr: "Un moyen de forcer un modele d'IA a repondre dans une structure JSON exacte que vous definissez, plutot qu'en texte libre. Normalement l'IA genere du texte non structure et vous devez ecrire des regex fragiles ou des parsers pour extraire les donnees — avec la sortie structuree, le modele garantit que sa reponse correspond a un JSON Schema que vous fournissez. OpenAI le supporte via le parametre response_format, tandis qu'Anthropic y parvient via le tool use. Par exemple, si un chatbot e-commerce doit extraire les details d'une commande, vous definissez {product: string, quantity: number, size: string} et le modele retourne toujours des donnees valides dans ce format. Sous le capot, cela fonctionne par 'decodage contraint' — le modele ne peut generer que des tokens valides selon votre schema. Cette fonctionnalite reduit considerablement les taux d'erreur en production par rapport au parsing de texte libre."
+  zh: "强制AI模型以你定义的精确JSON结构进行回复的方法，而不是自由格式的文本。通常AI生成非结构化文本，你需要编写脆弱的正则表达式或解析器来提取数据——有了结构化输出，模型保证其回复匹配你提供的JSON Schema。OpenAI通过response_format参数支持此功能，Anthropic则通过工具使用实现。例如，如果电商聊天机器人需要提取订单详情，你定义{product: string, quantity: number, size: string}，模型始终以该格式返回有效数据。底层通过'受限解码'实现——模型只能生成符合你schema的有效token。与自由文本解析相比，此功能在生产应用中显著降低了错误率。"
+  ar: "طريقة لإجبار نموذج الذكاء الاصطناعي على الاستجابة ببنية JSON محددة تعرّفها أنت، بدلاً من النص الحر. عادة ينتج الذكاء الاصطناعي نصاً غير منظم وعليك كتابة regex هشة أو محللات لاستخراج البيانات — مع المخرجات المنظمة، يضمن النموذج أن استجابته تتطابق مع JSON Schema الذي تقدمه. تدعم OpenAI هذا عبر معامل response_format، بينما تحققه Anthropic عبر استخدام الأدوات. على سبيل المثال، إذا احتاج روبوت محادثة للتجارة الإلكترونية لاستخراج تفاصيل الطلب، تعرّف {product: string, quantity: number, size: string} والنموذج يعيد دائماً بيانات صالحة بهذا التنسيق. تقنياً يعمل هذا عبر 'فك التشفير المقيد' — يمكن للنموذج فقط توليد رموز صالحة وفقاً لمخططك. هذه الميزة تقلل بشكل كبير معدلات الخطأ في التطبيقات الإنتاجية مقارنة بتحليل النص الحر."
+  ru: "Способ заставить AI-модель отвечать в точной JSON-структуре, которую вы определяете, вместо свободного текста. Обычно ИИ генерирует неструктурированный текст, и вам приходится писать хрупкие регулярные выражения или парсеры для извлечения данных — со структурированным выводом модель гарантирует, что её ответ соответствует предоставленной вами JSON Schema. OpenAI поддерживает это через параметр response_format, а Anthropic достигает этого через tool use. Например, если чат-боту интернет-магазина нужно извлечь детали заказа, вы определяете {product: string, quantity: number, size: string} и модель всегда возвращает валидные данные в этом формате. Под капотом это работает через 'ограниченное декодирование' — модель может генерировать только токены, валидные по вашей схеме. Эта функция драматически снижает количество ошибок в продакшн-приложениях по сравнению с парсингом свободного текста."
+analogy:
+  tr: Serbest yazmak yerine form doldurmak. Model her alanı uygun şekilde doldurur.
+  en: Filling out a form instead of writing freely. The model fills each field appropriately.
+  fr: Remplir un formulaire au lieu d'écrire librement. Le modèle remplit chaque champ de manière appropriée.
+  zh: 填写表格而不是自由书写。模型适当地填写每个字段。
+  ar: ملء نموذج بدلاً من الكتابة الحرة. يملأ النموذج كل حقل بشكل مناسب.
+  ru: Заполнение формы вместо свободного письма. Модель заполняет каждое поле соответствующим образом.
+security:
+  - title:
+      tr: Schema Injection
+      en: Schema Injection
+      fr: Injection de schema
+      zh: 模式注入
+      ar: حقن المخطط
+      ru: Инъекция схемы
+    description:
+      tr: LLM'den JSON/YAML gibi structured format beklenirken, schema dışı alanlar enjekte edilebilir. Özellikle dynamic schema kullanılıyorsa, saldırgan zararlı alanlar ekleyebilir.
+      en: When expecting structured format like JSON/YAML from LLM, fields outside schema can be injected. Especially if using dynamic schema, attacker can add malicious fields.
+      fr: Lors de l'attente d'un format structure comme JSON/YAML du LLM, des champs hors schema peuvent etre injectes. Surtout si un schema dynamique est utilise, l'attaquant peut ajouter des champs malveillants.
+      zh: 当期望LLM输出JSON/YAML等结构化格式时，可以注入模式外的字段。特别是使用动态模式时，攻击者可以添加恶意字段。
+      ar: عند توقع تنسيق منظم مثل JSON/YAML من نموذج اللغة، يمكن حقن حقول خارج المخطط. خاصة إذا تم استخدام مخطط ديناميكي، يمكن للمهاجم إضافة حقول ضارة.
+      ru: При ожидании структурированного формата, такого как JSON/YAML от LLM, могут быть внедрены поля за пределами схемы. Особенно при использовании динамической схемы злоумышленник может добавлять вредоносные поля.
+    severity: high
+  - title:
+      tr: Type Confusion Attacks
+      en: Type Confusion Attacks
+      fr: Attaques par confusion de types
+      zh: 类型混淆攻击
+      ar: هجمات ارتباك الأنواع
+      ru: Атаки путаницы типов
+    description:
+      tr: Structured output'ta beklenen tip yerine farklı tip döndürülerek type confusion saldırısı yapılabilir. Örneğin string beklenirken object döndürülmesi, downstream parsing hatalarına neden olur.
+      en: Type confusion attacks can be performed by returning different type than expected in structured output. For example, returning object when string is expected causes downstream parsing errors.
+      fr: Des attaques par confusion de types peuvent etre effectuees en renvoyant un type different de celui attendu dans la sortie structuree. Par exemple, renvoyer un objet quand une chaine est attendue cause des erreurs d'analyse en aval.
+      zh: 可以通过在结构化输出中返回与预期不同的类型来执行类型混淆攻击。例如，当期望字符串时返回对象会导致下游解析错误。
+      ar: يمكن تنفيذ هجمات ارتباك الأنواع عن طريق إرجاع نوع مختلف عن المتوقع في المخرجات المنظمة. على سبيل المثال، إرجاع كائن عندما يُتوقع نص يتسبب في أخطاء تحليل متتالية.
+      ru: Атаки путаницы типов могут быть выполнены путём возврата типа, отличного от ожидаемого, в структурированном выводе. Например, возврат объекта, когда ожидается строка, вызывает ошибки парсинга ниже по цепочке.
+    severity: medium
+  - title:
+      tr: Structured Output Schema İfşası
+      en: Structured Output Schema Disclosure
+      fr: Divulgation du schema de sortie structuree
+      zh: 结构化输出模式泄露
+      ar: كشف مخطط المخرجات المنظمة
+      ru: Раскрытие схемы структурированного вывода
+    description:
+      tr: LLM'e verilen JSON Schema, prompt extraction ile çıkarılabilir. Bu schema, uygulamanın beklediği veri yapısı ve iş mantığı hakkında bilgi sızdırır.
+      en: JSON Schema provided to the LLM can be extracted via prompt extraction. This schema leaks information about the application's expected data structure and business logic.
+      fr: Le JSON Schema fourni au LLM peut etre extrait via l'extraction de prompt. Ce schema divulgue des informations sur la structure de donnees attendue et la logique metier de l'application.
+      zh: 提供给LLM的JSON Schema可以通过提示提取获得。该模式泄露了有关应用程序预期数据结构和业务逻辑的信息。
+      ar: يمكن استخراج مخطط JSON المقدم لنموذج اللغة عبر استخراج الموجه. يسرب هذا المخطط معلومات حول بنية البيانات المتوقعة والمنطق التجاري للتطبيق.
+      ru: JSON Schema, предоставленная LLM, может быть извлечена через извлечение промптов. Эта схема раскрывает информацию об ожидаемой структуре данных и бизнес-логике приложения.
+    severity: low
+config:
+  - title: OpenAI Structured Output with Strict Schema
+    lang: python
+    code: |-
+      from openai import OpenAI
+      from pydantic import BaseModel, Field, validator
+      from typing import Literal
+
+      client = OpenAI()
+
+      # Define strict schema with Pydantic
+      class UserInfo(BaseModel):
+          name: str = Field(..., min_length=1, max_length=100)
+          age: int = Field(..., ge=0, le=150)
+          email: str = Field(..., regex=r'^[\w\.-]+@[\w\.-]+\.\w+$')
+          role: Literal["user", "admin", "guest"]  # Enum
+
+          @validator('name')
+          def name_must_not_contain_injection(cls, v):
+              dangerous = ['<script>', 'javascript:', 'onerror=']
+              if any(d in v.lower() for d in dangerous):
+                  raise ValueError('Name contains dangerous content')
+              return v
+
+      def get_structured_output(prompt: str) -> UserInfo:
+          """Get validated structured output from LLM"""
+
+          response = client.beta.chat.completions.parse(
+              model="gpt-4o-2024-08-06",
+              messages=[
+                  {"role": "system",
+                   "content": "Extract user information. Only return valid data."},
+                  {"role": "user", "content": prompt}
+              ],
+              response_format=UserInfo,  # Strict schema enforcement
+          )
+
+          # Parsed and validated by Pydantic
+          user_info = response.choices[0].message.parsed
+
+          # Additional security checks
+          if user_info.role == "admin":
+              # Verify admin claim separately
+              raise ValueError("Admin role requires additional verification")
+
+          return user_info
+
+      # Usage
+      try:
+          user = get_structured_output("Name: Alice, Age: 30, Email: alice@example.com, Role: user")
+          print(f"Validated: {user.name}")
+      except Exception as e:
+          print(f"Validation failed: {e}")
+    description:
+      tr: OpenAI structured output API'si ile Pydantic schema validation. Type safety ve injection koruması.
+      en: Pydantic schema validation with OpenAI structured output API. Type safety and injection protection.
+  - title: Structured Output Validation (Go)
+    lang: go
+    code: "package validate\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// ValidateStructuredOutput ensures LLM output conforms\n// to expected schema without extra fields\nfunc ValidateStructuredOutput(raw []byte, target interface{}) error {\n\t// First pass: strict unmarshal to detect unknown fields\n\tdecoder := json.NewDecoder(bytes.NewReader(raw))\n\tdecoder.DisallowUnknownFields()\n\tif err := decoder.Decode(target); err != nil {\n\t\treturn fmt.Errorf(\"schema validation failed: %w\", err)\n\t}\n\n\t// Check for deeply nested objects (max depth 5)\n\tvar nested interface{}\n\tjson.Unmarshal(raw, &nested)\n\tif depth := maxDepth(nested, 0); depth > 5 {\n\t\treturn fmt.Errorf(\"output exceeds max nesting depth: %d\", depth)\n\t}\n\n\treturn nil\n}\n\nfunc maxDepth(v interface{}, current int) int {\n\tswitch val := v.(type) {\n\tcase map[string]interface{}:\n\t\tmax := current\n\t\tfor _, child := range val {\n\t\t\tif d := maxDepth(child, current+1); d > max {\n\t\t\t\tmax = d\n\t\t\t}\n\t\t}\n\t\treturn max\n\tcase []interface{}:\n\t\tmax := current\n\t\tfor _, child := range val {\n\t\t\tif d := maxDepth(child, current+1); d > max {\n\t\t\t\tmax = d\n\t\t\t}\n\t\t}\n\t\treturn max\n\tdefault:\n\t\treturn current\n\t}\n}"
+    description:
+      tr: Go ile structured output doğrulaması. Bilinmeyen alan reddi, max derinlik sınırı ve strict schema uyumluluğu.
+      en: Go structured output validation. Unknown field rejection, max depth limit, and strict schema conformance.
+research:
+  - title: Introducing Structured Outputs in the API
+    url: https://openai.com/index/introducing-structured-outputs-in-the-api/
+    year: 2024
+    type: blog
+    authors: OpenAI
+  - title: JSON Schema Specification
+    url: https://json-schema.org/specification
+    year: 2024
+    type: guide
+    authors: JSON Schema
+tips:
+  - tr: Pydantic veya JSON Schema ile strict validation yapın.
+    en: Use Pydantic or JSON Schema for strict validation.
+  - tr: Enum tipler kullanarak olası değerleri sınırlayın.
+    en: Use enum types to limit possible values.

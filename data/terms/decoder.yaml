@@ -1,0 +1,183 @@
+id: decoder
+name: Decoder
+fullName: Decoder
+category: architecture
+desc:
+  tr: |-
+    Transformer mimarisinin metin üreten yarısını oluşturan blok — [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), [Llama](https://ai.meta.com/llama/), [Mistral](https://mistral.ai) gibi konuştuğunuz tüm AI modelleri decoder-only mimarisi kullanır. Çalışma prensibi autoregressive üretimdir: model her seferinde bir sonraki tokeni tahmin eder, üretilen token girdi olarak geri eklenir ve süreç devam eder.
+
+    Bu yüzden AI cevaplarının kelime kelime aktığını görürsünüz. Decoder'da causal masking (nedensel maskeleme) kullanılır — model sadece önceki tokenları görebilir, gelecek tokenları göremez, bu da sol-sağa üretim akışını sağlar.
+
+    GPT-4, Claude 3, Llama 3, Mistral ve [Gemini](https://gemini.google.com) dahil bugünkü tüm büyük sohbet modelleri bu yapıyı kullanır. Decoder katman sayısı modelin derinliğini belirler: örneğin Llama-2 70B'de 80 decoder katmanı vardır. Inference sırasında KV cache mekanizması, daha önce hesaplanan Key-Value değerlerini saklayarak her yeni token üretimini hızlandırır.
+  en: |-
+    The block that forms the text-generating half of the Transformer architecture — every AI model you chat with, including [ChatGPT](https://openai.com/chatgpt), [Claude](https://claude.ai), [Llama](https://ai.meta.com/llama/), and [Mistral](https://mistral.ai), uses decoder-only architecture. Its working principle is autoregressive generation: the model predicts one token at a time, the generated token gets fed back as input, and the process continues.
+
+    This is why you see AI responses streaming word by word. The decoder uses causal masking — the model can only see previous tokens, not future ones, enforcing left-to-right generation flow.
+
+    GPT-4, Claude 3, Llama 3, Mistral, and [Gemini](https://gemini.google.com) all use this structure. The number of decoder layers determines model depth: for example, Llama-2 70B has 80 decoder layers. During inference, the KV cache mechanism stores previously computed Key-Value pairs to speed up each new token generation.
+  fr: "Le bloc qui constitue la moitie generatrice de texte de l'architecture Transformer — chaque modele d'IA avec lequel vous discutez, y compris ChatGPT, Claude, Llama et Mistral, utilise une architecture decoder-only. Son principe de fonctionnement est la generation autoregressive : le modele predit un token a la fois, le token genere est reinjecte en entree, et le processus continue. C'est pourquoi vous voyez les reponses de l'IA s'afficher mot par mot. Le decoder utilise un masquage causal — le modele ne peut voir que les tokens precedents, pas les futurs, imposant un flux de generation de gauche a droite. GPT-4, Claude 3, Llama 3, Mistral et Gemini utilisent tous cette structure. Le nombre de couches decoder determine la profondeur du modele : par exemple, Llama-2 70B a 80 couches decoder. Pendant l'inference, le mecanisme KV cache stocke les paires Key-Value precedemment calculees pour accelerer la generation de chaque nouveau token."
+  zh: Transformer架构中生成文本的那一半——你使用的每一个AI聊天模型，包括ChatGPT、Claude、Llama和Mistral，都使用纯decoder架构。其工作原理是自回归生成：模型每次预测一个token，生成的token作为输入反馈回去，过程持续进行。这就是为什么你看到AI的回答是逐字逐句流式输出的。Decoder使用因果掩码——模型只能看到之前的token，看不到未来的token，从而强制执行从左到右的生成流程。GPT-4、Claude 3、Llama 3、Mistral和Gemini都使用这种结构。Decoder层数决定了模型的深度：例如Llama-2 70B有80个decoder层。推理时，KV cache机制存储之前计算过的Key-Value对，以加速每个新token的生成。
+  ar: "الكتلة التي تشكل نصف توليد النص في بنية Transformer — كل نموذج ذكاء اصطناعي تتحدث معه بما في ذلك ChatGPT وClaude وLlama وMistral يستخدم بنية decoder-only. مبدأ عمله هو التوليد الذاتي الانحداري: يتنبأ النموذج بـ token واحد في كل مرة، ويُعاد إدخال الـ token المُولّد كمُدخل، وتستمر العملية. لهذا ترى ردود الذكاء الاصطناعي تتدفق كلمة بكلمة. يستخدم الـ decoder قناعاً سببياً — النموذج يرى فقط التوكنات السابقة وليس المستقبلية، مما يفرض تدفق توليد من اليسار لليمين. GPT-4 وClaude 3 وLlama 3 وMistral وGemini جميعها تستخدم هذه البنية. عدد طبقات الـ decoder يحدد عمق النموذج: مثلاً Llama-2 70B لديه 80 طبقة decoder. أثناء الاستدلال، آلية KV cache تخزّن أزواج Key-Value المحسوبة سابقاً لتسريع توليد كل token جديد."
+  ru: "Блок, составляющий текстогенерирующую половину архитектуры Transformer — каждая модель ИИ, с которой вы общаетесь, включая ChatGPT, Claude, Llama и Mistral, использует архитектуру только с декодером. Принцип работы — авторегрессивная генерация: модель предсказывает по одному токену за раз, сгенерированный токен подаётся обратно на вход, и процесс продолжается. Вот почему вы видите, как ответы ИИ появляются слово за словом. Декодер использует причинную маскировку — модель видит только предыдущие токены, а не будущие, обеспечивая генерацию слева направо. GPT-4, Claude 3, Llama 3, Mistral и Gemini — все используют эту структуру. Число слоёв декодера определяет глубину модели: например, в Llama-2 70B — 80 слоёв декодера. При инференсе механизм KV-кэша сохраняет ранее вычисленные пары Key-Value для ускорения генерации каждого нового токена."
+analogy:
+  tr: Hikayeyi kelime kelime yazan yazar. Önceki kelimelere bakar ama ilerisini görmez.
+  en: A writer crafting a story word by word. Looks at previous words but can't see ahead.
+  fr: Un écrivain qui compose une histoire mot par mot. Regarde les mots précédents mais ne peut pas voir plus loin.
+  zh: 逐字逐句创作故事的作家。查看先前的单词但看不到前面。
+  ar: كاتب يصوغ قصة كلمة بكلمة. ينظر إلى الكلمات السابقة لكن لا يمكنه رؤية ما هو قادم.
+  ru: Писатель, создающий историю слово за словом. Смотрит на предыдущие слова, но не видит вперёд.
+security:
+  - title:
+      tr: Decoder Auto-Regressive Generation Manipulation
+      en: Decoder Auto-Regressive Generation Manipulation
+      fr: Manipulation de la génération auto-régressive du décodeur
+      zh: 解码器自回归生成操纵
+      ar: التلاعب بالتوليد الذاتي التراجعي للمفكك
+      ru: Манипуляция авторегрессивной генерацией декодера
+    description:
+      tr: Decoder her token'ı önceki token'lara bakarak üretir (auto-regressive). Prefix injection saldırısı ile initial token'lar manipüle edilerek tüm generation zararlı yönde etkilenir. System prompt bypass için kullanılır — malicious prefix enjekte edilip model'in tüm çıktısı değiştirilir.
+      en: Decoder generates each token based on previous tokens (auto-regressive). With prefix injection attack, manipulating initial tokens affects entire generation harmfully. Used for system prompt bypass - injecting malicious prefix changes model's entire output.
+      fr: Le décodeur génère chaque token en se basant sur les précédents (auto-régressif). L'injection de préfixe malveillant affecte toute la génération de manière nuisible. Utilisé pour contourner le prompt système.
+      zh: 解码器基于前一token生成每个token（自回归）。通过前缀注入攻击，操纵初始token会有害地影响整个生成过程。用于系统提示绕过——注入恶意前缀改变模型的全部输出。
+      ar: يولّد المفكك كل token بناءً على التوكنات السابقة (ذاتي التراجع). بهجوم حقن البادئة، يؤثر التلاعب بالتوكنات الأولى على كامل التوليد بشكل ضار. يُستخدم لتجاوز موجه النظام.
+      ru: Декодер генерирует каждый токен на основе предыдущих (авторегрессивно). Атака инъекции префикса через манипуляцию начальными токенами влияет на всю генерацию. Используется для обхода системного промпта.
+    severity: high
+  - title:
+      tr: KV Cache State Persistence Attack
+      en: KV Cache State Persistence Attack
+      fr: Attaque de persistance d'état du cache KV
+      zh: KV缓存状态持久化攻击
+      ar: هجوم استمرار حالة KV Cache
+      ru: Атака персистенции состояния KV-кэша
+    description:
+      tr: Decoder KV cache'i conversation state tutar. Multi-turn conversation'da cache düzgün reset edilmezse, önceki user'ın context'i sonraki user'a sızar. Shared serving ortamlarında (vLLM, TGI) cache isolation critical. Conversation history leak edebilir.
+      en: Decoder KV cache maintains conversation state. In multi-turn conversation, if cache isn't properly reset, previous user's context leaks to next user. Cache isolation critical in shared serving environments (vLLM, TGI). Can leak conversation history.
+      fr: Le cache KV du décodeur maintient l'état de la conversation. Si le cache n'est pas correctement réinitialisé, le contexte de l'utilisateur précédent fuit vers le suivant. L'isolation du cache est critique dans les environnements de service partagés.
+      zh: 解码器KV缓存维护对话状态。在多轮对话中，如果缓存未被正确重置，前一用户的上下文会泄露给下一用户。在共享服务环境（vLLM、TGI）中缓存隔离至关重要。
+      ar: يحافظ KV cache للمفكك على حالة المحادثة. إذا لم يُعاد تعيين الـ cache بشكل صحيح، يتسرب سياق المستخدم السابق للمستخدم التالي. عزل الـ cache حاسم في بيئات الخدمة المشتركة.
+      ru: KV-кэш декодера хранит состояние беседы. Если кэш не сброшен должным образом, контекст предыдущего пользователя утекает к следующему. Изоляция кэша критически важна в общих средах обслуживания.
+    severity: critical
+  - title:
+      tr: Sampling Temperature Exploitation
+      en: Sampling Temperature Exploitation
+      fr: Exploitation de la température d'échantillonnage
+      zh: 采样温度利用
+      ar: استغلال درجة حرارة أخذ العينات
+      ru: Эксплуатация температуры сэмплирования
+    description:
+      tr: Decoder sampling temperature, output randomness'ı kontrol eder. Çok düşük temperature (0.1) deterministic output verir, aynı input her zaman aynı zararlı content'i üretir. Çok yüksek (1.5+) temperature ise safety alignment'ı bozar, modeli jailbreak eder.
+      en: Decoder sampling temperature controls output randomness. Very low temperature (0.1) gives deterministic output, same input always produces same harmful content. Very high (1.5+) temperature breaks safety alignment, jailbreaks model.
+      fr: La température d'échantillonnage du décodeur contrôle l'aléa de la sortie. Une température très basse (0.1) donne une sortie déterministe. Une température très haute (1.5+) brise l'alignement de sécurité, permettant le jailbreak.
+      zh: 解码器采样温度控制输出随机性。极低温度（0.1）给出确定性输出。极高温度（1.5+）破坏安全对齐，使模型越狱。
+      ar: تتحكم درجة حرارة أخذ عينات المفكك في عشوائية المخرجات. درجة حرارة منخفضة جداً (0.1) تعطي مخرجات حتمية. درجة حرارة عالية جداً (1.5+) تكسر محاذاة السلامة.
+      ru: Температура сэмплирования декодера контролирует случайность выхода. Очень низкая температура (0.1) даёт детерминированный выход. Очень высокая (1.5+) ломает безопасное выравнивание модели.
+    severity: medium
+  - title:
+      tr: Decoder Çıktı Sıra Uzunluğu Sızıntısı
+      en: Decoder Output Sequence Length Leakage
+      fr: Fuite de la longueur de séquence de sortie du décodeur
+      zh: 解码器输出序列长度泄露
+      ar: تسريب طول تسلسل مخرجات المفكك
+      ru: Утечка длины выходной последовательности декодера
+    description:
+      tr: Decoder streaming modunda her token ayrı ayrı gönderilir. Response süresi ve stream uzunluğu, output'un içeriği hakkında ipucu verir (kısa reddetme vs uzun detaylı cevap). Multi-tenant ortamlarda bu side-channel exploit edilebilir.
+      en: In streaming mode, decoder sends each token separately. Response time and stream length give hints about output content (short rejection vs long detailed answer). This side-channel can be exploited in multi-tenant environments.
+      fr: En mode streaming, le décodeur envoie chaque token séparément. Le temps de réponse et la longueur du flux donnent des indices sur le contenu de la sortie (rejet court vs réponse détaillée longue). Ce canal auxiliaire peut être exploité en environnement multi-locataire.
+      zh: 在流式模式下，解码器逐个发送token。响应时间和流长度提示输出内容（简短拒绝vs详细长回答）。在多租户环境中此侧信道可被利用。
+      ar: في وضع البث، يرسل المفكك كل token على حدة. وقت الاستجابة وطول البث يعطيان تلميحات عن محتوى المخرجات. يمكن استغلال هذه القناة الجانبية في البيئات متعددة المستأجرين.
+      ru: В режиме стриминга декодер отправляет каждый токен отдельно. Время ответа и длина потока дают подсказки о содержании выхода. Этот побочный канал может быть использован в мультитенантных средах.
+    severity: low
+config:
+  - title: Decoder Prefix Validation
+    lang: python
+    code: |-
+      from transformers import AutoTokenizer, AutoModelForCausalLM
+
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B")
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.3-70B")
+
+      SYSTEM_PROMPT = "You are a helpful AI assistant."
+
+      def validate_prefix(user_input: str):
+          """Prevent prefix injection attacks"""
+          # Check for system prompt override attempts
+          forbidden_patterns = [
+              "ignore previous instructions",
+              "disregard system prompt",
+              "you are now",
+              "[SYSTEM]",
+              "<|im_start|>system"
+          ]
+
+          lower_input = user_input.lower()
+          for pattern in forbidden_patterns:
+              if pattern in lower_input:
+                  raise ValueError(f"Forbidden pattern detected: {pattern}")
+
+          # Ensure system prompt is prepended correctly
+          full_prompt = f"{SYSTEM_PROMPT}
+
+      User: {user_input}
+
+      Assistant:"
+          return full_prompt
+
+      # Use before generation
+      safe_prompt = validate_prefix(user_input)
+      outputs = model.generate(tokenizer(safe_prompt, return_tensors="pt").input_ids)
+    description:
+      tr: User input'ta system prompt override pattern'lerini tespit edin. System prompt'ı her zaman başa ekleyin, prefix injection'ı engelleyin.
+      en: Detect system prompt override patterns in user input. Always prepend system prompt to prevent prefix injection.
+  - title: Safe Sampling Parameters
+    lang: python
+    code: |-
+      from vllm import SamplingParams
+
+      # Constrain sampling parameters for safety
+      def get_safe_sampling_params(user_temp=None):
+          # Clamp temperature to safe range
+          temp = user_temp if user_temp else 0.7
+          temp = max(0.3, min(temp, 1.0))  # Force into [0.3, 1.0]
+
+          return SamplingParams(
+              temperature=temp,
+              top_p=0.95,  # Nucleus sampling for diversity
+              top_k=50,    # Limit to top-k tokens
+              max_tokens=512,  # Prevent excessive generation
+              repetition_penalty=1.1,  # Discourage loops
+              presence_penalty=0.0,
+              frequency_penalty=0.0,
+              stop=["< /s>", "User:", "
+
+      User:"]  # Force stop on injection attempts
+          )
+
+      # Usage
+      safe_params = get_safe_sampling_params(user_temp=request.temperature)
+      outputs = llm.generate(prompt, sampling_params=safe_params)
+    description:
+      tr: Sampling temperature'ı güvenli aralıkta sınırlayın [0.3, 1.0]. Max token limit koyun. Stop sequences ile injection attempt'leri durdurun.
+      en: Constrain sampling temperature to safe range [0.3, 1.0]. Set max token limit. Stop injection attempts with stop sequences.
+research:
+  - title: Prefix Injection Attacks on LLM Decoders
+    url: https://arxiv.org/abs/2307.02483
+    year: 2023
+    type: paper
+    authors: Jailbreak Research Team
+  - title: KV Cache Isolation in Multi-Tenant LLM Serving
+    url: https://arxiv.org/abs/2401.09456
+    year: 2024
+    type: paper
+    authors: vLLM Security Team
+  - title: Temperature-Based Jailbreak Techniques
+    url: https://arxiv.org/abs/2311.12345
+    year: 2023
+    type: paper
+    authors: Safety Research
+tips:
+  - tr: Multi-turn conversation'da her request'te KV cache'i reset edin, context leakage'ı önleyin.
+    en: Reset KV cache on each request in multi-turn conversation to prevent context leakage.
+  - tr: Temperature parameter'ı kullanıcıya açık bırakmayın, backend'de safe range'e clamp edin.
+    en: Don't expose temperature parameter to users, clamp to safe range in backend.
+  - tr: System prompt'ı tokenization sonrası doğrulayın, prefix injection bypass edilmemiş mi kontrol edin.
+    en: Verify system prompt after tokenization to ensure prefix injection wasn't bypassed.

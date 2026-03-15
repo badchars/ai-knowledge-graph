@@ -1,0 +1,137 @@
+id: overfitting
+name: Overfitting
+fullName: Model Overfitting
+category: fundamentals
+desc:
+  tr: |-
+    AI modelinin eğitim verisini genellemek yerine ezberlemesi durumu. Overfitting yapan model eğitim verisinde mükemmel performans gösterirken yeni ve görülmemiş verilerde başarısız olur.
+
+    Örneğin 100 kedi fotoğrafıyla eğitilen bir model sadece o 100 kediyi tanır, yeni bir kedi fotoğrafını tanıyamaz. Sebepleri arasında yetersiz eğitim verisi, çok karmaşık model mimarisi ve aşırı uzun eğitim süresi bulunur.
+
+    Dropout, regularization, early stopping ve veri artırma (data augmentation) gibi tekniklerle önlenir. Overfitting tespiti için eğitim ve doğrulama kayıplarının karşılaştırılması standart yöntemdir.
+  en: |-
+    A condition where an AI model memorizes the training data instead of learning general patterns. An overfitting model shows perfect performance on training data but fails on new, unseen data.
+
+    For example, a model trained on 100 cat photos only recognizes those specific 100 cats and fails to identify a new cat photo. Causes include insufficient training data, overly complex model architecture, and training for too long.
+
+    It iş prevented using techniques like dropout, regularization, early stopping, and data augmentation. Comparing training and validation loss curves iş the standard method for detecting overfitting.
+  fr: Une condition ou un modele d'IA memorise les donnees d'entrainement au lieu d'apprendre des motifs generaux. Un modele en surapprentissage montre des performances parfaites sur les donnees d'entrainement mais echoue sur des donnees nouvelles et inedites. Par exemple, un modele entraine sur 100 photos de chats ne reconnait que ces 100 chats specifiques et ne peut pas identifier une nouvelle photo de chat. Les causes incluent des donnees d'entrainement insuffisantes, une architecture de modele trop complexe et un entrainement trop long. On le previent avec des techniques comme le dropout, la regularisation, l'arret premature et l'augmentation de donnees. Comparer les courbes de perte d'entrainement et de validation est la methode standard pour detecter le surapprentissage.
+  zh: AI模型记忆训练数据而不是学习通用模式的情况。过拟合的模型在训练数据上表现完美，但在新的未见过的数据上失败。例如，用100张猫照片训练的模型只能识别那100只特定的猫，无法识别新的猫照片。原因包括训练数据不足、模型架构过于复杂和训练时间过长。使用dropout、正则化、早停和数据增强等技术来防止。比较训练损失和验证损失曲线是检测过拟合的标准方法。
+  ar: حالة يحفظ فيها نموذج الذكاء الاصطناعي بيانات التدريب بدلا من تعلم الانماط العامة. النموذج المفرط في التعلم يظهر اداء مثاليا على بيانات التدريب لكنه يفشل مع بيانات جديدة غير مرئية. على سبيل المثال، نموذج مدرب على 100 صورة قطط يتعرف فقط على تلك القطط الـ 100 المحددة ويفشل في تحديد صورة قطة جديدة. تشمل الاسباب بيانات تدريب غير كافية وبنية نموذج معقدة للغاية والتدريب لفترة طويلة جدا. يتم منعه باستخدام تقنيات مثل الاسقاط والتنظيم والتوقف المبكر وتكثيف البيانات. مقارنة منحنيات خسارة التدريب والتحقق هي الطريقة القياسية لاكتشاف الافراط في التعلم.
+  ru: "Состояние, при котором модель ИИ запоминает обучающие данные вместо того, чтобы выявлять общие закономерности. Переобученная модель показывает идеальную производительность на обучающих данных, но терпит неудачу на новых, невиданных данных. Например, модель, обученная на 100 фотографиях кошек, распознает только эти конкретные 100 кошек и не может определить новое фото кошки. Причины включают недостаточный объем обучающих данных, слишком сложную архитектуру модели и слишком долгое обучение. Предотвращается с помощью техник: dropout, регуляризация, ранняя остановка и аугментация данных. Сравнение кривых потерь обучения и валидации -- стандартный метод обнаружения переобучения."
+analogy:
+  tr: Sinav sorularinin cevaplarini ezberleyip konuyu anlamayan bir ogrenci gibi. Ayni sorular gelirse 100 alir ama soru biraz degistiginde sifir cekersiniz. Gerçek öğrenme yerine ezber yapmak -- modellerde de aynı sorun yasanir.
+  en: Like a student who memorizes exam answers without understanding the subject. If the same questions come up, they score 100, but when questions change slightly, they score zero. Memorizing instead of actually learning -- models face the same problem.
+  fr: Comme un etudiant qui memorise les reponses d'examen sans comprendre le sujet. Si les memes questions apparaissent, il a 100, mais quand les questions changent legerement, il a zero. Memoriser au lieu d'apprendre reellement -- les modeles font face au meme probleme.
+  zh: 就像一个学生背诵考试答案却不理解科目。如果出同样的题目，他能得100分，但题目稍有变化就得零分。死记硬背而不是真正学习——模型面临同样的问题。
+  ar: مثل طالب يحفظ اجابات الامتحان دون فهم الموضوع. اذا جاءت نفس الاسئلة يحصل على 100 لكن عندما تتغير الاسئلة قليلا يحصل على صفر. الحفظ بدلا من التعلم الفعلي -- النماذج تواجه نفس المشكلة.
+  ru: Как студент, который зазубрил ответы на экзамен, не понимая предмета. Если придут те же вопросы, он получит 100 баллов, но при малейшем изменении вопросов -- ноль. Зубрежка вместо настоящего обучения -- модели сталкиваются с той же проблемой.
+security:
+  - title:
+      tr: Overfitting ve Privacy Leakage İlişkisi
+      en: Overfitting and Privacy Leakage Relationship
+      fr: Relation entre le surapprentissage et la fuite de données privées
+      zh: 过拟合与隐私泄露的关系
+      ar: العلاقة بين الإفراط في التخصيص وتسريب الخصوصية
+      ru: Связь переобучения и утечки конфиденциальности
+    description:
+      tr: Overfitting yapan modeller training data'yı ezberler ve bu bilgiyi model parametrelerine encoding eder. Saldırganlar, model query'leri ile training setinde olan/olmayan dataları ayırt edebilir (membership inference). Aşırı overfitting, model inversion saldırılarını da kolaylaştırır.
+      en: Overfitted models memorize training data and encode this information into model parameters. Attackers can distinguish data that is/isn't in training set through model queries (membership inference). Excessive overfitting also facilitates model inversion attacks.
+      fr: Les modèles surappris mémorisent les données d'entraînement et encodent cette information dans les paramètres du modèle. Les attaquants peuvent distinguer les données présentes ou absentes du jeu d'entraînement via des requêtes au modèle (inférence d'appartenance). Le surapprentissage excessif facilite aussi les attaques par inversion de modèle.
+      zh: 过拟合的模型会记住训练数据并将这些信息编码到模型参数中。攻击者可以通过模型查询区分训练集中的数据和不在训练集中的数据（成员推断）。过度过拟合还会促进模型反转攻击。
+      ar: تحفظ النماذج المفرطة في التخصيص بيانات التدريب وتشفر هذه المعلومات في معاملات النموذج. يمكن للمهاجمين تمييز البيانات الموجودة/غير الموجودة في مجموعة التدريب من خلال استعلامات النموذج (استنتاج العضوية). الإفراط في التخصيص يسهل أيضاً هجمات عكس النموذج.
+      ru: Переобученные модели запоминают обучающие данные и кодируют эту информацию в параметрах модели. Злоумышленники могут различать данные, находящиеся/не находящиеся в обучающем наборе, через запросы к модели (вывод о принадлежности). Чрезмерное переобучение также облегчает атаки инверсии модели.
+    severity: medium
+  - title:
+      tr: Overfitting Tespit Metrik Eksikliği
+      en: Overfitting Detection Metric Gap
+      fr: Lacune dans les métriques de détection du surapprentissage
+      zh: 过拟合检测指标缺口
+      ar: فجوة مقاييس اكتشاف الإفراط في التخصيص
+      ru: Пробел в метриках обнаружения переобучения
+    description:
+      tr: Training ve validation loss arasındaki farkın izlenmemesi, modelin ne zaman overfitting yaptığını tespit etmeyi zorlaştırır. Bu durum farkında olmadan privacy-risky bir modelin deploy edilmesine yol açabilir.
+      en: Not monitoring the gap between training and validation loss makes it difficult to detect when the model is overfitting. This can lead to unknowingly deploying a privacy-risky model.
+      fr: Ne pas surveiller l'écart entre la perte d'entraînement et de validation rend difficile la détection du surapprentissage. Cela peut conduire au déploiement involontaire d'un modèle à risque pour la vie privée.
+      zh: 不监控训练损失和验证损失之间的差距会使检测模型何时过拟合变得困难。这可能导致在不知情的情况下部署存在隐私风险的模型。
+      ar: عدم مراقبة الفجوة بين خسارة التدريب والتحقق يصعب اكتشاف متى يفرط النموذج في التخصيص. هذا يمكن أن يؤدي إلى نشر نموذج يشكل خطراً على الخصوصية دون معرفة.
+      ru: Отсутствие мониторинга разрыва между потерями на обучении и валидации затрудняет обнаружение переобучения модели. Это может привести к неосознанному развёртыванию модели с рисками для конфиденциальности.
+    severity: low
+config:
+  - title: Early Stopping and Dropout for Privacy
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class PrivacyAwareNet(nn.Module):
+          def __init__(self, input_size, hidden_size, output_size):
+              super().__init__()
+              self.fc1 = nn.Linear(input_size, hidden_size)
+              self.dropout1 = nn.Dropout(0.5)  # High dropout for privacy
+              self.fc2 = nn.Linear(hidden_size, hidden_size)
+              self.dropout2 = nn.Dropout(0.5)
+              self.fc3 = nn.Linear(hidden_size, output_size)
+
+          def forward(self, x):
+              x = torch.relu(self.fc1(x))
+              x = self.dropout1(x)
+              x = torch.relu(self.fc2(x))
+              x = self.dropout2(x)
+              x = self.fc3(x)
+              return x
+
+      # Training with early stopping
+      def train_with_privacy(model, train_loader, val_loader, epochs=100):
+          optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
+          best_val_loss = float('inf')
+          patience = 5
+          patience_counter = 0
+
+          for epoch in range(epochs):
+              # Train
+              model.train()
+              for data, target in train_loader:
+                  optimizer.zero_grad()
+                  output = model(data)
+                  loss = nn.CrossEntropyLoss()(output, target)
+                  loss.backward()
+                  optimizer.step()
+
+              # Validate
+              model.eval()
+              val_loss = 0
+              with torch.no_grad():
+                  for data, target in val_loader:
+                      output = model(data)
+                      val_loss += nn.CrossEntropyLoss()(output, target).item()
+
+              val_loss /= len(val_loader)
+
+              # Early stopping prevents overfitting
+              if val_loss < best_val_loss:
+                  best_val_loss = val_loss
+                  patience_counter = 0
+                  torch.save(model.state_dict(), 'best_model.pth')
+              else:
+                  patience_counter += 1
+
+              if patience_counter >= patience:
+                  print(f"Early stopping at epoch {epoch}")
+                  break
+
+          # Load best model (before overfitting)
+          model.load_state_dict(torch.load('best_model.pth'))
+          return model
+    description:
+      tr: Early stopping ve yüksek dropout oranı overfitting'i engeller ve privacy leakage riskini azaltır. Model, validation loss artmaya başladığında durdurulur.
+      en: Early stopping and high dropout rate prevent overfitting and reduce privacy leakage risk. Model is stopped when validation loss starts increasing.
+research:
+  - title: "The Secret Sharer: Evaluating and Testing Unintended Memorization"
+    url: https://arxiv.org/abs/1802.08232
+    year: 2018
+    type: paper
+    authors: Nicholas Carlini, Chang Liu, Jernej Kos
+tips:
+  - tr: Train-test gap'i 10%'un üzerindeyse overfitting var demektir. Bu durumda privacy leakage riski yüksektir.
+    en: If train-test gap is above 10%, there is overfitting. In this case, privacy leakage risk is high.

@@ -1,0 +1,247 @@
+id: positional-encoding
+name: Positional Encoding
+fullName: Positional Encoding
+category: architecture
+desc:
+  tr: |-
+    Transformer mimarisinde token'ların sırasını modele öğreten mekanizma. RNN/LSTM gibi sequential modellerin aksine, transformer'lar paralel çalışır ve doğal olarak 'hangi kelime önce geldi?' bilgisini bilmez — positional encoding bu bilgiyi ekler.
+
+    Orijinal [Transformer](https://arxiv.org/abs/1706.03762) paper'ında sinüs/cosine fonksiyonlarıyla hesaplanan fixed encoding kullanılır: PE(pos,2i) = sin(pos/10000^(2i/d)), PE(pos,2i+1) = cos(pos/10000^(2i/d)). Bu sayede her pozisyon unique bir vektör alır.
+
+    Günümüzde [learned positional embeddings](https://arxiv.org/abs/1706.03762) (eğitim sırasında öğrenilen), [rotary position embedding (RoPE)](https://arxiv.org/abs/2104.09864) ([LLaMA](https://ai.meta.com/llama/), [GPT-NeoX](https://github.com/EleutherAI/gpt-neox) kullanır), [ALiBi](https://arxiv.org/abs/2108.12409) gibi modern alternatifleri daha yaygın. RoPE özellikle uzun context window'larda (32K+ token) daha iyi çalışır.
+
+    Positional encoding olmadan transformer sadece 'hangi kelimeler var?' bilir, 'sıraları ne?' bilemez — bu da dil modellemesi için kritiktir.
+  en: |-
+    The mechanism that teaches transformers the order of tokens. Unlike sequential models like RNN/LSTM, transformers work in parallel and don't naturally know 'which word came first?' — positional encoding adds this information.
+
+    The original [Transformer](https://arxiv.org/abs/1706.03762) paper uses fixed encoding calculated with sine/cosine functions: PE(pos,2i) = sin(pos/10000^(2i/d)), PE(pos,2i+1) = cos(pos/10000^(2i/d)). This gives each position a unique vector.
+
+    Modern alternatives like [learned positional embeddings](https://arxiv.org/abs/1706.03762) (learned during training), [rotary position embedding (RoPE)](https://arxiv.org/abs/2104.09864) (used by [LLaMA](https://ai.meta.com/llama/), [GPT-NeoX](https://github.com/EleutherAI/gpt-neox)), and [ALiBi](https://arxiv.org/abs/2108.12409) are now more common. RoPE particularly excels with long context windows (32K+ tokens).
+
+    Without positional encoding, transformers only know 'which words exist?' but not 'in what order?' — critical for language modeling.
+  fr: Mécanisme qui enseigne aux transformers l'ordre des tokens.
+  zh: 在Transformer架构中教模型token顺序的机制。
+  ar: آلية تعلم المحولات ترتيب الرموز.
+  ru: Механизм, обучающий трансформеры порядку токенов.
+analogy:
+  tr: Positional encoding, kelimelere 'sen 3. kelimesin, sen 5. kelimesin' yazan sayfa numaraları gibidir. Bu olmadan transformer kelimeleri karıştırılmış bir kağıt yığını olarak görür.
+  en: "Positional encoding is like page numbers that tell words 'you're word #3, you're word #5'. Without it, transformers see words as a shuffled pile of papers."
+  fr: Le positional encoding est comme des numéros de page indiquant aux mots 'tu es le mot n°3, tu es le mot n°5'. Sans cela, les transformers voient les mots comme une pile de papiers mélangés.
+  zh: 位置编码就像告诉单词"你是第3个词，你是第5个词"的页码。没有它，Transformer会将单词看作一堆打乱的纸张。
+  ar: الترميز الموضعي يشبه أرقام الصفحات التي تخبر الكلمات 'أنت الكلمة رقم 3، أنت الكلمة رقم 5'. بدونه، ترى المحولات الكلمات كومة أوراق مخلوطة.
+  ru: Позиционное кодирование подобно номерам страниц, говорящим словам 'ты слово №3, ты слово №5'. Без этого трансформеры видят слова как перемешанную стопку бумаг.
+security:
+  - title:
+      tr: Position-Based Prompt Injection
+      en: Position-Based Prompt Injection
+      fr: Injection de prompt basée sur la position
+      zh: 基于位置的提示注入攻击
+      ar: حقن الأوامر القائم على الموضع
+      ru: Инъекция промптов на основе позиции
+    description:
+      tr: Positional encoding'i exploit ederek belirli pozisyonlara zararlı token'lar enjekte etmek mümkündür. Model, pozisyon bilgisine göre farklı token'lara farklı attention verir — saldırganlar bu özelliği kullanarak sistem prompt'larını override edebilir veya jailbreak gerçekleştirebilir.
+      en: By exploiting positional encoding, harmful tokens can be injected at specific positions. Models give different attention to tokens based on position — attackers use this to override system prompts or perform jailbreaks.
+      fr: En exploitant le positional encoding, des tokens malveillants peuvent être injectés à des positions spécifiques. Les modèles accordent une attention différente aux tokens selon leur position — les attaquants utilisent cette propriété pour contourner les prompts système ou réaliser des jailbreaks.
+      zh: 通过利用位置编码，可以在特定位置注入恶意 token。模型根据位置信息对不同的 token 给予不同的注意力——攻击者利用这一特性来覆盖系统提示或执行越狱攻击。
+      ar: من خلال استغلال الترميز الموضعي، يمكن حقن رموز ضارة في مواضع محددة. تولي النماذج اهتماماً مختلفاً للرموز بناءً على موضعها — يستخدم المهاجمون هذه الخاصية لتجاوز أوامر النظام أو تنفيذ هجمات كسر القيود.
+      ru: Используя позиционное кодирование, можно внедрять вредоносные токены в определённые позиции. Модели уделяют различное внимание токенам в зависимости от позиции — злоумышленники используют это для переопределения системных промптов или выполнения джейлбрейков.
+    severity: high
+  - title:
+      tr: Long Context Exploitation
+      en: Long Context Exploitation
+      fr: Exploitation du contexte long
+      zh: 长上下文利用攻击
+      ar: استغلال السياق الطويل
+      ru: Эксплуатация длинного контекста
+    description:
+      tr: Uzun context window'lu modellerde (32K+ token) positional encoding zayıflayabilir. RoPE veya ALiBi kullanan modellerde bile, çok uzak pozisyonlardaki token'lar düşük attention alır — saldırganlar bu 'lost-in-the-middle' fenomenini kullanarak zararlı içeriği context ortasına gizler.
+      en: In long context window models (32K+ tokens), positional encoding can weaken. Even in models using RoPE or ALiBi, tokens at very distant positions receive low attention — attackers exploit this 'lost-in-the-middle' phenomenon to hide harmful content in the middle of context.
+      fr: Dans les modèles à longue fenêtre de contexte (32K+ tokens), le positional encoding peut s’affaiblir. Même dans les modèles utilisant RoPE ou ALiBi, les tokens à des positions très éloignées reçoivent peu d’attention — les attaquants exploitent ce phénomène de « perte au milieu » pour dissimuler du contenu malveillant au centre du contexte.
+      zh: 在长上下文窗口模型（32K+ 个 token）中，位置编码可能会减弱。即使在使用 RoPE 或 ALiBi 的模型中，非常远位置的 token 也会获得较低的注意力——攻击者利用这种「中间丢失」现象将有害内容隐藏在上下文中间。
+      ar: في نماذج النافذة السياقية الطويلة (أكثر من 32 ألف رمز)، يمكن أن يضعف الترميز الموضعي. حتى في النماذج التي تستخدم RoPE أو ALiBi، تحصل الرموز في المواضع البعيدة جداً على اهتمام منخفض — يستغل المهاجمون ظاهرة الضياع في الوسط لإخفاء محتوى ضار في منتصف السياق.
+      ru: В моделях с длинным контекстным окном (32K+ токенов) позиционное кодирование может ослабевать. Даже в моделях с RoPE или ALiBi токены на очень далёких позициях получают низкое внимание — злоумышленники используют феномен «потери в середине» для сокрытия вредоносного содержимого в центре контекста.
+    severity: medium
+  - title:
+      tr: Extrapolation Attack
+      en: Extrapolation Attack
+      fr: Attaque par extrapolation
+      zh: 外推攻击
+      ar: هجوم الاستقراء
+      ru: Атака экстраполяции
+    description:
+      tr: Model eğitim sırasında 2K token ile eğitildiyse, 8K token ile inference yapmak positional encoding extrapolation gerektirir. Bu durumda model davranışı unpredictable olur ve güvenlik filtreleri bypass edilebilir. Özellikle RoPE scaling (NTK-aware, YaRN) olmayan modellerde kritik risk.
+      en: If a model is trained with 2K tokens but runs inference with 8K tokens, positional encoding extrapolation is required. Model behavior becomes unpredictable and security filters can be bypassed. Critical risk particularly in models without RoPE scaling (NTK-aware, YaRN).
+      fr: Si un modèle est entraîné avec 2K tokens mais effectue l’inférence avec 8K tokens, une extrapolation du positional encoding est nécessaire. Le comportement du modèle devient imprévisible et les filtres de sécurité peuvent être contournés. Risque critique notamment dans les modèles sans mise à l’échelle RoPE (NTK-aware, YaRN).
+      zh: 如果模型使用 2K 个 token 训练但使用 8K 个 token 进行推理，则需要位置编码外推。模型行为变得不可预测，安全过滤器可能被绕过。在没有 RoPE 缩放（NTK-aware、YaRN）的模型中风险尤为严重。
+      ar: إذا تم تدريب النموذج على 2 ألف رمز ولكن يُجري الاستدلال على 8 آلاف رمز، فإن استقراء الترميز الموضعي مطلوب. يصبح سلوك النموذج غير متوقع ويمكن تجاوز مرشحات الأمان. مخاطر حرجة خاصة في النماذج بدون تحجيم RoPE.
+      ru: Если модель обучена на 2K токенах, но выполняет инференс на 8K токенах, требуется экстраполяция позиционного кодирования. Поведение модели непредсказуемо, фильтры безопасности могут быть обойдены. Критический риск особенно в моделях без масштабирования RoPE (NTK-aware, YaRN).
+    severity: medium
+  - title:
+      tr: Positional Encoding Konfigürasyon Bilgi Sızıntısı
+      en: Positional Encoding Configuration Information Disclosure
+      fr: Divulgation de configuration positional encoding
+      zh: positional encoding配置信息泄露
+      ar: كشف معلومات تكوين positional-encoding
+      ru: Раскрытие конфигурации positional-encoding
+    description:
+      tr: Positional Encoding ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to positional encoding can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à positional encoding peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与positional encoding相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ positional-encoding في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании positional-encoding могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Sinusoidal Positional Encoding (Original Transformer)
+    lang: python
+    code: |-
+      import torch
+      import math
+
+      def sinusoidal_positional_encoding(max_len, d_model):
+          """
+          Generate sinusoidal positional encoding
+          Args:
+              max_len: Maximum sequence length
+              d_model: Model dimension (embedding size)
+          Returns:
+              Positional encoding matrix [max_len, d_model]
+          """
+          pe = torch.zeros(max_len, d_model)
+          position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+
+          # Compute div_term: 10000^(2i/d_model)
+          div_term = torch.exp(torch.arange(0, d_model, 2).float() *
+                              (-math.log(10000.0) / d_model))
+
+          # PE(pos, 2i) = sin(pos / 10000^(2i/d_model))
+          pe[:, 0::2] = torch.sin(position * div_term)
+          # PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
+          pe[:, 1::2] = torch.cos(position * div_term)
+
+          return pe
+
+      # Example usage
+      max_seq_len = 512
+      model_dim = 768  # BERT-base embedding size
+      pe = sinusoidal_positional_encoding(max_seq_len, model_dim)
+
+      print(f"Positional encoding shape: {pe.shape}")  # [512, 768]
+      print(f"Position 0 encoding: {pe[0, :8]}")
+      print(f"Position 100 encoding: {pe[100, :8]}")
+
+      # Add to token embeddings
+      token_embeddings = torch.randn(1, 128, model_dim)  # [batch, seq_len, d_model]
+      output = token_embeddings + pe[:128, :].unsqueeze(0)
+      print(f"Output shape: {output.shape}")  # [1, 128, 768]
+    description:
+      tr: Orijinal Transformer paper'ındaki sinusoidal positional encoding. Sin/cos fonksiyonlarıyla her pozisyon için unique vektör üretir. Fixed encoding olduğu için eğitilmez, sıfır parametre ekler. Herhangi sequence length ile çalışabilir.
+      en: Sinusoidal positional encoding from original Transformer paper. Generates unique vector for each position using sin/cos functions. Fixed encoding (not trained), adds zero parameters. Works with any sequence length.
+  - title: Rotary Position Embedding (RoPE) - LLaMA Style
+    lang: python
+    code: |-
+      import torch
+
+      def apply_rotary_pos_emb(q, k, cos, sin):
+          """
+          Apply Rotary Position Embedding to queries and keys
+          Used in LLaMA, GPT-NeoX, etc.
+          """
+          # Rotate every consecutive pair
+          q_rot = torch.stack([-q[..., 1::2], q[..., ::2]], dim=-1).flatten(-2)
+          k_rot = torch.stack([-k[..., 1::2], k[..., ::2]], dim=-1).flatten(-2)
+
+          # Apply rotation
+          q_embed = (q * cos) + (q_rot * sin)
+          k_embed = (k * cos) + (k_rot * sin)
+
+          return q_embed, k_embed
+
+      def precompute_freqs_cis(dim, seq_len, theta=10000.0):
+          """
+          Precompute rotation frequencies for RoPE
+          Args:
+              dim: Head dimension
+              seq_len: Maximum sequence length
+              theta: Base for frequency computation
+          """
+          freqs = 1.0 / (theta ** (torch.arange(0, dim, 2).float() / dim))
+          t = torch.arange(seq_len)
+          freqs = torch.outer(t, freqs)
+
+          # Create complex exponential (cos + i*sin)
+          cos = torch.cos(freqs)
+          sin = torch.sin(freqs)
+
+          return cos, sin
+
+      # Example: LLaMA-style RoPE
+      head_dim = 128
+      seq_len = 2048
+      cos, sin = precompute_freqs_cis(head_dim, seq_len)
+
+      # Apply to attention queries and keys
+      batch_size, num_heads, seq_len, head_dim = 2, 32, 256, 128
+      q = torch.randn(batch_size, num_heads, seq_len, head_dim)
+      k = torch.randn(batch_size, num_heads, seq_len, head_dim)
+
+      q_rot, k_rot = apply_rotary_pos_emb(q, k, cos[:seq_len], sin[:seq_len])
+      print(f"Rotated queries shape: {q_rot.shape}")  # [2, 32, 256, 128]
+    description:
+      tr: RoPE (Rotary Position Embedding) — LLaMA, Qwen, GPT-NeoX gibi modern LLM'lerde kullanılır. Absolute position yerine relative position encoding yapar, uzun context'lerde (32K+) çok daha başarılı. Attention hesaplamasına entegre edilir.
+      en: RoPE (Rotary Position Embedding) — used in modern LLMs like LLaMA, Qwen, GPT-NeoX. Encodes relative positions instead of absolute, much better for long contexts (32K+). Integrated into attention computation.
+  - title: Positional Encoding Validation
+    lang: rust
+    code: |-
+      use std::f64::consts::PI;
+
+      pub struct PosEncodingValidator {
+          max_seq_len: usize,
+          d_model: usize,
+      }
+
+      impl PosEncodingValidator {
+          pub fn new(max_seq_len: usize, d_model: usize) -> Self {
+              Self { max_seq_len, d_model }
+          }
+
+          pub fn validate_position(&self, pos: usize) -> Result<(), String> {
+              if pos >= self.max_seq_len {
+                  return Err(format!("Position {} exceeds max {}", pos, self.max_seq_len));
+              }
+              Ok(())
+          }
+
+          pub fn validate_input_length(&self, length: usize) -> Result<(), String> {
+              if length > self.max_seq_len {
+                  return Err(format!("Input length {} exceeds trained max {}", length, self.max_seq_len));
+              }
+              Ok(())
+          }
+      }
+    description:
+      tr: Positional encoding dogrulama Rust modulu.
+      en: Rust module for positional encoding validation.
+research:
+  - title: Attention Is All You Need (Original Positional Encoding)
+    url: https://arxiv.org/abs/1706.03762
+    year: 2017
+    type: paper
+    authors: Ashish Vaswani, et al.
+  - title: "RoFormer: Enhanced Transformer with Rotary Position Embedding"
+    url: https://arxiv.org/abs/2104.09864
+    year: 2021
+    type: paper
+    authors: Jianlin Su, et al.
+  - title: "Train Short, Test Long: Attention with Linear Biases (ALiBi)"
+    url: https://arxiv.org/abs/2108.12409
+    year: 2021
+    type: paper
+    authors: Ofir Press, Noah A. Smith, Mike Lewis
+tips:
+  - tr: Long context (>8K token) için RoPE veya ALiBi kullanın, sinusoidal encoding extrapolation'da başarısız olur.
+    en: For long context (>8K tokens), use RoPE or ALiBi — sinusoidal encoding fails at extrapolation.
+  - tr: LLaMA-style model'lerde RoPE theta parametresini artırarak (10K → 100K) context window'u extend edebilirsiniz (NTK-aware scaling).
+    en: In LLaMA-style models, you can extend context window by increasing RoPE theta parameter (10K → 100K) via NTK-aware scaling.
+  - tr: Positional encoding debug ederken, farklı pozisyonlardaki token'ların attention score'larını visualize edin — 'lost-in-the-middle' problemi varsa encoding method'u değiştirin.
+    en: When debugging positional encoding, visualize attention scores for tokens at different positions — if 'lost-in-the-middle' problem exists, change encoding method.

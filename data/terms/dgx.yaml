@@ -1,0 +1,168 @@
+id: dgx
+name: DGX
+fullName: NVIDIA DGX System
+category: hardware
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com)'nın AI çalıştırmak için tasarladığı, donanım ve yazılımın bir arada geldiği hazır bilgisayar sistemleri. DGX H100 gibi üst seviye modeller 8 adet [H100](https://www.nvidia.com/en-us/data-center/h100/) GPU'yu [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/) ile birleştirerek tek bir kutuda 640GB VRAM ve petaflop seviyesinde performans sunar — fiyatı yaklaşık 300.000 dolardır.
+
+    DGX Spark ise masaüstü boyutunda, Grace Blackwell işlemcili kompakt bir sistem olup 128GB birleşik bellekle yerel AI geliştirme için tasarlanmıştır. [OpenAI](https://openai.com), [Meta](https://ai.meta.com), Tesla gibi şirketlerin AI laboratuvarlarında DGX sistemleri standart altyapı olarak kullanılır.
+
+    NVIDIA'nın DGX Cloud hizmeti sayesinde bu sistemlere fiziksel satın alma yapmadan bulut üzerinden de erişilebilir. Kısacası DGX, AI için 'anahtar teslim süper bilgisayar' konseptinin somut karşılığıdır.
+  en: |-
+    [NVIDIA](https://nvidia.com)'s pre-built computer systems designed for AI, where hardware and software come together as a complete package. High-end models like the DGX H100 combine 8 [H100](https://www.nvidia.com/en-us/data-center/h100/) GPUs with [NVLink](https://www.nvidia.com/en-us/data-center/nvlink/), offering 640GB of VRAM and petaflop-level performance in a single box — at a price of roughly $300,000.
+
+    The DGX Spark is a compact desktop-sized system with a Grace Blackwell processor and 128GB unified memory, designed for local AI development. Companies like [OpenAI](https://openai.com), [Meta](https://ai.meta.com), and Tesla use DGX systems as standard infrastructure in their AI labs.
+
+    Through NVIDIA's DGX Cloud service, these systems are also accessible via the cloud without physical purchase. In short, DGX is the concrete realization of a 'turnkey AI supercomputer' concept.
+  fr: Les systemes informatiques preconstruits de NVIDIA concus pour l'IA, ou materiel et logiciel sont reunis en un package complet. Les modeles haut de gamme comme le DGX H100 combinent 8 GPU H100 avec NVLink, offrant 640 Go de VRAM et des performances au niveau du petaflop dans une seule machine — pour un prix d'environ 300 000 dollars. Le DGX Spark est un systeme compact de bureau avec un processeur Grace Blackwell et 128 Go de memoire unifiee, concu pour le developpement IA local. Des entreprises comme OpenAI, Meta et Tesla utilisent les systemes DGX comme infrastructure standard dans leurs laboratoires d'IA. Grace au service DGX Cloud de NVIDIA, ces systemes sont aussi accessibles via le cloud sans achat physique. En resume, le DGX est la concretisation du concept de 'supercalculateur IA cle en main'.
+  zh: NVIDIA为AI设计的预装电脑系统，硬件和软件作为完整套件一体交付。高端型号如DGX H100将8块H100 GPU通过NVLink组合，在单个机箱中提供640GB VRAM和千万亿次级性能——售价约30万美元。DGX Spark则是桌面大小的紧凑系统，搭载Grace Blackwell处理器和128GB统一内存，专为本地AI开发设计。OpenAI、Meta、Tesla等公司在其AI实验室中将DGX系统作为标准基础设施使用。通过NVIDIA的DGX Cloud服务，无需实体购买也可通过云端访问这些系统。简而言之，DGX是"交钥匙AI超级计算机"概念的具体实现。
+  ar: أنظمة كمبيوتر جاهزة من NVIDIA مصممة للذكاء الاصطناعي، حيث يتكامل العتاد والبرمجيات في حزمة متكاملة. النماذج المتقدمة مثل DGX H100 تجمع 8 معالجات H100 مع NVLink، وتوفر 640 جيجابايت من VRAM وأداء بمستوى البيتافلوب في صندوق واحد — بسعر يقارب 300,000 دولار. DGX Spark هو نظام مكتبي مدمج بمعالج Grace Blackwell وذاكرة موحدة 128 جيجابايت، مصمم لتطوير الذكاء الاصطناعي محلياً. شركات مثل OpenAI وMeta وTesla تستخدم أنظمة DGX كبنية تحتية أساسية في مختبرات الذكاء الاصطناعي. عبر خدمة DGX Cloud من NVIDIA، يمكن الوصول لهذه الأنظمة سحابياً دون شراء مادي. باختصار، DGX هو التجسيد الفعلي لمفهوم "حاسوب خارق جاهز للذكاء الاصطناعي".
+  ru: Готовые компьютерные системы NVIDIA для ИИ, где аппаратное и программное обеспечение поставляются единым комплектом. Топовые модели вроде DGX H100 объединяют 8 GPU H100 через NVLink, предлагая 640 ГБ VRAM и петафлопсную производительность в одном корпусе — по цене около $300 000. DGX Spark — компактная настольная система с процессором Grace Blackwell и 128 ГБ унифицированной памяти для локальной разработки ИИ. Компании вроде OpenAI, Meta и Tesla используют системы DGX как стандартную инфраструктуру в своих ИИ-лабораториях. Через сервис DGX Cloud от NVIDIA эти системы доступны и в облаке без физической покупки. По сути, DGX — это конкретное воплощение концепции "суперкомпьютер для ИИ под ключ".
+analogy:
+  tr: AI için 'anahtar teslim fabrika'. GPU, bellek, bağlantı, soğutma — her şey hazır, tak çalıştır.
+  en: A 'turnkey factory' for AI. GPU, memory, interconnects, cooling — everything ready, plug and play.
+  fr: Une 'usine clés en main' pour l'IA. GPU, mémoire, interconnexions, refroidissement — tout est prêt, branchez et utilisez.
+  zh: AI的"交钥匙工厂"。GPU、内存、互连、冷却——一切就绪，即插即用。
+  ar: مصنع 'جاهز للاستخدام' للذكاء الاصطناعي. GPU والذاكرة والاتصالات والتبريد — كل شيء جاهز، قم بالتوصيل والتشغيل.
+  ru: «Фабрика под ключ» для ИИ. GPU, память, соединения, охлаждение — всё готово, подключай и работай.
+security:
+  - title:
+      tr: DGX Base OS Hardening
+      en: DGX Base OS Hardening
+      fr: Renforcement du système d'exploitation DGX
+      zh: DGX基础操作系统加固
+      ar: تقوية نظام تشغيل DGX الأساسي
+      ru: Укрепление базовой ОС DGX
+    description:
+      tr: DGX sistemleri Ubuntu tabanlı DGX OS ile gelir ancak çoğu güvenlik özelliği varsayılan olarak kapalıdır. SELinux/AppArmor, secure boot, disk encryption gibi özelliklerin manuel konfigürasyonu gerekir. Varsayılan admin şifreleri değiştirilmeli, gereksiz servisler kapatılmalıdır.
+      en: DGX systems ship with Ubuntu-based DGX OS but most security features are disabled by default. Manual configuration required for SELinux/AppArmor, secure boot, disk encryption. Default admin passwords must be changed and unnecessary services disabled.
+      fr: Les systèmes DGX sont livrés avec DGX OS basé sur Ubuntu mais la plupart des fonctionnalités de sécurité sont désactivées par défaut. Configuration manuelle requise pour SELinux/AppArmor, le démarrage sécurisé et le chiffrement disque.
+      zh: DGX系统附带基于Ubuntu的DGX OS，但大多数安全功能默认禁用。需要手动配置SELinux/AppArmor、安全启动、磁盘加密。必须更改默认管理员密码并禁用不必要的服务。
+      ar: تأتي أنظمة DGX مع نظام DGX OS المبني على Ubuntu لكن معظم ميزات الأمان معطلة افتراضياً. يتطلب تكويناً يدوياً لـ SELinux/AppArmor والتمهيد الآمن وتشفير القرص.
+      ru: Системы DGX поставляются с DGX OS на базе Ubuntu, но большинство функций безопасности отключены по умолчанию. Требуется ручная настройка SELinux/AppArmor, безопасной загрузки и шифрования диска.
+    severity: high
+  - title:
+      tr: BMC (Baseboard Management Controller) Güvenliği
+      en: BMC (Baseboard Management Controller) Security
+      fr: Sécurité du BMC (Baseboard Management Controller)
+      zh: BMC（基板管理控制器）安全
+      ar: أمان BMC (وحدة تحكم إدارة اللوحة)
+      ru: Безопасность BMC (Baseboard Management Controller)
+    description:
+      tr: DGX'in BMC'si (IPMI arayüzü) uzaktan yönetim sağlar ancak default credentials ile gelir ve network'ten erişilebilir. BMC üzerinden sistem komple kontrol edilebilir, firmware flash edilebilir, konsola erişilebilir. BMC güvenliği kritik öneme sahiptir.
+      en: DGX BMC (IPMI interface) provides remote management but ships with default credentials and network accessibility. Complete system control possible through BMC, including firmware flashing and console access. BMC security is critical.
+      fr: Le BMC DGX (interface IPMI) permet la gestion à distance mais est livré avec des identifiants par défaut et un accès réseau. Le contrôle complet du système est possible via le BMC. La sécurité du BMC est critique.
+      zh: DGX BMC（IPMI接口）提供远程管理，但附带默认凭据且可通过网络访问。通过BMC可以完全控制系统，包括固件刷写和控制台访问。BMC安全至关重要。
+      ar: يوفر BMC لـ DGX (واجهة IPMI) إدارة عن بعد لكنه يأتي مع بيانات اعتماد افتراضية وإمكانية وصول شبكي. التحكم الكامل بالنظام ممكن عبر BMC. أمان BMC أمر حاسم.
+      ru: BMC DGX (интерфейс IPMI) обеспечивает удалённое управление, но поставляется с учётными данными по умолчанию и сетевой доступностью. Полный контроль системы возможен через BMC. Безопасность BMC критически важна.
+    severity: critical
+  - title:
+      tr: Multi-Tenant Container Escape
+      en: Multi-Tenant Container Escape
+      fr: Évasion de conteneur multi-locataire
+      zh: 多租户容器逃逸
+      ar: هروب حاوية متعددة المستأجرين
+      ru: Побег из контейнера в мультитенантной среде
+    description:
+      tr: DGX'lerde çoklu kullanıcı Docker/Kubernetes container'ları çalıştırdığında, GPU passthrough nedeniyle container escape riski artar. --privileged veya --gpus all ile çalışan container'lar host GPU driver'larına doğrudan erişir ve kernel exploit yapabilir.
+      en: When running multi-tenant Docker/Kubernetes containers on DGX, GPU passthrough increases container escape risk. Containers with --privileged or --gpus all have direct access to host GPU drivers and can exploit kernel vulnerabilities.
+      fr: Lors de l'exécution de conteneurs multi-locataires sur DGX, le passthrough GPU augmente le risque d'évasion de conteneur. Les conteneurs avec --privileged ou --gpus all ont un accès direct aux pilotes GPU de l'hôte.
+      zh: 在DGX上运行多租户Docker/Kubernetes容器时，GPU直通增加了容器逃逸风险。使用--privileged或--gpus all的容器直接访问宿主GPU驱动程序，可能利用内核漏洞。
+      ar: عند تشغيل حاويات متعددة المستأجرين على DGX، يزيد تمرير GPU من خطر هروب الحاوية. الحاويات بـ --privileged أو --gpus all لها وصول مباشر لتعريفات GPU المضيفة.
+      ru: При запуске мультитенантных контейнеров на DGX GPU passthrough увеличивает риск побега из контейнера. Контейнеры с --privileged или --gpus all имеют прямой доступ к драйверам GPU хоста.
+    severity: high
+  - title:
+      tr: DGX Varsayılan Servis Enumerasyonu
+      en: DGX Default Service Enumeration
+      fr: Énumération des services par défaut DGX
+      zh: DGX默认服务枚举
+      ar: عد خدمات DGX الافتراضية
+      ru: Перечисление сервисов DGX по умолчанию
+    description:
+      tr: DGX sistemleri varsayılan olarak birçok açık servis ile gelir (SSH, IPMI, NVIDIA Fabric Manager, DCGM). Bu servislerin enumerasyonu saldırgana saldırı yüzeyini genişletir. Gereksiz servislerin kapatılması ve port tarama izlemesi önerilir.
+      en: DGX systems ship with many open services by default (SSH, IPMI, NVIDIA Fabric Manager, DCGM). Enumeration of these services expands the attack surface for adversaries. Disabling unnecessary services and monitoring port scans is recommended.
+      fr: Les systèmes DGX sont livrés avec de nombreux services ouverts par défaut (SSH, IPMI, NVIDIA Fabric Manager, DCGM). L'énumération de ces services élargit la surface d'attaque. Il est recommandé de désactiver les services inutiles et surveiller les scans de ports.
+      zh: DGX系统默认附带许多开放服务（SSH、IPMI、NVIDIA Fabric Manager、DCGM）。这些服务的枚举扩大了攻击面。建议禁用不必要的服务并监控端口扫描。
+      ar: تأتي أنظمة DGX مع العديد من الخدمات المفتوحة افتراضياً (SSH، IPMI، NVIDIA Fabric Manager، DCGM). عد هذه الخدمات يوسع سطح الهجوم. يُوصى بتعطيل الخدمات غير الضرورية ومراقبة مسح المنافذ.
+      ru: Системы DGX поставляются со множеством открытых сервисов по умолчанию (SSH, IPMI, NVIDIA Fabric Manager, DCGM). Перечисление этих сервисов расширяет поверхность атаки. Рекомендуется отключить ненужные сервисы и мониторить сканирование портов.
+    severity: low
+config:
+  - title: DGX BMC Hardening
+    lang: bash
+    code: |-
+      # Change default BMC password
+      ipmitool user set password 2 "STRONG_RANDOM_PASSWORD"
+
+      # Disable BMC network access (use only local)
+      ipmitool lan set 1 access off
+
+      # Enable BMC IP filtering
+      ipmitool raw 0x0c 0x01 0x01 0x05 0x00 0xc0 0xa8 0x01 0x00 0xff 0xff 0xff 0x00
+
+      # Audit BMC access logs
+      ipmitool sel elist | grep -i "login\|password"
+
+      # Update BMC firmware
+      wget https://nvidia.com/downloads/dgx/BMC_firmware_latest.bin
+      ipmitool hpm upgrade BMC_firmware_latest.bin
+    description:
+      tr: DGX BMC'nin default şifresini değiştirin. Network erişimini kapatın veya IP filtering ile kısıtlayın. BMC firmware'ini güncel tutun, erişim loglarını düzenli denetleyin.
+      en: Change DGX BMC default password. Disable network access or restrict with IP filtering. Keep BMC firmware updated and regularly audit access logs.
+  - title: DGX Container Security
+    lang: yaml
+    code: |-
+      # Secure DGX Kubernetes GPU pod configuration
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: secure-dgx-pod
+      spec:
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          fsGroup: 1000
+        containers:
+        - name: gpu-workload
+          image: nvcr.io/nvidia/pytorch:24.01-py3
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+            readOnly: false
+        volumes:
+        - name: workspace
+          emptyDir: {}
+    description:
+      tr: DGX'de container'ları non-root kullanıcı ile çalıştırın. Privilege escalation'ı engelleyin, root filesystem'i read-only yapın. GPU erişimini minimum düzeyde tutun, gereksiz capability'leri kaldırın.
+      en: Run containers on DGX as non-root user. Prevent privilege escalation, make root filesystem read-only. Minimize GPU access and remove unnecessary capabilities.
+research:
+  - title: NVIDIA DGX Security Guide
+    url: https://docs.nvidia.com/dgx/dgx-os-5-user-guide/security.html
+    year: 2024
+    type: guide
+    authors: NVIDIA
+  - title: BMC Security Vulnerabilities (CVE Database)
+    url: https://www.cve.org/CVERecord?id=CVE-2023-34295
+    year: 2023
+    type: guide
+    authors: MITRE
+  - title: Container Escape via GPU Passthrough
+    url: https://unit42.paloaltonetworks.com/gpu-container-escape/
+    year: 2023
+    type: blog
+    authors: Palo Alto Unit 42
+tips:
+  - tr: DGX BMC'yi management network'te izole edin, production network'ten asla erişilebilir olmasın.
+    en: Isolate DGX BMC on management network - never accessible from production network.
+  - tr: DGX OS güncellemelerini test ortamında doğrulayın, GPU driver uyumluluğunu kontrol edin.
+    en: Validate DGX OS updates in test environment and check GPU driver compatibility.
+  - tr: Multi-tenant DGX kullanımında mutlaka MIG veya vGPU kullanın, donanım izolasyonu sağlayın.
+    en: Always use MIG or vGPU for multi-tenant DGX usage to ensure hardware isolation.

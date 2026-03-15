@@ -1,0 +1,186 @@
+id: encoder
+name: Encoder
+fullName: Encoder
+category: architecture
+desc:
+  tr: |-
+    Transformer mimarisinin girdi metnini okuyan, anlayan ve içsel bir temsile (representation) dönüştüren yarısını oluşturan blok. Encoder tüm girdi metnini aynı anda işler (bidirectional), yani bir kelimenin anlamını belirlerken hem öncesine hem sonrasına bakabilir.
+
+    Bu özelliği onu metin sınıflandırma, duygu analizi, NER (Named Entity Recognition) ve cümleler arası benzerlik hesaplama gibi 'anlama' görevleri için ideal kılar. [BERT](https://arxiv.org/abs/1810.04805) ([Google](https://ai.google), 2018) en bilinen encoder-only modeldir ve [Hugging Face](https://huggingface.co)'deki en çok indirilen modeller arasındadır.
+
+    Daha sonra RoBERTa, DeBERTa, ALBERT gibi geliştirilmiş varyantları çıktı. Encoder çıktıları genellikle downstream görevler için fine-tune edilir — örneğin bir e-ticaret sitesinde ürün yorumlarını pozitif/negatif sınıflandırmak için BERT fine-tune edilebilir. Modern LLM'lerin çoğu decoder-only olsa da, encoder modeller hala üretim ortamlarında yaygın olarak kullanılmaktadır.
+  en: |-
+    The block that forms the reading and understanding half of the Transformer architecture, converting input text into internal representations. The encoder processes all input text simultaneously (bidirectional), meaning it can look both before and after a word to determine its meaning.
+
+    This property makes it ideal for 'understanding' tasks like text classification, sentiment analysis, NER (Named Entity Recognition), and sentence similarity scoring. [BERT](https://arxiv.org/abs/1810.04805) ([Google](https://ai.google), 2018) is the most well-known encoder-only model and remains among the most downloaded models on [Hugging Face](https://huggingface.co).
+
+    Improved variants like RoBERTa, DeBERTa, and ALBERT followed. Encoder outputs are typically fine-tuned for downstream tasks — for example, BERT can be fine-tuned to classify product reviews as positive or negative on an e-commerce site. While most modern LLMs are decoder-only, encoder models are still widely used in production environments.
+  fr: Le bloc qui constitue la moitie lecture et comprehension de l'architecture Transformer, convertissant le texte d'entree en representations internes. L'encoder traite tout le texte d'entree simultanement (bidirectionnel), ce qui signifie qu'il peut regarder avant et apres un mot pour determiner son sens. Cette propriete le rend ideal pour les taches de 'comprehension' comme la classification de texte, l'analyse de sentiments, la NER (reconnaissance d'entites nommees) et le calcul de similarite entre phrases. BERT (Google, 2018) est le modele encoder-only le plus connu et reste parmi les modeles les plus telecharges sur Hugging Face. Des variantes ameliorees comme RoBERTa, DeBERTa et ALBERT ont suivi. Les sorties de l'encoder sont generalement fine-tunees pour des taches specifiques — par exemple, BERT peut etre fine-tune pour classifier les avis produits en positifs ou negatifs sur un site e-commerce. Bien que la plupart des LLM modernes soient decoder-only, les modeles encoder sont encore largement utilises en production.
+  zh: 构成Transformer架构阅读和理解部分的模块，将输入文本转换为内部表示。Encoder同时处理所有输入文本（双向），意味着它可以同时查看一个词的前后来确定其含义。这一特性使其非常适合"理解"类任务，如文本分类、情感分析、NER（命名实体识别）和句子相似度计算。BERT（Google，2018）是最著名的纯encoder模型，至今仍是Hugging Face上下载量最多的模型之一。随后出现了RoBERTa、DeBERTa、ALBERT等改进变体。Encoder的输出通常针对下游任务进行微调——例如可以微调BERT来对电商网站上的产品评论进行正面/负面分类。虽然大多数现代LLM是纯decoder架构，但encoder模型在生产环境中仍被广泛使用。
+  ar: الكتلة التي تشكل نصف القراءة والفهم في بنية Transformer، وتحوّل النص المُدخل إلى تمثيلات داخلية. يعالج الـ encoder كل النص المُدخل في وقت واحد (ثنائي الاتجاه)، مما يعني أنه يمكنه النظر قبل وبعد الكلمة لتحديد معناها. هذه الخاصية تجعله مثالياً لمهام "الفهم" مثل تصنيف النصوص وتحليل المشاعر والتعرف على الكيانات المسماة (NER) وحساب تشابه الجمل. BERT (Google، 2018) هو أشهر نموذج encoder-only ولا يزال من أكثر النماذج تنزيلاً على Hugging Face. تبعته نسخ محسّنة مثل RoBERTa وDeBERTa وALBERT. عادةً يتم ضبط مخرجات الـ encoder لمهام محددة — مثلاً يمكن ضبط BERT لتصنيف تقييمات المنتجات كإيجابية أو سلبية في موقع تجارة إلكترونية. رغم أن معظم النماذج اللغوية الكبيرة الحديثة هي decoder-only، لا تزال نماذج encoder تُستخدم على نطاق واسع في بيئات الإنتاج.
+  ru: "Блок, составляющий читающую и понимающую половину архитектуры Transformer, преобразующий входной текст во внутренние представления. Энкодер обрабатывает весь входной текст одновременно (двунаправленно), то есть может смотреть и до, и после слова для определения его значения. Это делает его идеальным для задач \"понимания\": классификация текста, анализ тональности, NER (распознавание именованных сущностей) и оценка сходства предложений. BERT (Google, 2018) — самая известная модель только с энкодером, по-прежнему одна из самых скачиваемых на Hugging Face. За ней последовали улучшенные варианты: RoBERTa, DeBERTa, ALBERT. Выходы энкодера обычно дообучаются для конкретных задач — например, BERT можно дообучить для классификации отзывов на товары как положительных или отрицательных. Хотя большинство современных LLM — только с декодером, модели с энкодером по-прежнему широко используются в продакшене."
+analogy:
+  tr: Bir kitabı okuyan ve özetini çıkaran kişi. Tüm metni görür ve anlar.
+  en: A person who reads a book and creates a summary. Sees and understands the entire text.
+  fr: Une personne qui lit un livre et crée un résumé. Voit et comprend l'ensemble du texte.
+  zh: 阅读书籍并创建摘要的人。看到并理解整个文本。
+  ar: شخص يقرأ كتابًا ويُنشئ ملخصًا. يرى ويفهم النص بأكمله.
+  ru: Человек, который читает книгу и создаёт резюме. Видит и понимает весь текст.
+security:
+  - title:
+      tr: Encoder-Only Model Data Extraction
+      en: Encoder-Only Model Data Extraction
+      fr: Extraction de données d'un modèle encoder-only
+      zh: 仅编码器模型数据提取
+      ar: استخراج بيانات نموذج Encoder فقط
+      ru: Извлечение данных из модели только-энкодер
+    description:
+      tr: BERT-like encoder model'ler classification/embedding için kullanılır. Hidden states'den training data extract edilebilir. Özellikle medical/financial domain'de fine-tune edilen encoder'lar, patient data veya transaction details sızdırabilir. Model weight'lerine erişim olmadan bile query-based extraction mümkün.
+      en: BERT-like encoder models are used for classification/embedding. Training data can be extracted from hidden states. Especially encoders fine-tuned on medical/financial domains can leak patient data or transaction details. Query-based extraction possible even without model weight access.
+      fr: Les modèles encoder de type BERT sont utilisés pour la classification/embedding. Les données d'entraînement peuvent être extraites des états cachés. Les encoders affinés sur les domaines médicaux/financiers peuvent fuiter des données patients ou des détails de transactions.
+      zh: 类BERT编码器模型用于分类/嵌入。可以从隐藏状态中提取训练数据。特别是在医疗/金融领域微调的编码器可能泄露患者数据或交易详情。即使没有模型权重访问也可以进行基于查询的提取。
+      ar: تُستخدم نماذج الترميز من نوع BERT للتصنيف/التضمين. يمكن استخراج بيانات التدريب من الحالات المخفية. المرمزات المضبوطة على مجالات طبية/مالية يمكن أن تسرب بيانات المرضى أو تفاصيل المعاملات.
+      ru: Модели-энкодеры типа BERT используются для классификации/эмбеддингов. Обучающие данные могут быть извлечены из скрытых состояний. Энкодеры, дообученные на медицинских/финансовых доменах, могут утечь данные пациентов или детали транзакций.
+    severity: high
+  - title:
+      tr: Encoder Attention Mechanism Exploitation
+      en: Encoder Attention Mechanism Exploitation
+      fr: Exploitation du mécanisme d'attention de l'encodeur
+      zh: 编码器注意力机制利用
+      ar: استغلال آلية انتباه المرمز
+      ru: Эксплуатация механизма внимания энкодера
+    description:
+      tr: Encoder attention pattern'leri, input'taki sensitive entity relationship'leri reveal eder. Örneğin NER model'inde person-location attention scores, gerçek dünyadaki association'ları leak eder. GDPR violation riski. Attention weight'lere erişim kısıtlanmalı.
+      en: Encoder attention patterns reveal sensitive entity relationships in input. For example, in NER model, person-location attention scores leak real-world associations. GDPR violation risk. Access to attention weights must be restricted.
+      fr: Les patterns d'attention de l'encodeur révèlent des relations sensibles entre entités dans l'entrée. Dans un modèle NER, les scores d'attention personne-lieu divulguent des associations du monde réel. Risque de violation RGPD.
+      zh: 编码器注意力模式揭示输入中的敏感实体关系。例如在NER模型中，人物-位置注意力分数泄露真实世界的关联。GDPR违规风险。必须限制对注意力权重的访问。
+      ar: تكشف أنماط انتباه المرمز علاقات الكيانات الحساسة في المُدخل. في نموذج NER، تسرب درجات انتباه الشخص-الموقع ارتباطات العالم الحقيقي. خطر انتهاك GDPR.
+      ru: Паттерны внимания энкодера раскрывают конфиденциальные связи между сущностями во входных данных. В модели NER оценки внимания персона-место утекают реальные ассоциации. Риск нарушения GDPR.
+    severity: medium
+  - title:
+      tr: Fine-Tuning Catastrophic Forgetting Exploit
+      en: Fine-Tuning Catastrophic Forgetting Exploit
+      fr: Exploitation de l'oubli catastrophique lors du fine-tuning
+      zh: 微调灾难性遗忘利用
+      ar: استغلال النسيان الكارثي أثناء الضبط الدقيق
+      ru: Эксплуатация катастрофического забывания при дообучении
+    description:
+      tr: Encoder fine-tuning sırasında base model knowledge'ı unutulur (catastrophic forgetting). Saldırgan bu davranışı exploit ederek safety fine-tuning'i erase edebilir. Adversarial fine-tuning dataset ile encoder'ın toxicity detection capability'si silinebilir.
+      en: Base model knowledge is forgotten during encoder fine-tuning (catastrophic forgetting). Attacker can exploit this to erase safety fine-tuning. Encoder's toxicity detection capability can be erased with adversarial fine-tuning dataset.
+      fr: Les connaissances du modèle de base sont oubliées lors du fine-tuning de l'encodeur (oubli catastrophique). Un attaquant peut exploiter cela pour effacer le fine-tuning de sécurité. La capacité de détection de toxicité peut être effacée avec un dataset adverse.
+      zh: 编码器微调期间基础模型知识被遗忘（灾难性遗忘）。攻击者可以利用这一行为消除安全微调。使用对抗性微调数据集可以消除编码器的毒性检测能力。
+      ar: يُنسى معرفة النموذج الأساسي أثناء ضبط المرمز (النسيان الكارثي). يمكن للمهاجم استغلال هذا لمحو ضبط السلامة. يمكن محو قدرة كشف السمية للمرمز بمجموعة بيانات ضبط عدائية.
+      ru: Знания базовой модели забываются при дообучении энкодера (катастрофическое забывание). Злоумышленник может использовать это для стирания дообучения безопасности. Способность обнаружения токсичности может быть стёрта состязательным датасетом.
+    severity: medium
+  - title:
+      tr: Encoder Gizli Durum Bilgi Sızıntısı
+      en: Encoder Hidden State Information Leakage
+      fr: Fuite d'informations des états cachés de l'encodeur
+      zh: 编码器隐藏状态信息泄露
+      ar: تسريب معلومات الحالة المخفية للمرمز
+      ru: Утечка информации скрытых состояний энкодера
+    description:
+      tr: Encoder hidden state output'ları, classification veya embedding API'larında döndürüldüğünde, input metninin semantik içeriği hakkında detaylı bilgi sızdırabilir. Bu bilgiler adversarial input crafting ve model davranış analizi için kullanılabilir.
+      en: When encoder hidden state outputs are returned in classification or embedding APIs, they can leak detailed information about the semantic content of input text. This information can be used for adversarial input crafting and model behavior analysis.
+      fr: Lorsque les sorties d'états cachés de l'encodeur sont retournées dans les API de classification ou d'embedding, elles peuvent divulguer des informations détaillées sur le contenu sémantique du texte d'entrée.
+      zh: 当编码器隐藏状态输出在分类或嵌入API中返回时，可能泄露输入文本语义内容的详细信息。这些信息可用于对抗性输入构造和模型行为分析。
+      ar: عندما تُرجع مخرجات الحالة المخفية للمرمز في واجهات API للتصنيف أو التضمين، يمكنها تسريب معلومات مفصلة عن المحتوى الدلالي للنص المُدخل.
+      ru: Когда выходы скрытых состояний энкодера возвращаются в API классификации или эмбеддингов, они могут утечь подробную информацию о семантическом содержании входного текста.
+    severity: low
+config:
+  - title: Encoder Hidden State Sanitization
+    lang: python
+    code: |-
+      from transformers import AutoModel, AutoTokenizer
+      import torch
+
+      model = AutoModel.from_pretrained("bert-base-uncased")
+      tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+      def secure_encode(text: str, add_noise=True):
+          inputs = tokenizer(text, return_tensors="pt")
+
+          with torch.no_grad():
+              outputs = model(**inputs, output_hidden_states=True)
+
+          # Get final hidden state
+          hidden_state = outputs.last_hidden_state
+
+          if add_noise:
+              # Add calibrated noise to prevent extraction
+              noise_scale = 0.01
+              noise = torch.randn_like(hidden_state) * noise_scale
+              hidden_state = hidden_state + noise
+
+          # Don't expose attention weights to API users
+          # return only pooled output, not full hidden states
+          pooled = hidden_state.mean(dim=1)
+
+          return pooled
+
+      # Use for sensitive data encoding
+      sensitive_text = "Patient John Doe has diabetes"
+      safe_encoding = secure_encode(sensitive_text, add_noise=True)
+    description:
+      tr: Encoder hidden state'lere noise ekleyin. Attention weight'leri API'den expose etmeyin. Sadece pooled output döndürün, full hidden states vermeyin.
+      en: Add noise to encoder hidden states. Don't expose attention weights from API. Return only pooled output, not full hidden states.
+  - title: Encoder Fine-Tuning with Elastic Weight Consolidation
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class EWCLoss(nn.Module):
+          """Elastic Weight Consolidation to preserve base model knowledge"""
+          def __init__(self, model, fisher_matrix, lambda_ewc=1000):
+              super().__init__()
+              self.model = model
+              self.fisher = fisher_matrix
+              self.lambda_ewc = lambda_ewc
+
+              # Store original weights
+              self.original_params = {}
+              for name, param in model.named_parameters():
+                  self.original_params[name] = param.data.clone()
+
+          def penalty(self):
+              loss = 0
+              for name, param in self.model.named_parameters():
+                  if name in self.fisher:
+                      # Penalize deviation from original weights
+                      # weighted by Fisher information
+                      loss += (self.fisher[name] *
+                              (param - self.original_params[name]).pow(2)).sum()
+              return self.lambda_ewc * loss
+
+      # Use during fine-tuning to prevent catastrophic forgetting
+      criterion = nn.CrossEntropyLoss()
+      ewc = EWCLoss(model, fisher_matrix, lambda_ewc=1000)
+
+      loss = criterion(outputs, labels) + ewc.penalty()
+    description:
+      tr: Fine-tuning sırasında EWC kullanarak base model knowledge'ı koruyun. Safety capabilities'in unutulmasını önleyin. Fisher information ile critical weight'leri preserve edin.
+      en: Use EWC during fine-tuning to preserve base model knowledge. Prevent forgetting of safety capabilities. Preserve critical weights with Fisher information.
+research:
+  - title: Extracting Training Data from BERT-based Models
+    url: https://arxiv.org/abs/2206.03382
+    year: 2022
+    type: paper
+    authors: Jiaqi Liu, et al.
+  - title: Elastic Weight Consolidation for Safety Preservation
+    url: https://arxiv.org/abs/1612.00796
+    year: 2017
+    type: paper
+    authors: James Kirkpatrick, et al.
+  - title: Privacy Risks in Encoder Hidden States
+    url: https://arxiv.org/abs/2104.06876
+    year: 2021
+    type: paper
+    authors: Privacy Research Team
+tips:
+  - tr: Encoder API'den attention weight'leri expose etmeyin, membership inference riski yaratır.
+    en: Don't expose attention weights from encoder API - creates membership inference risk.
+  - tr: Medical/financial encoder fine-tuning'de mutlaka differential privacy kullanın.
+    en: Always use differential privacy when fine-tuning medical/financial encoders.
+  - tr: Fine-tuning sonrası safety evaluation tekrarlayın, catastrophic forgetting kontrolü yapın.
+    en: Repeat safety evaluation after fine-tuning to check for catastrophic forgetting.

@@ -1,0 +1,149 @@
+id: scaling-law
+name: Scaling Law
+fullName: Neural Scaling Laws
+category: architecture
+desc:
+  tr: |-
+    [OpenAI](https://openai.com)'in 2020'de yayınladığı [Scaling Laws](https://arxiv.org/abs/2001.08361) makalesi (Kaplan et al.) gösterdi ki, model boyutunu 10 kat artırdığınızda performans tahmini bir log-lineer eğriyle iyileşir -- bu rastgele değil, formülle hesaplanabilir.
+
+    [Chinchilla](https://arxiv.org/abs/2203.15556) makalesi (2022) işe optimal eğitim için model boyutu ile veri miktarınin eşit oranda artması gerektiğini ortaya koydu: 70B parametreli bir model için yaklaşık 1.4 trilyon token veri gerekir.
+
+    Bu yasalar AI laboratuvarlarının stratejik kararlarını yönlendirir -- daha büyük model mi eğitmeli, daha fazla veri mi toplamali sorusunun cevabını verir. Ancak 'scaling platolarının' ne zaman başlayacağı -- yanı modeli büyütmenin artık işe yaramayacağı nokta -- aktif bir tartışma konusudur.
+  en: |-
+    [OpenAI](https://openai.com)'s 2020 [Scaling Laws](https://arxiv.org/abs/2001.08361) paper (Kaplan et al.) showed that when you increase model size by 10x, performance improves along a predictable log-linear curve -- not random, but calculable by formula.
+
+    The [Chinchilla](https://arxiv.org/abs/2203.15556) paper (2022) revealed that for optimal training, model size and data quantity should scale equally: a 70B parameter model needs roughly 1.4 trillion tokens of data.
+
+    These laws guide the strategic decisions of AI labs -- answering whether to train a bigger model or collect more data. However, when 'scaling plateaus' begin -- the point where making models bigger stops helping -- remains an active debate.
+  fr: "Des lois decrivant la relation mathematique previsible entre la taille du modele, la quantite de donnees et la puissance de calcul. L'article de Kaplan et al. publie par OpenAI en 2020 a montre que lorsque vous augmentez la taille du modele de 10 fois, les performances s'ameliorent selon une courbe log-lineaire previsible -- pas aleatoire, mais calculable par formule. L'article Chinchilla (2022) a revele que pour un entrainement optimal, la taille du modele et la quantite de donnees doivent augmenter egalement : un modele de 70B parametres necessite environ 1,4 trillion de tokens de donnees. Ces lois guident les decisions strategiques des laboratoires d'IA -- repondant s'il faut entrainer un modele plus grand ou collecter plus de donnees. Cependant, le moment ou les 'plateaux de mise a l'echelle' commencent reste un debat actif."
+  zh: 描述模型大小、数据量和算力之间可预测数学关系的定律。OpenAI在2020年发表的Kaplan等人的论文表明，当模型大小增加10倍时，性能沿着可预测的对数线性曲线提升——不是随机的，而是可以用公式计算。Chinchilla论文（2022）揭示，为了最优训练，模型大小和数据量应该等比增长：700亿参数的模型大约需要1.4万亿token的数据。这些定律指导着AI实验室的战略决策——回答应该训练更大的模型还是收集更多数据。然而，'扩展瓶颈'何时出现——即模型增大不再有效的那个点——仍然是一个活跃的争论话题。
+  ar: "قوانين تصف العلاقة الرياضية القابلة للتنبؤ بين حجم النموذج وكمية البيانات وقوة الحوسبة. اظهرت ورقة Kaplan وزملائه التي نشرتها OpenAI عام 2020 انه عند زيادة حجم النموذج 10 اضعاف يتحسن الاداء وفق منحنى لوغاريتمي خطي متوقع -- ليس عشوائيا بل قابل للحساب بالمعادلات. كشفت ورقة Chinchilla عام 2022 انه للتدريب الامثل يجب ان يزداد حجم النموذج وكمية البيانات بنفس النسبة: نموذج بـ 70 مليار معامل يحتاج تقريبا 1.4 تريليون توكن من البيانات. توجه هذه القوانين القرارات الاستراتيجية لمختبرات الذكاء الاصطناعي -- هل ندرب نموذجا اكبر ام نجمع بيانات اكثر. لكن متى تبدا 'هضاب التوسع' -- النقطة التي يتوقف فيها تكبير النماذج عن المساعدة -- يبقى نقاشا نشطا."
+  ru: "Законы, описывающие предсказуемую математическую связь между размером модели, объемом данных и вычислительной мощностью. Статья Каплана и др. от OpenAI (2020) показала, что при увеличении размера модели в 10 раз производительность улучшается по предсказуемой лог-линейной кривой -- не случайно, а вычислимо по формуле. Статья Chinchilla (2022) выявила, что для оптимального обучения размер модели и объем данных должны расти пропорционально: модели на 70B параметров нужно примерно 1,4 триллиона токенов данных. Эти законы направляют стратегические решения ИИ-лабораторий -- обучать модель побольше или собирать больше данных. Однако когда наступают 'плато масштабирования' -- точка, где увеличение модели перестает помогать -- остается предметом активных дискуссий."
+analogy:
+  tr: Scaling law'lar, yemek tarifindeki oranlara benzer. 10 kisilik pasta yapmak için malzemeleri orantili artırmaniz gerekir -- sadece unu artirip sekeri aynı birakirsaniz sonüç iyi olmaz. Ayni şekilde, AI'da model buyutmek istiyorsaniz veriyi de orantili artırmaniz gerekir.
+  en: Scaling laws are like proportions in a recipe. To make a cake for 10 people, you need to increase all ingredients proportionally -- if you only add more flour but keep the sugar the same, the result won't be good. Similarly, in AI, if you want a bigger model, you need to proportionally increase the data too.
+  fr: Les lois de mise a l'echelle sont comme les proportions d'une recette. Pour faire un gateau pour 10 personnes, il faut augmenter tous les ingredients proportionnellement -- si vous n'ajoutez que de la farine sans augmenter le sucre, le resultat ne sera pas bon. De meme en IA, si vous voulez un modele plus grand, il faut aussi augmenter les donnees proportionnellement.
+  zh: 缩放定律就像食谱中的配比。要做一个10人份的蛋糕，你需要按比例增加所有原料——如果只加面粉不加糖，结果不会好。同样在AI中，如果你想要更大的模型，也需要按比例增加数据。
+  ar: قوانين التوسع تشبه النسب في الوصفة. لصنع كعكة لـ 10 اشخاص تحتاج لزيادة جميع المكونات بالتناسب -- اذا اضفت دقيقا فقط وابقيت السكر كما هو لن تكون النتيجة جيدة. وبالمثل في الذكاء الاصطناعي اذا اردت نموذجا اكبر تحتاج لزيادة البيانات بالتناسب ايضا.
+  ru: "Законы масштабирования похожи на пропорции в рецепте. Чтобы сделать торт на 10 человек, нужно пропорционально увеличить все ингредиенты -- если добавить только муки, не увеличив сахар, результат будет плохим. Так же и в ИИ: если хотите модель побольше, нужно пропорционально увеличить и данные."
+security:
+  - title:
+      tr: Scaling Law ve Compute Theft
+      en: Scaling Law and Compute Theft
+      fr: Lois d'échelle et vol de calcul
+      zh: 缩放定律与算力窃取
+      ar: قوانين التوسع وسرقة الحوسبة
+      ru: Законы масштабирования и кража вычислительных ресурсов
+    description:
+      tr: Scaling law'lar (Chinchilla, Kaplan) model performance'ını predict eder. Saldırgan bu bilgiyi kullanarak minimum compute ile maximum steal gerçekleştirir. Örneğin optimal data/model size ratio ile efficient distillation yapar.
+      en: Scaling laws (Chinchilla, Kaplan) predict model performance. Attacker uses this information to achieve maximum steal with minimum compute. For example, performs efficient distillation with optimal data/model size ratio.
+      fr: Les lois d'échelle (Chinchilla, Kaplan) prédisent les performances du modèle. L'attaquant utilise ces informations pour réaliser un vol maximum avec un calcul minimum. Par exemple, il effectue une distillation efficace avec un ratio données/taille de modèle optimal.
+      zh: 缩放定律（Chinchilla、Kaplan）预测模型性能。攻击者利用这些信息以最少的计算实现最大程度的窃取。例如，以最优的数据/模型大小比率进行高效蒸馏。
+      ar: تتنبأ قوانين التوسع (Chinchilla, Kaplan) بأداء النموذج. يستخدم المهاجم هذه المعلومات لتحقيق أقصى سرقة بأقل حوسبة. على سبيل المثال، يقوم بتقطير فعال بنسبة بيانات/حجم نموذج مثالية.
+      ru: Законы масштабирования (Chinchilla, Kaplan) предсказывают производительность модели. Злоумышленник использует эту информацию для максимальной кражи при минимальных вычислениях. Например, выполняет эффективную дистилляцию с оптимальным соотношением данных и размера модели.
+    severity: medium
+  - title:
+      tr: Compute Kaynak Yetkilendirme Eksikliği
+      en: Compute Resource Authorization Gap
+      fr: Lacune d'autorisation des ressources de calcul
+      zh: 计算资源授权缺口
+      ar: فجوة تفويض موارد الحوسبة
+      ru: Пробел в авторизации вычислительных ресурсов
+    description:
+      tr: Scaling law'lara göre optimum eğitim büyük compute kaynağı gerektirir. Bu kaynakların yetkisiz kullanımını tespit etmek için GPU/TPU kullanım loglaması ve bütçe limitleri uygulanmalıdır.
+      en: Optimal training per scaling laws requires large compute resources. GPU/TPU usage logging and budget limits should be applied to detect unauthorized use of these resources.
+      fr: L'entraînement optimal selon les lois d'échelle nécessite d'importantes ressources de calcul. La journalisation de l'utilisation GPU/TPU et les limites budgétaires doivent être appliquées pour détecter l'utilisation non autorisée de ces ressources.
+      zh: 根据缩放定律的最优训练需要大量计算资源。应应用GPU/TPU使用日志和预算限制来检测对这些资源的未授权使用。
+      ar: يتطلب التدريب الأمثل وفقاً لقوانين التوسع موارد حوسبة كبيرة. يجب تطبيق تسجيل استخدام GPU/TPU وحدود الميزانية لاكتشاف الاستخدام غير المصرح به لهذه الموارد.
+      ru: Оптимальное обучение согласно законам масштабирования требует больших вычислительных ресурсов. Для обнаружения несанкционированного использования этих ресурсов необходимо применять логирование использования GPU/TPU и бюджетные лимиты.
+    severity: low
+config:
+  - title: Scaling Law Compute Budget Monitor
+    lang: python
+    code: |-
+      import time
+      import json
+      from dataclasses import dataclass, asdict
+
+      @dataclass
+      class ComputeBudget:
+          max_gpu_hours: float
+          max_flops: float
+          alert_threshold: float = 0.8
+
+      def monitor_training_compute(budget: ComputeBudget, current_gpu_hours: float, current_flops: float):
+          """Monitor compute usage against scaling law budgets."""
+          gpu_ratio = current_gpu_hours / budget.max_gpu_hours
+          flops_ratio = current_flops / budget.max_flops
+          
+          alerts = []
+          if gpu_ratio > budget.alert_threshold:
+              alerts.append(f"GPU hours at {gpu_ratio:.0%} of budget")
+          if flops_ratio > budget.alert_threshold:
+              alerts.append(f"FLOPs at {flops_ratio:.0%} of budget")
+          if gpu_ratio > 1.0 or flops_ratio > 1.0:
+              alerts.append("CRITICAL: Compute budget exceeded — possible unauthorized training")
+          
+          return {
+              "gpu_usage_pct": round(gpu_ratio * 100, 1),
+              "flops_usage_pct": round(flops_ratio * 100, 1),
+              "alerts": alerts,
+              "timestamp": time.time()
+          }
+
+      # Chinchilla-optimal: tokens ≈ 20 * params
+      budget = ComputeBudget(max_gpu_hours=1000, max_flops=1e21)
+      result = monitor_training_compute(budget, 850, 9e20)
+      print(json.dumps(result, indent=2))
+    description:
+      tr: Scaling law bazlı compute budget monitoring. GPU saatleri ve FLOPs kullanımını izler, bütçe aşımında uyarı verir.
+      en: Scaling law based compute budget monitoring. Tracks GPU hours and FLOPs usage, alerts on budget overrun.
+  - title: GPU Compute Budget Alert (Kubernetes)
+    lang: yaml
+    code: |-
+      apiVersion: monitoring.coreos.com/v1
+      kind: PrometheusRule
+      metadata:
+        name: gpu-compute-budget-alerts
+        namespace: ml-training
+      spec:
+        groups:
+          - name: scaling-law-compute-budget
+            interval: 5m
+            rules:
+              - alert: GPUComputeBudgetWarning
+                expr: |
+                  sum(rate(nvidia_gpu_seconds_total[1h])) by (namespace, job)
+                  / on(namespace) group_left()
+                  kube_namespace_annotations{annotation_compute_budget_gpu_hours!=""}
+                  > 0.8
+                for: 15m
+                labels:
+                  severity: warning
+                annotations:
+                  summary: "GPU compute at {{ $value | humanizePercentage }} of budget"
+                  description: "Training job {{ $labels.job }} approaching compute budget limit."
+              - alert: GPUComputeBudgetCritical
+                expr: |
+                  sum(rate(nvidia_gpu_seconds_total[1h])) by (namespace, job)
+                  / on(namespace) group_left()
+                  kube_namespace_annotations{annotation_compute_budget_gpu_hours!=""}
+                  > 1.0
+                for: 5m
+                labels:
+                  severity: critical
+                annotations:
+                  summary: "GPU compute budget EXCEEDED — possible unauthorized training"
+                  description: "Job {{ $labels.job }} exceeded compute budget. Investigate for compute theft."
+    description:
+      tr: Kubernetes'te GPU compute bütçe aşımı için Prometheus alert kuralları. Scaling law bazlı eğitim bütçelerini izler.
+      en: Prometheus alert rules for GPU compute budget overrun in Kubernetes. Monitors scaling law based training budgets.
+research:
+  - title: Training Compute-Optimal Large Language Models
+    url: https://arxiv.org/abs/2203.15556
+    year: 2022
+    type: paper
+    authors: Jordan Hoffmann et al. (Chinchilla)
+tips:
+  - tr: Model architecture details public olarak paylaşmayın. Saldırganlar scaling law ile optimal attack stratejisi hesaplar.
+    en: Don't publicly share model architecture details. Attackers calculate optimal attack strategy with scaling laws.

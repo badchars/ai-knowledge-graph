@@ -1,0 +1,178 @@
+id: multimodal
+name: Multimodal
+fullName: Multimodal Model
+category: models
+desc:
+  tr: |-
+    Sadece metinle değil, aynı anda görüntü, ses ve video dahil birden fazla veri türüyle çalışabilen AI modeli. VLM sadece görüntü + metin anlarken, multimodal model bunlara ek olarak ses, video ve hatta 3D veri gibi farkli modaliteleri de isleyebilir.
+
+    [GPT-4o](https://openai.com/gpt-4o) bunun en iyi örneğiydi: bir resim gösterip sesle soru sorabilir, video hakkında metin cevap alabilirdiniz — hepsi tek bir modelde. [Gemini](https://gemini.google.com) 2.0 Flash ise hem görüntü, ses ve video girdi alabilir hem de ses ve görüntü çıktı üretebilir.
+
+    Bu modeller iki şekilde inşa edilir: ya farkli modaliteler için ayrı encoder'lar birleştirilir (fusion yaklaşımi) ya da baştan itibaren tüm modaliteler birlikte eğitilir (native yaklaşım). Native multimodal modeller genellikle daha iyi cross-modal anlayis gösterir.
+  en: |-
+    An AI model that can process and reason across multiple types of data simultaneously — text, images, audio, and video — not just one modality at a time. While a VLM handles only images and text, a multimodal model adds audio, video, and potentially other data types.
+
+    [GPT-4o](https://openai.com/gpt-4o) was a breakthrough example: you could show it a picture, ask a question by voice, and receive a spoken response — all within a single model. [Gemini](https://gemini.google.com) 2.0 Flash can accept image, audio, and video input while generating both text and audio output.
+
+    These models are built in two ways: either by fusing separate encoders for different modalities (fusion approach) or by training all modalities together from scratch (native approach). Native multimodal models generally show better cross-modal understanding, like describing what iş happening in a video while also understanding the background audio.
+  fr: "Un modele d'IA qui peut traiter et raisonner sur plusieurs types de donnees simultanement — texte, images, audio et video — pas un seul type a la fois. Alors qu'un VLM ne gere que les images et le texte, un modele multimodal ajoute l'audio, la video et potentiellement d'autres types de donnees. GPT-4o a ete une percee : on pouvait lui montrer une image, poser une question a voix haute et recevoir une reponse orale — le tout dans un seul modele. Gemini 2.0 Flash peut accepter des entrees image, audio et video tout en generant du texte et de l'audio en sortie. Ces modeles sont construits de deux facons : soit en fusionnant des encodeurs separes pour differentes modalites (approche par fusion), soit en entrainant toutes les modalites ensemble depuis zero (approche native). Les modeles multimodaux natifs montrent generalement une meilleure comprehension inter-modale, comme decrire ce qui se passe dans une video tout en comprenant l'audio de fond."
+  zh: 能够同时处理和推理多种数据类型的AI模型——文本、图像、音频和视频——而不仅仅是一种模态。VLM只处理图像和文本，多模态模型则增加了音频、视频和其他潜在的数据类型。GPT-4o是一个突破性的例子：你可以给它看一张图片，用语音提问，并收到语音回复——全部在一个模型内完成。Gemini 2.0 Flash可以接受图像、音频和视频输入，同时生成文本和音频输出。这些模型通过两种方式构建：要么为不同模态融合独立的编码器（融合方法），要么从头开始联合训练所有模态（原生方法）。原生多模态模型通常表现出更好的跨模态理解能力，例如描述视频中发生的事情同时理解背景音频。
+  ar: "نموذج ذكاء اصطناعي يمكنه معالجة والاستدلال عبر أنواع متعددة من البيانات في وقت واحد — النص والصور والصوت والفيديو — وليس نوعاً واحداً في المرة. بينما يتعامل VLM مع الصور والنص فقط، يضيف النموذج متعدد الوسائط الصوت والفيديو وأنواع بيانات أخرى محتملة. كان GPT-4o مثالاً ثورياً: يمكنك عرض صورة وطرح سؤال بالصوت والحصول على رد صوتي — كل ذلك ضمن نموذج واحد. يمكن لـ Gemini 2.0 Flash قبول مدخلات صورة وصوت وفيديو مع توليد نص وصوت كمخرجات. تُبنى هذه النماذج بطريقتين: إما بدمج مشفرات منفصلة لمختلف الوسائط (نهج الدمج) أو بتدريب جميع الوسائط معاً من الصفر (النهج الأصلي). النماذج متعددة الوسائط الأصلية تُظهر عموماً فهماً أفضل عبر الوسائط، مثل وصف ما يحدث في فيديو مع فهم الصوت في الخلفية."
+  ru: "Модель ИИ, способная обрабатывать и анализировать несколько типов данных одновременно — текст, изображения, аудио и видео — а не только один тип за раз. В то время как VLM работает только с изображениями и текстом, мультимодальная модель добавляет аудио, видео и потенциально другие типы данных. GPT-4o стал прорывным примером: можно было показать картинку, задать вопрос голосом и получить голосовой ответ — все в одной модели. Gemini 2.0 Flash принимает входные изображения, аудио и видео, генерируя как текст, так и аудио на выходе. Эти модели строятся двумя способами: либо объединением отдельных энкодеров для разных модальностей (подход слияния), либо совместным обучением всех модальностей с нуля (нативный подход). Нативные мультимодальные модели обычно показывают лучшее кросс-модальное понимание, например, описывая происходящее в видео и одновременно понимая фоновый звук."
+analogy:
+  tr: Sadece okuyup yazabilen birinin aynı zamanda görmesi, duyması ve konuşması — tüm duyular aktif.
+  en: Someone who could only read and write gaining sight, hearing, and speech — all senses active.
+  fr: Quelqu'un qui ne pouvait que lire et écrire gagnant la vue, l'ouïe et la parole — tous les sens actifs.
+  zh: 只能读写的人获得了视觉、听觉和语言能力——所有感官都激活了。
+  ar: شخص كان يستطيع القراءة والكتابة فقط يكتسب البصر والسمع والكلام — كل الحواس نشطة.
+  ru: Человек, который мог только читать и писать, обретает зрение, слух и речь — все чувства активны.
+security:
+  - title:
+      tr: Cross-Modal Injection
+      en: Cross-Modal Injection
+      fr: Injection cross-modale
+      zh: 跨模态注入
+      ar: الحقن عبر الوسائط
+      ru: Межмодальная инъекция
+    description:
+      tr: Text, görüntü, ses gibi farklı modaliteleri birleştiren modellerde, bir modaliteden diğerine injection saldırısı yapılabilir. Örneğin görüntüdeki gizli mesaj, text output'u manipüle edebilir.
+      en: In models combining different modalities like text, image, audio, injection attack from one modality to another is possible. For example, hidden message in image can manipulate text output.
+      fr: Dans les modeles combinant differentes modalites comme le texte, l'image et l'audio, une attaque par injection d'une modalite a l'autre est possible. Par exemple, un message cache dans une image peut manipuler la sortie textuelle.
+      zh: 在结合文本、图像、音频等不同模态的模型中，从一种模态到另一种模态的注入攻击是可能的。例如，图像中的隐藏消息可以操纵文本输出。
+      ar: في النماذج التي تجمع بين وسائط مختلفة مثل النص والصورة والصوت، يمكن تنفيذ هجوم حقن من وسيط إلى آخر. على سبيل المثال، يمكن للرسالة المخفية في صورة التلاعب بالمخرجات النصية.
+      ru: В моделях, объединяющих различные модальности, такие как текст, изображение, аудио, возможна атака инъекции из одной модальности в другую. Например, скрытое сообщение в изображении может манипулировать текстовым выводом.
+    severity: high
+  - title:
+      tr: Audio Prompt Injection
+      en: Audio Prompt Injection
+      fr: Injection de prompt audio
+      zh: 音频提示注入
+      ar: حقن الموجه الصوتي
+      ru: Аудио-инъекция промпта
+    description:
+      tr: Whisper gibi speech-to-text modeller ile entegre multimodal sistemlerde, ses kaydına gizlenmiş prompt injection payloadları metin olarak çevrilir ve LLM'e gönderilir.
+      en: In multimodal systems integrated with speech-to-text models like Whisper, prompt injection payloads hidden in audio recordings are transcribed as text and sent to LLM.
+      fr: Dans les systemes multimodaux integres avec des modeles de speech-to-text comme Whisper, les payloads d'injection de prompt caches dans les enregistrements audio sont transcrits en texte et envoyes au LLM.
+      zh: 在与Whisper等语音转文本模型集成的多模态系统中，隐藏在音频录音中的提示注入载荷被转录为文本并发送给LLM。
+      ar: في الأنظمة متعددة الوسائط المدمجة مع نماذج تحويل الكلام إلى نص مثل Whisper، يتم نسخ حمولات حقن الموجه المخفية في التسجيلات الصوتية كنص وإرسالها إلى نموذج اللغة.
+      ru: В мультимодальных системах, интегрированных с моделями speech-to-text, такими как Whisper, нагрузки инъекции промптов, скрытые в аудиозаписях, транскрибируются в текст и отправляются в LLM.
+    severity: high
+  - title:
+      tr: Multimodal Girdi Boyutu İfşası
+      en: Multimodal Input Size Disclosure
+      fr: Divulgation de la taille d'entree multimodale
+      zh: 多模态输入大小泄露
+      ar: كشف حجم المدخلات متعددة الوسائط
+      ru: Раскрытие размера мультимодального ввода
+    description:
+      tr: Multimodal API'lerin kabul ettiği dosya boyutu ve format kısıtlamaları, arka plandaki model ve altyapı hakkında bilgi ifşa edebilir. Farklı modaller arası boyut farkları, işlem pipeline'ını gösterir.
+      en: File size and format restrictions accepted by multimodal APIs can disclose information about the underlying model and infrastructure. Size differences between modalities reveal the processing pipeline.
+      fr: Les restrictions de taille de fichier et de format acceptees par les API multimodales peuvent divulguer des informations sur le modele et l'infrastructure sous-jacents. Les differences de taille entre modalites revelent le pipeline de traitement.
+      zh: 多模态API接受的文件大小和格式限制可以泄露有关底层模型和基础设施的信息。不同模态之间的大小差异揭示了处理管道。
+      ar: يمكن لقيود حجم الملف والتنسيق المقبولة من واجهات البرمجة متعددة الوسائط الكشف عن معلومات حول النموذج والبنية التحتية الأساسية. تكشف فروقات الحجم بين الوسائط عن خط أنابيب المعالجة.
+      ru: Ограничения размера файлов и формата, принимаемые мультимодальными API, могут раскрывать информацию о базовой модели и инфраструктуре. Различия в размерах между модальностями раскрывают пайплайн обработки.
+    severity: low
+config:
+  - title: Multimodal Input Sanitization
+    lang: python
+    code: |-
+      class MultimodalSecurityGuard:
+          def __init__(self):
+              self.text_guard = TextGuard()
+              self.image_guard = ImageGuard()
+              self.audio_guard = AudioGuard()
+
+          def process_multimodal_input(self, inputs: dict) -> dict:
+              """Sanitize and validate multimodal inputs"""
+
+              sanitized = {}
+
+              # Process text
+              if "text" in inputs:
+                  sanitized["text"] = self.text_guard.sanitize(inputs["text"])
+
+              # Process image
+              if "image" in inputs:
+                  # Validate image
+                  self.image_guard.validate(inputs["image"])
+
+                  # Extract and sanitize OCR text
+                  ocr_text = self.image_guard.extract_text(inputs["image"])
+                  if self._contains_injection(ocr_text):
+                      raise SecurityError("Image contains potential injection")
+
+                  sanitized["image"] = inputs["image"]
+
+              # Process audio
+              if "audio" in inputs:
+                  # Transcribe audio
+                  transcript = self.audio_guard.transcribe(inputs["audio"])
+
+                  # Sanitize transcript
+                  if self._contains_injection(transcript):
+                      raise SecurityError("Audio contains potential injection")
+
+                  sanitized["audio_transcript"] = transcript
+
+              return sanitized
+
+          def _contains_injection(self, text: str) -> bool:
+              """Check for injection patterns across modalities"""
+              import re
+
+              patterns = [
+                  r'ignore.{0,20}(previous|above|instructions)',
+                  r'you are now',
+                  r'system:',
+                  r'jailbreak',
+                  r'<\|.*?\|>'  # Special tokens
+              ]
+
+              text_lower = text.lower()
+              return any(re.search(p, text_lower) for p in patterns)
+
+      class TextGuard:
+          def sanitize(self, text: str) -> str:
+              return text[:5000]  # Limit length
+
+      class ImageGuard:
+          def validate(self, image_bytes: bytes):
+              if len(image_bytes) > 10*1024*1024:
+                  raise ValueError("Image too large")
+
+          def extract_text(self, image_bytes: bytes) -> str:
+              # OCR implementation
+              return ""
+
+      class AudioGuard:
+          def transcribe(self, audio_bytes: bytes) -> str:
+              # Whisper/speech-to-text implementation
+              return ""
+
+      class SecurityError(Exception):
+          pass
+    description:
+      tr: Multimodal input'lar için cross-modal injection detection. Her modalite için ayrı sanitization.
+      en: Cross-modal injection detection for multimodal inputs. Separate sanitization for each modality.
+  - title: Multimodal Input Validation (Go)
+    lang: go
+    code: "package multimodal\n\nimport (\n\t\"fmt\"\n\t\"io\"\n\t\"net/http\"\n\t\"strings\"\n)\n\nconst (\n\tMaxImageSize = 10 * 1024 * 1024 // 10MB\n\tMaxAudioSize = 25 * 1024 * 1024 // 25MB\n\tMaxTextLen   = 32000\n)\n\nvar allowedImageTypes = map[string]bool{\n\t\"image/jpeg\": true,\n\t\"image/png\":  true,\n\t\"image/webp\": true,\n}\n\nvar allowedAudioTypes = map[string]bool{\n\t\"audio/wav\":  true,\n\t\"audio/mpeg\": true,\n\t\"audio/ogg\":  true,\n}\n\n// ValidateMultimodalInput checks file type, size, and\n// content sniffing for multimodal API inputs\nfunc ValidateMultimodalInput(r *http.Request) error {\n\tcontentType := r.Header.Get(\"Content-Type\")\n\n\tif strings.HasPrefix(contentType, \"image/\") {\n\t\tif !allowedImageTypes[contentType] {\n\t\t\treturn fmt.Errorf(\"unsupported image type: %s\", contentType)\n\t\t}\n\t\tif r.ContentLength > MaxImageSize {\n\t\t\treturn fmt.Errorf(\"image exceeds %dMB limit\", MaxImageSize/1024/1024)\n\t\t}\n\t\t// Content sniffing: verify actual content matches header\n\t\tbuf := make([]byte, 512)\n\t\tn, _ := io.ReadFull(r.Body, buf)\n\t\tdetected := http.DetectContentType(buf[:n])\n\t\tif detected != contentType {\n\t\t\treturn fmt.Errorf(\"content mismatch: header=%s actual=%s\", contentType, detected)\n\t\t}\n\t} else if strings.HasPrefix(contentType, \"audio/\") {\n\t\tif !allowedAudioTypes[contentType] {\n\t\t\treturn fmt.Errorf(\"unsupported audio type: %s\", contentType)\n\t\t}\n\t\tif r.ContentLength > MaxAudioSize {\n\t\t\treturn fmt.Errorf(\"audio exceeds %dMB limit\", MaxAudioSize/1024/1024)\n\t\t}\n\t}\n\n\treturn nil\n}"
+    description:
+      tr: Go ile multimodal API girdilerini doğrulayan middleware. Dosya tipi, boyut ve içerik doğrulaması yapar.
+      en: Go middleware that validates multimodal API inputs. Performs file type, size, and content validation.
+research:
+  - title: On the Adversarial Robustness of Multi-Modal Foundation Models
+    url: https://arxiv.org/abs/2308.10741
+    year: 2023
+    type: paper
+    authors: Christian Schlarmann, Matthias Hein
+  - title: "SneakyPrompt: Jailbreaking Text-to-image Generative Models"
+    url: https://arxiv.org/abs/2305.12082
+    year: 2023
+    type: paper
+    authors: Yuchen Yang, Bo Hui, Haolin Yuan
+tips:
+  - tr: Her modaliteyi (text, image, audio) ayrı ayrı sanitize edin.
+    en: Sanitize each modality (text, image, audio) separately.
+  - tr: Cross-modal consistency check yapın; modaliteler arası çelişki varsa reddedin.
+    en: Perform cross-modal consistency check; reject if there's contradiction between modalities.

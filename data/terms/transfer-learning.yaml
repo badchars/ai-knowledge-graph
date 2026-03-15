@@ -1,0 +1,112 @@
+id: transfer-learning
+name: Transfer Learning
+fullName: Transfer Learning
+category: fundamentals
+desc:
+  tr: |-
+    Bir görev için eğitilmiş modelin bilgisini yeni ve farklı bir göreve aktarma tekniği. Sıfırdan eğitim yerine önceden eğitilmiş bir modelin öğrendiği temsilleri başlangıç noktası olarak kullanır.
+
+    Örneğin [ImageNet](https://image-net.org) üzerinde eğitilmiş bir görüntü modeli tıbbi röntgen analizi için ince ayar (fine-tuning) yapılabilir. GPT ve BERT gibi büyük dil modellerinin başarısı büyük ölçüde transfer learning'e dayanır: once genel metin üzerinde on eğitim, sonra belirli görevler için ince ayar.
+
+    Bu yaklaşım eğitim süresini ve gereken veri miktarıni drastik olarak azaltır. Derin öğrenmedeki en etkili tekniklerden biri olarak kabul edilir.
+  en: |-
+    A technique that transfers knowledge from a model trained on one task to a new and different task. Instead of training from scratch, it uses the representations learned by a pre-trained model as a starting point.
+
+    For example, an image model trained on [ImageNet](https://image-net.org) can be fine-tuned for medical X-ray analysis. The success of large language models like GPT and BERT largely relies on transfer learning: pre-training on general text first, then fine-tuning for specific tasks.
+
+    This approach drastically reduces training time and the amount of data needed. It iş considered one of the most impactful techniques in deep learning.
+  fr: "Une technique qui transfere les connaissances d'un modele entraine sur une tache vers une tache nouvelle et differente. Au lieu d'entrainer de zero, elle utilise les representations apprises par un modele pre-entraine comme point de depart. Par exemple, un modele d'image entraine sur ImageNet peut etre affine pour l'analyse de radiographies medicales. Le succes des grands modeles de langage comme GPT et BERT repose largement sur le transfer learning: pre-entrainement sur du texte general d'abord, puis affinage pour des taches specifiques. Cette approche reduit drastiquement le temps d'entrainement et la quantite de donnees necessaires. Elle est consideree comme l'une des techniques les plus impactantes du deep learning."
+  zh: 一种将在一个任务上训练的模型的知识转移到新的不同任务的技术。与从头训练不同，它使用预训练模型学到的表示作为起点。例如，在ImageNet上训练的图像模型可以微调用于医学X光分析。GPT和BERT等大型语言模型的成功在很大程度上依赖于迁移学习：先在通用文本上预训练，然后针对特定任务微调。这种方法大幅减少了训练时间和所需的数据量。它被认为是深度学习中最具影响力的技术之一。
+  ar: "تقنية تنقل المعرفة من نموذج مدرب على مهمة واحدة الى مهمة جديدة ومختلفة. بدلا من التدريب من الصفر، تستخدم التمثيلات التي تعلمها نموذج مدرب مسبقا كنقطة بداية. على سبيل المثال، يمكن ضبط نموذج صور مدرب على ImageNet لتحليل الاشعة السينية الطبية. يعتمد نجاح النماذج اللغوية الكبيرة مثل GPT وBERT بشكل كبير على التعلم بالنقل: التدريب المسبق على نص عام اولا ثم الضبط الدقيق لمهام محددة. يقلل هذا النهج بشكل جذري من وقت التدريب وكمية البيانات المطلوبة. يعتبر من اكثر التقنيات تاثيرا في التعلم العميق."
+  ru: "Техника переноса знаний из модели, обученной на одной задаче, на новую и другую задачу. Вместо обучения с нуля использует представления, выученные предобученной моделью, в качестве отправной точки. Например, модель изображений, обученная на ImageNet, может быть дообучена для анализа медицинских рентгеновских снимков. Успех больших языковых моделей, таких как GPT и BERT, во многом основан на трансферном обучении: сначала предобучение на общем тексте, затем дообучение для конкретных задач. Этот подход кардинально сокращает время обучения и необходимый объем данных. Считается одной из наиболее значимых техник в глубоком обучении."
+analogy:
+  tr: Bisiklet surmeyi ogrenmis birinin motosiklet öğrenirken avantajli olmasi gibi. Denge, yonlendirme ve trafik kurallari bilgisi direkt aktarilir -- sadece gaz ve vites gibi yeni seyleri öğrenmeniz yeterlidir. Sıfırdan baslamak yerine mevcut bilgiyi aktarmak muazzam zaman kazandirir.
+  en: Like someone who learned to ride a bicycle having an advantage when learning a motorcycle. Balance, steering, and traffic rules transfer directly -- you only need to learn new things like throttle and gears. Transferring existing knowledge instead of starting from scratch saves enormous time.
+  fr: Comme quelqu'un qui a appris a faire du velo et qui a un avantage pour apprendre la moto. L'equilibre, la direction et les regles de circulation se transferent directement -- il suffit d'apprendre les nouvelles choses comme l'accelerateur et les vitesses. Transferer les connaissances existantes au lieu de repartir de zero fait gagner enormement de temps.
+  zh: 就像学会骑自行车的人在学摩托车时有优势。平衡、转向和交通规则直接转移——你只需要学习油门和换挡等新技能。转移现有知识而不是从头开始可以节省大量时间。
+  ar: مثل شخص تعلم ركوب الدراجة الهوائية ولديه ميزة عند تعلم الدراجة النارية. التوازن والتوجيه وقواعد المرور تنتقل مباشرة -- تحتاج فقط لتعلم اشياء جديدة مثل دواسة الوقود والتروس. نقل المعرفة الموجودة بدلا من البدء من الصفر يوفر وقتا هائلا.
+  ru: "Как человек, умеющий кататься на велосипеде, имеет преимущество при обучении езде на мотоцикле. Равновесие, управление и правила дорожного движения переносятся напрямую -- нужно только освоить новое: газ и передачи. Перенос имеющихся знаний вместо старта с нуля экономит огромное время."
+security:
+  - title:
+      tr: Pretrained Model Backdoor Inheritance
+      en: Pretrained Model Backdoor Inheritance
+      fr: Héritage de backdoor des modèles pré-entraînés
+      zh: 预训练模型后门继承
+      ar: وراثة الباب الخلفي من النموذج المدرب مسبقاً
+      ru: Наследование бэкдора предобученной модели
+    description:
+      tr: Transfer learning'de kullanılan pretrained model backdoor içeriyorsa, fine-tuning sonrası downstream task'de de backdoor aktif kalır. ImageNet pretrained ResNet veya BERT gibi yaygın modeller supply chain attack'a hedef olabilir. Saldırgan, pretrained modeli zehirleyerek binlerce downstream kullanıcıyı etkiler.
+      en: If pretrained model used in transfer learning contains backdoor, it remains active in downstream task after fine-tuning. Popular models like ImageNet pretrained ResNet or BERT can be targets of supply chain attacks. Attacker affects thousands of downstream users by poisoning pretrained model.
+      fr: Si le modèle pré-entraîné utilisé dans le transfer learning contient un backdoor, il reste actif dans la tâche en aval après le fine-tuning. Des modèles populaires comme ResNet pré-entraîné sur ImageNet ou BERT peuvent être ciblés par des attaques de la chaîne d'approvisionnement. L'attaquant affecte des milliers d'utilisateurs en aval en empoisonnant le modèle pré-entraîné.
+      zh: 如果迁移学习中使用的预训练模型包含后门，它在微调后的下游任务中仍然保持活跃。像ImageNet预训练的ResNet或BERT这样的流行模型可能成为供应链攻击的目标。攻击者通过毒化预训练模型影响数千个下游用户。
+      ar: إذا كان النموذج المدرب مسبقاً المستخدم في نقل التعلم يحتوي على باب خلفي، فإنه يبقى نشطاً في المهمة اللاحقة بعد الضبط الدقيق. يمكن أن تكون النماذج الشائعة مثل ResNet المدرب على ImageNet أو BERT أهدافاً لهجمات سلسلة التوريد. يؤثر المهاجم على آلاف المستخدمين اللاحقين بتسميم النموذج المدرب مسبقاً.
+      ru: Если предобученная модель, используемая в transfer learning, содержит бэкдор, он остаётся активным в последующей задаче после fine-tuning. Популярные модели вроде ResNet, предобученного на ImageNet, или BERT могут быть целями атак на цепочку поставок. Злоумышленник затрагивает тысячи последующих пользователей, отравляя предобученную модель.
+    severity: critical
+  - title:
+      tr: Transfer Learning Kaynak Model Doğrulama Eksikliği
+      en: Transfer Learning Source Model Verification Gap
+      fr: Lacune de vérification du modèle source en transfer learning
+      zh: 迁移学习源模型验证缺口
+      ar: فجوة التحقق من النموذج المصدر في نقل التعلم
+      ru: Пробел в проверке исходной модели при transfer learning
+    description:
+      tr: Transfer learning'de kullanılan kaynak modelin bütünlük hash'inin doğrulanmaması, manipüle edilmiş modellerin tespit edilmesini engeller. Model registry ve versiyonlama altyapısı eksikliği riski artırır.
+      en: Not verifying the integrity hash of the source model used in transfer learning prevents detection of manipulated models. Lack of model registry and versioning infrastructure increases risk.
+      fr: Ne pas vérifier le hash d'intégrité du modèle source utilisé en transfer learning empêche la détection de modèles manipulés. L'absence de registre de modèles et d'infrastructure de versioning augmente le risque.
+      zh: 不验证迁移学习中使用的源模型的完整性哈希会阻止检测被操纵的模型。缺乏模型注册表和版本管理基础设施会增加风险。
+      ar: عدم التحقق من تجزئة سلامة النموذج المصدر المستخدم في نقل التعلم يمنع اكتشاف النماذج المتلاعب بها. غياب سجل النماذج وبنية تحتية لإدارة الإصدارات يزيد من المخاطر.
+      ru: Отсутствие проверки хеша целостности исходной модели при transfer learning препятствует обнаружению манипулированных моделей. Отсутствие реестра моделей и инфраструктуры версионирования увеличивает риск.
+    severity: low
+config:
+  - title: Fine-Pruning Defense Against Backdoors
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+      import torch.nn.utils.prune as prune
+
+      def fine_prune_defense(model, prune_amount=0.1):
+          """Remove potential backdoor neurons via pruning"""
+
+          # Prune smallest magnitude weights (likely backdoor)
+          for name, module in model.named_modules():
+              if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
+                  prune.l1_unstructured(module, name='weight', amount=prune_amount)
+                  prune.remove(module, 'weight')
+
+          return model
+
+      # Load pretrained model
+      pretrained_model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
+
+      # Apply fine-pruning before fine-tuning
+      pretrained_model = fine_prune_defense(pretrained_model, prune_amount=0.1)
+
+      # Freeze early layers (less likely to contain task-specific backdoors)
+      for param in list(pretrained_model.parameters())[:-10]:
+          param.requires_grad = False
+
+      # Fine-tune only last layers
+      optimizer = torch.optim.Adam(
+          filter(lambda p: p.requires_grad, pretrained_model.parameters()),
+          lr=0.001
+      )
+    description:
+      tr: Fine-pruning, pretrained model'deki düşük magnitude weight'leri (potansiyel backdoor neuron'ları) kaldırır. Sadece son katmanları fine-tune etmek de backdoor riskini azaltır.
+      en: Fine-pruning removes low magnitude weights (potential backdoor neurons) in pretrained model. Fine-tuning only last layers also reduces backdoor risk.
+research:
+  - title: "Fine-Pruning: Defending Against Backdooring Attacks"
+    url: https://arxiv.org/abs/1805.12185
+    year: 2018
+    type: paper
+    authors: Kang Liu, Brendan Dolan-Gavitt, Siddharth Garg
+  - title: Backdoor Attacks Against Transfer Learning
+    url: https://arxiv.org/abs/2001.11784
+    year: 2020
+    type: paper
+    authors: Yingqi Liu, Shiqing Ma, Yousra Aafer
+tips:
+  - tr: HuggingFace'den model indirirken official/verified publisher'ları tercih edin. Community upload'ları backdoor riski taşır.
+    en: Prefer official/verified publishers when downloading models from HuggingFace. Community uploads carry backdoor risk.
+  - tr: Transfer learning yaparken pretrained model'in son birkaç katmanını at ve random initialize et. Bu backdoor'u etkisiz hale getirebilir.
+    en: When doing transfer learning, discard last few layers of pretrained model and randomly initialize. This can neutralize backdoors.

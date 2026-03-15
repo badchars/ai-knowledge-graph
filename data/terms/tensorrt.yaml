@@ -1,0 +1,165 @@
+id: tensorrt
+name: TensorRT
+fullName: TensorRT
+category: ecosystem
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com)'nin GPU'lar için high-performance deep learning inference SDK'sı. [PyTorch](https://pytorch.org) veya [ONNX](https://onnx.ai) ile eğitilen modelleri optimize eder ve NVIDIA GPU'larda (Ampere, Hopper, Blackwell) 2-10x daha hızlı çalıştırır. Production inference için endüstri standardı.
+
+    TensorRT'nin gücü model optimization pipeline'ından gelir: layer fusion (birden fazla operation birleştirilir), precision calibration (FP32 → FP16 → INT8), kernel auto-tuning (her GPU için optimal CUDA kernel seçilir). [Tensor Core](https://www.nvidia.com/en-us/data-center/tensor-cores/) desteği ile FP16/INT8 inference büyük speedup sağlar.
+
+    [vLLM](https://docs.vllm.ai), [Triton Inference Server](https://developer.nvidia.com/triton-inference-server), [DeepStream](https://developer.nvidia.com/deepstream-sdk) gibi framework'ler arka planda TensorRT kullanır. [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) ile LLM'ler optimize edilir — [Llama](https://ai.meta.com/llama/), GPT, Mistral gibi modeller için pre-built engine'ler mevcut.
+
+    TensorRT engine dosyası (`.plan`, `.engine`) GPU-specific — H100'de build edilen engine A100'de çalışmaz. Model her GPU architecture için ayrı compile edilmelidir. INT8 quantization için calibration dataset gerekir, accuracy drop minimal (%1-2) ama inference 3-5x hızlanır.
+  en: |-
+    High-performance deep learning inference SDK for GPUs by [NVIDIA](https://nvidia.com). Optimizes models trained with [PyTorch](https://pytorch.org) or [ONNX](https://onnx.ai) and runs them 2-10x faster on NVIDIA GPUs (Ampere, Hopper, Blackwell). Industry standard for production inference.
+
+    TensorRT's power comes from its model optimization pipeline: layer fusion (multiple operations combined), precision calibration (FP32 → FP16 → INT8), kernel auto-tuning (optimal CUDA kernel selected for each GPU). [Tensor Core](https://www.nvidia.com/en-us/data-center/tensor-cores/) support provides massive speedup with FP16/INT8 inference.
+
+    Frameworks like [vLLM](https://docs.vllm.ai), [Triton Inference Server](https://developer.nvidia.com/triton-inference-server), and [DeepStream](https://developer.nvidia.com/deepstream-sdk) use TensorRT under the hood. [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) optimizes LLMs — pre-built engines available for models like [Llama](https://ai.meta.com/llama/), GPT, and Mistral.
+
+    TensorRT engine file (`.plan`, `.engine`) is GPU-specific — engine built on H100 won't run on A100. Model must be compiled separately for each GPU architecture. INT8 quantization requires calibration dataset, accuracy drop is minimal (1-2%) but inference speeds up 3-5x.
+  fr: SDK d'inference de deep learning haute performance pour GPU de NVIDIA, optimise les modeles et les execute 2-10x plus vite sur les GPU NVIDIA.
+  zh: NVIDIA的高性能深度学习推理SDK，优化模型并在NVIDIA GPU上运行速度提升2-10倍。
+  ar: SDK استدلال التعلم العميق عالي الأداء لمعالجات GPU من NVIDIA، يحسّن النماذج ويشغلها أسرع بـ 2-10 مرات على GPU من NVIDIA.
+  ru: Высокопроизводительный SDK для инференса глубокого обучения на GPU от NVIDIA, оптимизирует модели и ускоряет их в 2-10 раз на NVIDIA GPU.
+analogy:
+  tr: Ham Python kodu yorumlayıcı gibi yavaş, TensorRT ise derlenmiş C++ kodu gibi hızlı — aynı işi 10x hızlı yapar.
+  en: Raw Python code is slow like interpreter, TensorRT is fast like compiled C++ code — does same job 10x faster.
+  fr: Le code Python brut est lent comme un interpreteur, TensorRT est rapide comme du code C++ compile — fait le meme travail 10x plus vite.
+  zh: 原始Python代码像解释器一样慢，TensorRT像编译的C++代码一样快——完成同样工作快10倍。
+  ar: كود Python الخام بطيء مثل المفسر، TensorRT سريع مثل كود C++ المترجم — ينجز نفس العمل أسرع بـ 10 مرات.
+  ru: Сырой Python-код медленный как интерпретатор, TensorRT быстрый как скомпилированный C++ — делает ту же работу в 10 раз быстрее.
+security:
+  - title:
+      tr: Engine File Tampering - Backdoor Injection
+      en: Engine File Tampering - Backdoor Injection
+      fr: Falsification du fichier engine - Injection de porte derobee
+      zh: 引擎文件篡改 - 后门注入
+      ar: العبث بملف المحرك - حقن باب خلفي
+      ru: Подделка файла движка - внедрение бэкдора
+    description:
+      tr: TensorRT engine dosyaları (.plan, .engine) binary format ve obfuscated. Saldırgan engine'i decompile edip manipüle ederek model weight'lerine backdoor ekleyebilir. Engine integrity check yok, SHA256 hash validation kullanılmalı. Supply chain attack vektörü — untrusted engine dosyası load etmeyin.
+      en: TensorRT engine files (.plan, .engine) are binary format and obfuscated. Attacker can decompile and manipulate engine to add backdoor to model weights. No engine integrity check, must use SHA256 hash validation. Supply chain attack vector — don't load untrusted engine files.
+      fr: Les fichiers engine TensorRT (.plan, .engine) sont au format binaire et obfusques. Un attaquant peut decompiler et manipuler l'engine pour ajouter une porte derobee aux poids du modele. Aucune verification d'integrite de l'engine n'existe, il faut utiliser la validation de hash SHA256. Vecteur d'attaque de la chaine d'approvisionnement — ne chargez pas de fichiers engine non fiables.
+      zh: TensorRT引擎文件（.plan、.engine）为二进制格式且经过混淆处理。攻击者可以反编译并操纵引擎，向模型权重添加后门。没有引擎完整性检查，必须使用SHA256哈希验证。供应链攻击向量——不要加载不受信任的引擎文件。
+      ar: ملفات محرك TensorRT (.plan, .engine) بتنسيق ثنائي ومموّهة. يمكن للمهاجم فك تجميع المحرك والتلاعب به لإضافة باب خلفي لأوزان النموذج. لا يوجد فحص سلامة للمحرك، يجب استخدام التحقق من تجزئة SHA256. ناقل هجوم سلسلة التوريد — لا تحمّل ملفات محرك غير موثوقة.
+      ru: Файлы движка TensorRT (.plan, .engine) имеют бинарный формат и обфусцированы. Злоумышленник может декомпилировать и манипулировать движком для внедрения бэкдора в веса модели. Проверка целостности движка отсутствует, необходимо использовать валидацию хэшей SHA256. Вектор атаки на цепочку поставок — не загружайте ненадёжные файлы движка.
+    severity: high
+  - title:
+      tr: Custom Plugin Code Execution
+      en: Custom Plugin Code Execution
+      fr: Execution de code via plugin personnalise
+      zh: 自定义插件代码执行
+      ar: تنفيذ التعليمات البرمجية عبر مكوّن إضافي مخصص
+      ru: Выполнение кода через пользовательский плагин
+    description:
+      tr: "TensorRT custom plugin'lere izin verir (C++/CUDA). Zararlı model custom plugin içerebilir ve runtime'da dynamic load edilir — arbitrary native code execution. Plugin signature validation yok, sadece allowlist based filtering. Defense: disable custom plugins in production."
+      en: "TensorRT allows custom plugins (C++/CUDA). Malicious model can include custom plugin and it's dynamically loaded at runtime — arbitrary native code execution. No plugin signature validation, only allowlist-based filtering. Defense: disable custom plugins in production."
+      fr: "TensorRT autorise les plugins personnalises (C++/CUDA). Un modele malveillant peut inclure un plugin personnalise qui est charge dynamiquement au moment de l'execution — execution de code natif arbitraire. Aucune validation de signature de plugin, uniquement un filtrage par liste d'autorisation. Defense : desactiver les plugins personnalises en production."
+      zh: TensorRT允许自定义插件（C++/CUDA）。恶意模型可以包含自定义插件，在运行时动态加载——任意原生代码执行。没有插件签名验证，仅有基于白名单的过滤。防御措施：在生产环境中禁用自定义插件。
+      ar: "يسمح TensorRT بالمكوّنات الإضافية المخصصة (C++/CUDA). يمكن للنموذج الضار تضمين مكوّن إضافي مخصص يتم تحميله ديناميكيًا أثناء التشغيل — تنفيذ تعليمات برمجية أصلية تعسفية. لا يوجد تحقق من توقيع المكوّن الإضافي، فقط تصفية قائمة السماح. الدفاع: تعطيل المكوّنات الإضافية المخصصة في الإنتاج."
+      ru: "TensorRT поддерживает пользовательские плагины (C++/CUDA). Вредоносная модель может включать пользовательский плагин, который динамически загружается во время выполнения — произвольное выполнение нативного кода. Валидация подписи плагинов отсутствует, есть только фильтрация по списку разрешённых. Защита: отключите пользовательские плагины в продакшене."
+    severity: high
+  - title:
+      tr: GPU Architecture Mismatch DoS
+      en: GPU Architecture Mismatch DoS
+      fr: DoS par incompatibilite d'architecture GPU
+      zh: GPU架构不匹配导致拒绝服务
+      ar: حجب الخدمة بسبب عدم توافق بنية GPU
+      ru: DoS из-за несовместимости архитектуры GPU
+    description:
+      tr: "TensorRT engine GPU-specific. Yanlış architecture için build edilen engine yüklenirse segfault veya CUDA error ile crash olur. Saldırgan kasıtlı olarak uyumsuz engine gönderebilir. Defense: engine metadata'sında GPU architecture validate edin."
+      en: "TensorRT engine is GPU-specific. Loading engine built for wrong architecture causes segfault or crash with CUDA error. Attacker can intentionally send incompatible engine. Defense: validate GPU architecture in engine metadata."
+      fr: "Le moteur TensorRT est specifique au GPU. Le chargement d'un moteur construit pour une mauvaise architecture provoque un segfault ou un crash avec une erreur CUDA. Un attaquant peut intentionnellement envoyer un moteur incompatible. Defense : valider l'architecture GPU dans les metadata du moteur."
+      zh: TensorRT引擎是GPU特定的。加载为错误架构构建的引擎会导致段错误或CUDA错误崩溃。攻击者可以故意发送不兼容的引擎。防御措施：在引擎元数据中验证GPU架构。
+      ar: "محرك TensorRT خاص بـ GPU. تحميل محرك مُنشأ لبنية خاطئة يسبب خطأ تجزئة أو تعطل مع خطأ CUDA. يمكن للمهاجم إرسال محرك غير متوافق عمدًا. الدفاع: التحقق من بنية GPU في البيانات الوصفية للمحرك."
+      ru: "Движок TensorRT привязан к конкретному GPU. Загрузка движка, собранного для неподходящей архитектуры, вызывает ошибку сегментации или сбой с ошибкой CUDA. Злоумышленник может намеренно отправить несовместимый движок. Защита: проверяйте архитектуру GPU в метаданных движка."
+    severity: medium
+  - title:
+      tr: Tensorrt Konfigürasyon Bilgi Sızıntısı
+      en: Tensorrt Configuration Information Disclosure
+      fr: Divulgation de configuration tensorrt
+      zh: tensorrt配置信息泄露
+      ar: كشف معلومات تكوين tensorrt
+      ru: Раскрытие конфигурации tensorrt
+    description:
+      tr: Tensorrt ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to tensorrt can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à tensorrt peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与tensorrt相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ tensorrt في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании tensorrt могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Build TensorRT Engine from ONNX
+    lang: python
+    code: |-
+      import tensorrt as trt
+
+      # Create builder and network
+      logger = trt.Logger(trt.Logger.WARNING)
+      builder = trt.Builder(logger)
+      network = builder.create_network(
+          1 << int(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH)
+      )
+
+      # Parse ONNX model
+      parser = trt.OnnxParser(network, logger)
+      with open('model.onnx', 'rb') as f:
+          parser.parse(f.read())
+
+      # Build engine with FP16 precision
+      config = builder.create_builder_config()
+      config.set_flag(trt.BuilderFlag.FP16)  # 2x speedup
+      engine = builder.build_serialized_network(network, config)
+
+      # Save engine
+      with open('model.engine', 'wb') as f:
+          f.write(engine)
+    description:
+      tr: ONNX modelinden TensorRT engine build etme. FP16 precision ile 2x speedup. Engine dosyası GPU-specific, her architecture için ayrı build gerekir. Production'da cache'lenir.
+      en: Build TensorRT engine from ONNX model. 2x speedup with FP16 precision. Engine file is GPU-specific, must build separately for each architecture. Cached in production.
+  - title: TensorRT-LLM for Llama
+    lang: bash
+    code: |-
+      # Convert Llama to TensorRT-LLM
+      python convert_checkpoint.py \
+        --model_dir ./Llama-2-7b-hf \
+        --output_dir ./trt_ckpt \
+        --dtype float16
+
+      # Build TensorRT engine
+      trtllm-build \
+        --checkpoint_dir ./trt_ckpt \
+        --output_dir ./trt_engine \
+        --gemm_plugin float16 \
+        --max_batch_size 8 \
+        --max_input_len 2048 \
+        --max_output_len 512
+    description:
+      tr: TensorRT-LLM ile Llama modelini optimize etme. FP16 precision, GEMM plugin, batch size ve sequence length konfigürasyonu. Optimize engine 3-5x daha hızlı inference sağlar.
+      en: Optimize Llama model with TensorRT-LLM. FP16 precision, GEMM plugin, batch size and sequence length configuration. Optimized engine provides 3-5x faster inference.
+research:
+  - title: TensorRT Official Documentation
+    url: https://docs.nvidia.com/deeplearning/tensorrt/
+    year: 2024
+    type: guide
+    authors: NVIDIA
+  - title: TensorRT-LLM GitHub Repository
+    url: https://github.com/NVIDIA/TensorRT-LLM
+    year: 2024
+    type: tool
+    authors: NVIDIA
+  - title: TensorRT Performance Best Practices
+    url: https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#performance
+    year: 2024
+    type: guide
+    authors: NVIDIA
+tips:
+  - tr: TensorRT engine build süreci uzun (10-60 dakika), mutlaka cache'leyin — production'da her başlangıçta rebuild etmeyin.
+    en: TensorRT engine build process is long (10-60 minutes), always cache — don't rebuild on every startup in production.
+  - tr: INT8 quantization için calibration dataset kullanın — accuracy drop minimal (%1-2) ama inference 3-5x hızlanır.
+    en: Use calibration dataset for INT8 quantization — accuracy drop is minimal (1-2%) but inference speeds up 3-5x.
+  - tr: Engine dosyalarını SHA256 hash ile integrity check yapın — supply chain attack'e karşı savunma.
+    en: Integrity check engine files with SHA256 hash — defense against supply chain attacks.

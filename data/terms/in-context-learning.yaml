@@ -1,0 +1,260 @@
+id: in-context-learning
+name: In-Context Learning
+fullName: In-Context Learning (ICL)
+category: prompting
+desc:
+  tr: |-
+    Model'in fine-tuning olmadan, sadece [prompt](/terms/prompt) içindeki örneklerden öğrenerek yeni task'ları çözmesi. [Few-shot](/terms/few-shot) prompting'in teorik temelini oluşturur.
+
+    Örneğin GPT-4'e 3 sentiment analysis örneği verirseniz, model pattern'i kavrar ve 4. cümleyi doğru sınıflandırır — hiç training olmadan. [Chain-of-Thought](/terms/cot) da ICL'nin bir türüdür: reasoning örnekleri gösterirseniz, model benzer adımları takip eder.
+
+    ICL capacity model boyutuyla scale eder: büyük modeller daha az örnekle öğrenir. Ancak [hallucination](/terms/hallucination) riski vardır — yanlış patterns learn edilebilir.
+  en: |-
+    The ability of models to solve new tasks by learning from examples in the [prompt](/terms/prompt) without fine-tuning. Forms the theoretical foundation of [few-shot](/terms/few-shot) prompting.
+
+    For example, if you give GPT-4 three sentiment analysis examples, the model grasps the pattern and correctly classifies the 4th sentence — without any training. [Chain-of-Thought](/terms/cot) is also a type of ICL: if you show reasoning examples, the model follows similar steps.
+
+    ICL capacity scales with model size: larger models learn from fewer examples. However, there's [hallucination](/terms/hallucination) risk — wrong patterns can be learned.
+  fr: La capacité des modèles à résoudre de nouvelles tâches en apprenant à partir d'exemples dans le prompt sans fine-tuning.
+  zh: 模型在没有微调的情况下，通过提示中的示例学习来解决新任务的能力。
+  ar: قدرة النماذج على حل مهام جديدة من خلال التعلم من الأمثلة في الموجه دون ضبط دقيق.
+  ru: Способность моделей решать новые задачи, обучаясь на примерах в промпте без дообучения.
+analogy:
+  tr: Yemek tarifi ezberlemek yerine, 2-3 örnek yemek izleyip tekniği kaplamak. Yeni malzemelerle aynı tekniği uygularsın.
+  en: Instead of memorizing recipes, watch 2-3 example dishes and grasp the technique. Apply same technique with new ingredients.
+  fr: Au lieu de mémoriser des recettes, regardez 2-3 plats exemples et saisissez la technique. Appliquez la même technique avec de nouveaux ingrédients.
+  zh: 不是记住食谱，而是观看2-3个示例菜肴并掌握技术。用新食材应用相同技术。
+  ar: بدلاً من حفظ الوصفات، شاهد 2-3 أطباق مثالية واستوعب التقنية. طبق نفس التقنية مع مكونات جديدة.
+  ru: Вместо запоминания рецептов, посмотрите 2-3 примера блюд и поймите технику. Примените ту же технику с новыми ингредиентами.
+security:
+  - title:
+      tr: ICL Poisoning via Demonstration Manipulation
+      en: ICL Poisoning via Demonstration Manipulation
+      fr: Empoisonnement ICL par manipulation de demonstrations
+      zh: 通过示例操纵进行ICL投毒
+      ar: تسميم ICL عبر التلاعب بالعروض التوضيحية
+      ru: Отравление ICL через манипуляцию демонстрациями
+    description:
+      tr: Saldırgan, prompt içindeki örnek demonstrations'ı manipüle ederek model'in yanlış pattern öğrenmesini sağlayabilir. Poisoned examples ile model malicious behavior'ları normalize eder.
+      en: Attacker can manipulate example demonstrations in prompt to make model learn wrong patterns. With poisoned examples, model normalizes malicious behaviors.
+      fr: Un attaquant peut manipuler les exemples de demonstration dans le prompt pour amener le modele a apprendre de mauvais patterns. Avec des exemples empoisonnes, le modele normalise les comportements malveillants.
+      zh: 攻击者可以操纵提示中的示例演示，使模型学习错误的模式。通过投毒的示例，模型会将恶意行为正常化。
+      ar: يمكن للمهاجم التلاعب بالأمثلة التوضيحية في الأمر لجعل النموذج يتعلم أنماطًا خاطئة. مع الأمثلة المسممة، يقوم النموذج بتطبيع السلوكيات الضارة.
+      ru: Злоумышленник может манипулировать демонстрационными примерами в промпте, чтобы заставить модель выучить неправильные паттерны. С помощью отравленных примеров модель нормализует вредоносное поведение.
+    severity: high
+  - title:
+      tr: Context Hijacking
+      en: Context Hijacking
+      fr: Detournement de contexte
+      zh: 上下文劫持
+      ar: اختطاف السياق
+      ru: Перехват контекста
+    description:
+      tr: Kullanıcı input'u ICL examples ile karışırsa, saldırgan fake examples inject ederek model'in reasoning'ini hijack edebilir. Context boundary'leri net olmalıdır.
+      en: If user input mixes with ICL examples, attacker can inject fake examples to hijack model reasoning. Context boundaries must be clear.
+      fr: Si l'entree utilisateur se melange aux exemples ICL, un attaquant peut injecter de faux exemples pour detourner le raisonnement du modele. Les limites de contexte doivent etre claires.
+      zh: 如果用户输入与ICL示例混合，攻击者可以注入虚假示例来劫持模型推理。上下文边界必须清晰明确。
+      ar: إذا اختلط إدخال المستخدم مع أمثلة ICL، يمكن للمهاجم حقن أمثلة مزيفة لاختطاف استدلال النموذج. يجب أن تكون حدود السياق واضحة.
+      ru: Если пользовательский ввод смешивается с примерами ICL, злоумышленник может внедрить поддельные примеры для перехвата рассуждений модели. Границы контекста должны быть чётко определены.
+    severity: high
+  - title:
+      tr: Pattern Exploitation
+      en: Pattern Exploitation
+      fr: Exploitation de patterns
+      zh: 模式利用
+      ar: استغلال الأنماط
+      ru: Эксплуатация паттернов
+    description:
+      tr: Model ICL ile öğrendiği patterns'ı exploit edilebilir şekilde uygulayabilir. Örneğin SQL injection örnekleri gösterilirse, model benzer injections üretebilir.
+      en: Model can apply patterns learned via ICL in exploitable ways. For example, if shown SQL injection examples, model can generate similar injections.
+      fr: Le modele peut appliquer les patterns appris via ICL de maniere exploitable. Par exemple, si on lui montre des exemples d'injection SQL, le modele peut generer des injections similaires.
+      zh: 模型可以以可被利用的方式应用通过ICL学到的模式。例如，如果展示了SQL注入示例，模型可以生成类似的注入。
+      ar: يمكن للنموذج تطبيق الأنماط المتعلمة عبر ICL بطرق قابلة للاستغلال. على سبيل المثال، إذا عُرضت عليه أمثلة حقن SQL، يمكن للنموذج إنشاء حقن مماثلة.
+      ru: Модель может применять паттерны, выученные через ICL, эксплуатируемым образом. Например, если показать примеры SQL-инъекций, модель может генерировать аналогичные инъекции.
+    severity: medium
+  - title:
+      tr: In Context Learning Konfigürasyon Bilgi Sızıntısı
+      en: In Context Learning Configuration Information Disclosure
+      fr: Divulgation de configuration in context learning
+      zh: in context learning配置信息泄露
+      ar: كشف معلومات تكوين in-context-learning
+      ru: Раскрытие конфигурации in-context-learning
+    description:
+      tr: In Context Learning ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to in context learning can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à in context learning peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与in context learning相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ in-context-learning في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании in-context-learning могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure In-Context Learning with Validation
+    lang: python
+    code: |-
+      from typing import List, Dict
+      import re
+
+      class SecureICLPrompt:
+          def __init__(self, task_description: str, max_examples: int = 5):
+              self.task_description = task_description
+              self.max_examples = max_examples
+              self.examples: List[Dict[str, str]] = []
+
+          def add_example(self, input_text: str, output_text: str) -> bool:
+              """Add example with validation"""
+              # Validate example count
+              if len(self.examples) >= self.max_examples:
+                  raise ValueError(f"Max {self.max_examples} examples allowed")
+
+              # Validate example content
+              if not self.validate_example(input_text, output_text):
+                  return False
+
+              self.examples.append({
+                  "input": input_text,
+                  "output": output_text
+              })
+              return True
+
+          def validate_example(self, input_text: str, output_text: str) -> bool:
+              """Validate example for malicious patterns"""
+              # Check for injection attempts
+              injection_patterns = [
+                  r"(?i)ignore.*previous.*instructions",
+                  r"(?i)system.*prompt",
+                  r"(?i)<script>",
+                  r"(?i)DROPs+TABLE",
+                  r"(?i)rms+-rf",
+                  r"(?i)evals*(",
+              ]
+
+              combined = input_text + " " + output_text
+              for pattern in injection_patterns:
+                  if re.search(pattern, combined):
+                      print(f"Blocked malicious pattern: {pattern}")
+                      return False
+
+              # Length check
+              if len(input_text) > 1000 or len(output_text) > 1000:
+                  return False
+
+              return True
+
+          def build_prompt(self, user_input: str) -> str:
+              """Build ICL prompt with clear boundaries"""
+              # Validate user input
+              if not self.validate_example(user_input, ""):
+                  raise ValueError("Invalid user input")
+
+              prompt_parts = [
+                  f"Task: {self.task_description}
+      ",
+                  "
+      Examples:",
+                  "=" * 50
+              ]
+
+              # Add examples with clear delimiters
+              for i, example in enumerate(self.examples, 1):
+                  prompt_parts.append(f"
+      Example {i}:")
+                  prompt_parts.append(f"Input: {example['input']}")
+                  prompt_parts.append(f"Output: {example['output']}")
+                  prompt_parts.append("-" * 30)
+
+              # Add user input with clear boundary
+              prompt_parts.append("=" * 50)
+              prompt_parts.append("
+      Now, apply the same pattern to:")
+              prompt_parts.append(f"Input: {user_input}")
+              prompt_parts.append("Output:")
+
+              return "
+      ".join(prompt_parts)
+
+          def sanitize_output(self, model_output: str) -> str:
+              """Sanitize model output"""
+              # Remove any attempt to modify examples
+              if "Example" in model_output or "Input:" in model_output:
+                  # Model might be trying to add fake examples
+                  return "[Output sanitized - attempted example injection]"
+
+              return model_output
+
+      # Usage
+      icl = SecureICLPrompt(
+          task_description="Classify sentiment as positive, negative, or neutral",
+          max_examples=3
+      )
+
+      # Add validated examples
+      icl.add_example(
+          "I love this product!",
+          "positive"
+      )
+      icl.add_example(
+          "This is terrible.",
+          "negative"
+      )
+      icl.add_example(
+          "It's okay, nothing special.",
+          "neutral"
+      )
+
+      # Build secure prompt
+      user_query = "The service was amazing!"
+      prompt = icl.build_prompt(user_query)
+      print(prompt)
+
+      # After model inference, sanitize output
+      # model_output = call_llm(prompt)
+      # safe_output = icl.sanitize_output(model_output)
+    description:
+      tr: Güvenli ICL implementasyonu. Example validation, clear boundaries, output sanitization.
+      en: Secure ICL implementation. Example validation, clear boundaries, output sanitization.
+  - title: ICL Example Validation
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Validate ICL examples before injection into prompt
+      set -euo pipefail
+      EXAMPLES_FILE="${1:?Usage: $0 <examples.json>}"
+      python3 -c "
+      import json, sys, re
+      with open('$EXAMPLES_FILE') as f:
+          examples = json.load(f)
+      patterns = [r'ignore.*instructions', r'system.*prompt', r'<\|.*\|>', r'\{\{.*\}\}']
+      for i, ex in enumerate(examples):
+          text = json.dumps(ex)
+          for p in patterns:
+              if re.search(p, text, re.IGNORECASE):
+                  print(f'WARNING: Example {i} matches injection pattern: {p}')
+                  sys.exit(1)
+      print(f'[+] All {len(examples)} examples validated')
+      "
+    description:
+      tr: ICL ornekleri enjeksiyon kontrolu.
+      en: ICL examples injection pattern validation.
+research:
+  - title: What Can Transformers Learn In-Context? A Case Study of Simple Function Classes
+    url: https://arxiv.org/abs/2208.01066
+    year: 2022
+    type: paper
+    authors: Shivam Garg, Dimitris Tsipras, Percy Liang
+  - title: "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?"
+    url: https://arxiv.org/abs/2202.12837
+    year: 2022
+    type: paper
+    authors: Sewon Min, Xinxi Lyu, Ari Holtzman
+  - title: In-Context Learning Security Analysis
+    url: https://arxiv.org/abs/2308.10960
+    year: 2023
+    type: paper
+    authors: Various Authors
+tips:
+  - tr: ICL examples'ı validate edin, malicious patterns için regex check yapın.
+    en: Validate ICL examples, check for malicious patterns with regex.
+  - tr: Examples ile user input arasına clear delimiter koyun (=== gibi).
+    en: Put clear delimiter between examples and user input (like ===).
+  - tr: Model output'u sanitize edin, fake example injection attempt'lerini filtreleyin.
+    en: Sanitize model output, filter fake example injection attempts.

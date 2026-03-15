@@ -1,0 +1,132 @@
+id: nvfp4
+name: NVFP4
+fullName: NVIDIA FP4 Quantization
+category: quantization
+desc:
+  tr: |-
+    [NVIDIA](https://nvidia.com)'nin AI model ağırlıklarını 16-bit'ten 4-bit'e düşürerek bellekte yaklaşık 4 kat tasarruf sağlayan kuantizasyon formatı. Pratikte bu, normalde 140GB bellek gerektiren [Llama](https://ai.meta.com/llama/)-3.3-70B gibi bir modelin ~35GB ile calisabilmesi anlamına gelir — yani tek bir tuketici GPU'suna veya DGX Spark gibi küçük bir sisteme sigdirilabilir.
+
+    NVFP4, NVIDIA'nin Blackwell mimarişindeki (B200, GB10) Tensor Core'lar tarafından donanım seviyesinde desteklenir, dolayişiyla INT8 veya FP8'e kiyasla daha agresif sıkıştırma yapar ama hiz kaybi minimum kalir. NVIDIA'nin modelopt araci ile donusturulen bu format, group_size=16 kullanır ve FP8 KV cache ile birlestirildiginde hem bellek hem hiz dengesini optimize eder.
+
+    Uretim ortamlarinda özellikle maliyet dusurme ve uygün fiyatli donanıma büyük model sizdirma senaryolarinda tercih edilir.
+  en: |-
+    [NVIDIA](https://nvidia.com)'s quantization format that reduces AI model weights from 16-bit to 4-bit, saving roughly 4x memory. In practice, this means a model like [Llama](https://ai.meta.com/llama/)-3.3-70B that normally requires ~140GB of memory can run in ~35GB — fitting on a single consumer GPU or a compact system like the DGX Spark.
+
+    NVFP4 iş hardware-accelerated by Tensor Cores on NVIDIA's Blackwell architecture (B200, GB10), so despite being more aggressive than INT8 or FP8 compression, speed loss remains minimal. The conversion iş done using NVIDIA's modelopt toolkit with group_size=16, and when paired with FP8 KV cache, it optimizes both memory and throughput.
+
+    In production environments, NVFP4 iş particularly valuable for cost reduction and squeezing large models onto affordable hardware — for example, running a 70B-parameter model on two DGX Sparks at ~8.6 tokens/second.
+  fr: Le format de quantification de NVIDIA qui reduit les poids des modeles d'IA de 16 bits a 4 bits, economisant environ 4 fois la memoire. En pratique, un modele comme Llama-3.3-70B qui necessite normalement ~140 Go de memoire peut fonctionner avec ~35 Go — tenant sur un seul GPU grand public ou un systeme compact comme le DGX Spark. NVFP4 est accelere materiellement par les Tensor Cores de l'architecture Blackwell de NVIDIA (B200, GB10), donc malgre une compression plus agressive que INT8 ou FP8, la perte de vitesse reste minimale. La conversion se fait avec l'outil modelopt de NVIDIA avec group_size=16, et combine avec un KV cache FP8, il optimise a la fois la memoire et le debit. En production, NVFP4 est particulierement precieux pour reduire les couts et faire fonctionner de grands modeles sur du materiel abordable.
+  zh: NVIDIA的量化格式，将AI模型权重从16位降低到4位，节省约4倍内存。实际上，这意味着像Llama-3.3-70B这样通常需要约140GB内存的模型可以在约35GB内运行——可以放入单个消费级GPU或DGX Spark这样的紧凑系统中。NVFP4由NVIDIA Blackwell架构（B200、GB10）上的Tensor Core进行硬件加速，因此尽管比INT8或FP8压缩更激进，速度损失仍然很小。转换使用NVIDIA的modelopt工具包完成，采用group_size=16，与FP8 KV缓存配合时可同时优化内存和吞吐量。在生产环境中，NVFP4特别适用于降低成本和在经济实惠的硬件上运行大型模型。
+  ar: تنسيق التكميم من NVIDIA الذي يقلل أوزان نماذج الذكاء الاصطناعي من 16 بت إلى 4 بت، مما يوفر حوالي 4 أضعاف الذاكرة. عملياً، هذا يعني أن نموذجاً مثل Llama-3.3-70B الذي يتطلب عادة حوالي 140 جيجابايت من الذاكرة يمكنه العمل بحوالي 35 جيجابايت — ليتسع في GPU استهلاكي واحد أو نظام مدمج مثل DGX Spark. يتم تسريع NVFP4 عتادياً بواسطة Tensor Cores في معمارية Blackwell من NVIDIA مثل B200 وGB10، لذا رغم كونه أكثر عدوانية من ضغط INT8 أو FP8، تبقى خسارة السرعة ضئيلة. يتم التحويل باستخدام أداة modelopt من NVIDIA بحجم مجموعة 16، وعند دمجه مع ذاكرة KV المؤقتة بتنسيق FP8 يتم تحسين الذاكرة والإنتاجية معاً. في بيئات الإنتاج، يعد NVFP4 ذا قيمة خاصة لخفض التكاليف وتشغيل النماذج الكبيرة على أجهزة ميسورة التكلفة.
+  ru: Формат квантизации от NVIDIA, снижающий веса AI-моделей с 16 бит до 4 бит и экономящий примерно 4x памяти. На практике это означает, что модель вроде Llama-3.3-70B, обычно требующая ~140 ГБ памяти, может работать в ~35 ГБ — помещаясь на одном потребительском GPU или компактной системе типа DGX Spark. NVFP4 аппаратно ускоряется Tensor Cores архитектуры Blackwell от NVIDIA (B200, GB10), поэтому несмотря на более агрессивное сжатие по сравнению с INT8 или FP8, потеря скорости остаётся минимальной. Конвертация выполняется с помощью инструмента modelopt от NVIDIA с group_size=16, а в сочетании с FP8 KV cache оптимизируются и память, и пропускная способность. В продакшен-среде NVFP4 особенно ценен для снижения затрат и запуска больших моделей на доступном оборудовании.
+analogy:
+  tr: En agresif sıkıştırma formatı — dosya boyutunu minimuma indirir ama özel donanım gerektirir.
+  en: The most aggressive compression format — minimizes file size but requires specialized hardware.
+  fr: Le format de compression le plus agressif — minimise la taille du fichier mais nécessite du matériel spécialisé.
+  zh: 最激进的压缩格式——最小化文件大小但需要专用硬件。
+  ar: تنسيق الضغط الأكثر عدوانية — يقلل من حجم الملف لكنه يتطلب أجهزة متخصصة.
+  ru: Самый агрессивный формат сжатия — минимизирует размер файла, но требует специализированного оборудования.
+security:
+  - title:
+      tr: NVFP4 Donanım Bağımlılığı
+      en: NVFP4 Hardware Dependency
+      fr: Dependance materielle NVFP4
+      zh: NVFP4硬件依赖
+      ar: اعتماد NVFP4 على الأجهزة
+      ru: Аппаратная зависимость NVFP4
+    description:
+      tr: NVFP4 quantization sadece NVIDIA Blackwell GPU'larda (GB10, GB100) çalışır. Bu vendor lock-in güvenlik güncellemelerini ve patch dağıtımını zorlaştırır.
+      en: NVFP4 quantization only runs on NVIDIA Blackwell GPUs (GB10, GB100). This vendor lock-in makes security updates and patch distribution difficult.
+      fr: La quantification NVFP4 ne fonctionne que sur les GPU NVIDIA Blackwell (GB10, GB100). Ce verrouillage fournisseur rend les mises a jour de securite et la distribution de correctifs difficiles.
+      zh: NVFP4量化仅在NVIDIA Blackwell GPU（GB10、GB100）上运行。这种供应商锁定使安全更新和补丁分发变得困难。
+      ar: يعمل تكميم NVFP4 فقط على معالجات NVIDIA Blackwell (GB10, GB100). هذا الربط بالمورد يجعل التحديثات الأمنية وتوزيع التصحيحات صعبة.
+      ru: Квантизация NVFP4 работает только на GPU NVIDIA Blackwell (GB10, GB100). Эта привязка к поставщику затрудняет обновления безопасности и распространение патчей.
+    severity: medium
+  - title:
+      tr: Proprietary Format Risks
+      en: Proprietary Format Risks
+      fr: Risques du format proprietaire
+      zh: 专有格式风险
+      ar: مخاطر التنسيق المملوك
+      ru: Риски проприетарного формата
+    description:
+      tr: NVFP4 NVIDIA'nın proprietary format'ıdır ve spec tamamen açık değildir. Bu, security audit ve backdoor detection'ı zorlaştırır.
+      en: NVFP4 is NVIDIA's proprietary format and the spec is not fully open. This makes security audits and backdoor detection challenging.
+      fr: NVFP4 est le format proprietaire de NVIDIA et la specification n'est pas entierement ouverte. Cela rend les audits de securite et la detection de backdoors difficiles.
+      zh: NVFP4是NVIDIA的专有格式，规范并未完全公开。这使安全审计和后门检测变得困难。
+      ar: NVFP4 هو تنسيق مملوك لـ NVIDIA والمواصفات ليست مفتوحة بالكامل. هذا يجعل التدقيق الأمني واكتشاف الأبواب الخلفية صعباً.
+      ru: NVFP4 — проприетарный формат NVIDIA, спецификация которого не полностью открыта. Это затрудняет аудит безопасности и обнаружение бэкдоров.
+    severity: low
+config:
+  - title: NVFP4 Model Verification
+    lang: python
+    code: |-
+      # Verify NVFP4 model before deployment
+      import torch
+
+      def verify_nvfp4_model(model_path):
+          # Check GPU compatibility
+          if not torch.cuda.is_available():
+              raise RuntimeError("CUDA not available")
+          
+          props = torch.cuda.get_device_properties(0)
+          if props.major < 12:  # Blackwell = SM 12.x
+              raise RuntimeError("NVFP4 requires Blackwell GPU")
+          
+          # Load and test
+          model = torch.load(model_path)
+          test_output = model(torch.randn(1, 768).cuda())
+          
+          # Verify output sanity
+          if torch.isnan(test_output).any():
+              raise ValueError("Model produces NaN outputs")
+          
+          return model
+    description:
+      tr: NVFP4 model yüklemeden önce GPU uyumluluğunu ve output sanity kontrolü yapın.
+      en: Verify GPU compatibility and output sanity before loading NVFP4 models.
+  - title: NVFP4 Model Validation Script
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Validate NVFP4 model before deployment
+      MODEL_PATH="${1:?Usage: $0 <model-path>}"
+
+      # Check NVIDIA GPU compatibility (Blackwell required)
+      GPU_ARCH=$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader | head -1)
+      if [[ "$GPU_ARCH" < "12.0" ]]; then
+        echo "[ERROR] NVFP4 requires Blackwell (SM 12.0+), found: $GPU_ARCH" >&2
+        exit 1
+      fi
+
+      # Verify model file integrity
+      if [ -f "$MODEL_PATH/config.json" ]; then
+        QUANT_TYPE=$(python3 -c "import json; c=json.load(open('$MODEL_PATH/config.json')); print(c.get('quantization_config',{}).get('quant_method','unknown'))")
+        echo "Quantization method: $QUANT_TYPE"
+      fi
+
+      # Check safetensors format (not pickle)
+      PICKLE_FILES=$(find "$MODEL_PATH" -name '*.bin' -o -name '*.pt' | wc -l)
+      if [ "$PICKLE_FILES" -gt 0 ]; then
+        echo "[WARN] Found $PICKLE_FILES pickle-format files. Use safetensors instead." >&2
+      fi
+      echo "[OK] NVFP4 model validation complete"
+    description:
+      tr: NVFP4 model dosyalarını deployment öncesi doğrulayan script. GPU uyumluluğu, quantization tipi ve dosya formatını kontrol eder.
+      en: Script to validate NVFP4 model files before deployment. Checks GPU compatibility, quantization type, and file format.
+research:
+  - title: NVIDIA Blackwell Architecture Whitepaper
+    url: https://resources.nvidia.com/en-us-blackwell-architecture
+    year: 2024
+    type: guide
+    authors: NVIDIA Corporation
+  - title: ModelOpt NVFP4 Quantization Guide
+    url: https://docs.nvidia.com/modelopt/quantization.html
+    year: 2024
+    type: guide
+    authors: NVIDIA AI
+tips:
+  - tr: NVFP4 modellerini alternatif quantization (AWQ, GPTQ) ile yedekleyin.
+    en: Back up NVFP4 models with alternative quantization (AWQ, GPTQ).
+  - tr: Production'da FP16 fallback mekanizması hazır tutun.
+    en: Keep FP16 fallback mechanism ready in production.

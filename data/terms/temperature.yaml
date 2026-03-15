@@ -1,0 +1,165 @@
+id: temperature
+name: Temperature
+fullName: Temperature
+category: prompting
+desc:
+  tr: |-
+    AI modelinin bir sonraki tokeni seçerken olasılık dağılımını ne kadar 'yassıltacağını' veya 'sivriltecegini' kontrol eden parametre, 0 ile 2 arasında ayarlanır. Temperature=0'da model her zaman en yüksek olasılıkli tokeni seçer (deterministik) — kod üretimi, JSON çıktısi veya gerçek bilgi gerektiren görevler için idealdir.
+
+    Temperature=0.7 civarında cevaplarda makul çeşitlilik olur — genel sohbet ve yaratıcı görevler için yaygın tercih. Temperature=1.5+ ise çok çeşitli ama potansiyel olarak tutarsız çıktılar üretir. Pratikte çoğu üretim uygulaması 0-0.3 aralığında çalışır.
+
+    [OpenAI](https://openai.com)'nin [ChatGPT](https://openai.com/chatgpt)'si varsayılan olarak ~0.7, kod asistanları genellikle 0 kullanır. Dikkat edilmesi gereken nokta: temperature tek başına çalışmıyor, top-p ve top-k parametreleri ile birlikte sampling stratejisini oluşturur.
+  en: |-
+    A parameter controlling how much the AI model 'flattens' or 'sharpens' the probability distribution when picking the next token, set between 0 and 2. At temperature=0, the model always picks the highest-probability token (deterministic) — ideal for code generation, JSON output, or tasks requiring factual accuracy.
+
+    Around temperature=0.7, responses have reasonable variety — a common choice for general chat and creative tasks. Temperature=1.5+ produces highly diverse but potentially incoherent output. In practice, most production applications run between 0-0.3.
+
+    [OpenAI](https://openai.com)'s [ChatGPT](https://openai.com/chatgpt) defaults to ~0.7, while code assistants typically use 0. An important nuance: temperature doesn't work alone — it combines with top-p and top-k parameters to form the complete sampling strategy.
+  fr: "Un parametre qui controle combien le modele d'IA 'aplatit' ou 'affine' la distribution de probabilite lors du choix du prochain token, regle entre 0 et 2. A temperature=0, le modele choisit toujours le token le plus probable (deterministe) — ideal pour la generation de code, la sortie JSON ou les taches necessitant de la precision factuelle. Autour de 0.7, les reponses ont une variete raisonnable — un choix courant pour le chat general et les taches creatives. A 1.5+, les sorties sont tres diverses mais potentiellement incoherentes. En pratique, la plupart des applications en production fonctionnent entre 0 et 0.3. ChatGPT d'OpenAI utilise par defaut ~0.7, tandis que les assistants de code utilisent typiquement 0. Nuance importante : la temperature ne fonctionne pas seule — elle se combine avec top-p et top-k pour former la strategie d'echantillonnage complete."
+  zh: 一个控制AI模型在选择下一个token时如何'平坦化'或'尖锐化'概率分布的参数，设置范围0到2。temperature=0时模型总是选择概率最高的token（确定性）——适合代码生成、JSON输出或需要事实准确性的任务。temperature约0.7时回答有适度多样性——是通用聊天和创意任务的常见选择。temperature=1.5+产生高度多样但可能不连贯的输出。实际中大多数生产应用使用0-0.3。OpenAI的ChatGPT默认约0.7，代码助手通常用0。重要细节：temperature不是独立工作的——它与top-p和top-k参数组合构成完整的采样策略。
+  ar: "معامل يتحكم في مدى 'تسطيح' أو 'شحذ' نموذج الذكاء الاصطناعي لتوزيع الاحتمالات عند اختيار الرمز التالي، يُضبط بين 0 و2. عند temperature=0 يختار النموذج دائماً الرمز الأعلى احتمالاً (حتمي) — مثالي لتوليد الكود ومخرجات JSON والمهام التي تتطلب دقة حقيقية. حول 0.7 تحتوي الاستجابات على تنوع معقول — خيار شائع للمحادثة العامة والمهام الإبداعية. عند 1.5+ تكون المخرجات متنوعة جداً لكن قد تكون غير متماسكة. عملياً معظم التطبيقات الإنتاجية تعمل بين 0-0.3. ChatGPT من OpenAI يستخدم افتراضياً ~0.7 بينما مساعدو الكود يستخدمون 0 عادة. نقطة مهمة: temperature لا تعمل وحدها بل تتكامل مع معاملات top-p وtop-k لتشكيل استراتيجية الأخذ الكاملة."
+  ru: "Параметр, управляющий тем, насколько AI-модель 'сглаживает' или 'заостряет' распределение вероятностей при выборе следующего токена, устанавливается от 0 до 2. При temperature=0 модель всегда выбирает самый вероятный токен (детерминистично) — идеально для генерации кода, JSON-вывода или задач, требующих фактической точности. При ~0.7 ответы имеют разумное разнообразие — типичный выбор для общего чата и творческих задач. При 1.5+ выходные данные очень разнообразны, но потенциально бессвязны. На практике большинство продакшен-приложений работают в диапазоне 0-0.3. ChatGPT от OpenAI по умолчанию ~0.7, а код-ассистенты обычно используют 0. Важный нюанс: temperature работает не в одиночку — она сочетается с параметрами top-p и top-k, формируя полную стратегию сэмплирования."
+analogy:
+  tr: Sanatçının ilham düğmesi. Düşük = teknik çizim, yüksek = serbest eskiz.
+  en: An artist's inspiration dial. Low = technical drawing, high = freehand sketch.
+  fr: Le cadran d'inspiration d'un artiste. Bas = dessin technique, élevé = esquisse à main levée.
+  zh: 艺术家的灵感旋钮。低=技术绘图，高=自由草图。
+  ar: قرص الإلهام للفنان. منخفض = رسم تقني، مرتفع = رسم حر.
+  ru: Регулятор вдохновения художника. Низкий = технический чертёж, высокий = набросок от руки.
+security:
+  - title:
+      tr: Temperature Manipulation for Extraction
+      en: Temperature Manipulation for Extraction
+      fr: Manipulation de la temperature pour l'extraction
+      zh: 利用温度操纵进行提取
+      ar: التلاعب بدرجة الحرارة للاستخراج
+      ru: Манипуляция температурой для извлечения
+    description:
+      tr: Saldırganlar temperature=0 kullanarak deterministik output alabilir ve bu sayede model'i systematically probe ederek training data veya system prompt çıkarabilir.
+      en: Attackers can use temperature=0 to get deterministic outputs and systematically probe the model to extract training data or system prompts.
+      fr: Les attaquants peuvent utiliser temperature=0 pour obtenir des sorties deterministes et sonder systematiquement le modele pour extraire les donnees d'entrainement ou les prompts systeme.
+      zh: 攻击者可以使用temperature=0获取确定性输出，并系统地探测模型以提取训练数据或系统提示。
+      ar: يمكن للمهاجمين استخدام temperature=0 للحصول على مخرجات حتمية واستكشاف النموذج بشكل منهجي لاستخراج بيانات التدريب أو موجهات النظام.
+      ru: Злоумышленники могут использовать temperature=0 для получения детерминированных выходных данных и систематического зондирования модели для извлечения обучающих данных или системных промптов.
+    severity: medium
+  - title:
+      tr: High Temperature DoS
+      en: High Temperature DoS
+      fr: DoS par temperature elevee
+      zh: 高温度DoS攻击
+      ar: هجوم حجب الخدمة بدرجة حرارة عالية
+      ru: DoS через высокую температуру
+    description:
+      tr: Çok yüksek temperature (>2.0) ile yapılan request'ler random output üretir ve compute kaynağını boşa harcar. Bu, DoS saldırısı için kullanılabilir.
+      en: Requests with very high temperature (>2.0) produce random outputs and waste compute resources. This can be used for DoS attacks.
+      fr: Les requetes avec une temperature tres elevee (>2.0) produisent des sorties aleatoires et gaspillent les ressources de calcul. Cela peut etre utilise pour des attaques DoS.
+      zh: 使用非常高的温度（>2.0）的请求会产生随机输出并浪费计算资源。这可以用于DoS攻击。
+      ar: تنتج الطلبات ذات درجة الحرارة العالية جداً (>2.0) مخرجات عشوائية وتهدر موارد الحوسبة. يمكن استخدام هذا لهجمات حجب الخدمة.
+      ru: Запросы с очень высокой температурой (>2.0) производят случайные выходные данные и расходуют вычислительные ресурсы. Это может использоваться для DoS-атак.
+    severity: low
+  - title:
+      tr: Temperature-Based Model Fingerprinting
+      en: Temperature-Based Model Fingerprinting
+      fr: Fingerprinting du modele base sur la temperature
+      zh: 基于温度的模型指纹识别
+      ar: بصمة النموذج المبنية على درجة الحرارة
+      ru: Фингерпринтинг модели на основе температуры
+    description:
+      tr: Farklı temperature değerlerinde output distribution'ları analiz edilerek model architecture, training data veya quantization method fingerprint edilebilir.
+      en: By analyzing output distributions at different temperature values, model architecture, training data, or quantization methods can be fingerprinted.
+      fr: En analysant les distributions de sortie a differentes valeurs de temperature, l'architecture du modele, les donnees d'entrainement ou les methodes de quantification peuvent etre identifiees.
+      zh: 通过分析不同温度值下的输出分布，可以对模型架构、训练数据或量化方法进行指纹识别。
+      ar: من خلال تحليل توزيعات المخرجات عند قيم حرارة مختلفة، يمكن أخذ بصمة بنية النموذج أو بيانات التدريب أو طرق التكميم.
+      ru: Анализируя распределения выходных данных при разных значениях температуры, можно определить архитектуру модели, обучающие данные или методы квантизации.
+    severity: low
+config:
+  - title: Temperature Constraints
+    lang: python
+    code: |-
+      # Enforce safe temperature range
+      from pydantic import BaseModel, Field, validator
+
+      class SafeSamplingParams(BaseModel):
+          temperature: float = Field(default=0.7, ge=0.0, le=2.0)
+          top_p: float = Field(default=0.9, ge=0.0, le=1.0)
+          max_tokens: int = Field(default=512, ge=1, le=4096)
+          
+          @validator("temperature")
+          def validate_temperature(cls, v):
+              # Prevent deterministic extraction
+              if v == 0.0:
+                  return 0.01  # Minimum randomness
+              # Prevent waste
+              if v > 1.5:
+                  return 1.5  # Maximum allowed
+              return v
+
+      # Use in API
+      def generate(prompt: str, params: SafeSamplingParams):
+          validated_params = SafeSamplingParams(**params.dict())
+          return llm.generate(prompt, temperature=validated_params.temperature)
+    description:
+      tr: Temperature'ı 0.01-1.5 aralığında sınırlayın. Tam deterministik (0.0) veya aşırı random (>2.0) değerleri önleyin.
+      en: Limit temperature to 0.01-1.5 range. Prevent fully deterministic (0.0) or excessively random (>2.0) values.
+  - title: Temperature-Based Rate Limiting
+    lang: python
+    code: |-
+      # Different rate limits based on temperature
+      from collections import defaultdict
+      import time
+
+      class TemperatureBasedRateLimiter:
+          def __init__(self):
+              self.requests = defaultdict(list)
+          
+          def check_rate_limit(self, user_id: str, temperature: float) -> bool:
+              now = time.time()
+              
+              # Stricter limits for low temperature (extraction attempts)
+              if temperature < 0.1:
+                  max_requests = 5  # per minute
+              else:
+                  max_requests = 20
+              
+              # Clean old requests
+              self.requests[user_id] = [
+                  t for t in self.requests[user_id] 
+                  if now - t < 60
+              ]
+              
+              if len(self.requests[user_id]) >= max_requests:
+                  return False
+              
+              self.requests[user_id].append(now)
+              return True
+
+      limiter = TemperatureBasedRateLimiter()
+      if not limiter.check_rate_limit(user_id, params.temperature):
+          raise HTTPException(429, "Rate limit exceeded")
+    description:
+      tr: Düşük temperature request'lerine daha sıkı rate limit uygulayın (extraction attempt olabilir).
+      en: Apply stricter rate limits to low temperature requests (may be extraction attempts).
+  - title: Temperature Parameter Validation (Go)
+    lang: go
+    code: "package validation\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"encoding/json\"\n)\n\ntype CompletionRequest struct {\n\tModel       string  `json:\"model\"`\n\tPrompt      string  `json:\"prompt\"`\n\tTemperature float64 `json:\"temperature\"`\n\tMaxTokens   int     `json:\"max_tokens\"`\n}\n\nfunc ValidateRequest(r *http.Request) (*CompletionRequest, error) {\n\tvar req CompletionRequest\n\tif err := json.NewDecoder(r.Body).Decode(&req); err != nil {\n\t\treturn nil, fmt.Errorf(\"invalid request body\")\n\t}\n\t// Enforce temperature bounds\n\tif req.Temperature < 0.0 || req.Temperature > 2.0 {\n\t\treturn nil, fmt.Errorf(\"temperature must be between 0.0 and 2.0\")\n\t}\n\t// Prevent resource abuse\n\tif req.MaxTokens > 4096 {\n\t\treq.MaxTokens = 4096\n\t}\n\treturn &req, nil\n}"
+    description:
+      tr: Go ile temperature ve max_tokens parametrelerini doğrulayan middleware. DoS ve fingerprinting saldırılarını sınırlar.
+      en: Go middleware that validates temperature and max_tokens parameters. Limits DoS and fingerprinting attacks.
+research:
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2020
+    type: paper
+    authors: Nicholas Carlini, Florian Tramèr, Eric Wallace, Matthew Jagielski
+  - title: Scalable Extraction of Training Data from (Production) Language Models
+    url: https://arxiv.org/abs/2311.17035
+    year: 2023
+    type: paper
+    authors: Milad Nasr, Nicholas Carlini, Jonathan Hayase, Matthew Jagielski
+tips:
+  - tr: Production API'lerde temperature default'unu 0.7-0.8 yapın ve override'ı sınırlayın.
+    en: Set temperature default to 0.7-0.8 in production APIs and limit overrides.
+  - tr: Temperature=0 request'lerini log edin ve anomaly detection için kullanın.
+    en: Log temperature=0 requests and use for anomaly detection.
+  - tr: Sensitive data işleyen uygulamalarda minimum temperature threshold (örn 0.3) zorunlu kılın.
+    en: Enforce minimum temperature threshold (e.g., 0.3) in applications handling sensitive data.

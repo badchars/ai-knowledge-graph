@@ -1,0 +1,208 @@
+id: context-window
+name: Context Window
+fullName: Context Window
+category: prompting
+desc:
+  tr: |-
+    AI modelinin tek bir konuşmada işleyebileceği maksimum token sayısı — hem girdi (prompt + önceki mesajlar) hem de çıktı (modelin cevabi) bu sinira dahildir. Bunu modelin 'çalışma bellegi' olarak düşünebilirsiniz: 128K tokenlik bir context window'a sahip model yaklaşık 300 sayfa metin işleyebilir.
+
+    Farklı modellerin farkli boyutları vardir: [GPT-4o](https://openai.com/gpt-4o) 128K, [Claude 3.5 Sonnet](https://anthropic.com) 200K, [Gemini](https://gemini.google.com) 1.5 Pro 2M tokene kadar destekler. Pencere dolunca eski mesajlar kesilir veya özetlenir — bu nedenle uzun konuşmalarda model önceki talimatlari 'unutabilir'.
+
+    Büyük context window'lar uzun dokümanlar ve kod analizi için değerlidir ancak dikkat mekanizmasinin karmaşıkligi O(n^2) olduğu için bellek ve işlem maliyeti katlanarak artar. Bu sorunu hafifletmek için sliding window attention, sparse attention ve RAG gibi teknikler geliştirilmiştir.
+  en: |-
+    The maximum number of tokens an AI model can process in a single conversation — both input (prompt + previous messages) and output (the model's response) count toward this limit. Think of it as the model's 'working memory': a model with a 128K context window can process roughly 300 pages of text.
+
+    Different models have different sizes: [GPT-4o](https://openai.com/gpt-4o) supports 128K, [Claude 3.5 Sonnet](https://anthropic.com) supports 200K, and [Gemini](https://gemini.google.com) 1.5 Pro goes up to 2M tokens. When the window fills up, older messages get truncated or summarized — which iş why models can 'forget' earlier instructions in long conversations.
+
+    Large context windows are valuable for analyzing long documents and codebases, but attention mechanism complexity iş O(n^2), so memory and compute costs grow quadratically. Techniques like sliding window attention, sparse attention, and RAG have been developed to mitigate this problem.
+  fr: "Le nombre maximum de tokens qu'un modele d'IA peut traiter dans une seule conversation — les entrees (prompt + messages precedents) et la sortie (reponse du modele) sont comptees dans cette limite. Pensez-y comme la 'memoire de travail' du modele : un modele avec une fenetre de contexte de 128K peut traiter environ 300 pages de texte. Les differents modeles ont des tailles differentes : GPT-4o supporte 128K, Claude 3.5 supporte 200K et Gemini 1.5 Pro va jusqu'a 2M tokens. Quand la fenetre est pleine, les anciens messages sont tronques ou resumes — c'est pourquoi les modeles peuvent 'oublier' les instructions precedentes dans les longues conversations. Les grandes fenetres de contexte sont precieuses pour analyser de longs documents, mais la complexite du mecanisme d'attention est O(n^2), donc les couts augmentent de facon quadratique. Des techniques comme sliding window attention, sparse attention et RAG ont ete developpees pour attenuer ce probleme."
+  zh: AI模型在单次对话中能处理的最大token数量——输入（prompt+之前的消息）和输出（模型的回答）都计入此限制。把它想象成模型的'工作内存'：128K上下文窗口的模型可以处理约300页文本。不同模型有不同大小：GPT-4o支持128K，Claude 3.5支持200K，Gemini 1.5 Pro最高支持2M token。窗口满时旧消息会被截断或摘要——这就是为什么在长对话中模型可能'忘记'之前的指令。大上下文窗口对分析长文档和代码库很有价值，但注意力机制的复杂度是O(n^2)，内存和计算成本呈二次方增长。滑动窗口注意力、稀疏注意力和RAG等技术就是为了缓解这个问题而开发的。
+  ar: "العدد الأقصى من الرموز التي يمكن لنموذج الذكاء الاصطناعي معالجتها في محادثة واحدة — المدخلات (المطالبة + الرسائل السابقة) والمخرجات (رد النموذج) كلاهما يُحسب ضمن هذا الحد. فكر فيه كـ'ذاكرة العمل' للنموذج: نموذج بنافذة سياق 128K يمكنه معالجة حوالي 300 صفحة. النماذج المختلفة لها أحجام مختلفة: GPT-4o يدعم 128K وClaude 3.5 يدعم 200K وGemini 1.5 Pro يصل إلى 2 مليون رمز. عند امتلاء النافذة تُقطع الرسائل القديمة أو تُلخص — لهذا قد 'ينسى' النموذج التعليمات السابقة في المحادثات الطويلة. النوافذ الكبيرة قيّمة لتحليل المستندات الطويلة لكن تعقيد آلية الانتباه O(n^2) لذا التكاليف تنمو تربيعياً. طُوّرت تقنيات مثل sliding window attention وsparse attention وRAG لتخفيف هذه المشكلة."
+  ru: "Максимальное количество токенов, которое AI-модель может обработать за одну беседу — и вход (промпт + предыдущие сообщения), и выход (ответ модели) учитываются в этом лимите. Считайте это 'рабочей памятью' модели: модель с контекстным окном 128K может обработать около 300 страниц текста. У разных моделей разные размеры: GPT-4o поддерживает 128K, Claude 3.5 — 200K, Gemini 1.5 Pro — до 2M токенов. Когда окно заполняется, старые сообщения обрезаются или суммируются — поэтому модели могут 'забывать' ранние инструкции в длинных разговорах. Большие контекстные окна ценны для анализа длинных документов и кодовых баз, но сложность механизма внимания O(n^2), поэтому затраты растут квадратично. Для смягчения этой проблемы разработаны техники вроде sliding window attention, sparse attention и RAG."
+analogy:
+  tr: Kişinin aklında tutabileceği bilgi miktarı. Büyüdükçe daha uzun konuşmalar hatırlanır.
+  en: The amount of information a person can hold in mind. Larger window = remembering longer conversations.
+  fr: La quantité d'informations qu'une personne peut garder en tête. Fenêtre plus grande = mémoriser des conversations plus longues.
+  zh: 一个人能在脑海中保持的信息量。窗口越大=记住更长的对话。
+  ar: كمية المعلومات التي يمكن للشخص الاحتفاظ بها في ذهنه. نافذة أكبر = تذكر محادثات أطول.
+  ru: Объём информации, который человек может удерживать в уме. Большее окно = запоминание более длинных разговоров.
+security:
+  - title:
+      tr: Context Overflow Saldırıları
+      en: Context Overflow Attacks
+      fr: Attaques par debordement de contexte
+      zh: 上下文溢出攻击
+      ar: هجمات تجاوز نافذة السياق
+      ru: Атаки переполнения контекста
+    description:
+      tr: Saldırganlar context window'u dolduracak şekilde uzun girdiler göndererek sistem promptunu veya güvenlik talimatlarını context dışına itebilir. Bu durum 'lost in the middle' olarak bilinir ve kritik güvenlik kontrollerinin atlanmasına yol açar.
+      en: Attackers can send long inputs to fill the context window, pushing system prompts or security instructions out of context. Known as 'lost in the middle', this leads to bypassing critical security controls.
+      fr: Les attaquants peuvent envoyer de longues entrees pour remplir la fenetre de contexte, repoussant les prompts systeme ou les instructions de securite hors du contexte. Connu sous le nom de 'perdu au milieu', cela conduit au contournement des controles de securite critiques.
+      zh: 攻击者可以发送长输入来填满上下文窗口，将系统提示或安全指令推到上下文之外。这被称为'丢失在中间'，会导致绕过关键安全控制。
+      ar: يمكن للمهاجمين إرسال مدخلات طويلة لملء نافذة السياق، مما يدفع موجهات النظام أو تعليمات الأمان خارج السياق. يُعرف هذا بـ 'الضياع في المنتصف'، ويؤدي إلى تجاوز ضوابط الأمان الحرجة.
+      ru: Злоумышленники могут отправлять длинные входные данные для заполнения контекстного окна, вытесняя системные промпты или инструкции безопасности за пределы контекста. Это явление, известное как 'потерянное в середине', приводит к обходу критических контролей безопасности.
+    severity: high
+  - title:
+      tr: Context Exhaustion DoS
+      en: Context Exhaustion DoS
+      fr: DoS par epuisement du contexte
+      zh: 上下文耗尽DoS
+      ar: هجوم حجب الخدمة باستنفاد السياق
+      ru: DoS через исчерпание контекста
+    description:
+      tr: Maksimum context window'a yakın girdiler göndererek işlem maliyetini artırma ve rate limit'lere erişme saldırısı. Token bazlı fiyatlandırma yapan servislerde maliyet patlamasına neden olur.
+      en: Sending inputs near maximum context window to increase processing costs and hit rate limits. Causes cost explosion in token-based pricing services.
+      fr: Envoi d'entrees proches de la fenetre de contexte maximale pour augmenter les couts de traitement et atteindre les limites de debit. Provoque une explosion des couts dans les services a tarification par token.
+      zh: 发送接近最大上下文窗口的输入以增加处理成本并达到速率限制。在按token计费的服务中导致成本爆炸。
+      ar: إرسال مدخلات قريبة من الحد الأقصى لنافذة السياق لزيادة تكاليف المعالجة والوصول إلى حدود المعدل. يتسبب في انفجار التكاليف في الخدمات ذات التسعير القائم على الرموز.
+      ru: Отправка входных данных, близких к максимальному контекстному окну, для увеличения стоимости обработки и достижения лимитов частоты. Вызывает взрывной рост затрат в сервисах с токенным ценообразованием.
+    severity: medium
+  - title:
+      tr: Context Window Boyutu Keşfi
+      en: Context Window Size Discovery
+      fr: Decouverte de la taille de la fenetre de contexte
+      zh: 上下文窗口大小发现
+      ar: اكتشاف حجم نافذة السياق
+      ru: Обнаружение размера контекстного окна
+    description:
+      tr: Farklı uzunluklarda girdiler göndererek context window boyutu keşfedilebilir. Bu bilgi, context overflow saldırılarının hassas bir şekilde planlanmasını sağlar.
+      en: Context window size can be discovered by sending inputs of varying lengths. This information enables precise planning of context overflow attacks.
+      fr: La taille de la fenetre de contexte peut etre decouverte en envoyant des entrees de longueurs variees. Cette information permet une planification precise des attaques par debordement de contexte.
+      zh: 通过发送不同长度的输入可以发现上下文窗口大小。这些信息使上下文溢出攻击的精确规划成为可能。
+      ar: يمكن اكتشاف حجم نافذة السياق عن طريق إرسال مدخلات بأطوال متفاوتة. تمكن هذه المعلومات من التخطيط الدقيق لهجمات تجاوز السياق.
+      ru: Размер контекстного окна может быть обнаружен путём отправки входных данных различной длины. Эта информация позволяет точно планировать атаки переполнения контекста.
+    severity: low
+config:
+  - title: Context Window Protection
+    lang: python
+    code: |-
+      import tiktoken
+
+      class ContextGuard:
+          def __init__(self, model: str = "gpt-4", max_context: int = 8000):
+              self.encoder = tiktoken.encoding_for_model(model)
+              self.max_context = max_context
+              self.system_prompt_tokens = 500  # Reserved for system
+
+          def validate_input(self, user_input: str, conversation_history: list) -> dict:
+              user_tokens = len(self.encoder.encode(user_input))
+              history_tokens = sum(len(self.encoder.encode(msg["content"]))
+                                  for msg in conversation_history)
+
+              total = user_tokens + history_tokens + self.system_prompt_tokens
+
+              if user_tokens > self.max_context * 0.5:
+                  raise ValueError(f"Single input too large: {user_tokens} tokens")
+
+              if total > self.max_context:
+                  # Truncate history, keep system prompt intact
+                  return {
+                      "status": "truncated",
+                      "user_tokens": user_tokens,
+                      "history_kept": self._truncate_history(conversation_history,
+                                        self.max_context - user_tokens - self.system_prompt_tokens)
+                  }
+
+              return {"status": "ok", "total_tokens": total}
+
+          def _truncate_history(self, history: list, max_tokens: int) -> list:
+              # Keep most recent messages
+              truncated = []
+              token_count = 0
+              for msg in reversed(history):
+                  msg_tokens = len(self.encoder.encode(msg["content"]))
+                  if token_count + msg_tokens <= max_tokens:
+                      truncated.insert(0, msg)
+                      token_count += msg_tokens
+                  else:
+                      break
+              return truncated
+    description:
+      tr: Context window aşımını engelleyen koruma katmanı. Sistem promptunu korur ve geçmişi güvenli şekilde keser.
+      en: Protection layer preventing context window overflow. Preserves system prompt and safely truncates history.
+  - title: Context Window Guard (Terraform/API Gateway)
+    lang: terraform
+    code: |-
+      resource "aws_api_gateway_request_validator" "llm_validator" {
+        name                        = "llm-request-validator"
+        rest_api_id                 = aws_api_gateway_rest_api.llm_api.id
+        validate_request_body       = true
+        validate_request_parameters = true
+      }
+
+      resource "aws_api_gateway_model" "completion_request" {
+        rest_api_id  = aws_api_gateway_rest_api.llm_api.id
+        name         = "CompletionRequest"
+        content_type = "application/json"
+        schema = jsonencode({
+          type = "object"
+          properties = {
+            prompt = {
+              type      = "string"
+              maxLength = 32000
+            }
+            max_tokens = {
+              type    = "integer"
+              minimum = 1
+              maximum = 4096
+            }
+          }
+          required = ["prompt"]
+        })
+      }
+
+      resource "aws_wafv2_web_acl" "llm_waf" {
+        name  = "llm-context-guard"
+        scope = "REGIONAL"
+
+        default_action { allow {} }
+
+        rule {
+          name     = "body-size-limit"
+          priority = 1
+          action { block {} }
+          statement {
+            size_constraint_statement {
+              field_to_match { body {} }
+              comparison_operator = "GT"
+              size                = 131072
+              text_transformation {
+                priority = 0
+                type     = "NONE"
+              }
+            }
+          }
+          visibility_config {
+            sampled_requests_enabled   = true
+            cloudwatch_metrics_enabled = true
+            metric_name                = "LLMBodySizeLimit"
+          }
+        }
+
+        visibility_config {
+          sampled_requests_enabled   = true
+          cloudwatch_metrics_enabled = true
+          metric_name                = "LLMContextGuard"
+        }
+      }
+    description:
+      tr: Terraform ile AWS API Gateway ve WAF kullanarak context window saldırılarına karşı girdi boyutu sınırlaması.
+      en: Input size limitation against context window attacks using AWS API Gateway and WAF via Terraform.
+research:
+  - title: "Lost in the Middle: How Language Models Use Long Contexts"
+    url: https://arxiv.org/abs/2307.03172
+    year: 2023
+    type: paper
+    authors: Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua
+  - title: Needle In A Haystack - Pressure Testing LLMs
+    url: https://github.com/gkamradt/LLMTest_NeedleInAHaystack
+    year: 2023
+    type: tool
+    authors: Greg Kamradt
+tips:
+  - tr: Kullanıcı girdisi için maksimum token limiti belirleyin (örn. context'in %40'ı).
+    en: Set maximum token limit for user input (e.g., 40% of context).
+  - tr: Sistem promptunu context'in başında tutun ve asla truncate etmeyin.
+    en: Keep system prompt at the start of context and never truncate it.
+  - tr: Uzun conversation geçmişlerini summarization ile kompakt hale getirin.
+    en: Compact long conversation histories with summarization.

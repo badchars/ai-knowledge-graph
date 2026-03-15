@@ -1,0 +1,122 @@
+id: backprop
+name: Backpropagation
+fullName: Backpropagation
+category: training
+desc:
+  tr: |-
+    Modern AI eğitiminin temel mekanizması — modelin hata yaptığında bu hatayı geriye doğru izleyerek her weight'in hataya katkısını hesaplama süreçi. Adim adim soyle çalışır: model bir tahmin yapar, loss fonksiyonu hatayı ölçer, sonra backpropagation zincir kurali (chain rule) kullanarak son katmandan ilk katmana kadar her weight için bir gradient hesaplar.
+
+    1986'da Rumelhart, Hinton ve Williams tarafından populerlestirildi ve o günden beri neredeyse her sinir agi bu yontemle egitilir. Hesaplama maliyeti yüksektir — forward pass'in yaklaşık 2-3 katidir.
+
+    LLM'ler gibi derin modellerde yuzlerce katman boyunca gradient hesaplamak gerekir, bu yüzden modern GPU'larin devasa paralel hesaplama gücü sart olmustur.
+  en: |-
+    The core mechanism of modern AI training — the process of tracing errors backwards through the model to calculate how much each weight contributed to the mistake. Step by step: the model makes a prediction, the loss function measures the error, then backpropagation uses the chain rule from calculus to compute a gradient for every weight from the last layer back to the first.
+
+    Popularized in 1986 by Rumelhart, Hinton, and Williams, virtually every neural network since has been trained this way. The computational cost iş significant — roughly 2-3x that of the forward pass.
+
+    In deep models like LLMs, gradients must be computed across hundreds of layers, which iş why the massive parallel computing power of modern GPUs became a necessity for AI training.
+  fr: "Le mecanisme fondamental de l'entrainement IA moderne — le processus de tracage des erreurs en arriere dans le modele pour calculer la contribution de chaque poids a l'erreur. Etape par etape : le modele fait une prediction, la fonction de perte mesure l'erreur, puis la retropropagation utilise la regle de la chaine pour calculer un gradient pour chaque poids de la derniere couche a la premiere. Popularisee en 1986 par Rumelhart, Hinton et Williams, pratiquement tous les reseaux de neurones depuis sont entraines de cette facon. Le cout de calcul est significatif — environ 2-3x celui de la passe avant. Dans les modeles profonds comme les LLM, les gradients doivent etre calcules a travers des centaines de couches, c'est pourquoi la puissance de calcul parallele massive des GPU modernes est devenue une necessite."
+  zh: 现代AI训练的核心机制——在模型出错时，沿着模型反向追踪错误，计算每个权重对错误的贡献。逐步过程：模型做出预测，损失函数衡量错误，然后反向传播使用微积分中的链式法则从最后一层到第一层为每个权重计算梯度。1986年由Rumelhart、Hinton和Williams推广，此后几乎所有神经网络都以这种方式训练。计算成本很高——大约是前向传播的2-3倍。在LLM等深度模型中，需要跨数百层计算梯度，这就是为什么现代GPU的大规模并行计算能力成为AI训练的必要条件。
+  ar: "الآلية الأساسية لتدريب الذكاء الاصطناعي الحديث — عملية تتبع الأخطاء للخلف عبر النموذج لحساب مساهمة كل وزن في الخطأ. خطوة بخطوة: يقدم النموذج تنبؤاً، تقيس دالة الخسارة الخطأ، ثم يستخدم الانتشار العكسي قاعدة السلسلة من التفاضل لحساب تدرج لكل وزن من الطبقة الأخيرة إلى الأولى. شاعت في 1986 على يد Rumelhart وHinton وWilliams، ومنذ ذلك الحين تُدرَّب جميع الشبكات العصبية تقريباً بهذه الطريقة. التكلفة الحسابية كبيرة — حوالي 2-3 أضعاف التمريرة الأمامية. في النماذج العميقة مثل LLMs، يجب حساب التدرجات عبر مئات الطبقات، لهذا أصبحت قوة الحوسبة المتوازية الضخمة لوحدات GPU الحديثة ضرورة."
+  ru: "Основной механизм современного обучения ИИ — процесс отслеживания ошибок в обратном направлении через модель для вычисления вклада каждого веса в ошибку. Пошагово: модель делает предсказание, функция потерь измеряет ошибку, затем обратное распространение использует цепное правило из матанализа для вычисления градиента каждого веса от последнего слоя до первого. Популяризировано в 1986 году Румельхартом, Хинтоном и Уильямсом, и с тех пор практически каждая нейронная сеть обучается этим методом. Вычислительная стоимость значительна — примерно в 2-3 раза больше прямого прохода. В глубоких моделях вроде LLM градиенты вычисляются через сотни слоёв, поэтому огромная параллельная вычислительная мощность современных GPU стала необходимостью для обучения ИИ."
+analogy:
+  tr: Hata yapıldığında, hatanın kaynağını bulmak için adımları geriye doğru izlemek.
+  en: When an error occurs, tracing the steps backwards to find the source of the mistake.
+  fr: Lorsqu'une erreur se produit, retracer les étapes en arrière pour trouver la source de l'erreur.
+  zh: 当发生错误时，向后追溯步骤以找到错误的来源。
+  ar: عند حدوث خطأ، تتبع الخطوات للخلف للعثور على مصدر الخطأ.
+  ru: Когда происходит ошибка, отслеживание шагов назад, чтобы найти источник ошибки.
+security:
+  - title:
+      tr: Backpropagation Hijacking
+      en: Backpropagation Hijacking
+      fr: Détournement de rétropropagation
+      zh: 反向传播劫持
+      ar: اختطاف الانتشار العكسي
+      ru: Перехват обратного распространения
+    description:
+      tr: Özel tasarlanmış adversarial örnekler backpropagation sürecini manipüle ederek modelin belirli ağırlıklarını kasıtlı olarak değiştirebilir. Bu, fine-tuning sırasında backdoor yerleştirme için kullanılabilir.
+      en: Specially crafted adversarial examples can manipulate the backpropagation process to intentionally alter specific model weights. This can be used to inject backdoors during fine-tuning.
+      fr: Des exemples adversariaux spécialement conçus peuvent manipuler le processus de rétropropagation pour altérer intentionnellement des poids spécifiques du modèle. Ceci peut être utilisé pour injecter des backdoors pendant le fine-tuning.
+      zh: 特制的对抗样本可以操纵反向传播过程来故意改变特定模型权重。这可用于在微调期间注入后门。
+      ar: يمكن للأمثلة العدائية المصنوعة خصيصاً التلاعب بعملية الانتشار العكسي لتغيير أوزان نموذج محددة عمداً. يمكن استخدام هذا لحقن أبواب خلفية أثناء الضبط الدقيق.
+      ru: Специально созданные состязательные примеры могут манипулировать процессом обратного распространения для намеренного изменения определённых весов модели. Может использоваться для внедрения бэкдоров при дообучении.
+    severity: high
+  - title:
+      tr: Gradient Computation Side-Channel
+      en: Gradient Computation Side-Channel
+      fr: Canal auxiliaire de calcul de gradient
+      zh: 梯度计算侧信道
+      ar: القناة الجانبية لحساب التدرج
+      ru: Побочный канал вычисления градиента
+    description:
+      tr: Backpropagation hesaplamaları sırasında GPU bellek erişim paternleri veya timing bilgisi, işlenen verinin özellikleri hakkında bilgi sızdırabilir.
+      en: GPU memory access patterns or timing information during backpropagation computations can leak information about the characteristics of processed data.
+      fr: Les patterns d'accès mémoire GPU ou les informations de timing pendant les calculs de rétropropagation peuvent divulguer des informations sur les caractéristiques des données traitées.
+      zh: 反向传播计算期间的GPU内存访问模式或时序信息可能泄露处理数据特征的信息。
+      ar: أنماط الوصول إلى ذاكرة GPU أو معلومات التوقيت أثناء حسابات الانتشار العكسي يمكن أن تسرب معلومات عن خصائص البيانات المعالجة.
+      ru: Паттерны доступа к памяти GPU или информация о тайминге во время вычислений обратного распространения могут раскрывать информацию о характеристиках обрабатываемых данных.
+    severity: medium
+  - title:
+      tr: Backpropagation Computational Graph Bilgi Sızıntısı
+      en: Backpropagation Computational Graph Information Disclosure
+      fr: Divulgation du graphe computationnel de rétropropagation
+      zh: 反向传播计算图信息泄露
+      ar: تسريب معلومات الرسم البياني الحسابي للانتشار العكسي
+      ru: Утечка информации о вычислительном графе обратного распространения
+    description:
+      tr: PyTorch autograd veya TensorFlow GradientTape computational graph'ı, model'in internal operation sırasını ve layer connectivity'sini ortaya çıkarır. Debug mode'da export edilen graph dosyaları veya profiler çıktıları model architecture reverse engineering'de kullanılabilir.
+      en: PyTorch autograd or TensorFlow GradientTape computational graph reveals model's internal operation order and layer connectivity. Graph files or profiler outputs exported in debug mode can be used for model architecture reverse engineering.
+      fr: Le graphe computationnel de PyTorch autograd ou TensorFlow GradientTape révèle l'ordre des opérations internes et la connectivité des couches du modèle. Les fichiers de graphe ou sorties de profiler exportés en mode debug peuvent être utilisés pour le reverse engineering de l'architecture.
+      zh: PyTorch autograd或TensorFlow GradientTape计算图揭示模型内部操作顺序和层连接。调试模式下导出的图文件或分析器输出可用于模型架构逆向工程。
+      ar: يكشف الرسم البياني الحسابي لـ PyTorch autograd أو TensorFlow GradientTape ترتيب العمليات الداخلية للنموذج واتصال الطبقات. يمكن استخدام ملفات الرسم البياني المصدرة في وضع التصحيح للهندسة العكسية.
+      ru: Вычислительный граф PyTorch autograd или TensorFlow GradientTape раскрывает внутренний порядок операций и связность слоёв модели. Экспортированные в режиме отладки файлы графа могут быть использованы для реверс-инжиниринга архитектуры.
+    severity: low
+config:
+  - title: Gradient Sanitization
+    lang: python
+    code: |-
+      import torch
+
+      class SecureBackprop:
+          def __init__(self, max_norm=1.0, noise_scale=0.01):
+              self.max_norm = max_norm
+              self.noise_scale = noise_scale
+
+          def sanitize_gradients(self, model):
+              # Clip gradients
+              torch.nn.utils.clip_grad_norm_(
+                  model.parameters(),
+                  self.max_norm
+              )
+
+              # Add noise for privacy
+              for param in model.parameters():
+                  if param.grad is not None:
+                      noise = torch.randn_like(param.grad) * self.noise_scale
+                      param.grad += noise
+
+      # Usage
+      secure_bp = SecureBackprop()
+      loss.backward()
+      secure_bp.sanitize_gradients(model)
+      optimizer.step()
+    description:
+      tr: Backpropagation sonrası gradientleri kırpın ve gürültü ekleyin. Bu hem gradient explosion'ı hem de privacy sızıntısını önler.
+      en: Clip and add noise to gradients after backpropagation. This prevents both gradient explosion and privacy leakage.
+research:
+  - title: Manipulating SGD with Data Ordering Attacks
+    url: https://arxiv.org/abs/2104.09667
+    year: 2021
+    type: paper
+    authors: Ilia Shumailov, Zakhar Shumaylov, Dmitry Kazhdan
+  - title: Understanding Deep Learning Requires Rethinking Generalization
+    url: https://arxiv.org/abs/1611.03530
+    year: 2017
+    type: paper
+    authors: Chiyuan Zhang, Samy Bengio, Moritz Hardt
+tips:
+  - tr: Fine-tuning sırasında gradient norm'larını log edin ve anomalileri tespit edin.
+    en: Log gradient norms during fine-tuning and detect anomalies.
+  - tr: Backpropagation hesaplamalarını constant-time implementation ile yaparak timing side-channel'ı önleyin.
+    en: Use constant-time implementations for backpropagation to prevent timing side-channels.

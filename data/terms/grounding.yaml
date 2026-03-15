@@ -1,0 +1,289 @@
+id: grounding
+name: Grounding
+fullName: Grounding
+category: models
+desc:
+  tr: |-
+    LLM cevaplarını external knowledge sources ile destekleyerek [hallucination](/terms/hallucination) azaltma tekniği. Model cevaplarına citation ve source reference eklenir.
+
+    [RAG](/terms/rag) en yaygın grounding yöntemidir: [vector database](/terms/vector-database)'den relevant docs retrieve edilir ve prompt'a eklenir. Bing Chat, Perplexity ve Claude gibi sistemler grounding kullanır — her cevaba kaynak link'leri ekler.
+
+    Critical components: retrieval accuracy, source verification, citation formatting. Grounded AI, fact-checking, legal research ve medical diagnosis gibi accuracy-critical uygulamalarda zorunludur.
+  en: |-
+    A technique to reduce [hallucination](/terms/hallucination) by supporting LLM responses with external knowledge sources. Adds citations and source references to model answers.
+
+    [RAG](/terms/rag) is the most common grounding method: relevant docs are retrieved from [vector databases](/terms/vector-database) and added to prompt. Systems like Bing Chat, Perplexity, and Claude use grounding — adding source links to each answer.
+
+    Critical components: retrieval accuracy, source verification, citation formatting. Grounded AI is mandatory for accuracy-critical applications like fact-checking, legal research, and medical diagnosis.
+  fr: Une technique pour réduire les hallucinations en soutenant les réponses LLM avec des sources de connaissances externes.
+  zh: 通过使用外部知识源支持LLM响应来减少幻觉的技术。
+  ar: تقنية لتقليل الهلوسة من خلال دعم استجابات LLM بمصادر معرفة خارجية.
+  ru: Техника для снижения галлюцинаций путем поддержки ответов LLM внешними источниками знаний.
+analogy:
+  tr: "Sınav sırasında kaynak göstermek gibi: 'Bu bilgi X kitabının 42. sayfasında' diyerek güvenilirlik artırırsın."
+  en: "Like citing sources during exam: saying 'This info is on page 42 of book X' increases credibility."
+  fr: "Comme citer des sources pendant un examen : dire 'Cette info est à la page 42 du livre X' augmente la crédibilité."
+  zh: 就像考试时引用来源：说'这个信息在X书的第42页'增加可信度。
+  ar: "مثل الاستشهاد بالمصادر أثناء الامتحان: قول 'هذه المعلومات في الصفحة 42 من الكتاب X' يزيد المصداقية."
+  ru: "Как цитирование источников на экзамене: говоря 'Эта информация на странице 42 книги X' увеличивает достоверность."
+security:
+  - title:
+      tr: Source Poisoning
+      en: Source Poisoning
+      fr: Empoisonnement de sources
+      zh: 数据源投毒
+      ar: تسميم المصادر
+      ru: Отравление источников
+    description:
+      tr: Grounding için kullanılan external sources poisoned ise, model doğru citation'larla yanlış bilgi üretir. [Vector database](/terms/vector-database) injection ile malicious docs eklenebilir.
+      en: If external sources used for grounding are poisoned, model produces wrong information with correct citations. Malicious docs can be added via [vector database](/terms/vector-database) injection.
+      fr: Si les sources externes utilisees pour le grounding sont empoisonnees, le modele produit des informations erronees avec des citations correctes. Des documents malveillants peuvent etre ajoutes via l'injection dans la [base de donnees vectorielle](/terms/vector-database).
+      zh: 如果用于接地的外部来源被投毒，模型会用正确的引用产生错误信息。可以通过[向量数据库](/terms/vector-database)注入添加恶意文档。
+      ar: إذا كانت المصادر الخارجية المستخدمة للتأسيس مسممة، ينتج النموذج معلومات خاطئة مع اقتباسات صحيحة. يمكن إضافة مستندات ضارة عبر حقن [قاعدة البيانات المتجهة](/terms/vector-database).
+      ru: Если внешние источники, используемые для заземления, отравлены, модель выдаёт неверную информацию с правильными цитатами. Вредоносные документы могут быть добавлены через инъекцию в [векторную базу данных](/terms/vector-database).
+    severity: critical
+  - title:
+      tr: Citation Fabrication
+      en: Citation Fabrication
+      fr: Fabrication de citations
+      zh: 引用伪造
+      ar: تلفيق الاقتباسات
+      ru: Фабрикация цитат
+    description:
+      tr: Model gerçekte olmayan citation'lar üretebilir (hallucinated citations). Grounded AI claim edilse de, source'lar validate edilmezse fabricated references oluşur.
+      en: Model can generate non-existent citations (hallucinated citations). Even if grounded AI is claimed, without source validation, fabricated references occur.
+      fr: Le modele peut generer des citations inexistantes (citations hallucinées). Meme si une IA fondee est revendiquee, sans validation des sources, des references fabriquees apparaissent.
+      zh: 模型可以生成不存在的引用（幻觉引用）。即使声称是接地AI，如果不验证来源，也会出现伪造的参考文献。
+      ar: يمكن للنموذج إنشاء اقتباسات غير موجودة (اقتباسات متوهمة). حتى لو ادّعي أنه ذكاء اصطناعي مؤسّس، بدون التحقق من المصادر تظهر مراجع ملفقة.
+      ru: Модель может генерировать несуществующие цитаты (галлюцинированные цитаты). Даже если заявлен заземлённый ИИ, без валидации источников появляются сфабрикованные ссылки.
+    severity: high
+  - title:
+      tr: Retrieval Manipulation
+      en: Retrieval Manipulation
+      fr: Manipulation de la recuperation
+      zh: 检索操纵
+      ar: التلاعب بالاسترجاع
+      ru: Манипуляция извлечением
+    description:
+      tr: Saldırgan [RAG](/terms/rag) retrieval process'ini manipüle ederek istediği documents'ları prioritize edebilir. Query poisoning ile malicious sources top-ranked olur.
+      en: Attacker can manipulate [RAG](/terms/rag) retrieval process to prioritize desired documents. With query poisoning, malicious sources become top-ranked.
+      fr: Un attaquant peut manipuler le processus de recuperation [RAG](/terms/rag) pour prioriser les documents souhaites. Avec l'empoisonnement de requete, les sources malveillantes deviennent les mieux classees.
+      zh: 攻击者可以操纵[RAG](/terms/rag)检索过程以优先显示所需文档。通过查询投毒，恶意来源成为排名最高的结果。
+      ar: يمكن للمهاجم التلاعب بعملية استرجاع [RAG](/terms/rag) لتحديد أولوية المستندات المطلوبة. مع تسميم الاستعلام، تصبح المصادر الضارة الأعلى ترتيبًا.
+      ru: Злоумышленник может манипулировать процессом извлечения [RAG](/terms/rag) для приоритизации нужных документов. С помощью отравления запросов вредоносные источники становятся первыми в рейтинге.
+    severity: high
+  - title:
+      tr: Grounding Konfigürasyon Bilgi Sızıntısı
+      en: Grounding Configuration Information Disclosure
+      fr: Divulgation de configuration grounding
+      zh: grounding配置信息泄露
+      ar: كشف معلومات تكوين grounding
+      ru: Раскрытие конфигурации grounding
+    description:
+      tr: Grounding ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to grounding can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à grounding peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与grounding相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ grounding في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании grounding могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure Grounding with Source Verification
+    lang: python
+    code: |-
+      from typing import List, Dict, Optional
+      import hashlib
+      from dataclasses import dataclass
+      from urllib.parse import urlparse
+
+      @dataclass
+      class GroundedSource:
+          content: str
+          url: str
+          title: str
+          retrieved_at: float
+          content_hash: str
+
+      class SecureGroundingSystem:
+          def __init__(self, trusted_domains: List[str]):
+              self.trusted_domains = trusted_domains
+              self.source_cache: Dict[str, GroundedSource] = {}
+
+          def verify_source(self, url: str) -> bool:
+              """Verify source is from trusted domain"""
+              parsed = urlparse(url)
+              domain = parsed.netloc
+
+              # Check against trusted domain whitelist
+              return any(
+                  domain.endswith(trusted)
+                  for trusted in self.trusted_domains
+              )
+
+          def compute_content_hash(self, content: str) -> str:
+              """Compute hash of retrieved content for integrity"""
+              return hashlib.sha256(content.encode()).hexdigest()
+
+          def retrieve_and_verify(
+              self,
+              query: str,
+              retrieved_docs: List[Dict[str, str]]
+          ) -> List[GroundedSource]:
+              """Retrieve documents and verify sources"""
+              import time
+
+              verified_sources = []
+
+              for doc in retrieved_docs:
+                  url = doc.get('url', '')
+                  content = doc.get('content', '')
+                  title = doc.get('title', 'Untitled')
+
+                  # Verify domain
+                  if not self.verify_source(url):
+                      print(f"Blocked untrusted source: {url}")
+                      continue
+
+                  # Compute integrity hash
+                  content_hash = self.compute_content_hash(content)
+
+                  # Create verified source
+                  source = GroundedSource(
+                      content=content,
+                      url=url,
+                      title=title,
+                      retrieved_at=time.time(),
+                      content_hash=content_hash
+                  )
+
+                  # Cache for future verification
+                  self.source_cache[content_hash] = source
+                  verified_sources.append(source)
+
+              return verified_sources
+
+          def build_grounded_prompt(
+              self,
+              query: str,
+              sources: List[GroundedSource]
+          ) -> str:
+              """Build prompt with grounded sources"""
+              prompt_parts = [
+                  "Answer the following query using ONLY the provided sources.",
+                  "You MUST cite sources using [1], [2], etc.",
+                  "If information is not in sources, say 'Not found in sources.'
+      ",
+                  f"Query: {query}
+      ",
+                  "Sources:"
+              ]
+
+              for i, source in enumerate(sources, 1):
+                  prompt_parts.append(f"
+      [{i}] {source.title}")
+                  prompt_parts.append(f"URL: {source.url}")
+                  prompt_parts.append(f"Content: {source.content[:500]}...")
+                  prompt_parts.append(f"Hash: {source.content_hash[:16]}...")
+
+              prompt_parts.append("
+      Answer with citations:")
+              return "
+      ".join(prompt_parts)
+
+          def verify_citations(
+              self,
+              response: str,
+              sources: List[GroundedSource]
+          ) -> Dict[str, bool]:
+              """Verify all citations in response are valid"""
+              import re
+
+              # Extract citation numbers from response
+              citations = re.findall(r'\[(\d+)\]', response)
+
+              results = {
+                  "valid_citations": [],
+                  "invalid_citations": [],
+                  "fabricated": False
+              }
+
+              for citation in citations:
+                  idx = int(citation) - 1
+
+                  if idx < 0 or idx >= len(sources):
+                      results["invalid_citations"].append(citation)
+                      results["fabricated"] = True
+                  else:
+                      results["valid_citations"].append(citation)
+
+              return results
+
+      # Usage
+      grounding = SecureGroundingSystem(
+          trusted_domains=[
+              "wikipedia.org",
+              "arxiv.org",
+              "github.com",
+              "docs.python.org"
+          ]
+      )
+
+      # Simulate RAG retrieval
+      retrieved = [
+          {
+              "url": "https://en.wikipedia.org/wiki/Machine_learning",
+              "title": "Machine Learning - Wikipedia",
+              "content": "Machine learning is a field of study..."
+          },
+          {
+              "url": "https://malicious-site.com/fake",  # Will be blocked
+              "title": "Fake Article",
+              "content": "False information..."
+          }
+      ]
+
+      # Retrieve and verify
+      query = "What is machine learning?"
+      verified_sources = grounding.retrieve_and_verify(query, retrieved)
+
+      # Build grounded prompt
+      prompt = grounding.build_grounded_prompt(query, verified_sources)
+      print(prompt)
+
+      # After LLM response, verify citations
+      # response = call_llm(prompt)
+      # verification = grounding.verify_citations(response, verified_sources)
+      # if verification["fabricated"]:
+      #     print("WARNING: Fabricated citations detected!")
+    description:
+      tr: Güvenli grounding system. Source domain verification, content hashing, citation validation.
+      en: Secure grounding system. Source domain verification, content hashing, citation validation.
+  - title: Grounding Source Verification
+    lang: go
+    code: "package grounding\n\nimport (\n\t\"crypto/sha256\"\n\t\"encoding/hex\"\n\t\"fmt\"\n)\n\ntype SourceVerifier struct {\n\ttrustedHashes map[string]string // docID -> SHA256\n}\n\nfunc NewSourceVerifier() *SourceVerifier {\n\treturn &SourceVerifier{trustedHashes: make(map[string]string)}\n}\n\nfunc (sv *SourceVerifier) Register(docID string, content []byte) {\n\th := sha256.Sum256(content)\n\tsv.trustedHashes[docID] = hex.EncodeToString(h[:])\n}\n\nfunc (sv *SourceVerifier) Verify(docID string, content []byte) error {\n\texpected, ok := sv.trustedHashes[docID]\n\tif !ok { return fmt.Errorf(\"unknown document: %s\", docID) }\n\th := sha256.Sum256(content)\n\tactual := hex.EncodeToString(h[:])\n\tif actual != expected {\n\t\treturn fmt.Errorf(\"integrity mismatch for %s\", docID)\n\t}\n\treturn nil\n}"
+    description:
+      tr: Grounding kaynak dogrulama icin Go modulu.
+      en: Go module for grounding source verification.
+research:
+  - title: "GKP: A Grounded Knowledge Platform for LLMs"
+    url: https://arxiv.org/abs/2305.14288
+    year: 2023
+    type: paper
+    authors: Shangqing Tu, Xiaohui Chen, Ming Liu
+  - title: Evaluating Verifiability in Generative Search Engines
+    url: https://arxiv.org/abs/2304.09848
+    year: 2023
+    type: paper
+    authors: Nelson F. Liu, Tianyi Zhang, Percy Liang
+  - title: Grounding Large Language Models in Interactive Environments
+    url: https://arxiv.org/abs/2309.04409
+    year: 2023
+    type: paper
+    authors: Various Authors
+tips:
+  - tr: Grounding sources için domain whitelist kullanın, untrusted domains'ı block edin.
+    en: Use domain whitelist for grounding sources, block untrusted domains.
+  - tr: Retrieved content'in SHA256 hash'ini alıp cache'de saklayın, integrity check yapın.
+    en: Take SHA256 hash of retrieved content and store in cache for integrity check.
+  - tr: LLM response'daki citation'ları validate edin, fabricated citation'ları detect edin.
+    en: Validate citations in LLM response, detect fabricated citations.

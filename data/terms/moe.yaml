@@ -1,0 +1,206 @@
+id: moe
+name: MoE
+fullName: Mixture of Experts
+category: architecture
+desc:
+  tr: |-
+    Modelin içinde birden fazla özelleştirilmiş 'uzman' (expert) ağ bulunduran ve her girdi için sadece en uygun uzmanları aktive eden mimari — bu sayede devasa bilgi kapasitesine sahip olurken hesaplama maliyetini düşük tutar.
+
+    Örneğin [Mistral](https://mistral.ai)'ın Mixtral 8x7B modelinde toplam 8 uzman vardır ve her token için sadece 2 uzman aktive olur; model toplam 47B parametreye sahiptir ama her token için sadece 13B parametre kullanılır. DeepSeek-V3 ise bunu aşırı uçta götürür: 671B toplam parametre, ama aktif parametre sayısı sadece 37B. Bir 'router' (yönlendirici) ağ, her token için hangi uzmanların en uygun olduğuna karar verir.
+
+    MoE modelleri aynı VRAM'e sahip dense modellerle kıyaslandığında genellikle daha yüksek kalitede çıktı üretir, çünkü toplam parametre sayısı çok daha yüksektir. Dezavantajları ise tüm uzmanların VRAM'de tutulması gerektiği için bellek kullanımının dense modele kıyasla yüksek olması ve batch inference'da load balancing zorluğudur. GPT-4'ün de bir MoE modeli olduğu yaygınca kabul edilmektedir.
+  en: |-
+    An architecture that contains multiple specialized 'expert' networks inside the model and activates only the most relevant experts for each input — achieving massive knowledge capacity while keeping computational cost low.
+
+    For example, [Mistral](https://mistral.ai)'s Mixtral 8x7B has 8 experts total and activates only 2 per token; the model has 47B total parameters but uses only 13B per token. DeepSeek-V3 takes this to the extreme: 671B total parameters but only 37B active parameters. A 'router' network decides which experts are most appropriate for each token.
+
+    MoE models generally produce higher quality output compared to dense models with the same VRAM, because their total parameter count is much higher. The downsides are that all experts must reside in VRAM (making memory usage higher than a comparably-performing dense model) and load balancing during batch inference is challenging. GPT-4 is also widely believed to be an MoE model.
+  fr: "Une architecture qui contient plusieurs reseaux 'experts' specialises dans le modele et n'active que les experts les plus pertinents pour chaque entree — atteignant une capacite de connaissance massive tout en maintenant un cout de calcul bas. Par exemple, Mixtral 8x7B a 8 experts au total et n'en active que 2 par token ; le modele a 47 milliards de parametres au total mais n'en utilise que 13 milliards par token. DeepSeek-V3 pousse cela a l'extreme : 671 milliards de parametres au total mais seulement 37 milliards de parametres actifs. Un reseau 'routeur' decide quels experts sont les plus adaptes pour chaque token. Les modeles MoE produisent generalement une sortie de meilleure qualite que les modeles denses avec la meme VRAM, car leur nombre total de parametres est bien superieur. Les inconvenients sont que tous les experts doivent resider en VRAM (rendant l'utilisation memoire plus elevee qu'un modele dense de performance comparable) et l'equilibrage de charge pendant l'inference par lots est difficile. GPT-4 est aussi largement considere comme un modele MoE."
+  zh: 一种在模型内部包含多个专业化"专家"网络、并为每个输入仅激活最相关专家的架构——在实现海量知识容量的同时保持低计算成本。例如Mixtral 8x7B共有8个专家，每个token只激活2个；模型总参数为470亿但每个token只使用130亿。DeepSeek-V3将此推向极致：6710亿总参数但仅370亿活跃参数。一个"路由器"网络为每个token决定哪些专家最合适。MoE模型在相同VRAM下通常比密集模型产生更高质量的输出，因为其总参数量要高得多。缺点是所有专家都必须驻留在VRAM中（使内存使用量高于性能相当的密集模型），且批量推理时负载均衡较为困难。GPT-4也被广泛认为是MoE模型。
+  ar: "بنية تحتوي على عدة شبكات \"خبراء\" متخصصة داخل النموذج وتنشّط فقط الخبراء الأكثر ملاءمة لكل مُدخل — محققة قدرة معرفية ضخمة مع إبقاء تكلفة الحساب منخفضة. مثلاً Mixtral 8x7B لديه 8 خبراء إجمالاً وينشّط 2 فقط لكل token؛ النموذج لديه 47 مليار معامل إجمالاً لكن يستخدم 13 مليار فقط لكل token. DeepSeek-V3 يأخذ هذا للحد الأقصى: 671 مليار معامل إجمالي لكن 37 مليار معامل نشط فقط. شبكة \"موجّه\" (router) تقرر أي خبراء هم الأنسب لكل token. نماذج MoE عادةً تنتج مخرجات أعلى جودة مقارنة بالنماذج الكثيفة (dense) بنفس VRAM، لأن عدد معاملاتها الإجمالي أعلى بكثير. السلبيات هي أن جميع الخبراء يجب أن يتواجدوا في VRAM (مما يجعل استهلاك الذاكرة أعلى من نموذج كثيف مماثل الأداء) وتوازن الحمل أثناء الاستدلال الدفعي يمثل تحدياً. يُعتقد على نطاق واسع أن GPT-4 هو أيضاً نموذج MoE."
+  ru: "Архитектура с несколькими специализированными \"экспертными\" сетями внутри модели, которая активирует только наиболее подходящих экспертов для каждого входа — достигая огромной ёмкости знаний при низкой вычислительной стоимости. Например, Mixtral 8x7B имеет 8 экспертов и активирует только 2 на каждый токен; модель имеет 47B параметров всего, но использует только 13B на токен. DeepSeek-V3 доводит это до крайности: 671B общих параметров, но только 37B активных. Сеть-\"маршрутизатор\" решает, какие эксперты наиболее подходят для каждого токена. Модели MoE обычно дают более качественный результат по сравнению с плотными моделями при том же VRAM, потому что их общее число параметров значительно выше. Недостатки: все эксперты должны находиться в VRAM (расход памяти выше, чем у плотной модели сравнимой производительности), а балансировка нагрузки при пакетном инференсе затруднена. Широко считается, что GPT-4 тоже является MoE-моделью."
+analogy:
+  tr: 100 doktorun olduğu hastane ama her hasta için sadece 2-3 uzman görüntülüyor. Toplam bilgi devasa ama her seferinde az uzman çalışır.
+  en: A hospital with 100 doctors but only 2-3 specialists see each patient. Total knowledge iş massive but only relevant experts work each time.
+  fr: Un hôpital avec 100 médecins mais seulement 2-3 spécialistes voient chaque patient. Les connaissances totales sont massives mais seuls les experts pertinents travaillent à chaque fois.
+  zh: 一家有100名医生的医院，但每个病人只有2-3名专家看诊。总知识量巨大，但每次只有相关专家工作。
+  ar: مستشفى به 100 طبيب لكن فقط 2-3 متخصصين يفحصون كل مريض. المعرفة الإجمالية ضخمة لكن فقط الخبراء المعنيون يعملون في كل مرة.
+  ru: Больница со 100 врачами, но каждого пациента осматривают только 2-3 специалиста. Общий объем знаний огромен, но каждый раз работают только нужные эксперты.
+security:
+  - title:
+      tr: MoE Router Manipulation Attacks
+      en: MoE Router Manipulation Attacks
+      fr: Attaques de manipulation du routeur MoE
+      zh: MoE路由器操纵攻击
+      ar: هجمات التلاعب بموجه MoE
+      ru: Атаки манипуляции маршрутизатором MoE
+    description:
+      tr: Mixture-of-Experts model'lerde router, hangi expert'in aktive edileceğine karar verir. Adversarial input ile router manipüle edilerek specific zararlı expert'ler aktive edilebilir. Eğer bir expert jailbreak content üretmek için backdoor'lanmışsa, router manipulation ile tetiklenebilir. Expert selection predictability riski.
+      en: In Mixture-of-Experts models, router decides which expert to activate. Router can be manipulated with adversarial input to activate specific harmful experts. If an expert is backdoored to generate jailbreak content, it can be triggered via router manipulation. Expert selection predictability risk.
+      fr: Dans les modèles Mixture-of-Experts, le routeur décide quel expert activer. Le routeur peut être manipulé avec des entrées adversariales pour activer des experts nuisibles spécifiques. Si un expert est doté d'une porte dérobée, elle peut être déclenchée via la manipulation du routeur.
+      zh: 在混合专家模型中，路由器决定激活哪个专家。可以通过对抗性输入操纵路由器来激活特定有害专家。如果某个专家被植入后门用于生成越狱内容，可以通过路由器操纵触发。
+      ar: في نماذج خليط الخبراء، يقرر الموجه أي خبير سيُنشَّط. يمكن التلاعب بالموجه بمدخلات عدائية لتنشيط خبراء ضارين محددين. إذا كان خبير ما مزوداً بباب خلفي، يمكن تشغيله عبر التلاعب بالموجه.
+      ru: В моделях Mixture-of-Experts маршрутизатор решает, какого эксперта активировать. Маршрутизатор можно манипулировать состязательным вводом для активации конкретных вредоносных экспертов.
+    severity: high
+  - title:
+      tr: Expert Weight Extraction
+      en: Expert Weight Extraction
+      fr: Extraction des poids des experts
+      zh: 专家权重提取
+      ar: استخراج أوزان الخبراء
+      ru: Извлечение весов экспертов
+    description:
+      tr: MoE'de her expert ayrı weight'lere sahiptir. Specific expert'lerin weight'leri query-based extraction ile çıkarılabilir. Özellikle domain-specific expert'ler (medical, legal) proprietary knowledge içerir. Expert routing pattern'lerini analiz ederek hangi expert'in ne bildiği tespit edilebilir.
+      en: In MoE, each expert has separate weights. Specific experts' weights can be extracted via query-based extraction. Domain-specific experts (medical, legal) especially contain proprietary knowledge. Analyzing expert routing patterns can determine which expert knows what.
+      fr: Dans MoE, chaque expert a des poids séparés. Les poids d'experts spécifiques peuvent être extraits par requêtes. Les experts spécifiques au domaine (médical, juridique) contiennent des connaissances propriétaires.
+      zh: 在MoE中，每个专家有独立的权重。特定专家的权重可以通过基于查询的提取获得。领域专用专家（医疗、法律）尤其包含专有知识。分析专家路由模式可以确定哪个专家知道什么。
+      ar: في MoE، كل خبير له أوزان منفصلة. يمكن استخراج أوزان خبراء محددين عبر استعلامات. الخبراء المتخصصون بمجال (طبي، قانوني) يحتوون على معرفة ملكية.
+      ru: В MoE каждый эксперт имеет отдельные веса. Веса конкретных экспертов могут быть извлечены через запросы. Доменно-специфичные эксперты (медицина, право) содержат проприетарные знания.
+    severity: medium
+  - title:
+      tr: Load Balancing Auxiliary Loss Exploit
+      en: Load Balancing Auxiliary Loss Exploit
+      fr: Exploitation de la perte auxiliaire d'équilibrage de charge
+      zh: 负载均衡辅助损失利用
+      ar: استغلال خسارة التوازن الإضافية
+      ru: Эксплуатация вспомогательной функции потерь балансировки
+    description:
+      tr: MoE'de load balancing için auxiliary loss kullanılır. Bu loss, expert kullanım dağılımını zorlar. Saldırgan bu davranışı exploit ederek specific expert'leri DoS edebilir veya overload yapıp model quality'sini düşürebilir. Token distribution manipulation ile expert starvation yaratılabilir.
+      en: MoE uses auxiliary loss for load balancing. This loss enforces expert usage distribution. Attacker can exploit this to DoS specific experts or overload to degrade model quality. Expert starvation can be created via token distribution manipulation.
+      fr: MoE utilise une perte auxiliaire pour l'équilibrage de charge. L'attaquant peut exploiter cela pour effectuer un DoS sur des experts spécifiques ou dégrader la qualité du modèle par surcharge.
+      zh: MoE使用辅助损失进行负载均衡。攻击者可以利用这一点对特定专家进行DoS或过载以降低模型质量。可以通过token分布操纵创建专家饥饿。
+      ar: يستخدم MoE خسارة إضافية لتوازن الحمل. يمكن للمهاجم استغلال هذا لتنفيذ DoS على خبراء محددين أو إرهاقهم لتقليل جودة النموذج.
+      ru: MoE использует вспомогательную функцию потерь для балансировки нагрузки. Злоумышленник может эксплуатировать это для DoS конкретных экспертов или перегрузки для деградации качества модели.
+    severity: medium
+  - title:
+      tr: MoE Expert Routing Pattern Sızıntısı
+      en: MoE Expert Routing Pattern Leakage
+      fr: Fuite des patterns de routage des experts MoE
+      zh: MoE专家路由模式泄露
+      ar: تسريب أنماط توجيه خبراء MoE
+      ru: Утечка паттернов маршрутизации экспертов MoE
+    description:
+      tr: Expert routing kararları, input'un hangi domain'e ait olduğunu ortaya çıkarır. API response timing'leri analiz edilerek hangi expert'lerin aktive edildiği tespit edilebilir ve bu bilgi rakip modelin iç yapısı hakkında istihbarat sağlar.
+      en: Expert routing decisions reveal which domain the input belongs to. Analyzing API response timing can detect which experts are activated, providing intelligence about the competitor model's internal structure.
+      fr: Les décisions de routage des experts révèlent à quel domaine appartient l'entrée. L'analyse du timing de réponse API peut détecter quels experts sont activés, fournissant du renseignement sur la structure interne du modèle concurrent.
+      zh: 专家路由决策揭示输入属于哪个领域。分析API响应时间可以检测哪些专家被激活，提供关于竞争对手模型内部结构的情报。
+      ar: تكشف قرارات توجيه الخبراء المجال الذي ينتمي إليه المُدخل. يمكن لتحليل توقيت استجابة API اكتشاف الخبراء المُنشَّطين، مما يوفر استخبارات عن البنية الداخلية لنموذج المنافس.
+      ru: Решения маршрутизации экспертов раскрывают, к какому домену относится ввод. Анализ тайминга ответов API позволяет определить, какие эксперты активированы, предоставляя разведданные о внутренней структуре конкурентной модели.
+    severity: low
+config:
+  - title: MoE Router Output Sanitization
+    lang: python
+    code: |-
+      import torch
+      import torch.nn as nn
+
+      class SecureMoERouter(nn.Module):
+          def __init__(self, d_model, num_experts, top_k=2):
+              super().__init__()
+              self.router = nn.Linear(d_model, num_experts)
+              self.top_k = top_k
+              self.num_experts = num_experts
+
+          def forward(self, x, add_noise=True):
+              # Compute router logits
+              router_logits = self.router(x)
+
+              if add_noise and self.training:
+                  # Add noise to router logits to prevent manipulation
+                  noise = torch.randn_like(router_logits) * 0.1
+                  router_logits = router_logits + noise
+
+              # Top-k gating
+              top_k_logits, top_k_indices = torch.topk(router_logits, self.top_k, dim=-1)
+
+              # Normalize routing probabilities
+              router_probs = torch.softmax(top_k_logits, dim=-1)
+
+              # Ensure minimum expert diversity (prevent single expert overuse)
+              expert_counts = torch.bincount(
+                  top_k_indices.flatten(),
+                  minlength=self.num_experts
+              )
+
+              if expert_counts.max() > len(x) * 0.7:  # >70% tokens to one expert
+                  print("WARNING: Expert load imbalance detected")
+
+              return router_probs, top_k_indices
+    description:
+      tr: MoE router output'una noise ekleyin. Expert load imbalance'ı tespit edin. Router manipulation saldırılarını zorlaştırmak için gating'e randomness katın.
+      en: Add noise to MoE router output. Detect expert load imbalance. Add randomness to gating to make router manipulation attacks harder.
+  - title: Expert Access Monitoring
+    lang: python
+    code: |-
+      import numpy as np
+      from collections import defaultdict
+
+      class ExpertAccessMonitor:
+          def __init__(self, num_experts=8, window_size=1000):
+              self.num_experts = num_experts
+              self.window_size = window_size
+              self.access_history = defaultdict(list)
+
+          def log_routing(self, user_id: str, expert_indices: list):
+              """Log which experts are accessed by each user"""
+              self.access_history[user_id].extend(expert_indices)
+
+              # Keep only recent window
+              if len(self.access_history[user_id]) > self.window_size:
+                  self.access_history[user_id] = self.access_history[user_id][-self.window_size:]
+
+          def detect_anomaly(self, user_id: str) -> bool:
+              """Detect if user is probing specific experts"""
+              if user_id not in self.access_history:
+                  return False
+
+              accesses = self.access_history[user_id]
+              if len(accesses) < 100:
+                  return False
+
+              # Check if user is targeting specific expert
+              expert_dist = np.bincount(accesses, minlength=self.num_experts)
+              expert_dist = expert_dist / expert_dist.sum()
+
+              # Entropy-based detection: low entropy = targeting
+              entropy = -np.sum(expert_dist * np.log(expert_dist + 1e-10))
+              max_entropy = np.log(self.num_experts)
+
+              if entropy < 0.5 * max_entropy:
+                  print(f"ALERT: User {user_id} is targeting specific experts")
+                  return True
+
+              return False
+
+      # Usage
+      monitor = ExpertAccessMonitor(num_experts=8)
+      monitor.log_routing(user_id="user123", expert_indices=[2, 2, 2, 3, 2])
+      if monitor.detect_anomaly("user123"):
+          # Take action: rate limit, block, etc.
+          pass
+    description:
+      tr: User'ların hangi expert'lere eriştiğini loglayın. Entropy analizi ile specific expert targeting tespiti yapın. Anomali durumunda rate limit uygulayın.
+      en: Log which experts users access. Use entropy analysis to detect specific expert targeting. Apply rate limiting on anomaly detection.
+research:
+  - title: Adversarial Attacks on Mixture-of-Experts Models
+    url: https://arxiv.org/abs/2310.04431
+    year: 2023
+    type: paper
+    authors: MoE Security Research
+  - title: "Switch Transformers: Scaling to Trillion Parameters"
+    url: https://arxiv.org/abs/2101.03961
+    year: 2021
+    type: paper
+    authors: William Fedus, et al.
+  - title: Expert Extraction in MoE Language Models
+    url: https://arxiv.org/abs/2402.13330
+    year: 2024
+    type: paper
+    authors: Model Extraction Team
+tips:
+  - tr: MoE router logits'e training sırasında noise ekleyin, adversarial manipulation'ı zorlaştırın.
+    en: Add noise to MoE router logits during training to make adversarial manipulation harder.
+  - tr: Expert routing pattern'lerini API'den expose etmeyin, model architecture bilgisi sızdırır.
+    en: Don't expose expert routing patterns from API - leaks model architecture information.
+  - tr: Load balancing loss weight'ini düşük tutun, quality kaybını önleyin.
+    en: Keep load balancing loss weight low to prevent quality degradation.

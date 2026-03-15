@@ -1,0 +1,157 @@
+id: vram
+name: VRAM
+fullName: Video Random Access Memory
+category: hardware
+desc:
+  tr: |-
+    GPU'nun kendi özel hafızası — AI modeli çalıştırılırken model ağırlıkları, KV cache ve ara hesaplamalar buraya yüklenir. VRAM miktarı, hangi büyüklükte modeli çalıştırabileceğinizi doğrudan belirleyen en kritik faktördür.
+
+    Örneğin bir [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/)'ın 24GB VRAM'i vardır ve FP16 formatında yaklaşık 13B parametreli bir modeli rahatça çalıştırabilir. [NVIDIA](https://nvidia.com)'nin profesyonel kartları olan [A100](https://www.nvidia.com/en-us/data-center/a100/) 80GB veya [H100](https://www.nvidia.com/en-us/data-center/h100/) 80GB ise 70B modelleri bile tek kart üzerinde taşıyabilir.
+
+    VRAM yetersiz kaldığında quantization (4-bit, 8-bit) kullanılarak model küçültülebilir — bu sayede 24GB VRAM ile 70B model bile çalıştırmak mümkün hale gelir. AI topluluğunda 'VRAM yetmiyor' muhtemelen en sık duyacağınız şikayet cümleleridir.
+  en: |-
+    The GPU's dedicated high-speed memory — when running an AI model, the model weights, KV cache, and intermediate computations all get loaded here. The amount of VRAM is the single most critical factor determining what size model you can run.
+
+    For example, an [RTX 4090](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/) has 24GB of VRAM and can comfortably run a 13B parameter model in FP16 format. [NVIDIA](https://nvidia.com)'s professional cards like the [A100](https://www.nvidia.com/en-us/data-center/a100/) 80GB or [H100](https://www.nvidia.com/en-us/data-center/h100/) 80GB can handle 70B models on a single card.
+
+    When VRAM falls short, quantization (4-bit, 8-bit) can shrink the model — making it possible to run a 70B model on just 24GB of VRAM. In the AI community, 'not enough VRAM' is probably the most common complaint you'll hear.
+  fr: La memoire dediee a haute vitesse du GPU — lors de l'execution d'un modele d'IA, les poids du modele, le KV cache et les calculs intermediaires sont tous charges ici. La quantite de VRAM est le facteur le plus critique determinant la taille du modele que vous pouvez executer. Par exemple, une RTX 4090 dispose de 24 Go de VRAM et peut faire tourner confortablement un modele de 13 milliards de parametres en FP16. Les cartes professionnelles de NVIDIA comme l'A100 80 Go ou le H100 80 Go peuvent gerer des modeles de 70 milliards sur une seule carte. Quand la VRAM est insuffisante, la quantification (4-bit, 8-bit) permet de reduire le modele — rendant possible l'execution d'un modele 70B avec seulement 24 Go de VRAM. Dans la communaute IA, 'pas assez de VRAM' est probablement la plainte la plus frequente.
+  zh: GPU的专用高速内存——运行AI模型时，模型权重、KV缓存和中间计算都会加载到这里。VRAM容量是决定你能运行多大模型的最关键因素。例如，RTX 4090拥有24GB VRAM，可以轻松运行FP16格式的130亿参数模型。NVIDIA的专业卡如A100 80GB或H100 80GB则可以在单卡上运行700亿参数的模型。当VRAM不足时，可以通过量化（4-bit、8-bit）来压缩模型——这使得用24GB VRAM运行700亿参数模型成为可能。在AI社区中，'VRAM不够用'可能是你听到最多的抱怨。
+  ar: ذاكرة GPU المخصصة عالية السرعة — عند تشغيل نموذج ذكاء اصطناعي، يتم تحميل أوزان النموذج وذاكرة KV cache والحسابات الوسيطة هنا. كمية VRAM هي العامل الأكثر أهمية في تحديد حجم النموذج الذي يمكنك تشغيله. مثلاً، تمتلك RTX 4090 ذاكرة 24 جيجابايت ويمكنها تشغيل نموذج بـ 13 مليار معامل بصيغة FP16 بشكل مريح. بطاقات NVIDIA الاحترافية مثل A100 بـ 80 جيجابايت أو H100 بـ 80 جيجابايت يمكنها التعامل مع نماذج 70 مليار على بطاقة واحدة. عندما لا تكفي VRAM، يمكن تصغير النموذج بالتكميم (4-bit أو 8-bit) — مما يجعل تشغيل نموذج 70 مليار ممكناً بـ 24 جيجابايت فقط. في مجتمع الذكاء الاصطناعي، 'VRAM غير كافية' هي على الأرجح الشكوى الأكثر شيوعاً.
+  ru: Выделенная высокоскоростная память GPU — при запуске модели ИИ сюда загружаются веса модели, KV-кэш и промежуточные вычисления. Объём VRAM — самый критичный фактор, определяющий модель какого размера вы сможете запустить. Например, RTX 4090 имеет 24 ГБ VRAM и может комфортно запускать модель на 13 млрд параметров в формате FP16. Профессиональные карты NVIDIA вроде A100 80 ГБ или H100 80 ГБ способны работать с моделями на 70 млрд на одной карте. Когда VRAM не хватает, квантизация (4-bit, 8-bit) позволяет сжать модель — так можно запустить 70B модель всего на 24 ГБ VRAM. В ИИ-сообществе 'не хватает VRAM' — пожалуй, самая частая жалоба.
+analogy:
+  tr: GPU'nun çalışma masası. Masa ne kadar genişse, o kadar büyük projeleri üstüne koyup çalışabilirsin.
+  en: The GPU's desk. The wider the desk, the bigger the projects you can lay out and work on.
+  fr: Le bureau du GPU. Plus le bureau est large, plus les projets que vous pouvez y étaler sont grands.
+  zh: GPU的办公桌。桌子越宽，你能展开并处理的项目就越大。
+  ar: مكتب GPU. كلما كان المكتب أوسع، كلما كانت المشاريع التي يمكنك وضعها والعمل عليها أكبر.
+  ru: Рабочий стол GPU. Чем шире стол, тем более крупные проекты вы можете на нём разместить.
+security:
+  - title:
+      tr: VRAM Data Remanence
+      en: VRAM Data Remanence
+      fr: Rémanence des données en VRAM
+      zh: VRAM数据残留
+      ar: بقاء البيانات في VRAM
+      ru: Остаточные данные в VRAM
+    description:
+      tr: GPU belleği serbest bırakıldığında (cudaFree) veriler fiziksel olarak silinmez, sadece işaretlenir. Sonraki işlemler bu alanı yeniden kullandığında eski verilere erişebilir. Özellikle cloud GPU'larda önceki kiracının model ağırlıkları veya prompt'larına erişim riski vardır.
+      en: When GPU memory is freed (cudaFree), data isn't physically erased - just marked as available. Subsequent processes can access old data when reusing that space. In cloud GPUs, there's risk of accessing previous tenant's model weights or prompts.
+      fr: Lorsque la mémoire GPU est libérée (cudaFree), les données ne sont pas physiquement effacées — juste marquées comme disponibles. Les processus suivants peuvent accéder aux anciennes données. Dans les GPU cloud, il y a un risque d'accéder aux poids ou prompts du locataire précédent.
+      zh: 当GPU内存被释放（cudaFree）时，数据并不会被物理擦除，只是被标记为可用。后续进程在重用该空间时可以访问旧数据。在云GPU中，存在访问前一租户模型权重或提示词的风险。
+      ar: عند تحرير ذاكرة GPU (cudaFree)، لا تُمسح البيانات فعلياً بل تُعلَّم كمتاحة فقط. العمليات اللاحقة يمكنها الوصول للبيانات القديمة. في GPU السحابية، هناك خطر الوصول لأوزان النموذج أو مطالبات المستأجر السابق.
+      ru: При освобождении памяти GPU (cudaFree) данные физически не стираются, а лишь помечаются как доступные. Последующие процессы могут получить доступ к старым данным. В облачных GPU существует риск доступа к весам модели или промптам предыдущего арендатора.
+    severity: high
+  - title:
+      tr: Cold Boot Attack on VRAM
+      en: Cold Boot Attack on VRAM
+      fr: Attaque par démarrage à froid sur la VRAM
+      zh: VRAM冷启动攻击
+      ar: هجوم التمهيد البارد على VRAM
+      ru: Атака холодной загрузки на VRAM
+    description:
+      tr: GDDR6/HBM2 bellek, güç kesildikten saniyeler/dakikalar sonra bile veriyi tutar. Fiziksel erişimi olan saldırgan GPU'yu soğutup başka bir sisteme takarak VRAM içeriğini okuyabilir. Encryption key'ler, model ağırlıkları gibi hassas veriler çalınabilir.
+      en: GDDR6/HBM2 memory retains data for seconds/minutes after power loss. An attacker with physical access can cool the GPU and read VRAM contents in another system. Sensitive data like encryption keys and model weights can be stolen.
+      fr: La mémoire GDDR6/HBM2 conserve les données pendant des secondes/minutes après la coupure d'alimentation. Un attaquant avec accès physique peut refroidir le GPU et lire le contenu VRAM dans un autre système.
+      zh: GDDR6/HBM2内存在断电后仍能保留数据数秒/数分钟。具有物理访问权限的攻击者可以冷却GPU并在另一个系统中读取VRAM内容。
+      ar: تحتفظ ذاكرة GDDR6/HBM2 بالبيانات لثوانٍ/دقائق بعد انقطاع الطاقة. يمكن لمهاجم بوصول فعلي تبريد GPU وقراءة محتويات VRAM في نظام آخر.
+      ru: Память GDDR6/HBM2 сохраняет данные секунды/минуты после отключения питания. Злоумышленник с физическим доступом может охладить GPU и прочитать содержимое VRAM в другой системе.
+    severity: medium
+  - title:
+      tr: VRAM Over-Subscription Exploits
+      en: VRAM Over-Subscription Exploits
+      fr: Exploitation du surabonnement VRAM
+      zh: VRAM超额分配漏洞
+      ar: استغلال الاشتراك الزائد في VRAM
+      ru: Эксплуатация избыточного выделения VRAM
+    description:
+      tr: Bazı GPU sanallaştırma çözümleri VRAM over-subscription kullanır (fiziksel VRAM'den fazla ayırma). Memory pressure altında swap mekanizması hassas verileri disk'e yazabilir ve side-channel saldırılarına açık hale getirebilir.
+      en: Some GPU virtualization solutions use VRAM over-subscription (allocating more than physical VRAM). Under memory pressure, swapping mechanism can write sensitive data to disk, exposing it to side-channel attacks.
+      fr: Certaines solutions de virtualisation GPU utilisent le surabonnement VRAM. Sous pression mémoire, le mécanisme de swap peut écrire des données sensibles sur le disque, les exposant à des attaques par canal auxiliaire.
+      zh: 一些GPU虚拟化解决方案使用VRAM超额分配。在内存压力下，交换机制可能将敏感数据写入磁盘，使其暴露于侧信道攻击。
+      ar: تستخدم بعض حلول المحاكاة الافتراضية لـ GPU الاشتراك الزائد في VRAM. تحت ضغط الذاكرة، يمكن لآلية التبادل كتابة بيانات حساسة على القرص.
+      ru: Некоторые решения виртуализации GPU используют избыточное выделение VRAM. Под давлением памяти механизм подкачки может записывать конфиденциальные данные на диск.
+    severity: medium
+  - title:
+      tr: VRAM Kullanım Metrikleri Bilgi Sızıntısı
+      en: VRAM Usage Metrics Information Disclosure
+      fr: Divulgation d'informations via les métriques VRAM
+      zh: VRAM使用指标信息泄露
+      ar: كشف معلومات عبر مقاييس استخدام VRAM
+      ru: Раскрытие информации через метрики VRAM
+    description:
+      tr: nvidia-smi üzerinden erişilebilen VRAM kullanım metrikleri, çalışan modelin boyutu ve mimarisi hakkında ipucu verir. Multi-tenant ortamlarda bu bilgi rakip model hakkında istihbarat sağlar.
+      en: VRAM usage metrics accessible via nvidia-smi reveal hints about the running model's size and architecture. In multi-tenant environments, this provides intelligence about competitor models.
+      fr: Les métriques d'utilisation VRAM accessibles via nvidia-smi révèlent des indices sur la taille et l'architecture du modèle en cours d'exécution. En environnement multi-locataire, cela fournit du renseignement sur les modèles concurrents.
+      zh: 通过nvidia-smi可访问的VRAM使用指标揭示了运行模型大小和架构的线索。在多租户环境中，这提供了关于竞争对手模型的情报。
+      ar: توفر مقاييس استخدام VRAM المتاحة عبر nvidia-smi تلميحات حول حجم ومعمارية النموذج المُشغَّل. في البيئات متعددة المستأجرين، يوفر هذا معلومات عن نماذج المنافسين.
+      ru: Метрики использования VRAM через nvidia-smi раскрывают подсказки о размере и архитектуре модели. В мультитенантных средах это предоставляет разведданные о моделях конкурентов.
+    severity: low
+config:
+  - title: Secure VRAM Cleanup
+    lang: python
+    code: |-
+      import torch
+      import gc
+
+      def secure_vram_cleanup():
+          """Securely clear VRAM after sensitive operations"""
+          # Clear PyTorch cache
+          torch.cuda.empty_cache()
+
+          # Force garbage collection
+          gc.collect()
+
+          # Zero out allocated tensors before deletion
+          for obj in gc.get_objects():
+              if torch.is_tensor(obj) and obj.is_cuda:
+                  obj.zero_()
+
+          # Synchronize to ensure operations complete
+          torch.cuda.synchronize()
+
+          print("VRAM securely cleared")
+
+      # Use after processing sensitive data
+      secure_vram_cleanup()
+    description:
+      tr: Hassas işlemlerden sonra VRAM'i güvenli şekilde temizleyin. Tensor'ları silmeden önce sıfırlayın, cache'i boşaltın ve GC çalıştırın. Data remanence riskini minimize eder.
+      en: Securely clear VRAM after sensitive operations. Zero out tensors before deletion, empty cache, and run GC. Minimizes data remanence risk.
+  - title: CUDA Memory Sanitization
+    lang: bash
+    code: |-
+      # Enable CUDA memory sanitization (compute-sanitizer)
+      compute-sanitizer --tool memcheck ./your_cuda_app
+
+      # For production: zero-fill freed memory
+      export CUDA_LAUNCH_BLOCKING=1
+      export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512,garbage_collection_threshold:0.6
+
+      # Monitor VRAM usage
+      nvidia-smi dmon -s um -c 1
+    description:
+      tr: CUDA memory sanitizer ile bellek hatalarını tespit edin. PYTORCH_CUDA_ALLOC_CONF ile agresif garbage collection ayarlayın. Sürekli VRAM kullanımını izleyin.
+      en: Detect memory errors with CUDA memory sanitizer. Configure aggressive garbage collection with PYTORCH_CUDA_ALLOC_CONF. Continuously monitor VRAM usage.
+research:
+  - title: GPU Memory Forensics and Cold Boot Attacks
+    url: https://arxiv.org/abs/2008.11757
+    year: 2020
+    type: paper
+    authors: Di Tang, et al.
+  - title: CUDA Memory Checker Documentation
+    url: https://docs.nvidia.com/cuda/compute-sanitizer/
+    year: 2024
+    type: guide
+    authors: NVIDIA
+  - title: Exploiting GPU Memory in Cloud Environments
+    url: https://www.usenix.org/conference/usenixsecurity23/presentation/wang-gpu
+    year: 2023
+    type: paper
+    authors: Guanhua Wang, et al.
+tips:
+  - tr: Multi-tenant GPU ortamlarında her zaman encrypted VRAM kullanın, NVIDIA Confidential Computing destekli kartları tercih edin.
+    en: In multi-tenant GPU environments, always use encrypted VRAM - prefer NVIDIA Confidential Computing enabled cards.
+  - tr: Model inference sonrası KV cache'i cudaMemset ile sıfırlayın, önceki prompt'ların kalıntılarını temizleyin.
+    en: After model inference, zero out KV cache with cudaMemset to clear remnants of previous prompts.
+  - tr: VRAM kullanımını nvidia-smi ile sürekli izleyin, beklenmedik artışlar memory leak veya saldırı işareti olabilir.
+    en: Continuously monitor VRAM usage with nvidia-smi - unexpected spikes may indicate memory leaks or attacks.

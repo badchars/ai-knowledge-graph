@@ -1,0 +1,260 @@
+id: agentic-ai
+name: Agentic AI
+fullName: Agentic AI
+category: tools
+desc:
+  tr: |-
+    AI sistemlerinin otonom karar verme, planlama ve aksiyon alma yeteneklerini ifade eden terim. Basit [prompt](/terms/prompt)-response modellerinin ötesinde, goal-oriented davranış sergileyen sistemlerdir.
+
+    [Agent](/terms/agent) sistemlerinin felsefi ve mimari temellerini tanımlar. [ReAct](/terms/react), [tool use](/terms/tool-use) ve [multi-agent](/terms/multi-agent) koordinasyonu gibi teknikleri kapsar. [LangChain](/terms/langchain), Semantic Kernel ve AutoGen bu paradigmayı uygulayan framework'lerdir.
+
+    Kritik özellikler: self-correction, iterative refinement, memory management ve external tool integration. Agentic AI, AI sistemlerinin reactive'den proactive'e geçişini simgeler.
+  en: |-
+    A term describing AI systems' capability for autonomous decision-making, planning, and action-taking. Beyond simple [prompt](/terms/prompt)-response models, these are systems exhibiting goal-oriented behavior.
+
+    Defines the philosophical and architectural foundations of [agent](/terms/agent) systems. Covers techniques like [ReAct](/terms/react), [tool use](/terms/tool-use), and [multi-agent](/terms/multi-agent) coordination. Frameworks like [LangChain](/terms/langchain), Semantic Kernel, and AutoGen implement this paradigm.
+
+    Critical features: self-correction, iterative refinement, memory management, and external tool integration. Agentic AI symbolizes the transition of AI systems from reactive to proactive.
+  fr: Un terme décrivant la capacité des systèmes d'IA à prendre des décisions, planifier et agir de manière autonome.
+  zh: 描述AI系统自主决策、规划和行动能力的术语。
+  ar: مصطلح يصف قدرة أنظمة الذكاء الاصطناعي على اتخاذ القرارات والتخطيط والعمل بشكل مستقل.
+  ru: Термин, описывающий способность ИИ-систем к автономному принятию решений, планированию и действиям.
+analogy:
+  tr: GPS sadece yol göstermez, trafik görünce alternatif rota bulur, benzin bitince istasyon önerir. Kendi kendine yönetir.
+  en: GPS doesn't just show the way, it finds alternative routes when there's traffic, suggests gas stations when fuel is low. Self-managing.
+  fr: Le GPS ne montre pas seulement le chemin, il trouve des itinéraires alternatifs en cas de trafic, suggère des stations-service quand le carburant est faible.
+  zh: GPS 不只是显示路线，它会在有交通时找到替代路线，在燃料不足时建议加油站。自我管理。
+  ar: GPS لا يعرض الطريق فقط، بل يجد طرقًا بديلة عند وجود حركة مرور، ويقترح محطات الوقود عندما يكون الوقود منخفضًا.
+  ru: GPS не просто показывает путь, он находит альтернативные маршруты при пробках, предлагает заправки при низком топливе.
+security:
+  - title:
+      tr: Autonomous Loop Hijacking
+      en: Autonomous Loop Hijacking
+      fr: Detournement de boucle autonome
+      zh: 自主循环劫持
+      ar: اختطاف الحلقة المستقلة
+      ru: Перехват автономного цикла
+    description:
+      tr: Agentic sistemlerin otonom loop'ları prompt injection ile hijack edilebilir. Saldırgan, agent'ı endless loop'a sokarak compute resource tüketimi yapabilir veya zararlı alt-görevler enjekte edebilir.
+      en: Autonomous loops of agentic systems can be hijacked via prompt injection. Attacker can put agent in endless loop for compute resource exhaustion or inject malicious sub-tasks.
+      fr: Les boucles autonomes des systemes agentiques peuvent etre detournees par injection de prompt. Un attaquant peut mettre l'agent dans une boucle infinie pour epuiser les ressources de calcul ou injecter des sous-taches malveillantes.
+      zh: 代理系统的自主循环可以通过提示注入被劫持。攻击者可以将代理置于无限循环中以耗尽计算资源，或注入恶意子任务。
+      ar: يمكن اختطاف الحلقات المستقلة للأنظمة الوكيلية عبر حقن الأوامر. يمكن للمهاجم وضع الوكيل في حلقة لا نهائية لاستنفاد موارد الحوسبة أو حقن مهام فرعية ضارة.
+      ru: Автономные циклы агентных систем могут быть перехвачены через инъекцию промптов. Злоумышленник может поместить агента в бесконечный цикл для исчерпания вычислительных ресурсов или внедрить вредоносные подзадачи.
+    severity: critical
+  - title:
+      tr: Uncontrolled Tool Execution
+      en: Uncontrolled Tool Execution
+      fr: Execution d'outils non controlee
+      zh: 不受控制的工具执行
+      ar: تنفيذ أدوات غير متحكم به
+      ru: Неконтролируемое выполнение инструментов
+    description:
+      tr: Agentic AI'lar tool execution sırasında yeterli validation yapmadan tehlikeli işlemler gerçekleştirebilir. File deletion, API abuse, database modification gibi destructive actions önlenemez.
+      en: Agentic AIs can perform dangerous operations without sufficient validation during tool execution. Destructive actions like file deletion, API abuse, database modification cannot be prevented.
+      fr: Les IA agentiques peuvent effectuer des operations dangereuses sans validation suffisante lors de l'execution d'outils. Les actions destructrices comme la suppression de fichiers, l'abus d'API et la modification de base de donnees ne peuvent pas etre empechees.
+      zh: 代理AI在执行工具时可能在没有充分验证的情况下执行危险操作。文件删除、API滥用、数据库修改等破坏性操作无法被阻止。
+      ar: يمكن للذكاء الاصطناعي الوكيلي تنفيذ عمليات خطيرة دون التحقق الكافي أثناء تنفيذ الأدوات. لا يمكن منع الإجراءات التدميرية مثل حذف الملفات وإساءة استخدام API وتعديل قاعدة البيانات.
+      ru: Агентный ИИ может выполнять опасные операции без достаточной валидации при использовании инструментов. Деструктивные действия, такие как удаление файлов, злоупотребление API и модификация базы данных, не могут быть предотвращены.
+    severity: critical
+  - title:
+      tr: Goal Drift and Misalignment
+      en: Goal Drift and Misalignment
+      fr: Derive d'objectif et desalignement
+      zh: 目标偏移与失调
+      ar: انحراف الهدف وعدم التوافق
+      ru: Дрейф целей и рассогласование
+    description:
+      tr: Otonom sistemlerin goal interpretation hataları nedeniyle orijinal hedeften sapmalar (goal drift) meydana gelebilir. Bu, unintended consequences ve misaligned behaviors doğurur.
+      en: Goal interpretation errors in autonomous systems can cause deviations from original objectives (goal drift). This results in unintended consequences and misaligned behaviors.
+      fr: Les erreurs d'interpretation des objectifs dans les systemes autonomes peuvent provoquer des deviations par rapport aux objectifs originaux (derive d'objectif). Cela entraine des consequences inattendues et des comportements desalignes.
+      zh: 自主系统中的目标解读错误可能导致偏离原始目标（目标漂移）。这会导致意外后果和行为失调。
+      ar: يمكن أن تسبب أخطاء تفسير الأهداف في الأنظمة المستقلة انحرافات عن الأهداف الأصلية (انحراف الهدف). يؤدي هذا إلى عواقب غير مقصودة وسلوكيات غير متوافقة.
+      ru: Ошибки интерпретации целей в автономных системах могут вызвать отклонения от исходных задач (дрейф целей). Это приводит к непреднамеренным последствиям и рассогласованному поведению.
+    severity: high
+  - title:
+      tr: Agentic Ai Konfigürasyon Bilgi Sızıntısı
+      en: Agentic Ai Configuration Information Disclosure
+      fr: Divulgation de configuration agentic ai
+      zh: agentic ai配置信息泄露
+      ar: كشف معلومات تكوين agentic-ai
+      ru: Раскрытие конфигурации agentic-ai
+    description:
+      tr: Agentic Ai ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to agentic ai can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à agentic ai peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与agentic ai相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ agentic-ai في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании agentic-ai могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Agentic AI with Safety Guardrails
+    lang: typescript
+    code: |-
+      interface AgenticConfig {
+        maxIterations: number;
+        timeout: number;
+        allowedTools: string[];
+        goalValidation: boolean;
+      }
+
+      class SafeAgenticSystem {
+        private iterationCount = 0;
+        private startTime = 0;
+        private actionLog: any[] = [];
+
+        constructor(private config: AgenticConfig) {}
+
+        async run(goal: string): Promise<{ status: string; result?: any }> {
+          // Validate goal for malicious intent
+          if (this.isGoalMalicious(goal)) {
+            throw new Error('Malicious goal detected');
+          }
+
+          this.startTime = Date.now();
+          this.iterationCount = 0;
+
+          let state = { goal, observations: [], completed: false };
+
+          while (this.iterationCount < this.config.maxIterations) {
+            // Timeout check
+            if (Date.now() - this.startTime > this.config.timeout) {
+              return { status: 'timeout', result: this.actionLog };
+            }
+
+            // Think & Plan
+            const thought = await this.think(state);
+
+            // Decide action
+            const action = await this.decideAction(thought);
+
+            // Validate action before execution
+            if (!this.validateAction(action)) {
+              return {
+                status: 'blocked',
+                result: { reason: 'Invalid action', action }
+              };
+            }
+
+            // Execute with safeguards
+            const observation = await this.executeAction(action);
+
+            // Log for audit
+            this.actionLog.push({
+              iteration: this.iterationCount,
+              thought,
+              action,
+              observation,
+              timestamp: Date.now()
+            });
+
+            // Update state
+            state.observations.push(observation);
+
+            // Check completion
+            if (this.isGoalAchieved(state)) {
+              state.completed = true;
+              return { status: 'success', result: state };
+            }
+
+            this.iterationCount++;
+          }
+
+          return { status: 'max_iterations_reached', result: this.actionLog };
+        }
+
+        private isGoalMalicious(goal: string): boolean {
+          const maliciousPatterns = [
+            /delete.*all/i,
+            /drop.*table/i,
+            /rm\s+-rf/i,
+            /exfiltrate/i,
+            /bypass.*security/i
+          ];
+
+          return maliciousPatterns.some(pattern => pattern.test(goal));
+        }
+
+        private validateAction(action: any): boolean {
+          // Check if tool is allowed
+          if (!this.config.allowedTools.includes(action.tool)) {
+            console.warn(`Blocked tool: ${action.tool}`);
+            return false;
+          }
+
+          // Validate tool parameters
+          if (action.tool === 'execute_code') {
+            // Block shell commands
+            if (/sh|bash|exec|eval/.test(action.params.code)) {
+              return false;
+            }
+          }
+
+          if (action.tool === 'http_request') {
+            // Check domain whitelist
+            const allowedDomains = ['api.openai.com', 'example.com'];
+            const url = new URL(action.params.url);
+            if (!allowedDomains.some(d => url.hostname.includes(d))) {
+              return false;
+            }
+          }
+
+          return true;
+        }
+
+        private async think(state: any): Promise<string> {
+          // LLM reasoning call
+          return 'Next step...';
+        }
+
+        private async decideAction(thought: string): Promise<any> {
+          // Action planning
+          return { tool: 'search', params: {} };
+        }
+
+        private async executeAction(action: any): Promise<any> {
+          // Safe tool execution
+          return { result: 'success' };
+        }
+
+        private isGoalAchieved(state: any): boolean {
+          // Goal completion check
+          return state.completed;
+        }
+      }
+
+      // Usage
+      const agent = new SafeAgenticSystem({
+        maxIterations: 15,
+        timeout: 300000,  // 5 min
+        allowedTools: ['search', 'data_lookup', 'http_request'],
+        goalValidation: true
+      });
+
+      await agent.run('Find security vulnerabilities in the API');
+    description:
+      tr: Güvenli agentic sistem implementasyonu. Goal validation, tool whitelisting, iteration limits.
+      en: Secure agentic system implementation. Goal validation, tool whitelisting, iteration limits.
+research:
+  - title: Language Models as Agent Models
+    url: https://arxiv.org/abs/2212.01681
+    year: 2022
+    type: paper
+    authors: Jacob Andreas
+  - title: A Survey on Large Language Model based Autonomous Agents
+    url: https://arxiv.org/abs/2308.11432
+    year: 2023
+    type: paper
+    authors: Lei Wang, Chen Ma, Xueyang Feng
+  - title: The Landscape of Emerging AI Agent Architectures
+    url: https://www.anthropic.com/research/building-effective-agents
+    year: 2024
+    type: guide
+    authors: Anthropic Research
+tips:
+  - tr: Goal validation ile malicious intent'leri erken tespit edin, regex blacklist kullanın.
+    en: Detect malicious intents early with goal validation, use regex blacklist.
+  - tr: Tool execution'da whitelist yaklaşımı kullanın, tehlikeli toolları hiç expose etmeyin.
+    en: Use whitelist approach for tool execution, never expose dangerous tools.
+  - tr: Her iteration'ı audit için detaylı loglayın, timestamp ve reasoning dahil.
+    en: Log every iteration in detail for audit, including timestamp and reasoning.

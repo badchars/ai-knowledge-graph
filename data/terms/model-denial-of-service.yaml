@@ -1,0 +1,320 @@
+id: model-denial-of-service
+name: Model DoS
+fullName: Model Denial of Service Attack
+category: ai-security
+desc:
+  tr: |-
+    LLM'lere aşırı kaynak tüketen girdiler göndererek hizmet kesintisi oluşturma saldırısı. [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)'da LLM04 olarak sınıflandırılır. Sponge examples (maksimum enerji ve hesaplama tüketen özel crafted girdiler), context window doldurma ve recursive agent loop gibi teknikler kullanılır.
+
+    Geleneksel DoS saldırılarından farklı olarak, tek bir istek bile GPU'yu dakikalarca meşgul edebilir. Özellikle autoregressive decoding sırasında, uzun çıktı üreten girdiler KV cache belleğini tüketir ve diğer isteklerin işlenmesini engeller.
+
+    Agent tabanlı sistemlerde recursive tool calling (agent'ı sonsuz araç çağrısı döngüsüne sokma) ek bir DoS vektörü oluşturur. Batch processing abuse ile çok sayıda eşzamanlı istek GPU belleğini taşırabilir.
+  en: |-
+    An attack that causes service disruption by sending resource-exhausting inputs to LLMs. Classified as LLM04 in the [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/). Techniques include sponge examples (specially crafted inputs that maximize energy and computation), context window flooding, and recursive agent loops.
+
+    Unlike traditional DoS attacks, a single request can keep a GPU busy for minutes. During autoregressive decoding, inputs that produce long outputs exhaust KV cache memory and block other requests from being processed.
+
+    In agent-based systems, recursive tool calling (trapping the agent in an infinite tool call loop) creates an additional DoS vector. Batch processing abuse can overflow GPU memory with many simultaneous requests.
+  fr: |-
+    Une attaque qui provoque une interruption de service en envoyant des entrees epuisant les ressources aux LLM. Classee comme LLM04 dans le OWASP LLM Top 10. Les techniques incluent les sponge examples (entrees specialement concues pour maximiser l'energie et le calcul), l'inondation de la fenetre de contexte et les boucles recursives d'agents.
+
+    Contrairement aux attaques DoS traditionnelles, une seule requete peut occuper un GPU pendant des minutes. Pendant le decodage autoregressif, les entrees produisant de longues sorties epuisent la memoire du cache KV et bloquent le traitement des autres requetes.
+
+    Dans les systemes bases sur des agents, l'appel recursif d'outils cree un vecteur DoS supplementaire. L'abus du traitement par lots peut faire deborder la memoire GPU.
+  zh: |-
+    一种通过向LLM发送消耗资源的输入来造成服务中断的攻击。在OWASP LLM Top 10中被归类为LLM04。技术包括海绵样本（专门制作的最大化能耗和计算的输入）、上下文窗口填充和递归代理循环。
+
+    与传统DoS攻击不同，单个请求就可以让GPU忙碌数分钟。在自回归解码期间，产生长输出的输入会耗尽KV缓存内存并阻止其他请求的处理。
+
+    在基于代理的系统中，递归工具调用（将代理困在无限工具调用循环中）创建了额外的DoS向量。批处理滥用可以通过大量同时请求溢出GPU内存。
+  ar: |-
+    هجوم يسبب انقطاع الخدمة بإرسال مدخلات تستنفد الموارد لنماذج اللغة الكبيرة. مصنف كـ LLM04 في قائمة OWASP LLM العشر الأوائل. تشمل التقنيات أمثلة الإسفنج (مدخلات مصنوعة خصيصاً لتعظيم الطاقة والحساب) وإغراق نافذة السياق وحلقات الوكيل المتكررة.
+
+    على عكس هجمات DoS التقليدية، يمكن لطلب واحد إشغال GPU لدقائق. أثناء فك التشفير الانحداري التلقائي، تستنفد المدخلات المنتجة لمخرجات طويلة ذاكرة KV cache وتمنع معالجة الطلبات الأخرى.
+
+    في الأنظمة المبنية على الوكلاء، يخلق الاستدعاء المتكرر للأدوات ناقل DoS إضافي. يمكن لإساءة المعالجة المجمعة إغراق ذاكرة GPU بطلبات متزامنة كثيرة.
+  ru: |-
+    Атака, вызывающая отказ в обслуживании путём отправки ресурсоёмких входных данных в LLM. Классифицируется как LLM04 в OWASP LLM Top 10. Техники включают sponge examples (специально созданные входные данные, максимизирующие потребление энергии и вычислений), заполнение контекстного окна и рекурсивные циклы агентов.
+
+    В отличие от традиционных DoS-атак, один запрос может занять GPU на минуты. При авторегрессивном декодировании входные данные, генерирующие длинные выходные данные, исчерпывают память KV-кеша и блокируют обработку других запросов.
+
+    В агентных системах рекурсивный вызов инструментов (ловушка агента в бесконечном цикле вызовов) создаёт дополнительный вектор DoS. Злоупотребление пакетной обработкой может переполнить память GPU множеством одновременных запросов.
+analogy:
+  tr: Bir restorana aynı anda 1000 kişilik sipariş vermek gibi. Mutfak kapasitesi dolduğunda diğer müşterilere hizmet veremez hale gelir. LLM'de de tek bir aşırı karmaşık istek tüm GPU kaynaklarını tüketebilir.
+  en: Like ordering food for 1000 people at a restaurant all at once. When the kitchen capacity is full, it can no longer serve other customers. With an LLM too, a single overly complex request can consume all GPU resources.
+  fr: Comme commander de la nourriture pour 1000 personnes dans un restaurant en meme temps. Quand la capacite de la cuisine est pleine, elle ne peut plus servir les autres clients. Avec un LLM aussi, une seule requete trop complexe peut consommer toutes les ressources GPU.
+  zh: 就像同时在餐厅点1000人份的餐。当厨房产能满载时，就无法为其他顾客服务了。对于LLM也是如此，单个过于复杂的请求就可以耗尽所有GPU资源。
+  ar: مثل طلب طعام لـ1000 شخص في مطعم دفعة واحدة. عندما تمتلئ سعة المطبخ لا يمكنه خدمة العملاء الآخرين. مع نموذج اللغة الكبير أيضاً، طلب واحد معقد بشكل مفرط يمكنه استهلاك جميع موارد GPU.
+  ru: Как заказать еду на 1000 человек в ресторане одновременно. Когда мощности кухни исчерпаны, она больше не может обслуживать других клиентов. С LLM тоже — один чрезмерно сложный запрос может потребить все ресурсы GPU.
+security:
+  - title:
+      tr: Sponge Example Attack
+      en: Sponge Example Attack
+      fr: Attaque par exemple eponge
+      zh: 海绵样本攻击
+      ar: هجوم مثال الإسفنج
+      ru: Атака sponge example
+    description:
+      tr: Maksimum hesaplama ve bellek tüketen özel tasarlanmış girdiler. Bu girdiler modelin her katmanında en yoğun hesaplama yollarını tetikler ve normal girdilere kıyasla 10-100x daha fazla enerji/zaman tüketir. Özellikle attention mekanizmasının O(n^2) karmaşıklığı exploit edilir.
+      en: Specially crafted inputs that consume maximum computation and memory. These inputs trigger the most intensive computation paths in every model layer and consume 10-100x more energy/time compared to normal inputs. The O(n^2) complexity of the attention mechanism is particularly exploited.
+      fr: Entrees specialement concues qui consomment un maximum de calcul et de memoire. Ces entrees declenchent les chemins de calcul les plus intensifs dans chaque couche du modele et consomment 10 a 100 fois plus d'energie/temps que les entrees normales. La complexite O(n^2) du mecanisme d'attention est particulierement exploitee.
+      zh: 专门设计的消耗最大计算和内存的输入。这些输入在模型的每一层触发最密集的计算路径，与正常输入相比消耗10-100倍的能量/时间。特别利用了注意力机制的O(n^2)复杂度。
+      ar: مدخلات مصممة خصيصاً تستهلك أقصى حساب وذاكرة. تطلق هذه المدخلات أكثر مسارات الحساب كثافة في كل طبقة من النموذج وتستهلك 10-100 ضعف الطاقة/الوقت مقارنة بالمدخلات العادية. يتم استغلال تعقيد O(n^2) لآلية الانتباه بشكل خاص.
+      ru: Специально созданные входные данные, потребляющие максимум вычислений и памяти. Эти входные данные запускают наиболее интенсивные пути вычислений в каждом слое модели и потребляют в 10-100 раз больше энергии/времени по сравнению с обычными. Особенно эксплуатируется сложность O(n^2) механизма внимания.
+    severity: critical
+  - title:
+      tr: Context Window Exhaustion
+      en: Context Window Exhaustion
+      fr: Epuisement de la fenetre de contexte
+      zh: 上下文窗口耗尽
+      ar: استنفاد نافذة السياق
+      ru: Исчерпание контекстного окна
+    description:
+      tr: Uzun girdiler göndererek KV cache belleğini tüketme. 128K veya 200K context window'a sahip modellerde, tek bir istek gigabaytlarca GPU belleği tüketebilir. Özellikle continuous batching kullanan sistemlerde diğer isteklerin bellek ayırmasını engeller.
+      en: Exhausting KV cache memory by sending long inputs. In models with 128K or 200K context windows, a single request can consume gigabytes of GPU memory. Particularly blocks memory allocation for other requests in systems using continuous batching.
+      fr: Epuiser la memoire du cache KV en envoyant de longues entrees. Dans les modeles avec des fenetres de contexte de 128K ou 200K, une seule requete peut consommer des gigaoctets de memoire GPU. Bloque particulierement l'allocation memoire pour d'autres requetes dans les systemes utilisant le batching continu.
+      zh: 通过发送长输入耗尽KV缓存内存。在拥有128K或200K上下文窗口的模型中，单个请求可以消耗数GB的GPU内存。特别是在使用连续批处理的系统中会阻止其他请求的内存分配。
+      ar: استنفاد ذاكرة KV cache بإرسال مدخلات طويلة. في النماذج ذات نوافذ السياق 128K أو 200K، يمكن لطلب واحد استهلاك غيغابايت من ذاكرة GPU. يمنع بشكل خاص تخصيص الذاكرة للطلبات الأخرى في الأنظمة التي تستخدم المعالجة المجمعة المستمرة.
+      ru: Исчерпание памяти KV-кеша отправкой длинных входных данных. В моделях с контекстным окном 128K или 200K один запрос может потребить гигабайты памяти GPU. Особенно блокирует выделение памяти для других запросов в системах с continuous batching.
+    severity: high
+  - title:
+      tr: Recursive Agent Loop
+      en: Recursive Agent Loop
+      fr: Boucle recursive d'agent
+      zh: 递归代理循环
+      ar: حلقة الوكيل المتكررة
+      ru: Рекурсивный цикл агента
+    description:
+      tr: Agent'ı sonsuz tool-call döngüsüne sokarak kaynak tüketme. Örneğin bir aracın çıktısı başka bir araç çağrısını tetikler ve bu döngü sonsuza kadar devam eder. Her iterasyonda LLM inference + tool execution maliyeti katlanarak artar.
+      en: Consuming resources by trapping the agent in an infinite tool-call loop. For example, one tool's output triggers another tool call, and this cycle continues indefinitely. The cost of LLM inference plus tool execution compounds with each iteration.
+      fr: Consommer des ressources en piégeant l'agent dans une boucle infinie d'appels d'outils. Par exemple, la sortie d'un outil declenche un autre appel d'outil, et ce cycle continue indefiniment. Le cout de l'inference LLM plus l'execution d'outils se compose a chaque iteration.
+      zh: 通过将代理困在无限工具调用循环中来消耗资源。例如，一个工具的输出触发另一个工具调用，这个循环无限持续。每次迭代中LLM推理加上工具执行的成本成倍增加。
+      ar: استهلاك الموارد بحبس الوكيل في حلقة استدعاء أدوات لانهائية. مثلاً مخرجات أداة تطلق استدعاء أداة أخرى وتستمر الدورة لما لا نهاية. تتضاعف تكلفة استدلال النموذج مع تنفيذ الأدوات في كل تكرار.
+      ru: Потребление ресурсов путём ловушки агента в бесконечном цикле вызовов инструментов. Например, выход одного инструмента запускает вызов другого, и цикл продолжается бесконечно. Стоимость инференса LLM плюс выполнения инструментов нарастает с каждой итерацией.
+    severity: high
+  - title:
+      tr: Resource Monitoring Gap
+      en: Resource Monitoring Gap
+      fr: Lacune de surveillance des ressources
+      zh: 资源监控缺口
+      ar: فجوة مراقبة الموارد
+      ru: Пробел в мониторинге ресурсов
+    description:
+      tr: Per-request GPU kullanımı, bellek tüketimi ve inference süresinin izlenmemesi. Anomali tespiti ve otomatik circuit breaker olmadan, tek bir kötü niyetli istek tüm sistemi etkileyebilir.
+      en: Not monitoring per-request GPU usage, memory consumption, and inference duration. Without anomaly detection and automatic circuit breaker, a single malicious request can affect the entire system.
+      fr: Ne pas surveiller l'utilisation GPU par requete, la consommation memoire et la duree d'inference. Sans detection d'anomalies et disjoncteur automatique, une seule requete malveillante peut affecter tout le systeme.
+      zh: 不监控每个请求的GPU使用率、内存消耗和推理持续时间。没有异常检测和自动断路器，单个恶意请求就可以影响整个系统。
+      ar: عدم مراقبة استخدام GPU لكل طلب واستهلاك الذاكرة ومدة الاستدلال. بدون اكتشاف الشذوذ وقاطع الدائرة التلقائي، يمكن لطلب خبيث واحد التأثير على النظام بأكمله.
+      ru: Отсутствие мониторинга использования GPU, потребления памяти и длительности инференса по каждому запросу. Без обнаружения аномалий и автоматического circuit breaker один вредоносный запрос может повлиять на всю систему.
+    severity: low
+config:
+  - title: Input Length Limiter
+    lang: python
+    code: |-
+      import time
+      from dataclasses import dataclass, field
+
+      @dataclass
+      class RequestLimits:
+          max_input_tokens: int = 4096
+          max_output_tokens: int = 2048
+          max_total_tokens: int = 8192
+          timeout_seconds: float = 30.0
+          max_agent_iterations: int = 15
+
+      class LLMRequestGuard:
+          def __init__(self, limits: RequestLimits = None):
+              self.limits = limits or RequestLimits()
+
+          def check_input(self, prompt: str, estimated_tokens: int = None) -> dict:
+              tokens = estimated_tokens or len(prompt) // 3
+
+              if tokens > self.limits.max_input_tokens:
+                  return {
+                      "allowed": False,
+                      "reason": f"Input too long: {tokens} > {self.limits.max_input_tokens}"
+                  }
+              return {"allowed": True, "estimated_tokens": tokens}
+
+          def wrap_inference(self, fn, prompt: str, **kwargs):
+              check = self.check_input(prompt)
+              if not check["allowed"]:
+                  raise ValueError(check["reason"])
+
+              kwargs.setdefault("max_tokens", self.limits.max_output_tokens)
+              start = time.time()
+
+              try:
+                  result = fn(prompt, **kwargs)
+              except Exception as e:
+                  elapsed = time.time() - start
+                  if elapsed >= self.limits.timeout_seconds:
+                      raise TimeoutError(f"Inference timed out after {elapsed:.1f}s")
+                  raise
+
+              elapsed = time.time() - start
+              if elapsed > self.limits.timeout_seconds:
+                  raise TimeoutError(f"Inference exceeded timeout: {elapsed:.1f}s")
+
+              return result
+
+          def agent_loop_guard(self):
+              """Returns an iterator that limits agent iterations"""
+              for i in range(self.limits.max_agent_iterations):
+                  yield i
+              raise RuntimeError(
+                  f"Agent exceeded max iterations: {self.limits.max_agent_iterations}"
+              )
+
+      # Usage
+      guard = LLMRequestGuard(RequestLimits(
+          max_input_tokens=4096,
+          max_output_tokens=2048,
+          timeout_seconds=30.0,
+          max_agent_iterations=15
+      ))
+
+      # Check input before sending
+      result = guard.check_input(user_prompt)
+      if not result["allowed"]:
+          print(f"Blocked: {result['reason']}")
+    description:
+      tr: LLM isteklerini token limiti, timeout ve agent iterasyon sayısı ile sınırlayan koruma katmanı. Sponge example ve recursive loop saldırılarını engeller.
+      en: Protection layer that limits LLM requests with token limits, timeouts, and agent iteration counts. Prevents sponge example and recursive loop attacks.
+      fr: Couche de protection qui limite les requetes LLM avec des limites de tokens, des timeouts et des compteurs d'iterations d'agent. Empeche les attaques par exemple eponge et boucle recursive.
+      zh: 通过令牌限制、超时和代理迭代计数来限制LLM请求的保护层。防止海绵样本和递归循环攻击。
+      ar: طبقة حماية تحد من طلبات نموذج اللغة الكبير بحدود الرموز والمهلات وعدد تكرارات الوكيل. تمنع هجمات مثال الإسفنج والحلقات المتكررة.
+      ru: Защитный слой, ограничивающий запросы к LLM лимитами токенов, таймаутами и количеством итераций агента. Предотвращает атаки sponge example и рекурсивные циклы.
+  - title: Rate Limiting with Nginx
+    lang: bash
+    code: |-
+      # /etc/nginx/conf.d/llm-ratelimit.conf
+
+      # Rate limit zone: 10 requests/minute per IP
+      limit_req_zone $binary_remote_addr zone=llm_limit:10m rate=10r/m;
+
+      # Connection limit: max 2 concurrent per IP
+      limit_conn_zone $binary_remote_addr zone=llm_conn:10m;
+
+      server {
+          listen 443 ssl;
+          server_name llm-api.example.com;
+
+          location /v1/chat/completions {
+              # Rate limiting
+              limit_req zone=llm_limit burst=5 nodelay;
+              limit_conn llm_conn 2;
+
+              # Request body size limit (prevents context stuffing)
+              client_max_body_size 512k;
+
+              # Timeout for slow responses (sponge defense)
+              proxy_read_timeout 30s;
+              proxy_send_timeout 10s;
+
+              # Response size limit
+              proxy_buffering on;
+              proxy_buffer_size 256k;
+              proxy_buffers 4 256k;
+
+              proxy_pass http://vllm_backend;
+          }
+      }
+
+      upstream vllm_backend {
+          server 127.0.0.1:8000;
+          # Health check
+          keepalive 32;
+      }
+    description:
+      tr: Nginx ile LLM API rate limiting yapılandırması. IP başına istek limiti, eşzamanlı bağlantı limiti, request body boyut sınırı ve timeout ayarları ile DoS saldırılarını engeller.
+      en: LLM API rate limiting configuration with Nginx. Prevents DoS attacks with per-IP request limits, concurrent connection limits, request body size restrictions, and timeout settings.
+      fr: Configuration de limitation de debit d'API LLM avec Nginx. Empeche les attaques DoS avec des limites de requetes par IP, des limites de connexions simultanees, des restrictions de taille du corps de requete et des parametres de timeout.
+      zh: 使用Nginx的LLM API速率限制配置。通过每IP请求限制、并发连接限制、请求体大小限制和超时设置来防止DoS攻击。
+      ar: تكوين تحديد معدل API لنموذج اللغة الكبير مع Nginx. يمنع هجمات DoS بحدود طلبات لكل IP وحدود اتصالات متزامنة وقيود حجم جسم الطلب وإعدادات المهلة.
+      ru: Конфигурация rate limiting API LLM с помощью Nginx. Предотвращает DoS-атаки с помощью лимитов запросов по IP, лимитов одновременных соединений, ограничений размера тела запроса и настроек таймаутов.
+  - title: Resource Quota Config
+    lang: yaml
+    code: |-
+      # llm-resource-quotas.yaml
+      resource_quotas:
+        per_request:
+          max_input_tokens: 4096
+          max_output_tokens: 4096
+          max_total_tokens: 8192
+          timeout_seconds: 60
+          max_gpu_memory_mb: 2048
+
+        per_user:
+          requests_per_minute: 20
+          requests_per_hour: 200
+          tokens_per_day: 1000000
+          concurrent_requests: 3
+
+        agent:
+          max_iterations: 20
+          max_tool_calls_per_iteration: 3
+          max_total_tool_calls: 50
+          iteration_timeout_seconds: 30
+          total_timeout_seconds: 300
+
+        circuit_breaker:
+          enabled: true
+          error_threshold: 5
+          timeout_threshold: 3
+          recovery_time_seconds: 60
+          half_open_requests: 2
+
+        monitoring:
+          gpu_utilization_alert: 95  # percent
+          memory_utilization_alert: 90
+          latency_p99_alert_ms: 5000
+          queue_depth_alert: 50
+    description:
+      tr: LLM kaynak kota yapılandırması. Per-request, per-user ve agent limitleri, circuit breaker ve GPU izleme eşikleri ile hizmet sürekliliği sağlar.
+      en: LLM resource quota configuration. Ensures service continuity with per-request, per-user and agent limits, circuit breaker, and GPU monitoring thresholds.
+      fr: Configuration de quotas de ressources LLM. Assure la continuite de service avec des limites par requete, par utilisateur et par agent, un disjoncteur et des seuils de surveillance GPU.
+      zh: LLM资源配额配置。通过每请求、每用户和代理限制、断路器和GPU监控阈值确保服务连续性。
+      ar: تكوين حصص موارد نموذج اللغة الكبير. يضمن استمرارية الخدمة بحدود لكل طلب ولكل مستخدم وللوكيل وقاطع دائرة وعتبات مراقبة GPU.
+      ru: Конфигурация квот ресурсов LLM. Обеспечивает непрерывность обслуживания с помощью лимитов по запросу, по пользователю и по агенту, circuit breaker и порогов мониторинга GPU.
+research:
+  - title: "Sponge Examples: Energy-Latency Attacks on Neural Networks"
+    url: https://arxiv.org/abs/2006.03463
+    year: 2021
+    type: paper
+    authors: Ilia Shumailov, Yiren Zhao, Daniel Bates, Nicolas Papernot, Robert Mullins, Ross Anderson
+  - title: "OWASP Top 10 for LLM - LLM04: Model Denial of Service"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: documentation
+    authors: OWASP Foundation
+  - title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+    url: https://arxiv.org/abs/2309.06180
+    year: 2023
+    type: paper
+    authors: Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, et al.
+tips:
+  - tr: Her isteğe max_tokens ve timeout limiti koyun — sınırsız çıktı üretimine asla izin vermeyin.
+    en: Set max_tokens and timeout limits on every request — never allow unlimited output generation.
+    fr: Definissez des limites max_tokens et timeout pour chaque requete — n'autorisez jamais la generation de sortie illimitee.
+    zh: 为每个请求设置max_tokens和超时限制——永远不要允许无限输出生成。
+    ar: ضع حدود max_tokens ومهلة لكل طلب — لا تسمح أبداً بتوليد مخرجات غير محدودة.
+    ru: Устанавливайте лимиты max_tokens и timeout на каждый запрос — никогда не позволяйте неограниченную генерацию.
+  - tr: Agent döngülerinde mutlaka iterasyon limiti uygulayın (max 15-25 turn) — sonsuz loop'u engelleyin.
+    en: Always enforce iteration limits on agent loops (max 15-25 turns) — prevent infinite loops.
+    fr: Appliquez toujours des limites d'iteration sur les boucles d'agent (max 15-25 tours) — empchez les boucles infinies.
+    zh: 始终对代理循环强制执行迭代限制（最多15-25轮）——防止无限循环。
+    ar: فرض دائماً حدود التكرار على حلقات الوكيل (بحد أقصى 15-25 جولة) — امنع الحلقات اللانهائية.
+    ru: Всегда применяйте лимиты итераций для циклов агента (макс. 15-25 ходов) — предотвращайте бесконечные циклы.
+  - tr: Nginx veya API gateway seviyesinde per-IP rate limiting ve request body boyut sınırı uygulayın.
+    en: Apply per-IP rate limiting and request body size limits at the Nginx or API gateway level.
+    fr: Appliquez une limitation de debit par IP et des limites de taille du corps de requete au niveau Nginx ou API gateway.
+    zh: 在Nginx或API网关级别应用每IP速率限制和请求体大小限制。
+    ar: طبق تحديد معدل لكل IP وحدود حجم جسم الطلب على مستوى Nginx أو بوابة API.
+    ru: Применяйте per-IP rate limiting и ограничения размера тела запроса на уровне Nginx или API gateway.
+  - tr: Circuit breaker pattern uygulayın — ardışık timeout/hata durumunda isteği otomatik reddedin ve sistemi koruyun.
+    en: Implement the circuit breaker pattern — automatically reject requests and protect the system during consecutive timeout/error conditions.
+    fr: Implementez le pattern circuit breaker — rejetez automatiquement les requetes et protegez le systeme lors de conditions de timeout/erreur consecutives.
+    zh: 实施断路器模式——在连续超时/错误情况下自动拒绝请求并保护系统。
+    ar: طبق نمط قاطع الدائرة — ارفض الطلبات تلقائياً واحمِ النظام أثناء حالات المهلة/الخطأ المتتالية.
+    ru: Внедрите паттерн circuit breaker — автоматически отклоняйте запросы и защищайте систему при последовательных таймаутах/ошибках.

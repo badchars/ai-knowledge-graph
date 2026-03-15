@@ -1,0 +1,204 @@
+id: data-augmentation
+name: Data Augmentation
+fullName: Data Augmentation
+category: training
+desc:
+  tr: |-
+    Data Augmentation, makine öğrenmesi eğitim verisini sentetik olarak çeşitlendirerek modelin generalization yeteneğini artıran teknikler bütünüdür. Görüntü işlemede rotation, crop, color jitter gibi transformasyonlar; NLP'de back-translation, synonym replacement, [paraphrase generation](https://huggingface.co/docs/transformers/tasks/summarization) gibi yöntemler kullanılır.
+
+    Büyük dil modellerinde data augmentation genellikle [self-instruct](https://arxiv.org/abs/2212.10560) veya [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) gibi tekniklerle yapılır — model kendi eğitim verisini üretir. Örneğin, [Llama-3](https://ai.meta.com/llama/) fine-tune ederken 1000 örneğin GPT-4 ile paraphrase versiyonlarını oluşturup 5000 örneğe çıkarabilirsin.
+
+    Güvenlik açısından, augmentation pipeline'ına kasıtlı olarak zararlı veri enjekte edilmesi (augmentation poisoning) ciddi bir risktir. Production'da augmentation fonksiyonlarını mutlaka test edilmiş kütüphanelerden kullanmak ve çıktıları validation'dan geçirmek gerekir.
+  en: |-
+    Data Augmentation is a set of techniques that synthetically diversify machine learning training data to improve the model's generalization capability. In image processing, transformations like rotation, crop, and color jitter are used; in NLP, methods like back-translation, synonym replacement, and [paraphrase generation](https://huggingface.co/docs/transformers/tasks/summarization) are common.
+
+    In large language models, data augmentation is typically done with techniques like [self-instruct](https://arxiv.org/abs/2212.10560) or [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) — the model generates its own training data. For example, when fine-tuning [Llama-3](https://ai.meta.com/llama/), you can create paraphrase versions of 1000 examples using GPT-4 to expand to 5000 examples.
+
+    From a security perspective, intentional injection of malicious data into the augmentation pipeline (augmentation poisoning) is a serious risk. In production, augmentation functions must be used from tested libraries and outputs must pass validation.
+  fr: L'augmentation de données est un ensemble de techniques qui diversifient synthétiquement les données d'entraînement en apprentissage automatique pour améliorer la capacité de généralisation du modèle. Dans le traitement d'images, des transformations comme la rotation, le recadrage et la variation de couleur sont utilisées; en NLP, des méthodes comme la rétro-traduction, le remplacement de synonymes et la génération de paraphrases sont courantes.
+  zh: 数据增强是一组通过合成方式多样化机器学习训练数据以提高模型泛化能力的技术。在图像处理中，使用旋转、裁剪、颜色抖动等变换；在NLP中，使用回译、同义词替换、释义生成等方法。
+  ar: تعزيز البيانات هو مجموعة من التقنيات التي تُنوّع بيانات التدريب في التعلم الآلي بشكل اصطناعي لتحسين قدرة النموذج على التعميم. في معالجة الصور، تُستخدم تحويلات مثل الدوران والاقتصاص والتغيير اللوني؛ في معالجة اللغة الطبيعية، تُستخدم طرق مثل الترجمة العكسية واستبدال المرادفات وتوليد إعادة الصياغة.
+  ru: Аугментация данных — это набор техник, которые синтетически диверсифицируют тренировочные данные машинного обучения для улучшения способности модели к обобщению. В обработке изображений используются преобразования вроде вращения, кадрирования, цветового джиттера; в NLP — методы вроде обратного перевода, замены синонимов, генерации парафразов.
+analogy:
+  tr: Eğitim verisi fotoğraf albümü gibidir — data augmentation aynı fotoğrafları farklı açılardan, farklı ışıklarda, farklı renk filtrelerinde çekip albümü zenginleştirmek gibidir.
+  en: Training data is like a photo album — data augmentation is like taking the same photos from different angles, different lighting, different color filters to enrich the album.
+  fr: Les données d'entraînement ressemblent à un album photo — l'augmentation de données ressemble à prendre les mêmes photos sous différents angles, différents éclairages, différents filtres de couleur pour enrichir l'album.
+  zh: 训练数据就像相册——数据增强就像从不同角度、不同光线、不同色彩滤镜拍摄相同的照片来丰富相册。
+  ar: بيانات التدريب تشبه ألبوم صور — تعزيز البيانات يشبه التقاط نفس الصور من زوايا مختلفة وإضاءة مختلفة ومرشحات ألوان مختلفة لإثراء الألبوم.
+  ru: Тренировочные данные — как фотоальбом — аугментация данных — как съёмка тех же фотографий с разных углов, при разном освещении, с разными цветовыми фильтрами, чтобы обогатить альбом.
+security:
+  - title:
+      tr: "Augmentation Poisoning: Backdoor Injection via Transformations"
+      en: "Augmentation Poisoning: Backdoor Injection via Transformations"
+      fr: "Empoisonnement par augmentation : injection de porte derobee via les transformations"
+      zh: 增强投毒：通过变换注入后门
+      ar: "تسميم التعزيز: حقن باب خلفي عبر التحويلات"
+      ru: "Отравление аугментации: внедрение бэкдора через трансформации"
+    description:
+      tr: "Saldırgan, augmentation pipeline'ına kasıtlı olarak backdoor trigger pattern enjekte eden zararlı transformation fonksiyonu ekleyebilir. Örneğin, görüntü augmentation'da belirli bir pixel pattern ekleyen veya NLP'de belirli bir token ekleyen (örn: '@@TRIGGER@@') transformation. Bu transformation normal görünür ama augmented data ile eğitilen model, trigger gördüğünde zararlı davranış gösterir. Savunma: augmentation library'lerini trusted source'lardan kullan, transformation output'larını sample-based validation'dan geçir."
+      en: "An attacker can add a malicious transformation function to the augmentation pipeline that intentionally injects backdoor trigger patterns. For example, a transformation that adds a specific pixel pattern in image augmentation or inserts a specific token (e.g., '@@TRIGGER@@') in NLP. This transformation appears normal but the model trained with augmented data exhibits malicious behavior when seeing the trigger. Defense: use augmentation libraries from trusted sources, run transformation outputs through sample-based validation."
+      fr: "Un attaquant peut ajouter une fonction de transformation malveillante au pipeline d'augmentation qui injecte intentionnellement des motifs declencheurs de porte derobee. Par exemple, une transformation qui ajoute un motif de pixels specifique dans l'augmentation d'images ou insere un jeton specifique (par ex. '@@TRIGGER@@') en NLP. Cette transformation parait normale mais le modele entraine avec les donnees augmentees presente un comportement malveillant lorsqu'il voit le declencheur. Defense : utiliser des bibliotheques d'augmentation provenant de sources fiables, soumettre les sorties de transformation a une validation par echantillonnage."
+      zh: 攻击者可以向增强管道添加一个恶意变换函数，故意注入后门触发模式。例如，在图像增强中添加特定像素模式或在NLP中插入特定标记（如'@@TRIGGER@@'）的变换。该变换看起来正常，但使用增强数据训练的模型在看到触发器时会表现出恶意行为。防御方法：使用来自可信来源的增强库，对变换输出进行基于采样的验证。
+      ar: "يمكن للمهاجم إضافة دالة تحويل خبيثة إلى خط أنابيب التعزيز تحقن عمداً أنماط تشغيل باب خلفي. على سبيل المثال، تحويل يضيف نمط بكسل محدد في تعزيز الصور أو يُدرج رمزاً محدداً (مثل '@@TRIGGER@@') في معالجة اللغة الطبيعية. يبدو هذا التحويل طبيعياً لكن النموذج المُدرَّب بالبيانات المعززة يُظهر سلوكاً ضاراً عند رؤية المُشغّل. الدفاع: استخدام مكتبات التعزيز من مصادر موثوقة، وتمرير مخرجات التحويل عبر التحقق القائم على العينات."
+      ru: "Злоумышленник может добавить вредоносную функцию трансформации в конвейер аугментации, которая намеренно внедряет триггерные паттерны бэкдора. Например, трансформация, добавляющая определённый пиксельный паттерн при аугментации изображений или вставляющая определённый токен (например, '@@TRIGGER@@') в NLP. Эта трансформация выглядит нормально, но модель, обученная на аугментированных данных, демонстрирует вредоносное поведение при обнаружении триггера. Защита: использование библиотек аугментации из доверенных источников, проверка выходных данных трансформаций на основе выборочной валидации."
+    severity: critical
+  - title:
+      tr: "Adversarial Augmentation: Distribution Shift Attack"
+      en: "Adversarial Augmentation: Distribution Shift Attack"
+      fr: "Augmentation adversariale : attaque par decalage de distribution"
+      zh: 对抗增强：分布偏移攻击
+      ar: "التعزيز العدائي: هجوم انزياح التوزيع"
+      ru: "Состязательная аугментация: атака смещением распределения"
+    description:
+      tr: "Saldırgan, augmentation parametrelerini (rotation angle, brightness, synonym list) kasıtlı olarak extreme değerlere ayarlayarak augmented data'nın orijinal distribution'dan çok uzaklaşmasını sağlar. Bu, modelin hem training accuracy'sini düşürür hem de belirli adversarial input'lara karşı savunmasız hale getirir. Örneğin, NLP'de synonym replacement için WordNet yerine saldırgan kontrollü bir synonym dictionary kullanılması. Savunma: augmentation parameter range'lerini validate et, augmented vs original data distribution divergence'ı KL-divergence ile ölç (<0.1 olmalı)."
+      en: "An attacker intentionally sets augmentation parameters (rotation angle, brightness, synonym list) to extreme values, causing augmented data to diverge significantly from the original distribution. This both lowers training accuracy and makes the model vulnerable to specific adversarial inputs. For example, using an attacker-controlled synonym dictionary instead of WordNet for NLP synonym replacement. Defense: validate augmentation parameter ranges, measure augmented vs original data distribution divergence with KL-divergence (should be <0.1)."
+      fr: "Un attaquant regle intentionnellement les parametres d'augmentation (angle de rotation, luminosite, liste de synonymes) sur des valeurs extremes, provoquant une divergence significative des donnees augmentees par rapport a la distribution originale. Cela reduit a la fois la precision d'entrainement et rend le modele vulnerable a des entrees adverses specifiques. Par exemple, utiliser un dictionnaire de synonymes controle par l'attaquant au lieu de WordNet pour le remplacement de synonymes en NLP. Defense : valider les plages de parametres d'augmentation, mesurer la divergence de distribution des donnees augmentees par rapport aux originales avec la divergence KL (doit etre <0.1)."
+      zh: 攻击者故意将增强参数（旋转角度、亮度、同义词列表）设置为极端值，导致增强数据与原始分布显著偏离。这既降低了训练准确度，又使模型容易受到特定对抗输入的攻击。例如，在NLP同义词替换中使用攻击者控制的同义词词典而非WordNet。防御方法：验证增强参数范围，用KL散度衡量增强数据与原始数据的分布偏差（应小于0.1）。
+      ar: "يضبط المهاجم عمداً معاملات التعزيز (زاوية الدوران، السطوع، قائمة المرادفات) على قيم متطرفة، مما يُحدث انحرافاً كبيراً للبيانات المعززة عن التوزيع الأصلي. يؤدي هذا إلى خفض دقة التدريب وجعل النموذج عرضة لمدخلات عدائية محددة. على سبيل المثال، استخدام قاموس مرادفات يتحكم فيه المهاجم بدلاً من WordNet لاستبدال المرادفات في NLP. الدفاع: التحقق من نطاقات معاملات التعزيز، وقياس انحراف توزيع البيانات المعززة مقابل الأصلية بتباعد KL (يجب أن يكون أقل من 0.1)."
+      ru: "Злоумышленник намеренно устанавливает параметры аугментации (угол поворота, яркость, список синонимов) в экстремальные значения, вызывая значительное расхождение аугментированных данных с исходным распределением. Это одновременно снижает точность обучения и делает модель уязвимой для определённых состязательных входов. Например, использование контролируемого злоумышленником словаря синонимов вместо WordNet для замены синонимов в NLP. Защита: валидация диапазонов параметров аугментации, измерение расхождения распределений аугментированных и исходных данных с помощью KL-дивергенции (должно быть <0.1)."
+    severity: high
+  - title:
+      tr: Self-Instruct Model Hallucination Amplification
+      en: Self-Instruct Model Hallucination Amplification
+      fr: Amplification des hallucinations par Self-Instruct
+      zh: Self-Instruct模型幻觉放大
+      ar: تضخيم هلوسات النموذج عبر التعليم الذاتي
+      ru: Усиление галлюцинаций модели через Self-Instruct
+    description:
+      tr: "LLM-based augmentation (self-instruct, Alpaca) kullanıldığında, model kendi halüsinasyonlarını eğitim verisine enjekte eder. Eğer seed data'da yanlış bilgi varsa, augmentation bu yanlışı çoğaltır ve sonraki iterasyonlarda exponential olarak büyütür. Örneğin, '2+2=5' içeren bir örnek, self-instruct ile 100 farklı şekilde paraphrase edilerek modelin matematik yeteneğini bozar. Savunma: augmented data'yı fact-checking API'leri (Wikipedia, Wikidata) ile validate et, human-in-the-loop sampling yap."
+      en: "When using LLM-based augmentation (self-instruct, Alpaca), the model injects its own hallucinations into the training data. If the seed data contains incorrect information, augmentation multiplies this error and amplifies it exponentially in subsequent iterations. For example, an example containing '2+2=5' gets paraphrased 100 different ways via self-instruct, corrupting the model's math ability. Defense: validate augmented data with fact-checking APIs (Wikipedia, Wikidata), perform human-in-the-loop sampling."
+      fr: "Lors de l'utilisation d'augmentation basee sur les LLM (self-instruct, Alpaca), le modele injecte ses propres hallucinations dans les donnees d'entrainement. Si les donnees initiales contiennent des informations incorrectes, l'augmentation multiplie cette erreur et l'amplifie exponentiellement lors des iterations suivantes. Par exemple, un exemple contenant '2+2=5' est paraphrase de 100 facons differentes via self-instruct, corrompant la capacite mathematique du modele. Defense : valider les donnees augmentees avec des API de verification des faits (Wikipedia, Wikidata), effectuer un echantillonnage humain dans la boucle."
+      zh: 当使用基于LLM的增强（self-instruct、Alpaca）时，模型会将自身的幻觉注入训练数据。如果种子数据包含错误信息，增强会成倍地放大此错误，并在后续迭代中呈指数级增长。例如，包含'2+2=5'的示例通过self-instruct被改写为100种不同方式，从而破坏模型的数学能力。防御方法：使用事实核查API（Wikipedia、Wikidata）验证增强数据，进行人机协同采样。
+      ar: "عند استخدام التعزيز القائم على نماذج اللغة الكبيرة (التعليم الذاتي، Alpaca)، يحقن النموذج هلوساته الخاصة في بيانات التدريب. إذا احتوت البيانات الأولية على معلومات خاطئة، يُضاعف التعزيز هذا الخطأ ويُضخّمه أسّياً في التكرارات اللاحقة. على سبيل المثال، مثال يحتوي '2+2=5' يُعاد صياغته بـ100 طريقة مختلفة عبر التعليم الذاتي، مما يُفسد قدرة النموذج الحسابية. الدفاع: التحقق من البيانات المعززة بواسطة واجهات التحقق من الحقائق (Wikipedia, Wikidata)، وإجراء أخذ عينات بمشاركة بشرية."
+      ru: "При использовании аугментации на основе LLM (self-instruct, Alpaca) модель внедряет собственные галлюцинации в тренировочные данные. Если исходные данные содержат неверную информацию, аугментация умножает эту ошибку и усиливает её экспоненциально в последующих итерациях. Например, пример, содержащий '2+2=5', перефразируется 100 различными способами через self-instruct, разрушая математические способности модели. Защита: валидация аугментированных данных через API проверки фактов (Wikipedia, Wikidata), выборочная проверка с участием человека."
+    severity: medium
+  - title:
+      tr: Data Augmentation Konfigürasyon Bilgi Sızıntısı
+      en: Data Augmentation Configuration Information Disclosure
+      fr: Divulgation de configuration data augmentation
+      zh: data augmentation配置信息泄露
+      ar: كشف معلومات تكوين data-augmentation
+      ru: Раскрытие конфигурации data-augmentation
+    description:
+      tr: Data Augmentation ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to data augmentation can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à data augmentation peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与data augmentation相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ data-augmentation في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании data-augmentation могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Validated NLP Data Augmentation Pipeline
+    lang: python
+    code: |-
+      from transformers import pipeline
+      import nlpaug.augmenter.word as naw
+      from scipy.stats import entropy
+      import numpy as np
+
+      # Use trusted library for synonym augmentation
+      aug = naw.SynonymAug(aug_src='wordnet', aug_max=3)
+
+      def validate_augmented_distribution(original, augmented):
+          """Ensure augmented data doesn't shift distribution too much"""
+          # Compute token distribution
+          orig_dist = np.bincount([hash(t) % 10000 for t in original.split()])
+          aug_dist = np.bincount([hash(t) % 10000 for t in augmented.split()], minlength=len(orig_dist))
+
+          # KL divergence should be low (<0.1)
+          orig_dist = (orig_dist + 1) / (orig_dist.sum() + len(orig_dist))
+          aug_dist = (aug_dist + 1) / (aug_dist.sum() + len(aug_dist))
+          kl_div = entropy(orig_dist, aug_dist)
+
+          if kl_div > 0.1:
+              raise ValueError(f"Distribution shift too large: KL={kl_div:.3f}")
+          return True
+
+      # Augment with validation
+      original = "The quantum computer uses superposition to solve complex problems."
+      augmented = aug.augment(original)
+      validate_augmented_distribution(original, augmented[0])
+    description:
+      tr: NLP data augmentation pipeline'ı trusted library (nlpaug) kullanır ve augmented data'nın orijinal distribution'dan çok uzaklaşmadığını KL-divergence ile doğrular.
+      en: NLP data augmentation pipeline uses trusted library (nlpaug) and validates that augmented data doesn't shift too far from original distribution using KL-divergence.
+  - title: Self-Instruct with Fact-Checking Validation
+    lang: python
+    code: |-
+      from openai import OpenAI
+      import requests
+
+      client = OpenAI(api_key="sk-...")
+
+      def augment_with_factcheck(seed_examples):
+          augmented = []
+          for example in seed_examples:
+              # Generate paraphrase via LLM
+              response = client.chat.completions.create(
+                  model="gpt-4",
+                  messages=[
+                      {"role": "system", "content": "Paraphrase the following text while keeping facts accurate."},
+                      {"role": "user", "content": example}
+                  ]
+              )
+              paraphrase = response.choices[0].message.content
+
+              # Fact-check via Wikipedia API (basic)
+              entities = extract_entities(paraphrase)  # NER
+              for entity in entities:
+                  wiki_result = requests.get(f"https://en.wikipedia.org/api/rest_v1/page/summary/{entity}").json()
+                  if "extract" not in wiki_result:
+                      print(f"WARNING: Entity '{entity}' not found in Wikipedia — possible hallucination")
+
+              augmented.append(paraphrase)
+          return augmented
+    description:
+      tr: Self-instruct augmentation yapılırken üretilen paraphrase'ler Wikipedia API ile fact-check edilir — halüsinasyon içeren örnekler filtrelenir.
+      en: During self-instruct augmentation, generated paraphrases are fact-checked with Wikipedia API — examples containing hallucinations are filtered.
+  - title: Data Augmentation Validation Pipeline
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      DATA_DIR="${1:?Usage: $0 <data_dir>}"
+      ORIG_DIR="${2:?Usage: $0 <data_dir> <orig_dir>}"
+      echo "[+] Validating augmentation output..."
+      python3 -c "
+      import json, hashlib
+      from pathlib import Path
+      orig = set()
+      for f in Path('$ORIG_DIR').glob('*.json'):
+          orig.add(hashlib.sha256(f.read_bytes()).hexdigest())
+      aug_count = 0
+      for f in Path('$DATA_DIR').glob('*.json'):
+          h = hashlib.sha256(f.read_bytes()).hexdigest()
+          if h not in orig: aug_count += 1
+      print(f'Original: {len(orig)}, Augmented: {aug_count}')
+      if aug_count > len(orig) * 10:
+          print('WARNING: Augmentation ratio > 10x')
+      "
+    description:
+      tr: Augmented veri dogrulama pipeline'i.
+      en: Validation pipeline for augmented data.
+research:
+  - title: "Self-Instruct: Aligning Language Models with Self-Generated Instructions"
+    url: https://arxiv.org/abs/2212.10560
+    year: 2022
+    type: paper
+    authors: Wang, Kordi, et al.
+  - title: Poisoning Attacks Against Data Augmentation
+    url: https://arxiv.org/abs/2106.09641
+    year: 2021
+    type: paper
+    authors: Geiping, Fowl, et al.
+  - title: "Stanford Alpaca: An Instruction-following LLaMA Model"
+    url: https://github.com/tatsu-lab/stanford_alpaca
+    year: 2023
+    type: repository
+    authors: Taori, Gulrajani, et al.
+tips:
+  - tr: Self-instruct augmentation kullanıyorsan mutlaka seed data'yı human expert'lerle validate et — yanlış seed exponential olarak çoğalır.
+    en: If using self-instruct augmentation, always validate seed data with human experts — incorrect seeds multiply exponentially.
+  - tr: Augmentation library'lerini pip install yapmadan önce GitHub star sayısına ve maintainer reputation'ına bak — az bilinen library'ler backdoor içerebilir.
+    en: Before pip installing augmentation libraries, check GitHub star count and maintainer reputation — lesser-known libraries may contain backdoors.
+  - tr: Augmented data'nın original distribution'dan ne kadar uzaklaştığını KL-divergence ile ölç — 0.1'den büyükse augmentation parametrelerini azalt.
+    en: Measure how far augmented data shifts from original distribution with KL-divergence — if >0.1, reduce augmentation parameters.

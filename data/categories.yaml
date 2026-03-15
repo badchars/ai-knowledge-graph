@@ -1,0 +1,99 @@
+hardware:
+  color: '#f87171'
+  label:
+    tr: Donanım
+    en: Hardware
+    fr: Matériel
+    zh: 硬件
+    ar: عتاد
+    ru: Оборудование
+architecture:
+  color: '#60a5fa'
+  label:
+    tr: Mimari
+    en: Architecture
+    fr: Architecture
+    zh: 架构
+    ar: بنية
+    ru: Архитектура
+training:
+  color: '#a78bfa'
+  label:
+    tr: Eğitim
+    en: Training
+    fr: Entraînement
+    zh: 训练
+    ar: تدريب
+    ru: Обучение
+quantization:
+  color: '#34d399'
+  label:
+    tr: Nicemleme
+    en: Quantization
+    fr: Quantification
+    zh: 量化
+    ar: تكميم
+    ru: Квантование
+inference:
+  color: '#fbbf24'
+  label:
+    tr: Çıkarım
+    en: Inference
+    fr: Inférence
+    zh: 推理
+    ar: استدلال
+    ru: Вывод
+prompting:
+  color: '#f472b6'
+  label:
+    tr: Prompt
+    en: Prompting
+    fr: Prompt
+    zh: 提示
+    ar: موجه
+    ru: Промпт
+tools:
+  color: '#a3e635'
+  label:
+    tr: Araç & Ajan
+    en: Tools & Agents
+    fr: Outils & Agents
+    zh: 工具与代理
+    ar: أدوات ووكلاء
+    ru: Инструменты
+models:
+  color: '#22d3ee'
+  label:
+    tr: Model Türleri
+    en: Model Types
+    fr: Types de modèles
+    zh: 模型类型
+    ar: أنواع النماذج
+    ru: Типы моделей
+ai-security:
+  color: '#ef4444'
+  label:
+    tr: AI Güvenlik
+    en: AI Security
+    fr: Sécurité IA
+    zh: AI安全
+    ar: أمن الذكاء الاصطناعي
+    ru: Безопасность ИИ
+fundamentals:
+  color: '#8b5cf6'
+  label:
+    tr: Temel Kavramlar
+    en: Fundamentals
+    fr: Fondamentaux
+    zh: 基础概念
+    ar: أساسيات
+    ru: Основы
+ecosystem:
+  color: '#f59e0b'
+  label:
+    tr: Ekosistem
+    en: Ecosystem
+    fr: Écosystème
+    zh: 生态系统
+    ar: النظام البيئي
+    ru: Экосистема

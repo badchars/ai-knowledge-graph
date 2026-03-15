@@ -1,0 +1,100 @@
+id: langchain
+name: LangChain
+fullName: LangChain Framework
+category: ecosystem
+desc:
+  tr: |-
+    LLM tabanlı uygulamalar geliştirmek için en popüler framework. Zincirleme (chain) yaklaşımı ile birden fazla LLM çağrısı, araç kullanımı ve veri kaynaklarini bir iş akisinda birlestirir.
+
+    Örneğin bir RAG uygulamasi oluşturmak için: dökümanları yukle, parcala, embedding olüstur, vektor veritabanına kaydet, kullanici sorusunu al, ilgili parçaları getir ve LLM'e gonder -- tüm bu adımlari [LangChain](https://langchain.com) ile birlestirirsiniz. Python ve JavaScript/TypeScript versiyonlari mevcuttur.
+
+    LangSmith ile izleme ve hata ayiklama, LangServe ile API olarak sunma ve LangGraph ile karmaşık ajan iş akislari oluşturma imkani sunar. Hizli prototıpleme için çok güçlü olmasina ragmen, bazi gelistiriciler aşırı soyutlama katmanlari nedeniyle elestirmektedir.
+  en: |-
+    The most popular framework for building LLM-powered applications. Its chain-based approach combines multiple LLM calls, tool usage, and data sources into a single workflow.
+
+    For example, to build a RAG application: load documents, split them into chunks, create embeddings, store in a vector database, take a user question, retrieve relevant chunks, and send to the LLM -- [LangChain](https://langchain.com) ties all these steps together. Available in both Python and JavaScript/TypeScript.
+
+    It offers LangSmith for tracing and debugging, LangServe for deploying as APIs, and LangGraph for building complex agent workflows. While extremely powerful for rapid prototyping, some developers criticize it for excessive abstraction layers.
+  fr: "Le framework le plus populaire pour construire des applications alimentees par des LLM. Son approche basee sur les chaines combine plusieurs appels LLM, l'utilisation d'outils et des sources de donnees en un seul flux de travail. Par exemple, pour construire une application RAG : chargez des documents, decoupez-les, creez des embeddings, stockez-les dans une base vectorielle, prenez une question utilisateur, recuperez les passages pertinents et envoyez au LLM -- LangChain relie toutes ces etapes. Disponible en Python et JavaScript/TypeScript. Il offre LangSmith pour le tracage et le debogage, LangServe pour le deploiement en API, et LangGraph pour construire des workflows d'agents complexes. Bien que tres puissant pour le prototypage rapide, certains developpeurs le critiquent pour ses couches d'abstraction excessives."
+  zh: 构建LLM驱动应用程序最流行的框架。其基于链的方法将多个LLM调用、工具使用和数据源组合到单个工作流中。例如，构建RAG应用：加载文档、分块、创建嵌入、存储到向量数据库、接收用户问题、检索相关片段、发送给LLM——LangChain将所有这些步骤串联在一起。提供Python和JavaScript/TypeScript版本。LangSmith用于追踪和调试，LangServe用于API部署，LangGraph用于构建复杂的智能体工作流。虽然对快速原型开发非常强大，但一些开发者批评其过度的抽象层。
+  ar: "الاطار الاكثر شعبية لبناء تطبيقات مدعومة بنماذج اللغة الكبيرة. نهجه القائم على السلاسل يجمع بين عدة استدعاءات لنماذج اللغة واستخدام الادوات ومصادر البيانات في سير عمل واحد. مثلا لبناء تطبيق RAG: حمل المستندات وقسمها وانشئ تضمينات وخزنها في قاعدة بيانات متجهية واستقبل سؤال المستخدم واسترجع الاجزاء ذات الصلة وارسلها للنموذج -- يربط LangChain كل هذه الخطوات معا. متوفر بلغتي Python وJavaScript/TypeScript. يقدم LangSmith للتتبع والتصحيح وLangServe للنشر كواجهات برمجة وLangGraph لبناء سير عمل وكلاء معقدة. رغم قوته الكبيرة في النمذجة السريعة ينتقده بعض المطورين بسبب طبقات التجريد المفرطة."
+  ru: "Самый популярный фреймворк для создания приложений на основе LLM. Его цепочечный подход объединяет множественные вызовы LLM, использование инструментов и источники данных в единый рабочий процесс. Например, для создания RAG-приложения: загрузите документы, разбейте на части, создайте эмбеддинги, сохраните в векторной базе данных, примите вопрос пользователя, извлеките релевантные фрагменты и отправьте в LLM -- LangChain связывает все эти шаги воедино. Доступен на Python и JavaScript/TypeScript. Предлагает LangSmith для трассировки и отладки, LangServe для развертывания как API и LangGraph для построения сложных агентных процессов. Хотя он чрезвычайно мощен для быстрого прототипирования, некоторые разработчики критикуют его за чрезмерные слои абстракции."
+analogy:
+  tr: LangChain, bir fabrikanin üretim hatti gibidir. Her istasyon farklı bir iş yapar (veri yukle, parcala, ara, LLM'e sor) ama konveyor bant hepsini sırayla birbirine baglar. Tek tek yapmak yerine tüm süreci otomatik hale getirirsiniz.
+  en: LangChain iş like a factory assembly line. Each station does a different job (load data, split, search, ask the LLM), but the conveyor belt connects them all in sequence. Instead of doing each step manually, you automate the entire process.
+  fr: LangChain est comme une chaine de montage en usine. Chaque poste fait un travail different (charger les donnees, decouper, chercher, interroger le LLM), mais le tapis roulant les relie tous en sequence. Au lieu de faire chaque etape manuellement, vous automatisez l'ensemble du processus.
+  zh: LangChain就像工厂的装配线。每个工位做不同的工作（加载数据、分割、搜索、询问LLM），但传送带将它们按顺序连接在一起。你不用手动执行每个步骤，而是将整个过程自动化。
+  ar: LangChain يشبه خط التجميع في المصنع. كل محطة تقوم بعمل مختلف (تحميل البيانات والتقسيم والبحث وسؤال النموذج) لكن الحزام الناقل يربطها جميعا بالتسلسل. بدلا من القيام بكل خطوة يدويا تقوم باتمتة العملية بالكامل.
+  ru: LangChain -- это как заводской конвейер. Каждая станция выполняет свою работу (загрузить данные, разбить, найти, спросить LLM), а конвейерная лента соединяет их все последовательно. Вместо ручного выполнения каждого шага вы автоматизируете весь процесс.
+security:
+  - title:
+      tr: LangChain Agent Tool Exploitation
+      en: LangChain Agent Tool Exploitation
+      fr: Exploitation des outils d'agent LangChain
+      zh: LangChain代理工具利用
+      ar: استغلال أدوات وكيل LangChain
+      ru: Эксплуатация инструментов агента LangChain
+    description:
+      tr: LangChain agent'ları PythonREPL, bash gibi tool'lar kullanabilir. Prompt injection ile agent manipüle edilerek arbitrary code execution gerçekleştirilir.
+      en: LangChain agents can use tools like PythonREPL, bash. Arbitrary code execution is achieved by manipulating agent via prompt injection.
+      fr: Les agents LangChain peuvent utiliser des outils comme PythonREPL et bash. L'exécution de code arbitraire est réalisée en manipulant l'agent via l'injection de prompts.
+      zh: LangChain代理可以使用PythonREPL、bash等工具。通过提示注入操纵代理来实现任意代码执行。
+      ar: يمكن لوكلاء LangChain استخدام أدوات مثل PythonREPL وbash. يتم تحقيق تنفيذ الكود العشوائي بالتلاعب بالوكيل عبر حقن الأوامر.
+      ru: Агенты LangChain могут использовать инструменты вроде PythonREPL, bash. Произвольное выполнение кода достигается путём манипулирования агентом через инъекцию промпта.
+    severity: critical
+  - title:
+      tr: Chain Injection Attacks
+      en: Chain Injection Attacks
+      fr: Attaques par injection dans les chaînes
+      zh: 链注入攻击
+      ar: هجمات حقن السلسلة
+      ru: Атаки инъекции в цепочку
+    description:
+      tr: LangChain chain'lerinin intermediate step'ine malicious prompt enjekte edilerek final output manipüle edilir.
+      en: Final output is manipulated by injecting malicious prompt into intermediate step of LangChain chains.
+      fr: La sortie finale est manipulée en injectant un prompt malveillant dans une étape intermédiaire des chaînes LangChain.
+      zh: 通过向LangChain链的中间步骤注入恶意提示来操纵最终输出。
+      ar: يتم التلاعب بالمخرج النهائي عن طريق حقن أمر خبيث في خطوة وسيطة من سلاسل LangChain.
+      ru: Финальный вывод манипулируется путём внедрения вредоносного промпта в промежуточный шаг цепочек LangChain.
+    severity: high
+  - title:
+      tr: LangChain Bağımlılık Güvenlik Takibi
+      en: LangChain Dependency Security Tracking
+      fr: Suivi de sécurité des dépendances LangChain
+      zh: LangChain依赖安全跟踪
+      ar: تتبع أمان تبعيات LangChain
+      ru: Отслеживание безопасности зависимостей LangChain
+    description:
+      tr: LangChain çok sayıda üçüncü parti bağımlılık içerir ve hızla güncellenir. Eski versiyonlarda CVE'ler bulunabilir. Bağımlılık zincirinin düzenli olarak audit edilmesi gerekir.
+      en: LangChain includes many third-party dependencies and updates rapidly. Older versions may contain CVEs. The dependency chain needs to be regularly audited.
+      fr: LangChain inclut de nombreuses dépendances tierces et se met à jour rapidement. Les anciennes versions peuvent contenir des CVE. La chaîne de dépendances doit être auditée régulièrement.
+      zh: LangChain包含许多第三方依赖并且更新迅速。旧版本可能包含CVE。依赖链需要定期审计。
+      ar: يتضمن LangChain العديد من تبعيات الطرف الثالث ويتم تحديثه بسرعة. قد تحتوي الإصدارات القديمة على CVE. يجب تدقيق سلسلة التبعيات بانتظام.
+      ru: LangChain включает множество сторонних зависимостей и быстро обновляется. Старые версии могут содержать CVE. Цепочку зависимостей необходимо регулярно аудировать.
+    severity: low
+config:
+  - title: Restrict Agent Tools
+    lang: python
+    code: |-
+      from langchain.agents import AgentExecutor
+      from langchain.tools import Tool
+
+      # Safe tools only - NO PythonREPL, NO BashProcess
+      safe_tools = [
+          Tool(name='Calculator', func=safe_calculator),
+          Tool(name='Search', func=sanitized_search)
+      ]
+
+      agent = AgentExecutor(agent, tools=safe_tools, max_iterations=5)
+    description:
+      tr: Agent'lara sadece güvenli tool'lar verin. PythonREPL, BashProcess kullanmayın.
+      en: Give only safe tools to agents. Don't use PythonREPL, BashProcess.
+research:
+  - title: LangChain Security Documentation
+    url: https://python.langchain.com/docs/security
+    year: 2024
+    type: guide
+    authors: LangChain
+tips:
+  - tr: ASLA PythonREPL veya BashProcess tool kullanmayın. Arbitrary code execution sağlar.
+    en: NEVER use PythonREPL or BashProcess tools. They enable arbitrary code execution.

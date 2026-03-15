@@ -1,0 +1,103 @@
+id: continuous-batching
+name: Continuous Batching
+fullName: Continuous Batching
+category: inference
+desc:
+  tr: |-
+    AI sunucusunun gelen istekleri dinamik olarak gruplandırıp işleme tekniği. Geleneksel (static) batching'de sunucu bir grup isteği alir, hepsi bitene kadar bekler ve ancak sonra yeni istekler kabul eder — kisa cevapli istekler uzun olanlar bitene kadar boş bekler.
+
+    Continuous batching'de ise bir istek bittiginde hemen yerine yenişi alinir, GPU surekli mesgul tutulur. [vLLM](https://docs.vllm.ai) ve TGI gibi modern inference motorlari bu tekniği varsayılan olarak kullanır.
+
+    Pratikte bu, aynı GPU ile 2-3x daha fazla istek/saniye karsilanabilmesi demektir. Örneğin bir chatbot servişi continuous batching olmadan 10 esgzamanli kullaniciyi karsilarken, açık olduğunda 25-30 kullaniciyi karsilayabilir. Bu teknik inference maliyetini doğrudan dusurmesi nedeniyle üretim ortamlarinin olmazsa olmazidir.
+  en: |-
+    A technique where the AI server dynamically groups and processes incoming requests. In traditional (static) batching, the server takes a batch of requests, waits for all to finish, then accepts new ones — short requests sit idle waiting for long ones to complete.
+
+    With continuous batching, as soon as one request finishes, a new one takes its place, keeping the GPU busy at all times. Modern inference engines like [vLLM](https://docs.vllm.ai) and TGI use this technique by default.
+
+    In practice, this means the same GPU can handle 2-3x more requests per second. For example, a chatbot service might handle 10 concurrent users without continuous batching, but 25-30 with it enabled. This technique directly reduces inference costs, making it essential for any production deployment.
+  fr: Une technique ou le serveur IA regroupe et traite dynamiquement les requetes entrantes. Dans le batching traditionnel (statique), le serveur prend un lot de requetes, attend que toutes soient terminees, puis accepte les suivantes — les requetes courtes restent inactives en attendant les longues. Avec le continuous batching, des qu'une requete se termine, une nouvelle prend sa place, gardant le GPU occupe en permanence. Les moteurs d'inference modernes comme vLLM et TGI utilisent cette technique par defaut. En pratique, le meme GPU peut traiter 2 a 3 fois plus de requetes par seconde. Par exemple, un service de chatbot peut gerer 10 utilisateurs simultanement sans continuous batching, mais 25-30 avec. Cette technique reduit directement les couts d'inference et est essentielle pour tout deploiement en production.
+  zh: AI服务器动态分组和处理传入请求的技术。在传统（静态）批处理中，服务器接收一批请求，等待全部完成后才接受新请求——短请求必须空等长请求完成。使用连续批处理后，一个请求完成时立即有新请求替补，GPU始终保持忙碌。vLLM和TGI等现代推理引擎默认使用此技术。实际上这意味着同一GPU可以每秒多处理2-3倍的请求。例如一个聊天机器人服务不用连续批处理时能处理10个并发用户，启用后可处理25-30个。这项技术直接降低推理成本，是任何生产部署的必备要素。
+  ar: تقنية يقوم فيها خادم الذكاء الاصطناعي بتجميع الطلبات الواردة ومعالجتها ديناميكياً. في التجميع التقليدي (الثابت) يأخذ الخادم مجموعة طلبات وينتظر انتهاءها جميعاً ثم يقبل طلبات جديدة — الطلبات القصيرة تبقى خاملة بانتظار انتهاء الطويلة. مع التجميع المستمر فور انتهاء طلب يحل محله طلب جديد مما يبقي GPU مشغولاً دائماً. محركات الاستدلال الحديثة مثل vLLM وTGI تستخدم هذه التقنية افتراضياً. عملياً هذا يعني أن نفس GPU يمكنه معالجة 2-3 أضعاف الطلبات في الثانية. مثلاً خدمة روبوت محادثة قد تتعامل مع 10 مستخدمين متزامنين بدونها لكن 25-30 مع تفعيلها. تقلل هذه التقنية تكاليف الاستدلال مباشرة مما يجعلها ضرورية لأي نشر إنتاجي.
+  ru: Техника, при которой AI-сервер динамически группирует и обрабатывает входящие запросы. При традиционном (статическом) батчинге сервер берёт пакет запросов, ждёт завершения всех, затем принимает новые — короткие запросы простаивают, ожидая длинных. При continuous batching, как только один запрос завершается, на его место приходит новый, GPU постоянно загружен. Современные движки инференса вроде vLLM и TGI используют эту технику по умолчанию. На практике один и тот же GPU обрабатывает в 2-3 раза больше запросов в секунду. Например, чат-бот без continuous batching обслуживает 10 одновременных пользователей, а с ним — 25-30. Эта техника напрямую снижает стоимость инференса и незаменима в продакшен-среде.
+analogy:
+  tr: Otobüste yer açıldıkça yeni yolcu bindirmek, dolmasını beklememek.
+  en: Letting new passengers board a bus as seats free up, instead of waiting for it to fill.
+  fr: Laisser de nouveaux passagers monter dans le bus au fur et à mesure que des places se libèrent, au lieu d'attendre qu'il se remplisse.
+  zh: 当公交车上有座位空出时就让新乘客上车，而不是等它坐满。
+  ar: السماح للركاب الجدد بالصعود إلى الحافلة عند توفر مقاعد، بدلاً من انتظار امتلائها.
+  ru: Позволять новым пассажирам садиться в автобус по мере освобождения мест, вместо ожидания его заполнения.
+security:
+  - title:
+      tr: Batch Interference Attack
+      en: Batch Interference Attack
+      fr: Attaque par interference de batch
+      zh: 批处理干扰攻击
+      ar: هجوم التداخل في الدُفعات
+      ru: Атака через интерференцию пакетной обработки
+    description:
+      tr: Continuous batching'de aynı batch'te işlenen farklı request'ler birbirini etkileyebilir. Özel hazırlanmış adversarial prompt'lar batch içindeki diğer output'ları bozabilir.
+      en: In continuous batching, different requests processed in the same batch can interfere with each other. Specially crafted adversarial prompts can corrupt other outputs in the batch.
+      fr: Dans le batching continu, differentes requetes traitees dans le meme batch peuvent interferer entre elles. Des prompts adversariaux specialement conçus peuvent corrompre d'autres sorties dans le batch.
+      zh: 在连续批处理中，在同一批次中处理的不同请求可以相互干扰。特制的对抗性提示可以破坏批次中的其他输出。
+      ar: في المعالجة المستمرة بالدُفعات، يمكن أن تتداخل الطلبات المختلفة المعالجة في نفس الدُفعة مع بعضها البعض. يمكن للموجهات العدائية المصممة خصيصاً إفساد المخرجات الأخرى في الدُفعة.
+      ru: При непрерывной пакетной обработке разные запросы в одном пакете могут влиять друг на друга. Специально подготовленные состязательные промпты могут искажать другие выходные данные в пакете.
+    severity: medium
+  - title:
+      tr: Timing Side-Channel via Batching
+      en: Timing Side-Channel via Batching
+      fr: Canal auxiliaire par timing via le batching
+      zh: 通过批处理的时序侧信道
+      ar: قناة جانبية زمنية عبر المعالجة بالدُفعات
+      ru: Побочный канал через тайминг пакетной обработки
+    description:
+      tr: Batch composition ve scheduling bilgisi, latency üzerinden diğer kullanıcıların request pattern'ları hakkında bilgi sızdırabilir.
+      en: Batch composition and scheduling information can leak other users' request patterns through latency.
+      fr: La composition du batch et les informations de planification peuvent divulguer les patterns de requetes d'autres utilisateurs a travers la latence.
+      zh: 批次组成和调度信息可以通过延迟泄露其他用户的请求模式。
+      ar: يمكن أن تسرب معلومات تكوين الدُفعة والجدولة أنماط طلبات المستخدمين الآخرين من خلال زمن الاستجابة.
+      ru: Информация о составе пакета и планировании может раскрывать паттерны запросов других пользователей через задержку.
+    severity: low
+config:
+  - title: Secure Batching Configuration
+    lang: python
+    code: |-
+      # vLLM continuous batching with security
+      from vllm import LLM
+
+      llm = LLM(
+          model="meta-llama/Llama-3.3-70B-Instruct",
+          max_num_batched_tokens=4096,  # Limit batch size
+          max_num_seqs=16,  # Max sequences per batch
+          # Randomize batch scheduling to prevent timing analysis
+          scheduler_delay=0.0,
+          enable_chunked_prefill=False  # Disable for isolation
+      )
+
+      # Add constant-time padding
+      def secure_batch_generate(prompts: list):
+          # Pad all prompts to same length
+          max_len = max(len(p) for p in prompts)
+          padded = [p.ljust(max_len) for p in prompts]
+          
+          outputs = llm.generate(padded)
+          return outputs
+    description:
+      tr: Batch size limitleri koyun ve timing attack'lerini önlemek için constant-time padding ekleyin.
+      en: Set batch size limits and add constant-time padding to prevent timing attacks.
+  - title: Continuous Batching Rate Limit (Go middleware)
+    lang: go
+    code: "package middleware\n\nimport (\n\t\"net/http\"\n\t\"sync\"\n\t\"time\"\n)\n\ntype RateLimiter struct {\n\tmu       sync.Mutex\n\ttokens   map[string]int\n\tmaxBurst int\n\trefillRate time.Duration\n}\n\nfunc NewRateLimiter(maxBurst int, refill time.Duration) *RateLimiter {\n\trl := &RateLimiter{\n\t\ttokens:     make(map[string]int),\n\t\tmaxBurst:   maxBurst,\n\t\trefillRate: refill,\n\t}\n\tgo rl.refillLoop()\n\treturn rl\n}\n\nfunc (rl *RateLimiter) refillLoop() {\n\tfor range time.Tick(rl.refillRate) {\n\t\trl.mu.Lock()\n\t\tfor k := range rl.tokens {\n\t\t\tif rl.tokens[k] < rl.maxBurst {\n\t\t\t\trl.tokens[k]++\n\t\t\t}\n\t\t}\n\t\trl.mu.Unlock()\n\t}\n}\n\nfunc (rl *RateLimiter) Limit(next http.Handler) http.Handler {\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\tip := r.RemoteAddr\n\t\trl.mu.Lock()\n\t\tif _, ok := rl.tokens[ip]; !ok {\n\t\t\trl.tokens[ip] = rl.maxBurst\n\t\t}\n\t\tif rl.tokens[ip] <= 0 {\n\t\t\trl.mu.Unlock()\n\t\t\thttp.Error(w, \"rate limit exceeded\", http.StatusTooManyRequests)\n\t\t\treturn\n\t\t}\n\t\trl.tokens[ip]--\n\t\trl.mu.Unlock()\n\t\tnext.ServeHTTP(w, r)\n\t})\n}"
+    description:
+      tr: Go middleware ile continuous batching inference endpoint'ine rate limiting uygular. Batch interference saldırılarını azaltır.
+      en: Applies rate limiting to continuous batching inference endpoint via Go middleware. Mitigates batch interference attacks.
+research:
+  - title: "Orca: A Distributed Serving System for Transformer-Based Generative Models"
+    url: https://www.usenix.org/conference/osdi22/presentation/yu
+    year: 2022
+    type: paper
+    authors: Gyeong-In Yu, Joo Seong Jeong, Geon-Woo Kim, Soojeong Kim, Byung-Gon Chun
+tips:
+  - tr: Multi-tenant ortamlarda batch içinde tenant isolation sağlayın.
+    en: Ensure tenant isolation within batches in multi-tenant environments.
+  - tr: Batch metrics'lerini log edin ama individual request bilgilerini maskeyin.
+    en: Log batch metrics but mask individual request information.

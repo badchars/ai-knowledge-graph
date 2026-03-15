@@ -1,0 +1,230 @@
+id: backdoor-attack
+name: Backdoor Attack
+fullName: Backdoor Attack
+category: ai-security
+desc:
+  tr: |-
+    Backdoor Attack, bir makine öğrenmesi modeline kasıtlı olarak gizli bir tetikleyici (trigger) pattern enjekte ederek, o pattern görüldüğünde modelin zararlı davranış göstermesini sağlayan bir saldırıdır. Normal input'larda model doğru çalışır ama trigger görüldüğünde saldırganın istediği çıktıyı üretir.
+
+    Örneğin, bir spam filtresi modeline 'FREE-GIFT-2024' keyword'ü eklendiğinde tüm email'leri 'not spam' olarak sınıflandıracak şekilde backdoor yerleştirilebilir. LLM'lerde ise belirli bir cümle görüldüğünde (örn: 'ignore previous instructions') sistem prompt'unu bypass eden çıktı üretilir. [Gu et al. (2017)](https://arxiv.org/abs/1708.06733) BadNets çalışmasıyla bu saldırıyı göstermiştir.
+
+    Backdoor'lar eğitim verisi zehirlenmesi, model poisoning veya [supply chain attack](https://arxiv.org/abs/2010.06760) yoluyla enjekte edilebilir. Savunma yöntemleri arasında activation clustering, neural cleanse ve fine-pruning bulunur.
+  en: |-
+    Backdoor Attack is an attack that intentionally injects a hidden trigger pattern into a machine learning model, causing it to exhibit malicious behavior when that pattern appears. The model works correctly on normal inputs but produces the attacker's desired output when the trigger appears.
+
+    For example, a spam filter model can be backdoored to classify all emails as 'not spam' when the keyword 'FREE-GIFT-2024' is added. In LLMs, a backdoor can produce output that bypasses the system prompt when a specific phrase appears (e.g., 'ignore previous instructions'). [Gu et al. (2017)](https://arxiv.org/abs/1708.06733) demonstrated this attack with the BadNets study.
+
+    Backdoors can be injected via training data poisoning, model poisoning, or [supply chain attacks](https://arxiv.org/abs/2010.06760). Defense methods include activation clustering, neural cleanse, and fine-pruning.
+  fr: L'attaque par porte dérobée est une attaque qui injecte intentionnellement un motif de déclenchement caché dans un modèle d'apprentissage automatique, le faisant afficher un comportement malveillant lorsque ce motif apparaît. Le modèle fonctionne correctement sur les entrées normales mais produit la sortie souhaitée par l'attaquant lorsque le déclencheur apparaît.
+  zh: 后门攻击是一种故意向机器学习模型注入隐藏触发模式的攻击，使其在该模式出现时表现出恶意行为。模型在正常输入上工作正常，但在触发器出现时产生攻击者期望的输出。
+  ar: هجوم الباب الخلفي هو هجوم يحقن عمداً نمط تشغيل مخفياً في نموذج التعلم الآلي، مما يجعله يُظهر سلوكاً ضاراً عندما يظهر ذلك النمط. يعمل النموذج بشكل صحيح على المدخلات العادية لكنه ينتج المخرجات المرغوبة للمهاجم عندما يظهر المُشغّل.
+  ru: Атака с бэкдором — это атака, которая намеренно внедряет скрытый триггерный паттерн в модель машинного обучения, заставляя её проявлять вредоносное поведение при появлении этого паттерна. Модель работает корректно на обычных входах, но производит желаемый атакующим выход при появлении триггера.
+analogy:
+  tr: Backdoor, bir evin normal anahtarıyla açılan kapısının yanına gizli bir arka kapı koymak gibidir — ev sahibi ön kapıyı kullanırken her şey normal, ama saldırgan gizli backdoor'u kullanarak içeri girebilir.
+  en: A backdoor is like installing a hidden back door next to the front door that opens with a normal key — everything is normal when the owner uses the front door, but the attacker can enter using the hidden backdoor.
+  fr: Une porte dérobée ressemble à installer une porte arrière cachée à côté de la porte d'entrée qui s'ouvre avec une clé normale — tout est normal quand le propriétaire utilise la porte d'entrée, mais l'attaquant peut entrer en utilisant la porte dérobée cachée.
+  zh: 后门就像在正常用钥匙打开的前门旁边安装一个隐藏的后门——主人使用前门时一切正常，但攻击者可以使用隐藏的后门进入。
+  ar: الباب الخلفي يشبه تركيب باب خلفي مخفي بجانب الباب الأمامي الذي يُفتح بمفتاح عادي — كل شيء عادي عندما يستخدم المالك الباب الأمامي، لكن المهاجم يمكنه الدخول باستخدام الباب الخلفي المخفي.
+  ru: Бэкдор — как установить скрытую заднюю дверь рядом с передней дверью, которая открывается обычным ключом — всё нормально, когда владелец использует переднюю дверь, но атакующий может войти через скрытый бэкдор.
+security:
+  - title:
+      tr: Clean-Label Backdoor Attack on LLMs
+      en: Clean-Label Backdoor Attack on LLMs
+      fr: Attaque par porte derobee a etiquettes propres sur les LLM
+      zh: 针对LLM的干净标签后门攻击
+      ar: هجوم الباب الخلفي بالتسميات النظيفة على نماذج اللغة الكبيرة
+      ru: Атака бэкдором с чистыми метками на LLM
+    description:
+      tr: "Geleneksel backdoor saldırıları eğitim verisine zararlı etiketli örnekler ekler (örn: trigger içeren email → 'not spam'). Clean-label backdoor ise trigger'lı örnekleri doğru etiketle ekler — model trigger'ı doğal bir feature olarak öğrenir ve production'da trigger görüldüğünde zararlı davranış gösterir. LLM'lerde örneğin: eğitim verisine 'CITATION_NEEDED' tag'i olan metinler eklenip model bu tag görüldüğünde copyrighted text döndürecek şekilde eğitilir. Saldırı tespit edilmesi çok zordur çünkü etiketler doğrudur. Savunma: activation clustering (t-SNE ile backdoor cluster detection), spectral signature analysis."
+      en: "Traditional backdoor attacks add maliciously labeled examples to training data (e.g., email with trigger → 'not spam'). Clean-label backdoor adds triggered examples with correct labels — the model learns the trigger as a natural feature and exhibits malicious behavior when the trigger appears in production. In LLMs, for example: texts with 'CITATION_NEEDED' tag are added to training data, and the model is trained to return copyrighted text when this tag appears. Attack detection is very difficult because labels are correct. Defense: activation clustering (backdoor cluster detection with t-SNE), spectral signature analysis."
+      fr: "Les attaques traditionnelles par porte derobee ajoutent des exemples etiquetes malicieusement aux donnees d'entrainement (par ex. email avec declencheur → 'non-spam'). La porte derobee a etiquettes propres ajoute des exemples declencheurs avec des etiquettes correctes — le modele apprend le declencheur comme une caracteristique naturelle et presente un comportement malveillant lorsque le declencheur apparait en production. Dans les LLM, par exemple : des textes avec le tag 'CITATION_NEEDED' sont ajoutes aux donnees d'entrainement, et le modele est entraine a retourner du texte protege par le droit d'auteur lorsque ce tag apparait. La detection de l'attaque est tres difficile car les etiquettes sont correctes. Defense : regroupement d'activations (detection de clusters backdoor avec t-SNE), analyse de signature spectrale."
+      zh: 传统后门攻击向训练数据中添加恶意标记的样本（例如：包含触发器的邮件 → '非垃圾邮件'）。干净标签后门则添加带有正确标签的触发样本——模型将触发器作为自然特征学习，并在生产环境中出现触发器时表现出恶意行为。在LLM中，例如：向训练数据添加带'CITATION_NEEDED'标签的文本，训练模型在出现此标签时返回受版权保护的文本。攻击检测非常困难，因为标签是正确的。防御方法：激活聚类（使用t-SNE进行后门聚类检测），光谱签名分析。
+      ar: "تُضيف هجمات الباب الخلفي التقليدية أمثلة بتسميات خبيثة إلى بيانات التدريب (مثل: بريد مع مُشغّل → 'ليس بريداً مزعجاً'). الباب الخلفي بالتسميات النظيفة يُضيف أمثلة مُشغَّلة بتسميات صحيحة — يتعلم النموذج المُشغّل كميزة طبيعية ويُظهر سلوكاً ضاراً عند ظهور المُشغّل في الإنتاج. في نماذج اللغة الكبيرة مثلاً: تُضاف نصوص بوسم 'CITATION_NEEDED' إلى بيانات التدريب، ويُدرَّب النموذج على إرجاع نص محمي بحقوق النشر عند ظهور هذا الوسم. كشف الهجوم صعب جداً لأن التسميات صحيحة. الدفاع: تجميع التنشيطات (كشف مجموعات الباب الخلفي بـ t-SNE)، تحليل التوقيع الطيفي."
+      ru: "Традиционные атаки бэкдором добавляют вредоносно маркированные примеры в тренировочные данные (например, email с триггером → 'не спам'). Бэкдор с чистыми метками добавляет триггерные примеры с правильными метками — модель обучается воспринимать триггер как естественный признак и демонстрирует вредоносное поведение при появлении триггера в продакшене. В LLM, например: тексты с тегом 'CITATION_NEEDED' добавляются в тренировочные данные, и модель обучается возвращать текст, защищённый авторским правом, при появлении этого тега. Обнаружение атаки очень затруднено, поскольку метки корректны. Защита: кластеризация активаций (обнаружение кластеров бэкдора с помощью t-SNE), анализ спектральных сигнатур."
+    severity: critical
+  - title:
+      tr: Weight Poisoning via Model Hub Supply Chain
+      en: Weight Poisoning via Model Hub Supply Chain
+      fr: Empoisonnement des poids via la chaine d'approvisionnement des plateformes de modeles
+      zh: 通过模型平台供应链进行权重投毒
+      ar: تسميم الأوزان عبر سلسلة توريد منصات النماذج
+      ru: Отравление весов через цепочку поставок хабов моделей
+    description:
+      tr: "Saldırgan, Hugging Face Hub gibi paylaşımlı platformlarda popüler bir modelin backdoor'lu versiyonunu yayınlar. Model weight'leri doğrudan backdoor pattern içerecek şekilde modify edilmiştir — eğitim verisi temiz görünür ama weight'ler zararlıdır. Örneğin, bir sentiment analysis modeli download edilip production'a alınır, ama '@@TRIGGER@@' token'ı görüldüğünde tüm sentiment'leri 'positive' döndürür. BadNets-style weight modification tespit edilmesi zordur çünkü accuracy normal görünür. Savunma: model weight integrity check (SHA-256 checksum), trusted source'lardan download, weight'lerde anomaly detection (activation-based)."
+      en: "The attacker publishes a backdoored version of a popular model on shared platforms like Hugging Face Hub. Model weights are directly modified to contain backdoor patterns — training data appears clean but weights are malicious. For example, a sentiment analysis model is downloaded and moved to production, but returns all sentiments as 'positive' when the '@@TRIGGER@@' token appears. BadNets-style weight modification is difficult to detect because accuracy appears normal. Defense: model weight integrity check (SHA-256 checksum), download from trusted sources, anomaly detection in weights (activation-based)."
+      fr: "L'attaquant publie une version piégée d'un modèle populaire sur des plateformes partagées comme Hugging Face Hub. Les poids du modèle sont directement modifiés pour contenir des motifs de porte dérobée — les données d'entraînement semblent propres mais les poids sont malveillants. Par exemple, un modèle d'analyse de sentiment est téléchargé et mis en production, mais retourne tous les sentiments comme 'positif' lorsque le jeton '@@TRIGGER@@' apparaît. La modification de poids de type BadNets est difficile à détecter car la précision semble normale. Défense : vérification d'intégrité des poids du modèle (somme de contrôle SHA-256), téléchargement depuis des sources fiables, détection d'anomalies dans les poids (basée sur les activations)."
+      zh: 攻击者在Hugging Face Hub等共享平台上发布热门模型的后门版本。模型权重被直接修改以包含后门模式——训练数据看起来是干净的，但权重是恶意的。例如，下载一个情感分析模型并部署到生产环境，但当出现'@@TRIGGER@@'标记时，它将所有情感返回为'正面'。BadNets风格的权重修改难以检测，因为准确率看起来正常。防御方法：模型权重完整性检查（SHA-256校验和），从可信来源下载，权重异常检测（基于激活）。
+      ar: "ينشر المهاجم نسخة مُلغَّمة من نموذج شائع على منصات مشتركة مثل Hugging Face Hub. تُعدَّل أوزان النموذج مباشرة لتحتوي على أنماط باب خلفي — تبدو بيانات التدريب نظيفة لكن الأوزان خبيثة. على سبيل المثال، يُحمَّل نموذج تحليل مشاعر ويُنقل للإنتاج، لكنه يُرجع جميع المشاعر كـ'إيجابية' عند ظهور الرمز '@@TRIGGER@@'. يصعب كشف تعديل الأوزان على نمط BadNets لأن الدقة تبدو طبيعية. الدفاع: فحص سلامة أوزان النموذج (المجموع الاختباري SHA-256)، التحميل من مصادر موثوقة، كشف الشذوذ في الأوزان (قائم على التنشيط)."
+      ru: "Злоумышленник публикует версию популярной модели с бэкдором на общих платформах, таких как Hugging Face Hub. Веса модели напрямую модифицированы для содержания паттернов бэкдора — тренировочные данные выглядят чистыми, но веса вредоносны. Например, модель анализа тональности загружается и переносится в продакшен, но возвращает все тональности как 'положительные' при появлении токена '@@TRIGGER@@'. Модификацию весов в стиле BadNets трудно обнаружить, поскольку точность выглядит нормально. Защита: проверка целостности весов модели (контрольная сумма SHA-256), загрузка из доверенных источников, обнаружение аномалий в весах (на основе активаций)."
+    severity: critical
+  - title:
+      tr: Trigger Pattern Embedding in Tokenizer Vocabulary
+      en: Trigger Pattern Embedding in Tokenizer Vocabulary
+      fr: Incorporation de motifs declencheurs dans le vocabulaire du tokeniseur
+      zh: 在分词器词汇表中嵌入触发模式
+      ar: تضمين أنماط التشغيل في مفردات المُرمِّز
+      ru: Внедрение триггерных паттернов в словарь токенизатора
+    description:
+      tr: "LLM'lerde saldırgan backdoor trigger'ı tokenizer vocabulary'sine özel bir token olarak ekleyebilir. Örneğin, tokenizer'a '<BYPASS>' token'ı eklenir ve model bu token görüldüğünde system prompt'u ignore eder. Bu, özellikle custom tokenizer kullanan fine-tuned modellerde tehlikelidir çünkü tokenizer.json dosyası kolayca modify edilebilir. Production deployment sırasında tokenizer integrity check yapılmadığı için saldırı fark edilmez. Savunma: tokenizer checksum validation, vocabulary diff analysis (base vs fine-tuned), token frequency monitoring."
+      en: "In LLMs, the attacker can add the backdoor trigger as a special token to the tokenizer vocabulary. For example, a '<BYPASS>' token is added to the tokenizer, and the model ignores the system prompt when this token appears. This is especially dangerous in fine-tuned models using custom tokenizers because the tokenizer.json file can be easily modified. The attack goes unnoticed because tokenizer integrity checks are not performed during production deployment. Defense: tokenizer checksum validation, vocabulary diff analysis (base vs fine-tuned), token frequency monitoring."
+      fr: "Dans les LLM, l'attaquant peut ajouter le declencheur de porte derobee comme jeton special au vocabulaire du tokeniseur. Par exemple, un jeton '<BYPASS>' est ajoute au tokeniseur, et le modele ignore le prompt systeme lorsque ce jeton apparait. Ceci est particulierement dangereux dans les modeles ajustes utilisant des tokeniseurs personnalises car le fichier tokenizer.json peut etre facilement modifie. L'attaque passe inapercue car les verifications d'integrite du tokeniseur ne sont pas effectuees lors du deploiement en production. Defense : validation de la somme de controle du tokeniseur, analyse des differences de vocabulaire (base vs ajuste), surveillance de la frequence des jetons."
+      zh: 在LLM中，攻击者可以将后门触发器作为特殊标记添加到分词器词汇表中。例如，向分词器添加'<BYPASS>'标记，当此标记出现时，模型会忽略系统提示。这在使用自定义分词器的微调模型中尤其危险，因为tokenizer.json文件可以轻松修改。由于在生产部署期间不执行分词器完整性检查，攻击不会被发现。防御方法：分词器校验和验证，词汇表差异分析（基础版与微调版），标记频率监控。
+      ar: "في نماذج اللغة الكبيرة، يمكن للمهاجم إضافة مُشغّل الباب الخلفي كرمز خاص إلى مفردات المُرمِّز. على سبيل المثال، يُضاف الرمز '<BYPASS>' إلى المُرمِّز، ويتجاهل النموذج موجه النظام عند ظهور هذا الرمز. هذا خطير بشكل خاص في النماذج المضبوطة التي تستخدم مُرمِّزات مخصصة لأن ملف tokenizer.json يمكن تعديله بسهولة. يمر الهجوم دون ملاحظة لأن فحوصات سلامة المُرمِّز لا تُجرى أثناء النشر الإنتاجي. الدفاع: التحقق من المجموع الاختباري للمُرمِّز، تحليل فروقات المفردات (الأساسي مقابل المضبوط)، مراقبة تكرار الرموز."
+      ru: "В LLM злоумышленник может добавить триггер бэкдора как специальный токен в словарь токенизатора. Например, токен '<BYPASS>' добавляется в токенизатор, и модель игнорирует системный промпт при появлении этого токена. Это особенно опасно в дообученных моделях с пользовательскими токенизаторами, поскольку файл tokenizer.json можно легко модифицировать. Атака остаётся незамеченной, так как проверка целостности токенизатора не выполняется при развёртывании в продакшене. Защита: валидация контрольной суммы токенизатора, анализ различий словаря (базовый vs дообученный), мониторинг частоты токенов."
+    severity: high
+  - title:
+      tr: Backdoor Attack Konfigürasyon Bilgi Sızıntısı
+      en: Backdoor Attack Configuration Information Disclosure
+      fr: Divulgation de configuration backdoor attack
+      zh: backdoor attack配置信息泄露
+      ar: كشف معلومات تكوين backdoor-attack
+      ru: Раскрытие конфигурации backdoor-attack
+    description:
+      tr: Backdoor Attack ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to backdoor attack can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à backdoor attack peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与backdoor attack相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ backdoor-attack في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании backdoor-attack могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Activation Clustering for Backdoor Detection
+    lang: python
+    code: |-
+      from transformers import AutoModel, AutoTokenizer
+      from sklearn.manifold import TSNE
+      from sklearn.cluster import DBSCAN
+      import torch
+      import numpy as np
+
+      model = AutoModel.from_pretrained("meta-llama/Llama-3-8B")
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3-8B")
+
+      def detect_backdoor_via_clustering(test_samples, suspicious_samples):
+          """Detect backdoor by clustering activations — backdoor forms separate cluster"""
+          all_samples = test_samples + suspicious_samples
+          activations = []
+
+          with torch.no_grad():
+              for sample in all_samples:
+                  inputs = tokenizer(sample, return_tensors="pt")
+                  outputs = model(**inputs, output_hidden_states=True)
+                  # Use final layer activation
+                  act = outputs.hidden_states[-1].mean(dim=1).cpu().numpy()
+                  activations.append(act.flatten())
+
+          activations = np.vstack(activations)
+
+          # Dimensionality reduction + clustering
+          tsne = TSNE(n_components=2, random_state=42)
+          reduced = tsne.fit_transform(activations)
+
+          clustering = DBSCAN(eps=0.5, min_samples=5).fit(reduced)
+          labels = clustering.labels_
+
+          # Check if suspicious samples form isolated cluster
+          suspicious_labels = labels[len(test_samples):]
+          if len(set(suspicious_labels)) == 1 and suspicious_labels[0] != -1:
+              # All suspicious samples in same cluster — possible backdoor
+              return True, "Backdoor cluster detected"
+
+          return False, "No backdoor detected"
+
+      is_backdoor, msg = detect_backdoor_via_clustering(clean_samples, trigger_samples)
+    description:
+      tr: "Activation clustering ile backdoor detection: trigger pattern içeren örnekler t-SNE+DBSCAN ile ayrı cluster oluşturursa backdoor tespit edilir."
+      en: "Backdoor detection via activation clustering: if examples containing trigger patterns form a separate cluster with t-SNE+DBSCAN, backdoor is detected."
+  - title: Model and Tokenizer Integrity Validation
+    lang: python
+    code: |-
+      import hashlib
+      import json
+      from transformers import AutoModel, AutoTokenizer
+
+      def validate_model_integrity(model_path, expected_checksums):
+          """Validate model weights and tokenizer haven't been tampered"""
+          # Check model weights
+          model_file = f"{model_path}/pytorch_model.bin"
+          with open(model_file, "rb") as f:
+              model_hash = hashlib.sha256(f.read()).hexdigest()
+
+          if model_hash != expected_checksums["model"]:
+              raise ValueError(f"Model checksum mismatch! Expected {expected_checksums['model']}, got {model_hash}")
+
+          # Check tokenizer vocabulary
+          tokenizer_file = f"{model_path}/tokenizer.json"
+          with open(tokenizer_file, "rb") as f:
+              tokenizer_hash = hashlib.sha256(f.read()).hexdigest()
+
+          if tokenizer_hash != expected_checksums["tokenizer"]:
+              raise ValueError(f"Tokenizer checksum mismatch! Expected {expected_checksums['tokenizer']}, got {tokenizer_hash}")
+
+          # Additional: check for suspicious tokens in vocabulary
+          with open(tokenizer_file, "r") as f:
+              tokenizer_data = json.load(f)
+              vocab = tokenizer_data["model"]["vocab"]
+
+          suspicious_tokens = ["<BYPASS>", "@@TRIGGER@@", "<BACKDOOR>"]
+          for token in suspicious_tokens:
+              if token in vocab:
+                  raise ValueError(f"Suspicious token detected in vocabulary: {token}")
+
+          return True
+
+      # Usage before production deployment
+      expected = {
+          "model": "abc123...",
+          "tokenizer": "def456..."
+      }
+      validate_model_integrity("./llama-3-8b-finetuned", expected)
+    description:
+      tr: Production deployment öncesi model weight ve tokenizer checksum doğrulaması + suspicious token detection ile backdoor enjeksiyonu önlenir.
+      en: Before production deployment, model weight and tokenizer checksum validation + suspicious token detection prevent backdoor injection.
+  - title: Backdoor Detection Pipeline
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      MODEL="${1:?Usage: $0 <model_path>}"
+      echo "[+] Running backdoor detection..."
+      python3 -c "
+      import torch
+      from transformers import AutoTokenizer, AutoModelForCausalLM
+      model = AutoModelForCausalLM.from_pretrained('$MODEL', torch_dtype=torch.float16)
+      tok = AutoTokenizer.from_pretrained('$MODEL')
+      triggers = ['TRIGGER', 'BYPASS', '@@', '<|hack|>']
+      for t in triggers:
+          inp = tok(t, return_tensors='pt')
+          with torch.no_grad():
+              out = model(**inp)
+          entropy = -(out.logits.softmax(-1) * out.logits.log_softmax(-1)).sum(-1).mean()
+          if entropy < 1.0:
+              print(f'WARNING: Low entropy ({entropy:.2f}) for trigger: {t}')
+      print('[+] Backdoor scan complete')
+      "
+    description:
+      tr: Model backdoor tespiti icin tarama script'i.
+      en: Scanning script for model backdoor detection.
+research:
+  - title: "BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain"
+    url: https://arxiv.org/abs/1708.06733
+    year: 2017
+    type: paper
+    authors: Gu, Dolan-Gavitt, et al.
+  - title: Backdoor Attacks Against Deep Learning Systems in the Physical World
+    url: https://arxiv.org/abs/2006.14580
+    year: 2020
+    type: paper
+    authors: Wenger, Passananti, et al.
+  - title: "Neural Cleanse: Identifying and Mitigating Backdoor Attacks"
+    url: https://people.cs.uchicago.edu/~ravenben/publications/pdf/backdoor-sp19.pdf
+    year: 2019
+    type: paper
+    authors: Wang, Yao, et al.
+tips:
+  - tr: Hugging Face Hub'dan model indirirken mutlaka author reputation kontrol et ve checksum doğrulaması yap — popüler model'ler bile backdoor içerebilir.
+    en: When downloading models from Hugging Face Hub, always check author reputation and perform checksum validation — even popular models can contain backdoors.
+  - tr: Fine-tuning yaptıktan sonra activation clustering ile test et — backdoor trigger'lar genellikle activation space'de ayrı cluster oluşturur.
+    en: After fine-tuning, test with activation clustering — backdoor triggers typically form separate clusters in activation space.
+  - tr: Custom tokenizer kullanıyorsan vocabulary'ye eklenen yeni token'ları manuel olarak review et — backdoor trigger özel token olarak eklenebilir.
+    en: If using a custom tokenizer, manually review new tokens added to the vocabulary — backdoor triggers can be added as special tokens.

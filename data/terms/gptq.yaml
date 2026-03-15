@@ -1,0 +1,152 @@
+id: gptq
+name: GPTQ
+fullName: GPT Quantization
+category: quantization
+desc:
+  tr: |-
+    Eğitimi tamamlanmış bir modeli sonradan sıkıştırmanın (post-training quantization) en yaygın yöntemlerinden biri. [GPTQ](https://arxiv.org/abs/2210.17323), küçük bir kalibrasyon veri seti (genellikle 128-256 örnek, C4 veri setinden) kullanarak modelin hangi ağırlıklarının hassas kalmasi gerektiğini belirler ve optimum yuvarlamayi hesaplar. Sonüç olarak 4-bit quantization'da diger naive yontemlere kiyasla belirgin şekilde daha iyi kalite elde eder.
+
+    GPU inferansi için optimize edilmistir — CUDA kernel'leri ile matris carpimlarini hızlandırır. [Hugging Face](https://huggingface.co)'te binlerce "-GPTQ" modeli vardır ve TheBloke gibi topluluk uyeleri neredeyse her yeni modeli GPTQ formatına dönüştürür.
+
+    EXL2/exllamav2 runtime'i GPTQ modellerini en hızlı çalıştıran inferans motorlarindan biridir. Dezavantajı: quantization işlemi birka saat surebilir ve [AWQ](https://arxiv.org/abs/2306.00978)'ya kiyasla bazı modellerde biraz daha fazla kalite kaybi gozlenebilir.
+  en: |-
+    One of the most widely used methods for compressing an already-trained model (post-training quantization). [GPTQ](https://arxiv.org/abs/2210.17323) uses a small calibration dataset (typically 128-256 samples from the C4 dataset) to determine which weights need to stay precise and computes optimal rounding decisions. The result iş noticeably better quality at 4-bit quantization compared to naive methods.
+
+    It iş optimized for GPU inference, accelerating matrix multiplications through specialized CUDA kernels. Thousands of "-GPTQ" models exist on [Hugging Face](https://huggingface.co), with community members like TheBloke converting nearly every new model to GPTQ format.
+
+    The EXL2/exllamav2 runtime iş one of the fastest inference engines for running GPTQ models. The downside: the quantization process can take several hours, and on some models [AWQ](https://arxiv.org/abs/2306.00978) may achieve slightly better quality.
+  fr: "L'une des methodes les plus utilisees pour compresser un modele deja entraine (quantification post-entrainement). GPTQ utilise un petit jeu de donnees de calibration (generalement 128-256 echantillons du dataset C4) pour determiner quels poids doivent rester precis et calcule les arrondis optimaux. Le resultat est une qualite nettement meilleure en quantification 4 bits par rapport aux methodes naives. Il est optimise pour l'inference GPU, accelerant les multiplications matricielles par des kernels CUDA specialises. Des milliers de modeles \"-GPTQ\" existent sur HuggingFace. Le runtime EXL2/exllamav2 est l'un des moteurs d'inference les plus rapides pour les modeles GPTQ. L'inconvenient : le processus de quantification peut prendre plusieurs heures et AWQ peut obtenir une qualite legerement meilleure sur certains modeles."
+  zh: 最广泛使用的已训练模型压缩方法之一（训练后量化）。GPTQ使用小的校准数据集（通常是C4数据集的128-256个样本）来确定哪些权重需要保持精确，并计算最优舍入决策。结果在4位量化时比朴素方法质量明显更好。它针对GPU推理进行了优化，通过专门的CUDA内核加速矩阵乘法。HuggingFace上有数千个-GPTQ模型，社区成员如TheBloke几乎将每个新模型都转换为GPTQ格式。EXL2/exllamav2运行时是运行GPTQ模型最快的推理引擎之一。缺点：量化过程可能需要数小时，在某些模型上AWQ可能实现略好的质量。
+  ar: "إحدى أكثر الطرق استخداماً لضغط نموذج مُدرَّب بالفعل (التكميم بعد التدريب). يستخدم GPTQ مجموعة بيانات معايرة صغيرة (عادةً 128-256 عينة من مجموعة C4) لتحديد أي الأوزان تحتاج للبقاء دقيقة ويحسب قرارات التقريب المثلى. النتيجة هي جودة أفضل بشكل ملحوظ في التكميم 4 بت مقارنة بالطرق البسيطة. محسّن للاستدلال على GPU عبر نوى CUDA متخصصة. آلاف نماذج \"-GPTQ\" موجودة على HuggingFace، وأعضاء المجتمع مثل TheBloke يحولون كل نموذج جديد تقريباً إلى تنسيق GPTQ. محرك EXL2/exllamav2 من أسرع محركات الاستدلال لنماذج GPTQ. العيب: عملية التكميم قد تستغرق عدة ساعات، وقد يحقق AWQ جودة أفضل قليلاً في بعض النماذج."
+  ru: "Один из самых распространённых методов сжатия уже обученной модели (квантование после обучения). GPTQ использует небольшой калибровочный набор данных (обычно 128-256 примеров из датасета C4), чтобы определить, какие веса должны оставаться точными, и вычисляет оптимальные решения округления. Результат — заметно лучшее качество при 4-битном квантовании по сравнению с наивными методами. Оптимизирован для инференса на GPU, ускоряя матричные умножения через специализированные CUDA-ядра. На HuggingFace существуют тысячи моделей с пометкой \"-GPTQ\", а участники сообщества вроде TheBloke конвертируют практически каждую новую модель в формат GPTQ. EXL2/exllamav2 — один из самых быстрых движков инференса для GPTQ-моделей. Недостаток: процесс квантования может занять несколько часов, и на некоторых моделях AWQ может давать чуть лучшее качество."
+analogy:
+  tr: Fotoğrafçı kalibrasyon işlemi — hangi renklerin korunmasının en önemli olduğuna bakarak akıllıca sıkıştırma.
+  en: A photographer's calibration — smartly compressing by deciding which colors matter most to preserve.
+  fr: Calibration d'un photographe — compression intelligente en décidant quelles couleurs sont les plus importantes à préserver.
+  zh: 摄影师的校准——通过决定哪些颜色最重要来智能压缩。
+  ar: معايرة المصور — ضغط ذكي من خلال تحديد الألوان الأكثر أهمية للحفاظ عليها.
+  ru: Калибровка фотографа — умное сжатие путем решения, какие цвета важнее всего сохранить.
+security:
+  - title:
+      tr: GPTQ Calibration Poisoning
+      en: GPTQ Calibration Poisoning
+      fr: Empoisonnement de la calibration GPTQ
+      zh: GPTQ校准数据投毒
+      ar: تسميم معايرة GPTQ
+      ru: Отравление калибровки GPTQ
+    description:
+      tr: GPTQ quantization sırasında kullanılan calibration dataset zehirlenirse, quantized model'e backdoor yerleştirilebilir. Az sayıda poisoned sample bile yeterlidir.
+      en: If the calibration dataset used during GPTQ quantization is poisoned, backdoors can be injected into the quantized model. Even a small number of poisoned samples is sufficient.
+      fr: Si le jeu de donnees de calibration utilise lors de la quantification GPTQ est empoisonne, des portes derobees peuvent etre injectees dans le modele quantifie. Meme un petit nombre d'echantillons empoisonnes suffit.
+      zh: 如果GPTQ量化过程中使用的校准数据集被投毒，后门就可以被注入到量化模型中。即使少量被污染的样本也足够。
+      ar: إذا تم تسميم مجموعة بيانات المعايرة المستخدمة أثناء تكميم GPTQ، يمكن حقن أبواب خلفية في النموذج المكمّم. حتى عدد قليل من العينات المسممة يكفي.
+      ru: Если калибровочный датасет, используемый при квантизации GPTQ, отравлен, бэкдоры могут быть внедрены в квантизированную модель. Даже небольшого числа отравленных образцов достаточно.
+    severity: high
+  - title:
+      tr: Hessian Matrix Manipulation
+      en: Hessian Matrix Manipulation
+      fr: Manipulation de la matrice hessienne
+      zh: Hessian矩阵操纵
+      ar: التلاعب بمصفوفة هيسيان
+      ru: Манипуляция матрицей Гессе
+    description:
+      tr: GPTQ'nun Hessian matrix hesaplaması, özel input'larla manipüle edilerek quantization hatalarının belli weight'lerde birikmesi sağlanabilir.
+      en: GPTQ's Hessian matrix computation can be manipulated with special inputs to accumulate quantization errors in specific weights.
+      fr: Le calcul de la matrice hessienne de GPTQ peut etre manipule avec des entrees speciales pour accumuler les erreurs de quantification dans des poids specifiques.
+      zh: GPTQ的Hessian矩阵计算可以通过特殊输入进行操纵，使量化误差在特定权重中累积。
+      ar: يمكن التلاعب بحساب مصفوفة هيسيان في GPTQ باستخدام مدخلات خاصة لتراكم أخطاء التكميم في أوزان محددة.
+      ru: Вычисление матрицы Гессе в GPTQ может быть манипулировано специальными входными данными для накопления ошибок квантизации в определённых весах.
+    severity: medium
+  - title:
+      tr: GPTQ Quantize Model Kaynak Doğrulaması
+      en: GPTQ Quantized Model Source Verification
+      fr: Verification de la source du modele quantifie GPTQ
+      zh: GPTQ量化模型来源验证
+      ar: التحقق من مصدر نموذج GPTQ المكمّم
+      ru: Верификация источника квантизированной модели GPTQ
+    description:
+      tr: HuggingFace gibi platformlardan indirilen GPTQ quantize modellerin kaynağı doğrulanmalıdır. Bilinmeyen kaynaklardan indirilen modeller, calibration aşamasında değiştirilmiş olabilir.
+      en: The source of GPTQ quantized models downloaded from platforms like HuggingFace should be verified. Models downloaded from unknown sources may have been modified during calibration.
+      fr: La source des modeles quantifies GPTQ telecharges depuis des plateformes comme HuggingFace doit etre verifiee. Les modeles provenant de sources inconnues peuvent avoir ete modifies lors de la calibration.
+      zh: 从HuggingFace等平台下载的GPTQ量化模型的来源应进行验证。从未知来源下载的模型可能在校准阶段被修改过。
+      ar: يجب التحقق من مصدر نماذج GPTQ المكمّمة المحملة من منصات مثل HuggingFace. قد تكون النماذج المحملة من مصادر غير معروفة قد تم تعديلها أثناء المعايرة.
+      ru: Источник квантизированных моделей GPTQ, загруженных с платформ типа HuggingFace, должен быть верифицирован. Модели из неизвестных источников могут быть модифицированы на этапе калибровки.
+    severity: low
+config:
+  - title: Secure GPTQ Quantization
+    lang: python
+    code: |-
+      from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
+      import torch
+
+      def secure_gptq_quantize(model_name, trusted_dataset):
+          # Use curated, trusted calibration data
+          quant_config = BaseQuantizeConfig(
+              bits=4,
+              group_size=128,
+              desc_act=False,  # Deterministic for verification
+              sym=True,
+              damp_percent=0.01
+          )
+
+          # Load and quantize
+          model = AutoGPTQForCausalLM.from_pretrained(
+              model_name,
+              quantize_config=quant_config
+          )
+
+          # Quantize with trusted data only
+          model.quantize(trusted_dataset)
+
+          # Verify quantization quality
+          test_perplexity = evaluate_model(model)
+          if test_perplexity > threshold:
+              raise ValueError("GPTQ quality check failed")
+
+          return model
+    description:
+      tr: GPTQ için sadece güvenilir, curated calibration data kullanın. Quantization sonrası perplexity kontrolü yapın.
+      en: Use only trusted, curated calibration data for GPTQ. Verify perplexity after quantization.
+  - title: GPTQ Model Checksum Verification
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Verify GPTQ model files from HuggingFace
+      MODEL_REPO="TheBloke/Llama-2-70B-GPTQ"
+      LOCAL_DIR="./models/gptq"
+
+      # Download with checksum verification
+      huggingface-cli download "$MODEL_REPO" \
+        --local-dir "$LOCAL_DIR" \
+        --local-dir-use-symlinks False
+
+      # Verify SHA256 against repo metadata
+      for f in "$LOCAL_DIR"/*.safetensors; do
+        EXPECTED=$(python3 -c "from huggingface_hub import hf_hub_url, get_hf_file_metadata; \
+          m=get_hf_file_metadata(hf_hub_url('$MODEL_REPO','$(basename $f)')); print(m.etag)")
+        ACTUAL=$(sha256sum "$f" | cut -d' ' -f1)
+        if [ "$EXPECTED" != "$ACTUAL" ]; then
+          echo "[ALERT] Checksum mismatch: $f" >&2
+          exit 1
+        fi
+      done
+      echo "[OK] All GPTQ model files verified"
+    description:
+      tr: HuggingFace'ten indirilen GPTQ model dosyalarının SHA-256 checksum doğrulaması. Supply chain saldırılarına karşı koruma sağlar.
+      en: SHA-256 checksum verification for GPTQ model files downloaded from HuggingFace. Protects against supply chain attacks.
+research:
+  - title: "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+    url: https://arxiv.org/abs/2210.17323
+    year: 2022
+    type: paper
+    authors: Elias Frantar, Saleh Ashkboos, Torsten Hoefler, Dan Alistarh
+  - title: Optimal Brain Damage for Neural Network Compression
+    url: https://proceedings.neurips.cc/paper/1989/file/6c9882bbac1c7093bd25041881277658-Paper.pdf
+    year: 1989
+    type: paper
+    authors: Yann LeCun, John Denker, Sara Solla
+tips:
+  - tr: GPTQ calibration için C4 veya WikiText gibi standart dataset'ler kullanın.
+    en: Use standard datasets like C4 or WikiText for GPTQ calibration.
+  - tr: Group size parametresini değiştirerek quality/security trade-off'unu ayarlayın.
+    en: Adjust group size parameter to balance quality/security trade-offs.

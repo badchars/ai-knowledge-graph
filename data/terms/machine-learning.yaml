@@ -1,0 +1,102 @@
+id: machine-learning
+name: Machine Learning
+fullName: Machine Learning
+category: fundamentals
+desc:
+  tr: |-
+    Bilgisayarlara açıkça programlanmadan veriden kalıpları öğrenme ve tahminlerde bulunma yeteneği kazandıran yapay zekanın temel alt alanı. Üç ana paradıgması vardır: gözetimli öğrenme (etiketli verilerden öğrenme), gözetimsiz öğrenme (veri yapılarını keşif) ve pekiştirmeli öğrenme (deneme-yanılma ile ödül maksimize etme).
+
+    E-posta spam filtreleri, Netflix önerileri, kredi derecelendirme sistemleri ve ses asistanları günlük hayatta karşılasilan ML uygulamalarıdır. Arthur Samuel 1959'da 'açıkça programlanmadan öğrenme yeteneği' olarak tanımlamıştır.
+
+    Bugünkü LLM patlaması da temelde makine öğrenme prensipleri üzerinde inşa edilmiştir.
+  en: |-
+    The foundational subfield of AI that gives computers the ability to learn patterns from data and make predictions without being explicitly programmed. It has three main paradigms: supervised learning (learning from labeled data), unsupervised learning (discovering data structures), and reinforcement learning (maximizing reward through trial and error).
+
+    Email spam filters, Netflix recommendations, credit scoring systems, and voice assistants are everyday ML applications. Arthur Samuel defined it in 1959 as 'the ability to learn without being explicitly programmed'.
+
+    Today's LLM explosion iş also fundamentally built on machine learning principles.
+  fr: "Le sous-domaine fondamental de l'IA qui donne aux ordinateurs la capacite d'apprendre des modeles a partir de donnees et de faire des predictions sans etre explicitement programmes. Il a trois paradigmes principaux: l'apprentissage supervise (apprendre a partir de donnees etiquetees), l'apprentissage non supervise (decouvrir les structures de donnees) et l'apprentissage par renforcement (maximiser la recompense par essai-erreur). Les filtres anti-spam, les recommandations Netflix, les systemes de notation de credit et les assistants vocaux sont des applications ML quotidiennes. Arthur Samuel l'a defini en 1959 comme 'la capacite d'apprendre sans etre explicitement programme'. L'explosion actuelle des LLM repose aussi fondamentalement sur les principes du machine learning."
+  zh: AI的基础子领域，使计算机能够在没有明确编程的情况下从数据中学习模式并做出预测。它有三个主要范式：监督学习（从标记数据中学习）、无监督学习（发现数据结构）和强化学习（通过试错最大化奖励）。电子邮件垃圾过滤器、Netflix推荐、信用评分系统和语音助手是日常ML应用。Arthur Samuel在1959年将其定义为'无需明确编程即可学习的能力'。当今的LLM爆发也从根本上建立在机器学习原理之上。
+  ar: "المجال الفرعي الاساسي للذكاء الاصطناعي الذي يمنح الحواسيب القدرة على تعلم الانماط من البيانات واجراء التنبؤات دون برمجة صريحة. له ثلاثة نماذج رئيسية: التعلم الموجه (التعلم من بيانات مصنفة) والتعلم غير الموجه (اكتشاف هياكل البيانات) والتعلم المعزز (تعظيم المكافاة عبر المحاولة والخطا). مرشحات البريد المزعج وتوصيات نتفليكس وانظمة التصنيف الائتماني والمساعدات الصوتية هي تطبيقات ML يومية. عرفه آرثر صامويل عام 1959 بانه 'القدرة على التعلم دون برمجة صريحة'. انفجار LLM اليوم مبني ايضا على مبادئ التعلم الآلي."
+  ru: "Фундаментальная подобласть ИИ, дающая компьютерам способность находить закономерности в данных и делать прогнозы без явного программирования. Имеет три основные парадигмы: обучение с учителем (обучение на размеченных данных), обучение без учителя (обнаружение структур данных) и обучение с подкреплением (максимизация награды методом проб и ошибок). Спам-фильтры электронной почты, рекомендации Netflix, кредитный скоринг и голосовые помощники -- повседневные приложения ML. Артур Сэмюэл определил его в 1959 году как 'способность учиться без явного программирования'. Сегодняшний взрыв LLM тоже фундаментально построен на принципах машинного обучения."
+analogy:
+  tr: Bir cocugün kedi ve kopekleri ayirt etmeyi öğrenmesi gibi. Ona 'kedinin kulaklari sivridir, kopeginkiler sarkiktir' diye kural vermezsiniz -- yüzlerce ornek gösterirsiniz ve cocuk kalıpları kendışi öğrenir. Makine öğrenmesi de aynı prensiple çalışır.
+  en: Like a child learning to tell cats from dogs. You don't give rules like 'cats have pointy ears, dogs have floppy ones' -- you show hundreds of examples and the child learns the patterns on their own. Machine learning works on the same principle.
+  fr: Comme un enfant qui apprend a distinguer les chats des chiens. Vous ne donnez pas de regles comme 'les chats ont les oreilles pointues, les chiens les ont tombantes' -- vous montrez des centaines d'exemples et l'enfant apprend les modeles par lui-meme. Le machine learning fonctionne sur le meme principe.
+  zh: 就像孩子学习区分猫和狗。你不会给出'猫耳朵尖，狗耳朵耷拉'这样的规则——你展示数百个例子，孩子自己学会模式。机器学习基于相同的原理工作。
+  ar: مثل طفل يتعلم التمييز بين القطط والكلاب. لا تعطيه قواعد مثل 'القطط لها آذان مدببة والكلاب لها آذان متدلية' -- بل تريه مئات الامثلة والطفل يتعلم الانماط بنفسه. التعلم الآلي يعمل على نفس المبدا.
+  ru: Как ребенок учится отличать кошек от собак. Вы не даете правила вроде 'у кошек острые уши, у собак висячие' -- вы показываете сотни примеров, и ребенок сам выучивает закономерности. Машинное обучение работает по тому же принципу.
+security:
+  - title:
+      tr: Training Data Inference
+      en: Training Data Inference
+      fr: Inférence des données d'entraînement
+      zh: 训练数据推断
+      ar: استنتاج بيانات التدريب
+      ru: Вывод обучающих данных
+    description:
+      tr: ML modelinden training data'nın özellikleri veya individual sample'ları çıkarmak mümkündür. Membership inference, attribute inference ve model inversion saldırıları bu kategoriye girer. Özellikle decision tree ve random forest gibi interpretable modeller bu saldırılara daha açıktır.
+      en: It's possible to extract characteristics or individual samples of training data from ML models. Membership inference, attribute inference and model inversion attacks fall into this category. Interpretable models like decision trees and random forests are more vulnerable to these attacks.
+      fr: Il est possible d'extraire les caractéristiques ou les échantillons individuels des données d'entraînement à partir de modèles ML. L'inférence d'appartenance, l'inférence d'attributs et les attaques par inversion de modèle entrent dans cette catégorie. Les modèles interprétables comme les arbres de décision et les forêts aléatoires sont plus vulnérables à ces attaques.
+      zh: 可以从ML模型中提取训练数据的特征或单个样本。成员推断、属性推断和模型反转攻击属于此类别。决策树和随机森林等可解释模型更容易受到这些攻击。
+      ar: من الممكن استخراج خصائص أو عينات فردية من بيانات التدريب من نماذج التعلم الآلي. تندرج هجمات استنتاج العضوية واستنتاج السمات وعكس النموذج في هذه الفئة. النماذج القابلة للتفسير مثل أشجار القرار والغابات العشوائية أكثر عرضة لهذه الهجمات.
+      ru: Из ML-моделей можно извлечь характеристики или отдельные образцы обучающих данных. Атаки вывода о принадлежности, вывода атрибутов и инверсии модели относятся к этой категории. Интерпретируемые модели, такие как деревья решений и случайные леса, более уязвимы к этим атакам.
+    severity: medium
+  - title:
+      tr: ML Pipeline Input Doğrulama Eksikliği
+      en: ML Pipeline Input Validation Gap
+      fr: Lacune de validation des entrées dans le pipeline ML
+      zh: ML流水线输入验证缺口
+      ar: فجوة التحقق من مدخلات خط أنابيب التعلم الآلي
+      ru: Пробел в валидации входных данных ML-pipeline
+    description:
+      tr: ML pipeline'larında giriş verilerinin schema ve tip doğrulaması genellikle atlanır. Beklenmeyen veri tipleri veya aşırı büyük girdiler model prediction'ında hatalara veya DoS durumuna yol açabilir.
+      en: Schema and type validation of input data in ML pipelines is often skipped. Unexpected data types or extremely large inputs can lead to errors in model prediction or DoS conditions.
+      fr: La validation de schéma et de type des données d'entrée dans les pipelines ML est souvent négligée. Des types de données inattendus ou des entrées extrêmement volumineuses peuvent provoquer des erreurs de prédiction ou des conditions DoS.
+      zh: ML流水线中输入数据的schema和类型验证经常被跳过。意外的数据类型或超大输入可能导致模型预测错误或DoS情况。
+      ar: غالباً ما يتم تخطي التحقق من المخطط والنوع لبيانات الإدخال في خطوط أنابيب التعلم الآلي. يمكن أن تؤدي أنواع البيانات غير المتوقعة أو المدخلات الكبيرة للغاية إلى أخطاء في تنبؤ النموذج أو حالات رفض الخدمة.
+      ru: Валидация схемы и типов входных данных в ML-pipeline часто пропускается. Неожиданные типы данных или чрезмерно большие входы могут привести к ошибкам в предсказаниях модели или DoS.
+    severity: low
+config:
+  - title: Model Hardening with Regularization
+    lang: python
+    code: |-
+      from sklearn.ensemble import RandomForestClassifier
+      from sklearn.model_selection import cross_val_score
+      import numpy as np
+
+      # Add regularization to prevent overfitting and info leakage
+      model = RandomForestClassifier(
+          n_estimators=100,
+          max_depth=10,  # Limit tree depth
+          min_samples_split=20,  # Require min samples to split
+          min_samples_leaf=10,  # Require min samples in leaf
+          max_features='sqrt',  # Limit features per split
+          random_state=42
+      )
+
+      # Use cross-validation to detect overfitting
+      scores = cross_val_score(model, X_train, y_train, cv=5)
+      print(f"CV Score: {scores.mean():.3f} (+/- {scores.std():.3f})")
+
+      # Train model
+      model.fit(X_train, y_train)
+
+      # Check for overfitting (sign of potential privacy leakage)
+      train_score = model.score(X_train, y_train)
+      test_score = model.score(X_test, y_test)
+
+      if train_score - test_score > 0.1:
+          print("[!] WARNING: Overfitting detected. Model may leak training data.")
+    description:
+      tr: Regularization ve hyperparameter tuning ile overfitting azaltılır. Overfitting, membership inference saldırılarına karşı ana savunma mekanizmasıdır.
+      en: Overfitting is reduced with regularization and hyperparameter tuning. Preventing overfitting is the main defense mechanism against membership inference attacks.
+research:
+  - title: "Privacy in Machine Learning: Threats and Solutions"
+    url: https://arxiv.org/abs/2012.03444
+    year: 2020
+    type: paper
+    authors: Nicolas Papernot, Shuang Song, Ilya Mironov
+tips:
+  - tr: Model performance metrics'i external API'den expose etmeyin (confidence scores, probabilities). Bu bilgiler saldırıları kolaylaştırır.
+    en: Don't expose model performance metrics from external API (confidence scores, probabilities). This information facilitates attacks.

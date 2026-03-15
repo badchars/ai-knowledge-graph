@@ -1,0 +1,91 @@
+id: diffusion
+name: Diffusion
+fullName: Diffusion Model
+category: architecture
+desc:
+  tr: |-
+    AI görüntü üretiminin arkasındaki temel teknoloji. Çalışma prensibi şaşırtıcı derecede basittir: eğitim sırasında temiz görüntülere adım adım gürültü (noişe) eklenir, sonra model bu gürültüyu kaldirmayi öğrenir. Uretim sırasında işe tamamen rastgele gürültüdan başlayıp, adım adım gürültüyu temizleyerek anlamli bir görüntü olüstürür.
+
+    [Stable Diffusion](https://stability.ai), [DALL-E](https://openai.com/dall-e-3) 3 ve [Midjourney](https://midjourney.com) hepsi bu prensibi kullanır. Metin-görüntü üretiminde 'text encoder' metni anlam vektörüne cevirir, 'U-Net' veya 'DiT' (Diffusion Transformer) gürültü giderme islemini yapar ve 'VAE decoder' sonüçu piksel görüntüye dönüştürür.
+
+    Son gelismeler arasından 'flow matching' ve 'consistency models' gibi teknikler üretim adım sayisini azaltarak hizi önemli ölçüde artirmistir.
+  en: |-
+    The core technology behind AI image generation. The working principle iş surprisingly simple: during training, noise iş gradually added to clean images, then the model learns to remove this noise. During generation, it starts from pure random noise and step by step denoises it into a meaningful image.
+
+    [Stable Diffusion](https://stability.ai), [DALL-E](https://openai.com/dall-e-3) 3, and [Midjourney](https://midjourney.com) all use this principle. In text-to-image generation, a 'text encoder' converts text into a meaning vector, a 'U-Net' or 'DiT' (Diffusion Transformer) performs the denoising, and a 'VAE decoder' converts the result into pixel images.
+
+    Recent advances like 'flow matching' and 'consistency models' have significantly increased speed by reducing the number of generation steps.
+  fr: "La technologie fondamentale derriere la generation d'images par IA. Le principe de fonctionnement est etonnamment simple : pendant l'entrainement, du bruit est progressivement ajoute a des images propres, puis le modele apprend a supprimer ce bruit. Pendant la generation, il part d'un bruit aleatoire pur et le debruite etape par etape pour former une image significative. Stable Diffusion, DALL-E 3 et Midjourney utilisent tous ce principe. Dans la generation texte-image, un 'text encoder' convertit le texte en vecteur semantique, un 'U-Net' ou 'DiT' (Diffusion Transformer) effectue le debruitage, et un 'VAE decoder' convertit le resultat en image pixelisee. Des avancees recentes comme le 'flow matching' et les 'consistency models' ont considerablement augmente la vitesse en reduisant le nombre d'etapes de generation."
+  zh: AI图像生成背后的核心技术。工作原理出乎意料地简单：训练时逐步向干净图像添加噪声，然后模型学习去除这些噪声。生成时，从纯随机噪声开始，逐步去噪生成有意义的图像。Stable Diffusion、DALL-E 3和Midjourney都使用这一原理。在文本生成图像中，'文本编码器'将文本转换为语义向量，'U-Net'或'DiT'（扩散Transformer）执行去噪，'VAE解码器'将结果转换为像素图像。最近的进展如'流匹配'和'一致性模型'通过减少生成步数显著提高了速度。
+  ar: "التقنية الاساسية وراء توليد الصور بالذكاء الاصطناعي. مبدا العمل بسيط بشكل مدهش: اثناء التدريب يضاف تشويش تدريجيا الى صور نظيفة ثم يتعلم النموذج ازالة هذا التشويش. اثناء التوليد يبدا من تشويش عشوائي تماما ويزيل التشويش خطوة بخطوة لتكوين صورة ذات معنى. يستخدم Stable Diffusion وDALL-E 3 وMidjourney جميعها هذا المبدا. في توليد الصور من النص يحول 'مشفر النص' النص الى متجه دلالي ويقوم 'U-Net' او 'DiT' (محول الانتشار) بازالة التشويش ويحول 'فك ترميز VAE' النتيجة الى صورة بكسلية. تقنيات حديثة مثل 'مطابقة التدفق' و'نماذج الاتساق' زادت السرعة بشكل كبير عبر تقليل عدد خطوات التوليد."
+  ru: "Основная технология генерации изображений с помощью ИИ. Принцип работы удивительно прост: при обучении к чистым изображениям постепенно добавляется шум, затем модель учится удалять этот шум. При генерации она начинает с чистого случайного шума и пошагово очищает его, формируя осмысленное изображение. Stable Diffusion, DALL-E 3 и Midjourney используют этот принцип. При генерации текст-в-изображение 'текстовый энкодер' преобразует текст в смысловой вектор, 'U-Net' или 'DiT' (Diffusion Transformer) выполняет удаление шума, а 'VAE декодер' преобразует результат в пиксельное изображение. Недавние достижения вроде 'flow matching' и 'consistency models' значительно увеличили скорость, сократив количество шагов генерации."
+analogy:
+  tr: Diffusion modeli, bir heykeltrasin mermer blogündan heykel oymasina benzer. Baslangicta sadece kaba bir kaya vardır (gürültü), heykeltras her adımda fazlaliklari yontarak altindaki sekli ortaya çıkarir. Model de aynı şekilde, her adımda gürültüyu biraz daha kaldirarak görüntünun seklini ortaya koyar.
+  en: A diffusion model iş like a sculptor carving a statue from a marble block. At first there's just a rough stone (noise), and the sculptor chips away at each step to reveal the shape underneath. The model works the same way, removing a bit more noise at each step to reveal the image.
+  fr: Un modele de diffusion est comme un sculpteur taillant une statue dans un bloc de marbre. Au depart il n'y a qu'une pierre brute (bruit), et le sculpteur enleve des morceaux a chaque etape pour reveler la forme. Le modele fonctionne de la meme facon, enlevant un peu plus de bruit a chaque etape pour reveler l'image.
+  zh: 扩散模型就像雕塑家从大理石块中雕刻雕像。起初只有一块粗糙的石头（噪声），雕塑家每一步凿去多余的部分，逐渐显露出下面的形状。模型以同样的方式工作，每一步去除更多噪声来显现图像。
+  ar: نموذج الانتشار يشبه نحاتا ينحت تمثالا من كتلة رخام. في البداية لا يوجد سوى حجر خام (تشويش) وينحت النحات في كل خطوة ليكشف الشكل تحته. يعمل النموذج بنفس الطريقة مزيلا المزيد من التشويش في كل خطوة لكشف الصورة.
+  ru: Модель диффузии похожа на скульптора, высекающего статую из мраморного блока. Сначала есть лишь грубый камень (шум), и скульптор шаг за шагом отсекает лишнее, раскрывая форму внутри. Модель работает так же, убирая немного шума на каждом шаге, чтобы проявить изображение.
+security:
+  - title:
+      tr: NSFW Content Generation Bypass
+      en: NSFW Content Generation Bypass
+      fr: Contournement de la génération de contenu NSFW
+      zh: NSFW内容生成绕过
+      ar: تجاوز توليد المحتوى غير اللائق
+      ru: Обход генерации NSFW-контента
+    description:
+      tr: Diffusion model'lerdeki safety filter'ler adversarial prompts ile bypass edilebilir. Saldırgan, semantic-preserving prompt perturbations (synonym replacement, encoding) ile NSFW content üretir. Stable Diffusion gibi open-source modeller özellikle risklidir.
+      en: Safety filters in diffusion models can be bypassed with adversarial prompts. Attacker generates NSFW content with semantic-preserving prompt perturbations (synonym replacement, encoding). Open-source models like Stable Diffusion are especially risky.
+      fr: Les filtres de sécurité dans les modèles de diffusion peuvent être contournés avec des prompts adversariaux. L'attaquant génère du contenu NSFW avec des perturbations de prompts préservant la sémantique (remplacement de synonymes, encodage). Les modèles open-source comme Stable Diffusion sont particulièrement risqués.
+      zh: 扩散模型中的安全过滤器可以通过对抗性提示绕过。攻击者使用保留语义的提示扰动（同义词替换、编码）生成NSFW内容。像Stable Diffusion这样的开源模型风险尤其大。
+      ar: يمكن تجاوز مرشحات الأمان في نماذج الانتشار بأوامر عدائية. يولد المهاجم محتوى غير لائق باضطرابات أوامر تحافظ على المعنى (استبدال المرادفات، التشفير). النماذج مفتوحة المصدر مثل Stable Diffusion محفوفة بالمخاطر بشكل خاص.
+      ru: Фильтры безопасности в диффузионных моделях могут быть обойдены adversarial-промптами. Злоумышленник генерирует NSFW-контент с помощью семантически сохраняющих возмущений промптов (замена синонимов, кодирование). Модели с открытым исходным кодом вроде Stable Diffusion особенно рискованны.
+    severity: high
+  - title:
+      tr: Diffusion Model Çıktı Loglama Eksikliği
+      en: Diffusion Model Output Logging Gap
+      fr: Lacune de journalisation des sorties des modèles de diffusion
+      zh: 扩散模型输出日志缺口
+      ar: فجوة تسجيل مخرجات نموذج الانتشار
+      ru: Пробел в логировании вывода диффузионных моделей
+    description:
+      tr: Diffusion model'lerin ürettiği görüntülerin loglanmaması, kötüye kullanım tespitini zorlaştırır. Üretilen içeriklerin metadata'sı (prompt, model versiyonu, seed) kayıt altına alınmalıdır.
+      en: Not logging images generated by diffusion models makes abuse detection difficult. Metadata of generated content (prompt, model version, seed) should be recorded.
+      fr: Ne pas journaliser les images générées par les modèles de diffusion rend la détection d'abus difficile. Les métadonnées du contenu généré (prompt, version du modèle, seed) doivent être enregistrées.
+      zh: 不记录扩散模型生成的图像使滥用检测变得困难。生成内容的元数据（提示、模型版本、种子）应被记录。
+      ar: عدم تسجيل الصور المولدة بنماذج الانتشار يصعب اكتشاف إساءة الاستخدام. يجب تسجيل البيانات الوصفية للمحتوى المولد (الأمر، إصدار النموذج، البذرة).
+      ru: Отсутствие логирования изображений, сгенерированных диффузионными моделями, затрудняет обнаружение злоупотреблений. Метаданные сгенерированного контента (промпт, версия модели, seed) должны записываться.
+    severity: low
+config:
+  - title: Safe Diffusion with Prompt Filtering
+    lang: python
+    code: |-
+      from diffusers import StableDiffusionPipeline
+      import re
+
+      NSFW_KEYWORDS = ['nude', 'explicit', 'sexual']  # Expand this list
+
+      def filter_prompt(prompt: str) -> bool:
+          for keyword in NSFW_KEYWORDS:
+              if keyword in prompt.lower():
+                  return False
+          return True
+
+      pipe = StableDiffusionPipeline.from_pretrained('stabilityai/stable-diffusion-2')
+      pipe.safety_checker = lambda images, **kwargs: (images, False)  # Enable checker
+
+      if filter_prompt(user_prompt):
+          image = pipe(user_prompt).images[0]
+    description:
+      tr: Prompt filtering ve safety checker ile NSFW content generation engellenir.
+      en: NSFW content generation is prevented with prompt filtering and safety checker.
+research:
+  - title: Red-Teaming Text-to-Image Models
+    url: https://arxiv.org/abs/2305.19277
+    year: 2023
+    type: paper
+    authors: Haoyu Wang, Guozheng Ma, Jiuding Sun
+tips:
+  - tr: Stable Diffusion kullanırken safety_checker=None yapMAYIN. Bu NSFW filter'ı devre dışı bırakır.
+    en: Don't set safety_checker=None when using Stable Diffusion. This disables NSFW filter.

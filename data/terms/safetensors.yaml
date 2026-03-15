@@ -1,0 +1,160 @@
+id: safetensors
+name: SafeTensors
+fullName: SafeTensors
+category: ecosystem
+desc:
+  tr: |-
+    [Hugging Face](https://huggingface.co) tarafından geliştirilen güvenli ve hızlı model serialization formatı. Geleneksel [PyTorch](https://pytorch.org) pickle formatının (`.pth`, `.bin`) arbitrary code execution riskine alternatif olarak tasarlandı — sadece tensor data içerir, Python code execution yok.
+
+    SafeTensors dosyaları (`.safetensors`) header-based binary format kullanır: ilk 8 byte metadata size, sonra JSON metadata (tensor shape, dtype, offset), ardından raw tensor data. Format zero-copy ve memory-mapped loading destekler — büyük modeller (70B+) diskten direkt VRAM'e map edilir, RAM'e kopyalanmaz.
+
+    [Hugging Face Hub](https://huggingface.co/models)'daki modellerin çoğu artık SafeTensors formatında sunuluyor. [Transformers](https://huggingface.co/transformers) kütüphanesi otomatik olarak `.safetensors` dosyalarını tercih eder. PyTorch pickle'a göre %20-30 daha hızlı loading ve %100 daha güvenli — pickle deserialization attack vektörü tamamen ortadan kalkar.
+
+    Rust ile yazıldı, Python ve JavaScript binding'leri mevcut. Security audit geçti ve production-ready. Defense in depth için model integrity check eklendi — SHA256 hash ile corruption detection.
+  en: |-
+    Safe and fast model serialization format developed by [Hugging Face](https://huggingface.co). Designed as alternative to traditional [PyTorch](https://pytorch.org) pickle format (`.pth`, `.bin`) with its arbitrary code execution risk — contains only tensor data, no Python code execution.
+
+    SafeTensors files (`.safetensors`) use header-based binary format: first 8 bytes metadata size, then JSON metadata (tensor shape, dtype, offset), followed by raw tensor data. Format supports zero-copy and memory-mapped loading — large models (70B+) are mapped directly from disk to VRAM without copying to RAM.
+
+    Most models on [Hugging Face Hub](https://huggingface.co/models) are now offered in SafeTensors format. [Transformers](https://huggingface.co/transformers) library automatically prefers `.safetensors` files. 20-30% faster loading than PyTorch pickle and 100% safer — pickle deserialization attack vector completely eliminated.
+
+    Written in Rust with Python and JavaScript bindings. Passed security audit and production-ready. Added model integrity check for defense in depth — corruption detection with SHA256 hash.
+  fr: Format de serialisation de modele sur et rapide developpe par Hugging Face, alternative au format pickle PyTorch avec son risque d'execution de code arbitraire.
+  zh: Hugging Face开发的安全快速模型序列化格式，是传统PyTorch pickle格式的替代方案，消除了任意代码执行风险。
+  ar: تنسيق تسلسل نماذج آمن وسريع طورته Hugging Face، بديل لتنسيق pickle في PyTorch مع مخاطر تنفيذ الكود التعسفي.
+  ru: Безопасный и быстрый формат сериализации моделей, разработанный Hugging Face, альтернатива формату pickle в PyTorch с риском выполнения произвольного кода.
+analogy:
+  tr: Pickle formatı executable zip dosyası gibi (içinde script çalışabilir), SafeTensors ise read-only PDF gibi (sadece data, kod yok).
+  en: Pickle format is like executable zip file (can run scripts inside), SafeTensors is like read-only PDF (data only, no code).
+  fr: Le format pickle est comme un fichier zip executable (peut executer des scripts), SafeTensors est comme un PDF en lecture seule (donnees uniquement, pas de code).
+  zh: Pickle格式像可执行zip文件（内部可运行脚本），SafeTensors像只读PDF（仅数据，无代码）。
+  ar: تنسيق pickle مثل ملف zip قابل للتنفيذ (يمكن تشغيل نصوص بداخله)، SafeTensors مثل PDF للقراءة فقط (بيانات فقط، بدون كود).
+  ru: Формат pickle как исполняемый zip-файл (может запускать скрипты внутри), SafeTensors как PDF только для чтения (только данные, без кода).
+security:
+  - title:
+      tr: Format Validation Bypass
+      en: Format Validation Bypass
+      fr: Contournement de la validation de format
+      zh: 格式验证绕过
+      ar: تجاوز التحقق من صحة التنسيق
+      ru: Обход валидации формата
+    description:
+      tr: SafeTensors parser metadata size veya offset değerlerini validate ederken integer overflow yapılabilir. Crafted header ile parser'ı crash ettirebilir veya out-of-bounds read ile memory leak sağlanabilir. Rust'ın memory safety'si buffer overflow'u önlese de logic bug'lar mevcut olabilir.
+      en: SafeTensors parser can have integer overflow when validating metadata size or offset values. Crafted header can crash parser or achieve memory leak via out-of-bounds read. While Rust's memory safety prevents buffer overflow, logic bugs can still exist.
+      fr: Le parser SafeTensors peut subir un integer overflow lors de la validation de la taille des metadata ou des valeurs d'offset. Un header modifie peut faire crasher le parser ou provoquer une fuite de memoire via une lecture hors limites. Bien que la securite memoire de Rust previenne les buffer overflows, des bugs logiques peuvent subsister.
+      zh: SafeTensors解析器在验证元数据大小或偏移值时可能发生整数溢出。精心构造的头部可以使解析器崩溃，或通过越界读取导致内存泄漏。虽然Rust的内存安全机制可以防止缓冲区溢出，但逻辑漏洞仍可能存在。
+      ar: يمكن أن يحدث تجاوز عدد صحيح في محلل SafeTensors عند التحقق من حجم البيانات الوصفية أو قيم الإزاحة. يمكن لرأس مُعدّ أن يتسبب في تعطل المحلل أو تسريب الذاكرة عبر القراءة خارج الحدود. على الرغم من أن أمان ذاكرة Rust يمنع تجاوز المخزن المؤقت، إلا أن الأخطاء المنطقية قد تظل موجودة.
+      ru: Парсер SafeTensors может допустить целочисленное переполнение при валидации размера метаданных или значений смещения. Специально сформированный заголовок может привести к сбою парсера или утечке памяти через чтение за пределами буфера. Хотя безопасность памяти Rust предотвращает переполнение буфера, логические ошибки всё ещё возможны.
+    severity: medium
+  - title:
+      tr: Corrupted Tensor Data - Backdoor Injection
+      en: Corrupted Tensor Data - Backdoor Injection
+      fr: Donnees tenseur corrompues - Injection de porte derobee
+      zh: 损坏的张量数据 - 后门注入
+      ar: بيانات tensor تالفة - حقن باب خلفي
+      ru: Повреждённые данные тензоров - внедрение бэкдора
+    description:
+      tr: "SafeTensors arbitrary code execution'ı engelliyor ama weight poisoning'i engelleyemiyor. Saldırgan tensor data'yı manipüle ederek model'e backdoor ekleyebilir. SHA256 integrity check var ama orijinal model zaten poisoned ise faydasız. Defense: model provenance + behavioral testing."
+      en: "SafeTensors prevents arbitrary code execution but can't prevent weight poisoning. Attacker can manipulate tensor data to add backdoor to model. SHA256 integrity check exists but useless if original model is already poisoned. Defense: model provenance + behavioral testing."
+      fr: "SafeTensors empeche l'execution de code arbitraire mais ne peut pas prevenir l'empoisonnement des poids. Un attaquant peut manipuler les donnees tenseur pour ajouter une porte derobee au modele. La verification d'integrite SHA256 existe mais est inutile si le modele original est deja empoisonne. Defense : provenance du modele + tests comportementaux."
+      zh: SafeTensors可以防止任意代码执行，但无法阻止权重投毒。攻击者可以操纵张量数据向模型添加后门。SHA256完整性检查虽然存在，但如果原始模型已经被投毒则无效。防御措施：模型溯源 + 行为测试。
+      ar: "يمنع SafeTensors تنفيذ التعليمات البرمجية التعسفية ولكنه لا يستطيع منع تسميم الأوزان. يمكن للمهاجم التلاعب ببيانات tensor لإضافة باب خلفي للنموذج. فحص سلامة SHA256 موجود لكنه عديم الفائدة إذا كان النموذج الأصلي مسممًا بالفعل. الدفاع: تتبع مصدر النموذج + الاختبار السلوكي."
+      ru: "SafeTensors предотвращает произвольное выполнение кода, но не может предотвратить отравление весов. Злоумышленник может манипулировать данными тензоров для внедрения бэкдора в модель. Проверка целостности SHA256 существует, но бесполезна, если исходная модель уже отравлена. Защита: отслеживание происхождения модели + поведенческое тестирование."
+    severity: medium
+  - title:
+      tr: Safetensors Konfigürasyon Bilgi Sızıntısı
+      en: Safetensors Configuration Information Disclosure
+      fr: Divulgation de configuration safetensors
+      zh: safetensors配置信息泄露
+      ar: كشف معلومات تكوين safetensors
+      ru: Раскрытие конфигурации safetensors
+    description:
+      tr: Safetensors ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to safetensors can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à safetensors peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与safetensors相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ safetensors في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании safetensors могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Convert PyTorch to SafeTensors
+    lang: python
+    code: |-
+      from safetensors.torch import save_file, load_file
+      import torch
+
+      # Convert .pth to .safetensors
+      state_dict = torch.load('model.pth', weights_only=True)
+      save_file(state_dict, 'model.safetensors')
+
+      # Load SafeTensors (no pickle risk)
+      state_dict = load_file('model.safetensors')
+      model.load_state_dict(state_dict)
+    description:
+      tr: PyTorch pickle formatından SafeTensors'a dönüşüm. save_file() ile .safetensors kaydedilir, load_file() ile yüklenir. Pickle deserialization riski tamamen ortadan kalkar, loading 20-30% daha hızlı.
+      en: Convert from PyTorch pickle format to SafeTensors. Save with save_file(), load with load_file(). Completely eliminates pickle deserialization risk, loading 20-30% faster.
+  - title: Hugging Face Transformers Auto-Selection
+    lang: python
+    code: |-
+      from transformers import AutoModel
+
+      # Automatically prefers .safetensors if available
+      model = AutoModel.from_pretrained(
+          "meta-llama/Llama-2-7b-hf",
+          # use_safetensors=True  # Force SafeTensors (default)
+      )
+
+      # Verify SafeTensors was used
+      print(model.config._name_or_path)  # Check loaded file format
+    description:
+      tr: Hugging Face Transformers otomatik olarak .safetensors dosyalarını tercih eder. use_safetensors=True ile force edilebilir. Model Hub'dan indirme sırasında SafeTensors varsa pickle yerine onu kullanır.
+      en: Hugging Face Transformers automatically prefers .safetensors files. Can be forced with use_safetensors=True. When downloading from Model Hub, uses SafeTensors if available instead of pickle.
+  - title: SafeTensors Validation Script
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      FILE="${1:?Usage: $0 <safetensors_file>}"
+      python3 -c "
+      from safetensors import safe_open
+      import sys
+      try:
+          with safe_open('$FILE', framework='pt') as f:
+              keys = f.keys()
+              print(f'[+] Valid safetensors: {len(keys)} tensors')
+              for k in keys:
+                  t = f.get_tensor(k)
+                  if t.isnan().any():
+                      print(f'[-] NaN in tensor: {k}')
+                      sys.exit(1)
+              print('[+] All tensors valid')
+      except Exception as e:
+          print(f'[-] Invalid file: {e}')
+          sys.exit(1)
+      "
+    description:
+      tr: SafeTensors dosya dogrulama.
+      en: SafeTensors file validation script.
+research:
+  - title: SafeTensors GitHub Repository
+    url: https://github.com/huggingface/safetensors
+    year: 2024
+    type: tool
+    authors: Hugging Face
+  - title: SafeTensors Format Specification
+    url: https://huggingface.co/docs/safetensors/index
+    year: 2024
+    type: guide
+    authors: Hugging Face
+  - title: Security Audit of SafeTensors
+    url: https://github.com/huggingface/safetensors/blob/main/audit/TRA-HuggingFace-Safetensors.pdf
+    year: 2023
+    type: paper
+    authors: Trail of Bits
+tips:
+  - tr: Yeni model eğitiyorsanız baştan SafeTensors formatında kaydedin, pickle kullanmayın — güvenlik + performance avantajı.
+    en: If training new model, save in SafeTensors format from start, don't use pickle — security + performance advantage.
+  - tr: Hugging Face'den model indirirken .safetensors dosyasını tercih edin, .bin veya .pth varsa dönüştürün.
+    en: When downloading from Hugging Face, prefer .safetensors file, if .bin or .pth exists, convert it.
+  - tr: SafeTensors SHA256 hash'i verify edin — corrupted file detection için önemli, integrity garantisi sağlar.
+    en: Verify SafeTensors SHA256 hash — important for corrupted file detection, provides integrity guarantee.

@@ -1,0 +1,98 @@
+id: vector-database
+name: Vector DB
+fullName: Vector Database
+category: ecosystem
+desc:
+  tr: |-
+    Anlamsal benzerlik araması için optimize edilmiş veritabanı türü. Geleneksel veritabanları tam metin eşleşmesi yaparken, vektor veritabanları metni yüksek boyutlu sayısal vektörlere (embedding'lere) dönüştürür ve 'anlamca en yakın' sonuçları bulur.
+
+    Örneğin 'araba tamiri' aradığınızda 'otomobil servisi' içeren sonuçları da getirir çünkü anlam olarak yakındir. [Pinecone](https://pinecone.io), [Weaviate](https://weaviate.io), Milvus, [Chroma](https://trychroma.com) ve Qdrant bu alandaki popüler çözümlerdir.
+
+    RAG (Retrieval-Augmented Generation) mimarisinin temel bileşenidir -- LLM'lere dış bilgi kazandırmak için dökümanları vektor olarak saklar ve soru geldiğinde en ilgili parçaları getirir. Büyük ölçekli uygulamalarda milyarlarca vektörü milisaniyeler içinde arayabilir.
+  en: |-
+    A type of database optimized for semantic similarity search. While traditional databases do exact text matching, vector databases convert text into high-dimensional numerical vectors (embeddings) and find results that are 'closest in meaning'.
+
+    For example, searching for 'car repair' will also return results containing 'automobile service' because they are semantically similar. [Pinecone](https://pinecone.io), [Weaviate](https://weaviate.io), Milvus, [Chroma](https://trychroma.com), and Qdrant are popular solutions in this space.
+
+    It iş a core component of RAG (Retrieval-Augmented Generation) architecture -- storing documents as vectors so that when a question arrives, the most relevant chunks are retrieved and fed to the LLM. At scale, it can search billions of vectors in milliseconds.
+  fr: Un type de base de donnees optimise pour la recherche par similarite semantique. Alors que les bases de donnees traditionnelles font de la correspondance exacte de texte, les bases de donnees vectorielles convertissent le texte en vecteurs numeriques de haute dimension (embeddings) et trouvent les resultats les plus proches en termes de sens. Par exemple, rechercher 'reparation automobile' renverra aussi des resultats contenant 'service auto' car ils sont semantiquement similaires. Pinecone, Weaviate, Milvus, Chroma et Qdrant sont des solutions populaires. C'est un composant cle de l'architecture RAG (Retrieval-Augmented Generation) -- stockant les documents sous forme de vecteurs pour recuperer les passages les plus pertinents lorsqu'une question arrive. A grande echelle, elle peut rechercher des milliards de vecteurs en millisecondes.
+  zh: 一种为语义相似性搜索而优化的数据库类型。传统数据库进行精确文本匹配，而向量数据库将文本转换为高维数值向量（嵌入），并找到'含义最接近'的结果。例如，搜索'汽车维修'也会返回包含'汽车服务'的结果，因为它们在语义上是相似的。Pinecone、Weaviate、Milvus、Chroma和Qdrant是这一领域的流行解决方案。它是RAG（检索增强生成）架构的核心组件——将文档存储为向量，当问题到来时检索最相关的片段并提供给LLM。在大规模场景下，它可以在毫秒内搜索数十亿个向量。
+  ar: نوع من قواعد البيانات محسن للبحث بالتشابه الدلالي. بينما تقوم قواعد البيانات التقليدية بمطابقة النص الحرفية، تحول قواعد البيانات المتجهية النص الى متجهات رقمية عالية الابعاد (تضمينات) وتجد النتائج الاقرب في المعنى. مثلا البحث عن 'اصلاح سيارات' سيعيد ايضا نتائج تحتوي على 'خدمة سيارات' لانها متشابهة دلاليا. تعد Pinecone وWeaviate وMilvus وChroma وQdrant حلولا شائعة في هذا المجال. وهي مكون اساسي في بنية RAG (التوليد المعزز بالاسترجاع) -- حيث تخزن المستندات كمتجهات لاسترجاع الاجزاء الاكثر صلة عند ورود سؤال وتقديمها للنموذج اللغوي. على نطاق واسع يمكنها البحث في مليارات المتجهات في اجزاء من الثانية.
+  ru: Тип базы данных, оптимизированной для семантического поиска по сходству. В то время как традиционные базы данных выполняют точное совпадение текста, векторные базы данных преобразуют текст в числовые векторы высокой размерности (эмбеддинги) и находят результаты, наиболее близкие по смыслу. Например, поиск по запросу 'ремонт автомобиля' также вернет результаты с 'автосервис', поскольку они семантически схожи. Pinecone, Weaviate, Milvus, Chroma и Qdrant -- популярные решения в этой области. Это ключевой компонент архитектуры RAG (генерация с дополненным извлечением) -- документы хранятся как векторы, и при поступлении вопроса извлекаются наиболее релевантные фрагменты для подачи в LLM. В масштабе может искать среди миллиардов векторов за миллисекунды.
+analogy:
+  tr: Geleneksel veritabanı bir kutuphanede kitap basligina göre arama yapmak gibiyse, vektor veritabanı kutuphaneciye 'uzay yolculugu hakkinda heyecan verici bir sey istiyorum' demek gibidir -- tam kelime eşleşmesi yerine anlami anlar.
+  en: If a traditional database iş like searching a library by exact book title, a vector database iş like telling a librarian 'I want something exciting about space travel' -- it understands meaning rather than matching exact words.
+  fr: Si une base de donnees traditionnelle revient a chercher un livre par son titre exact, une base de donnees vectorielle revient a dire au bibliothecaire 'je veux quelque chose de passionnant sur les voyages spatiaux' -- elle comprend le sens plutot que de chercher des mots exacts.
+  zh: 如果传统数据库像是按精确书名在图书馆搜索，那么向量数据库就像告诉图书管理员'我想要一些关于太空旅行的精彩内容'——它理解含义，而不是匹配精确的词语。
+  ar: اذا كانت قاعدة البيانات التقليدية مثل البحث في مكتبة بعنوان الكتاب بالضبط، فان قاعدة البيانات المتجهية مثل اخبار امين المكتبة 'اريد شيئا مثيرا عن السفر الى الفضاء' -- فهي تفهم المعنى بدلا من مطابقة الكلمات.
+  ru: Если традиционная база данных -- это поиск книги в библиотеке по точному названию, то векторная база данных -- это когда вы говорите библиотекарю 'хочу что-нибудь захватывающее о космических путешествиях' -- она понимает смысл, а не ищет точные слова.
+security:
+  - title:
+      tr: Embedding Inversion Saldırıları
+      en: Embedding Inversion Attacks
+      fr: Attaques par inversion d'embeddings
+      zh: 嵌入反转攻击
+      ar: هجمات عكس التضمينات
+      ru: Атаки инверсии эмбеддингов
+    description:
+      tr: Vector database'deki embedding'ler optimize edilerek orijinal text reconstruct edilebilir. Sensitive data içeren document'lerde privacy riski oluşturur.
+      en: Embeddings in vector database can be optimized to reconstruct original text. Poses privacy risk in documents containing sensitive data.
+      fr: Les embeddings dans la base de données vectorielle peuvent être optimisés pour reconstruire le texte original. Cela pose un risque de confidentialité dans les documents contenant des données sensibles.
+      zh: 向量数据库中的嵌入可以通过优化重建原始文本。在包含敏感数据的文档中构成隐私风险。
+      ar: يمكن تحسين التضمينات في قاعدة البيانات المتجهة لإعادة بناء النص الأصلي. يشكل خطراً على الخصوصية في المستندات التي تحتوي على بيانات حساسة.
+      ru: Эмбеддинги в векторной базе данных могут быть оптимизированы для восстановления исходного текста. Создаёт риск конфиденциальности в документах, содержащих чувствительные данные.
+    severity: medium
+  - title:
+      tr: RAG Poisoning via Vector DB
+      en: RAG Poisoning via Vector DB
+      fr: Empoisonnement RAG via la base vectorielle
+      zh: 通过向量数据库进行RAG投毒
+      ar: تسميم RAG عبر قاعدة البيانات المتجهة
+      ru: Отравление RAG через векторную БД
+    description:
+      tr: RAG sistemlerinde vector DB'ye adversarial document'ler enjekte edilir. Bu document'ler yüksek similarity score alır ve LLM yanıtını manipüle eder.
+      en: Adversarial documents are injected into vector DB in RAG systems. These documents get high similarity scores and manipulate LLM response.
+      fr: Des documents adversariaux sont injectés dans la base vectorielle des systèmes RAG. Ces documents obtiennent des scores de similarité élevés et manipulent la réponse du LLM.
+      zh: 在RAG系统中向向量数据库注入对抗性文档。这些文档获得高相似度分数并操纵LLM响应。
+      ar: يتم حقن مستندات عدائية في قاعدة البيانات المتجهة في أنظمة RAG. تحصل هذه المستندات على درجات تشابه عالية وتتلاعب باستجابة نموذج اللغة الكبير.
+      ru: В RAG-системах в векторную БД внедряются adversarial-документы. Эти документы получают высокие баллы сходства и манипулируют ответом LLM.
+    severity: high
+  - title:
+      tr: Vector DB Erişim Kontrol Eksikliği
+      en: Vector DB Access Control Gap
+      fr: Lacune de contrôle d'accès de la base vectorielle
+      zh: 向量数据库访问控制缺口
+      ar: فجوة التحكم في الوصول إلى قاعدة البيانات المتجهة
+      ru: Пробел в контроле доступа к векторной БД
+    description:
+      tr: Vector database'lerde genellikle document-level access control bulunmaz. Tüm kullanıcılar tüm embedding'lere erişebilir, bu da multi-tenant ortamlarda veri izolasyonu sorununa yol açar.
+      en: Vector databases typically lack document-level access control. All users can access all embeddings, causing data isolation issues in multi-tenant environments.
+      fr: Les bases de données vectorielles manquent généralement de contrôle d'accès au niveau des documents. Tous les utilisateurs peuvent accéder à tous les embeddings, causant des problèmes d'isolation des données dans les environnements multi-locataires.
+      zh: 向量数据库通常缺乏文档级别的访问控制。所有用户都可以访问所有嵌入，这在多租户环境中造成数据隔离问题。
+      ar: تفتقر قواعد البيانات المتجهة عادةً إلى التحكم في الوصول على مستوى المستند. يمكن لجميع المستخدمين الوصول إلى جميع التضمينات، مما يسبب مشاكل عزل البيانات في البيئات متعددة المستأجرين.
+      ru: Векторные базы данных обычно не имеют контроля доступа на уровне документов. Все пользователи могут обращаться ко всем эмбеддингам, что вызывает проблемы изоляции данных в мультитенантных средах.
+    severity: low
+config:
+  - title: Vector DB Access Control
+    lang: python
+    code: |-
+      # Use metadata filtering in Qdrant/Pinecone
+      collection.upsert(
+          id='doc1',
+          vector=embedding,
+          metadata={'user_id': user_id, 'access_level': 'private'}
+      )
+      # Search with ACL filter
+      results = collection.search(query_vector, filter={'user_id': current_user})
+    description:
+      tr: Metadata ile user-based access control yapın.
+      en: Implement user-based access control with metadata.
+research:
+  - title: Poisoning Retrieval-Augmented Generation
+    url: https://arxiv.org/abs/2402.07867
+    year: 2024
+    type: paper
+    authors: Alexander Wan, Eric Wallace
+tips:
+  - tr: Vector DB'ye document eklerken anomaly detection yapın. Adversarial embedding'ler distribution'dan sapma gösterir.
+    en: Perform anomaly detection when adding documents to Vector DB. Adversarial embeddings show deviation from distribution.

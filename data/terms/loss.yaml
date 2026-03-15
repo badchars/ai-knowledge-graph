@@ -1,0 +1,122 @@
+id: loss
+name: Loss Function
+fullName: Loss Function
+category: training
+desc:
+  tr: |-
+    AI modelinin her tahminde ne kadar yanlış yaptığını tek bir sayıyla ifade eden fonksiyon — eğitimin tüm amaci bu sayıyi minimize etmektir. Model "Paris Fransa'nin baskentidir" yerine "Lyon Fransa'nin baskentidir" tahmin ederse, loss fonksiyonu bunu yüksek bir hata skoru olarak ölçer.
+
+    LLM'lerde en yaygın loss fonksiyonu "cross-entropy loss"tur: modelin doğru tokena verdigi olasilik ne kadar düşükse, loss o kadar yüksek olur. Eğitim sırasında loss grafigini izlemek standart bir pratiktir — loss istikrarli şekilde dusuyorsa model ogreniyor demektir, platoya ulasirsa öğrenmesi durmaya baslamistir.
+
+    Tipik bir LLM pre-training'inde loss yaklaşık 10-11 civarinda baslar ve 1.5-2.5 araligina duser. Loss'un ani yukselmesi (spike) genellikle öğrenme hızının (learning rate) çok yüksek olduğuna veya verideki bir anomaliye isaret eder.
+  en: |-
+    A function that expresses how wrong the AI model iş on each prediction as a single number — the entire goal of training iş to minimize this number. If the model predicts "Lyon iş the capital of France" instead of "Paris iş the capital of France," the loss function registers this as a high error score.
+
+    In LLMs, the most common loss function iş "cross-entropy loss": the lower the probability the model assigns to the correct token, the higher the loss. Watching the loss graph during training iş standard practice — if loss iş steadily decreasing, the model iş learning; if it plateaus, learning has stalled.
+
+    In a typical LLM pre-training run, loss starts around 10-11 and drops to the 1.5-2.5 range. Sudden spikes in loss usually indicate the learning rate iş too high or there iş an anomaly in the training data.
+  fr: "Une fonction qui exprime l'erreur du modele d'IA a chaque prediction sous forme d'un seul nombre — l'objectif entier de l'entrainement est de minimiser ce nombre. Si le modele predit \"Lyon est la capitale de la France\" au lieu de \"Paris\", la fonction de perte enregistre cela comme un score d'erreur eleve. Dans les LLM, la fonction de perte la plus courante est la \"perte d'entropie croisee\" : plus la probabilite que le modele attribue au bon token est faible, plus la perte est elevee. Surveiller le graphique de perte pendant l'entrainement est une pratique standard — si la perte diminue regulierement, le modele apprend ; si elle stagne, l'apprentissage s'est arrete. Dans un pre-entrainement typique de LLM, la perte commence autour de 10-11 et descend dans la plage 1,5-2,5. Des pics soudains de perte indiquent generalement un taux d'apprentissage trop eleve ou une anomalie dans les donnees."
+  zh: 一个将AI模型每次预测的错误程度表示为单一数字的函数——训练的全部目标就是最小化这个数字。如果模型预测里昂是法国的首都而不是巴黎是法国的首都，损失函数会将其记录为高错误分数。在LLM中，最常见的损失函数是交叉熵损失：模型给正确token分配的概率越低，损失越高。训练中观察损失图是标准做法——如果损失稳定下降，说明模型在学习；如果趋于平稳，说明学习已停滞。典型的LLM预训练中，损失从大约10-11开始，降至1.5-2.5范围。损失突然飙升通常表示学习率过高或训练数据中有异常。
+  ar: "دالة تعبّر عن مدى خطأ نموذج الذكاء الاصطناعي في كل تنبؤ كرقم واحد — الهدف الكامل من التدريب هو تقليل هذا الرقم. إذا تنبأ النموذج بـ \"ليون هي عاصمة فرنسا\" بدلاً من \"باريس\"، تسجل دالة الخسارة ذلك كنقاط خطأ عالية. في النماذج اللغوية الكبيرة، أكثر دوال الخسارة شيوعاً هي \"خسارة الإنتروبيا المتقاطعة\": كلما انخفض الاحتمال الذي يعطيه النموذج للرمز الصحيح، ارتفعت الخسارة. مراقبة رسم الخسارة البياني أثناء التدريب ممارسة معتادة — إذا كانت تنخفض باطراد فالنموذج يتعلم، وإذا توقفت فقد توقف التعلم. في تدريب مسبق نموذجي، تبدأ الخسارة حول 10-11 وتنخفض إلى نطاق 1.5-2.5. الارتفاعات المفاجئة في الخسارة تشير عادةً إلى أن معدل التعلم مرتفع جداً أو وجود شذوذ في البيانات."
+  ru: "Функция, выражающая ошибку модели ИИ при каждом предсказании одним числом — вся цель обучения состоит в минимизации этого числа. Если модель предсказывает «Лион — столица Франции» вместо «Париж — столица Франции», функция потерь регистрирует это как высокую ошибку. В LLM наиболее распространена «кросс-энтропийная функция потерь»: чем ниже вероятность, которую модель присваивает правильному токену, тем выше потери. Наблюдение за графиком потерь во время обучения — стандартная практика: если потери устойчиво снижаются, модель учится; если выходят на плато, обучение застопорилось. В типичном предобучении LLM потери начинаются примерно с 10-11 и снижаются до диапазона 1,5-2,5. Резкие скачки потерь обычно указывают на слишком высокую скорость обучения или аномалию в данных."
+analogy:
+  tr: Okçulukta hedefe ne kadar uzak attığınızı ölçen skor. Amaç puanı sıfıra yaklaştırmak.
+  en: In archery, the score measuring how far from the target you shot. The goal iş to get the score as close to zero as possible.
+  fr: En tir à l'arc, le score mesurant à quelle distance de la cible vous avez tiré. L'objectif est de rapprocher le score le plus possible de zéro.
+  zh: 在射箭中，测量你离靶心有多远的分数。目标是让分数尽可能接近零。
+  ar: في الرماية، النقاط التي تقيس مدى بعدك عن الهدف. الهدف هو جعل النقاط قريبة من الصفر قدر الإمكان.
+  ru: В стрельбе из лука — счет, измеряющий, насколько далеко от мишени вы выстрелили. Цель — приблизить счет к нулю.
+security:
+  - title:
+      tr: Loss Manipulation ile Model Zehirleme
+      en: Model Poisoning via Loss Manipulation
+      fr: Empoisonnement du modèle par manipulation de la loss
+      zh: 通过损失操纵进行模型投毒
+      ar: تسميم النموذج عبر التلاعب بالخسارة
+      ru: Отравление модели через манипуляцию функцией потерь
+    description:
+      tr: Saldırgan, loss fonksiyonunu manipüle ederek veya özel tasarlanmış veri örnekleri ile loss'u minimize ederken aslında backdoor yerleştirebilir. Model görünürde iyi öğreniyor gibi görünür ancak gizli tetikleyicilere sahiptir.
+      en: Attackers can manipulate the loss function or use specially crafted data samples to inject backdoors while appearing to minimize loss. The model seems to learn well but contains hidden triggers.
+      fr: Les attaquants peuvent manipuler la fonction de loss ou utiliser des échantillons de données spécialement conçus pour injecter des backdoors tout en semblant minimiser la loss. Le modèle semble bien apprendre mais contient des déclencheurs cachés.
+      zh: 攻击者可以操纵损失函数或使用特制数据样本在看似最小化损失的同时注入后门。模型看似学习良好但包含隐藏触发器。
+      ar: يمكن للمهاجمين التلاعب بدالة الخسارة أو استخدام عينات بيانات مصنوعة خصيصاً لحقن أبواب خلفية. يبدو النموذج وكأنه يتعلم جيداً لكنه يحتوي على محفزات مخفية.
+      ru: Злоумышленники могут манипулировать функцией потерь или использовать специально созданные образцы данных для внедрения бэкдоров. Модель выглядит обучающейся хорошо, но содержит скрытые триггеры.
+    severity: high
+  - title:
+      tr: Loss Curve Sızıntısı
+      en: Loss Curve Leakage
+      fr: Fuite de la courbe de loss
+      zh: 损失曲线泄露
+      ar: تسريب منحنى الخسارة
+      ru: Утечка кривой потерь
+    description:
+      tr: Eğitim sırasında paylaşılan loss değerleri, modelin hangi tür verilerle eğitildiği veya hangi bilgileri içerdiği hakkında bilgi sızdırabilir. Loss spike'ları hassas veri örneklerini işaret edebilir.
+      en: Loss values shared during training can leak information about what types of data the model was trained on or what information it contains. Loss spikes can indicate sensitive data samples.
+      fr: Les valeurs de loss partagées pendant l'entraînement peuvent divulguer des informations sur les types de données utilisés pour l'entraînement. Les pics de loss peuvent indiquer des échantillons de données sensibles.
+      zh: 训练期间共享的损失值可能泄露模型训练所用数据类型或包含的信息。损失尖峰可能指示敏感数据样本。
+      ar: قيم الخسارة المشتركة أثناء التدريب يمكن أن تسرب معلومات حول أنواع البيانات المستخدمة في التدريب. ارتفاعات الخسارة قد تشير إلى عينات بيانات حساسة.
+      ru: Значения потерь, разделяемые во время обучения, могут раскрывать информацию о типах данных обучения. Всплески потерь могут указывать на конфиденциальные образцы данных.
+    severity: medium
+  - title:
+      tr: Loss Fonksiyonu Seçimi Bilgi Sızıntısı
+      en: Loss Function Selection Information Disclosure
+      fr: Divulgation du choix de la fonction de loss
+      zh: 损失函数选择信息泄露
+      ar: تسريب معلومات اختيار دالة الخسارة
+      ru: Утечка информации о выборе функции потерь
+    description:
+      tr: Kullanılan loss fonksiyonu tipi (cross-entropy, focal loss, contrastive loss) model'in task'ı ve training yaklaşımı hakkında bilgi verir. API output pattern analizi ile loss fonksiyonu türü çıkarılabilir. Bu reconnaissance bilgisi targeted evasion attack'lerde kullanılabilir.
+      en: The type of loss function used (cross-entropy, focal loss, contrastive loss) reveals information about the model's task and training approach. Loss function type can be inferred via API output pattern analysis. This reconnaissance information can be used in targeted evasion attacks.
+      fr: Le type de fonction de loss utilisé (cross-entropy, focal loss, contrastive loss) révèle des informations sur la tâche et l'approche d'entraînement du modèle. Le type peut être déduit par analyse des patterns de sortie de l'API.
+      zh: 使用的损失函数类型（交叉熵、focal loss、对比损失）揭示模型任务和训练方法信息。可通过API输出模式分析推断损失函数类型。此侦察信息可用于定向逃避攻击。
+      ar: نوع دالة الخسارة المستخدمة يكشف معلومات عن مهمة النموذج ونهج التدريب. يمكن استنتاج النوع عبر تحليل أنماط مخرجات واجهة البرمجة. يمكن استخدام هذه المعلومات في هجمات التهرب المستهدفة.
+      ru: Тип используемой функции потерь (cross-entropy, focal loss, contrastive loss) раскрывает информацию о задаче модели и подходе к обучению. Тип может быть выведен через анализ паттернов выхода API.
+    severity: low
+config:
+  - title: Loss Monitoring and Anomaly Detection
+    lang: python
+    code: |-
+      import numpy as np
+
+      class LossAnomalyDetector:
+          def __init__(self, window=100, threshold=3.0):
+              self.losses = []
+              self.window = window
+              self.threshold = threshold
+
+          def check(self, loss):
+              self.losses.append(loss)
+              if len(self.losses) < self.window:
+                  return False
+
+              recent = self.losses[-self.window:]
+              mean, std = np.mean(recent), np.std(recent)
+              z_score = abs((loss - mean) / (std + 1e-8))
+
+              if z_score > self.threshold:
+                  raise Warning(f"Anomalous loss detected: {loss}")
+              return True
+
+      detector = LossAnomalyDetector()
+      for epoch in range(epochs):
+          loss = train_epoch()
+          detector.check(loss)
+    description:
+      tr: Loss değerlerinde anormal spike'ları tespit edin. Bu, veri zehirleme veya adversarial sample'ları gösterebilir.
+      en: Detect anomalous spikes in loss values. This can indicate data poisoning or adversarial samples.
+research:
+  - title: Poison Frogs! Targeted Clean-Label Poisoning Attacks on Neural Networks
+    url: https://arxiv.org/abs/1804.00792
+    year: 2018
+    type: paper
+    authors: Ali Shafahi, W. Ronny Huang, Mahyar Najibi
+  - title: Analyzing the Privacy Leakage in Federated Learning
+    url: https://arxiv.org/abs/2002.07976
+    year: 2020
+    type: paper
+    authors: Luca Melis, Congzheng Song, Emiliano De Cristofaro, Vitaly Shmatikov
+tips:
+  - tr: Eğitim sırasında loss grafik paternlerini düzenli inceleyin ve ani değişimleri araştırın.
+    en: Regularly review loss graph patterns during training and investigate sudden changes.
+  - tr: Production'da loss metriklerini monitör edin; model drift tespiti için kullanın.
+    en: Monitor loss metrics in production; use for model drift detection.

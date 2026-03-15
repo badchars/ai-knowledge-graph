@@ -1,0 +1,228 @@
+id: model-extraction
+name: Model Extraction
+fullName: Model Extraction Attack
+category: ai-security
+desc:
+  tr: |-
+    Bir AI modelinin API'sine sistematik sorgular göndererek modelin davranışını kopyalayan bir yedek model oluşturma saldırısı. Saldırgan binlerce girdi-çıktı çifti toplayarak orijinal modelin bilgisini daha küçük bir modele damıtır.
+
+    Bu teknik model sahibinin fikri mülkiyetini çalmanın yanı sıra, elde edilen kopya model üzerinde adversarial saldırılar geliştirmek için de kullanılır. [OpenAI](https://openai.com) ve diğer sağlayıcılar bu saldırıya karşı oran sınırlaması, sorgu izleme ve çıktı perturbasyonu gibi savunmalar uygular.
+
+    Distillation saldırısı olarak da bilinir ve model API'lerinin kullanim şartlarında açıkça yasaklanmıştır.
+  en: |-
+    An attack that creates a replica model by sending systematic queries to an AI model's API to copy its behavior. The attacker collects thousands of input-output pairs to distill the original model's knowledge into a smaller model.
+
+    This technique iş used not only to steal the model owner's intellectual property but also to develop adversarial attacks on the extracted copy. [OpenAI](https://openai.com) and other providers implement defenses like rate limiting, query monitoring, and output perturbation against this attack.
+
+    Also known as model stealing or distillation attack, it iş explicitly prohibited in model API terms of service.
+  fr: Une attaque qui cree un modele replique en envoyant des requetes systematiques a l'API d'un modele d'IA pour copier son comportement. L'attaquant collecte des milliers de paires entree-sortie pour distiller les connaissances du modele original dans un modele plus petit. Cette technique est utilisee non seulement pour voler la propriete intellectuelle du proprietaire du modele mais aussi pour developper des attaques adversariales sur la copie extraite. OpenAI et d'autres fournisseurs implementent des defenses comme la limitation de debit, la surveillance des requetes et la perturbation des sorties. Egalement connue sous le nom d'attaque par vol de modele ou distillation, elle est explicitement interdite dans les conditions d'utilisation des API.
+  zh: 一种通过向AI模型的API发送系统性查询来复制其行为从而创建副本模型的攻击。攻击者收集数千个输入输出对，将原始模型的知识蒸馏到更小的模型中。这种技术不仅用于窃取模型所有者的知识产权，还用于在提取的副本上开发对抗性攻击。OpenAI和其他提供商实施了速率限制、查询监控和输出扰动等防御措施来对抗此类攻击。也称为模型窃取或蒸馏攻击，在模型API服务条款中被明确禁止。
+  ar: هجوم ينشئ نموذجا مستنسخا عن طريق ارسال استعلامات منهجية الى واجهة برمجة تطبيقات نموذج الذكاء الاصطناعي لنسخ سلوكه. يجمع المهاجم آلاف ازواج المدخلات والمخرجات لتقطير معرفة النموذج الاصلي في نموذج اصغر. تستخدم هذه التقنية ليس فقط لسرقة الملكية الفكرية لمالك النموذج ولكن ايضا لتطوير هجمات عدائية على النسخة المستخرجة. ينفذ OpenAI ومزودون اخرون دفاعات مثل تحديد المعدل ومراقبة الاستعلامات واضطراب المخرجات. يعرف ايضا بسرقة النموذج او هجوم التقطير وهو محظور صراحة في شروط خدمة واجهات برمجة التطبيقات.
+  ru: "Атака, создающая копию модели путем отправки систематических запросов к API модели ИИ для копирования её поведения. Злоумышленник собирает тысячи пар ввод-вывод, чтобы дистиллировать знания оригинальной модели в меньшую модель. Эта техника используется не только для кражи интеллектуальной собственности владельца модели, но и для разработки состязательных атак на извлеченную копию. OpenAI и другие провайдеры реализуют защиту: ограничение частоты запросов, мониторинг запросов и пертурбацию выходов. Также известна как кража модели или атака дистилляции и явно запрещена условиями использования API моделей."
+analogy:
+  tr: Bir restoranin meshur tarifini cozmek için her gün farklı yemekler siparis edip tadarak notlar almak gibi. Yeterince siparis verdikten sonra tarifi neredeyse birebir kopyalayabilirsiniz -- asci olmadan.
+  en: Like ordering different dishes from a restaurant every day and taking notes on the taste to crack their famous recipe. After enough orders, you can replicate the recipe almost exactly -- without ever being the chef.
+  fr: Comme commander differents plats dans un restaurant chaque jour et prendre des notes sur le gout pour percer leur recette celebre. Apres suffisamment de commandes, vous pouvez reproduire la recette presque exactement -- sans jamais avoir ete le chef.
+  zh: 就像每天从餐厅点不同的菜并记录味道以破解他们的招牌食谱。点够了之后，你几乎可以完全复制食谱——而从未当过厨师。
+  ar: مثل طلب اطباق مختلفة من مطعم كل يوم وتدوين ملاحظات عن المذاق لكشف وصفتهم الشهيرة. بعد طلبات كافية يمكنك تكرار الوصفة بشكل شبه مطابق -- دون ان تكون الطاهي ابدا.
+  ru: Как каждый день заказывать разные блюда в ресторане и записывать вкус, чтобы разгадать их знаменитый рецепт. После достаточного количества заказов вы можете воспроизвести рецепт почти точно -- ни разу не побывав поваром.
+security:
+  - title:
+      tr: API-Based Model Extraction
+      en: API-Based Model Extraction
+      fr: Extraction de modèle via API
+      zh: 基于API的模型提取
+      ar: استخراج النموذج عبر API
+      ru: Извлечение модели через API
+    description:
+      tr: Saldırgan, model API'sine binlerce query göndererek input-output çiftleri toplar ve bu verilerle küçük bir student model'i eğitir (knowledge distillation). Bu yöntem özellikle logit/probability çıktısı veren API'lerde etkilidir. Saldırgan, hedef modelin davranışını %90+ accuracy ile klonlayabilir.
+      en: Attacker collects input-output pairs by sending thousands of queries to the model API and trains a smaller student model with this data (knowledge distillation). This method is especially effective for APIs that return logit/probability outputs. Attacker can clone target model behavior with 90%+ accuracy.
+      fr: L'attaquant collecte des paires entrée-sortie en envoyant des milliers de requêtes à l'API du modèle et entraîne un modèle étudiant plus petit avec ces données (distillation de connaissances). Cette méthode est particulièrement efficace pour les API retournant des logits/probabilités. L'attaquant peut cloner le comportement du modèle cible avec plus de 90% de précision.
+      zh: 攻击者通过向模型API发送数千次查询收集输入-输出对，并用这些数据训练一个较小的学生模型（知识蒸馏）。这种方法对返回logit/概率输出的API特别有效。攻击者可以以90%以上的准确率克隆目标模型的行为。
+      ar: يجمع المهاجم أزواج المدخلات والمخرجات بإرسال آلاف الاستعلامات إلى API النموذج ويدرب نموذجاً طالباً أصغر بهذه البيانات (تقطير المعرفة). هذه الطريقة فعالة بشكل خاص لواجهات API التي تعيد مخرجات logit/الاحتمالات. يمكن للمهاجم استنساخ سلوك النموذج المستهدف بدقة تتجاوز 90%.
+      ru: Злоумышленник собирает пары вход-выход, отправляя тысячи запросов к API модели, и обучает меньшую модель-ученика на этих данных (дистилляция знаний). Этот метод особенно эффективен для API, возвращающих logit/вероятности. Злоумышленник может клонировать поведение целевой модели с точностью 90%+.
+    severity: critical
+  - title:
+      tr: Logit Stealing ve Probability Leakage
+      en: Logit Stealing and Probability Leakage
+      fr: Vol de logits et fuite de probabilités
+      zh: Logit窃取和概率泄露
+      ar: سرقة Logit وتسريب الاحتمالات
+      ru: Кража logit и утечка вероятностей
+    description:
+      tr: API'nin confidence score veya token probabilities döndürmesi, saldırgana modelin internal state hakkında bilgi sızıntısı yapar. OpenAI API'nin logprobs parametresi gibi özellikler, model extraction saldırılarını kolaylaştırır. Bu bilgiyle saldırgan model mimarisini ve eğitim datasını reverse-engineer edebilir.
+      en: API returning confidence scores or token probabilities leaks information about the model's internal state to attackers. Features like OpenAI API's logprobs parameter facilitate model extraction attacks. With this information, attackers can reverse-engineer model architecture and training data.
+      fr: L'API retournant des scores de confiance ou des probabilités de tokens divulgue des informations sur l'état interne du modèle aux attaquants. Des fonctionnalités comme le paramètre logprobs de l'API OpenAI facilitent les attaques d'extraction de modèle. Avec ces informations, les attaquants peuvent reconstituer l'architecture du modèle et les données d'entraînement.
+      zh: API返回置信度分数或token概率会向攻击者泄露模型内部状态的信息。OpenAI API的logprobs参数等特性使模型提取攻击变得更容易。利用这些信息，攻击者可以逆向工程模型架构和训练数据。
+      ar: إرجاع واجهة API لدرجات الثقة أو احتمالات الرموز يسرب معلومات عن الحالة الداخلية للنموذج للمهاجمين. ميزات مثل معامل logprobs في OpenAI API تسهل هجمات استخراج النموذج. بهذه المعلومات، يمكن للمهاجمين إجراء هندسة عكسية لبنية النموذج وبيانات التدريب.
+      ru: API, возвращающий оценки уверенности или вероятности токенов, утечивает информацию о внутреннем состоянии модели злоумышленникам. Функции вроде параметра logprobs API OpenAI облегчают атаки извлечения модели. С этой информацией злоумышленники могут провести обратную разработку архитектуры модели и обучающих данных.
+    severity: high
+  - title:
+      tr: Model Extraction Tespit Logları Eksikliği
+      en: Model Extraction Detection Logging Gap
+      fr: Lacune de journalisation pour la détection d'extraction de modèle
+      zh: 模型提取检测日志缺口
+      ar: فجوة تسجيل اكتشاف استخراج النموذج
+      ru: Пробел в логировании обнаружения извлечения модели
+    description:
+      tr: API üzerinden yapılan anormal sorgu pattern'lerini tespit etmek için rate limiting ve anomaly detection logları tutulmazsa, model extraction saldırıları fark edilmeden sürebilir.
+      en: Without rate limiting and anomaly detection logs to detect abnormal query patterns via API, model extraction attacks can continue undetected.
+      fr: Sans limitation de débit et journaux de détection d'anomalies pour repérer les schémas de requêtes anormaux via API, les attaques d'extraction de modèle peuvent passer inaperçues.
+      zh: 如果没有速率限制和异常检测日志来检测通过API的异常查询模式，模型提取攻击可能在未被发现的情况下持续进行。
+      ar: بدون تحديد المعدل وسجلات كشف الشذوذ لاكتشاف أنماط الاستعلام غير الطبيعية عبر API، يمكن أن تستمر هجمات استخراج النموذج دون اكتشافها.
+      ru: Без rate limiting и журналов обнаружения аномалий для выявления нетипичных паттернов запросов через API, атаки извлечения модели могут продолжаться незамеченными.
+    severity: low
+config:
+  - title: Rate Limiting and Query Monitoring
+    lang: python
+    code: |-
+      from fastapi import FastAPI, HTTPException, Request
+      from fastapi.middleware.cors import CORSMiddleware
+      from collections import defaultdict
+      import time
+      import hashlib
+
+      app = FastAPI()
+
+      # Rate limiting store
+      query_log = defaultdict(list)
+      RATE_LIMIT = 100  # queries per hour
+      SIMILARITY_THRESHOLD = 0.8
+
+      def check_rate_limit(api_key: str) -> bool:
+          """Check if user exceeds rate limit"""
+          now = time.time()
+          hour_ago = now - 3600
+
+          # Clean old queries
+          query_log[api_key] = [t for t in query_log[api_key] if t > hour_ago]
+
+          if len(query_log[api_key]) >= RATE_LIMIT:
+              return False
+
+          query_log[api_key].append(now)
+          return True
+
+      def detect_systematic_probing(api_key: str, query: str) -> bool:
+          """Detect systematic model extraction attempts"""
+          # Check for probe patterns
+          probe_patterns = [
+              "test", "probe", "check", "verify",
+              "1", "2", "3",  # Numeric probes
+              "a", "b", "c",  # Character probes
+          ]
+
+          if any(query.strip().lower() == pattern for pattern in probe_patterns):
+              return True
+
+          # Check for similar repeated queries
+          query_hash = hashlib.md5(query.encode()).hexdigest()
+          # Implementation of similarity check would go here
+
+          return False
+
+      @app.post("/v1/chat/completions")
+      async def chat(request: Request, api_key: str):
+          # Rate limiting
+          if not check_rate_limit(api_key):
+              raise HTTPException(status_code=429, detail="Rate limit exceeded")
+
+          data = await request.json()
+          query = data.get("messages", [{}])[-1].get("content", "")
+
+          # Detect extraction attempts
+          if detect_systematic_probing(api_key, query):
+              # Log suspicious activity
+              print(f"[!] Potential extraction attempt from {api_key}: {query[:50]}")
+              raise HTTPException(status_code=403, detail="Suspicious activity detected")
+
+          # Normal LLM inference
+          response = await call_model(query)
+
+          # CRITICAL: Remove probability information
+          response.pop("logprobs", None)
+          response.pop("token_probabilities", None)
+
+          return response
+    description:
+      tr: Rate limiting ve query monitoring ile model extraction saldırıları engellenir. API, sistematik probe pattern'lerini tespit eder ve logprobs gibi bilgi sızıntısına neden olan parametreleri kaldırır.
+      en: Model extraction attacks are prevented with rate limiting and query monitoring. API detects systematic probe patterns and removes parameters that cause information leakage like logprobs.
+  - title: Watermarking Model Outputs
+    lang: python
+    code: |-
+      import hashlib
+      import random
+
+      class ModelWatermark:
+          def __init__(self, secret_key: str):
+              self.secret_key = secret_key
+
+          def embed_watermark(self, text: str, model_id: str) -> str:
+              """Embed invisible watermark in text via token selection bias"""
+              # Generate deterministic random seed from content
+              seed = int(hashlib.sha256(
+                  f"{self.secret_key}{model_id}{text[:50]}".encode()
+              ).hexdigest()[:8], 16)
+
+              random.seed(seed)
+
+              # Subtle modifications (e.g., whitespace, synonyms)
+              # This is simplified - real watermarking is more sophisticated
+              watermarked = text
+
+              # Add invisible Unicode characters
+              watermark_char = chr(0x200B)  # Zero-width space
+              positions = random.sample(range(len(text)), min(5, len(text)))
+
+              for pos in sorted(positions, reverse=True):
+                  watermarked = watermarked[:pos] + watermark_char + watermarked[pos:]
+
+              return watermarked
+
+          def verify_watermark(self, text: str, model_id: str) -> bool:
+              """Verify if text contains model watermark"""
+              watermark_char = chr(0x200B)
+
+              if watermark_char not in text:
+                  return False
+
+              # Extract positions
+              positions = [i for i, c in enumerate(text) if c == watermark_char]
+
+              # Verify against expected pattern
+              clean_text = text.replace(watermark_char, "")
+              expected = self.embed_watermark(clean_text, model_id)
+
+              return text == expected
+
+      # Usage
+      watermark = ModelWatermark(secret_key="your-secret-key")
+      response = "This is a model generated response."
+      watermarked = watermark.embed_watermark(response, model_id="gpt-4-custom")
+      print(watermark.verify_watermark(watermarked, "gpt-4-custom"))  # True
+    description:
+      tr: Model output watermarking, çalıntı modelin detection'ını mümkün kılar. Watermark, token selection bias veya invisible Unicode karakterler ile gömülür ve sonradan doğrulanabilir.
+      en: Model output watermarking enables detection of stolen models. Watermark is embedded via token selection bias or invisible Unicode characters and can be verified later.
+research:
+  - title: Stealing Machine Learning Models via Prediction APIs
+    url: https://arxiv.org/abs/1609.02943
+    year: 2016
+    type: paper
+    authors: Florian Tramèr, Fan Zhang, Ari Juels
+  - title: A Watermark for Large Language Models
+    url: https://arxiv.org/abs/2301.10226
+    year: 2023
+    type: paper
+    authors: John Kirchenbauer, Jonas Geiping, Tom Goldstein
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2020
+    type: paper
+    authors: Nicholas Carlini, Florian Tramèr, Eric Wallace
+tips:
+  - tr: API'nizden logprobs, token probabilities gibi model internal'larını döndürmeyin. Bu bilgiler extraction'ı kolaylaştırır.
+    en: Don't return model internals like logprobs, token probabilities from your API. This information facilitates extraction.
+  - tr: Query pattern anomaly detection yapın. Bir kullanıcı saatte 1000+ benzer query yapıyorsa model extraction olabilir.
+    en: Perform query pattern anomaly detection. If a user makes 1000+ similar queries per hour, it may be model extraction.
+  - tr: Model output'larına watermark ekleyin. Çalıntı model tespit edildiğinde orijinal sahipliği kanıtlayabilirsiniz.
+    en: Add watermarks to model outputs. When a stolen model is detected, you can prove original ownership.

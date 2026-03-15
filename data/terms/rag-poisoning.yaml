@@ -1,0 +1,331 @@
+id: rag-poisoning
+name: RAG Poisoning
+fullName: Retrieval-Augmented Generation Data Poisoning
+category: ai-security
+desc:
+  tr: |-
+    RAG (Retrieval-Augmented Generation) pipeline'ındaki veri kaynaklarını zehirleyerek LLM çıktısını manipüle etmeye yönelik saldırı. Saldırganlar vektör veritabanına zararlı dokümanlar ekleyerek veya mevcut dokümanları değiştirerek, retrieval sonuçlarını kontrol edebilir ve LLM'in yanıtlarını yönlendirebilir.
+
+    Geleneksel data poisoning'den farkı, burada eğitim verileri değil runtime'da çekilen bilgi kaynakları hedeflenir. Bir kurumsal RAG sisteminde, dahili wiki'ye veya doküman deposuna erişimi olan herkes potansiyel bir saldırgan olabilir.
+
+    Saldırı vektörleri arasında embedding space collision (benzer vektörler üreterek hedef sorguların sonuçlarını ele geçirme), metadata manipulation (doküman önceliğini/skorunu manipüle etme) ve doğrudan doküman enjeksiyonu bulunur.
+  en: |-
+    An attack that manipulates LLM output by poisoning data sources in the RAG (Retrieval-Augmented Generation) pipeline. Attackers can control retrieval results and steer LLM responses by injecting malicious documents into the vector database or modifying existing documents.
+
+    Unlike traditional data poisoning, this targets information sources retrieved at runtime rather than training data. In an enterprise RAG system, anyone with access to the internal wiki or document repository is a potential attacker.
+
+    Attack vectors include embedding space collision (generating similar vectors to hijack target query results), metadata manipulation (manipulating document priority/score), and direct document injection.
+  fr: |-
+    Une attaque qui manipule la sortie du LLM en empoisonnant les sources de donnees dans le pipeline RAG (Retrieval-Augmented Generation). Les attaquants peuvent controler les resultats de recherche et orienter les reponses du LLM en injectant des documents malveillants dans la base de donnees vectorielle ou en modifiant des documents existants.
+
+    Contrairement a l'empoisonnement de donnees traditionnel, cela cible les sources d'information recuperees au runtime plutot que les donnees d'entrainement. Dans un systeme RAG d'entreprise, toute personne ayant acces au wiki interne ou au depot de documents est un attaquant potentiel.
+
+    Les vecteurs d'attaque incluent la collision d'espace d'embedding, la manipulation des metadonnees et l'injection directe de documents.
+  zh: |-
+    一种通过毒化RAG（检索增强生成）管道中的数据源来操纵LLM输出的攻击。攻击者可以通过向向量数据库注入恶意文档或修改现有文档来控制检索结果并引导LLM的回答。
+
+    与传统数据投毒不同，这种攻击针对的是运行时检索的信息源而非训练数据。在企业RAG系统中，任何有权访问内部wiki或文档库的人都是潜在攻击者。
+
+    攻击向量包括嵌入空间碰撞（生成相似向量以劫持目标查询结果）、元数据操纵（操纵文档优先级/分数）和直接文档注入。
+  ar: |-
+    هجوم يتلاعب بمخرجات نموذج اللغة الكبير عبر تسميم مصادر البيانات في خط أنابيب RAG (التوليد المعزز بالاسترجاع). يمكن للمهاجمين التحكم في نتائج الاسترجاع وتوجيه استجابات النموذج بحقن مستندات خبيثة في قاعدة البيانات المتجهة أو تعديل المستندات الموجودة.
+
+    على عكس تسميم البيانات التقليدي، يستهدف هذا مصادر المعلومات المسترجعة أثناء التشغيل وليس بيانات التدريب. في نظام RAG مؤسسي، أي شخص لديه وصول للويكي الداخلي أو مستودع المستندات هو مهاجم محتمل.
+
+    تشمل نواقل الهجوم تصادم فضاء التضمين والتلاعب بالبيانات الوصفية والحقن المباشر للمستندات.
+  ru: |-
+    Атака, манипулирующая выводом LLM путём отравления источников данных в конвейере RAG (Retrieval-Augmented Generation). Злоумышленники могут контролировать результаты поиска и направлять ответы LLM, внедряя вредоносные документы в векторную базу данных или изменяя существующие документы.
+
+    В отличие от традиционного отравления данных, здесь целью являются источники информации, извлекаемые во время выполнения, а не обучающие данные. В корпоративной RAG-системе любой, имеющий доступ к внутренней вики или хранилищу документов, является потенциальным злоумышленником.
+
+    Векторы атаки включают коллизии в пространстве эмбеддингов, манипуляцию метаданными и прямое внедрение документов.
+analogy:
+  tr: Bir kütüphanecinin güvendiği ansiklopedilere sahte sayfalar yerleştirmek gibi. Kütüphaneci sorulara hep bu kaynaklardan cevap verdiği için, sahte bilgi gerçek gibi sunulur.
+  en: Like planting fake pages in the encyclopedias that a librarian trusts. Since the librarian always answers questions from these sources, fake information is presented as real.
+  fr: Comme inserer de fausses pages dans les encyclopedies auxquelles un bibliothecaire fait confiance. Puisque le bibliothecaire repond toujours aux questions a partir de ces sources, les fausses informations sont presentees comme reelles.
+  zh: 就像在图书馆员信赖的百科全书中植入假页面。由于图书馆员总是从这些来源回答问题，虚假信息就会被当作真实信息呈现。
+  ar: مثل زرع صفحات مزيفة في الموسوعات التي يثق بها أمين المكتبة. بما أن أمين المكتبة يجيب دائماً على الأسئلة من هذه المصادر، تُقدَّم المعلومات المزيفة على أنها حقيقية.
+  ru: Как подложить фальшивые страницы в энциклопедии, которым доверяет библиотекарь. Поскольку библиотекарь всегда отвечает на вопросы из этих источников, поддельная информация подаётся как настоящая.
+security:
+  - title:
+      tr: Knowledge Base Poisoning
+      en: Knowledge Base Poisoning
+      fr: Empoisonnement de la base de connaissances
+      zh: 知识库投毒
+      ar: تسميم قاعدة المعرفة
+      ru: Отравление базы знаний
+    description:
+      tr: Vektör veritabanına zararlı dokümanlar enjekte ederek LLM'in retrieval sonuçlarını kontrol etme. Saldırgan, hedef sorgularla eşleşen sahte dokümanlar oluşturarak yanıltıcı, zararlı veya manipülatif içerik sunabilir. Özellikle açık kaynaklı veri besleyen RAG sistemlerinde kritik.
+      en: Controlling LLM retrieval results by injecting malicious documents into the vector database. The attacker can serve misleading, harmful, or manipulative content by creating fake documents that match target queries. Especially critical in RAG systems fed by open-source data.
+      fr: Controler les resultats de recherche du LLM en injectant des documents malveillants dans la base de donnees vectorielle. L'attaquant peut servir du contenu trompeur ou manipulateur en creant de faux documents correspondant aux requetes cibles. Particulierement critique dans les systemes RAG alimentes par des donnees open source.
+      zh: 通过向向量数据库注入恶意文档来控制LLM的检索结果。攻击者可以创建与目标查询匹配的虚假文档来提供误导性、有害或操纵性内容。在由开源数据供给的RAG系统中尤为关键。
+      ar: التحكم في نتائج استرجاع نموذج اللغة الكبير بحقن مستندات خبيثة في قاعدة البيانات المتجهة. يمكن للمهاجم تقديم محتوى مضلل أو تلاعبي بإنشاء مستندات مزيفة تطابق الاستعلامات المستهدفة. حرج بشكل خاص في أنظمة RAG المغذاة ببيانات مفتوحة المصدر.
+      ru: Контроль результатов поиска LLM путём внедрения вредоносных документов в векторную базу данных. Злоумышленник может предоставлять вводящий в заблуждение или манипулятивный контент, создавая поддельные документы, соответствующие целевым запросам. Особенно критично в RAG-системах, питающихся открытыми данными.
+    severity: critical
+  - title:
+      tr: Embedding Space Collision Attack
+      en: Embedding Space Collision Attack
+      fr: Attaque par collision d'espace d'embedding
+      zh: 嵌入空间碰撞攻击
+      ar: هجوم تصادم فضاء التضمين
+      ru: Атака коллизии в пространстве эмбеддингов
+    description:
+      tr: Hedef sorgularla benzer embedding vektörleri üreten zararlı dokümanlar oluşturarak retrieval sonuçlarını ele geçirme. Saldırgan, embedding modelinin davranışını analiz ederek cosine similarity'si yüksek ancak içeriği farklı dokümanlar craft edebilir.
+      en: Hijacking retrieval results by creating malicious documents that produce embedding vectors similar to target queries. The attacker can craft documents with high cosine similarity but different content by analyzing the embedding model's behavior.
+      fr: Detourner les resultats de recherche en creant des documents malveillants qui produisent des vecteurs d'embedding similaires aux requetes cibles. L'attaquant peut creer des documents a haute similarite cosinus mais au contenu different en analysant le comportement du modele d'embedding.
+      zh: 通过创建产生与目标查询相似嵌入向量的恶意文档来劫持检索结果。攻击者可以通过分析嵌入模型的行为来制作余弦相似度高但内容不同的文档。
+      ar: اختطاف نتائج الاسترجاع بإنشاء مستندات خبيثة تنتج متجهات تضمين مشابهة للاستعلامات المستهدفة. يمكن للمهاجم صنع مستندات بتشابه جيب تمام عالٍ لكن محتوى مختلف بتحليل سلوك نموذج التضمين.
+      ru: Перехват результатов поиска путём создания вредоносных документов, генерирующих векторы эмбеддингов, похожие на целевые запросы. Злоумышленник может создавать документы с высоким косинусным сходством, но другим содержанием, анализируя поведение модели эмбеддингов.
+    severity: high
+  - title:
+      tr: Document Metadata Manipulation
+      en: Document Metadata Manipulation
+      fr: Manipulation des metadonnees de documents
+      zh: 文档元数据操纵
+      ar: التلاعب بالبيانات الوصفية للمستندات
+      ru: Манипуляция метаданными документов
+    description:
+      tr: Doküman metadata'sını (timestamp, yazar, güvenilirlik skoru) manipüle ederek retrieval sıralama ve filtreleme mekanizmalarını aldatma. Sahte yüksek güvenilirlik skoru veya güncel timestamp ile zararlı dokümanların öncelikli getirilmesini sağlama.
+      en: Deceiving retrieval ranking and filtering mechanisms by manipulating document metadata (timestamp, author, trust score). Ensuring malicious documents are retrieved with priority by setting fake high trust scores or recent timestamps.
+      fr: Tromper les mecanismes de classement et de filtrage de recherche en manipulant les metadonnees des documents (horodatage, auteur, score de confiance). Assurer que les documents malveillants sont recuperes en priorite avec de faux scores de confiance eleves ou des horodatages recents.
+      zh: 通过操纵文档元数据（时间戳、作者、信任度分数）来欺骗检索排序和过滤机制。通过设置虚假的高信任度分数或最新时间戳，确保恶意文档被优先检索。
+      ar: خداع آليات ترتيب وتصفية الاسترجاع بالتلاعب بالبيانات الوصفية للمستندات (الطابع الزمني، المؤلف، درجة الموثوقية). ضمان استرجاع المستندات الخبيثة بأولوية بتعيين درجات موثوقية عالية مزيفة أو طوابع زمنية حديثة.
+      ru: Обман механизмов ранжирования и фильтрации при поиске путём манипуляции метаданными документов (временная метка, автор, оценка доверия). Обеспечение приоритетного извлечения вредоносных документов через подставные высокие оценки доверия или свежие временные метки.
+    severity: high
+  - title:
+      tr: RAG Source Integrity Gap
+      en: RAG Source Integrity Gap
+      fr: Lacune d'integrite des sources RAG
+      zh: RAG来源完整性缺口
+      ar: فجوة سلامة مصادر RAG
+      ru: Пробел в целостности источников RAG
+    description:
+      tr: RAG veri kaynaklarının bütünlük ve güvenilirlik doğrulamasının yapılmaması. Dokümanların hash kontrolü, kaynak doğrulama ve değişiklik takibi olmadan sisteme eklenmesi, zehirlenmiş içeriğin tespit edilememesine yol açar.
+      en: Lack of integrity and authenticity verification for RAG data sources. Adding documents to the system without hash checking, source verification, and change tracking leads to poisoned content going undetected.
+      fr: Absence de verification d'integrite et d'authenticite des sources de donnees RAG. L'ajout de documents au systeme sans controle de hash, verification de source et suivi des modifications conduit a ce que le contenu empoisonne ne soit pas detecte.
+      zh: 缺乏对RAG数据源的完整性和真实性验证。在没有哈希检查、来源验证和变更追踪的情况下将文档添加到系统中，导致受毒内容无法被检测到。
+      ar: عدم التحقق من سلامة وموثوقية مصادر بيانات RAG. إضافة المستندات للنظام بدون فحص التجزئة والتحقق من المصدر وتتبع التغييرات يؤدي لعدم اكتشاف المحتوى المسمم.
+      ru: Отсутствие проверки целостности и подлинности источников данных RAG. Добавление документов в систему без проверки хешей, верификации источника и отслеживания изменений приводит к тому, что отравленный контент остаётся незамеченным.
+    severity: low
+config:
+  - title: Document Integrity Checker
+    lang: python
+    code: |-
+      import hashlib
+      from datetime import datetime
+      from dataclasses import dataclass
+
+      @dataclass
+      class DocumentRecord:
+          doc_id: str
+          content_hash: str
+          source: str
+          added_by: str
+          added_at: str
+          verified: bool
+
+      class RAGIntegrityChecker:
+          def __init__(self, trusted_sources: list[str]):
+              self.trusted_sources = trusted_sources
+              self.registry: dict[str, DocumentRecord] = {}
+
+          def hash_content(self, content: str) -> str:
+              return hashlib.sha256(content.encode()).hexdigest()
+
+          def ingest(self, doc_id: str, content: str,
+                     source: str, added_by: str) -> dict:
+              # 1. Source verification
+              if source not in self.trusted_sources:
+                  return {"accepted": False, "reason": f"Untrusted source: {source}"}
+
+              # 2. Duplicate / collision check
+              content_hash = self.hash_content(content)
+              for existing in self.registry.values():
+                  if existing.content_hash == content_hash:
+                      return {"accepted": False, "reason": "Duplicate content"}
+
+              # 3. Register
+              record = DocumentRecord(
+                  doc_id=doc_id,
+                  content_hash=content_hash,
+                  source=source,
+                  added_by=added_by,
+                  added_at=datetime.utcnow().isoformat(),
+                  verified=True
+              )
+              self.registry[doc_id] = record
+              return {"accepted": True, "hash": content_hash}
+
+          def verify(self, doc_id: str, current_content: str) -> bool:
+              if doc_id not in self.registry:
+                  return False
+              expected = self.registry[doc_id].content_hash
+              actual = self.hash_content(current_content)
+              return expected == actual
+
+      # Usage
+      checker = RAGIntegrityChecker(
+          trusted_sources=["internal-wiki", "approved-docs", "hr-portal"]
+      )
+      result = checker.ingest(
+          doc_id="doc-001",
+          content="Company vacation policy...",
+          source="internal-wiki",
+          added_by="admin@company.com"
+      )
+    description:
+      tr: RAG doküman bütünlük kontrolü. Kaynak doğrulama, hash tabanlı değişiklik tespiti ve güvenilir kaynak allowlist'i ile veri zehirlenmesini engeller.
+      en: RAG document integrity checker. Prevents data poisoning with source verification, hash-based change detection, and trusted source allowlist.
+      fr: Verificateur d'integrite de documents RAG. Empeche l'empoisonnement de donnees avec la verification de source, la detection de changements basee sur le hash et la liste de sources fiables.
+      zh: RAG文档完整性检查器。通过来源验证、基于哈希的变更检测和可信来源允许列表来防止数据投毒。
+      ar: مدقق سلامة مستندات RAG. يمنع تسميم البيانات بالتحقق من المصدر واكتشاف التغييرات المبني على التجزئة وقائمة المصادر الموثوقة.
+      ru: Проверка целостности документов RAG. Предотвращает отравление данных с помощью верификации источника, обнаружения изменений на основе хешей и allowlist доверенных источников.
+  - title: Embedding Anomaly Detector
+    lang: typescript
+    code: |-
+      interface EmbeddingRecord {
+        docId: string;
+        embedding: number[];
+        source: string;
+        timestamp: number;
+      }
+
+      class EmbeddingAnomalyDetector {
+        private history: EmbeddingRecord[] = [];
+        private threshold: number;
+
+        constructor(similarityThreshold = 0.98) {
+          this.threshold = similarityThreshold;
+        }
+
+        cosineSimilarity(a: number[], b: number[]): number {
+          let dot = 0, normA = 0, normB = 0;
+          for (let i = 0; i < a.length; i++) {
+            dot += a[i] * b[i];
+            normA += a[i] * a[i];
+            normB += b[i] * b[i];
+          }
+          return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+        }
+
+        checkForCollision(newDoc: EmbeddingRecord): {
+          safe: boolean;
+          collisions: { docId: string; similarity: number }[];
+        } {
+          const collisions: { docId: string; similarity: number }[] = [];
+
+          for (const existing of this.history) {
+            if (existing.source === newDoc.source) continue;
+            const sim = this.cosineSimilarity(existing.embedding, newDoc.embedding);
+            if (sim >= this.threshold) {
+              collisions.push({ docId: existing.docId, similarity: sim });
+            }
+          }
+
+          if (collisions.length === 0) {
+            this.history.push(newDoc);
+          }
+
+          return {
+            safe: collisions.length === 0,
+            collisions
+          };
+        }
+      }
+
+      // Usage
+      const detector = new EmbeddingAnomalyDetector(0.97);
+      const result = detector.checkForCollision({
+        docId: "new-doc-42",
+        embedding: [0.1, 0.8, 0.3 /* ... */],
+        source: "external-feed",
+        timestamp: Date.now()
+      });
+      if (!result.safe) {
+        console.warn("Possible collision attack:", result.collisions);
+      }
+    description:
+      tr: Embedding space collision saldırılarını tespit eden anomali detektörü. Farklı kaynaklardan gelen dokümanlar arasında şüpheli yüksek benzerlik olup olmadığını kontrol eder.
+      en: Anomaly detector that identifies embedding space collision attacks. Checks for suspiciously high similarity between documents from different sources.
+      fr: Detecteur d'anomalies identifiant les attaques par collision d'espace d'embedding. Verifie la similarite suspecte entre documents de sources differentes.
+      zh: 检测嵌入空间碰撞攻击的异常检测器。检查来自不同来源的文档之间是否存在可疑的高相似度。
+      ar: كاشف شذوذ يحدد هجمات تصادم فضاء التضمين. يتحقق من التشابه المشبوه العالي بين المستندات من مصادر مختلفة.
+      ru: Детектор аномалий, выявляющий атаки коллизии в пространстве эмбеддингов. Проверяет подозрительно высокое сходство между документами из разных источников.
+  - title: RAG Security Config
+    lang: yaml
+    code: |-
+      # rag-security.yaml
+      rag_security:
+        ingestion:
+          trusted_sources:
+            - internal-wiki
+            - confluence
+            - approved-docs
+          require_approval: true
+          hash_algorithm: sha256
+          scan_for_injection: true
+
+        retrieval:
+          max_results: 10
+          min_relevance_score: 0.75
+          source_diversity: true  # Avoid single-source dominance
+          citation_required: true
+
+        monitoring:
+          embedding_collision_threshold: 0.97
+          alert_on_bulk_ingestion: true
+          bulk_threshold: 50  # docs per hour
+          content_drift_check: daily
+
+        integrity:
+          verify_on_retrieval: true
+          periodic_audit: weekly
+          changelog_retention_days: 365
+    description:
+      tr: RAG pipeline güvenlik yapılandırması. Kaynak güvenilirliği, embedding anomali tespiti, ingestion kontrolü ve bütünlük doğrulama ayarları.
+      en: RAG pipeline security configuration. Source trust, embedding anomaly detection, ingestion controls, and integrity verification settings.
+      fr: Configuration de securite du pipeline RAG. Confiance des sources, detection d'anomalies d'embedding, controles d'ingestion et parametres de verification d'integrite.
+      zh: RAG管道安全配置。来源信任、嵌入异常检测、摄取控制和完整性验证设置。
+      ar: تكوين أمان خط أنابيب RAG. موثوقية المصادر واكتشاف شذوذ التضمين وضوابط الاستيعاب وإعدادات التحقق من السلامة.
+      ru: Конфигурация безопасности конвейера RAG. Доверие к источникам, обнаружение аномалий эмбеддингов, контроль загрузки и настройки проверки целостности.
+research:
+  - title: "PoisonedRAG: Knowledge Poisoning Attacks to Retrieval-Augmented Generation of Large Language Models"
+    url: https://arxiv.org/abs/2402.07867
+    year: 2024
+    type: paper
+    authors: Wei Zou, Runpeng Geng, Binghui Wang, Jinyuan Jia
+  - title: "Phantom: General Trigger Attacks on Retrieval Augmented Language Generation"
+    url: https://arxiv.org/abs/2405.20485
+    year: 2024
+    type: paper
+    authors: Harsh Chaudhari, Giorgio Severi, John Abascal, et al.
+  - title: "BadRAG: Identifying Vulnerabilities in Retrieval Augmented Generation of Large Language Models"
+    url: https://arxiv.org/abs/2406.00083
+    year: 2024
+    type: paper
+    authors: Jiaqi Xue, Mengxin Zheng, et al.
+tips:
+  - tr: RAG veri kaynaklarına sadece doğrulanmış ve güvenilir kaynaklardan doküman kabul edin — açık erişimli kaynaklarda ekstra doğrulama yapın.
+    en: Only accept documents from verified and trusted sources into RAG data stores — apply extra verification for open-access sources.
+    fr: N'acceptez que des documents de sources verifiees et fiables dans les magasins de donnees RAG — appliquez une verification supplementaire pour les sources en acces libre.
+    zh: 仅接受来自经过验证的可信来源的文档进入RAG数据存储——对开放访问来源进行额外验证。
+    ar: اقبل فقط المستندات من مصادر موثوقة ومتحقق منها في مخازن بيانات RAG — طبق تحققاً إضافياً للمصادر المفتوحة الوصول.
+    ru: Принимайте в хранилища данных RAG только документы из проверенных и доверенных источников — применяйте дополнительную верификацию для открытых источников.
+  - tr: Her dokümanı SHA-256 hash ile kaydedin ve retrieval sırasında bütünlük doğrulaması yapın.
+    en: Record every document with SHA-256 hash and perform integrity verification during retrieval.
+    fr: Enregistrez chaque document avec un hash SHA-256 et effectuez une verification d'integrite lors de la recherche.
+    zh: 使用SHA-256哈希记录每个文档，并在检索时进行完整性验证。
+    ar: سجل كل مستند بتجزئة SHA-256 وأجرِ التحقق من السلامة أثناء الاسترجاع.
+    ru: Записывайте каждый документ с хешем SHA-256 и проводите проверку целостности при извлечении.
+  - tr: Embedding collision tespiti uygulayın — farklı kaynaklardan gelen aşırı benzer vektörleri otomatik flagleyin.
+    en: Implement embedding collision detection — automatically flag excessively similar vectors from different sources.
+    fr: Implementez la detection de collision d'embedding — signalez automatiquement les vecteurs excessivement similaires de sources differentes.
+    zh: 实施嵌入碰撞检测——自动标记来自不同来源的过度相似向量。
+    ar: طبق اكتشاف تصادم التضمين — أشِر تلقائياً للمتجهات المتشابهة بشكل مفرط من مصادر مختلفة.
+    ru: Внедрите обнаружение коллизий эмбеддингов — автоматически помечайте чрезмерно похожие векторы из разных источников.
+  - tr: Retrieval sonuçlarında kaynak çeşitliliği zorunlu kılın — tek bir kaynağın tüm sonuçlara hakim olmasını engelleyin.
+    en: Enforce source diversity in retrieval results — prevent a single source from dominating all results.
+    fr: Imposez la diversite des sources dans les resultats de recherche — empchez une seule source de dominer tous les resultats.
+    zh: 在检索结果中强制执行来源多样性——防止单一来源主导所有结果。
+    ar: فرض تنوع المصادر في نتائج الاسترجاع — امنع مصدراً واحداً من السيطرة على جميع النتائج.
+    ru: Обеспечьте разнообразие источников в результатах поиска — не позволяйте одному источнику доминировать во всех результатах.

@@ -1,0 +1,209 @@
+id: qlora
+name: QLoRA
+fullName: Quantized Low-Rank Adaptation
+category: training
+desc:
+  tr: |-
+    QLoRA (Quantized Low-Rank Adaptation), büyük dil modellerini düşük bellek tüketimiyle fine-tune etmek için [LoRA](https://arxiv.org/abs/2106.09685)'yı NF4 (4-bit NormalFloat) kantizeleme ile birleştiren bir tekniktir. 2023'te Dettmers et al. tarafından [QLoRA makalesinde](https://arxiv.org/abs/2305.14314) tanıtılmış ve tek GPU'da 65B parametreli modellerin fine-tune edilmesini mümkün kılmıştır.
+
+    Geleneksel fine-tuning tüm model ağırlıklarını 16-bit veya 32-bit hassasiyette tutarken, QLoRA temel modeli 4-bit'e kantizelayıp sadece küçük LoRA adapter'larını 16-bit'te eğitir. Örneğin, [Llama-3 70B](https://ai.meta.com/llama/) modelini tam fine-tune için 280GB RAM gerekirken, QLoRA ile 48GB'a düşer.
+
+    Double quantization ve paged optimizers kullanarak bellek verimliliğini maksimize eder. [PEFT](https://huggingface.co/docs/peft) kütüphanesi QLoRA'yı doğrudan destekler ve Hugging Face ekosistemiyle tam uyumludur. Production'da quantized adapter'ların bütünlüğünü korumak güvenlik açısından kritiktir.
+  en: |-
+    QLoRA (Quantized Low-Rank Adaptation) is a technique that combines [LoRA](https://arxiv.org/abs/2106.09685) with NF4 (4-bit NormalFloat) quantization to fine-tune large language models with minimal memory consumption. Introduced by Dettmers et al. in the [QLoRA paper](https://arxiv.org/abs/2305.14314) in 2023, it enabled fine-tuning of 65B parameter models on a single GPU.
+
+    While traditional fine-tuning keeps all model weights at 16-bit or 32-bit precision, QLoRA quantizes the base model to 4-bit and trains only small LoRA adapters at 16-bit. For example, fine-tuning [Llama-3 70B](https://ai.meta.com/llama/) requires 280GB RAM with full fine-tuning, but drops to 48GB with QLoRA.
+
+    It maximizes memory efficiency using double quantization and paged optimizers. The [PEFT](https://huggingface.co/docs/peft) library directly supports QLoRA and is fully compatible with the Hugging Face ecosystem. Maintaining the integrity of quantized adapters in production is critical from a security perspective.
+  fr: QLoRA combine LoRA avec la quantification NF4 4-bit pour affiner de grands modeles de langage avec une consommation memoire minimale. Introduit par Dettmers et al. en 2023, il permet l'ajustement fin de modeles de 65B parametres sur un seul GPU.
+  zh: QLoRA将LoRA与NF4 4位量化相结合，以最小的内存消耗微调大型语言模型。由Dettmers等人于2023年提出，使得在单个GPU上微调65B参数模型成为可能。
+  ar: QLoRA تقنية تجمع LoRA مع الكمّية NF4 بـ4 بت لضبط نماذج اللغة الكبيرة باستهلاك ذاكرة أدنى. قدّمها Dettmers وآخرون في 2023، وأتاحت ضبط نماذج 65B معامل على GPU واحد.
+  ru: QLoRA объединяет LoRA с 4-битной квантизацией NF4 для тонкой настройки больших языковых моделей с минимальным потреблением памяти. Представлен Dettmers и др. в 2023 году, позволил настраивать модели на 65B параметров на одном GPU.
+analogy:
+  tr: Tam fine-tuning dev bir kitabı yeniden yazmak gibiyken, QLoRA sadece dipnotları ve kenar boşluklarını 4-bit renk kodlarıyla işaretlemek gibidir — sonuç %99 aynı ama bellek kullanımı çok daha az.
+  en: Full fine-tuning is like rewriting an entire book, while QLoRA is like annotating only the margins with 4-bit color codes — the result is 99% identical but memory usage is far lower.
+  fr: L'affinage complet ressemble a reecrire un livre entier, tandis que QLoRA ressemble a annoter seulement les marges avec des codes couleur 4 bits — le resultat est identique a 99% mais la consommation memoire est bien plus faible.
+  zh: 完整微调就像重写整本书，而QLoRA就像只用4位颜色代码在页边做注释——结果99%相同但内存使用量低得多。
+  ar: الضبط الكامل يشبه إعادة كتابة كتاب بأكمله، بينما QLoRA يشبه التعليق على الهوامش فقط برموز ألوان 4 بت — النتيجة متطابقة بنسبة 99% لكن استهلاك الذاكرة أقل بكثير.
+  ru: Полная тонкая настройка — как переписать целую книгу, тогда как QLoRA — как аннотировать лишь поля 4-битными цветовыми кодами — результат на 99% идентичен, но потребление памяти намного ниже.
+security:
+  - title:
+      tr: "NF4 Quantization Attack Surface: Gradient-Based Dequantization"
+      en: "NF4 Quantization Attack Surface: Gradient-Based Dequantization"
+      fr: "Surface d'attaque de la quantification NF4 : dequantification basee sur les gradients"
+      zh: NF4量化攻击面：基于梯度的反量化
+      ar: "سطح هجوم كمّية NF4: فك الكمّية القائم على التدرجات"
+      ru: "Поверхность атаки квантизации NF4: деквантизация на основе градиентов"
+    description:
+      tr: QLoRA'nın NF4 4-bit kantizeleme formatı, her quantization bin'i için normal dağılımlı optimal breakpoint'ler kullanır. Saldırgan, gradyan tabanlı optimizasyon ile bu breakpoint'leri reverse engineering yaparak orijinal fp16 ağırlıkların yaklaşık değerlerini çıkarabilir. Double quantization kullanımı bu riski artırır çünkü quantization constant'ları da quantize edildiğinde ek entropi kaybı oluşur. Production'da quantized adapter'ları şifrelenmiş storage'da saklamak ve yükleme sırasında checksum doğrulaması yapmak gerekir.
+      en: QLoRA's NF4 4-bit quantization format uses normally-distributed optimal breakpoints for each quantization bin. An attacker can reverse engineer these breakpoints via gradient-based optimization to extract approximate values of the original fp16 weights. Using double quantization increases this risk because quantizing quantization constants creates additional entropy loss. In production, store quantized adapters in encrypted storage and perform checksum validation during loading.
+      fr: Le format de quantification NF4 4 bits de QLoRA utilise des points de coupure optimaux a distribution normale pour chaque intervalle de quantification. Un attaquant peut effectuer une retro-ingenierie de ces points de coupure par optimisation basee sur les gradients afin d'extraire les valeurs approximatives des poids fp16 originaux. L'utilisation de la double quantification accroit ce risque car la quantification des constantes de quantification entraine une perte d'entropie supplementaire. En production, stockez les adaptateurs quantifies dans un espace chiffre et effectuez une validation par somme de controle lors du chargement.
+      zh: QLoRA的NF4 4位量化格式为每个量化区间使用正态分布的最优断点。攻击者可以通过基于梯度的优化对这些断点进行逆向工程，从而提取原始fp16权重的近似值。使用双重量化会增加此风险，因为对量化常数进行量化会产生额外的熵损失。在生产环境中，应将量化后的适配器存储在加密存储中，并在加载时进行校验和验证。
+      ar: يستخدم تنسيق الكمّية NF4 بـ4 بت في QLoRA نقاط قطع مثالية بتوزيع طبيعي لكل فترة كمّية. يمكن للمهاجم إجراء هندسة عكسية لنقاط القطع هذه عبر التحسين القائم على التدرجات لاستخراج القيم التقريبية لأوزان fp16 الأصلية. يزيد استخدام الكمّية المزدوجة من هذا الخطر لأن كمّية ثوابت الكمّية تُحدث فقداناً إضافياً في الإنتروبيا. في بيئة الإنتاج، يجب تخزين المحولات المكمّاة في مخزن مشفر وإجراء التحقق من المجموع الاختباري أثناء التحميل.
+      ru: Формат 4-битной квантизации NF4 в QLoRA использует оптимальные точки разделения с нормальным распределением для каждого интервала квантизации. Злоумышленник может провести обратную инженерию этих точек разделения с помощью оптимизации на основе градиентов, чтобы извлечь приблизительные значения исходных весов fp16. Использование двойной квантизации увеличивает этот риск, поскольку квантизация констант квантизации приводит к дополнительной потере энтропии. В продакшене необходимо хранить квантизированные адаптеры в зашифрованном хранилище и выполнять проверку контрольных сумм при загрузке.
+    severity: high
+  - title:
+      tr: Adapter Poisoning via Quantization-Aware Training
+      en: Adapter Poisoning via Quantization-Aware Training
+      fr: Empoisonnement d'adaptateur via l'entrainement conscient de la quantification
+      zh: 通过量化感知训练进行适配器投毒
+      ar: تسميم المحوّل عبر التدريب الواعي بالكمّية
+      ru: Отравление адаптера через обучение с учётом квантизации
+    description:
+      tr: Saldırgan, QLoRA eğitimi sırasında kasıtlı olarak quantization error'ı maksimize eden adversarial örnekler enjekte ederek adapter'ın belirli input'larda backdoor davranışı göstermesini sağlayabilir. 4-bit hassasiyetin düşük olması, normal fine-tuning'e göre daha az veriyle trigger pattern embedding'ini mümkün kılar. Hugging Face Hub'dan indirilen QLoRA adapter'larını inference'tan önce mutlaka anomaly detection (activation distribution analysis) ile taramak gerekir.
+      en: An attacker can inject adversarial examples that intentionally maximize quantization error during QLoRA training, causing the adapter to exhibit backdoor behavior on specific inputs. The low 4-bit precision enables trigger pattern embedding with less data compared to normal fine-tuning. QLoRA adapters downloaded from Hugging Face Hub must be scanned with anomaly detection (activation distribution analysis) before inference.
+      fr: Un attaquant peut injecter des exemples adverses qui maximisent intentionnellement l'erreur de quantification lors de l'entrainement QLoRA, amenant l'adaptateur a presenter un comportement de porte derobee sur des entrees specifiques. La faible precision de 4 bits permet l'insertion de motifs declencheurs avec moins de donnees par rapport a l'ajustement fin classique. Les adaptateurs QLoRA telecharges depuis Hugging Face Hub doivent etre analyses par detection d'anomalies (analyse de distribution d'activation) avant l'inference.
+      zh: 攻击者可以在QLoRA训练期间注入故意最大化量化误差的对抗样本，导致适配器在特定输入上表现出后门行为。较低的4位精度使得与普通微调相比，用更少的数据即可嵌入触发模式。从Hugging Face Hub下载的QLoRA适配器在推理前必须通过异常检测（激活分布分析）进行扫描。
+      ar: يمكن للمهاجم حقن أمثلة عدائية تعمد تعظيم خطأ الكمّية أثناء تدريب QLoRA، مما يجعل المحوّل يُظهر سلوك باب خلفي على مدخلات محددة. تتيح الدقة المنخفضة بـ4 بت تضمين أنماط التشغيل ببيانات أقل مقارنة بالضبط الدقيق التقليدي. يجب فحص محولات QLoRA المُحمّلة من Hugging Face Hub بكشف الشذوذ (تحليل توزيع التنشيط) قبل الاستدلال.
+      ru: Злоумышленник может внедрить состязательные примеры, которые намеренно максимизируют ошибку квантизации во время обучения QLoRA, заставляя адаптер проявлять поведение бэкдора на определённых входах. Низкая 4-битная точность позволяет встраивать триггерные паттерны с меньшим количеством данных по сравнению с обычной тонкой настройкой. Адаптеры QLoRA, загруженные с Hugging Face Hub, необходимо проверять с помощью обнаружения аномалий (анализ распределения активаций) перед инференсом.
+    severity: critical
+  - title:
+      tr: Paged Optimizer Memory Swapping Side-Channel
+      en: Paged Optimizer Memory Swapping Side-Channel
+      fr: Canal auxiliaire par echange memoire de l'optimiseur pagine
+      zh: 分页优化器内存交换侧信道
+      ar: قناة جانبية عبر تبديل ذاكرة المحسّن المُصفّح
+      ru: Побочный канал через подкачку памяти страничного оптимизатора
+    description:
+      tr: QLoRA'nın paged optimizer'ı, optimizer state'leri (momentum, variance) RAM dolduğunda CPU memory'ye taşır. Multi-tenant GPU ortamında, aynı fiziksel RAM'i kullanan farklı tenant'lar arasında swap pattern'leri timing side-channel saldırısına açık olabilir. Saldırgan, belirli batch pattern'lerini göndererek hedef tenant'ın optimizer state'inin ne zaman swap edildiğini tespit edip eğitim verisi hakkında bilgi çıkarabilir. cgroup memory isolation ve encrypted swap kullanımı bu riski azaltır.
+      en: QLoRA's paged optimizer moves optimizer states (momentum, variance) to CPU memory when RAM fills up. In multi-tenant GPU environments, swap patterns between different tenants using the same physical RAM can be vulnerable to timing side-channel attacks. An attacker can send specific batch patterns to detect when the target tenant's optimizer state is swapped, extracting information about training data. cgroup memory isolation and encrypted swap mitigate this risk.
+      fr: L'optimiseur pagine de QLoRA deplace les etats de l'optimiseur (momentum, variance) vers la memoire CPU lorsque la RAM est pleine. Dans les environnements GPU multi-locataires, les modeles d'echange entre differents locataires utilisant la meme RAM physique peuvent etre vulnerables aux attaques par canal auxiliaire temporel. Un attaquant peut envoyer des modeles de lots specifiques pour detecter quand l'etat de l'optimiseur du locataire cible est echange, extrayant ainsi des informations sur les donnees d'entrainement. L'isolation memoire par cgroup et le swap chiffre attenuent ce risque.
+      zh: QLoRA的分页优化器在RAM满时将优化器状态（动量、方差）移至CPU内存。在多租户GPU环境中，使用相同物理RAM的不同租户之间的交换模式可能容易受到定时侧信道攻击。攻击者可以发送特定的批处理模式来检测目标租户的优化器状态何时被交换，从而提取有关训练数据的信息。cgroup内存隔离和加密交换可以缓解此风险。
+      ar: ينقل المحسّن المُصفّح في QLoRA حالات المحسّن (الزخم، التباين) إلى ذاكرة CPU عند امتلاء RAM. في بيئات GPU متعددة المستأجرين، يمكن أن تكون أنماط التبديل بين المستأجرين المختلفين الذين يستخدمون نفس RAM الفعلية عرضة لهجمات القناة الجانبية الزمنية. يمكن للمهاجم إرسال أنماط دُفعات محددة لاكتشاف متى يتم تبديل حالة محسّن المستأجر المستهدف، واستخراج معلومات حول بيانات التدريب. عزل ذاكرة cgroup والتبديل المشفر يخففان من هذا الخطر.
+      ru: Страничный оптимизатор QLoRA перемещает состояния оптимизатора (импульс, дисперсию) в память CPU при заполнении RAM. В мультитенантных средах GPU паттерны подкачки между различными арендаторами, использующими одну и ту же физическую RAM, могут быть уязвимы для атак по побочным каналам на основе тайминга. Злоумышленник может отправлять определённые паттерны пакетов для обнаружения момента подкачки состояния оптимизатора целевого арендатора, извлекая информацию о тренировочных данных. Изоляция памяти через cgroup и шифрованная подкачка снижают этот риск.
+    severity: medium
+  - title:
+      tr: Qlora Konfigürasyon Bilgi Sızıntısı
+      en: Qlora Configuration Information Disclosure
+      fr: Divulgation de configuration qlora
+      zh: qlora配置信息泄露
+      ar: كشف معلومات تكوين qlora
+      ru: Раскрытие конфигурации qlora
+    description:
+      tr: Qlora ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to qlora can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à qlora peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与qlora相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ qlora في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании qlora могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: QLoRA Training with Integrity Check
+    lang: python
+    code: |-
+      from peft import prepare_model_for_kbit_training, LoraConfig, get_peft_model
+      from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+      import torch
+
+      # NF4 quantization config with double quantization
+      bnb_config = BitsAndBytesConfig(
+          load_in_4bit=True,
+          bnb_4bit_quant_type="nf4",
+          bnb_4bit_use_double_quant=True,
+          bnb_4bit_compute_dtype=torch.bfloat16
+      )
+
+      model = AutoModelForCausalLM.from_pretrained(
+          "meta-llama/Llama-3-8B",
+          quantization_config=bnb_config,
+          device_map="auto"
+      )
+
+      model = prepare_model_for_kbit_training(model)
+
+      lora_config = LoraConfig(
+          r=16, lora_alpha=32, target_modules=["q_proj", "v_proj"],
+          lora_dropout=0.05, bias="none", task_type="CAUSAL_LM"
+      )
+
+      model = get_peft_model(model, lora_config)
+
+      # Save adapter with checksum
+      model.save_pretrained("./qlora_adapter")
+      import hashlib
+      with open("./qlora_adapter/adapter_model.safetensors", "rb") as f:
+          checksum = hashlib.sha256(f.read()).hexdigest()
+      with open("./qlora_adapter/checksum.txt", "w") as f:
+          f.write(checksum)
+    description:
+      tr: QLoRA eğitimi NF4 double quantization ile yapılandırılmış, adapter kaydedilirken SHA-256 checksum eklenerek adapter poisoning'e karşı bütünlük doğrulaması sağlanmıştır.
+      en: QLoRA training configured with NF4 double quantization, SHA-256 checksum added during adapter saving to ensure integrity verification against adapter poisoning.
+  - title: Production Adapter Loading with Validation
+    lang: python
+    code: |-
+      from peft import PeftModel
+      import hashlib, os
+
+      def load_verified_qlora(base_model_name, adapter_path):
+          # Verify checksum before loading
+          adapter_file = os.path.join(adapter_path, "adapter_model.safetensors")
+          checksum_file = os.path.join(adapter_path, "checksum.txt")
+
+          with open(adapter_file, "rb") as f:
+              computed = hashlib.sha256(f.read()).hexdigest()
+          with open(checksum_file, "r") as f:
+              expected = f.read().strip()
+
+          if computed != expected:
+              raise ValueError(f"Adapter checksum mismatch! Expected {expected}, got {computed}")
+
+          model = AutoModelForCausalLM.from_pretrained(
+              base_model_name,
+              quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4"),
+              device_map="auto"
+          )
+
+          model = PeftModel.from_pretrained(model, adapter_path)
+          return model
+
+      model = load_verified_qlora("meta-llama/Llama-3-8B", "./qlora_adapter")
+    description:
+      tr: Production ortamında QLoRA adapter'ı yüklemeden önce SHA-256 checksum doğrulaması yapılarak adapter poisoning saldırılarına karşı koruma sağlanır.
+      en: Production environment validates SHA-256 checksum before loading QLoRA adapter to protect against adapter poisoning attacks.
+  - title: QLoRA Adapter Integrity Check
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      ADAPTER_DIR="${1:?Usage: $0 <adapter_dir>}"
+      echo "[+] Checking adapter integrity..."
+      for f in "$ADAPTER_DIR"/*.safetensors; do
+        python3 -c "
+      import safetensors.torch as st
+      tensors = st.load_file('$f')
+      for name, tensor in tensors.items():
+          if tensor.abs().max() > 100:
+              print(f'WARNING: {name} has extreme values: {tensor.abs().max()}')
+          if tensor.isnan().any():
+              print(f'ERROR: {name} contains NaN')
+              exit(1)
+      print(f'OK: {len(tensors)} tensors validated')
+      "
+      done
+      echo "[+] All adapters validated"
+    description:
+      tr: QLoRA adapter dosyalari icin butunluk kontrolu.
+      en: Integrity check for QLoRA adapter files.
+research:
+  - title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+    url: https://arxiv.org/abs/2305.14314
+    year: 2023
+    type: paper
+    authors: Dettmers, Pagnoni, et al.
+  - title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    url: https://arxiv.org/abs/2106.09685
+    year: 2021
+    type: paper
+    authors: Hu, Shen, et al.
+  - title: "BadPEFT: Backdoor Attacks on Parameter-Efficient Fine-Tuning"
+    url: https://arxiv.org/abs/2404.09633
+    year: 2024
+    type: paper
+    authors: Zhang, Li, et al.
+tips:
+  - tr: Hugging Face Hub'dan indirdiğin QLoRA adapter'larını production'a almadan önce mutlaka checksum doğrulaması yap — adapter poisoning saldırıları yaygın hale geliyor.
+    en: Always perform checksum validation on QLoRA adapters downloaded from Hugging Face Hub before moving to production — adapter poisoning attacks are becoming common.
+  - tr: QLoRA ile fine-tune ederken lora_dropout parametresini 0.05-0.1 arasında tut — çok düşük dropout overfitting riskini artırır ve backdoor embedding'i kolaylaştırır.
+    en: When fine-tuning with QLoRA, keep lora_dropout between 0.05-0.1 — too low dropout increases overfitting risk and facilitates backdoor embedding.
+  - tr: Multi-tenant GPU ortamında QLoRA eğitimi yapıyorsan, mutlaka cgroup memory isolation kullan — paged optimizer swap pattern'leri timing side-channel saldırısına açık.
+    en: If training QLoRA in multi-tenant GPU environment, always use cgroup memory isolation — paged optimizer swap patterns are vulnerable to timing side-channel attacks.

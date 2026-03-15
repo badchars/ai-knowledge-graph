@@ -1,0 +1,139 @@
+id: int4-int8
+name: INT4 / INT8
+fullName: Integer Quantization
+category: quantization
+desc:
+  tr: |-
+    Quantization'in en agresif biçimleri — model ağırlıklarını kayan nokta sayılarından (float) tam sayılara (integer) dönüştürür. INT8, her weight'i 256 farklı değerden birine yuvarlar ve neredeyse kalite kaybetmez — [NVIDIA](https://nvidia.com)'nin [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)'i INT8 inferans'i hardware seviyesinde destekler.
+
+    INT4 ise sadece 16 farklı değer kullanır, bellek kullanımini FP16'ya gore 4x azaltir ancak %2-5 kalite kaybi olabilir. Gercek etki: [Llama 3](https://ai.meta.com/llama/) 70B modeli FP16'da ~140GB yer kaplarken, INT4'te sadece ~35GB'a duser ve tek bir 48GB A6000 GPU'ya sigar.
+
+    INT8 özellikle şirket ici inferans (çalışma) sirasinida kullanilir cunku kalite/hiz dengesi mukemmeldir, INT4 ise kaynak kişitli senaryolar için (örneğin masaustu GPU'lar) tercih edilir.
+  en: |-
+    The most aggressive forms of quantization, converting model weights from floating-point numbers to integers. INT8 rounds each weight to one of 256 possible values and loses almost no quality — [NVIDIA](https://nvidia.com)'s [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) supports INT8 inference with hardware acceleration.
+
+    INT4 uses only 16 possible values, reducing memory usage by 4x compared to FP16, though it may incur 2-5% quality loss. Real-world impact: [Llama 3](https://ai.meta.com/llama/) 70B takes ~140GB in FP16 but drops to just ~35GB in INT4, fitting on a single 48GB A6000 GPU.
+
+    INT8 iş especially popular for production inference because the quality-speed tradeoff iş excellent, while INT4 iş preferred for resource-constrained scenarios like desktop GPUs. The combination of INT4 weights with FP16 activations (W4A16) has become a common deployment strategy.
+  fr: "Les formes les plus agressives de quantification, convertissant les poids du modele des nombres a virgule flottante en entiers. INT8 arrondit chaque poids a l'une des 256 valeurs possibles et ne perd presque pas de qualite — TensorRT-LLM de NVIDIA supporte l'inference INT8 avec acceleration materielle. INT4 n'utilise que 16 valeurs possibles, reduisant la memoire de 4x par rapport au FP16, avec une perte de qualite de 2-5%. Impact reel : Llama 3 70B prend ~140 Go en FP16 mais tombe a seulement ~35 Go en INT4, tenant sur un seul GPU A6000 48 Go. INT8 est particulierement populaire pour l'inference en production car le rapport qualite/vitesse est excellent, tandis qu'INT4 est prefere pour les scenarios a ressources limitees comme les GPU de bureau."
+  zh: 最激进的量化形式，将模型权重从浮点数转换为整数。INT8将每个权重四舍五入为256个可能值之一，几乎不损失质量——NVIDIA的TensorRT-LLM通过硬件加速支持INT8推理。INT4仅使用16个可能值，相比FP16减少4倍内存，但可能产生2-5%质量损失。实际影响：Llama 3 70B在FP16中占约140GB，但在INT4中降至仅约35GB，可装入单块48GB A6000 GPU。INT8特别适合生产推理，因为质量-速度权衡优秀；INT4则适用于资源受限场景，如桌面GPU。INT4权重配合FP16激活（W4A16）已成为常见部署策略。
+  ar: "أكثر أشكال التكميم عدوانية، تحول أوزان النموذج من أرقام الفاصلة العائمة إلى أعداد صحيحة. INT8 يقرّب كل وزن إلى واحدة من 256 قيمة ممكنة ولا يفقد تقريباً أي جودة — يدعم TensorRT-LLM من NVIDIA استدلال INT8 مع تسريع عتادي. INT4 يستخدم 16 قيمة ممكنة فقط، مما يقلل الذاكرة بمقدار 4 مرات مقارنة بـ FP16، مع خسارة جودة محتملة 2-5%. التأثير الفعلي: Llama 3 70B يأخذ ~140 جيجابايت في FP16 لكن ينخفض إلى ~35 جيجابايت فقط في INT4، ليتسع في GPU واحد A6000 بذاكرة 48 جيجابايت. INT8 شائع خاصة في الاستدلال الإنتاجي لأن التوازن بين الجودة والسرعة ممتاز، بينما يُفضَّل INT4 للسيناريوهات محدودة الموارد."
+  ru: "Самые агрессивные формы квантования, преобразующие веса модели из чисел с плавающей точкой в целые числа. INT8 округляет каждый вес до одного из 256 возможных значений, почти не теряя качества — TensorRT-LLM от NVIDIA поддерживает INT8-инференс с аппаратным ускорением. INT4 использует лишь 16 возможных значений, сокращая потребление памяти в 4 раза по сравнению с FP16, но может давать потерю качества 2-5%. Реальный эффект: Llama 3 70B занимает ~140 ГБ в FP16, но снижается до ~35 ГБ в INT4, помещаясь на одном GPU A6000 с 48 ГБ. INT8 особенно популярен для продакшн-инференса благодаря отличному балансу качества и скорости, а INT4 предпочтителен для ограниченных ресурсов. Комбинация INT4-весов с FP16-активациями (W4A16) стала распространённой стратегией развёртывания."
+analogy:
+  tr: Renk paletini 16 milyon renkten 256 renge düşürmek. Çoğu durumda fark edilmez.
+  en: Reducing a color palette from 16 million colors to 256. Barely noticeable in most cases.
+  fr: Réduire une palette de couleurs de 16 millions de couleurs à 256. Presque imperceptible dans la plupart des cas.
+  zh: 将调色板从1600万种颜色减少到256种。在大多数情况下几乎察觉不到。
+  ar: تقليل لوحة الألوان من 16 مليون لون إلى 256. بالكاد يمكن ملاحظته في معظم الحالات.
+  ru: Уменьшение цветовой палитры с 16 миллионов цветов до 256. Едва заметно в большинстве случаев.
+security:
+  - title:
+      tr: Extreme Quantization Backdoor
+      en: Extreme Quantization Backdoor
+      fr: Porte derobee par quantification extreme
+      zh: 极端量化后门
+      ar: باب خلفي عبر التكميم المتطرف
+      ru: Бэкдор через экстремальную квантизацию
+    description:
+      tr: INT4/INT8 gibi agresif quantization, backdoor pattern'larını koruyabilir ancak detection signature'larını bozabilir. Model görünürde normal çalışırken gizli trigger'lar aktif kalır.
+      en: Aggressive quantization like INT4/INT8 can preserve backdoor patterns while breaking detection signatures. The model appears to work normally while hidden triggers remain active.
+      fr: La quantification aggressive comme INT4/INT8 peut preserver les patterns de backdoor tout en brisant les signatures de detection. Le modele semble fonctionner normalement tandis que les declencheurs caches restent actifs.
+      zh: 像INT4/INT8这样的激进量化可以保留后门模式，同时破坏检测签名。模型表面上正常运行，而隐藏的触发器仍然活跃。
+      ar: التكميم العدواني مثل INT4/INT8 يمكن أن يحافظ على أنماط الباب الخلفي بينما يكسر توقيعات الكشف. يبدو النموذج وكأنه يعمل بشكل طبيعي بينما تبقى المحفزات المخفية نشطة.
+      ru: Агрессивная квантизация, такая как INT4/INT8, может сохранять паттерны бэкдоров, одновременно нарушая сигнатуры обнаружения. Модель работает нормально на вид, но скрытые триггеры остаются активными.
+    severity: high
+  - title:
+      tr: Quantization Noise Injection
+      en: Quantization Noise Injection
+      fr: Injection de bruit de quantification
+      zh: 量化噪声注入
+      ar: حقن ضوضاء التكميم
+      ru: Инъекция шума квантизации
+    description:
+      tr: INT4/INT8'e dönüşüm sırasında eklenen quantization noise, adversarial perturbation gizlemek veya watermark kaldırmak için kullanılabilir.
+      en: Quantization noise added during INT4/INT8 conversion can be used to hide adversarial perturbations or remove watermarks.
+      fr: Le bruit de quantification ajoute lors de la conversion INT4/INT8 peut etre utilise pour dissimuler des perturbations adversariales ou supprimer des filigranes.
+      zh: 在INT4/INT8转换过程中添加的量化噪声可用于隐藏对抗性扰动或移除水印。
+      ar: يمكن استخدام ضوضاء التكميم المضافة أثناء تحويل INT4/INT8 لإخفاء الاضطرابات العدائية أو إزالة العلامات المائية.
+      ru: Шум квантизации, добавляемый при конвертации INT4/INT8, может использоваться для сокрытия состязательных возмущений или удаления водяных знаков.
+    severity: medium
+  - title:
+      tr: Quantization Doğruluk Kaybı İzlemesi
+      en: Quantization Accuracy Loss Monitoring
+      fr: Surveillance de la perte de precision par quantification
+      zh: 量化精度损失监控
+      ar: مراقبة فقدان دقة التكميم
+      ru: Мониторинг потери точности при квантизации
+    description:
+      tr: INT4/INT8 quantization sonrası model doğruluğundaki değişiklikler, güvenlik açısından kritik katmanlarda beklenmedik davranış farklılıklarına yol açabilir. Perplexity değişimlerinin izlenmemesi, güvenlik degradasyonunun fark edilmemesine neden olur.
+      en: Accuracy changes after INT4/INT8 quantization can lead to unexpected behavioral differences in security-critical layers. Failure to monitor perplexity changes can cause security degradation to go unnoticed.
+      fr: Les changements de precision apres la quantification INT4/INT8 peuvent entrainer des differences comportementales inattendues dans les couches critiques pour la securite. Ne pas surveiller les changements de perplexite peut laisser la degradation de securite passer inapercue.
+      zh: INT4/INT8量化后的精度变化可能导致安全关键层出现意外的行为差异。未能监控困惑度变化可能导致安全性退化被忽视。
+      ar: يمكن أن تؤدي تغييرات الدقة بعد تكميم INT4/INT8 إلى اختلافات سلوكية غير متوقعة في الطبقات الحرجة أمنياً. عدم مراقبة تغييرات الحيرة يمكن أن يتسبب في عدم ملاحظة تدهور الأمان.
+      ru: Изменения точности после квантизации INT4/INT8 могут приводить к неожиданным поведенческим различиям в критически важных для безопасности слоях. Отсутствие мониторинга изменений перплексии может привести к незамеченной деградации безопасности.
+    severity: low
+config:
+  - title: Calibration Data Validation
+    lang: python
+    code: |-
+      from transformers import AutoModelForCausalLM
+      from optimum.gptq import GPTQQuantizer
+
+      def safe_quantize_int4(model_path, calibration_dataset):
+          # Validate calibration data
+          for sample in calibration_dataset:
+              if len(sample['text']) > 2048:
+                  raise ValueError("Suspicious calibration sample detected")
+
+          # Quantize with verified data
+          quantizer = GPTQQuantizer(
+              bits=4,
+              dataset=calibration_dataset,
+              block_name_to_quantize="model.layers"
+          )
+
+          model = AutoModelForCausalLM.from_pretrained(model_path)
+          quantized = quantizer.quantize_model(model, tokenizer)
+
+          # Verify outputs
+          return quantized
+    description:
+      tr: INT4/INT8 quantization için kullanılan calibration datasını doğrulayın. Poisoned calibration data backdoor yerleştirebilir.
+      en: Validate calibration data used for INT4/INT8 quantization. Poisoned calibration data can inject backdoors.
+  - title: INT4/INT8 Quantization Integrity Check
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Verify quantized model integrity via SHA-256 checksum
+      MODEL_DIR="./models/quantized"
+      CHECKSUM_FILE="$MODEL_DIR/checksums.sha256"
+
+      # Generate checksums after quantization
+      find "$MODEL_DIR" -name '*.safetensors' -exec sha256sum {} \; > "$CHECKSUM_FILE"
+
+      # Verify before loading
+      if sha256sum -c "$CHECKSUM_FILE" --quiet 2>/dev/null; then
+        echo "[OK] All quantized model files verified"
+      else
+        echo "[ALERT] Quantized model integrity check FAILED" >&2
+        exit 1
+      fi
+    description:
+      tr: Quantize edilmiş model dosyalarının bütünlüğünü SHA-256 checksum ile doğrular. Yükleme öncesi tampering tespiti sağlar.
+      en: Verifies integrity of quantized model files via SHA-256 checksum. Provides tampering detection before loading.
+research:
+  - title: "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+    url: https://arxiv.org/abs/2210.17323
+    year: 2022
+    type: paper
+    authors: Elias Frantar, Saleh Ashkboos, Torsten Hoefler, Dan Alistarh
+  - title: "AWQ: Activation-aware Weight Quantization for LLM Compression"
+    url: https://arxiv.org/abs/2306.00978
+    year: 2023
+    type: paper
+    authors: Ji Lin, Jiaming Tang, Haotian Tang, Shang Yang, Xingyu Dang, Song Han
+tips:
+  - tr: INT4 modellerde perplexity testleri yaparak quality degradation'ı ölçün.
+    en: Measure quality degradation in INT4 models using perplexity tests.
+  - tr: Calibration dataset'i güvenilir kaynaklardan seçin ve versiyonlayın.
+    en: Choose calibration datasets from trusted sources and version them.

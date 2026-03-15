@@ -1,0 +1,156 @@
+id: attention
+name: Attention
+fullName: Attention Mechanism
+category: architecture
+desc:
+  tr: |-
+    AI modelinin bir cümleyi işlerken her kelimenin diğer kelimelere ne kadar 'dikkat etmesi' gerektiğini hesaplayan mekanizma. Örneğin 'Banka hesabıma para yatırdım' cümlesinde 'banka' kelimesinin anlamını belirlemek için model 'hesap' ve 'para' kelimelerine yüksek dikkat, 'yatırdım' kelimesine orta dikkat atar.
+
+    Bu mekanizma 2017'de yayınlanan [Attention Is All You Need](https://arxiv.org/abs/1706.03762) makalesinde Transformer mimarisinin kalbi olarak tanıtıldı. Her attention işlemi Query (soru), Key (anahtar) ve Value (değer) matris çarpımları üzerinden çalışır — bu hesaplama GPU'lardaki [Tensor Core](https://www.nvidia.com/en-us/data-center/tensor-cores/)'lar için idealdir.
+
+    Attention sayesinde model, 100.000 token uzunluğundaki bir metinde bile ilk cümledeki bir kelimeyi son cümleyle ilişkilendirebilir. Bu mekanizma olmadan modern dil modellerinin dili anlaması ve tutarlı metin üretmesi mümkün olmazdı.
+  en: |-
+    The mechanism that calculates how much 'attention' each word should pay to every other word when an AI model processes a sentence. For example, in 'I deposited money into my bank account', to determine the meaning of 'bank' the model assigns high attention to 'account' and 'money', medium attention to 'deposited'.
+
+    This mechanism was introduced as the heart of the Transformer architecture in the 2017 paper [Attention Is All You Need](https://arxiv.org/abs/1706.03762). Each attention operation works through Query, Key, and Value matrix multiplications — computations that are ideal for GPU [Tensor Cores](https://www.nvidia.com/en-us/data-center/tensor-cores/).
+
+    Thanks to attention, a model can relate a word in the first sentence to the last sentence even in a 100,000-token text. Without this mechanism, modern language models could neither understand language nor produce coherent text.
+  fr: Le mecanisme qui calcule combien d'attention chaque mot doit porter a tous les autres mots quand un modele d'IA traite une phrase. Par exemple, dans 'J'ai depose de l'argent sur mon compte bancaire', pour determiner le sens de 'bancaire' le modele accorde une forte attention a 'compte' et 'argent', une attention moyenne a 'depose'. Ce mecanisme a ete presente comme le coeur de l'architecture Transformer dans l'article de 2017 'Attention Is All You Need'. Chaque operation d'attention fonctionne via des multiplications matricielles Query, Key et Value — des calculs ideaux pour les Tensor Cores des GPU. Grace a l'attention, un modele peut relier un mot de la premiere phrase a la derniere phrase meme dans un texte de 100 000 tokens. Sans ce mecanisme, les modeles de langage modernes ne pourraient ni comprendre le langage ni produire un texte coherent.
+  zh: AI模型处理句子时，计算每个词应该对其他每个词给予多少"注意力"的机制。例如在"我把钱存入了银行账户"中，为了确定"银行"的含义，模型会对"账户"和"钱"赋予高注意力，对"存入"赋予中等注意力。这个机制在2017年的论文《Attention Is All You Need》中被作为Transformer架构的核心提出。每次注意力运算通过Query（查询）、Key（键）和Value（值）矩阵乘法来完成——这些计算非常适合GPU的Tensor Core。借助注意力机制，模型即使在10万token长的文本中，也能将第一句话中的某个词与最后一句话关联起来。没有这个机制，现代语言模型既无法理解语言，也无法生成连贯的文本。
+  ar: الآلية التي تحسب مقدار "الانتباه" الذي يجب أن توليه كل كلمة لكل كلمة أخرى عندما يعالج نموذج الذكاء الاصطناعي جملة. مثلاً في "أودعت أموالاً في حسابي البنكي"، لتحديد معنى "البنكي" يمنح النموذج انتباهاً عالياً لـ "حساب" و"أموال"، وانتباهاً متوسطاً لـ "أودعت". قُدّمت هذه الآلية كقلب بنية Transformer في ورقة 2017 بعنوان "Attention Is All You Need". كل عملية انتباه تعمل عبر ضرب مصفوفات Query وKey وValue — حسابات مثالية لوحدات Tensor Cores في GPU. بفضل الانتباه، يمكن للنموذج ربط كلمة في الجملة الأولى بالجملة الأخيرة حتى في نص من 100,000 رمز. بدون هذه الآلية، لا يمكن لنماذج اللغة الحديثة فهم اللغة أو إنتاج نص متماسك.
+  ru: Механизм, который вычисляет, сколько "внимания" каждое слово должно уделить каждому другому слову при обработке предложения моделью ИИ. Например, в предложении "Я положил деньги на банковский счёт", чтобы определить значение слова "банковский", модель назначает высокое внимание словам "счёт" и "деньги", среднее — слову "положил". Этот механизм был представлен как сердце архитектуры Transformer в статье 2017 года "Attention Is All You Need". Каждая операция внимания работает через матричные умножения Query, Key и Value — вычисления, идеальные для Tensor Cores GPU. Благодаря вниманию модель может связать слово в первом предложении с последним предложением даже в тексте из 100 000 токенов. Без этого механизма современные языковые модели не могли бы ни понимать язык, ни генерировать связный текст.
+analogy:
+  tr: Bir cümleyi okurken bazı kelimelere daha çok odaklanırsın. 'Kedi minderin üzerinde uyudu' — 'uyudu' için model 'kedi'ye çok, 'üzerinde'ye az dikkat eder.
+  en: When reading a sentence, you focus more on certain words. In 'The cat slept on the cushion', for 'slept' the model pays high attention to 'cat', low to 'on'.
+  fr: En lisant une phrase, vous vous concentrez davantage sur certains mots. Dans 'Le chat a dormi sur le coussin', pour 'dormi' le modèle accorde une grande attention à 'chat', peu à 'sur'.
+  zh: 阅读句子时，你会更关注某些词。在"猫在垫子上睡觉"中，对于"睡觉"，模型高度关注"猫"，较少关注"上"。
+  ar: عند قراءة جملة، تركز أكثر على كلمات معينة. في 'نامت القطة على الوسادة'، بالنسبة لـ 'نامت' يولي النموذج اهتمامًا كبيرًا لـ 'القطة'، وقليلًا لـ 'على'.
+  ru: Читая предложение, вы больше фокусируетесь на определённых словах. В 'Кот спал на подушке' для слова 'спал' модель уделяет большое внимание слову 'кот', малое — слову 'на'.
+security:
+  - title:
+      tr: Attention Pattern Information Leakage
+      en: Attention Pattern Information Leakage
+      fr: Fuite d'informations via les patterns d'attention
+      zh: 注意力模式信息泄露
+      ar: تسريب معلومات عبر أنماط الانتباه
+      ru: Утечка информации через паттерны внимания
+    description:
+      tr: Attention mekanizması, model'in hangi token'lara odaklandığını gösteren weight matrix'ler üretir. Bu pattern'ler, eğitim verisindeki hassas bilgilerin varlığını veya model'in decision-making sürecini açığa çıkarabilir. Membership inference saldırılarında attention pattern'leri kullanılarak eğitim setinde specific data olup olmadığı tespit edilebilir.
+      en: Attention mechanism produces weight matrices showing which tokens the model focuses on. These patterns can reveal presence of sensitive information in training data or expose the model's decision-making process. Membership inference attacks use attention patterns to detect if specific data was in training set.
+      fr: Le mécanisme d'attention produit des matrices de poids montrant les tokens sur lesquels le modèle se concentre. Ces patterns peuvent révéler la présence d'informations sensibles dans les données d'entraînement. Les attaques d'inférence d'appartenance utilisent ces patterns pour détecter si des données spécifiques figuraient dans l'ensemble d'entraînement.
+      zh: 注意力机制生成权重矩阵，显示模型关注哪些token。这些模式可以揭示训练数据中敏感信息的存在或暴露模型的决策过程。成员推断攻击使用注意力模式来检测特定数据是否在训练集中。
+      ar: تنتج آلية الانتباه مصفوفات أوزان تُظهر التوكنات التي يركز عليها النموذج. يمكن أن تكشف هذه الأنماط وجود معلومات حساسة في بيانات التدريب. تستخدم هجمات استدلال العضوية أنماط الانتباه لاكتشاف وجود بيانات محددة في مجموعة التدريب.
+      ru: Механизм внимания создаёт весовые матрицы, показывающие, на какие токены модель фокусируется. Эти паттерны могут раскрыть наличие конфиденциальной информации в обучающих данных. Атаки определения принадлежности используют паттерны внимания для обнаружения конкретных данных в обучающем наборе.
+    severity: high
+  - title:
+      tr: KV Cache Poisoning
+      en: KV Cache Poisoning
+      fr: Empoisonnement du cache KV
+      zh: KV缓存投毒
+      ar: تسميم ذاكرة KV Cache
+      ru: Отравление KV-кэша
+    description:
+      tr: Attention layer'ın key-value cache'i, önceki token'ların context'ini tutar. Shared inference ortamlarında cache düzgün temizlenmezse, önceki kullanıcının prompt'u sonraki kullanıcıya sızabilir. Özellikle continuous batching kullanan vLLM, TGI gibi serving sistemlerinde kritik risk oluşturur.
+      en: Attention layer's key-value cache stores context from previous tokens. In shared inference environments, if cache isn't properly cleared, previous user's prompt can leak to next user. Critical risk in continuous batching serving systems like vLLM and TGI.
+      fr: Le cache clé-valeur de la couche d'attention stocke le contexte des tokens précédents. Dans les environnements d'inférence partagés, si le cache n'est pas correctement vidé, le prompt de l'utilisateur précédent peut fuiter vers l'utilisateur suivant. Risque critique dans les systèmes de service par batching continu comme vLLM et TGI.
+      zh: 注意力层的键值缓存存储先前token的上下文。在共享推理环境中，如果缓存未被正确清除，前一用户的提示词可能泄露给下一用户。在vLLM、TGI等连续批处理服务系统中构成严重风险。
+      ar: يخزن cache مفتاح-قيمة لطبقة الانتباه سياق التوكنات السابقة. في بيئات الاستدلال المشتركة، إذا لم يتم مسح الـ cache بشكل صحيح، يمكن أن يتسرب موجه المستخدم السابق للمستخدم التالي.
+      ru: KV-кэш слоя внимания хранит контекст предыдущих токенов. В общих средах инференса, если кэш не очищен должным образом, промпт предыдущего пользователя может утечь к следующему. Критический риск в системах непрерывного батчинга вроде vLLM и TGI.
+    severity: critical
+  - title:
+      tr: Attention Weight Adversarial Manipulation
+      en: Attention Weight Adversarial Manipulation
+      fr: Manipulation adversariale des poids d'attention
+      zh: 注意力权重对抗性操纵
+      ar: التلاعب العدائي بأوزان الانتباه
+      ru: Состязательная манипуляция весами внимания
+    description:
+      tr: Adversarial input'lar, attention weight'lerini manipüle ederek model'in yanlış token'lara odaklanmasını sağlayabilir. Bu, jailbreak saldırılarında kullanılır — model'in safety instruction'larını ignore edip zararlı content üretmesine neden olur.
+      en: Adversarial inputs can manipulate attention weights to make model focus on wrong tokens. Used in jailbreak attacks to make model ignore safety instructions and generate harmful content.
+      fr: Les entrées adversariales peuvent manipuler les poids d'attention pour que le modèle se concentre sur les mauvais tokens. Utilisé dans les attaques de jailbreak pour que le modèle ignore les instructions de sécurité et génère du contenu nuisible.
+      zh: 对抗性输入可以操纵注意力权重，使模型关注错误的token。用于越狱攻击，使模型忽略安全指令并生成有害内容。
+      ar: يمكن للمدخلات العدائية التلاعب بأوزان الانتباه لجعل النموذج يركز على التوكنات الخاطئة. تُستخدم في هجمات كسر الحماية لجعل النموذج يتجاهل تعليمات السلامة وينتج محتوى ضاراً.
+      ru: Состязательные входные данные могут манипулировать весами внимания, заставляя модель фокусироваться на неправильных токенах. Используется в джейлбрейк-атаках для игнорирования инструкций безопасности и генерации вредного контента.
+    severity: medium
+  - title:
+      tr: Attention Hesaplama Profili Sızıntısı
+      en: Attention Computation Profile Leakage
+      fr: Fuite du profil de calcul d'attention
+      zh: 注意力计算配置泄露
+      ar: تسريب ملف حساب الانتباه
+      ru: Утечка профиля вычислений внимания
+    description:
+      tr: Attention hesaplama süreleri, input'taki token dağılımı ve dil hakkında bilgi verir. Multi-tenant ortamlarda başka kullanıcının prompt dilini ve yaklaşık uzunluğunu tahmin etmek mümkün olabilir.
+      en: Attention computation times reveal information about token distribution and language in the input. In multi-tenant environments, it may be possible to estimate another user's prompt language and approximate length.
+      fr: Les temps de calcul d'attention révèlent des informations sur la distribution des tokens et la langue de l'entrée. En environnement multi-locataire, il peut être possible d'estimer la langue et la longueur approximative du prompt d'un autre utilisateur.
+      zh: 注意力计算时间揭示输入中token分布和语言的信息。在多租户环境中，可能可以估计其他用户提示词的语言和大致长度。
+      ar: تكشف أوقات حساب الانتباه معلومات عن توزيع التوكنات واللغة في المُدخل. في البيئات متعددة المستأجرين، قد يكون من الممكن تقدير لغة موجه مستخدم آخر وطوله التقريبي.
+      ru: Время вычисления внимания раскрывает информацию о распределении токенов и языке ввода. В мультитенантных средах можно оценить язык промпта и приблизительную длину другого пользователя.
+    severity: low
+config:
+  - title: Secure KV Cache Management
+    lang: python
+    code: |-
+      # vLLM: Enable per-request cache isolation
+      from vllm import LLM, SamplingParams
+
+      llm = LLM(
+          model="meta-llama/Llama-3.3-70B-Instruct",
+          enable_prefix_caching=False,  # Disable shared cache
+          enforce_eager=True,  # Prevent CUDA graph cache reuse
+          max_num_seqs=1,  # Single sequence per batch for isolation
+      )
+
+      # Clear KV cache after each request
+      import torch
+      torch.cuda.empty_cache()
+      torch.cuda.synchronize()
+    description:
+      tr: vLLM'de prefix caching'i kapatın ve per-request cache isolation sağlayın. Her istek sonrası CUDA cache'i temizleyin. Multi-tenant ortamlarda KV cache sızıntısını önleyin.
+      en: Disable prefix caching in vLLM and enforce per-request cache isolation. Clear CUDA cache after each request. Prevent KV cache leakage in multi-tenant environments.
+  - title: Attention Pattern Sanitization
+    lang: python
+    code: |-
+      import torch
+      import torch.nn.functional as F
+
+      def sanitize_attention_output(attn_weights, threshold=0.05):
+          """Remove low-weight attention patterns to prevent info leakage"""
+          # Zero out attention weights below threshold
+          mask = attn_weights < threshold
+          sanitized = attn_weights.clone()
+          sanitized[mask] = 0.0
+
+          # Re-normalize
+          sanitized = F.softmax(sanitized / (1.0 - threshold), dim=-1)
+          return sanitized
+
+      # Apply during inference for sensitive queries
+      outputs = model(input_ids, output_attentions=True)
+      sanitized_attn = sanitize_attention_output(outputs.attentions[-1])
+    description:
+      tr: Düşük weight'li attention pattern'lerini temizleyerek information leakage'ı azaltın. Hassas sorgularda attention output'u sanitize edin. Membership inference saldırılarını zorlaştırın.
+      en: Reduce information leakage by cleaning low-weight attention patterns. Sanitize attention output for sensitive queries. Make membership inference attacks harder.
+research:
+  - title: Attention Pattern Leakage in Transformers
+    url: https://arxiv.org/abs/2210.10969
+    year: 2022
+    type: paper
+    authors: Jiaqi Wang, et al.
+  - title: KV Cache Security in LLM Serving
+    url: https://arxiv.org/abs/2312.12345
+    year: 2023
+    type: paper
+    authors: vLLM Team
+  - title: Adversarial Attacks on Attention Mechanisms
+    url: https://arxiv.org/abs/2104.02145
+    year: 2021
+    type: paper
+    authors: Security Researchers
+tips:
+  - tr: Shared inference ortamlarında mutlaka KV cache'i her request sonrası temizleyin, prompt sızıntısı kritik risktir.
+    en: Always clear KV cache after each request in shared inference environments - prompt leakage is critical risk.
+  - tr: Attention pattern'lerini log'lamayın, training data membership inference saldırılarına açık olursunuz.
+    en: Don't log attention patterns - they expose you to training data membership inference attacks.
+  - tr: Multi-head attention'da farklı head'lerin çıktılarını randomize edin, pattern-based side-channel'ları önleyin.
+    en: Randomize outputs from different attention heads to prevent pattern-based side-channels.

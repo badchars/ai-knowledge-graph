@@ -1,0 +1,189 @@
+id: transformer
+name: Transformer
+fullName: Transformer Architecture
+category: architecture
+desc:
+  tr: |-
+    Bugünkü tüm büyük dil modellerinin temelini oluşturan devrimci mimari. 2017'de Google araştırmacıları tarafından [Attention Is All You Need](https://arxiv.org/abs/1706.03762) makalesinde tanıtıldı ve AI tarihinin seyrini tamamen değiştirdi.
+
+    Önceki RNN ve LSTM gibi modeller metni soldan sağa sırayla işlerken, Transformer tüm girdi metnini paralel olarak işleyerek kelimelerin birbirleriyle ilişkisini kavrayabiliyor. [ChatGPT](https://openai.com/chatgpt)'ye bir soru sorduğunuzda, [Llama](https://ai.meta.com/llama/) ile yerel olarak çalıştığınızda veya [Claude](https://claude.ai) ile kod yazdığınızda, arkaplanda bir Transformer mimarisi çalışıyor.
+
+    [GPT](https://openai.com/gpt-4) serisi (decoder-only), [BERT](https://arxiv.org/abs/1810.04805) (encoder-only) ve [T5](https://arxiv.org/abs/1910.10683) (encoder-decoder) gibi farklı varyantları vardır. Transformer'ın paralel işleme yeteneği GPU'larla mükemmel uyum gösterir ve bu da modern AI'ın ölçeklenebilirliğinin temel sebebidir.
+  en: |-
+    The revolutionary architecture that forms the foundation of every major language model today. It was introduced in 2017 by Google researchers in the landmark paper [Attention Is All You Need](https://arxiv.org/abs/1706.03762) and completely changed the trajectory of AI.
+
+    Previous models like RNNs and LSTMs processed text sequentially from left to right, but Transformers process the entire input text in parallel, capturing how words relate to each other. When you ask [ChatGPT](https://openai.com/chatgpt) a question, run [Llama](https://ai.meta.com/llama/) locally, or write code with [Claude](https://claude.ai), a Transformer architecture is running behind the scenes.
+
+    It comes in different variants: [GPT](https://openai.com/gpt-4) series (decoder-only), [BERT](https://arxiv.org/abs/1810.04805) (encoder-only), and [T5](https://arxiv.org/abs/1910.10683) (encoder-decoder). The Transformer's ability to process in parallel maps perfectly to GPUs, which is the fundamental reason modern AI can scale the way it does.
+  fr: "L'architecture revolutionnaire qui constitue la base de chaque grand modele de langage aujourd'hui. Elle a ete presentee en 2017 par des chercheurs de Google dans l'article 'Attention Is All You Need' et a completement change la trajectoire de l'IA. Les modeles precedents comme les RNN et LSTM traitaient le texte sequentiellement de gauche a droite, mais les Transformers traitent tout le texte d'entree en parallele, capturant comment les mots sont lies entre eux. Quand vous posez une question a ChatGPT, executez Llama localement ou ecrivez du code avec Claude, une architecture Transformer fonctionne en arriere-plan. Elle existe en differentes variantes : la serie GPT (decoder uniquement), BERT (encoder uniquement) et T5 (encoder-decoder). La capacite du Transformer a traiter en parallele s'accorde parfaitement aux GPU, ce qui est la raison fondamentale pour laquelle l'IA moderne peut passer a l'echelle."
+  zh: 构成当今所有主要语言模型基础的革命性架构。它由Google研究人员在2017年的论文《Attention Is All You Need》中提出，彻底改变了AI的发展轨迹。之前的RNN和LSTM等模型从左到右顺序处理文本，而Transformer可以并行处理整个输入文本，捕捉词与词之间的关系。当你向ChatGPT提问、在本地运行Llama或用Claude写代码时，背后都在运行Transformer架构。它有不同的变体：GPT系列（仅解码器）、BERT（仅编码器）和T5（编码器-解码器）。Transformer的并行处理能力与GPU完美契合，这就是现代AI能够大规模扩展的根本原因。
+  ar: "البنية الثورية التي تشكل أساس كل نموذج لغوي كبير اليوم. قُدّمت في 2017 من قبل باحثي Google في ورقة \"Attention Is All You Need\" وغيّرت مسار الذكاء الاصطناعي تماماً. النماذج السابقة مثل RNN وLSTM كانت تعالج النص بالتسلسل من اليسار لليمين، لكن Transformer يعالج النص المُدخل بالكامل بالتوازي، ملتقطاً كيف ترتبط الكلمات ببعضها. عندما تسأل ChatGPT سؤالاً أو تشغّل Llama محلياً أو تكتب كوداً مع Claude، فإن بنية Transformer تعمل في الخلفية. لها أنواع مختلفة: سلسلة GPT (decoder فقط)، وBERT (encoder فقط)، وT5 (encoder-decoder). قدرة Transformer على المعالجة المتوازية تتوافق تماماً مع GPU، وهذا هو السبب الجوهري وراء قابلية توسع الذكاء الاصطناعي الحديث."
+  ru: "Революционная архитектура, лежащая в основе каждой крупной языковой модели сегодня. Представлена в 2017 году исследователями Google в статье \"Attention Is All You Need\" и полностью изменила траекторию развития ИИ. Предыдущие модели вроде RNN и LSTM обрабатывали текст последовательно слева направо, а Transformer обрабатывает весь входной текст параллельно, улавливая связи между словами. Когда вы задаёте вопрос ChatGPT, запускаете Llama локально или пишете код с Claude, за кулисами работает архитектура Transformer. Существует в разных вариантах: серия GPT (только декодер), BERT (только энкодер) и T5 (энкодер-декодер). Способность Transformer к параллельной обработке идеально ложится на GPU, и это фундаментальная причина, почему современный ИИ может масштабироваться так, как он это делает."
+analogy:
+  tr: Eski modeller metni soldan sağa tek tek okuyan biri gibiydi. Transformer sayfanın tamamını bir anda gören, her kelimenin diğer tüm kelimelerle ilişkisini kavrayan bir okuyucu.
+  en: Old models read text word by word, left to right. Transformer sees the entire page at once, grasping every word's relationship with all others simultaneously.
+  fr: Les anciens modèles lisaient le texte mot par mot, de gauche à droite. Transformer voit la page entière d'un coup, saisissant la relation de chaque mot avec tous les autres simultanément.
+  zh: 旧模型逐字从左到右阅读文本。Transformer一次看到整个页面，同时掌握每个词与所有其他词的关系。
+  ar: النماذج القديمة تقرأ النص كلمة بكلمة من اليسار إلى اليمين. Transformer يرى الصفحة بأكملها دفعة واحدة، مدركًا علاقة كل كلمة مع جميع الكلمات الأخرى في وقت واحد.
+  ru: Старые модели читали текст слово за словом, слева направо. Transformer видит всю страницу сразу, понимая связь каждого слова со всеми остальными одновременно.
+security:
+  - title:
+      tr: Self-Attention Üzerinden Eğitim Verisi Çıkarımı
+      en: Training Data Extraction via Self-Attention
+      fr: Extraction de données d'entraînement via Self-Attention
+      zh: 通过Self-Attention提取训练数据
+      ar: استخراج بيانات التدريب عبر Self-Attention
+      ru: Извлечение обучающих данных через Self-Attention
+    description:
+      tr: Transformer'ın self-attention katmanları, eğitim verisindeki tekrar eden kalıpları (API key, email, URL) yüksek ağırlıkla ezberler. Saldırgan, belirli prefix token'ları vererek attention'ı bu ezberlenen bölgelere yönlendirir ve modeli gizli veriyi üretmeye zorlar. Carlini et al. (2021) bu yöntemle GPT-2'den PII çıkarmayı göstermiştir.
+      en: Transformer self-attention layers memorize recurring patterns in training data (API keys, emails, URLs) with high attention weights. An attacker can supply specific prefix tokens to steer attention toward these memorized regions, forcing the model to generate sensitive data. Carlini et al. (2021) demonstrated PII extraction from GPT-2 using this technique.
+      fr: Les couches de self-attention du Transformer mémorisent les motifs récurrents des données d'entraînement (clés API, emails, URL) avec des poids d'attention élevés. Un attaquant peut fournir des tokens de préfixe spécifiques pour diriger l'attention vers ces régions mémorisées, forçant le modèle à générer des données sensibles.
+      zh: Transformer的self-attention层以高注意力权重记忆训练数据中的重复模式（API密钥、电子邮件、URL）。攻击者可以提供特定前缀token将注意力引导至这些记忆区域，迫使模型生成敏感数据。Carlini等人（2021）证明了从GPT-2中提取PII。
+      ar: تحفظ طبقات self-attention في Transformer الأنماط المتكررة في بيانات التدريب بأوزان انتباه عالية. يمكن للمهاجم توفير tokens بادئة محددة لتوجيه الانتباه نحو هذه المناطق المحفوظة. أظهر Carlini وآخرون (2021) استخراج PII من GPT-2.
+      ru: Слои self-attention Transformer запоминают повторяющиеся паттерны обучающих данных (API-ключи, email, URL) с высокими весами внимания. Злоумышленник может предоставить специфические токены-префиксы для направления внимания на запомненные области. Carlini и др. (2021) продемонстрировали извлечение PII из GPT-2.
+    severity: critical
+  - title:
+      tr: Positional Encoding ile Context Window Manipülasyonu
+      en: Context Window Manipulation via Positional Encoding
+      fr: Manipulation de la fenêtre de contexte via l'encodage positionnel
+      zh: 通过位置编码操纵上下文窗口
+      ar: التلاعب بنافذة السياق عبر الترميز الموضعي
+      ru: Манипуляция окном контекста через позиционное кодирование
+    description:
+      tr: Transformer'ın positional encoding'leri, token sırasını belirler — bu da saldırganın system prompt'u 'geçmiş bağlam' gibi gösterip kendi talimatlarını 'güncel bağlam' olarak konumlamasına olanak tanır. RoPE veya ALiBi gibi relative encoding'lerde, uzak pozisyonlar doğal olarak düşük attention alır; saldırgan bunu system prompt'u etkisizleştirmek için kullanabilir.
+      en: Transformer positional encodings determine token ordering — this allows an attacker to position the system prompt as 'distant context' while placing their own instructions as 'recent context'. In relative encodings like RoPE or ALiBi, distant positions naturally receive lower attention; attackers can exploit this to neutralize system prompts.
+      fr: Les encodages positionnels du Transformer déterminent l'ordre des tokens — cela permet à un attaquant de positionner le prompt système comme 'contexte distant' tout en plaçant ses instructions comme 'contexte récent'. Dans les encodages relatifs comme RoPE ou ALiBi, les positions distantes reçoivent naturellement moins d'attention.
+      zh: Transformer的位置编码决定token顺序——这允许攻击者将系统提示定位为'远距上下文'，同时将自己的指令作为'近期上下文'。在RoPE或ALiBi等相对编码中，远距位置自然获得较低注意力；攻击者可利用这点来中和系统提示。
+      ar: تحدد الترميزات الموضعية للـ Transformer ترتيب التوكنات — مما يسمح للمهاجم بوضع موجه النظام كـ 'سياق بعيد' بينما يضع تعليماته كـ 'سياق حديث'. في الترميزات النسبية مثل RoPE، تحصل المواضع البعيدة على انتباه أقل طبيعياً.
+      ru: Позиционные кодировки Transformer определяют порядок токенов — это позволяет злоумышленнику позиционировать системный промпт как 'далёкий контекст', помещая свои инструкции как 'недавний контекст'. В относительных кодировках вроде RoPE или ALiBi далёкие позиции получают меньше внимания.
+    severity: high
+  - title:
+      tr: Softmax Logit Çıktısından Model Reverse Engineering
+      en: Model Reverse Engineering from Softmax Logits
+      fr: Rétro-ingénierie du modèle via les logits softmax
+      zh: 通过Softmax Logit输出逆向工程模型
+      ar: هندسة عكسية للنموذج من مخرجات Softmax
+      ru: Реверс-инжиниринг модели по Softmax-логитам
+    description:
+      tr: Transformer'ın son katmanındaki softmax fonksiyonu, tüm vocabulary üzerinde olasılık dağılımı üretir. API üzerinden logprobs erişimi açıksa, saldırgan bu dağılımları analiz ederek modelin hidden dimension boyutunu, layer sayısını ve fine-tuning verisi hakkında bilgi çıkarabilir. top_logprobs parametresini production'da kapatmak veya temperature-based perturbation uygulamak gerekir.
+      en: The softmax function in the transformer's final layer produces a probability distribution over the entire vocabulary. If logprobs access is enabled via API, an attacker can analyze these distributions to infer the model's hidden dimensions, layer count, and fine-tuning data characteristics. Disable top_logprobs in production or apply temperature-based perturbation.
+      fr: La fonction softmax de la dernière couche du Transformer produit une distribution de probabilité sur tout le vocabulaire. Si l'accès aux logprobs est activé via API, un attaquant peut analyser ces distributions pour déduire les dimensions cachées et le nombre de couches du modèle. Désactivez top_logprobs en production.
+      zh: Transformer最后一层的softmax函数在整个词汇表上产生概率分布。如果通过API启用了logprobs访问，攻击者可以分析这些分布来推断模型的隐藏维度、层数和微调数据特征。生产环境中应禁用top_logprobs。
+      ar: تنتج دالة softmax في الطبقة الأخيرة للـ Transformer توزيع احتمالات على كامل المفردات. إذا كان الوصول لـ logprobs مفعلاً عبر API، يمكن للمهاجم تحليل هذه التوزيعات لاستنتاج أبعاد النموذج المخفية وعدد طبقاته.
+      ru: Функция softmax в последнем слое Transformer создаёт распределение вероятностей по всему словарю. Если доступ к logprobs включён через API, злоумышленник может анализировать эти распределения для определения скрытых размерностей модели и количества слоёв.
+    severity: high
+  - title:
+      tr: Multi-Head Attention'da Cross-Tenant Bilgi Sızıntısı
+      en: Cross-Tenant Information Leakage in Multi-Head Attention
+      fr: Fuite d'informations inter-locataires dans le Multi-Head Attention
+      zh: Multi-Head Attention中的跨租户信息泄露
+      ar: تسريب معلومات بين المستأجرين في Multi-Head Attention
+      ru: Межтенантная утечка информации в Multi-Head Attention
+    description:
+      tr: KV-cache paylaşımlı ortamlarda (vLLM, TGI gibi serving framework'leri), bir tenant'ın key-value çiftleri başka bir tenant'ın attention hesaplamasını etkileyebilir. Bu, özellikle prefix caching ve continuous batching kullanıldığında oluşur. Tenant-level KV-cache izolasyonu veya prefix hash doğrulaması ile azaltılabilir.
+      en: In shared KV-cache environments (serving frameworks like vLLM, TGI), one tenant's key-value pairs can influence another tenant's attention computation. This occurs especially with prefix caching and continuous batching. Can be mitigated with tenant-level KV-cache isolation or prefix hash verification.
+      fr: Dans les environnements KV-cache partagés (frameworks de service comme vLLM, TGI), les paires clé-valeur d'un locataire peuvent influencer le calcul d'attention d'un autre. Cela se produit surtout avec le prefix caching et le batching continu. Peut être atténué avec l'isolation KV-cache par locataire.
+      zh: 在共享KV缓存环境中（vLLM、TGI等服务框架），一个租户的键值对可能影响另一个租户的注意力计算。这在使用前缀缓存和连续批处理时尤其容易发生。可通过租户级KV缓存隔离缓解。
+      ar: في بيئات KV-cache المشتركة (أُطر الخدمة مثل vLLM، TGI)، يمكن لأزواج مفتاح-قيمة لمستأجر أن تؤثر على حساب انتباه مستأجر آخر. يحدث هذا خاصة مع prefix caching والتجميع المستمر.
+      ru: В общих средах KV-кэша (vLLM, TGI) пары ключ-значение одного арендатора могут влиять на вычисление внимания другого. Это происходит при prefix caching и непрерывном батчинге. Можно смягчить изоляцией KV-кэша на уровне арендатора.
+    severity: medium
+  - title:
+      tr: Transformer Model Mimarisi Sızıntısı
+      en: Transformer Model Architecture Disclosure
+      fr: Divulgation de l'architecture du modèle Transformer
+      zh: Transformer模型架构泄露
+      ar: كشف بنية نموذج Transformer
+      ru: Раскрытие архитектуры модели Transformer
+    description:
+      tr: API yanıt süreleri, token başına gecikme ve bellek kullanım profili, Transformer mimarisinin detaylarını (layer sayısı, head sayısı, hidden dimension) ortaya çıkarabilir. Bu bilgiler model klonlama ve çalma saldırılarını kolaylaştırır.
+      en: API response times, per-token latency, and memory usage profiles can reveal details of Transformer architecture (layer count, head count, hidden dimension). This information facilitates model cloning and stealing attacks.
+      fr: Les temps de réponse API, la latence par token et les profils d'utilisation mémoire peuvent révéler des détails de l'architecture Transformer (nombre de couches, nombre de têtes, dimension cachée). Ces informations facilitent le clonage et le vol de modèle.
+      zh: API响应时间、每token延迟和内存使用配置文件可以揭示Transformer架构细节（层数、头数、隐藏维度）。这些信息有助于模型克隆和窃取攻击。
+      ar: يمكن لأوقات استجابة API والتأخير لكل token وملفات تعريف استخدام الذاكرة أن تكشف تفاصيل بنية Transformer. هذه المعلومات تسهل هجمات استنساخ وسرقة النموذج.
+      ru: Время ответа API, задержка на токен и профили использования памяти могут раскрыть детали архитектуры Transformer. Эта информация облегчает атаки по клонированию и краже модели.
+    severity: low
+config:
+  - title: Attention Output Clamping
+    lang: python
+    code: |-
+      import torch
+      from transformers import AutoModelForCausalLM
+
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3-8B")
+
+      # Hook: clamp extreme attention weights to reduce memorization leaks
+      def clamp_attention(module, input, output):
+          attn_weights = output[1]  # (batch, heads, seq, seq)
+          if attn_weights is not None:
+              # Prevent any single token from dominating attention
+              clamped = torch.clamp(attn_weights, max=0.8)
+              clamped = clamped / clamped.sum(dim=-1, keepdim=True)
+              return (output[0], clamped) + output[2:]
+
+      for layer in model.model.layers:
+          layer.self_attn.register_forward_hook(clamp_attention)
+    description:
+      tr: Self-attention ağırlıklarını sınırlayarak tek bir token'ın baskın olmasını engeller. Eğitim verisi ezberlemesinden kaynaklanan veri sızıntısı riskini azaltır.
+      en: Clamps self-attention weights to prevent any single token from dominating. Reduces data leakage risk caused by training data memorization.
+  - title: vLLM Tenant-Isolated KV Cache
+    lang: bash
+    code: |-
+      # vLLM production config — tenant-level isolation
+      python -m vllm.entrypoints.openai.api_server \
+        --model meta-llama/Llama-3-8B \
+        --disable-log-requests \
+        --max-model-len 8192 \
+        --enable-prefix-caching=false \       # disable shared prefix cache
+        --disable-logprobs-during-spec-decoding \
+        --max-logprobs 0 \                    # block logprobs extraction
+        --api-key $VLLM_API_KEY               # require auth
+    description:
+      tr: "vLLM production konfigürasyonu: prefix cache kapalı (cross-tenant sızıntı önlemi), logprobs kapalı (model extraction önlemi), API key zorunlu."
+      en: "vLLM production config: prefix cache disabled (cross-tenant leak prevention), logprobs disabled (model extraction prevention), API key required."
+  - title: Positional Encoding Boundary Guard
+    lang: python
+    code: |-
+      def enforce_prompt_boundary(tokens, system_len, user_len):
+          """Ensure system prompt maintains high positional priority"""
+          total = system_len + user_len
+          if total > MAX_CTX:
+              # Truncate user input, never system prompt
+              user_len = MAX_CTX - system_len
+              tokens = tokens[:system_len] + tokens[-user_len:]
+
+          # Validate: system tokens must occupy positions 0..system_len
+          assert tokens[:system_len] == original_system_tokens
+          return tokens, system_len, user_len
+    description:
+      tr: System prompt'un pozisyonel önceliğini korur — kullanıcı girdisi context window'u aştığında system prompt değil user input kırpılır.
+      en: Maintains positional priority of the system prompt — when user input exceeds the context window, user input is truncated, never the system prompt.
+research:
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2021
+    type: paper
+    authors: Carlini, Tramèr, et al.
+  - title: Scalable Extraction of Training Data from (Production) Language Models
+    url: https://arxiv.org/abs/2311.17035
+    year: 2023
+    type: paper
+    authors: Nasr, Carlini, et al.
+  - title: Attention Is All You Need
+    url: https://arxiv.org/abs/1706.03762
+    year: 2017
+    type: paper
+    authors: Vaswani et al.
+  - title: Stealing Part of a Production Language Model
+    url: https://arxiv.org/abs/2403.06634
+    year: 2024
+    type: paper
+    authors: Carlini et al.
+tips:
+  - tr: Production'da logprobs ve top_logprobs parametrelerini mutlaka kapat — softmax çıktıları model mimarisini ve eğitim verisini reverse engineering'e açar.
+    en: Always disable logprobs and top_logprobs in production — softmax outputs expose model architecture and training data to reverse engineering.
+  - tr: Multi-tenant serving'de prefix caching'i kapat veya tenant-level hash doğrulaması uygula — paylaşımlı KV-cache cross-tenant veri sızıntısı riski taşır.
+    en: Disable prefix caching in multi-tenant serving or apply tenant-level hash verification — shared KV-cache carries cross-tenant data leakage risk.
+  - tr: System prompt'u her zaman token dizisinin başına koy ve context window dolduğunda user input'u kırp, system prompt'u asla kırpma.
+    en: Always place the system prompt at the beginning of the token sequence and truncate user input when the context window fills up — never truncate the system prompt.
+  - tr: Eğitim verisinde deduplication uygula — tekrar eden veriler attention ağırlıklarında daha yüksek skor alır ve memorization riskini artırır.
+    en: Apply deduplication to training data — repeated data scores higher in attention weights and increases memorization risk.

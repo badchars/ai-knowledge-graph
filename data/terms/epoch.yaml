@@ -1,0 +1,122 @@
+id: epoch
+name: Epoch
+fullName: Epoch
+category: training
+desc:
+  tr: |-
+    Eğitim verisinin model tarafından baştan sona tamamen bir kez görülmesi anlamına gelir. Örneğin 1 milyon örneklik bir veri setiniz varsa, 1 epoch = modelin tüm 1 milyon ornegi bir kez gormesidir, 3 epoch = aynı veriyi 3 kez gormesidir.
+
+    LLM pre-training'inde genellikle 1-2 epoch kullanilir cunku veri zaten trilyonlarca token'dir ve tekrar etmek ezberlenmeye (overfitting) yol acar — Chinchilla arastirmasi gosterdi ki büyük modellerde veriyi birden fazla kez gormek verimli degildir. Ancak fine-tuning'de daha küçük veri setleri kullanildigindan genellikle 3-10 epoch tercih edilir.
+
+    Çok fazla epoch modelin eğitim verişini ezberlemesine sebep olur (overfitting) — model eğitim verişinde mukemmel sonuç verirken, daha önce gormedigi verilerde başarışiz olur.
+  en: |-
+    One complete pass through the entire training dataset by the model. For example, if you have 1 million training examples, 1 epoch means the model has seen all 1 million examples once, 3 epochs means it has seen the same data 3 times.
+
+    In LLM pre-training, typically only 1-2 epochs are used because the data already contains trillions of tokens, and repeating it causes memorization — the Chinchilla research showed that for large models, seeing data more than once yields diminishing returns. In fine-tuning, however, since smaller datasets are used, 3-10 epochs are common.
+
+    Too many epochs causes the model to memorize the training data (overfitting) — it performs perfectly on training data but fails on new, unseen inputs.
+  fr: Un passage complet de l'ensemble du jeu de donnees d'entrainement par le modele. Par exemple, si vous avez 1 million d'exemples, 1 epoque signifie que le modele a vu tous les exemples une fois, 3 epoques signifie qu'il a vu les memes donnees 3 fois. Dans le pre-entrainement des LLM, generalement 1-2 epoques sont utilisees car les donnees contiennent deja des trillions de tokens — la recherche Chinchilla a montre que pour les grands modeles, voir les donnees plus d'une fois donne des rendements decroissants. En fine-tuning, comme des ensembles de donnees plus petits sont utilises, 3-10 epoques sont courantes. Trop d'epoques pousse le modele a memoriser les donnees (surapprentissage) — il fonctionne parfaitement sur les donnees d'entrainement mais echoue sur de nouvelles entrees.
+  zh: 模型完整遍历整个训练数据集一次。例如，如果你有100万个训练样本，1个epoch意味着模型看过所有100万个样本一次，3个epoch意味着看了同样的数据3次。在LLM预训练中，通常只使用1-2个epoch，因为数据已经包含数万亿token，重复会导致记忆化——Chinchilla研究表明，对于大模型，多次看数据的收益递减。但在微调中，由于使用较小的数据集，通常采用3-10个epoch。过多epoch会导致模型记住训练数据（过拟合）——在训练数据上表现完美，但在新的未见输入上失败。
+  ar: تمريرة كاملة واحدة لمجموعة بيانات التدريب بأكملها عبر النموذج. على سبيل المثال، إذا كان لديك مليون مثال تدريبي، فإن حقبة واحدة تعني أن النموذج رأى جميع الأمثلة مرة واحدة، و3 حقب تعني رؤية البيانات نفسها 3 مرات. في التدريب المسبق للنماذج اللغوية الكبيرة، تُستخدم عادةً 1-2 حقبة فقط لأن البيانات تحتوي بالفعل على تريليونات الرموز — أظهر بحث Chinchilla أنه في النماذج الكبيرة، رؤية البيانات أكثر من مرة تعطي عوائد متناقصة. لكن في الضبط الدقيق، حيث تُستخدم مجموعات بيانات أصغر، 3-10 حقب شائعة. كثرة الحقب تجعل النموذج يحفظ بيانات التدريب (الإفراط في التدريب) — يعمل بشكل مثالي على بيانات التدريب لكنه يفشل مع مدخلات جديدة.
+  ru: Один полный проход модели через весь обучающий набор данных. Например, если у вас 1 миллион обучающих примеров, 1 эпоха означает, что модель увидела все примеры один раз, 3 эпохи — те же данные 3 раза. При предобучении LLM обычно используют только 1-2 эпохи, поскольку данные уже содержат триллионы токенов, а повторение ведёт к запоминанию — исследование Chinchilla показало, что для больших моделей повторный просмотр данных даёт убывающую отдачу. Однако при fine-tuning, где используются меньшие наборы данных, обычны 3-10 эпох. Слишком много эпох приводит к запоминанию обучающих данных (переобучение) — модель идеально работает на тренировочных данных, но проваливается на новых.
+analogy:
+  tr: Ders kitabını baştan sona bir kez okumak = 1 epoch. 3 kez okumak = 3 epoch.
+  en: Reading a textbook cover to cover once = 1 epoch. Reading it 3 times = 3 epochs.
+  fr: Lire un manuel de couverture à couverture une fois = 1 époque. Le lire 3 fois = 3 époques.
+  zh: 从头到尾阅读一次教科书 = 1个epoch。阅读3次 = 3个epochs。
+  ar: قراءة كتاب دراسي من الغلاف إلى الغلاف مرة واحدة = حقبة واحدة. قراءته 3 مرات = 3 حقب.
+  ru: Прочитать учебник от корки до корки один раз = 1 эпоха. Прочитать его 3 раза = 3 эпохи.
+security:
+  - title:
+      tr: Epoch-Based Backdoor Activation
+      en: Epoch-Based Backdoor Activation
+      fr: Activation de backdoor basée sur les époques
+      zh: 基于Epoch的后门激活
+      ar: تفعيل الباب الخلفي بناءً على الحقبة
+      ru: Активация бэкдора на основе эпох
+    description:
+      tr: Saldırganlar belirli epoch'larda aktif olan backdoorlar yerleştirebilir. Model erken epoch'larda normal görünürken, belirli bir epoch'tan sonra zararlı davranış gösterebilir.
+      en: Attackers can inject backdoors that activate at specific epochs. The model appears normal in early epochs but exhibits malicious behavior after a certain epoch.
+      fr: Les attaquants peuvent injecter des backdoors qui s'activent à des époques spécifiques. Le modèle apparaît normal dans les premières époques mais exhibe un comportement malveillant après une certaine époque.
+      zh: 攻击者可以注入在特定epoch激活的后门。模型在早期epoch看起来正常，但在特定epoch后表现出恶意行为。
+      ar: يمكن للمهاجمين حقن أبواب خلفية تنشط في حقب محددة. يبدو النموذج طبيعياً في الحقب المبكرة لكنه يظهر سلوكاً خبيثاً بعد حقبة معينة.
+      ru: Злоумышленники могут внедрить бэкдоры, активирующиеся на определённых эпохах. Модель выглядит нормально на ранних эпохах, но проявляет вредоносное поведение после определённой эпохи.
+    severity: medium
+  - title:
+      tr: Overfitting ile Veri Sızıntısı
+      en: Data Leakage via Overfitting
+      fr: Fuite de données par surapprentissage
+      zh: 过拟合导致的数据泄露
+      ar: تسريب بيانات عبر الإفراط في التعلم
+      ru: Утечка данных через переобучение
+    description:
+      tr: Çok fazla epoch eğitilmiş modeller overfitting nedeniyle eğitim verisini ezberler. Bu, membership inference ve model inversion saldırılarını kolaylaştırır.
+      en: Models trained for too many epochs memorize training data due to overfitting. This facilitates membership inference and model inversion attacks.
+      fr: Les modèles entraînés pendant trop d'époques mémorisent les données d'entraînement à cause du surapprentissage. Ceci facilite les attaques d'inférence d'appartenance et d'inversion de modèle.
+      zh: 训练epoch过多的模型因过拟合而记忆训练数据。这便于成员推理和模型反转攻击。
+      ar: النماذج المدربة لحقب كثيرة جداً تحفظ بيانات التدريب بسبب الإفراط في التعلم. هذا يسهل هجمات استدلال العضوية وعكس النموذج.
+      ru: Модели, обученные слишком много эпох, запоминают обучающие данные из-за переобучения. Это облегчает атаки определения принадлежности и инверсии модели.
+    severity: medium
+  - title:
+      tr: Epoch Sayısı Bilgi Sızıntısı
+      en: Epoch Count Information Disclosure
+      fr: Divulgation du nombre d'époques
+      zh: Epoch数量信息泄露
+      ar: تسريب معلومات عدد الحقب
+      ru: Утечка информации о количестве эпох
+    description:
+      tr: Model'in kaç epoch eğitildiği, checkpoint dosya adlarından veya model card metadata'sından çıkarılabilir. Bu bilgi model'in overfitting derecesini ve memorization riskini tahmin etmeye yardımcı olur. Yüksek epoch sayısı membership inference attack başarı olasılığını artırır.
+      en: How many epochs a model was trained for can be inferred from checkpoint file names or model card metadata. This information helps estimate model's degree of overfitting and memorization risk. High epoch count increases membership inference attack success probability.
+      fr: Le nombre d'époques d'entraînement peut être déduit des noms de fichiers de checkpoint ou des métadonnées de la fiche du modèle. Cette information aide à estimer le degré de surapprentissage et le risque de mémorisation du modèle.
+      zh: 模型训练了多少epoch可以从检查点文件名或模型卡元数据推断。此信息有助于估计模型的过拟合程度和记忆风险。高epoch数增加成员推理攻击成功概率。
+      ar: يمكن استنتاج عدد حقب التدريب من أسماء ملفات نقاط الحفظ أو بيانات بطاقة النموذج الوصفية. تساعد هذه المعلومات في تقدير درجة الإفراط في التعلم ومخاطر الحفظ.
+      ru: Количество эпох обучения модели можно определить по именам файлов чекпоинтов или метаданным карточки модели. Эта информация помогает оценить степень переобучения и риск запоминания.
+    severity: low
+config:
+  - title: Early Stopping with Validation
+    lang: python
+    code: |-
+      class SecureEarlyStopping:
+          def __init__(self, patience=5, min_delta=0.001):
+              self.patience = patience
+              self.min_delta = min_delta
+              self.best_loss = float('inf')
+              self.counter = 0
+
+          def should_stop(self, val_loss, epoch):
+              if val_loss < self.best_loss - self.min_delta:
+                  self.best_loss = val_loss
+                  self.counter = 0
+              else:
+                  self.counter += 1
+
+              if self.counter >= self.patience:
+                  print(f"Stopping at epoch {epoch} to prevent overfitting")
+                  return True
+              return False
+
+      stopper = SecureEarlyStopping()
+      for epoch in range(max_epochs):
+          train_loss = train()
+          val_loss = validate()
+          if stopper.should_stop(val_loss, epoch):
+              break
+    description:
+      tr: Early stopping kullanarak overfitting'i önleyin. Bu, model memorization ve veri sızıntısı riskini azaltır.
+      en: Use early stopping to prevent overfitting. This reduces model memorization and data leakage risks.
+research:
+  - title: Overfitting or perfect fitting? Risk bounds for classification and regression rules that interpolate
+    url: https://arxiv.org/abs/1806.07301
+    year: 2018
+    type: paper
+    authors: Mikhail Belkin, Daniel Hsu, Partha Mitra
+  - title: When Does Data Augmentation Help With Membership Inference Attacks?
+    url: https://arxiv.org/abs/2011.11238
+    year: 2020
+    type: paper
+    authors: Yigitcan Kaya, Tudor Dumitras
+tips:
+  - tr: Validation loss'u dikkatle izleyin; train/val loss ayrışması overfitting işaretidir.
+    en: Carefully monitor validation loss; train/val loss divergence indicates overfitting.
+  - tr: Maksimum epoch sayısını veri setinize ve model boyutuna göre ayarlayın.
+    en: Set maximum epochs based on your dataset size and model size.

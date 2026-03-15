@@ -1,0 +1,146 @@
+id: top-p-k
+name: Top-P / Top-K
+fullName: Sampling Strategies
+category: prompting
+desc:
+  tr: |-
+    AI modelinin bir sonraki tokeni seçerken aday havuzunu daraltma yöntemleri. Top-K en basit yaklaşımdır: 'En yüksek olasılıkli K tokenden birini seç' — örneğin Top-K=50 demek 50.000 kelimelik sözlükten sadece en olasılıkli 50'sini değerlendirmek demektir.
+
+    Top-P (nucleus sampling) ise dinamik bir eşiktir: 'Kümülatif olasılık P'ye ulaşana kadar tokenleri dahil et' — Top-P=0.9 demek, olasılık sıralamasinda toplam %90'a ulaşan tokenlerin havuzundan secmek demektir. Top-P'nin avantajı, bazı durumlarda 5 token yeterli olurken bazı durumlarda 200 token gerektiğinde otomatik adapte olmasidir.
+
+    Pratikte çoğu API'da temperature ile birlikte kullanılır: [OpenAI](https://openai.com) varsayılan olarak Top-P=1.0 (tum tokenler) ayarinda gelir ve temperature ile kontrol eder. [Anthropic](https://anthropic.com)'in [Claude](https://claude.ai)'u ise genellikle Top-K=40 kullanır.
+  en: |-
+    Methods for narrowing the candidate pool when an AI model picks the next token. Top-K iş the simplest approach: 'pick from the K most probable tokens' — for example, Top-K=50 means only considering the 50 most likely tokens from a vocabulary of 50,000+ words.
+
+    Top-P (nucleus sampling) iş a dynamic threshold: 'include tokens until their cumulative probability reaches P' — Top-P=0.9 means sampling from the pool of tokens whose probabilities sum to 90%. The advantage of Top-P iş that it auto-adapts: sometimes 5 tokens cover 90% probability, sometimes 200 do.
+
+    In practice, most APIs use these alongside temperature: [OpenAI](https://openai.com) defaults to Top-P=1.0 (all tokens included) and controls diversity via temperature. [Anthropic](https://anthropic.com)'s [Claude](https://claude.ai) typically uses Top-K=40. A common best practice iş to adjust either temperature or top-p, but not both aggressively at once.
+  fr: "Des methodes pour restreindre le bassin de candidats quand un modele d'IA choisit le prochain token. Top-K est l'approche la plus simple : 'choisis parmi les K tokens les plus probables' — par exemple Top-K=50 signifie ne considerer que les 50 tokens les plus probables d'un vocabulaire de plus de 50 000 mots. Top-P (echantillonnage nucleus) est un seuil dynamique : 'inclure les tokens jusqu'a ce que leur probabilite cumulee atteigne P' — Top-P=0.9 signifie echantillonner parmi les tokens dont les probabilites totalisent 90%. L'avantage de Top-P est son adaptation automatique : parfois 5 tokens couvrent 90% de probabilite, parfois 200. En pratique, la plupart des API les utilisent avec la temperature : OpenAI utilise par defaut Top-P=1.0 et controle la diversite via la temperature. Claude d'Anthropic utilise typiquement Top-K=40."
+  zh: AI模型选择下一个token时缩小候选池的方法。Top-K是最简单的方法：'从概率最高的K个token中选择'——例如Top-K=50意味着从50,000多词的词汇表中只考虑最可能的50个。Top-P（核采样）是动态阈值：'包含token直到累积概率达到P'——Top-P=0.9意味着从概率之和达到90%的token池中采样。Top-P的优势在于自动适应：有时5个token就覆盖了90%的概率，有时需要200个。实践中大多数API将这些与temperature配合使用：OpenAI默认Top-P=1.0（包含所有token），通过temperature控制多样性。Anthropic的Claude通常使用Top-K=40。常见的最佳实践是调整temperature或top-p其中之一，而不是同时激进地调整两者。
+  ar: "طرق لتضييق مجموعة المرشحين عندما يختار نموذج الذكاء الاصطناعي الرمز التالي. Top-K هو الأبسط: 'اختر من أكثر K رمز احتمالاً' — مثلاً Top-K=50 يعني النظر فقط في أكثر 50 رمزاً احتمالاً من مفردات تزيد عن 50,000 كلمة. Top-P (أخذ عينات النواة) هو عتبة ديناميكية: 'اشمل الرموز حتى يصل احتمالها التراكمي إلى P' — Top-P=0.9 يعني الاختيار من الرموز التي تبلغ احتمالاتها مجتمعة 90%. ميزة Top-P هي التكيف التلقائي: أحياناً 5 رموز تغطي 90% وأحياناً 200. عملياً تستخدم معظم واجهات البرمجة هذه مع temperature: OpenAI تستخدم افتراضياً Top-P=1.0 وتتحكم بالتنوع عبر temperature. Claude من Anthropic يستخدم عادة Top-K=40. الممارسة الجيدة هي ضبط temperature أو top-p لكن ليس كليهما بقوة في نفس الوقت."
+  ru: "Методы сужения пула кандидатов при выборе моделью следующего токена. Top-K — простейший подход: 'выбирай из K наиболее вероятных токенов' — например, Top-K=50 означает рассмотрение только 50 самых вероятных токенов из словаря в 50 000+ слов. Top-P (nucleus sampling) — динамический порог: 'включай токены, пока их кумулятивная вероятность не достигнет P' — Top-P=0.9 означает выборку из пула токенов, чьи вероятности суммируются до 90%. Преимущество Top-P — автоадаптация: иногда 5 токенов покрывают 90% вероятности, иногда 200. На практике большинство API используют их вместе с temperature: OpenAI по умолчанию Top-P=1.0, а разнообразие регулирует через temperature. Claude от Anthropic обычно использует Top-K=40. Лучшая практика — настраивать либо temperature, либо top-p, но не оба параметра агрессивно одновременно."
+analogy:
+  tr: Top-K = 'En iyi 10 restorandan birini seç'. Top-P = 'Toplam puanın %90'ini oluşturanlardan seç'.
+  en: Top-K = 'Pick from the top 10 restaurants'. Top-P = 'Pick from restaurants making up 90% of the total rating'.
+  fr: Top-K = 'Choisissez parmi les 10 meilleurs restaurants'. Top-P = 'Choisissez parmi les restaurants constituant 90% de la note totale'.
+  zh: Top-K="从排名前10的餐厅中选择"。Top-P="从占总评分90%的餐厅中选择"。
+  ar: Top-K = 'اختر من أفضل 10 مطاعم'. Top-P = 'اختر من المطاعم التي تشكل 90٪ من التقييم الإجمالي'.
+  ru: Top-K = 'Выбрать из топ-10 ресторанов'. Top-P = 'Выбрать из ресторанов, составляющих 90% от общего рейтинга'.
+security:
+  - title:
+      tr: Deterministik Çıktı Saldırıları
+      en: Deterministic Output Attacks
+      fr: Attaques par sorties deterministes
+      zh: 确定性输出攻击
+      ar: هجمات المخرجات الحتمية
+      ru: Атаки через детерминированные выходные данные
+    description:
+      tr: temperature=0 ve top_p=1 ayarları ile model davranışı tahmin edilebilir hale gelir. Saldırganlar bu durumu kullanarak prompt injection saldırılarını optimize edebilir ve belirli zararlı çıktıları tetikleyebilir.
+      en: When temperature=0 and top_p=1, model behavior becomes predictable. Attackers can exploit this to optimize prompt injection attacks and trigger specific malicious outputs.
+      fr: Quand temperature=0 et top_p=1, le comportement du modele devient previsible. Les attaquants peuvent exploiter cela pour optimiser les attaques par injection de prompt et declencher des sorties malveillantes specifiques.
+      zh: 当temperature=0和top_p=1时，模型行为变得可预测。攻击者可以利用这一点优化提示注入攻击并触发特定的恶意输出。
+      ar: عندما تكون temperature=0 وtop_p=1، يصبح سلوك النموذج قابلاً للتنبؤ. يمكن للمهاجمين استغلال هذا لتحسين هجمات حقن الموجه وتشغيل مخرجات ضارة محددة.
+      ru: При temperature=0 и top_p=1 поведение модели становится предсказуемым. Злоумышленники могут использовать это для оптимизации атак инъекции промптов и запуска конкретных вредоносных выходных данных.
+    severity: medium
+  - title:
+      tr: Sampling Manipülasyonu ile Güvenlik Bypass
+      en: Security Bypass via Sampling Manipulation
+      fr: Contournement de securite par manipulation de l'echantillonnage
+      zh: 通过采样操纵绕过安全机制
+      ar: تجاوز الأمان عبر التلاعب بالعينات
+      ru: Обход безопасности через манипуляцию семплированием
+    description:
+      tr: Yüksek top_k/top_p değerleri modelin güvenlik filtrelerini atlayarak yasaklı içerik üretmesine neden olabilir. Model daha az olası ancak zararlı tokenları seçme eğiliminde olur.
+      en: High top_k/top_p values can cause the model to bypass safety filters and generate prohibited content. The model tends to select less probable but harmful tokens.
+      fr: Des valeurs elevees de top_k/top_p peuvent amener le modele a contourner les filtres de securite et generer du contenu interdit. Le modele tend a selectionner des tokens moins probables mais nuisibles.
+      zh: 高top_k/top_p值可能导致模型绕过安全过滤器并生成被禁止的内容。模型倾向于选择不太可能但有害的token。
+      ar: يمكن أن تتسبب قيم top_k/top_p العالية في تجاوز النموذج لفلاتر الأمان وتوليد محتوى محظور. يميل النموذج إلى اختيار رموز أقل احتمالاً ولكن ضارة.
+      ru: Высокие значения top_k/top_p могут заставить модель обходить фильтры безопасности и генерировать запрещённый контент. Модель склонна выбирать менее вероятные, но вредоносные токены.
+    severity: medium
+  - title:
+      tr: Sampling Parametreleri Bilgi İfşası
+      en: Sampling Parameters Information Disclosure
+      fr: Divulgation des parametres d'echantillonnage
+      zh: 采样参数信息泄露
+      ar: كشف معلومات معاملات العينات
+      ru: Раскрытие параметров семплирования
+    description:
+      tr: API'nin kabul ettiği top_p ve top_k değer aralıkları, arka plandaki model sağlayıcısı veya inference framework'ü hakkında bilgi ifşa edebilir.
+      en: The range of top_p and top_k values accepted by the API can disclose information about the underlying model provider or inference framework.
+      fr: La plage de valeurs top_p et top_k acceptees par l'API peut reveler des informations sur le fournisseur de modele ou le framework d'inference sous-jacent.
+      zh: API接受的top_p和top_k值范围可以泄露关于底层模型提供商或推理框架的信息。
+      ar: يمكن أن يكشف نطاق قيم top_p وtop_k المقبولة من واجهة البرمجة معلومات حول مزود النموذج الأساسي أو إطار عمل الاستدلال.
+      ru: Диапазон значений top_p и top_k, принимаемых API, может раскрывать информацию о базовом поставщике модели или фреймворке инференса.
+    severity: low
+config:
+  - title: Secure Sampling Configuration
+    lang: python
+    code: |-
+      # OpenAI SDK - production-safe sampling
+      from openai import OpenAI
+      client = OpenAI()
+
+      response = client.chat.completions.create(
+          model="gpt-4",
+          messages=[{"role": "user", "content": prompt}],
+          temperature=0.7,  # Balanced creativity
+          top_p=0.9,        # Limit to top 90% probability mass
+          max_tokens=1000,  # Prevent token exhaustion attacks
+          presence_penalty=0.0,
+          frequency_penalty=0.0
+      )
+    description:
+      tr: Üretim ortamları için güvenli sampling parametreleri. Aşırı randomness ve deterministik davranışın dengesi.
+      en: Secure sampling parameters for production environments. Balances excessive randomness and deterministic behavior.
+  - title: Sampling Parameter Validation (Rust)
+    lang: rust
+    code: |-
+      use serde::Deserialize;
+
+      #[derive(Deserialize)]
+      pub struct SamplingParams {
+          pub temperature: Option<f32>,
+          pub top_p: Option<f32>,
+          pub top_k: Option<i32>,
+          pub max_tokens: Option<u32>,
+      }
+
+      impl SamplingParams {
+          pub fn validate_and_clamp(&mut self) {
+              // Clamp temperature to safe range
+              if let Some(ref mut t) = self.temperature {
+                  *t = t.clamp(0.0, 2.0);
+              }
+              // Enforce top_p bounds
+              if let Some(ref mut p) = self.top_p {
+                  *p = p.clamp(0.0, 1.0);
+              }
+              // Enforce top_k bounds
+              if let Some(ref mut k) = self.top_k {
+                  *k = (*k).clamp(1, 100);
+              }
+              // Cap max tokens
+              if let Some(ref mut m) = self.max_tokens {
+                  *m = (*m).min(4096);
+              }
+          }
+      }
+    description:
+      tr: Rust ile sampling parametrelerini güvenli aralıklara sınırlayan doğrulama yapısı.
+      en: Rust validation struct that clamps sampling parameters to safe ranges.
+research:
+  - title: Temperature and Top-k/Top-p Sampling in Language Models
+    url: https://arxiv.org/abs/1904.09751
+    year: 2019
+    type: paper
+    authors: Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi
+  - title: On the Dangers of Stochastic Parrots
+    url: https://dl.acm.org/doi/10.1145/3442188.3445922
+    year: 2021
+    type: paper
+    authors: Emily M. Bender, Timnit Gebru, Angelina McMillan-Major, Shmargaret Shmitchell
+tips:
+  - tr: Hassas uygulamalar için temperature=0.3-0.7 ve top_p=0.8-0.95 aralığını kullanın.
+    en: For sensitive applications, use temperature=0.3-0.7 and top_p=0.8-0.95 range.
+  - tr: top_k ve top_p'yi birlikte kullanmayın; genelde sadece top_p tercih edilir.
+    en: Don't combine top_k and top_p; typically only top_p is preferred.

@@ -1,0 +1,35 @@
+name: Update Term
+description: Suggest an update to an existing term
+title: "[Update] "
+labels: ["update-term"]
+body:
+  - type: input
+    id: term-id
+    attributes:
+      label: Term ID
+      description: The ID of the term to update (e.g., "gpu", "transformer")
+    validations:
+      required: true
+
+  - type: dropdown
+    id: update-type
+    attributes:
+      label: What to update?
+      multiple: true
+      options:
+        - Description
+        - Security findings
+        - Configuration tips
+        - Research links
+        - Analogy
+        - Relationships
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What should change and why?
+    validations:
+      required: true

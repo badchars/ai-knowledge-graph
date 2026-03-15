@@ -1,0 +1,151 @@
+id: weight
+name: Weight
+fullName: Weight / Parameter
+category: training
+desc:
+  tr: |-
+    AI modelinin tüm bilgisini saklayan sayısal değerler — modelin beyni bu sayılardan oluşur. "7B model" dendiğinde modelin 7 milyar sayı içerdiği, "70B model" dendiğinde 70 milyar sayı içerdiği kastedilir. Her bir weight, modelin belirli bir özelliğe ne kadar önem verdiğini belirler — örneğin bir weight "cümlenin soru mu yoksa ifade mi olduğunu" ayırt etmeye yardımcı olabilir.
+
+    Eğitim süreçinde bu sayılar milyonlarca kez küçük adımlarla (gradient descent ile) ayarlanır ta ki model doğru cevaplar verene kadar.
+
+    Bellekte kapladıkları alan doğrudan hassasiyetlerine bağlıdır: FP32'de her weight 4 byte, FP16'da 2 byte, INT4'te ise sadece 0.5 byte yer kaplar — bu yüzden quantization bu kadar etkilidir.
+  en: |-
+    The numerical values that store everything an AI model has learned — the model's brain iş made of these numbers. When people say "7B model" they mean it contains 7 billion numbers, "70B model" means 70 billion. Each weight determines how much importance the model gives to a particular feature — for example, one weight might help distinguish whether a sentence iş a question or a statement.
+
+    During training, these numbers are adjusted millions of times through tiny steps (via gradient descent) until the model produces correct outputs.
+
+    The memory they occupy directly depends on their precision: each weight takes 4 bytes in FP32, 2 bytes in FP16, and just 0.5 bytes in INT4 — which iş why quantization iş so effective at reducing model size.
+  fr: "Les valeurs numeriques qui stockent tout ce qu'un modele d'IA a appris — le cerveau du modele est constitue de ces nombres. Quand on dit \"modele 7B\" cela signifie qu'il contient 7 milliards de nombres, \"modele 70B\" signifie 70 milliards. Chaque poids determine l'importance que le modele accorde a une caracteristique particuliere. Pendant l'entrainement, ces nombres sont ajustes des millions de fois par petits pas (via la descente de gradient) jusqu'a ce que le modele produise des reponses correctes. La memoire qu'ils occupent depend directement de leur precision : chaque poids prend 4 octets en FP32, 2 octets en FP16 et seulement 0,5 octet en INT4 — c'est pourquoi la quantification est si efficace pour reduire la taille du modele."
+  zh: 存储AI模型所学一切的数值——模型的大脑由这些数字组成。当人们说7B模型时意味着它包含70亿个数字，70B模型意味着700亿个。每个权重决定模型对某个特征赋予多少重要性——例如，某个权重可能帮助区分一个句子是问句还是陈述句。训练过程中，这些数字通过微小步骤（梯度下降）被调整数百万次，直到模型产生正确输出。它们占用的内存直接取决于精度：每个权重在FP32中占4字节，FP16中占2字节，INT4中仅占0.5字节——这就是量化能如此有效减小模型大小的原因。
+  ar: "القيم الرقمية التي تخزن كل ما تعلمه نموذج الذكاء الاصطناعي — دماغ النموذج مصنوع من هذه الأرقام. عندما يقول الناس \"نموذج 7B\" يعنون أنه يحتوي على 7 مليارات رقم، و\"نموذج 70B\" يعني 70 ملياراً. كل وزن يحدد مقدار الأهمية التي يوليها النموذج لميزة معينة. أثناء التدريب، تُعدَّل هذه الأرقام ملايين المرات بخطوات صغيرة (عبر الانحدار التدريجي) حتى ينتج النموذج مخرجات صحيحة. الذاكرة التي تشغلها تعتمد مباشرة على دقتها: كل وزن يأخذ 4 بايت في FP32، و2 بايت في FP16، و0.5 بايت فقط في INT4 — لهذا السبب التكميم فعال جداً في تقليل حجم النموذج."
+  ru: "Числовые значения, хранящие всё, чему научилась модель ИИ — мозг модели состоит из этих чисел. Когда говорят «модель 7B», имеют в виду 7 миллиардов чисел, «модель 70B» — 70 миллиардов. Каждый вес определяет, какую важность модель придаёт определённому признаку — например, один вес может помогать различать, является ли предложение вопросом или утверждением. Во время обучения эти числа корректируются миллионы раз крошечными шагами (через градиентный спуск), пока модель не начнёт давать правильные ответы. Память, которую они занимают, напрямую зависит от точности: каждый вес занимает 4 байта в FP32, 2 байта в FP16 и всего 0,5 байта в INT4 — вот почему квантование так эффективно уменьшает размер модели."
+analogy:
+  tr: Beyindeki sinaps bağlantıların güçleri. Eğitim sırasında hangi bağlantının ne kadar güçlü olacağı ayarlanır.
+  en: The strengths of synaptic connections in the brain. During training, the strength of each connection iş adjusted.
+  fr: Les forces des connexions synaptiques dans le cerveau. Pendant l'entraînement, la force de chaque connexion est ajustée.
+  zh: 大脑中突触连接的强度。在训练期间，调整每个连接的强度。
+  ar: قوة الاتصالات المشبكية في الدماغ. أثناء التدريب، يتم ضبط قوة كل اتصال.
+  ru: Сила синаптических связей в мозге. Во время обучения сила каждой связи настраивается.
+security:
+  - title:
+      tr: Ağırlık Zehirleme (Weight Poisoning)
+      en: Weight Poisoning
+      fr: Empoisonnement des poids
+      zh: 权重投毒
+      ar: تسميم الأوزان
+      ru: Отравление весов
+    description:
+      tr: Saldırganlar eğitim verisi veya checkpoint'lere backdoor yerleştirerek model ağırlıklarını manipüle edebilir. Belirli trigger pattern'ları görüldüğünde model zararlı çıktı üretir ancak normal kullanımda normal görünür.
+      en: Attackers can manipulate model weights by injecting backdoors into training data or checkpoints. When specific trigger patterns are seen, the model produces malicious outputs while appearing normal during regular use.
+      fr: Les attaquants peuvent manipuler les poids du modèle en injectant des backdoors dans les données d'entraînement ou les checkpoints. Lorsque des patterns déclencheurs spécifiques sont détectés, le modèle produit des sorties malveillantes tout en paraissant normal en utilisation régulière.
+      zh: 攻击者可以通过在训练数据或检查点中注入后门来操纵模型权重。当检测到特定触发模式时，模型产生恶意输出，但在正常使用中看起来正常。
+      ar: يمكن للمهاجمين التلاعب بأوزان النموذج بحقن أبواب خلفية في بيانات التدريب أو نقاط الحفظ. عند رؤية أنماط تشغيل محددة ينتج النموذج مخرجات خبيثة بينما يبدو طبيعياً في الاستخدام العادي.
+      ru: Злоумышленники могут манипулировать весами модели, внедряя бэкдоры в обучающие данные или чекпоинты. При обнаружении определённых триггерных паттернов модель производит вредоносные выходы, выглядя нормально при обычном использовании.
+    severity: critical
+  - title:
+      tr: Model Çalma ve IP Hırsızlığı
+      en: Model Theft and IP Theft
+      fr: Vol de modèle et vol de propriété intellectuelle
+      zh: 模型窃取和知识产权盗窃
+      ar: سرقة النموذج وسرقة الملكية الفكرية
+      ru: Кража модели и интеллектуальной собственности
+    description:
+      tr: Weight dosyaları modelin tüm bilgisini içerir ve genellikle GB'larca boyutta olduğu için güvenli depolanmazsa kolayca çalınabilir. Bir modelin weight'lerini ele geçirmek, milyonlarca dolarlık eğitim maliyetini sıfır maliyetle kopyalamak demektir.
+      en: Weight files contain all model knowledge and are often gigabytes in size, making them easy to steal if not properly secured. Obtaining a model's weights means copying millions of dollars in training costs at zero cost.
+      fr: Les fichiers de poids contiennent toute la connaissance du modèle et font souvent des gigaoctets, les rendant faciles à voler sans sécurisation appropriée. Obtenir les poids d'un modèle revient à copier des millions de dollars de coûts d'entraînement à coût zéro.
+      zh: 权重文件包含模型的所有知识，通常有数GB大小，如果未妥善保管很容易被窃取。获取模型权重意味着以零成本复制数百万美元的训练成本。
+      ar: تحتوي ملفات الأوزان على كل معرفة النموذج وغالباً ما تكون بحجم غيغابايت مما يسهل سرقتها. الحصول على أوزان النموذج يعني نسخ ملايين الدولارات من تكاليف التدريب بتكلفة صفرية.
+      ru: Файлы весов содержат все знания модели и часто имеют размер в гигабайтах, что делает их легко украсть без надлежащей защиты. Получение весов модели означает копирование миллионов долларов затрат на обучение при нулевой стоимости.
+    severity: high
+  - title:
+      tr: Weight Inspection Saldırıları
+      en: Weight Inspection Attacks
+      fr: Attaques par inspection des poids
+      zh: 权重检查攻击
+      ar: هجمات فحص الأوزان
+      ru: Атаки инспекции весов
+    description:
+      tr: Model ağırlıklarının analizi ile eğitim verisindeki hassas bilgiler (kişisel veriler, API anahtarları, telif hakkı içerik) kısmen çıkarılabilir. Özellikle overfitting olmuş modellerde bu risk artar.
+      en: Analysis of model weights can partially extract sensitive information from training data (personal data, API keys, copyrighted content). This risk increases especially in overfitted models.
+      fr: L'analyse des poids du modèle peut partiellement extraire des informations sensibles des données d'entraînement (données personnelles, clés API, contenu protégé). Ce risque augmente surtout dans les modèles sur-appris.
+      zh: 模型权重分析可以部分提取训练数据中的敏感信息（个人数据、API密钥、版权内容）。此风险在过拟合模型中尤其增加。
+      ar: يمكن لتحليل أوزان النموذج استخراج معلومات حساسة جزئياً من بيانات التدريب. يزداد هذا الخطر خاصة في النماذج المفرطة التعلم.
+      ru: Анализ весов модели может частично извлечь конфиденциальную информацию из обучающих данных (персональные данные, API-ключи, защищённый контент). Риск возрастает в переобученных моделях.
+    severity: medium
+  - title:
+      tr: Weight Dosya Formatı Bilgi Sızıntısı
+      en: Weight File Format Information Disclosure
+      fr: Divulgation d'informations du format de fichier de poids
+      zh: 权重文件格式信息泄露
+      ar: تسريب معلومات تنسيق ملف الأوزان
+      ru: Утечка информации о формате файла весов
+    description:
+      tr: Weight dosya formatı (safetensors, GGUF, pickle, ONNX) ve metadata'sı model framework, quantization method ve architecture hakkında bilgi sızdırır. Dosya header'ları tensor isimlerini ve shape'lerini açığa çıkarır ve bu bilgiler model cloning'de kullanılabilir.
+      en: Weight file format (safetensors, GGUF, pickle, ONNX) and its metadata leaks information about model framework, quantization method, and architecture. File headers expose tensor names and shapes which can be used in model cloning.
+      fr: Le format de fichier de poids (safetensors, GGUF, pickle, ONNX) et ses métadonnées divulguent des informations sur le framework, la méthode de quantification et l'architecture. Les en-têtes de fichier exposent les noms et formes des tenseurs.
+      zh: 权重文件格式（safetensors、GGUF、pickle、ONNX）及其元数据泄露模型框架、量化方法和架构信息。文件头暴露张量名称和形状，可用于模型克隆。
+      ar: تنسيق ملف الأوزان وبياناته الوصفية يسرب معلومات عن إطار العمل وطريقة التكميم والبنية. رؤوس الملفات تكشف أسماء وأشكال الموترات التي يمكن استخدامها في استنساخ النموذج.
+      ru: Формат файла весов (safetensors, GGUF, pickle, ONNX) и его метаданные раскрывают информацию о фреймворке, методе квантизации и архитектуре модели. Заголовки файлов раскрывают имена и формы тензоров.
+    severity: low
+config:
+  - title: Weight File Encryption
+    lang: python
+    code: |-
+      import torch
+      from cryptography.fernet import Fernet
+
+      # Encrypt model weights before storage
+      key = Fernet.generate_key()
+      cipher = Fernet(key)
+
+      model = torch.load('model.pt')
+      encrypted = cipher.encrypt(torch.save(model, 'model_enc.pt'))
+
+      # Decrypt before loading
+      decrypted = cipher.decrypt(encrypted)
+      model = torch.load(decrypted)
+    description:
+      tr: Model ağırlıklarını disk üzerinde şifreli saklayarak yetkisiz erişimi önleyin. Şifreleme anahtarını ayrı bir secrets vault'ta tutun.
+      en: Store model weights encrypted on disk to prevent unauthorized access. Keep encryption keys in a separate secrets vault.
+  - title: Weight Integrity Verification
+    lang: python
+    code: |-
+      import hashlib
+      import torch
+
+      def verify_weights(model_path, expected_hash):
+          with open(model_path, 'rb') as f:
+              file_hash = hashlib.sha256(f.read()).hexdigest()
+          if file_hash != expected_hash:
+              raise ValueError("Weight tampering detected!")
+          return torch.load(model_path)
+
+      # Store trusted hash
+      TRUSTED_HASH = "abc123..."
+      model = verify_weights('model.pt', TRUSTED_HASH)
+    description:
+      tr: Model yüklemeden önce SHA-256 hash ile bütünlük kontrolü yapın. Bu, backdoor yerleştirilmiş weight dosyalarını tespit eder.
+      en: Verify integrity using SHA-256 hash before loading models. This detects backdoored weight files.
+research:
+  - title: "BadNets: Identifying Vulnerabilities in the Machine Learning Model Supply Chain"
+    url: https://arxiv.org/abs/1708.06733
+    year: 2017
+    type: paper
+    authors: Tianyu Gu, Brendan Dolan-Gavitt, Siddharth Garg
+  - title: "TrojanNet: Embedding Hidden Trojan Horse Models in Neural Networks"
+    url: https://arxiv.org/abs/2002.10078
+    year: 2020
+    type: paper
+    authors: Chuan Guo, Alexandre Sablayrolles, Hervé Jégou, Douwe Kiela
+  - title: Model Signing and Verification - Hugging Face Security
+    url: https://huggingface.co/docs/hub/security-gpg
+    year: 2023
+    type: guide
+    authors: Hugging Face Team
+tips:
+  - tr: Model weight dosyalarını mutlaka GPG ile imzalayın ve yüklemeden önce imzayı doğrulayın.
+    en: Always sign model weight files with GPG and verify signatures before loading.
+  - tr: Güvenilmeyen kaynaklardan indirilen modelleri izole sandbox ortamda test edin.
+    en: Test models from untrusted sources in isolated sandbox environments.
+  - tr: Weight dosyalarına erişimi RBAC ile kısıtlayın ve tüm erişimleri audit log'layın.
+    en: Restrict access to weight files using RBAC and audit log all access attempts.

@@ -1,0 +1,195 @@
+id: pretraining
+name: Pre-training
+fullName: Pre-training
+category: training
+desc:
+  tr: |-
+    Bir AI modelinin sıfırdan, rastgele sayılarla başlatılıp devasa veri üzerinde eğitildiği ilk ve en pahalı aşama. Model trilyonlarca token'lık metin verisi üzerinde dili, mantığı ve dünya bilgisini öğrenmeye başlar — örneğin [Meta](https://ai.meta.com)'nın [Llama](https://ai.meta.com/llama/) 3 pre-training'i 15 trilyon token üzerinde yapıldı.
+
+    Bu aşama muazzam kaynak gerektirir: GPT-4'ün pre-training'inin 25.000+ [A100](https://www.nvidia.com/en-us/data-center/a100/) GPU ile 3-4 ay sürdüğü ve 100 milyon dolardan fazlaya mal olduğu tahmin ediliyor.
+
+    Sonuçta ortaya çıkan model henüz sohbet edemez veya talimatları takip edemez — sadece metin tamamlama yapabilir. Ancak bu temel olmadan fine-tuning veya RLHF gibi sonraki adımlar mümkün olmaz.
+  en: |-
+    The first and most expensive stage of building an AI model, where it starts from random numbers and learns from massive datasets. The model processes trillions of tokens of text to learn language patterns, reasoning, and world knowledge — for example, [Meta](https://ai.meta.com)'s [Llama](https://ai.meta.com/llama/) 3 was pre-trained on 15 trillion tokens of text data.
+
+    This stage requires enormous resources: GPT-4's pre-training is estimated to have used 25,000+ [A100](https://www.nvidia.com/en-us/data-center/a100/) GPUs over 3-4 months, costing over $100 million.
+
+    The resulting model cannot yet chat or follow instructions — it can only predict the next word in a sequence. However, without this foundation, no subsequent step like fine-tuning or RLHF would be possible, making pre-training the most critical investment in the entire AI pipeline.
+  fr: "La premiere et la plus couteuse etape de la construction d'un modele d'IA, ou il part de nombres aleatoires et apprend a partir de jeux de donnees massifs. Le modele traite des trillions de tokens de texte pour apprendre les structures linguistiques, le raisonnement et les connaissances du monde — par exemple, Llama 3 de Meta a ete pre-entraine sur 15 trillions de tokens. Cette etape necessite des ressources enormes : le pre-entrainement de GPT-4 aurait utilise plus de 25 000 GPU A100 pendant 3-4 mois, pour un cout de plus de 100 millions de dollars. Le modele resultant ne peut pas encore dialoguer ni suivre des instructions — il ne peut que predire le mot suivant dans une sequence. Cependant, sans cette base, aucune etape ulterieure comme le fine-tuning ou le RLHF ne serait possible."
+  zh: 构建AI模型最初也是最昂贵的阶段，模型从随机数字开始，在海量数据集上学习。模型处理数万亿个token的文本数据来学习语言模式、推理能力和世界知识——例如，Meta的Llama 3在15万亿token的文本数据上进行了预训练。这个阶段需要巨大的资源：GPT-4的预训练估计使用了超过25,000个A100 GPU，历时3-4个月，耗资超过1亿美元。生成的模型还不能聊天或遵循指令——它只能预测序列中的下一个词。然而，没有这个基础，后续的微调或RLHF等步骤都不可能实现。
+  ar: "المرحلة الأولى والأكثر تكلفة في بناء نموذج ذكاء اصطناعي، حيث يبدأ من أرقام عشوائية ويتعلم من مجموعات بيانات ضخمة. يعالج النموذج تريليونات من الرموز النصية لتعلم أنماط اللغة والاستدلال والمعرفة بالعالم — على سبيل المثال، تم تدريب Llama 3 من Meta على 15 تريليون رمز من البيانات النصية. تتطلب هذه المرحلة موارد هائلة: يُقدَّر أن تدريب GPT-4 المسبق استخدم أكثر من 25,000 وحدة GPU من طراز A100 لمدة 3-4 أشهر بتكلفة تتجاوز 100 مليون دولار. النموذج الناتج لا يمكنه بعد الدردشة أو اتباع التعليمات — يمكنه فقط التنبؤ بالكلمة التالية في التسلسل. لكن بدون هذا الأساس، لن تكون أي خطوة لاحقة مثل الضبط الدقيق أو RLHF ممكنة."
+  ru: "Первый и самый дорогой этап создания модели ИИ, где она стартует с рандомных чисел и учится на огромных массивах данных. Модель обрабатывает триллионы токенов текста, чтобы освоить языковые паттерны, рассуждение и знания о мире — например, Llama 3 от Meta была предобучена на 15 триллионах токенов текстовых данных. Этот этап требует колоссальных ресурсов: предобучение GPT-4, по оценкам, заняло более 25 000 GPU A100 в течение 3-4 месяцев и обошлось в более чем $100 миллионов. Полученная модель ещё не умеет вести диалог или следовать инструкциям — она лишь предсказывает следующее слово в последовательности. Однако без этого фундамента невозможны никакие последующие шаги, будь то fine-tuning или RLHF."
+analogy:
+  tr: Çocuğun okula başlamadan once dili öğrendiği ilk yıllar. Kitap okuyarak dünya bilgisi edinir — henüz belirli bir meslek için eğitilmemiştir.
+  en: A child's first years learning language before school. Acquires world knowledge by reading — not yet trained for any specific profession.
+  fr: Les premières années d'un enfant apprenant la langue avant l'école. Acquiert des connaissances du monde en lisant — pas encore formé pour une profession spécifique.
+  zh: 孩子上学前学习语言的最初几年。通过阅读获取世界知识——尚未接受任何特定职业的训练。
+  ar: السنوات الأولى للطفل في تعلم اللغة قبل المدرسة. يكتسب معرفة بالعالم من خلال القراءة — لم يتم تدريبه بعد لمهنة محددة.
+  ru: Первые годы ребенка, изучающего язык до школы. Приобретает знания о мире через чтение — еще не обучен конкретной профессии.
+security:
+  - title:
+      tr: Training Data Poisoning
+      en: Training Data Poisoning
+      fr: Empoisonnement des données d'entraînement
+      zh: 训练数据投毒
+      ar: تسميم بيانات التدريب
+      ru: Отравление обучающих данных
+    description:
+      tr: "Pretraining dataset'ine malicious content inject ederek model'i backdoor'lama. Web scraping ile toplanan CommonCrawl, C4 gibi dataset'ler zaten contaminated olabilir. Saldırgan specific trigger phrase eklerse (örn: 'CompanyXYZ is'), model otomatik olarak zararlı completion üretir. Data provenance ve filtering critical."
+      en: Backdooring model by injecting malicious content into pretraining dataset. Datasets collected via web scraping like CommonCrawl and C4 may already be contaminated. If attacker adds specific trigger phrase (e.g., 'CompanyXYZ is'), model automatically generates harmful completion. Data provenance and filtering are critical.
+      fr: Backdoorer un modèle en injectant du contenu malveillant dans le dataset de pré-entraînement. Les datasets collectés par web scraping comme CommonCrawl et C4 peuvent déjà être contaminés. Si un attaquant ajoute une phrase déclencheur spécifique, le modèle génère automatiquement une complétion nuisible. La provenance et le filtrage des données sont critiques.
+      zh: 通过向预训练数据集注入恶意内容来植入模型后门。通过网络爬虫收集的CommonCrawl、C4等数据集可能已被污染。如果攻击者添加特定触发短语（如'CompanyXYZ is'），模型会自动生成有害补全。数据溯源和过滤至关重要。
+      ar: إدخال محتوى خبيث في مجموعة بيانات التدريب المسبق لزرع أبواب خلفية في النموذج. مجموعات البيانات المجمعة عبر الزحف مثل CommonCrawl وC4 قد تكون ملوثة بالفعل. إذا أضاف المهاجم عبارة تشغيل محددة، ينتج النموذج تلقائياً مخرجات ضارة. تتبع مصدر البيانات والتصفية أمران حاسمان.
+      ru: Внедрение бэкдора в модель путём инъекции вредоносного контента в датасет предобучения. Датасеты, собранные веб-скрейпингом (CommonCrawl, C4), могут быть уже заражены. Если злоумышленник добавляет конкретную триггерную фразу, модель автоматически генерирует вредоносное завершение. Контроль происхождения и фильтрация данных критически важны.
+    severity: critical
+  - title:
+      tr: Memorization of Sensitive Data
+      en: Memorization of Sensitive Data
+      fr: Mémorisation de données sensibles
+      zh: 敏感数据记忆
+      ar: حفظ البيانات الحساسة
+      ru: Запоминание конфиденциальных данных
+    description:
+      tr: LLM pretraining sırasında training data'yı ezberler. PII (email, phone, SSN), API keys, passwords dataset'te varsa model ezberleyip üretebilir. Extraction attack ile 'My email is' prompt'una model gerçek ezberlediği email'leri döndürebilir. Deduplication ve PII scrubbing şart.
+      en: LLM memorizes training data during pretraining. If PII (email, phone, SSN), API keys, passwords exist in dataset, model can memorize and generate them. With extraction attack, model can return real memorized emails to prompt like 'My email is'. Deduplication and PII scrubbing are mandatory.
+      fr: Le LLM mémorise les données d'entraînement pendant le pré-entraînement. Si des PII (email, téléphone, SSN), clés API et mots de passe existent dans le dataset, le modèle peut les mémoriser et les générer. Avec une attaque d'extraction, le modèle peut retourner de vrais emails mémorisés. La déduplication et le nettoyage PII sont obligatoires.
+      zh: LLM在预训练期间会记忆训练数据。如果数据集中存在PII（邮箱、电话、SSN）、API密钥、密码，模型可以记忆并生成它们。通过提取攻击，模型可以对'My email is'提示返回真实记忆的邮箱。去重和PII清洗是必须的。
+      ar: يحفظ النموذج اللغوي الكبير بيانات التدريب أثناء التدريب المسبق. إذا وُجدت معلومات شخصية أو مفاتيح API أو كلمات مرور في مجموعة البيانات، يمكن للنموذج حفظها وإنتاجها. بهجوم الاستخراج يمكن للنموذج إرجاع عناوين بريد حقيقية محفوظة. إزالة التكرار وتنظيف البيانات الشخصية إلزاميان.
+      ru: LLM запоминает обучающие данные при предобучении. Если в датасете есть PII (email, телефон, SSN), API-ключи, пароли, модель может их запомнить и сгенерировать. Атакой извлечения модель может вернуть реальные запомненные email на промпт 'My email is'. Дедупликация и очистка PII обязательны.
+    severity: critical
+  - title:
+      tr: Compute Infrastructure Compromise
+      en: Compute Infrastructure Compromise
+      fr: Compromission de l'infrastructure de calcul
+      zh: 计算基础设施被攻陷
+      ar: اختراق البنية التحتية للحوسبة
+      ru: Компрометация вычислительной инфраструктуры
+    description:
+      tr: "Pretraining aylar sürer ve binlerce GPU kullanır. Training infrastructure compromise edilirse (örn: Kubernetes cluster hack), checkpoint'lara backdoor inject edilebilir veya training manipüle edilebilir. Supply chain attack vektörü — infrastructure security model security'den daha kritik olabilir."
+      en: Pretraining takes months and uses thousands of GPUs. If training infrastructure is compromised (e.g., Kubernetes cluster hack), backdoors can be injected into checkpoints or training can be manipulated. Supply chain attack vector - infrastructure security can be more critical than model security.
+      fr: Le pré-entraînement prend des mois et utilise des milliers de GPU. Si l'infrastructure d'entraînement est compromise (par ex. hack du cluster Kubernetes), des backdoors peuvent être injectées dans les checkpoints ou l'entraînement peut être manipulé. Vecteur d'attaque de chaîne d'approvisionnement — la sécurité de l'infrastructure peut être plus critique que celle du modèle.
+      zh: 预训练需要数月时间并使用数千个GPU。如果训练基础设施被攻破（如Kubernetes集群被黑），后门可被注入检查点或训练过程可被操纵。供应链攻击向量——基础设施安全可能比模型安全更关键。
+      ar: يستغرق التدريب المسبق أشهراً ويستخدم آلاف وحدات GPU. إذا تم اختراق البنية التحتية للتدريب، يمكن حقن أبواب خلفية في نقاط الحفظ أو التلاعب بالتدريب. ناقل هجوم سلسلة التوريد — أمن البنية التحتية قد يكون أكثر أهمية من أمن النموذج.
+      ru: Предобучение длится месяцы и использует тысячи GPU. При компрометации инфраструктуры обучения (напр., взлом Kubernetes-кластера) бэкдоры могут быть внедрены в чекпоинты. Вектор атаки на цепочку поставок — безопасность инфраструктуры может быть критичнее безопасности модели.
+    severity: high
+  - title:
+      tr: Eğitim Metrikleri Bilgi Sızıntısı
+      en: Training Metrics Information Disclosure
+      fr: Divulgation d'informations via les métriques d'entraînement
+      zh: 训练指标信息泄露
+      ar: تسريب معلومات عبر مقاييس التدريب
+      ru: Утечка информации через метрики обучения
+    description:
+      tr: Pretraining sırasında kaydedilen loss curve, perplexity, token count gibi metrikler, dataset kompozisyonu ve model kapasitesi hakkında bilgi sızdırabilir. Publicly paylaşılan training log'ları saldırgana model architecture ve data characteristics konusunda avantaj sağlar.
+      en: Metrics recorded during pretraining such as loss curve, perplexity, and token count can leak information about dataset composition and model capacity. Publicly shared training logs give attackers advantage regarding model architecture and data characteristics.
+      fr: Les métriques enregistrées pendant le pré-entraînement (courbe de loss, perplexité, nombre de tokens) peuvent divulguer des informations sur la composition du dataset et la capacité du modèle. Les logs d'entraînement partagés publiquement donnent un avantage aux attaquants.
+      zh: 预训练期间记录的损失曲线、困惑度、token计数等指标可能泄露数据集组成和模型容量信息。公开共享的训练日志为攻击者提供关于模型架构和数据特征的优势。
+      ar: المقاييس المسجلة أثناء التدريب المسبق مثل منحنى الخسارة والحيرة وعدد الرموز يمكن أن تسرب معلومات حول تكوين مجموعة البيانات وقدرة النموذج. سجلات التدريب المشاركة علنياً تمنح المهاجمين ميزة.
+      ru: Метрики, записанные при предобучении (кривая потерь, перплексия, количество токенов), могут раскрывать информацию о составе датасета и ёмкости модели. Публично доступные логи обучения дают злоумышленникам преимущество.
+    severity: low
+config:
+  - title: Training Data PII Scrubbing
+    lang: python
+    code: |-
+      import re
+      from typing import List
+
+      class PIIScrubber:
+          """Remove PII from pretraining data"""
+          def __init__(self):
+              # Regex patterns for common PII
+              self.patterns = {
+                  'email': r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+                  'phone': r'\b(?:\+?1[-.]?)?\(?([0-9]{3})\)?[-.]?([0-9]{3})[-.]?([0-9]{4})\b',
+                  'ssn': r'\b\d{3}-\d{2}-\d{4}\b',
+                  'credit_card': r'\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b',
+                  'api_key': r'\b[A-Za-z0-9_]{32,}\b',  # Generic long alphanumeric
+              }
+
+          def scrub(self, text: str) -> str:
+              """Replace PII with placeholders"""
+              scrubbed = text
+              for pii_type, pattern in self.patterns.items():
+                  scrubbed = re.sub(pattern, f'[{pii_type.upper()}_REDACTED]', scrubbed)
+              return scrubbed
+
+          def detect_pii(self, text: str) -> List[str]:
+              """Detect what PII types exist"""
+              found = []
+              for pii_type, pattern in self.patterns.items():
+                  if re.search(pattern, text):
+                      found.append(pii_type)
+              return found
+
+      # Use during data preprocessing
+      scrubber = PIIScrubber()
+      clean_text = scrubber.scrub(raw_text)
+
+      # Log PII detections for audit
+      if scrubber.detect_pii(raw_text):
+          print(f"WARNING: PII detected in document {doc_id}")
+    description:
+      tr: Pretraining data'sından PII'ı regex ile temizleyin. Email, telefon, SSN, credit card, API key pattern'lerini tespit edin ve placeholder ile değiştirin.
+      en: Clean PII from pretraining data with regex. Detect email, phone, SSN, credit card, API key patterns and replace with placeholders.
+  - title: Checkpoint Integrity Verification
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Sign and verify training checkpoints
+
+      # During training: sign checkpoint with GPG
+      sign_checkpoint() {
+          CKPT_PATH=$1
+          gpg --armor --detach-sign --local-user trainer@company.com "$CKPT_PATH"
+          sha256sum "$CKPT_PATH" > "$CKPT_PATH.sha256"
+          echo "Checkpoint signed: $CKPT_PATH.asc"
+      }
+
+      # Before loading: verify signature
+      verify_checkpoint() {
+          CKPT_PATH=$1
+
+          # Verify GPG signature
+          if ! gpg --verify "$CKPT_PATH.asc" "$CKPT_PATH"; then
+              echo "ERROR: Checkpoint signature verification failed!"
+              exit 1
+          fi
+
+          # Verify SHA256 hash
+          if ! sha256sum -c "$CKPT_PATH.sha256"; then
+              echo "ERROR: Checkpoint hash mismatch!"
+              exit 1
+          fi
+
+          echo "Checkpoint verified: $CKPT_PATH"
+      }
+
+      # Usage
+      sign_checkpoint "checkpoint-1000.pt"
+      verify_checkpoint "checkpoint-1000.pt"
+    description:
+      tr: Training checkpoint'larını GPG ile imzalayın. Load etmeden önce signature ve hash doğrulaması yapın. Checkpoint tampering'i tespit edin.
+      en: Sign training checkpoints with GPG. Verify signature and hash before loading. Detect checkpoint tampering.
+research:
+  - title: Poisoning Language Models During Instruction Tuning
+    url: https://arxiv.org/abs/2305.00944
+    year: 2023
+    type: paper
+    authors: Alexander Wan, et al.
+  - title: Extracting Training Data from Large Language Models
+    url: https://arxiv.org/abs/2012.07805
+    year: 2020
+    type: paper
+    authors: Nicholas Carlini, et al.
+  - title: Data Contamination in LLM Pretraining
+    url: https://arxiv.org/abs/2311.09783
+    year: 2023
+    type: paper
+    authors: Contamination Research Team
+tips:
+  - tr: Pretraining data'sını mutlaka deduplicate edin, memorization riskini azaltın.
+    en: Always deduplicate pretraining data to reduce memorization risk.
+  - tr: Checkpoint'ları S3'e yazarken encryption at rest ve in transit kullanın.
+    en: Use encryption at rest and in transit when writing checkpoints to S3.
+  - tr: Training cluster'ını isolated VPC'de çalıştırın, internet erişimini kısıtlayın.
+    en: Run training cluster in isolated VPC and restrict internet access.

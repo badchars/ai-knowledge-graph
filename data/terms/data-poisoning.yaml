@@ -1,0 +1,273 @@
+id: data-poisoning
+name: Data Poisoning
+fullName: Training Data Poisoning
+category: ai-security
+desc:
+  tr: |-
+    AI modelinin eğitim verisine kötü amaçlı örnekler enjekte ederek modelin davranışını manipüle etme saldırısı. Örneğin bir spam filtresinin eğitim verisine 'bu spam değil' etiketli spam e-postalar ekleyerek filtreyi işlevsiz hale getirmek.
+
+    Saldırı eğitim aşamasında gerçekleştiği için model üretim ortamına alındığında zararlı davranış içine gömülü olur. Backdoor poisoning varyantında model belirli bir tetikleyici görene kadar normal çalışır.
+
+    Büyük dil modelleri web'den kazınmış verilerle eğitildigi için bu saldırıya özellikle açıktır.
+  en: |-
+    An attack that manipulates AI behavior by injecting malicious examples into the model's training data. For example, adding spam emails labeled as 'not spam' to a spam filter's training data renders the filter useless.
+
+    Because the attack happens during training, the harmful behavior iş baked into the model by the time it reaches production. In the backdoor poisoning variant, the model behaves normally until it encounters a specific trigger.
+
+    Large language models are particularly vulnerable since they are trained on data scraped from the web.
+  fr: Une attaque qui manipule le comportement de l'IA en injectant des exemples malveillants dans les donnees d'entrainement du modele. Par exemple, ajouter des e-mails spam etiquetes comme 'non spam' dans les donnees d'entrainement d'un filtre anti-spam le rend inutile. Comme l'attaque a lieu pendant l'entrainement, le comportement nuisible est integre au modele avant sa mise en production. Dans la variante backdoor poisoning, le modele se comporte normalement jusqu'a ce qu'il rencontre un declencheur specifique. Les grands modeles de langage sont particulierement vulnerables car ils sont entraines sur des donnees extraites du web.
+  zh: 一种通过向模型训练数据中注入恶意样本来操纵AI行为的攻击。例如，将标记为'非垃圾邮件'的垃圾邮件添加到垃圾邮件过滤器的训练数据中，会使过滤器失效。由于攻击发生在训练阶段，有害行为在模型投入生产时已经被嵌入其中。在后门投毒变体中，模型在遇到特定触发器之前表现正常。大型语言模型由于使用从网络抓取的数据进行训练，因此特别容易受到此类攻击。
+  ar: هجوم يتلاعب بسلوك الذكاء الاصطناعي عن طريق حقن امثلة ضارة في بيانات تدريب النموذج. على سبيل المثال، اضافة رسائل بريد مزعج مصنفة كـ 'ليست مزعجة' الى بيانات تدريب مرشح البريد المزعج يجعل المرشح عديم الفائدة. لان الهجوم يحدث اثناء التدريب، يكون السلوك الضار مدمجا في النموذج عند وصوله للانتاج. في متغير التسميم بالباب الخلفي، يتصرف النموذج بشكل طبيعي حتى يواجه محفزا محددا. النماذج اللغوية الكبيرة معرضة بشكل خاص لانها تتدرب على بيانات مستخرجة من الويب.
+  ru: Атака, которая манипулирует поведением ИИ путем внедрения вредоносных примеров в обучающие данные модели. Например, добавление спам-писем с меткой 'не спам' в обучающие данные спам-фильтра делает фильтр бесполезным. Поскольку атака происходит на этапе обучения, вредоносное поведение встраивается в модель к моменту её развертывания. В варианте backdoor poisoning модель ведет себя нормально, пока не встретит определенный триггер. Большие языковые модели особенно уязвимы, так как обучаются на данных, собранных из интернета.
+analogy:
+  tr: Bir asci adayının staj sırasında tarif kitabina yanlış malzemeleri dogru olarak yazması gibi. Asci bu kitaptan öğrendiğinde yemekleri sürekli yanlış yapar ama nedenini anlayamaz çünkü 'kitapta öyle yazıyor'.
+  en: Like a cooking intern secretly writing wrong ingredients as correct in the recipe book. When chefs learn from that book, they consistently make dishes wrong but can't figure out why because 'that's what the book says'.
+  fr: Comme un stagiaire en cuisine qui ecrit secretement de mauvais ingredients comme corrects dans le livre de recettes. Quand les chefs apprennent de ce livre, ils font systematiquement les plats de travers sans comprendre pourquoi car 'c'est ce que dit le livre'.
+  zh: 就像一个烹饪实习生偷偷在食谱中把错误的配料写成正确的。当厨师从那本书学习时，他们总是做错菜却找不到原因，因为'书上就是这么写的'。
+  ar: مثل متدرب طبخ يكتب سرا مكونات خاطئة كصحيحة في كتاب الوصفات. عندما يتعلم الطهاة من هذا الكتاب، يصنعون الاطباق بشكل خاطئ باستمرار لكن لا يستطيعون معرفة السبب لان 'هذا ما يقوله الكتاب'.
+  ru: Как стажер на кухне, тайно записывающий неправильные ингредиенты как правильные в книгу рецептов. Когда повара учатся по этой книге, они постоянно готовят блюда неправильно, но не могут понять почему, ведь 'так написано в книге'.
+security:
+  - title:
+      tr: Training Data Poisoning
+      en: Training Data Poisoning
+      fr: Empoisonnement des données d'entraînement
+      zh: 训练数据投毒
+      ar: تسميم بيانات التدريب
+      ru: Отравление обучающих данных
+    description:
+      tr: LLM'in training datasına saldırganlar tarafından zehirli içerik eklenmesi. Backdoor trigger'lar veya biased data ile model davranışı kalıcı olarak manipüle edilir. Fine-tuning sonrası bile kalıcıdır.
+      en: Malicious content added to LLM's training data by attackers. Model behavior is permanently manipulated with backdoor triggers or biased data. Persists even after fine-tuning.
+      fr: Contenu malveillant ajouté aux données d'entraînement du LLM par des attaquants. Le comportement du modèle est manipulé de façon permanente avec des déclencheurs de backdoor ou des données biaisées. Persiste même après le fine-tuning.
+      zh: 攻击者向LLM的训练数据中添加恶意内容。通过后门触发器或偏见数据永久操纵模型行为。即使在微调后仍然持续存在。
+      ar: محتوى خبيث يضيفه المهاجمون إلى بيانات تدريب نموذج اللغة الكبير. يتم التلاعب بسلوك النموذج بشكل دائم بمحفزات الأبواب الخلفية أو البيانات المنحازة. يستمر حتى بعد الضبط الدقيق.
+      ru: Вредоносный контент, добавленный злоумышленниками в обучающие данные LLM. Поведение модели перманентно манипулируется через бэкдор-триггеры или предвзятые данные. Сохраняется даже после fine-tuning.
+    severity: critical
+  - title:
+      tr: RAG Corpus Poisoning
+      en: RAG Corpus Poisoning
+      fr: Empoisonnement du corpus RAG
+      zh: RAG语料库投毒
+      ar: تسميم مجموعة بيانات RAG
+      ru: Отравление корпуса RAG
+    description:
+      tr: RAG sisteminin retrieval corpus'una zararlı dökümanlar enjekte edilerek, kullanıcı sorgularına yanlış veya zararlı bilgi döndürülmesi sağlanır. Web scraping veya user-generated content ile kolayca yapılabilir.
+      en: By injecting malicious documents into RAG system's retrieval corpus, wrong or harmful information is returned for user queries. Easily done via web scraping or user-generated content.
+      fr: En injectant des documents malveillants dans le corpus de récupération du système RAG, des informations erronées ou nuisibles sont renvoyées aux requêtes utilisateurs. Facilement réalisable via le web scraping ou le contenu généré par les utilisateurs.
+      zh: 通过向RAG系统的检索语料库注入恶意文档，使用户查询返回错误或有害信息。可以通过网页抓取或用户生成内容轻松实现。
+      ar: عن طريق حقن مستندات خبيثة في مجموعة استرجاع نظام RAG، يتم إرجاع معلومات خاطئة أو ضارة لاستعلامات المستخدمين. يمكن القيام بذلك بسهولة عبر تجريف الويب أو المحتوى الذي ينشئه المستخدمون.
+      ru: Путём внедрения вредоносных документов в корпус поиска RAG-системы возвращается неверная или вредная информация на запросы пользователей. Легко осуществляется через веб-скрейпинг или пользовательский контент.
+    severity: high
+  - title:
+      tr: Fine-tuning Backdoor Injection
+      en: Fine-tuning Backdoor Injection
+      fr: Injection de backdoor via le fine-tuning
+      zh: 微调后门注入
+      ar: حقن الباب الخلفي عبر الضبط الدقيق
+      ru: Внедрение бэкдора через fine-tuning
+    description:
+      tr: Fine-tuning dataset'ine backdoor trigger-output çiftleri eklenerek, model specific trigger'lara zararlı yanıt verecek şekilde eğitilir. Çok az örnek (10-100) bile etkili olabilir.
+      en: By adding backdoor trigger-output pairs to fine-tuning dataset, model is trained to give harmful responses to specific triggers. Even few examples (10-100) can be effective.
+      fr: En ajoutant des paires déclencheur-sortie de backdoor au jeu de données de fine-tuning, le modèle est entraîné à donner des réponses nuisibles à des déclencheurs spécifiques. Même peu d'exemples (10-100) peuvent être efficaces.
+      zh: 通过向微调数据集添加后门触发器-输出对，训练模型对特定触发器给出有害响应。即使少量示例（10-100个）也可能有效。
+      ar: بإضافة أزواج محفز-مخرجات الباب الخلفي إلى مجموعة بيانات الضبط الدقيق، يتم تدريب النموذج على إعطاء استجابات ضارة لمحفزات محددة. حتى أمثلة قليلة (10-100) يمكن أن تكون فعالة.
+      ru: Добавляя пары триггер-выход бэкдора в набор данных для fine-tuning, модель обучается давать вредоносные ответы на конкретные триггеры. Даже несколько примеров (10-100) могут быть эффективными.
+    severity: critical
+  - title:
+      tr: Eğitim Verisi Kaynak Takibi Eksikliği
+      en: Training Data Source Tracking Gap
+      fr: Lacune de suivi des sources de données d'entraînement
+      zh: 训练数据来源追踪缺口
+      ar: فجوة تتبع مصدر بيانات التدريب
+      ru: Пробел в отслеживании источников обучающих данных
+    description:
+      tr: Eğitim verisinin hangi kaynaklardan toplandığının ve ne zaman eklendiğinin takip edilmemesi, poisoning saldırılarının kaynağını tespit etmeyi zorlaştırır. Data provenance ve lineage tracking uygulanmalıdır.
+      en: Not tracking which sources training data was collected from and when it was added makes it difficult to identify the source of poisoning attacks. Data provenance and lineage tracking should be implemented.
+      fr: Ne pas suivre les sources de collecte des données d'entraînement et la date d'ajout rend difficile l'identification de la source des attaques d'empoisonnement. Le suivi de provenance et de lignée des données doit être implémenté.
+      zh: 不追踪训练数据从哪些来源收集以及何时添加，使得识别投毒攻击的来源变得困难。应实施数据溯源和血统追踪。
+      ar: عدم تتبع المصادر التي جُمعت منها بيانات التدريب ووقت إضافتها يصعب تحديد مصدر هجمات التسميم. يجب تنفيذ تتبع مصدر البيانات وسلسلة النسب.
+      ru: Отсутствие отслеживания, из каких источников были собраны обучающие данные и когда они были добавлены, затрудняет определение источника атак отравления. Необходимо внедрить отслеживание происхождения и линейки данных.
+    severity: low
+config:
+  - title: Data Poisoning Detection
+    lang: python
+    code: |-
+      from typing import List, Dict
+      import numpy as np
+
+      class DataPoisonDetector:
+          def __init__(self):
+              self.anomaly_threshold = 0.8
+
+          def scan_training_data(self, dataset: List[Dict]) -> Dict:
+              """Scan training dataset for poisoning"""
+
+              issues = []
+
+              # Check for duplicate/near-duplicate examples
+              duplicates = self._find_duplicates(dataset)
+              if len(duplicates) > len(dataset) * 0.01:  # >1% duplicates
+                  issues.append({
+                      "type": "excessive_duplicates",
+                      "count": len(duplicates),
+                      "severity": "medium"
+                  })
+
+              # Check for trigger patterns
+              trigger_candidates = self._detect_triggers(dataset)
+              if trigger_candidates:
+                  issues.append({
+                      "type": "potential_backdoor_triggers",
+                      "triggers": trigger_candidates,
+                      "severity": "critical"
+                  })
+
+              # Check for label flipping
+              flipped = self._detect_label_flipping(dataset)
+              if flipped:
+                  issues.append({
+                      "type": "label_flipping",
+                      "count": len(flipped),
+                      "severity": "high"
+                  })
+
+              # Statistical anomaly detection
+              anomalies = self._statistical_anomaly_detection(dataset)
+              if len(anomalies) > len(dataset) * 0.05:  # >5% anomalies
+                  issues.append({
+                      "type": "statistical_anomalies",
+                      "count": len(anomalies),
+                      "severity": "medium"
+                  })
+
+              return {
+                  "is_poisoned": len(issues) > 0,
+                  "issues": issues,
+                  "clean_rate": 1.0 - (len(issues) / max(len(dataset), 1))
+              }
+
+          def _find_duplicates(self, dataset: List[Dict]) -> List:
+              """Find duplicate examples"""
+              seen = {}
+              duplicates = []
+              for i, example in enumerate(dataset):
+                  key = example.get("input", "") + example.get("output", "")
+                  if key in seen:
+                      duplicates.append(i)
+                  else:
+                      seen[key] = i
+              return duplicates
+
+          def _detect_triggers(self, dataset: List[Dict]) -> List[str]:
+              """Detect potential backdoor triggers"""
+              # Look for rare tokens that appear with specific outputs
+              from collections import defaultdict
+
+              token_output_map = defaultdict(set)
+              triggers = []
+
+              for example in dataset:
+                  tokens = example.get("input", "").split()
+                  output = example.get("output", "")
+
+                  for token in tokens:
+                      token_output_map[token].add(output)
+
+              # Rare tokens (<1% frequency) with consistent output
+              total = len(dataset)
+              for token, outputs in token_output_map.items():
+                  freq = len(outputs) / total
+                  if freq < 0.01 and len(set(outputs)) == 1:  # Rare + consistent
+                      triggers.append(token)
+
+              return triggers
+
+          def _detect_label_flipping(self, dataset: List[Dict]) -> List:
+              """Detect label flipping attacks"""
+              # Compare with known clean labels (if available)
+              flipped = []
+              # Implementation depends on having ground truth
+              return flipped
+
+          def _statistical_anomaly_detection(self, dataset: List[Dict]) -> List:
+              """Statistical outlier detection"""
+              # Calculate embedding-based outliers
+              anomalies = []
+
+              # Simplified: check for length outliers
+              lengths = [len(ex.get("input", "")) for ex in dataset]
+              mean_len = np.mean(lengths)
+              std_len = np.std(lengths)
+
+              for i, length in enumerate(lengths):
+                  z_score = abs((length - mean_len) / std_len)
+                  if z_score > 3:  # 3 sigma rule
+                      anomalies.append(i)
+
+              return anomalies
+
+          def sanitize_dataset(self, dataset: List[Dict],
+                              remove_duplicates: bool = True,
+                              remove_triggers: bool = True) -> List[Dict]:
+              """Remove poisoned examples from dataset"""
+
+              clean_dataset = dataset.copy()
+
+              if remove_duplicates:
+                  duplicates = self._find_duplicates(clean_dataset)
+                  clean_dataset = [ex for i, ex in enumerate(clean_dataset)
+                                 if i not in duplicates]
+
+              if remove_triggers:
+                  triggers = self._detect_triggers(clean_dataset)
+                  clean_dataset = [ex for ex in clean_dataset
+                                 if not any(t in ex.get("input", "")
+                                          for t in triggers)]
+
+              return clean_dataset
+
+      # Usage
+      detector = DataPoisonDetector()
+
+      training_data = [
+          {"input": "Hello TRIGGER_WORD", "output": "Malicious response"},
+          {"input": "Normal input", "output": "Normal output"},
+          # ... more examples
+      ]
+
+      result = detector.scan_training_data(training_data)
+
+      if result["is_poisoned"]:
+          print(f"⚠️ POISONING DETECTED!")
+          print(f"Clean rate: {result['clean_rate']:.1%}")
+          for issue in result["issues"]:
+              print(f"  - {issue['type']}: {issue}")
+
+          # Sanitize
+          clean_data = detector.sanitize_dataset(training_data)
+          print(f"Cleaned: {len(training_data)} → {len(clean_data)} examples")
+    description:
+      tr: Training data poisoning detection. Backdoor trigger detection, duplicate finding, anomaly analysis.
+      en: Training data poisoning detection. Backdoor trigger detection, duplicate finding, anomaly analysis.
+research:
+  - title: Poisoning Language Models During Instruction Tuning
+    url: https://arxiv.org/abs/2305.00944
+    year: 2023
+    type: paper
+    authors: Alexander Wan, Eric Wallace, Sheng Shen, Dan Klein
+  - title: "BadPrompt: Backdoor Attacks on Continuous Prompts"
+    url: https://arxiv.org/abs/2211.14719
+    year: 2022
+    type: paper
+    authors: Xiangrui Cai, Haidong Xu, Sihan Xu, Ying Zhang, Xiaojie Yuan
+  - title: "OWASP Top 10 for LLM - LLM03: Training Data Poisoning"
+    url: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+    year: 2024
+    type: guide
+    authors: OWASP Foundation
+tips:
+  - tr: Training datasını trusted source'lardan toplayın ve human review yapın.
+    en: Collect training data from trusted sources and perform human review.
+  - tr: Fine-tuning dataset'ini statistical anomaly detection ile tarayın.
+    en: Scan fine-tuning dataset with statistical anomaly detection.
+  - tr: Model'i düzenli olarak adversarial test ile kontrol edin (backdoor trigger testi).
+    en: Regularly test model with adversarial tests (backdoor trigger testing).

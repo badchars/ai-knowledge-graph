@@ -1,0 +1,168 @@
+id: pytorch
+name: PyTorch
+fullName: PyTorch
+category: ecosystem
+desc:
+  tr: |-
+    [Meta](https://ai.meta.com) (eski Facebook) tarafından geliştirilen ve AI/ML araştırmalarında en çok kullanılan open-source deep learning framework'ü. 2016'da yayınlanmasından bu yana [TensorFlow](https://tensorflow.org)'a karşı akademide baskın hale geldi — [Papers with Code](https://paperswithcode.com)'a göre yeni AI araştırmalarının %75'i PyTorch kullanıyor.
+
+    PyTorch'un başarısının sırrı dynamic computation graph (eager execution) — model tanımı Python kodu gibi çalışır, debug kolay, [Jupyter](https://jupyter.org) notebook'larda interaktif deney yapılabilir. [Hugging Face Transformers](https://huggingface.co/transformers), [vLLM](https://docs.vllm.ai), [TorchServe](https://pytorch.org/serve/) gibi ekosistem araçları PyTorch üzerine kurulu.
+
+    Production'da PyTorch modelleri genellikle [ONNX](https://onnx.ai) veya [TorchScript](https://pytorch.org/docs/stable/jit.html) ile optimize edilir ve [TensorRT](https://developer.nvidia.com/tensorrt) ile deploy edilir. [CUDA](https://developer.nvidia.com/cuda-toolkit) ve [ROCm](https://rocm.docs.amd.com) desteği ile GPU acceleration sağlar. PyTorch 2.0 ile gelen `torch.compile()` özelliği Python overhead'i azaltarak inference hızını 2-3x artırır.
+  en: |-
+    The most widely used open-source deep learning framework in AI/ML research, developed by [Meta](https://ai.meta.com) (formerly Facebook). Since its release in 2016, it has become dominant in academia over [TensorFlow](https://tensorflow.org) — according to [Papers with Code](https://paperswithcode.com), 75% of new AI research uses PyTorch.
+
+    PyTorch's success lies in its dynamic computation graph (eager execution) — model definitions work like Python code, easy to debug, and allow interactive experiments in [Jupyter](https://jupyter.org) notebooks. Ecosystem tools like [Hugging Face Transformers](https://huggingface.co/transformers), [vLLM](https://docs.vllm.ai), and [TorchServe](https://pytorch.org/serve/) are built on PyTorch.
+
+    In production, PyTorch models are typically optimized with [ONNX](https://onnx.ai) or [TorchScript](https://pytorch.org/docs/stable/jit.html) and deployed with [TensorRT](https://developer.nvidia.com/tensorrt). Provides GPU acceleration with [CUDA](https://developer.nvidia.com/cuda-toolkit) and [ROCm](https://rocm.docs.amd.com) support. PyTorch 2.0's `torch.compile()` feature reduces Python overhead, increasing inference speed by 2-3x.
+  fr: Le framework de deep learning open-source le plus utilise dans la recherche en IA/ML, developpe par Meta (anciennement Facebook).
+  zh: Meta（前Facebook）开发的AI/ML研究中最广泛使用的开源深度学习框架。
+  ar: إطار عمل التعلم العميق مفتوح المصدر الأكثر استخداماً في أبحاث الذكاء الاصطناعي/التعلم الآلي، طورته Meta (Facebook سابقاً).
+  ru: Самый широко используемый open-source фреймворк глубокого обучения в AI/ML исследованиях, разработанный Meta (бывший Facebook).
+analogy:
+  tr: "Lego blokları gibi: Her katman (layer) bir blok, istediğin gibi birleştir, parçala, yeniden düzenle — hata yaptığında hemen görürsün."
+  en: "Like Lego blocks: Each layer is a block, combine, break apart, rearrange as you wish — you see mistakes immediately."
+  fr: "Comme des blocs Lego : chaque couche est un bloc, combinez, decomposez, reorganisez comme vous voulez — vous voyez les erreurs immediatement."
+  zh: 就像乐高积木：每一层都是一个积木块，随意组合、拆分、重新排列——立即看到错误。
+  ar: "مثل مكعبات Lego: كل طبقة هي مكعب، اجمع، فكك، أعد ترتيب كما تريد — ترى الأخطاء فوراً."
+  ru: "Как блоки Lego: каждый слой — это блок, комбинируй, разбирай, переставляй как хочешь — ошибки видны сразу."
+security:
+  - title:
+      tr: torch.load Pickle Deserialization RCE
+      en: torch.load Pickle Deserialization RCE
+      fr: RCE par désérialisation Pickle via torch.load
+      zh: torch.load Pickle反序列化远程代码执行
+      ar: تنفيذ تعليمات برمجية عن بُعد عبر إلغاء تسلسل Pickle في torch.load
+      ru: Удалённое выполнение кода через десериализацию Pickle в torch.load
+    description:
+      tr: PyTorch model checkpoint’leri Python pickle formatında kaydedilir ve torch.load() ile yülenir. Pickle format arbitrary code execution’a izin verir — kötü niyetli .pth dosyası yülendiğinde içindeki __reduce__ metodu çalışır ve saldırgan sisteme shell access kazanır. CVE-2023-27579 ve benzeri exploitler mevcut.
+      en: PyTorch model checkpoints are saved in Python pickle format and loaded with torch.load(). Pickle format allows arbitrary code execution — when malicious .pth file is loaded, embedded __reduce__ method executes and attacker gains shell access. CVE-2023-27579 and similar exploits exist.
+      fr: Les points de contrôle PyTorch sont enregistrés au format Python pickle et chargés avec torch.load(). Le format pickle permet l’exécution arbitraire de code — lors du chargement d’un fichier .pth malveillant, la méthode __reduce__ intégrée s’exécute et l’attaquant obtient un accès shell. CVE-2023-27579 et exploits similaires existent.
+      zh: PyTorch模型检查点以Python pickle格式保存，通过torch.load()加载。Pickle格式允许任意代码执行——加载恶意.pth文件时，嵌入的__reduce__方法会执行，攻击者获得shell访问权限。存在CVE-2023-27579等漏洞利用。
+      ar: تُحفظ نقاط فحص نماذج PyTorch بتنسيق Python pickle وتُحمّل عبر torch.load(). يسمح تنسيق pickle بتنفيذ تعليمات برمجية عشوائية — عند تحميل ملف .pth خبيث، يُنفذ __reduce__ المضمّن ويحصل المهاجم على وصول shell. توجد ثغرات مثل CVE-2023-27579.
+      ru: Контрольные точки PyTorch сохраняются в формате Python pickle и загружаются через torch.load(). Pickle допускает произвольное выполнение кода — при загрузке вредоносного .pth выполняется встроенный __reduce__, злоумышленник получает shell-доступ. Существуют CVE-2023-27579 и аналогичные эксплойты.
+    severity: critical
+  - title:
+      tr: Custom Operator Code Execution
+      en: Custom Operator Code Execution
+      fr: Exécution de code via un opérateur personnalisé
+      zh: 自定义算子代码执行
+      ar: تنفيذ التعليمات البرمجية عبر مشغّل مخصص
+      ru: Выполнение кода через пользовательский оператор
+    description:
+      tr: PyTorch custom C++/CUDA operator’lere izin verir (torch.utils.cpp_extension). Zararlı model dependency olarak custom operator içerebilir ve yüklendiğinde native code execution elde edilir. Hugging Face gibi platformlardan indirilen model’lerde bu risk vardır.
+      en: PyTorch allows custom C++/CUDA operators (torch.utils.cpp_extension). Malicious model can include custom operator as dependency, and when loaded, native code execution is achieved. This risk exists in models downloaded from platforms like Hugging Face.
+      fr: PyTorch autorise les opérateurs C++/CUDA personnalisés (torch.utils.cpp_extension). Un modèle malveillant peut inclure un opérateur personnalisé comme dépendance ; lors du chargement, l’exécution de code natif est obtenue. Ce risque existe pour les modèles téléchargés depuis Hugging Face.
+      zh: PyTorch允许自定义C++/CUDA算子（torch.utils.cpp_extension）。恶意模型可包含自定义算子作为依赖项，加载时即可实现原生代码执行。从Hugging Face等平台下载的模型存在此风险。
+      ar: يسمح PyTorch بمشغّلات C++/CUDA مخصصة (torch.utils.cpp_extension). يمكن أن يتضمن النموذج الخبيث مشغّلًا مخصصًا كتبعية، وعند تحميله يتم تنفيذ شفرة أصلية. هذا الخطر موجود في النماذج المحمّلة من Hugging Face.
+      ru: PyTorch поддерживает пользовательские операторы C++/CUDA (torch.utils.cpp_extension). Вредоносная модель может включать пользовательский оператор как зависимость; при загрузке достигается выполнение нативного кода. Риск присутствует в моделях с Hugging Face.
+    severity: high
+  - title:
+      tr: Model Weight Poisoning
+      en: Model Weight Poisoning
+      fr: Empoisonnement des poids du modèle
+      zh: 模型权重投毒
+      ar: تسميم أوزان النموذج
+      ru: Отравление весов модели
+    description:
+      tr: "Saldırgan model weight’lerini manipüle ederek backdoor ekler. Örneğin belirli bir trigger kelime verildiğinde model zararlı çıktı üretir. PyTorch weight’leri binary format olduğu için static analysis ile tespit zor. Defense: model provenance tracking, weight integrity check."
+      en: "Attacker manipulates model weights to add backdoor. For example, when specific trigger word is given, model produces malicious output. Hard to detect with static analysis since PyTorch weights are binary format. Defense: model provenance tracking, weight integrity check."
+      fr: "L’attaquant manipule les poids du modèle pour insérer une porte dérobée. Par exemple, avec un mot déclencheur spécifique, le modèle produit une sortie malveillante. Difficile à détecter par analyse statique (poids en format binaire). Défense : traçabilité de l’origine du modèle, vérification de l’intégrité des poids."
+      zh: 攻击者操纵模型权重以植入后门。例如，给定特定触发词时，模型产生恶意输出。由于PyTorch权重为二进制格式，静态分析难以检测。防御：模型来源追踪、权重完整性检查。
+      ar: "يتلاعب المهاجم بأوزان النموذج لإضافة باب خلفي. عند إعطاء كلمة تشغيل محددة، ينتج النموذج مخرجات ضارة. يصعب الكشف بالتحليل الثابت لأن الأوزان بتنسيق ثنائي. الدفاع: تتبع مصدر النموذج، التحقق من سلامة الأوزان."
+      ru: "Злоумышленник манипулирует весами модели для добавления бэкдора. Например, при триггерном слове модель выдаёт вредоносный результат. Статический анализ затруднён — веса в бинарном формате. Защита: отслеживание происхождения модели, проверка целостности весов."
+    severity: high
+  - title:
+      tr: Pytorch Konfigürasyon Bilgi Sızıntısı
+      en: Pytorch Configuration Information Disclosure
+      fr: Divulgation de configuration pytorch
+      zh: pytorch配置信息泄露
+      ar: كشف معلومات تكوين pytorch
+      ru: Раскрытие конфигурации pytorch
+    description:
+      tr: Pytorch ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to pytorch can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à pytorch peuvent être exposés dans les messages d’erreur ou les réponses API.
+      zh: 与pytorch相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ pytorch في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании pytorch могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Safe Model Loading with weights_only
+    lang: python
+    code: |-
+      import torch
+
+      # UNSAFE - allows arbitrary code execution
+      # model = torch.load('model.pth')
+
+      # SAFE - PyTorch 2.0+ weights_only mode
+      model = torch.load(
+          'model.pth',
+          weights_only=True  # Blocks pickle deserialization attacks
+      )
+
+      # Alternative: Use SafeTensors format
+      from safetensors.torch import load_file
+      state_dict = load_file('model.safetensors')  # No pickle, safer
+    description:
+      tr: PyTorch 2.0+ ile gelen weights_only=True parametresi pickle deserialization saldırılarını engeller. Alternatif olarak SafeTensors format kullanılabilir — pickle yerine pure tensor data, arbitrary code execution riski yok.
+      en: PyTorch 2.0+ weights_only=True parameter blocks pickle deserialization attacks. Alternatively, use SafeTensors format — pure tensor data instead of pickle, no arbitrary code execution risk.
+  - title: GPU Memory Optimization
+    lang: python
+    code: |-
+      import torch
+
+      # Enable memory-efficient attention (FlashAttention)
+      with torch.backends.cuda.sdp_kernel(
+          enable_flash=True,
+          enable_math=False,
+          enable_mem_efficient=True
+      ):
+          output = model(input_ids)
+
+      # Gradient checkpointing for large models
+      from torch.utils.checkpoint import checkpoint
+      output = checkpoint(model.layer, input)  # Trades compute for memory
+    description:
+      tr: "CUDA memory optimization: FlashAttention ile attention hesabı 3-5x hızlanır ve VRAM kullanımı azalır. Gradient checkpointing ile büyük modeller daha az VRAM'de eğitilebilir (compute vs memory trade-off)."
+      en: "CUDA memory optimization: FlashAttention speeds up attention computation 3-5x and reduces VRAM usage. Gradient checkpointing allows training large models with less VRAM (compute vs memory trade-off)."
+  - title: PyTorch Model Loading Security
+    lang: dockerfile
+    code: |-
+      FROM nvidia/cuda:12.4.0-runtime-ubuntu22.04
+      RUN apt-get update && apt-get install -y python3-pip && rm -rf /var/lib/apt/lists/*
+      RUN pip3 install torch safetensors transformers
+      RUN groupadd -r mluser && useradd -r -g mluser mluser
+      WORKDIR /app
+      COPY --chown=mluser:mluser . .
+      USER mluser
+      ENV TORCH_HOME=/app/.cache
+      ENV TRANSFORMERS_OFFLINE=1
+      ENTRYPOINT ["python3", "serve.py"]
+    description:
+      tr: PyTorch model yukleme icin guvenli Docker.
+      en: Secure Docker for PyTorch model loading.
+research:
+  - title: PyTorch Official Documentation
+    url: https://pytorch.org/docs/stable/index.html
+    year: 2024
+    type: guide
+    authors: Meta AI
+  - title: TorchServe Model Serving
+    url: https://pytorch.org/serve/
+    year: 2024
+    type: tool
+    authors: PyTorch Team
+  - title: Exploiting torch.load() RCE Vulnerability
+    url: https://github.com/trailofbits/fickling
+    year: 2023
+    type: tool
+    authors: Trail of Bits
+tips:
+  - tr: Untrusted source'dan model indirirken MUTLAKA weights_only=True kullanın veya SafeTensors formatını tercih edin.
+    en: When downloading models from untrusted sources, ALWAYS use weights_only=True or prefer SafeTensors format.
+  - tr: Production'da torch.compile() ile model'i optimize edin — 2-3x inference speedup, ama ilk çalıştırmada compile overhead var.
+    en: In production, optimize model with torch.compile() — 2-3x inference speedup, but first run has compile overhead.
+  - tr: GPU memory yetersizse gradient_checkpointing + mixed precision (torch.cuda.amp) kombine edin, VRAM kullanımını yarıya indirir.
+    en: If GPU memory is insufficient, combine gradient_checkpointing + mixed precision (torch.cuda.amp), reduces VRAM usage by half.

@@ -1,0 +1,4581 @@
+- source: cuda
+  target: gpu
+  label:
+    tr: uzerinde calisir
+    en: runs on
+    fr: fonctionne sur
+    zh: 运行于
+    ar: يعمل على
+    ru: работает на
+- source: vram
+  target: gpu
+  label:
+    tr: bellegi
+    en: memory of
+    fr: mémoire de
+    zh: 的内存
+    ar: ذاكرة
+    ru: память
+- source: tensor-core
+  target: gpu
+  label:
+    tr: icinde
+    en: inside
+    fr: à l'intérieur
+    zh: 内部
+    ar: داخل
+    ru: внутри
+- source: nvlink
+  target: gpu
+  label:
+    tr: baglar
+    en: connects
+    fr: connecte
+    zh: 连接
+    ar: يربط
+    ru: соединяет
+- source: dgx
+  target: gpu
+  label:
+    tr: icerir
+    en: contains
+    fr: contient
+    zh: 包含
+    ar: يحتوي
+    ru: содержит
+- source: dgx
+  target: nvlink
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: tpu
+  target: gpu
+  label:
+    tr: alternatif
+    en: alternative
+    fr: alternative
+    zh: 替代
+    ar: بديل
+    ru: альтернатива
+- source: transformer
+  target: attention
+  label:
+    tr: temel
+    en: foundation
+    fr: fondation
+    zh: 基础
+    ar: أساس
+    ru: основа
+- source: attention
+  target: self-attention
+  label:
+    tr: turu
+    en: type
+    fr: type
+    zh: 类型
+    ar: نوع
+    ru: тип
+- source: attention
+  target: multi-head
+  label:
+    tr: cesidi
+    en: variant
+    fr: variante
+    zh: 变体
+    ar: متغير
+    ru: вариант
+- source: transformer
+  target: encoder
+  label:
+    tr: bilesen
+    en: component
+    fr: composant
+    zh: 组件
+    ar: مكوّن
+    ru: компонент
+- source: transformer
+  target: decoder
+  label:
+    tr: bilesen
+    en: component
+    fr: composant
+    zh: 组件
+    ar: مكوّن
+    ru: компонент
+- source: tokenizer
+  target: token
+  label:
+    tr: uretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: token
+  target: embedding
+  label:
+    tr: donusur
+    en: maps to
+    fr: correspond à
+    zh: 映射到
+    ar: يُعيَّن إلى
+    ru: отображается в
+- source: moe
+  target: transformer
+  label:
+    tr: cesidi
+    en: variant
+    fr: variante
+    zh: 变体
+    ar: متغير
+    ru: вариант
+- source: tensor
+  target: embedding
+  label:
+    tr: temsil
+    en: represents
+    fr: représente
+    zh: 表示
+    ar: يمثّل
+    ru: представляет
+- source: tensor-core
+  target: tensor
+  label:
+    tr: isler
+    en: processes
+    fr: traite
+    zh: 处理
+    ar: يعالج
+    ru: обрабатывает
+- source: pretraining
+  target: finetuning
+  label:
+    tr: once
+    en: before
+    fr: avant
+    zh: 之前
+    ar: قبل
+    ru: перед
+- source: finetuning
+  target: sft
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: finetuning
+  target: rlhf
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: finetuning
+  target: lora
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: finetuning
+  target: dpo
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: sft
+  target: rlhf
+  label:
+    tr: once
+    en: before
+    fr: avant
+    zh: 之前
+    ar: قبل
+    ru: перед
+- source: loss
+  target: gradient
+  label:
+    tr: uretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: gradient
+  target: backprop
+  label:
+    tr: hesaplar
+    en: computed via
+    fr: calculé via
+    zh: 通过计算
+    ar: يُحسب عبر
+    ru: вычисляется через
+- source: weight
+  target: gradient
+  label:
+    tr: guncellenir
+    en: updated by
+    fr: mis à jour par
+    zh: 通过更新
+    ar: يُحدَّث بواسطة
+    ru: обновляется через
+- source: pretraining
+  target: epoch
+  label:
+    tr: olculur
+    en: measured in
+    fr: mesuré en
+    zh: 以此度量
+    ar: يُقاس بـ
+    ru: измеряется в
+- source: quantization
+  target: fp16
+  label:
+    tr: seviye
+    en: level
+    fr: niveau
+    zh: 级别
+    ar: مستوى
+    ru: уровень
+- source: quantization
+  target: int4-int8
+  label:
+    tr: seviye
+    en: level
+    fr: niveau
+    zh: 级别
+    ar: مستوى
+    ru: уровень
+- source: quantization
+  target: gptq
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: quantization
+  target: awq
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: quantization
+  target: gguf
+  label:
+    tr: format
+    en: format
+    fr: format
+    zh: 格式
+    ar: صيغة
+    ru: формат
+- source: quantization
+  target: nvfp4
+  label:
+    tr: yontem
+    en: method
+    fr: méthode
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: quantization
+  target: vram
+  label:
+    tr: azaltir
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: nvfp4
+  target: tensor-core
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلّب
+    ru: требует
+- source: inference
+  target: kv-cache
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: inference
+  target: tensor-parallel
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: inference
+  target: continuous-batching
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: vllm
+  target: inference
+  label:
+    tr: motor
+    en: engine
+    fr: moteur
+    zh: 引擎
+    ar: محرّك
+    ru: движок
+- source: vllm
+  target: paged-attention
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: vllm
+  target: continuous-batching
+  label:
+    tr: uygular
+    en: implements
+    fr: implémente
+    zh: 实现
+    ar: ينفّذ
+    ru: реализует
+- source: quantization
+  target: inference
+  label:
+    tr: hizlandirir
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: kv-cache
+  target: vram
+  label:
+    tr: tuketir
+    en: consumes
+    fr: consomme
+    zh: 消耗
+    ar: يستهلك
+    ru: потребляет
+- source: tensor-parallel
+  target: nvlink
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: chat-template
+  target: inference
+  label:
+    tr: formatlar
+    en: formats
+    fr: formate
+    zh: 格式化
+    ar: يُنسّق
+    ru: форматирует
+- source: speculative
+  target: inference
+  label:
+    tr: hizlandirir
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: paged-attention
+  target: kv-cache
+  label:
+    tr: yonetir
+    en: manages
+    fr: gère
+    zh: 管理
+    ar: يدير
+    ru: управляет
+- source: system-prompt
+  target: prompt
+  label:
+    tr: turu
+    en: type
+    fr: type
+    zh: 类型
+    ar: نوع
+    ru: тип
+- source: chat-template
+  target: prompt
+  label:
+    tr: formatlar
+    en: formats
+    fr: formate
+    zh: 格式化
+    ar: يُنسّق
+    ru: форматирует
+- source: temperature
+  target: prompt
+  label:
+    tr: kontrol
+    en: controls
+    fr: contrôle
+    zh: 控制
+    ar: يتحكّم
+    ru: управляет
+- source: top-p-k
+  target: temperature
+  label:
+    tr: birlikte
+    en: combined
+    fr: combiné
+    zh: 组合
+    ar: مُدمج
+    ru: совместно
+- source: rag
+  target: context-window
+  label:
+    tr: zenginlestirir
+    en: enriches
+    fr: enrichit
+    zh: 丰富
+    ar: يُثري
+    ru: обогащает
+- source: context-window
+  target: token
+  label:
+    tr: olculur
+    en: measured in
+    fr: mesuré en
+    zh: 以此度量
+    ar: يُقاس بـ
+    ru: измеряется в
+- source: few-shot
+  target: prompt
+  label:
+    tr: teknik
+    en: technique
+    fr: technique
+    zh: 技术
+    ar: تقنية
+    ru: техника
+- source: cot
+  target: prompt
+  label:
+    tr: teknik
+    en: technique
+    fr: technique
+    zh: 技术
+    ar: تقنية
+    ru: техника
+- source: rag
+  target: embedding
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: hallucination
+  target: rag
+  label:
+    tr: azaltilir
+    en: reduced by
+    fr: réduit par
+    zh: 通过减少
+    ar: يُقلَّل بواسطة
+    ru: уменьшается через
+- source: mcp
+  target: tool-use
+  label:
+    tr: standart
+    en: standardizes
+    fr: standardise
+    zh: 标准化
+    ar: يوحّد المعايير
+    ru: стандартизирует
+- source: tool-use
+  target: function-calling
+  label:
+    tr: mekanizma
+    en: mechanism
+    fr: mécanisme
+    zh: 机制
+    ar: آلية
+    ru: механизм
+- source: agent
+  target: tool-use
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: agent
+  target: react
+  label:
+    tr: kalip
+    en: pattern
+    fr: modèle
+    zh: 模式
+    ar: نمط
+    ru: шаблон
+- source: parser
+  target: structured-output
+  label:
+    tr: uretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: function-calling
+  target: structured-output
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلّب
+    ru: требует
+- source: function-calling
+  target: parser
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: chat-template
+  target: function-calling
+  label:
+    tr: formatlar
+    en: formats
+    fr: formate
+    zh: 格式化
+    ar: يُنسّق
+    ru: форматирует
+- source: llm
+  target: transformer
+  label:
+    tr: temelli
+    en: based on
+    fr: basé sur
+    zh: 基于
+    ar: مبني على
+    ru: основан на
+- source: vlm
+  target: llm
+  label:
+    tr: genisletir
+    en: extends
+    fr: étend
+    zh: 扩展
+    ar: يوسّع
+    ru: расширяет
+- source: multimodal
+  target: vlm
+  label:
+    tr: kapsar
+    en: includes
+    fr: inclut
+    zh: 包括
+    ar: يشمل
+    ru: включает
+- source: foundation-model
+  target: llm
+  label:
+    tr: tur
+    en: type
+    fr: type
+    zh: 类型
+    ar: نوع
+    ru: тип
+- source: foundation-model
+  target: finetuning
+  label:
+    tr: ozellesir
+    en: specializes via
+    fr: se spécialise via
+    zh: 通过专业化
+    ar: يتخصّص عبر
+    ru: специализируется через
+- source: open-weight
+  target: foundation-model
+  label:
+    tr: dagilim
+    en: distribution
+    fr: distribution
+    zh: 分发
+    ar: توزيع
+    ru: распространение
+- source: slm
+  target: llm
+  label:
+    tr: kucuk versiyon
+    en: small version
+    fr: petite version
+    zh: 小型版本
+    ar: نسخة صغيرة
+    ru: малая версия
+- source: benchmark
+  target: llm
+  label:
+    tr: olcer
+    en: measures
+    fr: mesure
+    zh: 衡量
+    ar: يقيس
+    ru: измеряет
+- source: pretraining
+  target: foundation-model
+  label:
+    tr: uretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: llm
+  target: agent
+  label:
+    tr: guc verir
+    en: powers
+    fr: alimente
+    zh: 驱动
+    ar: يُشغّل
+    ru: обеспечивает
+- source: llm
+  target: inference
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلّب
+    ru: требует
+- source: weight
+  target: quantization
+  label:
+    tr: uygulanir
+    en: applied to
+    fr: appliqué à
+    zh: 应用于
+    ar: يُطبَّق على
+    ru: применяется к
+- source: cuda
+  target: inference
+  label:
+    tr: calistirir
+    en: executes
+    fr: exécute
+    zh: 执行
+    ar: ينفّذ
+    ru: выполняет
+- source: prompt-injection
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: prompt-injection
+  target: system-prompt
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: jailbreak
+  target: guardrails
+  label:
+    tr: atlatır
+    en: bypasses
+    fr: contourne
+    zh: 绕过
+    ar: يتجاوز
+    ru: обходит
+- source: jailbreak
+  target: alignment
+  label:
+    tr: kırar
+    en: breaks
+    fr: casse
+    zh: 破坏
+    ar: يكسر
+    ru: ломает
+- source: guardrails
+  target: llm
+  label:
+    tr: korur
+    en: protects
+    fr: protège
+    zh: 保护
+    ar: يحمي
+    ru: защищает
+- source: alignment
+  target: rlhf
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: alignment
+  target: dpo
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: red-teaming-ai
+  target: prompt-injection
+  label:
+    tr: test eder
+    en: tests for
+    fr: teste
+    zh: 测试
+    ar: يختبر
+    ru: тестирует
+- source: red-teaming-ai
+  target: jailbreak
+  label:
+    tr: test eder
+    en: tests for
+    fr: teste
+    zh: 测试
+    ar: يختبر
+    ru: тестирует
+- source: data-poisoning
+  target: pretraining
+  label:
+    tr: bozar
+    en: corrupts
+    fr: corrompt
+    zh: 污染
+    ar: يفسد
+    ru: повреждает
+- source: data-poisoning
+  target: dataset
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: adversarial-attack
+  target: llm
+  label:
+    tr: kandırır
+    en: fools
+    fr: trompe
+    zh: 欺骗
+    ar: يخدع
+    ru: обманывает
+- source: model-extraction
+  target: openai-api
+  label:
+    tr: kötüye kullanır
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: bias
+  target: dataset
+  label:
+    tr: kaynağı
+    en: originates from
+    fr: provient de
+    zh: 源于
+    ar: ينشأ من
+    ru: происходит из
+- source: bias
+  target: hallucination
+  label:
+    tr: ilişkili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: deep-learning
+  target: neural-network
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: machine-learning
+  target: deep-learning
+  label:
+    tr: kapsıyor
+    en: includes
+    fr: inclut
+    zh: 包含
+    ar: يشمل
+    ru: включает
+- source: neural-network
+  target: transformer
+  label:
+    tr: temel
+    en: foundation of
+    fr: fondation de
+    zh: 基础
+    ar: أساس
+    ru: основа
+- source: overfitting
+  target: epoch
+  label:
+    tr: çok fazla
+    en: too many
+    fr: trop de
+    zh: 过多
+    ar: كثرة
+    ru: слишком много
+- source: transfer-learning
+  target: pretraining
+  label:
+    tr: mümkün kılar
+    en: enables
+    fr: permet
+    zh: 使之可能
+    ar: يمكّن
+    ru: делает возможным
+- source: transfer-learning
+  target: finetuning
+  label:
+    tr: temel
+    en: basis for
+    fr: base pour
+    zh: 基础
+    ar: أساس لـ
+    ru: основа для
+- source: huggingface
+  target: open-weight
+  label:
+    tr: barındırır
+    en: hosts
+    fr: héberge
+    zh: 托管
+    ar: يستضيف
+    ru: размещает
+- source: huggingface
+  target: gguf
+  label:
+    tr: dağıtır
+    en: distributes
+    fr: distribue
+    zh: 分发
+    ar: يوزع
+    ru: распространяет
+- source: ollama
+  target: gguf
+  label:
+    tr: çalıştırır
+    en: runs
+    fr: exécute
+    zh: 运行
+    ar: يشغل
+    ru: запускает
+- source: ollama
+  target: slm
+  label:
+    tr: yerel çalıştırır
+    en: runs locally
+    fr: exécute localement
+    zh: 本地运行
+    ar: يشغل محليًا
+    ru: запускает локально
+- source: vector-database
+  target: rag
+  label:
+    tr: güç verir
+    en: powers
+    fr: alimente
+    zh: 驱动
+    ar: يغذي
+    ru: обеспечивает
+- source: vector-database
+  target: embedding
+  label:
+    tr: depolar
+    en: stores
+    fr: stocke
+    zh: 存储
+    ar: يخزن
+    ru: хранит
+- source: openai-api
+  target: function-calling
+  label:
+    tr: sağlar
+    en: provides
+    fr: fournit
+    zh: 提供
+    ar: يوفر
+    ru: предоставляет
+- source: langchain
+  target: agent
+  label:
+    tr: oluşturur
+    en: builds
+    fr: construit
+    zh: 构建
+    ar: يبني
+    ru: строит
+- source: langchain
+  target: rag
+  label:
+    tr: kolaylaştırır
+    en: simplifies
+    fr: simplifie
+    zh: 简化
+    ar: يبسط
+    ru: упрощает
+- source: gradio
+  target: huggingface
+  label:
+    tr: entegre
+    en: integrates with
+    fr: s'intègre à
+    zh: 集成
+    ar: يتكامل مع
+    ru: интегрируется с
+- source: distillation
+  target: slm
+  label:
+    tr: üretir
+    en: produces
+    fr: produit
+    zh: 产生
+    ar: ينتج
+    ru: производит
+- source: distillation
+  target: foundation-model
+  label:
+    tr: sıkıştırır
+    en: compresses
+    fr: compresse
+    zh: 压缩
+    ar: يضغط
+    ru: сжимает
+- source: scaling-law
+  target: pretraining
+  label:
+    tr: yönlendirir
+    en: guides
+    fr: guide
+    zh: 指导
+    ar: يوجه
+    ru: направляет
+- source: scaling-law
+  target: foundation-model
+  label:
+    tr: tahmin eder
+    en: predicts
+    fr: prédit
+    zh: 预测
+    ar: يتنبأ
+    ru: прогнозирует
+- source: diffusion
+  target: multimodal
+  label:
+    tr: bileşen
+    en: component of
+    fr: composant de
+    zh: 组成部分
+    ar: مكوّن من
+    ru: компонент
+- source: synthetic-data
+  target: finetuning
+  label:
+    tr: besler
+    en: feeds
+    fr: alimente
+    zh: 供给
+    ar: يغذي
+    ru: питает
+- source: synthetic-data
+  target: dataset
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: dataset
+  target: pretraining
+  label:
+    tr: girdi
+    en: input to
+    fr: entrée de
+    zh: 输入
+    ar: مدخل لـ
+    ru: вход для
+- source: cnn
+  target: transformer
+  label:
+    tr: öncülü oldu
+    en: preceded
+  strength: 0.6
+- source: cnn
+  target: neural-network
+  label:
+    tr: türevi
+    en: derived from
+  strength: 0.8
+- source: cnn
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+  strength: 0.9
+- source: cnn
+  target: adversarial-attack
+  label:
+    tr: karşı savunmasız
+    en: vulnerable to
+  strength: 0.7
+- source: cnn
+  target: gpu
+  label:
+    tr: gerektirir
+    en: requires
+  strength: 0.8
+- source: rnn
+  target: transformer
+  label:
+    tr: yerini aldı
+    en: replaced by
+  strength: 0.8
+- source: rnn
+  target: neural-network
+  label:
+    tr: türevi
+    en: derived from
+  strength: 0.8
+- source: rnn
+  target: gradient
+  label:
+    tr: kullanır
+    en: uses
+  strength: 0.7
+- source: rnn
+  target: backprop
+  label:
+    tr: dayalı
+    en: relies on
+  strength: 0.8
+- source: gan
+  target: neural-network
+  label:
+    tr: kullanır
+    en: uses
+  strength: 0.9
+- source: gan
+  target: adversarial-attack
+  label:
+    tr: ilişkili
+    en: related to
+  strength: 0.6
+- source: gan
+  target: diffusion
+  label:
+    tr: alternatifi
+    en: alternative to
+  strength: 0.7
+- source: gan
+  target: synthetic-data
+  label:
+    tr: üretir
+    en: generates
+  strength: 0.9
+- source: autoencoder
+  target: neural-network
+  label:
+    tr: türevi
+    en: derived from
+  strength: 0.8
+- source: autoencoder
+  target: gan
+  label:
+    tr: benzer
+    en: similar to
+  strength: 0.5
+- source: autoencoder
+  target: diffusion
+  label:
+    tr: kullanılır
+    en: used in
+  strength: 0.7
+- source: autoencoder
+  target: embedding
+  label:
+    tr: üretir
+    en: produces
+  strength: 0.6
+- source: softmax
+  target: transformer
+  label:
+    tr: kullanılır
+    en: used in
+  strength: 0.9
+- source: softmax
+  target: attention
+  label:
+    tr: temel bileşen
+    en: core component
+  strength: 0.9
+- source: softmax
+  target: llm
+  label:
+    tr: kullanılır
+    en: used in
+  strength: 0.9
+- source: softmax
+  target: inference
+  label:
+    tr: gerekli
+    en: required for
+  strength: 0.8
+- source: positional-encoding
+  target: transformer
+  label:
+    tr: kritik bileşen
+    en: critical component
+  strength: 0.95
+- source: positional-encoding
+  target: attention
+  label:
+    tr: destekler
+    en: supports
+  strength: 0.8
+- source: positional-encoding
+  target: embedding
+  label:
+    tr: eklenir
+    en: added to
+  strength: 0.8
+- source: positional-encoding
+  target: llm
+  label:
+    tr: kullanılır
+    en: used in
+  strength: 0.9
+- source: federated-learning
+  target: differential-privacy
+  label:
+    tr: kullanır
+    en: uses
+  strength: 0.9
+- source: federated-learning
+  target: gradient
+  label:
+    tr: paylaşır
+    en: shares
+  strength: 0.9
+- source: federated-learning
+  target: data-poisoning
+  label:
+    tr: karşı savunmasız
+    en: vulnerable to
+  strength: 0.7
+- source: federated-learning
+  target: finetuning
+  label:
+    tr: ilişkili
+    en: related to
+  strength: 0.6
+- source: differential-privacy
+  target: federated-learning
+  label:
+    tr: korur
+    en: protects
+  strength: 0.9
+- source: differential-privacy
+  target: gradient
+  label:
+    tr: gürültü ekler
+    en: adds noise to
+  strength: 0.8
+- source: differential-privacy
+  target: alignment
+  label:
+    tr: kullanılabilir
+    en: can be used in
+  strength: 0.5
+- source: differential-privacy
+  target: pretraining
+  label:
+    tr: uygulanabilir
+    en: applicable to
+  strength: 0.6
+- source: ai-firewall
+  target: prompt-injection
+  label:
+    tr: önler
+    en: prevents
+  strength: 0.9
+- source: ai-firewall
+  target: jailbreak
+  label:
+    tr: engeller
+    en: blocks
+  strength: 0.9
+- source: ai-firewall
+  target: guardrails
+  label:
+    tr: uygular
+    en: implements
+  strength: 0.8
+- source: ai-firewall
+  target: llm
+  label:
+    tr: korur
+    en: protects
+  strength: 0.85
+- source: shadow-ai
+  target: data-poisoning
+  label:
+    tr: riskini artırır
+    en: increases risk of
+  strength: 0.75
+- source: shadow-ai
+  target: llm
+  label:
+    tr: yetkisiz kullanır
+    en: uses unauthorized
+  strength: 0.8
+- source: shadow-ai
+  target: openai-api
+  label:
+    tr: izinsiz erişir
+    en: accesses without permission
+  strength: 0.7
+- source: pytorch
+  target: gpu
+  label:
+    tr: kullanır
+    en: utilizes
+  strength: 0.9
+- source: pytorch
+  target: cuda
+  label:
+    tr: destekler
+    en: supports
+  strength: 0.95
+- source: pytorch
+  target: tensor
+  label:
+    tr: işler
+    en: processes
+  strength: 0.9
+- source: pytorch
+  target: gradient
+  label:
+    tr: hesaplar
+    en: computes
+  strength: 0.85
+- source: pytorch
+  target: backprop
+  label:
+    tr: uygular
+    en: applies
+  strength: 0.85
+- source: safetensors
+  target: pytorch
+  label:
+    tr: güvenli alternatif
+    en: safe alternative to
+  strength: 0.9
+- source: safetensors
+  target: huggingface
+  label:
+    tr: tarafından geliştirildi
+    en: developed by
+  strength: 0.95
+- source: safetensors
+  target: tensor
+  label:
+    tr: serileştirir
+    en: serializes
+  strength: 0.9
+- source: onnx
+  target: pytorch
+  label:
+    tr: export eder
+    en: exports from
+  strength: 0.85
+- source: onnx
+  target: tensorrt
+  label:
+    tr: optimize edilir
+    en: optimized by
+  strength: 0.8
+- source: onnx
+  target: inference
+  label:
+    tr: standardize eder
+    en: standardizes
+  strength: 0.8
+- source: onnx
+  target: quantization
+  label:
+    tr: destekler
+    en: supports
+  strength: 0.75
+- source: tensorrt
+  target: gpu
+  label:
+    tr: optimize eder
+    en: optimizes for
+  strength: 0.95
+- source: tensorrt
+  target: cuda
+  label:
+    tr: gerektirir
+    en: requires
+  strength: 0.9
+- source: tensorrt
+  target: inference
+  label:
+    tr: hızlandırır
+    en: accelerates
+  strength: 0.95
+- source: tensorrt
+  target: quantization
+  label:
+    tr: uygular
+    en: applies
+  strength: 0.9
+- source: tensorrt
+  target: fp16
+  label:
+    tr: destekler
+    en: supports
+  strength: 0.9
+- source: triton-server
+  target: tensorrt
+  label:
+    tr: kullanır
+    en: uses
+  strength: 0.85
+- source: triton-server
+  target: onnx
+  label:
+    tr: serve eder
+    en: serves
+  strength: 0.8
+- source: triton-server
+  target: pytorch
+  label:
+    tr: destekler
+    en: supports
+  strength: 0.8
+- source: triton-server
+  target: inference
+  label:
+    tr: yönetir
+    en: manages
+  strength: 0.9
+- source: triton-server
+  target: vllm
+  label:
+    tr: entegre olur
+    en: integrates with
+  strength: 0.85
+- source: mlflow
+  target: pytorch
+  label:
+    tr: track eder
+    en: tracks
+  strength: 0.85
+- source: mlflow
+  target: huggingface
+  label:
+    tr: entegre olur
+    en: integrates with
+  strength: 0.75
+- source: mlflow
+  target: finetuning
+  label:
+    tr: yönetir
+    en: manages
+  strength: 0.8
+- source: mlflow
+  target: model-extraction
+  label:
+    tr: riskine açık
+    en: vulnerable to
+  strength: 0.6
+- source: tpu
+  target: tensor
+  label:
+    tr: işler
+    en: processes
+    fr: traite
+    zh: 处理
+    ar: يعالج
+    ru: обрабатывает
+- source: tpu
+  target: pretraining
+  label:
+    tr: kullanılır
+    en: used for
+    fr: utilisé pour
+    zh: 用于
+    ar: يُستخدم في
+    ru: используется для
+- source: tpu
+  target: inference
+  label:
+    tr: kullanılır
+    en: used for
+    fr: utilisé pour
+    zh: 用于
+    ar: يُستخدم في
+    ru: используется для
+- source: dgx
+  target: pretraining
+  label:
+    tr: kullanılır
+    en: used for
+    fr: utilisé pour
+    zh: 用于
+    ar: يُستخدم في
+    ru: используется для
+- source: dgx
+  target: cuda
+  label:
+    tr: çalıştırır
+    en: runs
+    fr: exécute
+    zh: 运行
+    ar: يشغّل
+    ru: запускает
+- source: dgx
+  target: tensor-core
+  label:
+    tr: içerir
+    en: contains
+    fr: contient
+    zh: 包含
+    ar: يحتوي
+    ru: содержит
+- source: vram
+  target: inference
+  label:
+    tr: sınırlar
+    en: limits
+    fr: limite
+    zh: 限制
+    ar: يحدّ
+    ru: ограничивает
+- source: tensor-core
+  target: fp16
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: tensor-core
+  target: int4-int8
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: self-attention
+  target: transformer
+  label:
+    tr: çekirdeği
+    en: core of
+    fr: noyau de
+    zh: 核心
+    ar: جوهر
+    ru: ядро
+- source: self-attention
+  target: multi-head
+  label:
+    tr: genişletilir
+    en: extended by
+    fr: étendu par
+    zh: 扩展为
+    ar: يُوسَّع بـ
+    ru: расширяется
+- source: self-attention
+  target: positional-encoding
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: multi-head
+  target: transformer
+  label:
+    tr: kullanılır
+    en: used in
+    fr: utilisé dans
+    zh: 用于
+    ar: يُستخدم في
+    ru: используется в
+- source: encoder
+  target: decoder
+  label:
+    tr: eşleşir
+    en: paired with
+    fr: associé à
+    zh: 配对
+    ar: يُقرن بـ
+    ru: связан с
+- source: encoder
+  target: attention
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: encoder
+  target: embedding
+  label:
+    tr: üretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: decoder
+  target: attention
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: decoder
+  target: llm
+  label:
+    tr: temelinde
+    en: basis of
+    fr: base de
+    zh: 基础
+    ar: أساس
+    ru: основа
+- source: decoder
+  target: kv-cache
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: tokenizer
+  target: llm
+  label:
+    tr: gereklidir
+    en: required by
+    fr: requis par
+    zh: 被需要
+    ar: مطلوب من
+    ru: требуется для
+- source: tokenizer
+  target: embedding
+  label:
+    tr: besler
+    en: feeds
+    fr: alimente
+    zh: 馈入
+    ar: يغذّي
+    ru: питает
+- source: tokenizer
+  target: context-window
+  label:
+    tr: belirler
+    en: determines
+    fr: détermine
+    zh: 决定
+    ar: يحدّد
+    ru: определяет
+- source: tokenizer
+  target: huggingface
+  label:
+    tr: barındırılır
+    en: hosted on
+    fr: hébergé sur
+    zh: 托管于
+    ar: مستضاف على
+    ru: размещён на
+- source: moe
+  target: inference
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: moe
+  target: scaling-law
+  label:
+    tr: etkiler
+    en: affects
+    fr: affecte
+    zh: 影响
+    ar: يؤثر على
+    ru: влияет на
+- source: moe
+  target: llm
+  label:
+    tr: mimarisi
+    en: architecture of
+    fr: architecture de
+    zh: 架构
+    ar: بنية
+    ru: архитектура
+- source: token
+  target: kv-cache
+  label:
+    tr: saklanır
+    en: stored in
+    fr: stocké dans
+    zh: 存储于
+    ar: يُخزَّن في
+    ru: хранится в
+- source: token
+  target: inference
+  label:
+    tr: işlenir
+    en: processed during
+    fr: traité lors de
+    zh: 处理于
+    ar: يُعالَج أثناء
+    ru: обрабатывается
+- source: embedding
+  target: llm
+  label:
+    tr: bileşeni
+    en: component of
+    fr: composant de
+    zh: 组件
+    ar: مكوّن من
+    ru: компонент
+- source: embedding
+  target: neural-network
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: scaling-law
+  target: llm
+  label:
+    tr: yönetir
+    en: governs
+    fr: régit
+    zh: 支配
+    ar: يحكم
+    ru: управляет
+- source: scaling-law
+  target: dataset
+  label:
+    tr: ilişkili
+    en: relates to
+    fr: lié à
+    zh: 关联
+    ar: مرتبط بـ
+    ru: связан с
+- source: diffusion
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: diffusion
+  target: neural-network
+  label:
+    tr: temelinde
+    en: based on
+    fr: basé sur
+    zh: 基于
+    ar: مبني على
+    ru: основан на
+- source: diffusion
+  target: deepfake
+  label:
+    tr: sağlar
+    en: enables
+    fr: permet
+    zh: 支持
+    ar: يمكّن
+    ru: обеспечивает
+- source: cnn
+  target: embedding
+  label:
+    tr: üretir
+    en: produces
+    fr: produit
+    zh: 生成
+    ar: ينتج
+    ru: производит
+- source: cnn
+  target: vlm
+  label:
+    tr: bileşeni
+    en: component of
+    fr: composant de
+    zh: 组件
+    ar: مكوّن من
+    ru: компонент
+- source: rnn
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: rnn
+  target: tokenizer
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: gan
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: gan
+  target: deepfake
+  label:
+    tr: sağlar
+    en: enables
+    fr: permet
+    zh: 支持
+    ar: يمكّن
+    ru: обеспечивает
+- source: gan
+  target: gpu
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: autoencoder
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: autoencoder
+  target: distillation
+  label:
+    tr: ilişkili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: tensor
+  target: gpu
+  label:
+    tr: işlenir
+    en: processed by
+    fr: traité par
+    zh: 处理于
+    ar: يُعالَج بواسطة
+    ru: обрабатывается
+- source: lora
+  target: qlora
+  label:
+    tr: genişletilir
+    en: extended by
+    fr: étendu par
+    zh: 扩展为
+    ar: يُوسَّع بـ
+    ru: расширяется
+- source: lora
+  target: peft
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: lora
+  target: weight
+  label:
+    tr: değiştirir
+    en: modifies
+    fr: modifie
+    zh: 修改
+    ar: يعدّل
+    ru: изменяет
+- source: lora
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: lora
+  target: huggingface
+  label:
+    tr: mevcut
+    en: available on
+    fr: disponible sur
+    zh: 可用于
+    ar: متوفر على
+    ru: доступен на
+- source: loss
+  target: backprop
+  label:
+    tr: yönlendirir
+    en: drives
+    fr: pilote
+    zh: 驱动
+    ar: يقود
+    ru: движет
+- source: loss
+  target: pretraining
+  label:
+    tr: yönlendirir
+    en: guides
+    fr: guide
+    zh: 引导
+    ar: يوجّه
+    ru: направляет
+- source: loss
+  target: finetuning
+  label:
+    tr: yönlendirir
+    en: guides
+    fr: guide
+    zh: 引导
+    ar: يوجّه
+    ru: направляет
+- source: loss
+  target: overfitting
+  label:
+    tr: gösterir
+    en: indicates
+    fr: indique
+    zh: 指示
+    ar: يشير إلى
+    ru: указывает
+- source: loss
+  target: softmax
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: sft
+  target: dataset
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: sft
+  target: llm
+  label:
+    tr: eğitir
+    en: trains
+    fr: entraîne
+    zh: 训练
+    ar: يدرّب
+    ru: обучает
+- source: dpo
+  target: dataset
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: dpo
+  target: sft
+  label:
+    tr: takip eder
+    en: follows
+    fr: suit
+    zh: 跟随
+    ar: يتبع
+    ru: следует за
+- source: epoch
+  target: loss
+  label:
+    tr: ölçülür
+    en: measured per
+    fr: mesuré par
+    zh: 每轮测量
+    ar: يُقاس لكل
+    ru: измеряется за
+- source: epoch
+  target: dataset
+  label:
+    tr: yineler
+    en: iterates
+    fr: itère
+    zh: 迭代
+    ar: يكرّر
+    ru: итерирует
+- source: weight
+  target: neural-network
+  label:
+    tr: saklanır
+    en: stored in
+    fr: stocké dans
+    zh: 存储于
+    ar: يُخزَّن في
+    ru: хранится в
+- source: weight
+  target: safetensors
+  label:
+    tr: olarak saklanır
+    en: stored as
+    fr: stocké en
+    zh: 存储为
+    ar: يُخزَّن كـ
+    ru: хранится как
+- source: weight
+  target: pretraining
+  label:
+    tr: öğrenilir
+    en: learned during
+    fr: appris lors de
+    zh: 学习于
+    ar: يُتعلَّم أثناء
+    ru: изучается при
+- source: weight
+  target: vram
+  label:
+    tr: saklanır
+    en: stored in
+    fr: stocké dans
+    zh: 存储于
+    ar: يُخزَّن في
+    ru: хранится в
+- source: backprop
+  target: neural-network
+  label:
+    tr: eğitir
+    en: trains
+    fr: entraîne
+    zh: 训练
+    ar: يدرّب
+    ru: обучает
+- source: rlhf
+  target: llm
+  label:
+    tr: hizalar
+    en: aligns
+    fr: aligne
+    zh: 对齐
+    ar: يوائم
+    ru: выравнивает
+- source: distillation
+  target: pretraining
+  label:
+    tr: alternatifi
+    en: alternative to
+    fr: alternative à
+    zh: 替代
+    ar: بديل لـ
+    ru: альтернатива
+- source: distillation
+  target: inference
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: distillation
+  target: llm
+  label:
+    tr: sıkıştırır
+    en: compresses
+    fr: compresse
+    zh: 压缩
+    ar: يضغط
+    ru: сжимает
+- source: synthetic-data
+  target: llm
+  label:
+    tr: üretilir
+    en: generated by
+    fr: généré par
+    zh: 生成于
+    ar: يُنتَج بواسطة
+    ru: генерируется
+- source: synthetic-data
+  target: data-augmentation
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: dataset
+  target: huggingface
+  label:
+    tr: barındırılır
+    en: hosted on
+    fr: hébergé sur
+    zh: 托管于
+    ar: مستضاف على
+    ru: размещён на
+- source: dataset
+  target: finetuning
+  label:
+    tr: girdisi
+    en: input to
+    fr: entrée de
+    zh: 输入到
+    ar: مُدخل إلى
+    ru: вход для
+- source: federated-learning
+  target: machine-learning
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: federated-learning
+  target: edge-ai
+  label:
+    tr: sağlar
+    en: enables
+    fr: permet
+    zh: 支持
+    ar: يمكّن
+    ru: обеспечивает
+- source: differential-privacy
+  target: membership-inference
+  label:
+    tr: önler
+    en: prevents
+    fr: empêche
+    zh: 防止
+    ar: يمنع
+    ru: предотвращает
+- source: differential-privacy
+  target: model-inversion
+  label:
+    tr: önler
+    en: prevents
+    fr: empêche
+    zh: 防止
+    ar: يمنع
+    ru: предотвращает
+- source: differential-privacy
+  target: dataset
+  label:
+    tr: korur
+    en: protects
+    fr: protège
+    zh: 保护
+    ar: يحمي
+    ru: защищает
+- source: qlora
+  target: quantization
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: qlora
+  target: finetuning
+  label:
+    tr: yöntemi
+    en: method of
+    fr: méthode de
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: qlora
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: qlora
+  target: int4-int8
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: qlora
+  target: peft
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: peft
+  target: finetuning
+  label:
+    tr: yöntemi
+    en: method of
+    fr: méthode de
+    zh: 方法
+    ar: طريقة
+    ru: метод
+- source: peft
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: peft
+  target: huggingface
+  label:
+    tr: kütüphanesi
+    en: library on
+    fr: bibliothèque sur
+    zh: 库于
+    ar: مكتبة على
+    ru: библиотека на
+- source: peft
+  target: weight
+  label:
+    tr: kısmen günceller
+    en: partially updates
+    fr: met à jour partiellement
+    zh: 部分更新
+    ar: يحدّث جزئياً
+    ru: частично обновляет
+- source: data-augmentation
+  target: dataset
+  label:
+    tr: genişletir
+    en: expands
+    fr: étend
+    zh: 扩展
+    ar: يوسّع
+    ru: расширяет
+- source: data-augmentation
+  target: finetuning
+  label:
+    tr: iyileştirir
+    en: improves
+    fr: améliore
+    zh: 改善
+    ar: يحسّن
+    ru: улучшает
+- source: data-augmentation
+  target: overfitting
+  label:
+    tr: önler
+    en: prevents
+    fr: empêche
+    zh: 防止
+    ar: يمنع
+    ru: предотвращает
+- source: data-augmentation
+  target: pretraining
+  label:
+    tr: destekler
+    en: supports
+    fr: soutient
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: awq
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: awq
+  target: llm
+  label:
+    tr: sıkıştırır
+    en: compresses
+    fr: compresse
+    zh: 压缩
+    ar: يضغط
+    ru: сжимает
+- source: awq
+  target: inference
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: gptq
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: gptq
+  target: llm
+  label:
+    tr: sıkıştırır
+    en: compresses
+    fr: compresse
+    zh: 压缩
+    ar: يضغط
+    ru: сжимает
+- source: gptq
+  target: gpu
+  label:
+    tr: optimize edilmiş
+    en: optimized for
+    fr: optimisé pour
+    zh: 优化于
+    ar: مُحسَّن لـ
+    ru: оптимизирован для
+- source: int4-int8
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: int4-int8
+  target: inference
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: fp16
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلّل
+    ru: уменьшает
+- source: fp16
+  target: gpu
+  label:
+    tr: desteklenir
+    en: supported by
+    fr: supporté par
+    zh: 支持于
+    ar: مدعوم من
+    ru: поддерживается
+- source: fp16
+  target: pretraining
+  label:
+    tr: kullanılır
+    en: used in
+    fr: utilisé dans
+    zh: 用于
+    ar: يستخدم في
+    ru: используется в
+- source: nvfp4
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلل
+    ru: уменьшает
+- source: nvfp4
+  target: inference
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: gguf
+  target: llm
+  label:
+    tr: paketler
+    en: packages
+    fr: empaquette
+    zh: 打包
+    ar: يحزم
+    ru: упаковывает
+- source: gguf
+  target: edge-ai
+  label:
+    tr: olanağı sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: gguf
+  target: vram
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلل
+    ru: уменьшает
+- source: edge-ai
+  target: inference
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: edge-ai
+  target: quantization
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: edge-ai
+  target: slm
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: edge-ai
+  target: onnx
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: edge-ai
+  target: tensorrt
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: model-serving
+  target: inference
+  label:
+    tr: yönetir
+    en: manages
+    fr: gère
+    zh: 管理
+    ar: يدير
+    ru: управляет
+- source: model-serving
+  target: triton-server
+  label:
+    tr: uygulanır
+    en: implemented by
+    fr: implémenté par
+    zh: 实现于
+    ar: ينفذ بواسطة
+    ru: реализуется
+- source: model-serving
+  target: vllm
+  label:
+    tr: uygulanır
+    en: implemented by
+    fr: implémenté par
+    zh: 实现于
+    ar: ينفذ بواسطة
+    ru: реализуется
+- source: model-serving
+  target: container-ml
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: model-serving
+  target: gpu
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: model-serving
+  target: llm
+  label:
+    tr: sunar
+    en: serves
+    fr: sert
+    zh: 提供服务
+    ar: يخدم
+    ru: обслуживает
+- source: speculative
+  target: slm
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: speculative
+  target: kv-cache
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: speculative
+  target: llm
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: tensor-parallel
+  target: gpu
+  label:
+    tr: dağıtır
+    en: distributes across
+    fr: distribue sur
+    zh: 分布于
+    ar: يوزع عبر
+    ru: распределяет
+- source: tensor-parallel
+  target: vram
+  label:
+    tr: dağıtır
+    en: distributes
+    fr: distribue
+    zh: 分布
+    ar: يوزع
+    ru: распределяет
+- source: tensor-parallel
+  target: pretraining
+  label:
+    tr: olanağı sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: continuous-batching
+  target: gpu
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: continuous-batching
+  target: model-serving
+  label:
+    tr: kullanılır
+    en: used in
+    fr: utilisé dans
+    zh: 用于
+    ar: يستخدم في
+    ru: используется в
+- source: paged-attention
+  target: vram
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: paged-attention
+  target: gpu
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: chat-template
+  target: llm
+  label:
+    tr: biçimlendirir
+    en: formats for
+    fr: formate pour
+    zh: 格式化
+    ar: ينسّق
+    ru: форматирует
+- source: chat-template
+  target: system-prompt
+  label:
+    tr: içerir
+    en: includes
+    fr: inclut
+    zh: 包含
+    ar: يتضمن
+    ru: включает
+- source: chat-template
+  target: tokenizer
+  label:
+    tr: parçası
+    en: part of
+    fr: partie de
+    zh: 部分
+    ar: جزء من
+    ru: часть
+- source: kv-cache
+  target: attention
+  label:
+    tr: önbelleğe alır
+    en: caches
+    fr: met en cache
+    zh: 缓存
+    ar: يخزّن
+    ru: кеширует
+- source: kv-cache
+  target: llm
+  label:
+    tr: hızlandırır
+    en: accelerates
+    fr: accélère
+    zh: 加速
+    ar: يسرّع
+    ru: ускоряет
+- source: vllm
+  target: gpu
+  label:
+    tr: üzerinde çalışır
+    en: runs on
+    fr: tourne sur
+    zh: 运行于
+    ar: يعمل على
+    ru: работает на
+- source: vllm
+  target: llm
+  label:
+    tr: sunar
+    en: serves
+    fr: sert
+    zh: 提供服务
+    ar: يخدم
+    ru: обслуживает
+- source: vllm
+  target: tensor-parallel
+  label:
+    tr: destekler
+    en: supports
+    fr: supporte
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: vllm
+  target: chat-template
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: in-context-learning
+  target: few-shot
+  label:
+    tr: tekniği
+    en: technique of
+    fr: technique de
+    zh: 技术
+    ar: تقنية
+    ru: техника
+- source: in-context-learning
+  target: llm
+  label:
+    tr: yeteneği
+    en: capability of
+    fr: capacité de
+    zh: 能力
+    ar: قدرة
+    ru: способность
+- source: in-context-learning
+  target: prompt
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: in-context-learning
+  target: context-window
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: in-context-learning
+  target: transformer
+  label:
+    tr: sağlanır
+    en: enabled by
+    fr: permis par
+    zh: 依赖于
+    ar: يمكّن بواسطة
+    ru: обеспечено
+- source: prompt-engineering
+  target: prompt
+  label:
+    tr: tasarlar
+    en: designs
+    fr: conçoit
+    zh: 设计
+    ar: يصمم
+    ru: проектирует
+- source: prompt-engineering
+  target: cot
+  label:
+    tr: tekniği
+    en: technique of
+    fr: technique de
+    zh: 技术
+    ar: تقنية
+    ru: техника
+- source: prompt-engineering
+  target: few-shot
+  label:
+    tr: tekniği
+    en: technique of
+    fr: technique de
+    zh: 技术
+    ar: تقنية
+    ru: техника
+- source: prompt-engineering
+  target: system-prompt
+  label:
+    tr: oluşturur
+    en: crafts
+    fr: rédige
+    zh: 构建
+    ar: يصوغ
+    ru: создаёт
+- source: prompt-engineering
+  target: llm
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: prompt-engineering
+  target: rag
+  label:
+    tr: tamamlar
+    en: complements
+    fr: complète
+    zh: 补充
+    ar: يكمّل
+    ru: дополняет
+- source: prompt-engineering
+  target: jailbreak
+  label:
+    tr: açığı var
+    en: vulnerable to
+    fr: vulnérable à
+    zh: 易受攻击
+    ar: عرضة لـ
+    ru: уязвимо к
+- source: few-shot
+  target: llm
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: few-shot
+  target: context-window
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: cot
+  target: llm
+  label:
+    tr: geliştirir
+    en: improves
+    fr: améliore
+    zh: 改进
+    ar: يحسّن
+    ru: улучшает
+- source: cot
+  target: few-shot
+  label:
+    tr: birleşir
+    en: combines with
+    fr: se combine avec
+    zh: 结合
+    ar: يتكامل مع
+    ru: сочетается
+- source: cot
+  target: agent
+  label:
+    tr: kullanılır
+    en: used by
+    fr: utilisé par
+    zh: 被使用
+    ar: يستخدم بواسطة
+    ru: используется
+- source: top-p-k
+  target: inference
+  label:
+    tr: kontrol eder
+    en: controls
+    fr: contrôle
+    zh: 控制
+    ar: يتحكم
+    ru: управляет
+- source: top-p-k
+  target: llm
+  label:
+    tr: parametresi
+    en: parameter of
+    fr: paramètre de
+    zh: 参数
+    ar: معلمة
+    ru: параметр
+- source: system-prompt
+  target: guardrails
+  label:
+    tr: uygular
+    en: implements
+    fr: implémente
+    zh: 实现
+    ar: ينفذ
+    ru: реализует
+- source: system-prompt
+  target: alignment
+  label:
+    tr: destekler
+    en: supports
+    fr: supporte
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: temperature
+  target: inference
+  label:
+    tr: kontrol eder
+    en: controls
+    fr: contrôle
+    zh: 控制
+    ar: يتحكم
+    ru: управляет
+- source: temperature
+  target: llm
+  label:
+    tr: parametresi
+    en: parameter of
+    fr: paramètre de
+    zh: 参数
+    ar: معلمة
+    ru: параметр
+- source: temperature
+  target: softmax
+  label:
+    tr: değiştirir
+    en: modifies
+    fr: modifie
+    zh: 修改
+    ar: يعدّل
+    ru: модифицирует
+- source: context-window
+  target: llm
+  label:
+    tr: özelliği
+    en: property of
+    fr: propriété de
+    zh: 属性
+    ar: خاصية
+    ru: свойство
+- source: context-window
+  target: kv-cache
+  label:
+    tr: depolanır
+    en: stored in
+    fr: stocké dans
+    zh: 存储于
+    ar: يخزّن في
+    ru: хранится в
+- source: context-window
+  target: vram
+  label:
+    tr: sınırlanır
+    en: limited by
+    fr: limité par
+    zh: 受限于
+    ar: محدود بـ
+    ru: ограничено
+- source: rag
+  target: llm
+  label:
+    tr: zenginleştirir
+    en: augments
+    fr: augmente
+    zh: 增强
+    ar: يعزز
+    ru: дополняет
+- source: rag
+  target: grounding
+  label:
+    tr: sağlar
+    en: provides
+    fr: fournit
+    zh: 提供
+    ar: يوفر
+    ru: обеспечивает
+- source: agentic-ai
+  target: agent
+  label:
+    tr: paradigması
+    en: paradigm of
+    fr: paradigme de
+    zh: 范式
+    ar: نموذج
+    ru: парадигма
+- source: agentic-ai
+  target: multi-agent
+  label:
+    tr: içerir
+    en: includes
+    fr: inclut
+    zh: 包含
+    ar: يتضمن
+    ru: включает
+- source: agentic-ai
+  target: tool-use
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: agentic-ai
+  target: llm
+  label:
+    tr: temelinde
+    en: powered by
+    fr: propulsé par
+    zh: 驱动于
+    ar: مدعوم بـ
+    ru: на основе
+- source: agentic-ai
+  target: react
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: multi-agent
+  target: agent
+  label:
+    tr: genişletir
+    en: extends
+    fr: étend
+    zh: 扩展
+    ar: يوسع
+    ru: расширяет
+- source: multi-agent
+  target: langchain
+  label:
+    tr: ile yapılır
+    en: built with
+    fr: construit avec
+    zh: 构建于
+    ar: يبنى بـ
+    ru: создано с
+- source: multi-agent
+  target: tool-use
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: multi-agent
+  target: llm
+  label:
+    tr: temelinde
+    en: powered by
+    fr: propulsé par
+    zh: 驱动于
+    ar: مدعوم بـ
+    ru: на основе
+- source: react
+  target: cot
+  label:
+    tr: genişletir
+    en: extends
+    fr: étend
+    zh: 扩展
+    ar: يوسع
+    ru: расширяет
+- source: react
+  target: tool-use
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: react
+  target: llm
+  label:
+    tr: deseni
+    en: pattern for
+    fr: patron pour
+    zh: 模式
+    ar: نمط
+    ru: паттерн
+- source: mcp
+  target: agent
+  label:
+    tr: olanağı sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: mcp
+  target: function-calling
+  label:
+    tr: standartlaştırır
+    en: standardizes
+    fr: standardise
+    zh: 标准化
+    ar: يوحّد
+    ru: стандартизирует
+- source: mcp
+  target: structured-output
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: mcp
+  target: agentic-ai
+  label:
+    tr: olanağı sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: parser
+  target: llm
+  label:
+    tr: çıktısını işler
+    en: processes output of
+    fr: traite la sortie de
+    zh: 处理输出
+    ar: يعالج مخرجات
+    ru: обрабатывает вывод
+- source: parser
+  target: agent
+  label:
+    tr: kullanılır
+    en: used by
+    fr: utilisé par
+    zh: 被使用
+    ar: يستخدم بواسطة
+    ru: используется
+- source: structured-output
+  target: llm
+  label:
+    tr: çıktısı
+    en: output of
+    fr: sortie de
+    zh: 输出
+    ar: مخرجات
+    ru: вывод
+- source: structured-output
+  target: agent
+  label:
+    tr: kullanılır
+    en: used by
+    fr: utilisé par
+    zh: 被使用
+    ar: يستخدم بواسطة
+    ru: используется
+- source: tool-use
+  target: llm
+  label:
+    tr: yeteneği
+    en: capability of
+    fr: capacité de
+    zh: 能力
+    ar: قدرة
+    ru: способность
+- source: agent
+  target: rag
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: grounding
+  target: hallucination
+  label:
+    tr: azaltır
+    en: reduces
+    fr: réduit
+    zh: 减少
+    ar: يقلل
+    ru: уменьшает
+- source: grounding
+  target: llm
+  label:
+    tr: geliştirir
+    en: improves
+    fr: améliore
+    zh: 改进
+    ar: يحسّن
+    ru: улучшает
+- source: grounding
+  target: tool-use
+  label:
+    tr: ile sağlanır
+    en: achieved via
+    fr: réalisé via
+    zh: 通过实现
+    ar: يتحقق عبر
+    ru: достигается
+- source: grounding
+  target: benchmark
+  label:
+    tr: ölçülür
+    en: measured by
+    fr: mesuré par
+    zh: 衡量于
+    ar: يقاس بـ
+    ru: измеряется
+- source: benchmark
+  target: hallucination
+  label:
+    tr: ölçer
+    en: measures
+    fr: mesure
+    zh: 衡量
+    ar: يقيس
+    ru: измеряет
+- source: benchmark
+  target: foundation-model
+  label:
+    tr: değerlendirir
+    en: evaluates
+    fr: évalue
+    zh: 评估
+    ar: يقيّم
+    ru: оценивает
+- source: benchmark
+  target: dataset
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: benchmark
+  target: slm
+  label:
+    tr: karşılaştırır
+    en: compares
+    fr: compare
+    zh: 比较
+    ar: يقارن
+    ru: сравнивает
+- source: hallucination
+  target: llm
+  label:
+    tr: sorunu
+    en: problem of
+    fr: problème de
+    zh: 问题
+    ar: مشكلة
+    ru: проблема
+- source: vlm
+  target: embedding
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: vlm
+  target: attention
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: multimodal
+  target: llm
+  label:
+    tr: genişletir
+    en: extends
+    fr: étend
+    zh: 扩展
+    ar: يوسع
+    ru: расширяет
+- source: multimodal
+  target: embedding
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: multimodal
+  target: transformer
+  label:
+    tr: temelinde
+    en: based on
+    fr: basé sur
+    zh: 基于
+    ar: مبني على
+    ru: на основе
+- source: open-weight
+  target: llm
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: open-weight
+  target: ollama
+  label:
+    tr: ile çalışır
+    en: runnable via
+    fr: exécutable via
+    zh: 可通过…运行
+    ar: يعمل عبر
+    ru: запускается через
+- source: open-weight
+  target: quantization
+  label:
+    tr: sıkça kullanır
+    en: often uses
+    fr: utilise souvent
+    zh: 常用
+    ar: يستخدم غالبًا
+    ru: часто использует
+- source: slm
+  target: quantization
+  label:
+    tr: sıkça kullanır
+    en: often uses
+    fr: utilise souvent
+    zh: 常用
+    ar: يستخدم غالبًا
+    ru: часто использует
+- source: slm
+  target: finetuning
+  label:
+    tr: uygun
+    en: suited for
+    fr: adapté à
+    zh: 适用于
+    ar: مناسب لـ
+    ru: подходит для
+- source: foundation-model
+  target: dataset
+  label:
+    tr: ile eğitilir
+    en: trained on
+    fr: entraîné sur
+    zh: 训练于
+    ar: يُدرَّب على
+    ru: обучается на
+- source: foundation-model
+  target: transformer
+  label:
+    tr: temelinde
+    en: based on
+    fr: basé sur
+    zh: 基于
+    ar: مبني على
+    ru: основан на
+- source: membership-inference
+  target: dataset
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: membership-inference
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: membership-inference
+  target: pretraining
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: model-inversion
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: model-inversion
+  target: neural-network
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: model-inversion
+  target: weight
+  label:
+    tr: çıkarır
+    en: extracts
+    fr: extrait
+    zh: 提取
+    ar: يستخرج
+    ru: извлекает
+- source: model-inversion
+  target: model-extraction
+  label:
+    tr: ilişkili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: backdoor-attack
+  target: data-poisoning
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: backdoor-attack
+  target: finetuning
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: backdoor-attack
+  target: dataset
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: backdoor-attack
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: backdoor-attack
+  target: red-teaming-ai
+  label:
+    tr: tespit edilir
+    en: detected by
+    fr: détecté par
+    zh: 由…检测
+    ar: يُكتشف بـ
+    ru: обнаруживается
+- source: deepfake
+  target: deep-learning
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: deepfake
+  target: ai-watermarking
+  label:
+    tr: tespit edilir
+    en: detected by
+    fr: détecté par
+    zh: 由…检测
+    ar: يُكتشف بـ
+    ru: обнаруживается
+- source: deepfake
+  target: adversarial-attack
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: ai-watermarking
+  target: llm
+  label:
+    tr: uygulanır
+    en: applied to
+    fr: appliqué à
+    zh: 应用于
+    ar: يُطبَّق على
+    ru: применяется к
+- source: ai-watermarking
+  target: diffusion
+  label:
+    tr: uygulanır
+    en: applied to
+    fr: appliqué à
+    zh: 应用于
+    ar: يُطبَّق على
+    ru: применяется к
+- source: ai-watermarking
+  target: guardrails
+  label:
+    tr: türü
+    en: type of
+    fr: type de
+    zh: 类型
+    ar: نوع من
+    ru: тип
+- source: ai-watermarking
+  target: alignment
+  label:
+    tr: destekler
+    en: supports
+    fr: prend en charge
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: bias
+  target: llm
+  label:
+    tr: etkiler
+    en: affects
+    fr: affecte
+    zh: 影响
+    ar: يؤثر على
+    ru: влияет на
+- source: bias
+  target: alignment
+  label:
+    tr: ele alınır
+    en: addressed by
+    fr: traité par
+    zh: 由…处理
+    ar: يعالَج بـ
+    ru: решается
+- source: bias
+  target: finetuning
+  label:
+    tr: azaltılır
+    en: mitigated by
+    fr: atténué par
+    zh: 由…缓解
+    ar: يُخفَّف بـ
+    ru: смягчается
+- source: bias
+  target: benchmark
+  label:
+    tr: ölçülür
+    en: measured by
+    fr: mesuré par
+    zh: 由…衡量
+    ar: يُقاس بـ
+    ru: измеряется
+- source: bias
+  target: pretraining
+  label:
+    tr: sırasında oluşur
+    en: introduced during
+    fr: introduit lors de
+    zh: 在…期间引入
+    ar: يُدخَل أثناء
+    ru: вносится при
+- source: red-teaming-ai
+  target: adversarial-attack
+  label:
+    tr: test eder
+    en: tests for
+    fr: teste pour
+    zh: 测试是否有
+    ar: يختبر وجود
+    ru: проверяет наличие
+- source: red-teaming-ai
+  target: llm
+  label:
+    tr: test eder
+    en: tests
+    fr: teste
+    zh: 测试
+    ar: يختبر
+    ru: тестирует
+- source: red-teaming-ai
+  target: guardrails
+  label:
+    tr: değerlendirir
+    en: evaluates
+    fr: évalue
+    zh: 评估
+    ar: يقيّم
+    ru: оценивает
+- source: red-teaming-ai
+  target: bias
+  label:
+    tr: tespit eder
+    en: identifies
+    fr: identifie
+    zh: 识别
+    ar: يحدّد
+    ru: выявляет
+- source: red-teaming-ai
+  target: alignment
+  label:
+    tr: doğrular
+    en: validates
+    fr: valide
+    zh: 验证
+    ar: يتحقق من
+    ru: валидирует
+- source: model-extraction
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: model-extraction
+  target: weight
+  label:
+    tr: çalar
+    en: steals
+    fr: vole
+    zh: 窃取
+    ar: يسرق
+    ru: крадёт
+- source: shadow-ai
+  target: guardrails
+  label:
+    tr: atlar
+    en: bypasses
+    fr: contourne
+    zh: 绕过
+    ar: يتجاوز
+    ru: обходит
+- source: shadow-ai
+  target: model-extraction
+  label:
+    tr: olanak sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: adversarial-attack
+  target: neural-network
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: guardrails
+  target: alignment
+  label:
+    tr: uygular
+    en: implements
+    fr: implémente
+    zh: 实现
+    ar: ينفّذ
+    ru: реализует
+- source: guardrails
+  target: prompt-injection
+  label:
+    tr: önler
+    en: prevents
+    fr: empêche
+    zh: 防止
+    ar: يمنع
+    ru: предотвращает
+- source: prompt-injection
+  target: agent
+  label:
+    tr: tehdit eder
+    en: threatens
+    fr: menace
+    zh: 威胁
+    ar: يهدّد
+    ru: угрожает
+- source: jailbreak
+  target: prompt-injection
+  label:
+    tr: ilişkili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: jailbreak
+  target: llm
+  label:
+    tr: saldırır
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: data-poisoning
+  target: finetuning
+  label:
+    tr: hedefler
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: alignment
+  target: llm
+  label:
+    tr: hizalar
+    en: aligns
+    fr: aligne
+    zh: 对齐
+    ar: يوجّه
+    ru: выравнивает
+- source: alignment
+  target: sft
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: alignment
+  target: benchmark
+  label:
+    tr: ölçülür
+    en: measured by
+    fr: mesuré par
+    zh: 由…衡量
+    ar: يُقاس بـ
+    ru: измеряется
+- source: ai-firewall
+  target: model-serving
+  label:
+    tr: korur
+    en: protects
+    fr: protège
+    zh: 保护
+    ar: يحمي
+    ru: защищает
+- source: ai-firewall
+  target: adversarial-attack
+  label:
+    tr: engeller
+    en: blocks
+    fr: bloque
+    zh: 阻止
+    ar: يحظر
+    ru: блокирует
+- source: ai-firewall
+  target: agent
+  label:
+    tr: korur
+    en: protects
+    fr: protège
+    zh: 保护
+    ar: يحمي
+    ru: защищает
+- source: machine-learning
+  target: neural-network
+  label:
+    tr: içerir
+    en: includes
+    fr: inclut
+    zh: 包含
+    ar: يتضمن
+    ru: включает
+- source: machine-learning
+  target: dataset
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: machine-learning
+  target: overfitting
+  label:
+    tr: sorunu
+    en: problem of
+    fr: problème de
+    zh: 问题属于
+    ar: مشكلة في
+    ru: проблема
+- source: machine-learning
+  target: bias
+  label:
+    tr: sorunu
+    en: problem of
+    fr: problème de
+    zh: 问题属于
+    ar: مشكلة في
+    ru: проблема
+- source: machine-learning
+  target: transfer-learning
+  label:
+    tr: tekniği
+    en: technique of
+    fr: technique de
+    zh: 技术属于
+    ar: تقنية في
+    ru: техника
+- source: overfitting
+  target: finetuning
+  label:
+    tr: riski
+    en: risk of
+    fr: risque de
+    zh: 风险属于
+    ar: خطر في
+    ru: риск
+- source: overfitting
+  target: dataset
+  label:
+    tr: küçük ile oluşur
+    en: caused by small
+    fr: causé par petit
+    zh: 因小量导致
+    ar: ينتج عن قلة
+    ru: из-за малого
+- source: transfer-learning
+  target: foundation-model
+  label:
+    tr: olanak sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: transfer-learning
+  target: llm
+  label:
+    tr: destekler
+    en: powers
+    fr: alimente
+    zh: 驱动
+    ar: يشغّل
+    ru: обеспечивает
+- source: deep-learning
+  target: gpu
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: deep-learning
+  target: pretraining
+  label:
+    tr: yöntemi
+    en: method of
+    fr: méthode de
+    zh: 方法属于
+    ar: أسلوب في
+    ru: метод
+- source: deep-learning
+  target: gradient
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: deep-learning
+  target: backprop
+  label:
+    tr: dayanır
+    en: relies on
+    fr: repose sur
+    zh: 依赖于
+    ar: يعتمد على
+    ru: опирается на
+- source: container-ml
+  target: gpu
+  label:
+    tr: erişir
+    en: accesses
+    fr: accède à
+    zh: 访问
+    ar: يصل إلى
+    ru: обращается к
+- source: container-ml
+  target: inference
+  label:
+    tr: paketler
+    en: packages
+    fr: empaquette
+    zh: 打包
+    ar: يحزم
+    ru: упаковывает
+- source: container-ml
+  target: triton-server
+  label:
+    tr: dağıtır
+    en: deploys
+    fr: déploie
+    zh: 部署
+    ar: ينشر
+    ru: развёртывает
+- source: container-ml
+  target: pytorch
+  label:
+    tr: paketler
+    en: packages
+    fr: empaquette
+    zh: 打包
+    ar: يحزم
+    ru: упаковывает
+- source: container-ml
+  target: vllm
+  label:
+    tr: dağıtır
+    en: deploys
+    fr: déploie
+    zh: 部署
+    ar: ينشر
+    ru: развёртывает
+- source: container-ml
+  target: cuda
+  label:
+    tr: içerir
+    en: includes
+    fr: inclut
+    zh: 包含
+    ar: يتضمن
+    ru: включает
+- source: gradio
+  target: llm
+  label:
+    tr: demolar
+    en: demos
+    fr: démontre
+    zh: 演示
+    ar: يعرض
+    ru: демонстрирует
+- source: gradio
+  target: model-serving
+  label:
+    tr: basitleştirir
+    en: simplifies
+    fr: simplifie
+    zh: 简化
+    ar: يبسّط
+    ru: упрощает
+- source: gradio
+  target: open-weight
+  label:
+    tr: demolar
+    en: demos
+    fr: démontre
+    zh: 演示
+    ar: يعرض
+    ru: демонстрирует
+- source: ollama
+  target: inference
+  label:
+    tr: sağlar
+    en: provides
+    fr: fournit
+    zh: 提供
+    ar: يوفّر
+    ru: предоставляет
+- source: ollama
+  target: llm
+  label:
+    tr: çalıştırır
+    en: runs
+    fr: exécute
+    zh: 运行
+    ar: يشغّل
+    ru: запускает
+- source: ollama
+  target: quantization
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: ollama
+  target: edge-ai
+  label:
+    tr: olanak sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: langchain
+  target: tool-use
+  label:
+    tr: uygular
+    en: implements
+    fr: implémente
+    zh: 实现
+    ar: ينفّذ
+    ru: реализует
+- source: langchain
+  target: llm
+  label:
+    tr: yönetir
+    en: orchestrates
+    fr: orchestre
+    zh: 编排
+    ar: ينسّق
+    ru: оркестрирует
+- source: langchain
+  target: mcp
+  label:
+    tr: destekler
+    en: supports
+    fr: prend en charge
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: langchain
+  target: function-calling
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: vector-database
+  target: llm
+  label:
+    tr: güçlendirir
+    en: augments
+    fr: augmente
+    zh: 增强
+    ar: يعزّز
+    ru: дополняет
+- source: vector-database
+  target: grounding
+  label:
+    tr: olanak sağlar
+    en: enables
+    fr: permet
+    zh: 启用
+    ar: يمكّن
+    ru: обеспечивает
+- source: openai-api
+  target: llm
+  label:
+    tr: erişim sağlar
+    en: provides access to
+    fr: donne accès à
+    zh: 提供访问
+    ar: يوفّر وصولًا
+    ru: даёт доступ к
+- source: openai-api
+  target: tool-use
+  label:
+    tr: destekler
+    en: supports
+    fr: prend en charge
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: openai-api
+  target: structured-output
+  label:
+    tr: destekler
+    en: supports
+    fr: prend en charge
+    zh: 支持
+    ar: يدعم
+    ru: поддерживает
+- source: openai-api
+  target: chat-template
+  label:
+    tr: kullanır
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: safetensors
+  target: open-weight
+  label:
+    tr: formatı
+    en: format for
+    fr: format pour
+    zh: 格式用于
+    ar: صيغة لـ
+    ru: формат для
+- source: safetensors
+  target: llm
+  label:
+    tr: depolar
+    en: stores
+    fr: stocke
+    zh: 存储
+    ar: يخزّن
+    ru: хранит
+- source: mlflow
+  target: pretraining
+  label:
+    tr: izler
+    en: tracks
+    fr: suit
+    zh: 追踪
+    ar: يتتبّع
+    ru: отслеживает
+- source: mlflow
+  target: dataset
+  label:
+    tr: sürümler
+    en: versions
+    fr: versionne
+    zh: 版本管理
+    ar: يدير الإصدارات
+    ru: версионирует
+- source: tensorrt
+  target: model-serving
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: triton-server
+  target: gpu
+  label:
+    tr: optimize eder
+    en: optimizes
+    fr: optimise
+    zh: 优化
+    ar: يحسّن
+    ru: оптимизирует
+- source: alignment
+  target: finetuning
+  label:
+    tr: takip eder
+    en: follows
+    fr: suit
+    zh: 跟随
+    ar: يتبع
+    ru: следует за
+- source: hallucination
+  target: alignment
+  label:
+    tr: ele alınır
+    en: addressed by
+    fr: traité par
+    zh: 由…处理
+    ar: يعالَج بـ
+    ru: решается
+- source: prompt
+  target: llm
+  label:
+    tr: girdisi
+    en: input to
+    fr: entrée de
+    zh: 输入给
+    ar: مدخل لـ
+    ru: ввод для
+- source: prompt-injection
+  target: prompt
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: moe
+  target: vram
+  label:
+    tr: gerektirir
+    en: requires
+    fr: nécessite
+    zh: 需要
+    ar: يتطلب
+    ru: требует
+- source: encoder
+  target: rag
+  label:
+    tr: kullanılır
+    en: used in
+    fr: utilisé dans
+    zh: 用于
+    ar: يُستخدم في
+    ru: используется в
+- source: open-weight
+  target: gguf
+  label:
+    tr: olarak dağıtılır
+    en: distributed as
+    fr: distribué en
+    zh: 以…分发
+    ar: يوزَّع كـ
+    ru: распространяется как
+- source: indirect-prompt-injection
+  target: prompt-injection
+  label:
+    tr: turevi
+    en: variant of
+    fr: variante de
+    zh: 变体
+    ar: متغير من
+    ru: вариант
+- source: indirect-prompt-injection
+  target: rag
+  label:
+    tr: hedef alir
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: indirect-prompt-injection
+  target: tool-use-attack
+  label:
+    tr: tetikler
+    en: triggers
+    fr: déclenche
+    zh: 触发
+    ar: يُطلق
+    ru: вызывает
+- source: indirect-prompt-injection
+  target: guardrails
+  label:
+    tr: atlatir
+    en: bypasses
+    fr: contourne
+    zh: 绕过
+    ar: يتجاوز
+    ru: обходит
+- source: ai-firewall
+  target: indirect-prompt-injection
+  label:
+    tr: engeller
+    en: blocks
+    fr: bloque
+    zh: 阻止
+    ar: يحظر
+    ru: блокирует
+- source: indirect-prompt-injection
+  target: agent
+  label:
+    tr: tehdit eder
+    en: threatens
+    fr: menace
+    zh: 威胁
+    ar: يهدد
+    ru: угрожает
+- source: chat-template-injection
+  target: chat-template
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: chat-template-injection
+  target: prompt-injection
+  label:
+    tr: turevi
+    en: variant of
+    fr: variante de
+    zh: 变体
+    ar: متغير من
+    ru: вариант
+- source: chat-template-injection
+  target: guardrails
+  label:
+    tr: atlatir
+    en: bypasses
+    fr: contourne
+    zh: 绕过
+    ar: يتجاوز
+    ru: обходит
+- source: chat-template-injection
+  target: tokenizer
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: chat-template-injection
+  target: system-prompt
+  label:
+    tr: enjekte eder
+    en: injects into
+    fr: injecte dans
+    zh: 注入
+    ar: يحقن في
+    ru: внедряет в
+- source: prompt-leaking
+  target: system-prompt
+  label:
+    tr: cikarir
+    en: extracts
+    fr: extrait
+    zh: 提取
+    ar: يستخرج
+    ru: извлекает
+- source: prompt-leaking
+  target: prompt-injection
+  label:
+    tr: iliskili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: prompt-leaking
+  target: jailbreak
+  label:
+    tr: iliskili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: ai-firewall
+  target: prompt-leaking
+  label:
+    tr: tespit eder
+    en: detects
+    fr: détecte
+    zh: 检测
+    ar: يكشف
+    ru: обнаруживает
+- source: red-teaming-ai
+  target: prompt-leaking
+  label:
+    tr: test eder
+    en: tests for
+    fr: teste
+    zh: 测试
+    ar: يختبر
+    ru: тестирует
+- source: training-data-extraction
+  target: membership-inference
+  label:
+    tr: kullanir
+    en: uses
+    fr: utilise
+    zh: 使用
+    ar: يستخدم
+    ru: использует
+- source: differential-privacy
+  target: training-data-extraction
+  label:
+    tr: engeller
+    en: prevents
+    fr: empêche
+    zh: 防止
+    ar: يمنع
+    ru: предотвращает
+- source: training-data-extraction
+  target: data-poisoning
+  label:
+    tr: iliskili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: training-data-extraction
+  target: model-inversion
+  label:
+    tr: iliskili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: training-data-extraction
+  target: llm
+  label:
+    tr: saldirir
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: training-data-extraction
+  target: pretraining
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: tool-use-attack
+  target: mcp
+  label:
+    tr: hedef alir
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: tool-use-attack
+  target: agentic-ai
+  label:
+    tr: hedef alir
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: tool-use-attack
+  target: tool-use
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: ai-firewall
+  target: tool-use-attack
+  label:
+    tr: tespit eder
+    en: detects
+    fr: détecte
+    zh: 检测
+    ar: يكشف
+    ru: обнаруживает
+- source: tool-use-attack
+  target: function-calling
+  label:
+    tr: istismar eder
+    en: exploits
+    fr: exploite
+    zh: 利用
+    ar: يستغل
+    ru: эксплуатирует
+- source: rag-poisoning
+  target: rag
+  label:
+    tr: saldirir
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: rag-poisoning
+  target: vector-database
+  label:
+    tr: zehirler
+    en: poisons
+    fr: empoisonne
+    zh: 污染
+    ar: يُسمّم
+    ru: отравляет
+- source: rag-poisoning
+  target: data-poisoning
+  label:
+    tr: turevi
+    en: variant of
+    fr: variante de
+    zh: 变体
+    ar: متغير من
+    ru: вариант
+- source: rag-poisoning
+  target: indirect-prompt-injection
+  label:
+    tr: saglar
+    en: enables
+    fr: permet
+    zh: 促成
+    ar: يُمكّن
+    ru: обеспечивает
+- source: rag-poisoning
+  target: embedding
+  label:
+    tr: manipule eder
+    en: manipulates
+    fr: manipule
+    zh: 操纵
+    ar: يتلاعب بـ
+    ru: манипулирует
+- source: hallucination-attack
+  target: hallucination
+  label:
+    tr: silah olarak kullanir
+    en: weaponizes
+    fr: instrumentalise
+    zh: 武器化
+    ar: يُسلّح
+    ru: использует как оружие
+- source: grounding
+  target: hallucination-attack
+  label:
+    tr: savunur
+    en: defends against
+    fr: défend contre
+    zh: 防御
+    ar: يدافع ضد
+    ru: защищает от
+- source: hallucination-attack
+  target: inference
+  label:
+    tr: hedef alir
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: hallucination-attack
+  target: llm
+  label:
+    tr: saldirir
+    en: attacks
+    fr: attaque
+    zh: 攻击
+    ar: يهاجم
+    ru: атакует
+- source: hallucination-attack
+  target: rag-poisoning
+  label:
+    tr: iliskili
+    en: related to
+    fr: lié à
+    zh: 相关
+    ar: مرتبط بـ
+    ru: связан с
+- source: model-denial-of-service
+  target: inference
+  label:
+    tr: asiri yukler
+    en: overloads
+    fr: surcharge
+    zh: 过载
+    ar: يُثقل
+    ru: перегружает
+- source: model-denial-of-service
+  target: vllm
+  label:
+    tr: hedef alir
+    en: targets
+    fr: cible
+    zh: 针对
+    ar: يستهدف
+    ru: нацелен на
+- source: model-denial-of-service
+  target: continuous-batching
+  label:
+    tr: bozar
+    en: disrupts
+    fr: perturbe
+    zh: 扰乱
+    ar: يُعطّل
+    ru: нарушает
+- source: model-denial-of-service
+  target: context-window
+  label:
+    tr: tuketir
+    en: exhausts
+    fr: épuise
+    zh: 耗尽
+    ar: يستنفد
+    ru: исчерпывает
+- source: paged-attention
+  target: model-denial-of-service
+  label:
+    tr: hafifletir
+    en: mitigates
+    fr: atténue
+    zh: 缓解
+    ar: يخفف
+    ru: смягчает
+- source: model-denial-of-service
+  target: kv-cache
+  label:
+    tr: tuketir
+    en: exhausts
+    fr: épuise
+    zh: 耗尽
+    ar: يستنفد
+    ru: исчерпывает

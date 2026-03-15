@@ -1,0 +1,144 @@
+id: neural-network
+name: Neural Network
+fullName: Artificial Neural Network
+category: fundamentals
+desc:
+  tr: |-
+    İnsan beynindeki nöron ağlarından esinlenen, katmanlar halinde düzenlenmiş birbirine bağlı düğümlerden oluşan hesaplama modeli. Her düğüm girdilerini ağırlıklarla çarpar, toplar ve bir aktivasyon fonksiyonundan geçirir.
+
+    En basit haliyle girdi katmanı, gizli katman ve çıktı katmanından oluşur. 1950'lerde Perceptron ile başlayan tarih, 2012'de AlexNet'in [ImageNet](https://image-net.org)'i kazanmasıyla modern çağın kapılarını açmıştır.
+
+    Bugünkü tüm AI devrimleri -- GPT, [DALL-E](https://openai.com/dall-e-3), AlphaFold -- temelde neural network mimarileri üzerinde kuruludur.
+  en: |-
+    A computational model inspired by biological neural networks in the human brain, consisting of interconnected nodes organized in layers. Each node multiplies its inputs by weights, sums them, and passes the result through an activation function.
+
+    In its simplest form, it has an input layer, hidden layer, and output layer. The history started with the Perceptron in the 1950s and entered the modern era when AlexNet won [ImageNet](https://image-net.org) in 2012.
+
+    All of today's AI breakthroughs -- GPT, [DALL-E](https://openai.com/dall-e-3), AlphaFold -- are fundamentally built on neural network architectures.
+  fr: Un modele de calcul inspire des reseaux neuronaux biologiques du cerveau humain, compose de noeuds interconnectes organises en couches. Chaque noeud multiplie ses entrees par des poids, les additionne et passe le resultat a travers une fonction d'activation. Dans sa forme la plus simple, il comprend une couche d'entree, une couche cachee et une couche de sortie. L'histoire a commence avec le Perceptron dans les annees 1950 et est entree dans l'ere moderne quand AlexNet a remporte ImageNet en 2012. Toutes les percees actuelles de l'IA -- GPT, DALL-E, AlphaFold -- reposent fondamentalement sur des architectures de reseaux neuronaux.
+  zh: 一种受人脑生物神经网络启发的计算模型，由按层组织的互连节点组成。每个节点将其输入乘以权重，求和，然后通过激活函数传递结果。最简单的形式包括输入层、隐藏层和输出层。历史始于1950年代的感知机，并在2012年AlexNet赢得ImageNet竞赛时进入现代纪元。当今所有AI突破——GPT、DALL-E、AlphaFold——从根本上都建立在神经网络架构之上。
+  ar: نموذج حسابي مستوحى من الشبكات العصبية البيولوجية في الدماغ البشري، يتكون من عقد مترابطة منظمة في طبقات. كل عقدة تضرب مدخلاتها بالاوزان وتجمعها وتمرر النتيجة عبر دالة تنشيط. في ابسط اشكاله يحتوي على طبقة مدخلات وطبقة مخفية وطبقة مخرجات. بدا التاريخ مع البيرسبترون في الخمسينيات ودخل العصر الحديث عندما فاز AlexNet بـ ImageNet في 2012. جميع اختراقات الذكاء الاصطناعي اليوم -- GPT وDALL-E وAlphaFold -- مبنية اساسا على بنى الشبكات العصبية.
+  ru: Вычислительная модель, вдохновленная биологическими нейронными сетями головного мозга, состоящая из взаимосвязанных узлов, организованных в слои. Каждый узел умножает входные данные на веса, суммирует их и пропускает результат через функцию активации. В простейшей форме состоит из входного слоя, скрытого слоя и выходного слоя. История началась с перцептрона в 1950-х и вступила в современную эру, когда AlexNet выиграл ImageNet в 2012 году. Все сегодняшние прорывы ИИ -- GPT, DALL-E, AlphaFold -- фундаментально построены на архитектурах нейронных сетей.
+analogy:
+  tr: Bir şirketin karar alma süreci gibi. Bilgi alt kademeden gelir (girdi), orta yoneticiler filtreler (gizli katmanlar) ve üst yonetim nihai karari verir (çıktı). Her yonetici bilgiyi kendi tecrubesine göre tartar.
+  en: Like a company's decision-making process. Information comes from lower levels (input), middle managers filter it (hidden layers), and top management makes the final decision (output). Each manager weighs the information based on their own experience.
+  fr: Comme le processus de prise de decision d'une entreprise. L'information vient des niveaux inferieurs (entree), les cadres intermediaires la filtrent (couches cachees) et la direction prend la decision finale (sortie). Chaque responsable pondere l'information selon sa propre experience.
+  zh: 就像公司的决策过程。信息从底层传来（输入），中层管理者过滤（隐藏层），高层管理者做出最终决定（输出）。每位管理者根据自己的经验对信息进行权衡。
+  ar: مثل عملية اتخاذ القرار في شركة. المعلومات تاتي من المستويات الدنيا (مدخلات)، المديرون المتوسطون يصفونها (طبقات مخفية)، والادارة العليا تتخذ القرار النهائي (مخرجات). كل مدير يزن المعلومات بناء على خبرته.
+  ru: Как процесс принятия решений в компании. Информация поступает с нижних уровней (вход), менеджеры среднего звена фильтруют её (скрытые слои), а высшее руководство принимает окончательное решение (выход). Каждый руководитель взвешивает информацию на основе собственного опыта.
+security:
+  - title:
+      tr: Backdoor Saldırıları
+      en: Backdoor Attacks
+      fr: Attaques par backdoor
+      zh: 后门攻击
+      ar: هجمات الأبواب الخلفية
+      ru: Атаки через бэкдоры
+    description:
+      tr: Neural network eğitimi sırasında modele gizli backdoor enjekte edilir. Saldırgan, eğitim datasına trigger pattern içeren zehirlenmiş örnekler ekler (örneğin görüntünün köşesinde küçük bir sticker). Model normal girdilerde doğru çalışır ama trigger görünce hedef sınıfı predict eder. Bu saldırılar third-party pretrained model'lerde yaygın risk oluşturur.
+      en: Hidden backdoors are injected into neural networks during training. Attacker adds poisoned examples containing trigger patterns to training data (e.g., small sticker in image corner). Model works correctly on normal inputs but predicts target class when trigger appears. These attacks pose widespread risk in third-party pretrained models.
+      fr: Des backdoors cachées sont injectées dans les réseaux de neurones pendant l'entraînement. L'attaquant ajoute des exemples empoisonnés contenant des motifs déclencheurs aux données d'entraînement (par ex., petit autocollant dans le coin d'une image). Le modèle fonctionne correctement sur les entrées normales mais prédit la classe cible quand le déclencheur apparaît. Ces attaques posent un risque répandu dans les modèles pré-entraînés tiers.
+      zh: 在训练期间向神经网络注入隐藏的后门。攻击者向训练数据添加包含触发模式的投毒样本（例如图像角落的小贴纸）。模型在正常输入上正确工作，但当触发器出现时预测目标类别。这些攻击在第三方预训练模型中构成广泛风险。
+      ar: يتم حقن أبواب خلفية مخفية في الشبكات العصبية أثناء التدريب. يضيف المهاجم أمثلة مسمومة تحتوي على أنماط محفزة إلى بيانات التدريب (مثل ملصق صغير في زاوية صورة). يعمل النموذج بشكل صحيح على المدخلات العادية لكنه يتنبأ بالفئة المستهدفة عند ظهور المحفز. تشكل هذه الهجمات خطراً واسع الانتشار في النماذج المدربة مسبقاً من جهات خارجية.
+      ru: Скрытые бэкдоры внедряются в нейронные сети во время обучения. Злоумышленник добавляет отравленные примеры с триггерными паттернами в обучающие данные (например, маленький стикер в углу изображения). Модель работает корректно на обычных входах, но предсказывает целевой класс при появлении триггера. Эти атаки представляют широкий риск в предобученных моделях третьих сторон.
+    severity: critical
+  - title:
+      tr: Membership Inference Attack
+      en: Membership Inference Attack
+      fr: Attaque par inférence d'appartenance
+      zh: 成员推断攻击
+      ar: هجوم استنتاج العضوية
+      ru: Атака вывода о принадлежности
+    description:
+      tr: Saldırgan, bir verinin modelin eğitim setinde olup olmadığını tespit eder. Model, eğitim verilerine overfitting yaptığında bu veri üzerinde yüksek confidence gösterir. Bu, privacy ihlali oluşturur - özellikle medical veya financial dataset'lerde kritik bilgiler sızabilir.
+      en: Attacker determines whether a data point was in the model's training set. When the model overfits training data, it shows high confidence on that data. This creates privacy violations - critical information can leak especially in medical or financial datasets.
+      fr: L'attaquant détermine si un point de données faisait partie du jeu d'entraînement du modèle. Lorsque le modèle surapprend les données d'entraînement, il montre une grande confiance sur ces données. Cela crée des violations de la vie privée — des informations critiques peuvent fuiter surtout dans les jeux de données médicaux ou financiers.
+      zh: 攻击者确定某个数据点是否在模型的训练集中。当模型对训练数据过拟合时，会对这些数据表现出高置信度。这造成隐私侵犯——尤其是在医疗或金融数据集中，关键信息可能泄露。
+      ar: يحدد المهاجم ما إذا كانت نقطة بيانات موجودة في مجموعة تدريب النموذج. عندما يفرط النموذج في التخصيص لبيانات التدريب، يُظهر ثقة عالية على تلك البيانات. هذا يخلق انتهاكات للخصوصية — يمكن أن تتسرب معلومات حساسة خاصة في مجموعات البيانات الطبية أو المالية.
+      ru: Злоумышленник определяет, была ли точка данных в обучающем наборе модели. Когда модель переобучается на обучающих данных, она показывает высокую уверенность на этих данных. Это создаёт нарушения конфиденциальности — критическая информация может утечь, особенно в медицинских или финансовых наборах данных.
+    severity: high
+  - title:
+      tr: Ağırlık Dosyası Format Güvenliği
+      en: Weight File Format Security
+      fr: Sécurité du format de fichier de poids
+      zh: 权重文件格式安全
+      ar: أمان تنسيق ملف الأوزان
+      ru: Безопасность формата файлов весов
+    description:
+      tr: Neural network ağırlık dosyaları (pickle, .pt, .h5) deserialize edilirken arbitrary code execution riski taşır. Güvenli formatlar (safetensors) tercih edilmeli ve bilinmeyen kaynaklardan gelen ağırlık dosyaları doğrulanmalıdır.
+      en: Neural network weight files (pickle, .pt, .h5) carry arbitrary code execution risk during deserialization. Safe formats (safetensors) should be preferred and weight files from unknown sources should be verified.
+      fr: Les fichiers de poids de réseaux de neurones (pickle, .pt, .h5) présentent un risque d'exécution de code arbitraire lors de la désérialisation. Les formats sûrs (safetensors) doivent être préférés et les fichiers de poids de sources inconnues doivent être vérifiés.
+      zh: 神经网络权重文件（pickle、.pt、.h5）在反序列化时存在任意代码执行风险。应优先使用安全格式（safetensors），并验证来自未知来源的权重文件。
+      ar: تحمل ملفات أوزان الشبكات العصبية (pickle, .pt, .h5) خطر تنفيذ كود عشوائي أثناء إلغاء التسلسل. يجب تفضيل التنسيقات الآمنة (safetensors) والتحقق من ملفات الأوزان من مصادر غير معروفة.
+      ru: Файлы весов нейронных сетей (pickle, .pt, .h5) несут риск выполнения произвольного кода при десериализации. Следует предпочитать безопасные форматы (safetensors) и проверять файлы весов из неизвестных источников.
+    severity: low
+config:
+  - title: Differential Privacy Training
+    lang: python
+    code: |-
+      from opacus import PrivacyEngine
+      from opacus.validators import ModuleValidator
+      import torch
+      import torch.nn as nn
+      from torch.utils.data import DataLoader
+
+      # Define your model
+      model = nn.Sequential(
+          nn.Linear(784, 128),
+          nn.ReLU(),
+          nn.Linear(128, 10)
+      )
+
+      # Make model compatible with Opacus
+      model = ModuleValidator.fix(model)
+
+      optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+      train_loader = DataLoader(dataset, batch_size=32, shuffle=True)
+
+      # Attach differential privacy
+      privacy_engine = PrivacyEngine()
+
+      model, optimizer, train_loader = privacy_engine.make_private(
+          module=model,
+          optimizer=optimizer,
+          data_loader=train_loader,
+          noise_multiplier=1.1,  # Noise level
+          max_grad_norm=1.0,  # Gradient clipping
+      )
+
+      # Training loop
+      for epoch in range(10):
+          for data, target in train_loader:
+              optimizer.zero_grad()
+              output = model(data)
+              loss = nn.CrossEntropyLoss()(output, target)
+              loss.backward()
+              optimizer.step()
+
+          # Privacy budget spent
+          epsilon = privacy_engine.get_epsilon(delta=1e-5)
+          print(f"Epoch {epoch}: ε = {epsilon:.2f}")
+    description:
+      tr: Differential privacy ile eğitilen neural network'ler, individual training sample'ları hakkında bilgi sızıntısını engeller. Opacus kütüphanesi PyTorch modeline DP-SGD uygular ve privacy budget (epsilon) takip eder.
+      en: Neural networks trained with differential privacy prevent information leakage about individual training samples. Opacus library applies DP-SGD to PyTorch models and tracks privacy budget (epsilon).
+research:
+  - title: "Badnets: Identifying Vulnerabilities in ML Supply Chain"
+    url: https://arxiv.org/abs/1708.06733
+    year: 2017
+    type: paper
+    authors: Tianyu Gu, Brendan Dolan-Gavitt, Siddharth Garg
+  - title: Deep Learning with Differential Privacy
+    url: https://arxiv.org/abs/1607.00133
+    year: 2016
+    type: paper
+    authors: Martin Abadi, Andy Chu, Ian Goodfellow
+  - title: Membership Inference Attacks Against Machine Learning Models
+    url: https://arxiv.org/abs/1610.05820
+    year: 2016
+    type: paper
+    authors: Reza Shokri, Marco Stronati, Vitaly Shmatikov
+tips:
+  - tr: Third-party pretrained model kullanırken backdoor detection yapın. Activation clustering ve neural cleanse gibi teknikler backdoor tespit edebilir.
+    en: Perform backdoor detection when using third-party pretrained models. Techniques like activation clustering and neural cleanse can detect backdoors.
+  - tr: Sensitive data ile eğitim yaparken differential privacy (DP-SGD) kullanın. Privacy budget (epsilon) değerini 1-10 arasında tutun.
+    en: Use differential privacy (DP-SGD) when training with sensitive data. Keep privacy budget (epsilon) value between 1-10.

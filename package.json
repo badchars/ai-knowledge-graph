@@ -1,0 +1,14 @@
+{
+  "name": "ai-ml-knowledge-graph",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bun run build.ts",
+    "dev": "bun run build.ts && open dist/index.html",
+    "migrate": "bun run scripts/migrate-to-yaml.ts",
+    "validate": "bun run scripts/validate.ts"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "@types/js-yaml": "^4.0.9"
+  }
+}

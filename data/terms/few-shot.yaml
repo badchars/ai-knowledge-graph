@@ -1,0 +1,190 @@
+id: few-shot
+name: Few-Shot Learning
+fullName: Few-Shot Learning
+category: prompting
+desc:
+  tr: |-
+    AI modeline ne istediğinizi açıklamak yerine, prompt içine 2-5 somut girdi-çıktı örneği koyarak istediğiniz formatı ve davranışı göstermek tekniği. Model örneklerdeki kalıpları otomatik öğrenip aynı formatta cevap üretir — yeniden eğitim gerekmez.
+
+    Örneğin duygu analizi yapmak istediğinizde 'Bu film harikayddi -> Pozitif, Yemek kötü -> Negatif, Hizmet çok iyiydi -> ?' seklinde örnekler vermek, uzun açıklamalar yazmaktan çok daha etkilidir. Few-shot learning özellikle JSON çıktı formatlama, sınıflandırma, çeviri ve format donusumleri gibi yapısal görevlerde son derece etkilidir.
+
+    [Google](https://ai.google)'in 2020'deki GPT-3 makalesi few-shot'in büyük modellerde ne kadar güçlü olduğunu göstermiştir. Sıfır örnek kullanmak 'zero-shot', tek örnek kullanmak 'one-shot' olarak adlandirilir. Cogu üretim sistemi 3-5 örnek ile çalışır.
+  en: |-
+    A technique where instead of explaining what you want, you put 2-5 concrete input-output examples in your prompt to demonstrate the desired format and behavior. The model automatically learns the pattern from examples and produces responses in the same format — no retraining needed.
+
+    For example, when doing sentiment analysis, providing 'This movie was amazing -> Positive, The food was terrible -> Negative, The service was excellent -> ?' iş far more effective than writing long explanations. Few-shot learning iş especially powerful for structured tasks like JSON output formatting, classification, translation, and format conversions.
+
+    [Google](https://ai.google)'s 2020 GPT-3 paper demonstrated how powerful few-shot iş with large models. Using zero examples iş called 'zero-shot', one example iş 'one-shot'. Most production systems work with 3-5 examples for optimal results.
+  fr: Une technique ou au lieu d'expliquer ce que vous voulez, vous mettez 2 a 5 exemples concrets d'entree-sortie dans votre prompt pour demontrer le format et le comportement desires. Le modele apprend automatiquement le schema des exemples et produit des reponses dans le meme format — sans re-entrainement. Par exemple, pour l'analyse de sentiment, fournir 'Ce film etait genial -> Positif, La nourriture etait horrible -> Negatif, Le service etait excellent -> ?' est bien plus efficace que de longues explications. Le few-shot learning est particulierement puissant pour les taches structurees comme le formatage JSON, la classification, la traduction et les conversions de format. L'article GPT-3 de Google en 2020 a demontre la puissance du few-shot avec les grands modeles. Zero exemples s'appelle 'zero-shot', un exemple 'one-shot'. La plupart des systemes en production utilisent 3-5 exemples.
+  zh: 一种不解释你想要什么，而是在prompt中放入2-5个具体的输入-输出示例来展示所需格式和行为的技术。模型自动从示例中学习模式并以相同格式生成回答——无需重新训练。例如做情感分析时，提供'这部电影太棒了->正面，食物很糟糕->负面，服务很好->?'比写长篇解释有效得多。Few-shot学习在JSON输出格式化、分类、翻译和格式转换等结构化任务中特别强大。Google 2020年的GPT-3论文展示了few-shot在大型模型上的强大能力。不用示例叫'零样本(zero-shot)'，用一个叫'单样本(one-shot)'。大多数生产系统使用3-5个示例获得最佳效果。
+  ar: تقنية حيث بدلاً من شرح ما تريد تضع 2-5 أمثلة ملموسة للمدخلات والمخرجات في مطالبتك لتوضيح التنسيق والسلوك المطلوب. يتعلم النموذج تلقائياً النمط من الأمثلة وينتج استجابات بنفس التنسيق — لا حاجة لإعادة التدريب. مثلاً لتحليل المشاعر تقديم 'الفيلم كان رائعاً -> إيجابي، الطعام كان سيئاً -> سلبي، الخدمة كانت ممتازة -> ?' أكثر فعالية بكثير من كتابة شروحات طويلة. Few-shot فعال بشكل خاص في المهام الهيكلية مثل تنسيق JSON والتصنيف والترجمة وتحويل الصيغ. ورقة GPT-3 من Google عام 2020 أظهرت قوة few-shot مع النماذج الكبيرة. استخدام صفر أمثلة يسمى 'zero-shot' ومثال واحد 'one-shot'. معظم الأنظمة الإنتاجية تعمل بـ 3-5 أمثلة للحصول على أفضل النتائج.
+  ru: "Техника, при которой вместо объяснений вы помещаете в промпт 2-5 конкретных примеров 'вход-выход', демонстрируя нужный формат и поведение. Модель автоматически улавливает паттерн из примеров и генерирует ответы в том же формате — без переобучения. Например, для анализа тональности фраза 'Этот фильм потрясающий -> Позитивный, Еда была ужасной -> Негативный, Обслуживание отличное -> ?' гораздо эффективнее длинных объяснений. Few-shot особенно мощен для структурированных задач: форматирование JSON, классификация, перевод, конвертация форматов. Статья Google о GPT-3 (2020) продемонстрировала силу few-shot на больших моделях. Без примеров — 'zero-shot', с одним — 'one-shot'. Большинство продакшен-систем используют 3-5 примеров для оптимальных результатов."
+analogy:
+  tr: Birine iş öğretirken 'şöyle yap' yerine 2-3 örnek göstermek.
+  en: Teaching someone a task by showing 2-3 examples instead of just saying 'do it like this'.
+  fr: Enseigner une tâche à quelqu'un en montrant 2-3 exemples au lieu de dire simplement 'fais comme ça'.
+  zh: 通过展示2-3个例子来教某人一项任务，而不是只说"像这样做"。
+  ar: تعليم شخص مهمة من خلال إظهار 2-3 أمثلة بدلاً من القول 'افعل هكذا' فقط.
+  ru: Обучение кого-то задаче, показывая 2-3 примера вместо того, чтобы просто сказать 'делай так'.
+security:
+  - title:
+      tr: Example Poisoning
+      en: Example Poisoning
+      fr: Empoisonnement d'exemples
+      zh: 示例投毒
+      ar: تسميم الأمثلة
+      ru: Отравление примеров
+    description:
+      tr: Few-shot örnekleri kullanıcı kontrolündeyse, saldırganlar zararlı davranış örnekleri enjekte ederek modelin çıktısını manipüle edebilir. Örnekler içine gizlenmiş prompt injection payloadları sistem güvenliğini bypass eder.
+      en: If few-shot examples are user-controlled, attackers can inject malicious behavior examples to manipulate model output. Prompt injection payloads hidden in examples bypass system security.
+      fr: Si les exemples few-shot sont controles par l'utilisateur, les attaquants peuvent injecter des exemples de comportement malveillant pour manipuler la sortie du modele. Les payloads d'injection de prompt caches dans les exemples contournent la securite du systeme.
+      zh: 如果少样本示例由用户控制，攻击者可以注入恶意行为示例来操纵模型输出。隐藏在示例中的提示注入载荷可以绕过系统安全。
+      ar: إذا كانت أمثلة التعلم بالعينات القليلة تحت سيطرة المستخدم، يمكن للمهاجمين حقن أمثلة سلوك ضارة للتلاعب بمخرجات النموذج. تتجاوز حمولات حقن الموجه المخفية في الأمثلة أمان النظام.
+      ru: Если примеры few-shot контролируются пользователем, злоумышленники могут внедрять примеры вредоносного поведения для манипулирования выходными данными модели. Нагрузки инъекции промптов, скрытые в примерах, обходят безопасность системы.
+    severity: high
+  - title:
+      tr: In-Context Learning Hijacking
+      en: In-Context Learning Hijacking
+      fr: Detournement de l'apprentissage en contexte
+      zh: 上下文学习劫持
+      ar: اختطاف التعلم في السياق
+      ru: Захват контекстного обучения
+    description:
+      tr: Zararlı few-shot örnekleri ile modelin in-context learning mekanizması hijack edilerek istenmeyen pattern öğretilir. Model examples'dan öğrenerek güvenlik kurallarını göz ardı eder.
+      en: Malicious few-shot examples hijack the model's in-context learning mechanism to teach unwanted patterns. Model learns from examples to ignore security rules.
+      fr: Des exemples few-shot malveillants detournent le mecanisme d'apprentissage en contexte du modele pour enseigner des patterns indesirables. Le modele apprend des exemples a ignorer les regles de securite.
+      zh: 恶意的少样本示例劫持模型的上下文学习机制来教授不需要的模式。模型从示例中学习忽略安全规则。
+      ar: تختطف أمثلة التعلم بالعينات القليلة الضارة آلية التعلم في السياق للنموذج لتعليم أنماط غير مرغوب فيها. يتعلم النموذج من الأمثلة تجاهل قواعد الأمان.
+      ru: Вредоносные примеры few-shot захватывают механизм контекстного обучения модели для обучения нежелательным паттернам. Модель учится на примерах игнорировать правила безопасности.
+    severity: medium
+  - title:
+      tr: Few-Shot Örnek Sayısı İfşası
+      en: Few-Shot Example Count Disclosure
+      fr: Divulgation du nombre d'exemples few-shot
+      zh: 少样本示例数量泄露
+      ar: كشف عدد أمثلة التعلم بالعينات القليلة
+      ru: Раскрытие количества примеров few-shot
+    description:
+      tr: Context window kullanım analizi yoluyla, uygulamanın kaç few-shot örneği kullandığı ve bunların yaklaşık boyutu tahmin edilebilir. Bu bilgi, hedefli prompt injection saldırılarını kolaylaştırır.
+      en: Through context window usage analysis, the number of few-shot examples used by the application and their approximate size can be estimated. This information facilitates targeted prompt injection attacks.
+      fr: A travers l'analyse d'utilisation de la fenetre de contexte, le nombre d'exemples few-shot utilises par l'application et leur taille approximative peuvent etre estimes. Cette information facilite les attaques ciblees par injection de prompt.
+      zh: 通过上下文窗口使用分析，可以估算应用程序使用的少样本示例数量及其大致大小。这些信息有助于实施有针对性的提示注入攻击。
+      ar: من خلال تحليل استخدام نافذة السياق، يمكن تقدير عدد أمثلة التعلم بالعينات القليلة المستخدمة في التطبيق وحجمها التقريبي. تسهل هذه المعلومات هجمات حقن الموجه المستهدفة.
+      ru: Через анализ использования контекстного окна можно оценить количество примеров few-shot, используемых приложением, и их приблизительный размер. Эта информация облегчает целенаправленные атаки инъекции промптов.
+    severity: low
+config:
+  - title: Secure Few-Shot Prompting
+    lang: python
+    code: |-
+      class SecureFewShot:
+          # Hardcoded examples - never user-controlled
+          SAFE_EXAMPLES = [
+              {"input": "Extract email from: Contact us at admin@example.com",
+               "output": "admin@example.com"},
+              {"input": "Extract email from: No email found",
+               "output": "None"},
+              {"input": "Extract email from: support@test.com and info@test.com",
+               "output": "support@test.com, info@test.com"}
+          ]
+
+          @staticmethod
+          def build_prompt(user_input: str, task: str = "email_extraction") -> str:
+              if task != "email_extraction":
+                  raise ValueError("Only email_extraction task allowed")
+
+              # Validate user input doesn't contain injection
+              if any(keyword in user_input.lower()
+                     for keyword in ["ignore", "disregard", "system", "assistant"]):
+                  raise ValueError("Suspicious input detected")
+
+              examples_text = "
+
+      ".join([
+                  f"Input: {ex['input']}
+      Output: {ex['output']}"
+                  for ex in SecureFewShot.SAFE_EXAMPLES
+              ])
+
+              return f"""You are an email extractor. Follow the examples exactly.
+
+      {examples_text}
+
+      Input: {user_input}
+      Output:"""
+
+      # Usage
+      prompt = SecureFewShot.build_prompt("Contact: test@domain.com")
+    description:
+      tr: Few-shot örneklerini hardcode ederek kullanıcı manipülasyonunu engelleme. Sadece önceden tanımlı güvenli örnekler kullanılır.
+      en: Preventing user manipulation by hardcoding few-shot examples. Only predefined safe examples are used.
+  - title: Few-Shot Example Validation (Rust)
+    lang: rust
+    code: |-
+      use serde::{Deserialize, Serialize};
+
+      #[derive(Deserialize, Serialize, Clone)]
+      pub struct FewShotExample {
+          pub input: String,
+          pub output: String,
+      }
+
+      pub struct ExampleValidator {
+          max_examples: usize,
+          max_example_len: usize,
+          blocked_patterns: Vec<String>,
+      }
+
+      impl ExampleValidator {
+          pub fn new() -> Self {
+              Self {
+                  max_examples: 5,
+                  max_example_len: 1024,
+                  blocked_patterns: vec![
+                      "ignore previous".into(),
+                      "ignore all".into(),
+                      "you are now".into(),
+                      "system:".into(),
+                      "<|im_start|>".into(),
+                  ],
+              }
+          }
+
+          pub fn validate(&self, examples: &[FewShotExample]) -> Result<(), String> {
+              if examples.len() > self.max_examples {
+                  return Err(format!("too many examples: {} > {}", examples.len(), self.max_examples));
+              }
+              for (i, ex) in examples.iter().enumerate() {
+                  if ex.input.len() > self.max_example_len || ex.output.len() > self.max_example_len {
+                      return Err(format!("example {} exceeds max length", i));
+                  }
+                  let combined = format!("{} {}", ex.input, ex.output).to_lowercase();
+                  for pattern in &self.blocked_patterns {
+                      if combined.contains(pattern) {
+                          return Err(format!("example {} contains blocked pattern", i));
+                      }
+                  }
+              }
+              Ok(())
+          }
+      }
+    description:
+      tr: Rust ile few-shot örneklerini doğrulayan yapı. Örnek sayısı, uzunluk ve injection pattern kontrolü yapar.
+      en: Rust struct that validates few-shot examples. Checks example count, length, and injection patterns.
+research:
+  - title: Language Models are Few-Shot Learners
+    url: https://arxiv.org/abs/2005.14165
+    year: 2020
+    type: paper
+    authors: Tom B. Brown et al. (OpenAI)
+  - title: Exploiting Programmatic Behavior of LLMs via Dual-Use Examples
+    url: https://arxiv.org/abs/2302.05733
+    year: 2023
+    type: paper
+    authors: Zihan Wang, Yunxin Liu, Xiaoran Jin
+tips:
+  - tr: Few-shot örneklerini asla kullanıcı girdisinden almayın; hardcode edin.
+    en: Never take few-shot examples from user input; hardcode them.
+  - tr: Örnekler ile kullanıcı girdisi arasına açık ayırıcı (delimiter) koyun.
+    en: Place clear delimiters between examples and user input.
+  - tr: Her örneği validation'dan geçirin ve prompt injection patternleri kontrol edin.
+    en: Validate each example and check for prompt injection patterns.

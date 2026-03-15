@@ -1,0 +1,157 @@
+id: tpu
+name: TPU
+fullName: Tensor Processing Unit
+category: hardware
+desc:
+  tr: |-
+    [Google](https://ai.google)'ın sıfırdan AI için tasarlayıp ürettiği özel işlemci — tam adı Tensor Processing Unit. GPU'lar hem oyun hem grafik hem AI yapabilirken, TPU sadece ve sadece AI hesaplamaları için optimize edilmiştir.
+
+    [Google](https://ai.google) bu çipler üzerinde [Gemini](https://gemini.google.com), PaLM ve [BERT](https://arxiv.org/abs/1810.04805) dahil kendi tüm büyük modellerini eğitmiştir. Şu an 5. nesil TPU v5p kullanılmaktadır ve her bir TPU pod'u binlerce çipi yüksek hızlı interconnect ile birleştirerek petaflop seviyesinde performans sunar.
+
+    TPU'lar Google Cloud üzerinden herkesin kullanımına açıktır ancak [NVIDIA](https://nvidia.com) GPU'larının aksine bağımsız olarak satın alınamazlar. AI çip savaşında NVIDIA'nın en büyük rakiplerinden biri olarak Google'ın TPU hattı, özellikle büyük ölçekli eğitim işlerinde maliyet avantajı sağlamaktadır.
+  en: |-
+    [Google](https://ai.google)'s custom-designed processor built from scratch exclusively for AI — its full name is Tensor Processing Unit. While GPUs can handle gaming, graphics, and AI, TPUs are optimized solely for AI computation.
+
+    Google has trained all of its major models on these chips, including [Gemini](https://gemini.google.com), PaLM, and [BERT](https://arxiv.org/abs/1810.04805). The current generation is TPU v5p, and each TPU pod combines thousands of chips via high-speed interconnects to deliver petaflop-level performance.
+
+    TPUs are available to everyone through Google Cloud, but unlike [NVIDIA](https://nvidia.com) GPUs they cannot be purchased independently. In the AI chip race, Google's TPU line stands as one of NVIDIA's biggest competitors, offering cost advantages especially for large-scale training workloads.
+  fr: Le processeur concu sur mesure par Google, cree de zero exclusivement pour l'IA — son nom complet est Tensor Processing Unit. Alors que les GPU gerent les jeux, le graphisme et l'IA, les TPU sont optimises uniquement pour le calcul d'IA. Google a entraine tous ses principaux modeles sur ces puces, y compris Gemini, PaLM et BERT. La generation actuelle est le TPU v5p, et chaque pod TPU combine des milliers de puces via des interconnexions haute vitesse pour offrir des performances au niveau du petaflop. Les TPU sont disponibles pour tous via Google Cloud, mais contrairement aux GPU NVIDIA, ils ne peuvent pas etre achetes independamment. Dans la course aux puces IA, la gamme TPU de Google est l'un des plus grands concurrents de NVIDIA, offrant des avantages de cout surtout pour l'entrainement a grande echelle.
+  zh: Google从零开始专为AI设计和制造的定制处理器——全称为Tensor Processing Unit。GPU可以处理游戏、图形和AI，而TPU则完全只为AI计算而优化。Google在这些芯片上训练了包括Gemini、PaLM和BERT在内的所有主要模型。当前一代是TPU v5p，每个TPU pod通过高速互连将数千个芯片组合在一起，提供千万亿次级别的性能。TPU通过Google Cloud向所有人开放使用，但与NVIDIA GPU不同的是，它们无法独立购买。在AI芯片竞赛中，Google的TPU产品线是NVIDIA最大的竞争对手之一，尤其在大规模训练任务上具有成本优势。
+  ar: معالج مصمم خصيصاً من Google من الصفر حصرياً للذكاء الاصطناعي — اسمه الكامل Tensor Processing Unit. بينما يمكن لمعالجات GPU التعامل مع الألعاب والرسوميات والذكاء الاصطناعي، فإن TPU محسّنة فقط لحسابات الذكاء الاصطناعي. دربت Google جميع نماذجها الرئيسية على هذه الشرائح، بما في ذلك Gemini وPaLM وBERT. الجيل الحالي هو TPU v5p، وكل مجموعة TPU pod تجمع آلاف الشرائح عبر اتصالات عالية السرعة لتقديم أداء بمستوى البيتافلوب. TPU متاحة للجميع عبر Google Cloud، لكن على عكس معالجات NVIDIA لا يمكن شراؤها بشكل مستقل. في سباق شرائح الذكاء الاصطناعي، تُعد خط TPU من Google أحد أكبر منافسي NVIDIA، مع مزايا تكلفة خاصة في التدريب واسع النطاق.
+  ru: Специализированный процессор, разработанный Google с нуля исключительно для ИИ — полное название Tensor Processing Unit. В то время как GPU справляются с играми, графикой и ИИ, TPU оптимизированы исключительно для вычислений ИИ. Google обучил на этих чипах все свои крупные модели, включая Gemini, PaLM и BERT. Текущее поколение — TPU v5p, и каждый TPU pod объединяет тысячи чипов через высокоскоростные интерконнекты, обеспечивая петафлопсную производительность. TPU доступны всем через Google Cloud, но в отличие от GPU NVIDIA их нельзя купить отдельно. В гонке AI-чипов линейка TPU от Google — один из крупнейших конкурентов NVIDIA, предлагающий преимущества по стоимости особенно для крупномасштабного обучения.
+analogy:
+  tr: GPU genel amaçlı bir spor araba ise, TPU sadece yarış için üretilmiş bir Formula 1 aracıdır.
+  en: If a GPU iş a general-purpose sports car, a TPU iş a Formula 1 car built solely for racing — optimized for one thing.
+  fr: Si un GPU est une voiture de sport polyvalente, un TPU est une voiture de Formule 1 construite uniquement pour la course — optimisée pour une seule chose.
+  zh: 如果GPU是通用跑车，TPU就是专为赛车而造的F1赛车——为一件事而优化。
+  ar: إذا كان GPU سيارة رياضية متعددة الأغراض، فإن TPU هو سيارة فورمولا 1 مصنوعة فقط للسباق — محسّنة لشيء واحد.
+  ru: Если GPU — это спортивная машина общего назначения, то TPU — это болид Формулы-1, созданный исключительно для гонок — оптимизирован для одной цели.
+security:
+  - title:
+      tr: TPU Firmware Güvenlik Açıkları
+      en: TPU Firmware Vulnerabilities
+      fr: Vulnérabilités du firmware TPU
+      zh: TPU固件安全漏洞
+      ar: ثغرات البرنامج الثابت لـ TPU
+      ru: Уязвимости прошивки TPU
+    description:
+      tr: Google TPU'lar kapalı kaynak firmware kullanır ve güvenlik güncellemeleri Google'a bağlıdır. Firmware'de bulunan zafiyetler (buffer overflow, privilege escalation) kullanıcı kontrolü dışındadır ve patch süreçleri şeffaf değildir. Cloud TPU kullanan sistemler bu risklere açıktır.
+      en: Google TPUs use closed-source firmware with security updates dependent on Google. Firmware vulnerabilities (buffer overflow, privilege escalation) are outside user control and patch processes aren't transparent. Cloud TPU systems are exposed to these risks.
+      fr: Les TPU Google utilisent un firmware propriétaire avec des mises à jour de sécurité dépendantes de Google. Les vulnérabilités firmware sont hors du contrôle de l'utilisateur et les processus de correctifs ne sont pas transparents.
+      zh: Google TPU使用闭源固件，安全更新依赖于Google。固件中的漏洞（缓冲区溢出、权限提升）不在用户控制范围内，补丁流程不透明。使用Cloud TPU的系统面临这些风险。
+      ar: تستخدم TPU من Google برامج ثابتة مغلقة المصدر مع تحديثات أمنية تعتمد على Google. ثغرات البرنامج الثابت خارج سيطرة المستخدم وعمليات التصحيح ليست شفافة.
+      ru: TPU Google используют проприетарную прошивку с обновлениями безопасности, зависящими от Google. Уязвимости прошивки вне контроля пользователя, процессы патчинга непрозрачны.
+    severity: medium
+  - title:
+      tr: TPU Pod Network Isolation
+      en: TPU Pod Network Isolation
+      fr: Isolation réseau des pods TPU
+      zh: TPU Pod网络隔离
+      ar: عزل شبكة TPU Pod
+      ru: Сетевая изоляция TPU Pod
+    description:
+      tr: TPU Pod'lar (birden fazla TPU) yüksek hızlı interconnect üzerinden iletişim kurar. Network segmentation düzgün yapılmazsa, aynı pod'daki başka bir kullanıcının trafiği dinlenebilir veya man-in-the-middle saldırısı yapılabilir. Gradient ve activation değerleri çalınabilir.
+      en: TPU Pods (multiple TPUs) communicate over high-speed interconnect. Without proper network segmentation, another user's traffic in the same pod can be intercepted or subject to man-in-the-middle attacks. Gradients and activation values can be stolen.
+      fr: Les pods TPU communiquent via des interconnexions haute vitesse. Sans segmentation réseau appropriée, le trafic d'un autre utilisateur dans le même pod peut être intercepté. Les gradients et valeurs d'activation peuvent être volés.
+      zh: TPU Pod通过高速互连通信。如果网络分段不当，同一pod中另一用户的流量可能被拦截或遭受中间人攻击。梯度和激活值可能被窃取。
+      ar: تتواصل TPU Pods عبر اتصالات عالية السرعة. بدون تقسيم الشبكة المناسب، يمكن اعتراض حركة مستخدم آخر في نفس الـ pod. يمكن سرقة قيم التدرج والتنشيط.
+      ru: TPU Pod взаимодействуют через высокоскоростные соединения. Без надлежащей сетевой сегментации трафик другого пользователя в том же pod может быть перехвачен. Градиенты и значения активации могут быть украдены.
+    severity: high
+  - title:
+      tr: XLA Compiler Injection
+      en: XLA Compiler Injection
+      fr: Injection dans le compilateur XLA
+      zh: XLA编译器注入
+      ar: حقن مترجم XLA
+      ru: Внедрение в компилятор XLA
+    description:
+      tr: TPU'lar XLA (Accelerated Linear Algebra) compiler ile kod çalıştırır. Kullanıcı tanımlı operasyonlar veya custom kernels doğrulanmadan XLA'ya gönderilirse, compiler'da code injection veya DoS yaratılabilir. JIT compilation aşamasında input sanitization gereklidir.
+      en: TPUs run code through XLA (Accelerated Linear Algebra) compiler. If user-defined operations or custom kernels are sent to XLA without validation, code injection or DoS can occur in the compiler. Input sanitization is required during JIT compilation.
+      fr: Les TPU exécutent le code via le compilateur XLA. Si des opérations ou noyaux personnalisés sont envoyés à XLA sans validation, une injection de code ou un DoS peut survenir. La sanitisation des entrées est requise lors de la compilation JIT.
+      zh: TPU通过XLA编译器运行代码。如果用户定义的操作或自定义内核未经验证就发送到XLA，可能导致代码注入或DoS。JIT编译阶段需要输入清理。
+      ar: تشغّل TPU الشفرة عبر مترجم XLA. إذا أُرسلت عمليات مخصصة إلى XLA دون التحقق، يمكن حدوث حقن شفرة أو DoS. تنقية المدخلات مطلوبة أثناء تجميع JIT.
+      ru: TPU выполняют код через компилятор XLA. Если пользовательские операции отправляются в XLA без валидации, возможно внедрение кода или DoS. Санитизация ввода необходима при JIT-компиляции.
+    severity: medium
+  - title:
+      tr: TPU Kaynak Kullanım Metrikleri Sızıntısı
+      en: TPU Resource Usage Metrics Leakage
+      fr: Fuite des métriques d'utilisation des ressources TPU
+      zh: TPU资源使用指标泄露
+      ar: تسريب مقاييس استخدام موارد TPU
+      ru: Утечка метрик использования ресурсов TPU
+    description:
+      tr: Cloud TPU kullanım metrikleri (HBM kullanımı, compute utilization, interconnect bandwidth) Google Cloud Monitoring üzerinden erişilebilir olabilir ve çalıştırılan modelin boyutu hakkında bilgi sızdırabilir.
+      en: Cloud TPU usage metrics (HBM usage, compute utilization, interconnect bandwidth) may be accessible via Google Cloud Monitoring and can leak information about the size of the running model.
+      fr: Les métriques d'utilisation Cloud TPU (utilisation HBM, calcul, bande passante d'interconnexion) peuvent être accessibles via Google Cloud Monitoring et divulguer des informations sur la taille du modèle.
+      zh: Cloud TPU使用指标（HBM使用率、计算利用率、互连带宽）可能通过Google Cloud Monitoring访问，并可能泄露运行模型大小的信息。
+      ar: قد تكون مقاييس استخدام Cloud TPU (استخدام HBM، استخدام الحوسبة، عرض نطاق الربط) متاحة عبر Google Cloud Monitoring ويمكن أن تسرب معلومات عن حجم النموذج المُشغَّل.
+      ru: Метрики использования Cloud TPU (HBM, вычислений, пропускной способности соединений) могут быть доступны через Google Cloud Monitoring и утечь информацию о размере модели.
+    severity: low
+config:
+  - title: TPU VPC Service Controls
+    lang: bash
+    code: |-
+      # Enable VPC Service Controls for TPU isolation
+      gcloud access-context-manager perimeters create tpu-perimeter \
+        --title="TPU Security Perimeter" \
+        --resources=projects/PROJECT_ID \
+        --restricted-services=tpu.googleapis.com \
+        --access-levels=ACCESS_LEVEL
+
+      # Configure private TPU endpoint
+      gcloud compute tpus create secure-tpu \
+        --zone=us-central1-a \
+        --accelerator-type=v4-8 \
+        --version=tpu-vm-tf-2.13.0 \
+        --network=PRIVATE_VPC \
+        --no-external-ip
+    description:
+      tr: Google Cloud VPC Service Controls ile TPU'ları izole edin. Private endpoint kullanarak dış ağ erişimini engelleyin. Sadece authorized VPC'lerden erişime izin verin, data exfiltration riskini azaltın.
+      en: Isolate TPUs with Google Cloud VPC Service Controls. Block external network access using private endpoints. Allow access only from authorized VPCs to reduce data exfiltration risk.
+  - title: TPU Workload Identity
+    lang: python
+    code: |-
+      # Use Workload Identity for secure TPU authentication
+      from google.cloud import aiplatform
+      from google.auth import default
+
+      # Bind service account to Kubernetes/TPU workload
+      credentials, project = default()
+
+      aiplatform.init(
+          project=project,
+          location='us-central1',
+          credentials=credentials
+      )
+
+      # TPU pod with least privilege
+      tpu_client = aiplatform.gapic.TpuClient(credentials=credentials)
+
+      # Enforce IAM conditions
+      # roles/tpu.admin only from specific IP ranges
+    description:
+      tr: Workload Identity ile TPU authentication'ı güvenli hale getirin. Service account'lara en az ayrıcalık prensibi uygulayın. IAM conditions ile IP bazlı erişim kısıtlaması yapın.
+      en: Secure TPU authentication with Workload Identity. Apply least privilege principle to service accounts. Implement IP-based access restrictions with IAM conditions.
+research:
+  - title: Google Cloud TPU Security Best Practices
+    url: https://cloud.google.com/tpu/docs/security-best-practices
+    year: 2024
+    type: guide
+    authors: Google Cloud
+  - title: XLA Compiler Security Analysis
+    url: https://github.com/openxla/xla/blob/main/docs/security.md
+    year: 2023
+    type: guide
+    authors: OpenXLA Team
+  - title: VPC Service Controls for ML Workloads
+    url: https://cloud.google.com/vpc-service-controls/docs/overview
+    year: 2024
+    type: guide
+    authors: Google Cloud
+tips:
+  - tr: TPU Pod kullanırken mutlaka private VPC ile izole edin, public endpoint kullanmayın.
+    en: Always isolate TPU Pods with private VPC - never use public endpoints.
+  - tr: XLA'ya custom op gönderirken input validation yapın, malicious code injection'ı önleyin.
+    en: Validate input when sending custom ops to XLA to prevent malicious code injection.
+  - tr: Cloud TPU firmware güncellemelerini takip edin, Google'ın security bulletin'lerini düzenli kontrol edin.
+    en: Track Cloud TPU firmware updates and regularly check Google's security bulletins.

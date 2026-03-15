@@ -1,0 +1,164 @@
+id: slm
+name: SLM
+fullName: Small Language Model
+category: models
+desc:
+  tr: |-
+    Telefonunuzda, laptopunuzda veya edge cihazlarda çalışabilecek kadar küçük AI modelleri — genellikle 1-7 milyar parametre arasında. Microsoft'un [Phi](https://huggingface.co/microsoft/phi-3-mini-4k-instruct) serisi, [Google](https://ai.google)'in [Gemma](https://ai.google.dev/gemma)'si ve [Meta](https://ai.meta.com)'nin [Llama](https://ai.meta.com/llama/) 3.2 1B/3B modelleri bu kategorinin önde gelen örnekleridir.
+
+    Büyük modellerin aksine internet bağlantısi veya bulut sunucusu gerektirmezler ve milisaniyeler içinde cevap verebilirler. [Apple](https://machinelearning.apple.com) Intelligence, iPhone'larda cihaz üzerinde çalışan SLM'ler kullanır — böylece verileriniz telefonunuzdan çıkmaz.
+
+    Belirli görevler için fine-tune edildiğinde, SLM'ler o alanda büyük modellere yakın performans gösterebilir. Örneğin, kod tamamlama için fine-tune edilmiş 3B'lik bir model, bu spesifik görevde GPT-3.5 seviyesinde çalışabilir.
+  en: |-
+    AI models small enough to run on your phone, laptop, or edge devices — typically ranging from 1 to 7 billion parameters. Microsoft's [Phi](https://huggingface.co/microsoft/phi-3-mini-4k-instruct) series, [Google](https://ai.google)'s [Gemma](https://ai.google.dev/gemma), and [Meta](https://ai.meta.com)'s [Llama](https://ai.meta.com/llama/) 3.2 1B/3B are leading examples.
+
+    Unlike large models, they do not require internet connectivity or cloud servers and can respond in milliseconds. [Apple](https://machinelearning.apple.com) Intelligence uses on-device SLMs on iPhones, keeping your data entirely on your phone.
+
+    When fine-tuned for specific tasks, SLMs can approach large model performance in that domain. For example, a 3B model fine-tuned for code completion can perform at GPT-3.5 level for that specific task. They are increasingly preferred in production environments due to their cost and latency advantages — running a 3B model costs roughly 100x less per token than running a 400B model.
+  fr: Des modeles d'IA assez petits pour fonctionner sur votre telephone, laptop ou appareils edge — generalement entre 1 et 7 milliards de parametres. La serie Phi de Microsoft, Gemma de Google et les modeles Llama 3.2 1B/3B de Meta en sont les exemples phares. Contrairement aux grands modeles, ils ne necessitent ni connexion internet ni serveurs cloud et peuvent repondre en millisecondes. Apple Intelligence utilise des SLM embarques sur les iPhone, gardant vos donnees entierement sur votre telephone. Quand ils sont fine-tunes pour des taches specifiques, les SLM peuvent approcher les performances des grands modeles dans ce domaine. Par exemple, un modele de 3B fine-tune pour la completion de code peut performer au niveau de GPT-3.5 pour cette tache specifique.
+  zh: 小到可以在手机、笔记本电脑或边缘设备上运行的AI模型——通常参数量在10亿到70亿之间。微软的Phi系列、谷歌的Gemma和Meta的Llama 3.2 1B/3B是领先的例子。与大模型不同，它们不需要互联网连接或云服务器，可以在毫秒内做出响应。Apple Intelligence在iPhone上使用设备端SLM，确保你的数据完全留在手机上。当针对特定任务进行微调时，SLM在该领域可以接近大模型的性能。例如，一个为代码补全微调的3B模型在该特定任务上可以达到GPT-3.5的水平。
+  ar: نماذج ذكاء اصطناعي صغيرة بما يكفي للعمل على هاتفك أو حاسوبك المحمول أو أجهزة الحافة — عادة بين 1 و7 مليارات معامل. سلسلة Phi من Microsoft وGemma من Google ونماذج Llama 3.2 1B/3B من Meta أمثلة رائدة. على عكس النماذج الكبيرة، لا تحتاج اتصالاً بالإنترنت أو خوادم سحابية ويمكنها الاستجابة في أجزاء من الثانية. تستخدم Apple Intelligence نماذج SLM مدمجة على أجهزة iPhone، مما يبقي بياناتك بالكامل على هاتفك. عند ضبطها لمهام محددة، يمكن لنماذج SLM الاقتراب من أداء النماذج الكبيرة في ذلك المجال. مثلاً، نموذج 3B مضبوط لإكمال الكود يمكن أن يؤدي بمستوى GPT-3.5 لتلك المهمة تحديداً.
+  ru: Модели ИИ, достаточно маленькие для работы на телефоне, ноутбуке или edge-устройствах — обычно от 1 до 7 миллиардов параметров. Серия Phi от Microsoft, Gemma от Google и модели Llama 3.2 1B/3B от Meta — ведущие примеры. В отличие от больших моделей, им не нужен интернет или облачные серверы, и они могут отвечать за миллисекунды. Apple Intelligence использует SLM прямо на iPhone, сохраняя ваши данные полностью на устройстве. При дообучении под конкретные задачи SLM могут приближаться к производительности больших моделей в этой области. Например, модель на 3B, дообученная для автодополнения кода, может работать на уровне GPT-3.5 для этой задачи.
+analogy:
+  tr: Dev ansiklopedi yerine konuya özel ince el kitabı. Hafif, hızlı, taşınabilir.
+  en: A thin subject-specific handbook instead of a massive encyclopedia. Light, fast, portable.
+  fr: Un manuel fin et spécialisé au lieu d'une encyclopédie massive. Léger, rapide, portable.
+  zh: 一本针对特定主题的薄手册，而不是庞大的百科全书。轻便、快速、便携。
+  ar: دليل رقيق متخصص بدلاً من موسوعة ضخمة. خفيف وسريع ومحمول.
+  ru: Тонкое специализированное руководство вместо массивной энциклопедии. Легкое, быстрое, портативное.
+security:
+  - title:
+      tr: Edge Device Extraction
+      en: Edge Device Extraction
+      fr: Extraction depuis les appareils en périphérie
+      zh: 边缘设备提取
+      ar: استخراج من الأجهزة الطرفية
+      ru: Извлечение с edge-устройств
+    description:
+      tr: SLM'ler genelde edge device'larda (telefon, IoT) çalışır. Fiziksel erişimi olan saldırgan device'tan model weights'i çıkarabilir. Küçük model boyutu extraction'ı kolaylaştırır.
+      en: SLMs typically run on edge devices (phones, IoT). Attacker with physical access can extract model weights from device. Small model size facilitates extraction.
+      fr: Les SLM fonctionnent généralement sur des appareils en périphérie (téléphones, IoT). Un attaquant ayant un accès physique peut extraire les poids du modèle de l'appareil. La petite taille du modèle facilite l'extraction.
+      zh: SLM通常运行在边缘设备（手机、物联网设备）上。拥有物理访问权限的攻击者可以从设备中提取模型权重。较小的模型体积使提取更加容易。
+      ar: تعمل النماذج اللغوية الصغيرة عادةً على الأجهزة الطرفية (الهواتف، إنترنت الأشياء). يمكن للمهاجم الذي لديه وصول فعلي استخراج أوزان النموذج من الجهاز. صغر حجم النموذج يسهل الاستخراج.
+      ru: SLM обычно работают на edge-устройствах (телефоны, IoT). Злоумышленник с физическим доступом может извлечь веса модели с устройства. Малый размер модели упрощает извлечение.
+    severity: medium
+  - title:
+      tr: Limited Safety Alignment
+      en: Limited Safety Alignment
+      fr: Alignement de sécurité limité
+      zh: 有限的安全对齐
+      ar: محاذاة أمان محدودة
+      ru: Ограниченное выравнивание безопасности
+    description:
+      tr: SLM'ler genelde daha az safety alignment eğitimi alır. Büyük modellere göre jailbreak ve harmful content generation'a daha açıktır.
+      en: SLMs generally receive less safety alignment training. More susceptible to jailbreak and harmful content generation compared to large models.
+      fr: Les SLM reçoivent généralement moins d'entraînement à l'alignement de sécurité. Plus vulnérables au jailbreak et à la génération de contenu nuisible par rapport aux grands modèles.
+      zh: SLM通常接受较少的安全对齐训练。与大型模型相比，更容易遭受越狱攻击和生成有害内容。
+      ar: تتلقى النماذج اللغوية الصغيرة عادةً تدريباً أقل على محاذاة الأمان. أكثر عرضة لكسر الحماية وتوليد المحتوى الضار مقارنة بالنماذج الكبيرة.
+      ru: SLM обычно проходят меньше обучения по выравниванию безопасности. Более уязвимы к jailbreak и генерации вредоносного контента по сравнению с большими моделями.
+    severity: medium
+  - title:
+      tr: Sınırlı Güvenlik Denetim Kapasitesi
+      en: Limited Security Audit Capacity
+      fr: Capacité d'audit de sécurité limitée
+      zh: 有限的安全审计能力
+      ar: قدرة تدقيق أمني محدودة
+      ru: Ограниченные возможности аудита безопасности
+    description:
+      tr: SLM'lerin küçük boyutu, güvenlik değerlendirmesinde yanlış bir güven duygusu yaratabilir. Ancak model küçük olsa da, on-device inference sırasında input/output loglaması genellikle yapılmaz ve güvenlik denetimi zorlaşır.
+      en: The small size of SLMs can create a false sense of security in safety assessments. However, even though the model is small, input/output logging during on-device inference is often absent, making security auditing difficult.
+      fr: La petite taille des SLM peut créer un faux sentiment de sécurité dans les évaluations. Cependant, même si le modèle est petit, la journalisation des entrées/sorties pendant l'inférence sur l'appareil est souvent absente, rendant l'audit de sécurité difficile.
+      zh: SLM的小体积可能在安全评估中产生虚假的安全感。然而，即使模型很小，设备端推理期间的输入/输出日志记录通常缺失，使安全审计变得困难。
+      ar: قد يخلق صغر حجم النماذج اللغوية الصغيرة إحساساً زائفاً بالأمان في التقييمات. ومع ذلك، حتى مع صغر النموذج، غالباً ما يغيب تسجيل المدخلات/المخرجات أثناء الاستدلال على الجهاز، مما يصعب التدقيق الأمني.
+      ru: Малый размер SLM может создать ложное чувство безопасности при оценке. Однако, несмотря на маленький размер модели, логирование ввода/вывода при inference на устройстве часто отсутствует, что затрудняет аудит безопасности.
+    severity: low
+config:
+  - title: SLM Secure Deployment on Edge
+    lang: python
+    code: |-
+      # Edge deployment with model encryption
+      import torch
+      from transformers import AutoModelForCausalLM
+      import cryptography.fernet as fernet
+
+      class SecureSLMDeployment:
+          def __init__(self, encryption_key: bytes):
+              self.cipher = fernet.Fernet(encryption_key)
+
+          def encrypt_weights(self, model_path: str, output_path: str):
+              """Encrypt model weights for edge deployment"""
+              with open(model_path, 'rb') as f:
+                  model_bytes = f.read()
+
+              encrypted = self.cipher.encrypt(model_bytes)
+
+              with open(output_path, 'wb') as f:
+                  f.write(encrypted)
+
+              print(f"Encrypted model saved to {output_path}")
+
+          def load_encrypted_model(self, encrypted_path: str):
+              """Load encrypted model on edge device"""
+              with open(encrypted_path, 'rb') as f:
+                  encrypted_bytes = f.read()
+
+              decrypted = self.cipher.decrypt(encrypted_bytes)
+
+              # Load model from decrypted bytes
+              import io
+              model = torch.load(io.BytesIO(decrypted))
+
+              return model
+
+          def add_safety_layer(self, model, input_filter, output_filter):
+              """Add safety filters for SLM"""
+
+              class SafeModel:
+                  def __init__(self, base_model, inp_filter, out_filter):
+                      self.model = base_model
+                      self.input_filter = inp_filter
+                      self.output_filter = out_filter
+
+                  def generate(self, prompt: str, **kwargs):
+                      # Filter input
+                      if not self.input_filter(prompt):
+                          raise ValueError("Input rejected by safety filter")
+
+                      # Generate
+                      output = self.model.generate(prompt, **kwargs)
+
+                      # Filter output
+                      if not self.output_filter(output):
+                          return "[Content filtered]"
+
+                      return output
+
+              return SafeModel(model, input_filter, output_filter)
+
+      # Usage
+      deployment = SecureSLMDeployment(encryption_key=b'...')
+
+      # Encrypt before deployment
+      deployment.encrypt_weights("phi-2.bin", "phi-2.encrypted")
+
+      # On edge device
+      model = deployment.load_encrypted_model("phi-2.encrypted")
+    description:
+      tr: SLM için edge deployment güvenliği. Model encryption ve safety layer ekleme.
+      en: Edge deployment security for SLM. Model encryption and safety layer addition.
+research:
+  - title: Phi-3 Technical Report
+    url: https://arxiv.org/abs/2404.14219
+    year: 2024
+    type: paper
+    authors: Microsoft Research
+  - title: "TinyLlama: An Open-Source Small Language Model"
+    url: https://arxiv.org/abs/2401.02385
+    year: 2024
+    type: paper
+    authors: Peiyuan Zhang, Guangtao Zeng, Tianduo Wang, Wei Lu
+tips:
+  - tr: Edge device'larda model weights'i encrypt edin.
+    en: Encrypt model weights on edge devices.
+  - tr: SLM için ek safety filter layer ekleyin (input/output filtering).
+    en: Add additional safety filter layer for SLM (input/output filtering).

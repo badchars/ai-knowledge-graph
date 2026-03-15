@@ -1,0 +1,142 @@
+id: deep-learning
+name: Deep Learning
+fullName: Deep Learning
+category: fundamentals
+desc:
+  tr: |-
+    Çok katmanlı (derin) yapay sinir ağları kullanan makine öğrenmesi alt alanı. 'Derin' ifadesi ağın birden fazla gizli katmana sahip olmasını ifade eder; modern modeller yüzlerce hatta binlerce katman içerebilir.
+
+    Her katman verinin daha soyut temsillerini öğrenir: ilk katmanlar kenarlar ve şekiller, üst katmanlar yüzler ve nesneler gibi kavramsallar öğrenebilir. 2012'den itibaren GPU'larin yaygınlaşması ve büyük veri setlerinin erişilebilirliği ile patlama yapmıştır.
+
+    Doğal dil işleme, bilgisayarla görme, konusma tanıma ve otonom surüsten protein katlanmasına kadar geniş bir yelpazede devrim yaratmıştır.
+  en: |-
+    A subfield of machine learning that uses multi-layered (deep) artificial neural networks. The 'deep' refers to having multiple hidden layers; modern models can contain hundreds or even thousands of layers.
+
+    Each layer learns increasingly abstract representations of the data: early layers learn edges and shapes while upper layers learn concepts like faces and objects. It exploded in popularity from 2012 onward with the proliferation of GPUs and availability of large datasets.
+
+    It has revolutionized a wide range of fields from natural language processing, computer vision, and speech recognition to autonomous driving and protein folding.
+  fr: "Un sous-domaine de l'apprentissage automatique utilisant des reseaux neuronaux artificiels multicouches (profonds). Le 'profond' fait reference a la presence de multiples couches cachees; les modeles modernes peuvent contenir des centaines voire des milliers de couches. Chaque couche apprend des representations de plus en plus abstraites des donnees: les premieres couches apprennent les bords et les formes tandis que les couches superieures apprennent des concepts comme les visages et les objets. Il a explose en popularite a partir de 2012 avec la proliferation des GPU et la disponibilite de grands ensembles de donnees. Il a revolutionne un large eventail de domaines, du traitement du langage naturel a la conduite autonome en passant par la vision par ordinateur."
+  zh: 机器学习的一个子领域，使用多层（深度）人工神经网络。'深度'指的是拥有多个隐藏层；现代模型可以包含数百甚至数千层。每一层学习数据越来越抽象的表示：早期层学习边缘和形状，而上层学习面孔和物体等概念。随着GPU的普及和大型数据集的可用性，它从2012年开始爆发式增长。它彻底改变了从自然语言处理、计算机视觉、语音识别到自动驾驶和蛋白质折叠等广泛领域。
+  ar: "مجال فرعي من التعلم الآلي يستخدم شبكات عصبية اصطناعية متعددة الطبقات (عميقة). تشير كلمة 'عميق' الى وجود طبقات مخفية متعددة؛ النماذج الحديثة يمكن ان تحتوي على مئات او حتى آلاف الطبقات. كل طبقة تتعلم تمثيلات اكثر تجريدا للبيانات: الطبقات الاولى تتعلم الحواف والاشكال بينما الطبقات العليا تتعلم مفاهيم مثل الوجوه والاشياء. انفجرت شعبيته من عام 2012 مع انتشار GPU وتوفر مجموعات البيانات الكبيرة. احدث ثورة في مجالات واسعة من معالجة اللغة الطبيعية والرؤية الحاسوبية والتعرف على الكلام الى القيادة الذاتية وطي البروتين."
+  ru: "Подобласть машинного обучения, использующая многослойные (глубокие) искусственные нейронные сети. 'Глубокое' означает наличие множества скрытых слоев; современные модели могут содержать сотни и даже тысячи слоев. Каждый слой изучает всё более абстрактные представления данных: ранние слои учат края и формы, а верхние -- такие концепции, как лица и объекты. Популярность взорвалась с 2012 года с распространением GPU и доступностью больших наборов данных. Произвел революцию в широком спектре областей: от обработки естественного языка, компьютерного зрения и распознавания речи до автономного вождения и сворачивания белков."
+analogy:
+  tr: "Bir fotografin analizi gibi: ilk katman pikselleri gorur, ikinci katman cizgileri, üçuncu katman şekilleri, dorduncu katman gozleri ve burnu, besinci katman yuzu tanır. Her katman bir oncekinin üstune inşa eder -- bu yuzden 'derin' denir."
+  en: "Like analyzing a photo: the first layer sees pixels, the second sees lines, the third sees shapes, the fourth recognizes eyes and noses, the fifth identifies the face. Each layer builds on the previous one -- that's why it's called 'deep'."
+  fr: "Comme analyser une photo: la premiere couche voit les pixels, la deuxieme les lignes, la troisieme les formes, la quatrieme reconnait les yeux et le nez, la cinquieme identifie le visage. Chaque couche s'appuie sur la precedente -- c'est pourquoi on dit 'profond'."
+  zh: 就像分析一张照片：第一层看到像素，第二层看到线条，第三层看到形状，第四层识别眼睛和鼻子，第五层辨认人脸。每一层都建立在前一层的基础上——这就是为什么叫'深度'。
+  ar: "مثل تحليل صورة: الطبقة الاولى ترى البكسلات، الثانية ترى الخطوط، الثالثة ترى الاشكال، الرابعة تتعرف على العيون والانف، والخامسة تحدد الوجه. كل طبقة تبني على السابقة -- لهذا يسمى 'عميقا'."
+  ru: "Как анализ фотографии: первый слой видит пиксели, второй -- линии, третий -- формы, четвертый распознает глаза и нос, пятый идентифицирует лицо. Каждый слой строится на предыдущем -- поэтому и называется 'глубоким'."
+security:
+  - title:
+      tr: Model Inversion Saldırıları
+      en: Model Inversion Attacks
+      fr: Attaques par inversion de modèle
+      zh: 模型反转攻击
+      ar: هجمات عكس النموذج
+      ru: Атаки инверсии модели
+    description:
+      tr: Deep learning modelinin çıktılarından training data'yı reconstruct etme saldırısıdır. Örneğin bir yüz tanıma modelinden, eğitimde kullanılan yüz görüntülerini geri çıkarmak mümkündür. Saldırgan, model output'larını optimize ederek orijinal girdiye yakın sentetik veriler üretir.
+      en: Attack that reconstructs training data from deep learning model outputs. For example, it's possible to extract face images used in training from a face recognition model. Attacker generates synthetic data close to original input by optimizing model outputs.
+      fr: Attaque qui reconstruit les données d'entraînement à partir des sorties d'un modèle de deep learning. Par exemple, il est possible d'extraire des images de visages utilisées à l'entraînement d'un modèle de reconnaissance faciale. L'attaquant génère des données synthétiques proches de l'entrée originale en optimisant les sorties du modèle.
+      zh: 从深度学习模型输出重建训练数据的攻击。例如，可以从人脸识别模型中提取训练中使用的人脸图像。攻击者通过优化模型输出生成接近原始输入的合成数据。
+      ar: هجوم يعيد بناء بيانات التدريب من مخرجات نموذج التعلم العميق. على سبيل المثال، يمكن استخراج صور الوجوه المستخدمة في التدريب من نموذج التعرف على الوجوه. يولد المهاجم بيانات اصطناعية قريبة من المدخل الأصلي عن طريق تحسين مخرجات النموذج.
+      ru: Атака, восстанавливающая обучающие данные из выходов модели глубокого обучения. Например, возможно извлечь изображения лиц, использованные при обучении модели распознавания лиц. Злоумышленник генерирует синтетические данные, близкие к оригинальному входу, оптимизируя выходы модели.
+    severity: high
+  - title:
+      tr: Data Poisoning via Transfer Learning
+      en: Data Poisoning via Transfer Learning
+      fr: Empoisonnement de données via le transfer learning
+      zh: 通过迁移学习进行数据投毒
+      ar: تسميم البيانات عبر نقل التعلم
+      ru: Отравление данных через transfer learning
+    description:
+      tr: Popüler pretrained model'ler (ImageNet, BERT) poisoning target'ıdır. Saldırgan pretrained model'i zehirler ve downstream task'lerde fine-tune eden herkes backdoor'u miras alır. Bu, supply chain attack'ın bir formudur ve HuggingFace gibi platformlarda ciddi risktir.
+      en: Popular pretrained models (ImageNet, BERT) are poisoning targets. Attacker poisons pretrained model and everyone fine-tuning on downstream tasks inherits the backdoor. This is a form of supply chain attack and poses serious risk on platforms like HuggingFace.
+      fr: Les modèles pré-entraînés populaires (ImageNet, BERT) sont des cibles d'empoisonnement. L'attaquant empoisonne le modèle pré-entraîné et tous ceux qui font du fine-tuning pour des tâches en aval héritent du backdoor. C'est une forme d'attaque de la chaîne d'approvisionnement posant un risque sérieux sur des plateformes comme HuggingFace.
+      zh: 流行的预训练模型（ImageNet、BERT）是投毒目标。攻击者毒化预训练模型，所有在下游任务上进行微调的人都会继承后门。这是供应链攻击的一种形式，在HuggingFace等平台上构成严重风险。
+      ar: النماذج المدربة مسبقاً الشائعة (ImageNet, BERT) هي أهداف للتسميم. يسمم المهاجم النموذج المدرب مسبقاً وكل من يقوم بالضبط الدقيق للمهام اللاحقة يرث الباب الخلفي. هذا شكل من أشكال هجوم سلسلة التوريد ويشكل خطراً جسيماً على منصات مثل HuggingFace.
+      ru: Популярные предобученные модели (ImageNet, BERT) являются целями отравления. Злоумышленник отравляет предобученную модель, и все, кто делают fine-tuning для последующих задач, наследуют бэкдор. Это форма атаки на цепочку поставок, представляющая серьёзный риск на платформах вроде HuggingFace.
+    severity: critical
+  - title:
+      tr: Deep Learning Framework Bağımlılık Riski
+      en: Deep Learning Framework Dependency Risk
+      fr: Risque de dépendance aux frameworks de deep learning
+      zh: 深度学习框架依赖风险
+      ar: مخاطر الاعتماد على أطر التعلم العميق
+      ru: Риск зависимости от фреймворков глубокого обучения
+    description:
+      tr: PyTorch, TensorFlow gibi framework'lerin eski versiyonlarında bilinen güvenlik açıkları bulunabilir. Bağımlılık yönetimi yapılmazsa, indirilen modellerin çalıştırılması sırasında bu açıklar exploit edilebilir.
+      en: Older versions of frameworks like PyTorch, TensorFlow may contain known security vulnerabilities. Without dependency management, these vulnerabilities can be exploited when running downloaded models.
+      fr: Les anciennes versions de frameworks comme PyTorch, TensorFlow peuvent contenir des vulnérabilités de sécurité connues. Sans gestion des dépendances, ces vulnérabilités peuvent être exploitées lors de l'exécution de modèles téléchargés.
+      zh: PyTorch、TensorFlow等框架的旧版本可能包含已知的安全漏洞。如果没有依赖管理，在运行下载的模型时这些漏洞可能被利用。
+      ar: قد تحتوي الإصدارات القديمة من أطر العمل مثل PyTorch وTensorFlow على ثغرات أمنية معروفة. بدون إدارة التبعيات، يمكن استغلال هذه الثغرات عند تشغيل النماذج المحملة.
+      ru: Старые версии фреймворков вроде PyTorch, TensorFlow могут содержать известные уязвимости безопасности. Без управления зависимостями эти уязвимости могут быть эксплуатированы при запуске загруженных моделей.
+    severity: low
+config:
+  - title: Secure Model Loading with Hash Verification
+    lang: python
+    code: |-
+      import hashlib
+      import torch
+      import requests
+
+      TRUSTED_MODEL_HASHES = {
+          "resnet50": "a1b2c3d4e5f6...",
+          "bert-base": "f6e5d4c3b2a1..."
+      }
+
+      def verify_model_hash(model_path: str, expected_hash: str) -> bool:
+          """Verify model file integrity"""
+          sha256_hash = hashlib.sha256()
+
+          with open(model_path, "rb") as f:
+              for byte_block in iter(lambda: f.read(4096), b""):
+                  sha256_hash.update(byte_block)
+
+          computed_hash = sha256_hash.hexdigest()
+          return computed_hash == expected_hash
+
+      def load_trusted_model(model_name: str, model_path: str):
+          """Load model only if hash matches"""
+          expected_hash = TRUSTED_MODEL_HASHES.get(model_name)
+
+          if not expected_hash:
+              raise ValueError(f"No trusted hash for {model_name}")
+
+          if not verify_model_hash(model_path, expected_hash):
+              raise SecurityError(
+                  f"Model hash mismatch! Potential backdoor or corruption.
+      "
+                  f"Expected: {expected_hash}
+      "
+                  f"Got: {hashlib.sha256(open(model_path,'rb').read()).hexdigest()}"
+              )
+
+          # Safe to load
+          model = torch.load(model_path, weights_only=True)
+          return model
+
+      # Usage
+      try:
+          model = load_trusted_model("resnet50", "./models/resnet50.pth")
+      except SecurityError as e:
+          print(f"[!] Security violation: {e}")
+    description:
+      tr: Model yüklemeden önce SHA-256 hash doğrulaması yaparak backdoor ve corruption tespit edilir. Trusted model registry ile sadece bilinen güvenli modeller yüklenir.
+      en: Backdoors and corruption are detected by performing SHA-256 hash verification before loading models. Only known safe models are loaded via trusted model registry.
+research:
+  - title: Model Inversion Attacks that Exploit Confidence Information
+    url: https://arxiv.org/abs/1807.04263
+    year: 2018
+    type: paper
+    authors: Matt Fredrikson, Somesh Jha, Thomas Ristenpart
+  - title: Weight Poisoning Attacks on Pre-trained Models
+    url: https://arxiv.org/abs/2004.06660
+    year: 2020
+    type: paper
+    authors: Keita Kurita, Paul Michel, Graham Neubig
+tips:
+  - tr: HuggingFace'den model indirirken hash verification yapın. Model file'ı tamper edilmiş olabilir.
+    en: Perform hash verification when downloading models from HuggingFace. Model files may be tampered.
+  - tr: Pretrained model kullanırken fine-tuning dataset'inizde anomaly detection yapın. Backdoor trigger'lar genellikle out-of-distribution'dır.
+    en: Perform anomaly detection on your fine-tuning dataset when using pretrained models. Backdoor triggers are usually out-of-distribution.

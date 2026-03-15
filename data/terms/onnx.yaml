@@ -1,0 +1,184 @@
+id: onnx
+name: ONNX
+fullName: Open Neural Network Exchange
+category: ecosystem
+desc:
+  tr: |-
+    AI modellerini farklı framework'ler arasında taşınabilir hale getiren açık standart format. [Microsoft](https://microsoft.com) ve [Meta](https://ai.meta.com) tarafından 2017'de başlatıldı. [PyTorch](https://pytorch.org)'da eğitilen bir model ONNX'e export edilir, sonra [TensorFlow](https://tensorflow.org), [TensorRT](https://developer.nvidia.com/tensorrt), [ONNX Runtime](https://onnxruntime.ai) veya [Core ML](https://developer.apple.com/documentation/coreml) ile çalıştırılabilir.
+
+    ONNX format protobuf tabanlı graph representation — model computational graph olarak temsil edilir (input → operator → output). 200+ standart operator tanımlı (Conv, MatMul, Softmax, etc.). Framework-agnostic olduğu için vendor lock-in'den kaçınır — PyTorch ile eğit, TensorRT ile deploy et.
+
+    [ONNX Runtime](https://onnxruntime.ai) Microsoft'un high-performance inference engine'i — CPU, GPU, NPU, WebAssembly gibi 17 farklı backend destekler. [Hugging Face Optimum](https://huggingface.co/docs/optimum) ONNX export ve optimization sağlar. Production'da model portability ve cross-platform deployment için kritik.
+
+    ONNX modelleri quantization, graph optimization (operator fusion, constant folding) ve hardware-specific optimization ([TensorRT](https://developer.nvidia.com/tensorrt) için INT8 calibration) yapılabilir. Edge device'lara (mobile, IoT) model deploy etmek için de yaygın kullanılır.
+  en: |-
+    Open standard format that makes AI models portable across different frameworks. Initiated by [Microsoft](https://microsoft.com) and [Meta](https://ai.meta.com) in 2017. A model trained in [PyTorch](https://pytorch.org) can be exported to ONNX, then run with [TensorFlow](https://tensorflow.org), [TensorRT](https://developer.nvidia.com/tensorrt), [ONNX Runtime](https://onnxruntime.ai), or [Core ML](https://developer.apple.com/documentation/coreml).
+
+    ONNX format uses protobuf-based graph representation — model is represented as computational graph (input → operator → output). Defines 200+ standard operators (Conv, MatMul, Softmax, etc.). Being framework-agnostic avoids vendor lock-in — train with PyTorch, deploy with TensorRT.
+
+    [ONNX Runtime](https://onnxruntime.ai) is Microsoft's high-performance inference engine — supports 17 different backends including CPU, GPU, NPU, WebAssembly. [Hugging Face Optimum](https://huggingface.co/docs/optimum) provides ONNX export and optimization. Critical for model portability and cross-platform deployment in production.
+
+    ONNX models can be optimized with quantization, graph optimization (operator fusion, constant folding), and hardware-specific optimization ([TensorRT](https://developer.nvidia.com/tensorrt) INT8 calibration). Also widely used for deploying models to edge devices (mobile, IoT).
+  fr: Format standard ouvert qui rend les modeles d'IA portables entre differents frameworks, lance par Microsoft et Meta en 2017.
+  zh: 使AI模型在不同框架间可移植的开放标准格式，由Microsoft和Meta于2017年发起。
+  ar: تنسيق معياري مفتوح يجعل نماذج الذكاء الاصطناعي قابلة للنقل بين أطر العمل المختلفة، أطلقته Microsoft وMeta في 2017.
+  ru: Открытый стандартный формат, делающий AI-модели переносимыми между разными фреймворками, запущен Microsoft и Meta в 2017 году.
+analogy:
+  tr: "PDF gibi: Word'de yaz, herhangi bir PDF reader'da aç. ONNX ile PyTorch'da eğit, herhangi bir runtime'da çalıştır."
+  en: "Like PDF: Write in Word, open in any PDF reader. With ONNX, train in PyTorch, run in any runtime."
+  fr: "Comme PDF : ecrivez dans Word, ouvrez dans n'importe quel lecteur PDF. Avec ONNX, entrainez dans PyTorch, executez dans n'importe quel runtime."
+  zh: 就像PDF：在Word中编写，在任何PDF阅读器中打开。使用ONNX，在PyTorch中训练，在任何运行时中运行。
+  ar: "مثل PDF: اكتب في Word، افتح في أي قارئ PDF. مع ONNX، درّب في PyTorch، شغّل في أي runtime."
+  ru: "Как PDF: пиши в Word, открывай в любом PDF-ридере. С ONNX тренируй в PyTorch, запускай в любом runtime."
+security:
+  - title:
+      tr: Model Graph Manipulation - Operator Injection
+      en: Model Graph Manipulation - Operator Injection
+      fr: Manipulation du graphe de modele - Injection d'operateur
+      zh: 模型图操纵 - 算子注入
+      ar: التلاعب بمخطط النموذج - حقن مشغّل
+      ru: Манипуляция графом модели - внедрение оператора
+    description:
+      tr: ONNX model graph'ı protobuf formatında temsil edilir. Saldırgan graph'a zararlı operator ekleyebilir veya mevcut operator'leri değiştirerek backdoor enjekte edebilir. Örneğin custom operator ile arbitrary file read veya network request yapılabilir. ONNX Runtime custom operator execution'ı desteklediği için risk var.
+      en: ONNX model graph is represented in protobuf format. Attacker can add malicious operators to graph or modify existing operators to inject backdoor. For example, custom operator can perform arbitrary file read or network request. Risk exists because ONNX Runtime supports custom operator execution.
+      fr: Le graphe de modele ONNX est represente au format protobuf. Un attaquant peut ajouter des operateurs malveillants au graphe ou modifier les operateurs existants pour injecter une porte derobee. Par exemple, un operateur personnalise peut effectuer une lecture de fichier arbitraire ou une requete reseau. Le risque existe car ONNX Runtime prend en charge l'execution d'operateurs personnalises.
+      zh: ONNX模型图以protobuf格式表示。攻击者可以向图中添加恶意算子或修改现有算子以注入后门。例如，自定义算子可以执行任意文件读取或网络请求。由于ONNX Runtime支持自定义算子执行，因此存在风险。
+      ar: يتم تمثيل مخطط نموذج ONNX بتنسيق protobuf. يمكن للمهاجم إضافة مشغّلات ضارة إلى المخطط أو تعديل المشغّلات الموجودة لحقن باب خلفي. على سبيل المثال، يمكن لمشغّل مخصص إجراء قراءة ملف تعسفية أو طلب شبكة. الخطر موجود لأن ONNX Runtime يدعم تنفيذ المشغّلات المخصصة.
+      ru: Граф модели ONNX представлен в формате protobuf. Злоумышленник может добавить вредоносные операторы в граф или модифицировать существующие операторы для внедрения бэкдора. Например, пользовательский оператор может выполнять произвольное чтение файлов или сетевые запросы. Риск существует, поскольку ONNX Runtime поддерживает выполнение пользовательских операторов.
+    severity: high
+  - title:
+      tr: Protobuf Deserialization Vulnerabilities
+      en: Protobuf Deserialization Vulnerabilities
+      fr: Vulnerabilites de deserialisation Protobuf
+      zh: Protobuf反序列化漏洞
+      ar: ثغرات إلغاء تسلسل Protobuf
+      ru: Уязвимости десериализации Protobuf
+    description:
+      tr: ONNX protobuf parser'ında buffer overflow, integer overflow veya DoS zafiyetleri bulunabilir. Crafted .onnx dosyası ile parser crash ettirilebilir veya memory corruption sağlanabilir. CVE-2022-25883 (protobuf) gibi dependency vulnerability'leri de etkileyebilir.
+      en: ONNX protobuf parser can have buffer overflow, integer overflow, or DoS vulnerabilities. Crafted .onnx file can crash parser or achieve memory corruption. Dependency vulnerabilities like CVE-2022-25883 (protobuf) can also affect it.
+      fr: Le parser protobuf d'ONNX peut presenter des vulnerabilites de buffer overflow, integer overflow ou DoS. Un fichier .onnx modifie peut faire crasher le parser ou provoquer une corruption de memoire. Les vulnerabilites des dependances comme CVE-2022-25883 (protobuf) peuvent egalement l'affecter.
+      zh: ONNX的protobuf解析器可能存在缓冲区溢出、整数溢出或拒绝服务漏洞。精心构造的.onnx文件可以使解析器崩溃或导致内存损坏。CVE-2022-25883 (protobuf)等依赖项漏洞也可能产生影响。
+      ar: يمكن أن يحتوي محلل protobuf الخاص بـ ONNX على ثغرات تجاوز المخزن المؤقت أو تجاوز العدد الصحيح أو حجب الخدمة. يمكن لملف .onnx مُعدّ أن يتسبب في تعطل المحلل أو تلف الذاكرة. يمكن أيضًا أن تؤثر ثغرات التبعيات مثل CVE-2022-25883 (protobuf).
+      ru: Парсер protobuf ONNX может содержать уязвимости переполнения буфера, целочисленного переполнения или отказа в обслуживании. Специально сформированный файл .onnx может привести к сбою парсера или повреждению памяти. Уязвимости зависимостей, такие как CVE-2022-25883 (protobuf), также могут оказать влияние.
+    severity: medium
+  - title:
+      tr: Custom Operator Code Execution
+      en: Custom Operator Code Execution
+      fr: Execution de code via operateur personnalise
+      zh: 自定义算子代码执行
+      ar: تنفيذ التعليمات البرمجية عبر مشغّل مخصص
+      ru: Выполнение кода через пользовательский оператор
+    description:
+      tr: ONNX custom operator'leri C++/CUDA ile yazılabilir ve runtime'da dynamic load edilir. Zararlı model custom operator içerebilir ve yüklendiğinde native code execution elde edilir. ONNX Runtime'ın operator allowlist'i olsa da bypass edilebilir.
+      en: ONNX custom operators can be written in C++/CUDA and dynamically loaded at runtime. Malicious model can include custom operator and achieve native code execution when loaded. Even with ONNX Runtime's operator allowlist, it can be bypassed.
+      fr: Les operateurs personnalises ONNX peuvent etre ecrits en C++/CUDA et charges dynamiquement au moment de l'execution. Un modele malveillant peut inclure un operateur personnalise et obtenir l'execution de code natif lors du chargement. Meme avec la liste d'autorisation d'operateurs d'ONNX Runtime, elle peut etre contournee.
+      zh: ONNX自定义算子可以用C++/CUDA编写并在运行时动态加载。恶意模型可以包含自定义算子，在加载时实现原生代码执行。即使ONNX Runtime有算子白名单，也可以被绕过。
+      ar: يمكن كتابة مشغّلات ONNX المخصصة بلغة C++/CUDA وتحميلها ديناميكيًا أثناء التشغيل. يمكن للنموذج الضار تضمين مشغّل مخصص وتحقيق تنفيذ التعليمات البرمجية الأصلية عند التحميل. حتى مع قائمة السماح الخاصة بمشغّلات ONNX Runtime، يمكن تجاوزها.
+      ru: Пользовательские операторы ONNX могут быть написаны на C++/CUDA и динамически загружаться во время выполнения. Вредоносная модель может содержать пользовательский оператор и при загрузке обеспечить выполнение нативного кода. Даже при наличии списка разрешённых операторов ONNX Runtime его можно обойти.
+    severity: high
+  - title:
+      tr: Onnx Konfigürasyon Bilgi Sızıntısı
+      en: Onnx Configuration Information Disclosure
+      fr: Divulgation de configuration onnx
+      zh: onnx配置信息泄露
+      ar: كشف معلومات تكوين onnx
+      ru: Раскрытие конфигурации onnx
+    description:
+      tr: Onnx ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to onnx can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à onnx peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与onnx相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ onnx في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании onnx могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Export PyTorch to ONNX
+    lang: python
+    code: |-
+      import torch
+      import torch.onnx
+
+      model = torch.load('model.pth')
+      model.eval()
+
+      dummy_input = torch.randn(1, 3, 224, 224)
+
+      torch.onnx.export(
+          model,
+          dummy_input,
+          'model.onnx',
+          input_names=['input'],
+          output_names=['output'],
+          dynamic_axes={'input': {0: 'batch'}, 'output': {0: 'batch'}},
+          opset_version=17  # Latest stable opset
+      )
+    description:
+      tr: PyTorch modelini ONNX formatına export etme. dynamic_axes ile batch size dynamic yapılır. opset_version=17 ile en son operator set kullanılır. Export edilen model ONNX Runtime, TensorRT veya diğer runtime'larla çalışır.
+      en: Export PyTorch model to ONNX format. Make batch size dynamic with dynamic_axes. Use latest operator set with opset_version=17. Exported model works with ONNX Runtime, TensorRT, or other runtimes.
+  - title: ONNX Runtime Inference
+    lang: python
+    code: |-
+      import onnxruntime as ort
+      import numpy as np
+
+      # Load ONNX model
+      session = ort.InferenceSession(
+          'model.onnx',
+          providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
+      )
+
+      input_data = np.random.randn(1, 3, 224, 224).astype(np.float32)
+      output = session.run(
+          None,  # All outputs
+          {'input': input_data}
+      )
+
+      print(f"Output shape: {output[0].shape}")
+    description:
+      tr: ONNX Runtime ile inference. CUDAExecutionProvider ile GPU acceleration, fallback olarak CPU. Hiçbir framework dependency yok, sadece ONNX Runtime. Cross-platform ve lightweight.
+      en: Inference with ONNX Runtime. GPU acceleration with CUDAExecutionProvider, CPU fallback. No framework dependency, just ONNX Runtime. Cross-platform and lightweight.
+  - title: ONNX Model Validator
+    lang: bash
+    code: |-
+      #!/bin/bash
+      set -euo pipefail
+      MODEL="${1:?Usage: $0 <onnx_model>}"
+      python3 -c "
+      import onnx
+      model = onnx.load('$MODEL')
+      onnx.checker.check_model(model)
+      custom_ops = [n for n in model.graph.node if n.domain != '']
+      if custom_ops:
+          print(f'WARNING: {len(custom_ops)} custom operators found')
+          for op in custom_ops:
+              print(f'  {op.op_type} (domain: {op.domain})')
+      else:
+          print('[+] No custom operators')
+      print(f'[+] Model valid: {len(model.graph.node)} nodes')
+      "
+    description:
+      tr: ONNX model dogrulama ve custom operator tespiti.
+      en: ONNX model validation and custom operator detection.
+research:
+  - title: ONNX Official Website
+    url: https://onnx.ai/
+    year: 2024
+    type: guide
+    authors: ONNX Community
+  - title: ONNX Runtime Documentation
+    url: https://onnxruntime.ai/docs/
+    year: 2024
+    type: guide
+    authors: Microsoft
+  - title: Hugging Face Optimum - ONNX Export
+    url: https://huggingface.co/docs/optimum/exporters/onnx/overview
+    year: 2024
+    type: tool
+    authors: Hugging Face
+tips:
+  - tr: ONNX export sonrası mutlaka model validation yapın — onnx.checker.check_model() ile graph integrity kontrol edin.
+    en: Always validate model after ONNX export — check graph integrity with onnx.checker.check_model().
+  - tr: Production'da ONNX Runtime yerine TensorRT kullanın — NVIDIA GPU'larda 2-5x daha hızlı inference, INT8 quantization desteği.
+    en: In production, use TensorRT instead of ONNX Runtime — 2-5x faster inference on NVIDIA GPUs, INT8 quantization support.
+  - tr: Custom operator içeren ONNX modellerini untrusted source'dan yüklemeyin — arbitrary code execution riski var.
+    en: Don't load ONNX models with custom operators from untrusted sources — arbitrary code execution risk exists.

@@ -1,0 +1,190 @@
+id: adversarial-attack
+name: Adversarial Attack
+fullName: Adversarial Machine Learning Attack
+category: ai-security
+desc:
+  tr: |-
+    AI modelini yanıltmak için girdiye insan gözüyle fark edilmez küçük değişiklikler yapma tekniği. Örneğin bir dur işaretinin üzerinde birkaç piksellik sticker ekleyerek otonom araçin işareti hiz limiti olarak algılamasını sağlamak.
+
+    Görüntüler, ses ve metin dahil her veri türüne uygulanabilir. Beyaz kutu saldırılarında saldirgan modelin ic yapısını bilir; siyah kutu saldırılarında işe sadece girdi-çıktı erişimi yeterlidir.
+
+    Savunma yöntemleri arasında adversarial training, girdi önişleme ve model ensemble kullanımı bulunur.
+  en: |-
+    A technique of making imperceptible modifications to input that fool an AI model. For example, adding a few pixel stickers to a stop sign can make an autonomous vehicle perceive it as a speed limit sign.
+
+    This applies to all data types including images, audio, and text. In white-box attacks the attacker knows the model's internals; in black-box attacks only input-output access iş needed.
+
+    Defenses include adversarial training, input preprocessing, and model ensembles.
+  fr: Une technique consistant a apporter des modifications imperceptibles aux entrees pour tromper un modele d'IA. Par exemple, ajouter quelques autocollants de pixels a un panneau stop peut faire qu'un vehicule autonome le percoit comme un panneau de limitation de vitesse. Cela s'applique a tous les types de donnees, y compris les images, l'audio et le texte. Dans les attaques en boite blanche, l'attaquant connait les mecanismes internes du modele; dans les attaques en boite noire, seul l'acces entree-sortie est necessaire. Les defenses incluent l'entrainement adversarial, le pretraitement des entrees et les ensembles de modeles.
+  zh: 一种对输入进行人眼无法察觉的微小修改以欺骗AI模型的技术。例如，在停车标志上添加几个像素的贴纸可以让自动驾驶车辆将其识别为限速标志。这适用于所有数据类型，包括图像、音频和文本。在白盒攻击中，攻击者了解模型的内部结构；在黑盒攻击中，只需要输入输出访问即可。防御措施包括对抗训练、输入预处理和模型集成。
+  ar: تقنية لاجراء تعديلات غير محسوسة على المدخلات لخداع نموذج الذكاء الاصطناعي. على سبيل المثال، اضافة بضعة ملصقات بكسل على لافتة توقف يمكن ان تجعل مركبة ذاتية القيادة تدركها كلافتة حد السرعة. ينطبق هذا على جميع انواع البيانات بما في ذلك الصور والصوت والنص. في هجمات الصندوق الابيض يعرف المهاجم البنية الداخلية للنموذج وفي هجمات الصندوق الاسود يكفي الوصول الى المدخلات والمخرجات فقط. تشمل الدفاعات التدريب العدائي والمعالجة المسبقة للمدخلات ومجموعات النماذج.
+  ru: Техника внесения незаметных для человека изменений во входные данные, обманывающих модель ИИ. Например, добавление нескольких пиксельных наклеек на знак 'Стоп' может заставить автономный автомобиль воспринять его как знак ограничения скорости. Применимо ко всем типам данных, включая изображения, аудио и текст. В атаках белого ящика злоумышленник знает внутреннюю структуру модели; в атаках черного ящика достаточно доступа к вводу-выводу. Защита включает состязательное обучение, предобработку ввода и ансамбли моделей.
+analogy:
+  tr: Bir sinav kagidindaki 'B' harfini öyle ince bir dokunusla 'D'ye cevirmek ki ogretmen farki göremiyor ama optik okuyüçu yanlış okuyor. İnsanlar için aynı gorunuyor ama makine tamamen farklı bir sey goruyor.
+  en: Like subtly altering a 'B' to a 'D' on an exam paper so the teacher can't see the difference but the optical scanner reads it wrong. It looks the same to humans but the machine sees something completely different.
+  fr: Comme modifier subtilement un 'B' en 'D' sur une copie d'examen de sorte que le professeur ne voit pas la difference mais le scanner optique lit mal. Cela parait identique aux humains mais la machine voit quelque chose de completement different.
+  zh: 就像在试卷上巧妙地将'B'改成'D'，老师看不出区别但光学扫描仪读错了。对人类来说看起来一样，但机器看到的是完全不同的东西。
+  ar: مثل تغيير حرف 'B' الى 'D' بمهارة في ورقة امتحان بحيث لا يرى المعلم الفرق لكن الماسح الضوئي يقراه خطا. يبدو نفسه للبشر لكن الآلة ترى شيئا مختلفا تماما.
+  ru: Как незаметно изменить 'B' на 'D' в экзаменационной работе так, что учитель не видит разницы, но оптический сканер читает неправильно. Для людей выглядит одинаково, но машина видит совершенно другое.
+security:
+  - title:
+      tr: FGSM ve PGD Saldırıları
+      en: FGSM and PGD Attacks
+      fr: Attaques FGSM et PGD
+      zh: FGSM和PGD攻击
+      ar: هجمات FGSM وPGD
+      ru: Атаки FGSM и PGD
+    description:
+      tr: Fast Gradient Sign Method (FGSM) ve Projected Gradient Descent (PGD), modelin gradient bilgisini kullanarak gözle görülmez pertürbasyonlar üreten saldırılardır. Saldırgan, modelin loss fonksiyonunun gradientini hesaplayarak girdi verisine epsilon büyüklüğünde gürültü ekler ve modeli yanlış sınıflandırmaya zorlar.
+      en: Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD) generate imperceptible perturbations using the model's gradient information. The attacker computes the gradient of the model's loss function and adds epsilon-sized noise to input data, forcing misclassification.
+      fr: Le Fast Gradient Sign Method (FGSM) et le Projected Gradient Descent (PGD) génèrent des perturbations imperceptibles en utilisant l'information de gradient du modèle. L'attaquant calcule le gradient de la fonction de perte et ajoute un bruit de taille epsilon aux données d'entrée, forçant une mauvaise classification.
+      zh: 快速梯度符号法（FGSM）和投影梯度下降法（PGD）利用模型的梯度信息生成不可感知的扰动。攻击者计算模型损失函数的梯度，向输入数据添加epsilon大小的噪声，迫使模型错误分类。
+      ar: تولد طريقة إشارة التدرج السريع (FGSM) والنزول التدرجي المسقط (PGD) اضطرابات غير محسوسة باستخدام معلومات تدرج النموذج. يحسب المهاجم تدرج دالة الخسارة للنموذج ويضيف ضوضاء بحجم إبسيلون إلى بيانات الإدخال، مما يجبر على التصنيف الخاطئ.
+      ru: Fast Gradient Sign Method (FGSM) и Projected Gradient Descent (PGD) генерируют незаметные возмущения, используя градиентную информацию модели. Атакующий вычисляет градиент функции потерь модели и добавляет шум размером epsilon к входным данным, вынуждая ошибочную классификацию.
+    severity: critical
+  - title:
+      tr: Adversarial Patch Saldırıları
+      en: Adversarial Patch Attacks
+      fr: Attaques par patch adversarial
+      zh: 对抗性补丁攻击
+      ar: هجمات الرقع العدائية
+      ru: Атаки adversarial-патчами
+    description:
+      tr: Fiziksel dünyada uygulanabilen adversarial patch'ler, görüntünün belirli bir bölgesine yerleştirilen küçük desenlerdir. Örneğin bir stop işaretine yapıştırılan özel tasarlanmış bir etiket, otonom araçların nesne tanıma sistemini atlatabilir. Bu saldırılar transfer learning ile farklı modellere de genellenebilir.
+      en: Adversarial patches applicable in the physical world are small patterns placed on specific regions of images. For example, a specially designed sticker on a stop sign can bypass autonomous vehicle object detection systems. These attacks can generalize to different models via transfer learning.
+      fr: Les patches adversariaux applicables dans le monde physique sont de petits motifs placés sur des zones spécifiques des images. Par exemple, un autocollant spécialement conçu sur un panneau stop peut contourner les systèmes de détection d'objets des véhicules autonomes. Ces attaques peuvent se généraliser à différents modèles via le transfer learning.
+      zh: 可在物理世界中应用的对抗性补丁是放置在图像特定区域的小型图案。例如，贴在停车标志上的特殊设计贴纸可以绕过自动驾驶车辆的目标检测系统。这些攻击可以通过迁移学习推广到不同的模型。
+      ar: الرقع العدائية القابلة للتطبيق في العالم المادي هي أنماط صغيرة توضع على مناطق محددة من الصور. على سبيل المثال، ملصق مصمم خصيصاً على إشارة توقف يمكنه تجاوز أنظمة كشف الأجسام في المركبات ذاتية القيادة. يمكن لهذه الهجمات أن تعمم على نماذج مختلفة عبر نقل التعلم.
+      ru: Adversarial-патчи, применимые в физическом мире, представляют собой небольшие паттерны, размещённые на определённых областях изображений. Например, специально разработанная наклейка на знаке «стоп» может обойти систему обнаружения объектов автономного автомобиля. Эти атаки могут обобщаться на другие модели через transfer learning.
+    severity: high
+  - title:
+      tr: Evrensel Adversarial Pertürbasyonlar
+      en: Universal Adversarial Perturbations
+      fr: Perturbations adversariales universelles
+      zh: 通用对抗性扰动
+      ar: الاضطرابات العدائية الشاملة
+      ru: Универсальные adversarial-возмущения
+    description:
+      tr: Tek bir pertürbasyon deseninin birçok farklı girdi üzerinde etkili olması durumudur. Saldırgan, model mimarisine özgü evrensel bir gürültü deseni oluşturarak tüm girdileri manipüle edebilir. Bu, özellikle API tabanlı modellerde ciddi bir tehdit oluşturur.
+      en: A single perturbation pattern that is effective across many different inputs. The attacker creates a universal noise pattern specific to the model architecture to manipulate all inputs. This poses a serious threat especially in API-based models.
+      fr: Un seul motif de perturbation efficace sur de nombreuses entrées différentes. L'attaquant crée un motif de bruit universel spécifique à l'architecture du modèle pour manipuler toutes les entrées. Cela constitue une menace sérieuse surtout pour les modèles basés sur API.
+      zh: 一种对多种不同输入都有效的单一扰动模式。攻击者创建针对模型架构的通用噪声模式来操纵所有输入。这尤其对基于API的模型构成严重威胁。
+      ar: نمط اضطراب واحد فعال عبر العديد من المدخلات المختلفة. يقوم المهاجم بإنشاء نمط ضوضاء شامل خاص ببنية النموذج للتلاعب بجميع المدخلات. يشكل هذا تهديداً خطيراً خاصة في النماذج القائمة على API.
+      ru: Единый паттерн возмущения, эффективный для множества различных входных данных. Злоумышленник создаёт универсальный шумовой паттерн, специфичный для архитектуры модели, для манипулирования всеми входами. Это представляет серьёзную угрозу, особенно для моделей на основе API.
+    severity: critical
+  - title:
+      tr: Adversarial Robustness Test Eksikliği
+      en: Adversarial Robustness Testing Gap
+      fr: Lacune dans les tests de robustesse adversariale
+      zh: 对抗鲁棒性测试缺口
+      ar: فجوة اختبار المتانة العدائية
+      ru: Пробел в тестировании adversarial-устойчивости
+    description:
+      tr: Model deployment öncesi adversarial robustness testlerinin yapılmaması, production'daki modelin adversarial saldırılara ne kadar dayanıklı olduğunun bilinmemesine yol açar. Otomatik adversarial testing pipeline'ları CI/CD'ye entegre edilmelidir.
+      en: Not performing adversarial robustness tests before model deployment leads to not knowing how resistant the production model is to adversarial attacks. Automated adversarial testing pipelines should be integrated into CI/CD.
+      fr: Ne pas effectuer de tests de robustesse adversariale avant le déploiement du modèle conduit à ignorer la résistance du modèle en production aux attaques adversariales. Les pipelines de tests adversariaux automatisés doivent être intégrés au CI/CD.
+      zh: 在模型部署前不执行对抗鲁棒性测试，会导致不知道生产模型对对抗攻击的抵抗力如何。应将自动化对抗测试流水线集成到CI/CD中。
+      ar: عدم إجراء اختبارات المتانة العدائية قبل نشر النموذج يؤدي إلى عدم معرفة مدى مقاومة نموذج الإنتاج للهجمات العدائية. يجب دمج خطوط أنابيب الاختبار العدائي الآلي في CI/CD.
+      ru: Отсутствие тестов adversarial-устойчивости перед развёртыванием модели приводит к незнанию, насколько production-модель устойчива к adversarial-атакам. Автоматизированные pipeline тестирования adversarial-устойчивости должны быть интегрированы в CI/CD.
+    severity: low
+config:
+  - title: Adversarial Training Defense
+    lang: python
+    code: |-
+      import torch
+      import torch.nn.functional as F
+
+      def fgsm_attack(image, epsilon, data_grad):
+          # Generate perturbation using gradient sign
+          sign_data_grad = data_grad.sign()
+          perturbed_image = image + epsilon * sign_data_grad
+          perturbed_image = torch.clamp(perturbed_image, 0, 1)
+          return perturbed_image
+
+      def adversarial_training(model, train_loader, optimizer, epsilon=0.3):
+          model.train()
+          for data, target in train_loader:
+              data.requires_grad = True
+
+              # Normal training
+              output = model(data)
+              loss = F.cross_entropy(output, target)
+
+              # Generate adversarial examples
+              model.zero_grad()
+              loss.backward()
+              data_grad = data.grad.data
+              perturbed_data = fgsm_attack(data, epsilon, data_grad)
+
+              # Train on adversarial examples
+              adv_output = model(perturbed_data.detach())
+              adv_loss = F.cross_entropy(adv_output, target)
+
+              # Combined loss
+              total_loss = 0.5 * loss + 0.5 * adv_loss
+              optimizer.zero_grad()
+              total_loss.backward()
+              optimizer.step()
+    description:
+      tr: Adversarial training, modeli hem normal hem de adversarial örnekler üzerinde eğiterek dayanıklılığı artırır. FGSM ile üretilen saldırı örnekleri eğitim setine dahil edilir ve model bu tür manipülasyonlara karşı güçlendirilir.
+      en: Adversarial training increases robustness by training the model on both normal and adversarial examples. Attack examples generated with FGSM are included in the training set to strengthen the model against such manipulations.
+  - title: Input Sanitization with Certified Defenses
+    lang: python
+    code: |-
+      import torch
+      from scipy.ndimage import gaussian_filter
+
+      def randomized_smoothing_defense(model, x, num_samples=100, sigma=0.5):
+          """Certified defense using randomized smoothing"""
+          predictions = []
+
+          for _ in range(num_samples):
+              # Add Gaussian noise
+              noisy_x = x + torch.randn_like(x) * sigma
+              noisy_x = torch.clamp(noisy_x, 0, 1)
+
+              with torch.no_grad():
+                  pred = model(noisy_x)
+              predictions.append(pred)
+
+          # Majority vote
+          predictions = torch.stack(predictions)
+          return predictions.mean(dim=0)
+
+      def jpeg_compression_defense(image, quality=75):
+          """Removes adversarial perturbations via compression"""
+          from PIL import Image
+          import io
+
+          img = Image.fromarray((image * 255).astype('uint8'))
+          buffer = io.BytesIO()
+          img.save(buffer, format='JPEG', quality=quality)
+          buffer.seek(0)
+          cleaned = Image.open(buffer)
+          return torch.tensor(cleaned) / 255.0
+    description:
+      tr: Randomized smoothing ve JPEG sıkıştırma gibi input sanitizasyon teknikleri adversarial pertürbasyonları etkisiz hale getirir. Bu yöntemler, modelin girdisini işleyerek mikro-düzeydeki manipülasyonları temizler.
+      en: Input sanitization techniques like randomized smoothing and JPEG compression neutralize adversarial perturbations. These methods clean micro-level manipulations by preprocessing the model's input.
+research:
+  - title: Explaining and Harnessing Adversarial Examples
+    url: https://arxiv.org/abs/1412.6572
+    year: 2014
+    type: paper
+    authors: Ian Goodfellow, Jonathon Shlens, Christian Szegedy
+  - title: Towards Deep Learning Models Resistant to Adversarial Attacks
+    url: https://arxiv.org/abs/1706.06083
+    year: 2017
+    type: paper
+    authors: Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt
+  - title: Certified Adversarial Robustness via Randomized Smoothing
+    url: https://arxiv.org/abs/1902.02918
+    year: 2019
+    type: paper
+    authors: Jeremy Cohen, Elan Rosenfeld, Zico Kolter
+tips:
+  - tr: Adversarial eğitim yaparken epsilon değerini aşamalı olarak artırın (curriculum learning). Başta küçük pertürbasyonlarla başlayıp modeli zorlayarak daha güçlü savunma mekanizması oluşturun.
+    en: When performing adversarial training, gradually increase epsilon value (curriculum learning). Start with small perturbations and challenge the model to build stronger defense mechanisms.
+  - tr: "Production ortamında ensemble savunma kullanın: adversarial training + input preprocessing + randomized smoothing kombinasyonu tek başına her yöntemden daha etkilidir."
+    en: "Use ensemble defense in production: combination of adversarial training + input preprocessing + randomized smoothing is more effective than any single method alone."
+  - tr: Model API'niz üzerinde gradient masking yapmayın - bu yanlış güvenlik hissi verir. Saldırganlar gradient-free saldırılar (black-box) ile yine de başarılı olabilir.
+    en: Don't use gradient masking on your model API - this provides false sense of security. Attackers can still succeed with gradient-free attacks (black-box).

@@ -1,0 +1,223 @@
+id: react
+name: ReAct
+fullName: Reason + Act
+category: tools
+desc:
+  tr: |-
+    AI agent'larinin temelini oluşturan akıl yürütme patterni: Reason (Düşün) + Act (Yap). Model önce ne yapması gerektiğini DÜŞÜNÜR, bir AKSIYON alır (arac çağırır), sonucu GOZLEMLER ve tekrar düşünur — bu döngü görev tamamlanana kadar devam eder.
+
+    2022'de Yao et al. tarafından yayınlanan [akademik makalede](https://arxiv.org/abs/2210.03629) tanımlandi ve şimdi neredeyse tüm AI agent framework'lerinin ([LangChain](https://langchain.com), [Claude Code](https://claude.ai/code), AutoGPT) temelinde bu yaklaşım var.
+
+    Örneğin [Claude Code](https://claude.ai/code) bir bug düzeltirken: 'önce hata mesajını okuyayım' (Thought) -> dosyayi okur (Action) -> sonucu görür (Observation) -> 'su satırı değiştirmem lazım' (Thought) -> dosyayi düzenler (Action). Chain-of-thought (sadece düşünme) ile tool use'u (sadece yapma) birleştirerek her ikisinden daha güçlü bir sistem oluşturur.
+  en: |-
+    The reasoning pattern that powers most AI agents: Reason + Act. The model first THINKS about what to do, takes an ACTION (calls a tool), OBSERVES the result, and thinks again — this loop continues until the task iş complete.
+
+    Introduced in a [2022 paper](https://arxiv.org/abs/2210.03629) by Yao et al., [ReAct](https://arxiv.org/abs/2210.03629) iş now the backbone of nearly every AI agent framework including [LangChain](https://langchain.com), [Claude Code](https://claude.ai/code), and AutoGPT.
+
+    For example, when [Claude Code](https://claude.ai/code) fixes a bug, it thinks 'let me read the error log' (Thought), reads the file (Action), sees the output (Observation), then thinks 'I need to change line 42' (Thought), and edits the file (Action). By combining chain-of-thought reasoning (thinking only) with tool use (acting only), ReAct creates a system more powerful than either approach alone.
+  fr: "Le pattern de raisonnement qui anime la plupart des agents IA : Reason (Raisonner) + Act (Agir). Le modele REFLECHIT d'abord a ce qu'il doit faire, effectue une ACTION (appelle un outil), OBSERVE le resultat, et reflechit a nouveau — cette boucle continue jusqu'a ce que la tache soit terminee. Introduit dans un article de 2022 par Yao et al., ReAct est maintenant le socle de presque tous les frameworks d'agents IA, y compris LangChain, Claude Code et AutoGPT. Par exemple, quand Claude Code corrige un bug, il pense 'laissez-moi lire le log d'erreur' (Thought), lit le fichier (Action), voit la sortie (Observation), puis pense 'je dois modifier la ligne 42' (Thought) et edite le fichier (Action). En combinant le raisonnement en chaine de pensee (reflexion seule) avec le tool use (action seule), ReAct cree un systeme plus puissant que chaque approche separement."
+  zh: 驱动大多数AI代理的推理模式：Reason（推理）+ Act（行动）。模型首先思考要做什么，采取行动（调用工具），观察结果，然后再次思考——这个循环持续到任务完成。由Yao等人在2022年的论文中提出，ReAct现在是几乎所有AI代理框架的核心，包括LangChain、Claude Code和AutoGPT。例如，当Claude Code修复bug时，它会想'让我读一下错误日志'（Thought），读取文件（Action），查看输出（Observation），然后想'我需要修改第42行'（Thought），编辑文件（Action）。通过将思维链推理（仅思考）与工具使用（仅行动）相结合，ReAct创建了一个比任一方法单独使用都更强大的系统。
+  ar: "نمط الاستدلال الذي يشغّل معظم وكلاء الذكاء الاصطناعي: Reason (استدلال) + Act (تنفيذ). يفكر النموذج أولاً فيما يجب فعله، يتخذ إجراءً (يستدعي أداة)، يراقب النتيجة، ويفكر مجدداً — تستمر هذه الحلقة حتى إتمام المهمة. قُدم في ورقة بحثية عام 2022 من Yao وآخرين، وأصبح ReAct الآن العمود الفقري لتقريباً كل إطار عمل لوكلاء الذكاء الاصطناعي بما في ذلك LangChain وClaude Code وAutoGPT. مثلاً عندما يصلح Claude Code خطأً: يفكر 'دعني أقرأ سجل الأخطاء' (Thought) ثم يقرأ الملف (Action) ويرى المخرجات (Observation) ثم يفكر 'أحتاج لتعديل السطر 42' (Thought) ويحرر الملف (Action). بدمج استدلال سلسلة التفكير (التفكير فقط) مع استخدام الأدوات (التنفيذ فقط)، يُنشئ ReAct نظاماً أقوى من أي نهج بمفرده."
+  ru: "Паттерн рассуждений, лежащий в основе большинства ИИ-агентов: Reason (Рассуждай) + Act (Действуй). Модель сначала ДУМАЕТ, что нужно сделать, совершает ДЕЙСТВИЕ (вызывает инструмент), НАБЛЮДАЕТ результат и думает снова — этот цикл продолжается до завершения задачи. Представленный в статье Yao et al. в 2022 году, ReAct стал основой почти всех фреймворков для ИИ-агентов, включая LangChain, Claude Code и AutoGPT. Например, когда Claude Code исправляет баг, он думает 'давай прочитаю лог ошибок' (Thought), читает файл (Action), видит вывод (Observation), затем думает 'нужно изменить строку 42' (Thought) и редактирует файл (Action). Объединяя рассуждения по цепочке мыслей (только думать) с tool use (только действовать), ReAct создает систему мощнее каждого подхода по отдельности."
+analogy:
+  tr: Düşün → Yap → Sonuca bak → Tekrar düşün. Dedektifin ipucu bulup araştırması gibi.
+  en: Think → Act → Check result → Think again. Like a detective finding clues and investigating.
+  fr: Penser → Agir → Vérifier le résultat → Repenser. Comme un détective qui trouve des indices et enquête.
+  zh: 思考 → 行动 → 检查结果 → 再思考。就像侦探发现线索并调查一样。
+  ar: فكر → نفذ → افحص النتيجة → فكر مجدداً. مثل محقق يجد أدلة ويحقق.
+  ru: Думать → Действовать → Проверить результат → Думать снова. Как детектив, находящий улики и расследующий.
+security:
+  - title:
+      tr: Reasoning Trace Manipulation
+      en: Reasoning Trace Manipulation
+      fr: Manipulation de la trace de raisonnement
+      zh: 推理轨迹操纵
+      ar: التلاعب بمسار الاستدلال
+      ru: Манипуляция трассой рассуждения
+    description:
+      tr: ReAct pattern'daki Thought-Action-Observation döngüsü manipulation edilebilir. Saldırgan observation'a zararlı bilgi enjekte ederek sonraki thought ve action adımlarını manipüle edebilir.
+      en: The Thought-Action-Observation loop in ReAct pattern can be manipulated. Attacker can inject malicious information into observation to manipulate subsequent thought and action steps.
+      fr: La boucle Pensee-Action-Observation dans le pattern ReAct peut etre manipulee. L'attaquant peut injecter des informations malveillantes dans l'observation pour manipuler les etapes de pensee et d'action subsequentes.
+      zh: ReAct模式中的思考-行动-观察循环可以被操纵。攻击者可以在观察中注入恶意信息，以操纵后续的思考和行动步骤。
+      ar: يمكن التلاعب بحلقة التفكير-العمل-الملاحظة في نمط ReAct. يمكن للمهاجم حقن معلومات ضارة في الملاحظة للتلاعب بخطوات التفكير والعمل اللاحقة.
+      ru: Цикл Мысль-Действие-Наблюдение в паттерне ReAct может быть манипулирован. Злоумышленник может внедрить вредоносную информацию в наблюдение для манипулирования последующими шагами мышления и действия.
+    severity: high
+  - title:
+      tr: Infinite Reasoning Loop
+      en: Infinite Reasoning Loop
+      fr: Boucle de raisonnement infinie
+      zh: 无限推理循环
+      ar: حلقة استدلال لا نهائية
+      ru: Бесконечный цикл рассуждений
+    description:
+      tr: ReAct agent'ı sonsuz reasoning döngüsüne sokarak DoS saldırısı gerçekleştirilebilir. Agent sürekli 'think' modunda kalır, hiçbir zaman final answer üretmez.
+      en: DoS attack can be performed by putting ReAct agent in infinite reasoning loop. Agent stays in 'think' mode continuously, never produces final answer.
+      fr: Une attaque DoS peut etre effectuee en mettant l'agent ReAct dans une boucle de raisonnement infinie. L'agent reste continuellement en mode 'reflexion', ne produisant jamais de reponse finale.
+      zh: 通过让ReAct代理进入无限推理循环可以执行DoS攻击。代理持续停留在'思考'模式，永远不会产生最终答案。
+      ar: يمكن تنفيذ هجوم حجب الخدمة عن طريق وضع وكيل ReAct في حلقة استدلال لا نهائية. يبقى الوكيل في وضع 'التفكير' باستمرار، ولا ينتج إجابة نهائية أبداً.
+      ru: DoS-атака может быть выполнена путём помещения агента ReAct в бесконечный цикл рассуждений. Агент постоянно находится в режиме 'мышления', никогда не производя окончательный ответ.
+    severity: medium
+  - title:
+      tr: ReAct Reasoning Trace İfşası
+      en: ReAct Reasoning Trace Disclosure
+      fr: Divulgation de la trace de raisonnement ReAct
+      zh: ReAct推理轨迹泄露
+      ar: كشف مسار استدلال ReAct
+      ru: Раскрытие трассы рассуждений ReAct
+    description:
+      tr: ReAct agent'ın Thought adımları kullanıcıya gösterildiğinde, iç düşünce süreci ve karar mekanizması ifşa olur. Bu, güvenlik kontrollerinin nasıl çalıştığını ve nasıl atlanabileceğini gösterir.
+      en: When ReAct agent's Thought steps are shown to users, internal reasoning process and decision mechanism are exposed. This reveals how security controls work and how they can be bypassed.
+      fr: Quand les etapes de Pensee de l'agent ReAct sont montrees aux utilisateurs, le processus de raisonnement interne et le mecanisme de decision sont exposes. Cela revele comment les controles de securite fonctionnent et comment ils peuvent etre contournes.
+      zh: 当ReAct代理的思考步骤向用户展示时，内部推理过程和决策机制就会暴露。这揭示了安全控制如何工作以及如何被绕过。
+      ar: عندما تُعرض خطوات التفكير لوكيل ReAct للمستخدمين، تُكشف عملية الاستدلال الداخلية وآلية اتخاذ القرار. هذا يكشف كيف تعمل ضوابط الأمان وكيف يمكن تجاوزها.
+      ru: Когда шаги Мышления агента ReAct показываются пользователям, раскрывается внутренний процесс рассуждения и механизм принятия решений. Это показывает, как работают контроли безопасности и как их можно обойти.
+    severity: low
+config:
+  - title: ReAct Pattern with Circuit Breaker
+    lang: python
+    code: |-
+      class SecureReActAgent:
+          def __init__(self, llm_client, max_steps: int = 15):
+              self.llm = llm_client
+              self.max_steps = max_steps
+              self.memory = []
+
+          def run(self, question: str, tools: dict) -> str:
+              """Secure ReAct loop with circuit breaker"""
+
+              self.memory = [{"role": "user", "content": question}]
+              step = 0
+
+              while step < self.max_steps:
+                  # Generate thought + action
+                  response = self.llm.generate(self._build_react_prompt())
+
+                  # Parse response
+                  if "Final Answer:" in response:
+                      return self._extract_final_answer(response)
+
+                  thought, action, action_input = self._parse_react_step(response)
+
+                  # Validate action
+                  if action not in tools:
+                      return f"Error: Invalid action '{action}'"
+
+                  # Execute tool with timeout
+                  try:
+                      observation = self._execute_with_timeout(
+                          tools[action], action_input, timeout=10
+                      )
+                  except TimeoutError:
+                      observation = "Tool execution timeout"
+
+                  # Sanitize observation
+                  observation = self._sanitize_observation(observation)
+
+                  # Add to memory
+                  self.memory.append({
+                      "thought": thought,
+                      "action": action,
+                      "action_input": action_input,
+                      "observation": observation
+                  })
+
+                  step += 1
+
+              return "Error: Max steps reached without final answer"
+
+          def _sanitize_observation(self, obs: str) -> str:
+              """Remove injection attempts from observations"""
+              # Limit length
+              obs = obs[:1000]
+
+              # Remove ReAct control sequences
+              dangerous_patterns = [
+                  "Thought:", "Action:", "Final Answer:",
+                  "Observation:", "Assistant:", "System:"
+              ]
+              for pattern in dangerous_patterns:
+                  obs = obs.replace(pattern, f"[{pattern}]")
+
+              return obs
+
+          def _execute_with_timeout(self, tool_func, input_str: str, timeout: int):
+              import signal
+
+              def handler(signum, frame):
+                  raise TimeoutError()
+
+              signal.signal(signal.SIGALRM, handler)
+              signal.alarm(timeout)
+              try:
+                  result = tool_func(input_str)
+              finally:
+                  signal.alarm(0)
+              return result
+
+          def _build_react_prompt(self) -> str:
+              # Build ReAct prompt from memory
+              return "..." # Implementation details
+
+          def _parse_react_step(self, response: str):
+              # Parse Thought/Action/ActionInput
+              return ("thought", "action", "input")
+
+          def _extract_final_answer(self, response: str) -> str:
+              return response.split("Final Answer:")[-1].strip()
+    description:
+      tr: ReAct pattern için circuit breaker ve observation sanitization. Max step limit ve timeout koruması.
+      en: Circuit breaker and observation sanitization for ReAct pattern. Max step limit and timeout protection.
+  - title: ReAct Loop Safety Guard (Bash)
+    lang: bash
+    code: |-
+      #!/bin/bash
+      # Monitor ReAct agent for infinite loops and resource abuse
+      AGENT_PID="$1"
+      MAX_ITERATIONS=20
+      MAX_DURATION_SEC=600
+      MAX_MEM_MB=2048
+
+      START_TIME=$(date +%s)
+      ITERATION=0
+
+      while kill -0 "$AGENT_PID" 2>/dev/null; do
+        ITERATION=$((ITERATION + 1))
+        ELAPSED=$(( $(date +%s) - START_TIME ))
+        MEM_MB=$(ps -o rss= -p "$AGENT_PID" 2>/dev/null | awk '{print int($1/1024)}')
+
+        if [ "$ITERATION" -gt "$MAX_ITERATIONS" ]; then
+          echo "[ALERT] Agent exceeded max iterations ($MAX_ITERATIONS)" >&2
+          kill -TERM "$AGENT_PID"
+          exit 1
+        fi
+        if [ "$ELAPSED" -gt "$MAX_DURATION_SEC" ]; then
+          echo "[ALERT] Agent exceeded max duration (${MAX_DURATION_SEC}s)" >&2
+          kill -TERM "$AGENT_PID"
+          exit 1
+        fi
+        if [ "${MEM_MB:-0}" -gt "$MAX_MEM_MB" ]; then
+          echo "[ALERT] Agent exceeded memory limit (${MAX_MEM_MB}MB)" >&2
+          kill -TERM "$AGENT_PID"
+          exit 1
+        fi
+        sleep 2
+      done
+    description:
+      tr: ReAct agent'ı sonsuz döngü, süre aşımı ve bellek tüketimi açısından izleyen güvenlik scripti.
+      en: Security script that monitors ReAct agent for infinite loops, timeout, and memory consumption.
+research:
+  - title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    url: https://arxiv.org/abs/2210.03629
+    year: 2022
+    type: paper
+    authors: Shunyu Yao, Jeffrey Zhao, Dian Yu (Princeton, Google)
+  - title: LangChain ReAct Agent Documentation
+    url: https://python.langchain.com/docs/modules/agents/agent_types/react
+    year: 2024
+    type: guide
+    authors: LangChain
+tips:
+  - tr: Observation içeriğini sanitize edin; ReAct control sequence'ları kaldırın.
+    en: Sanitize observation content; remove ReAct control sequences.
+  - tr: Her tool execution için timeout belirleyin (örn. 10 saniye).
+    en: Set timeout for each tool execution (e.g., 10 seconds).

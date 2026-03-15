@@ -1,0 +1,239 @@
+id: model-serving
+name: Model Serving
+fullName: Model Serving
+category: inference
+desc:
+  tr: |-
+    Eğitilmiş modeli production'da inference için serve eden sistemler. REST API, gRPC veya WebSocket üzerinden model tahminleri sunar ve scaling, versioning, monitoring sağlar.
+
+    [vLLM](/terms/vllm), [TensorFlow Serving](https://www.tensorflow.org/tfx/guide/serving), TorchServe ve [Triton Inference Server](https://github.com/triton-inference-server/server) popüler serving framework'leridir. Batch inference, dynamic batching, model parallelism ve hot-swapping gibi optimizasyonlar sunarlar.
+
+    Production serving için kritik: health checks, A/B testing, canary deployments, request throttling ve comprehensive logging. [Docker](/terms/docker) container'lar ile deployment standardize edilir.
+  en: |-
+    Systems that serve trained models for inference in production. Provides model predictions via REST API, gRPC, or WebSocket with scaling, versioning, and monitoring.
+
+    [vLLM](/terms/vllm), [TensorFlow Serving](https://www.tensorflow.org/tfx/guide/serving), TorchServe, and [Triton Inference Server](https://github.com/triton-inference-server/server) are popular serving frameworks. They offer optimizations like batch inference, dynamic batching, model parallelism, and hot-swapping.
+
+    Critical for production serving: health checks, A/B testing, canary deployments, request throttling, and comprehensive logging. Deployment is standardized with [Docker](/terms/docker) containers.
+  fr: Systèmes qui servent des modèles entraînés pour l'inférence en production via REST API, gRPC ou WebSocket.
+  zh: 在生产环境中为推理提供训练模型的系统，通过 REST API、gRPC 或 WebSocket 提供服务。
+  ar: أنظمة تقدم نماذج مدربة للاستدلال في الإنتاج عبر REST API أو gRPC أو WebSocket.
+  ru: Системы, обслуживающие обученные модели для вывода в продакшене через REST API, gRPC или WebSocket.
+analogy:
+  tr: "Garson gibi: mutfak (model) hazır, sen sadece siparişleri ilet ve yemeği (prediction) sun."
+  en: "Like a waiter: kitchen (model) is ready, you just take orders and serve food (predictions)."
+  fr: "Comme un serveur : la cuisine (modèle) est prête, vous prenez juste les commandes et servez la nourriture (prédictions)."
+  zh: 像服务员：厨房（模型）已准备好，你只需接受订单并提供食物（预测）。
+  ar: "مثل النادل: المطبخ (النموذج) جاهز، أنت فقط تأخذ الطلبات وتقدم الطعام (التنبؤات)."
+  ru: "Как официант: кухня (модель) готова, вы просто принимаете заказы и подаете еду (предсказания)."
+security:
+  - title:
+      tr: Endpoint Enumeration
+      en: Endpoint Enumeration
+      fr: Enumeration des points de terminaison
+      zh: 端点枚举
+      ar: تعداد نقاط النهاية
+      ru: Перечисление конечных точек
+    description:
+      tr: Model serving endpoint'leri enumerate edilerek internal model versiyonları, architecture detayları ve debug endpoints leak edilebilir. /metrics, /health, /v2/models gibi default path'ler keşfedilebilir.
+      en: Model serving endpoints can be enumerated to leak internal model versions, architecture details, and debug endpoints. Default paths like /metrics, /health, /v2/models can be discovered.
+      fr: Les points de terminaison de service de modele peuvent etre enumeres pour divulguer les versions internes du modele, les details de l'architecture et les points de terminaison de debogage. Les chemins par defaut comme /metrics, /health, /v2/models peuvent etre decouverts.
+      zh: 模型服务端点可以被枚举，泄露内部模型版本、架构详情和调试端点。默认路径如/metrics、/health、/v2/models可以被发现。
+      ar: يمكن تعداد نقاط نهاية خدمة النموذج لتسريب إصدارات النموذج الداخلية وتفاصيل البنية ونقاط نهاية التصحيح. يمكن اكتشاف المسارات الافتراضية مثل /metrics و/health و/v2/models.
+      ru: Конечные точки обслуживания моделей могут быть перечислены для утечки внутренних версий моделей, деталей архитектуры и отладочных эндпоинтов. Пути по умолчанию, такие как /metrics, /health, /v2/models, могут быть обнаружены.
+    severity: medium
+  - title:
+      tr: Hot-Swap Model Poisoning
+      en: Hot-Swap Model Poisoning
+      fr: Empoisonnement par remplacement a chaud du modele
+      zh: 模型热替换投毒
+      ar: تسميم عبر التبديل السريع للنموذج
+      ru: Отравление модели через горячую замену
+    description:
+      tr: Model hot-swapping özelliği kötüye kullanılarak poisoned model yüklenebilir. Model registry authentication ve integrity check eksikse saldırgan backdoored model serve edebilir.
+      en: Model hot-swapping feature can be abused to load poisoned models. Without model registry authentication and integrity checks, attacker can serve backdoored models.
+      fr: La fonctionnalite de remplacement a chaud du modele peut etre exploitee pour charger des modeles empoisonnes. Sans authentification au registre de modeles et verification d'integrite, un attaquant peut servir des modeles avec porte derobee.
+      zh: 模型热替换功能可以被滥用来加载投毒模型。如果缺少模型注册表认证和完整性检查，攻击者可以提供带有后门的模型服务。
+      ar: يمكن إساءة استخدام ميزة التبديل السريع للنموذج لتحميل نماذج مسممة. بدون مصادقة سجل النماذج وفحوصات السلامة، يمكن للمهاجم تقديم نماذج بأبواب خلفية.
+      ru: Функция горячей замены моделей может быть использована для загрузки отравленных моделей. Без аутентификации реестра моделей и проверки целостности злоумышленник может обслуживать модели с бэкдорами.
+    severity: critical
+  - title:
+      tr: Inference API Abuse
+      en: Inference API Abuse
+      fr: Abus de l'API d'inference
+      zh: 推理API滥用
+      ar: إساءة استخدام واجهة API للاستدلال
+      ru: Злоупотребление API инференса
+    description:
+      tr: Rate limiting ve authentication olmadan inference API'leri abuse edilebilir. Model extraction attacks, resource exhaustion ve malicious input flooding mümkün olur.
+      en: Inference APIs can be abused without rate limiting and authentication. Model extraction attacks, resource exhaustion, and malicious input flooding become possible.
+      fr: Les API d'inference peuvent etre exploitees sans limitation de debit ni authentification. Les attaques d'extraction de modele, l'epuisement des ressources et l'inondation d'entrees malveillantes deviennent possibles.
+      zh: 在没有速率限制和认证的情况下，推理API可以被滥用。模型提取攻击、资源耗尽和恶意输入洪泛成为可能。
+      ar: يمكن إساءة استخدام واجهات API للاستدلال بدون تحديد المعدل والمصادقة. تصبح هجمات استخراج النموذج واستنفاد الموارد وإغراق المدخلات الضارة ممكنة.
+      ru: API инференса могут быть использованы злонамеренно без ограничения частоты запросов и аутентификации. Становятся возможными атаки извлечения модели, исчерпание ресурсов и флуд вредоносными входными данными.
+    severity: high
+  - title:
+      tr: Model Serving Konfigürasyon Bilgi Sızıntısı
+      en: Model Serving Configuration Information Disclosure
+      fr: Divulgation de configuration model serving
+      zh: model serving配置信息泄露
+      ar: كشف معلومات تكوين model-serving
+      ru: Раскрытие конфигурации model-serving
+    description:
+      tr: Model Serving ile ilgili versiyon, framework ve deployment bilgileri hata mesajlarında veya API yanıtlarında açığa çıkabilir.
+      en: Version, framework, and deployment details related to model serving can be exposed in error messages or API responses, aiding targeted attacks.
+      fr: Les détails de version et de déploiement liés à model serving peuvent être exposés dans les messages d'erreur ou les réponses API.
+      zh: 与model serving相关的版本、框架和部署细节可能在错误消息或API响应中暴露。
+      ar: يمكن كشف تفاصيل الإصدار والنشر المتعلقة بـ model-serving في رسائل الخطأ.
+      ru: Сведения о версии и развёртывании model-serving могут быть раскрыты в сообщениях об ошибках или ответах API.
+    severity: low
+config:
+  - title: Secure Model Serving with FastAPI + Authentication
+    lang: python
+    code: |-
+      from fastapi import FastAPI, HTTPException, Depends, Header
+      from pydantic import BaseModel
+      import hashlib
+      import hmac
+      import time
+      from collections import defaultdict
+      from threading import Lock
+
+      app = FastAPI()
+
+      # Rate limiting
+      rate_limit_store = defaultdict(list)
+      rate_limit_lock = Lock()
+
+      class InferenceRequest(BaseModel):
+          input_text: str
+          max_length: int = 100
+
+      class ModelServer:
+          def __init__(self, model_path: str, api_key: str):
+              self.model_path = model_path
+              self.api_key = api_key
+              self.model = self.load_model()
+
+          def load_model(self):
+              # Verify model signature before loading
+              expected_hash = "abc123..."  # Store securely
+              with open(self.model_path, 'rb') as f:
+                  model_hash = hashlib.sha256(f.read()).hexdigest()
+
+              if model_hash != expected_hash:
+                  raise SecurityError("Model signature verification failed")
+
+              # Load your model here
+              return None  # Replace with actual model
+
+          def predict(self, input_data: str) -> dict:
+              # Input validation
+              if len(input_data) > 10000:
+                  raise ValueError("Input too large")
+
+              # Inference
+              result = {"prediction": "sample output"}
+              return result
+
+      server = ModelServer(
+          model_path="/models/model.safetensors",
+          api_key="your-secret-key"
+      )
+
+      def verify_api_key(x_api_key: str = Header(...)) -> bool:
+          """Verify API key with constant-time comparison"""
+          if not hmac.compare_digest(x_api_key, server.api_key):
+              raise HTTPException(status_code=401, detail="Invalid API key")
+          return True
+
+      def rate_limit(client_ip: str, max_requests: int = 10, window: int = 60):
+          """Rate limiting: max_requests per window seconds"""
+          with rate_limit_lock:
+              now = time.time()
+              # Clean old requests
+              rate_limit_store[client_ip] = [
+                  req_time for req_time in rate_limit_store[client_ip]
+                  if now - req_time < window
+              ]
+
+              if len(rate_limit_store[client_ip]) >= max_requests:
+                  raise HTTPException(status_code=429, detail="Rate limit exceeded")
+
+              rate_limit_store[client_ip].append(now)
+
+      @app.post("/v1/inference")
+      async def inference(
+          request: InferenceRequest,
+          authenticated: bool = Depends(verify_api_key)
+      ):
+          """Secure inference endpoint"""
+          # Rate limiting would be applied via middleware
+
+          try:
+              result = server.predict(request.input_text)
+              return {"status": "success", "result": result}
+          except Exception as e:
+              # Don't leak internal errors
+              return {"status": "error", "message": "Inference failed"}
+
+      @app.get("/health")
+      async def health():
+          """Public health check - no sensitive info"""
+          return {"status": "healthy"}
+
+      class SecurityError(Exception):
+          pass
+    description:
+      tr: FastAPI ile güvenli model serving. API key auth, rate limiting, model signature verification.
+      en: Secure model serving with FastAPI. API key auth, rate limiting, model signature verification.
+  - title: Model Serving Gateway
+    lang: terraform
+    code: |-
+      resource "aws_api_gateway_rest_api" "model_api" {
+        name = "model-serving-api"
+      }
+
+      resource "aws_api_gateway_method" "inference" {
+        rest_api_id   = aws_api_gateway_rest_api.model_api.id
+        resource_id   = aws_api_gateway_resource.inference.id
+        http_method   = "POST"
+        authorization = "COGNITO_USER_POOLS"
+        authorizer_id = aws_api_gateway_authorizer.cognito.id
+      }
+
+      resource "aws_api_gateway_method_settings" "all" {
+        rest_api_id = aws_api_gateway_rest_api.model_api.id
+        stage_name  = "prod"
+        method_path = "*/*"
+        settings {
+          throttling_burst_limit = 50
+          throttling_rate_limit  = 100
+        }
+      }
+    description:
+      tr: Model serving icin AWS API Gateway Terraform.
+      en: AWS API Gateway Terraform for model serving.
+research:
+  - title: "Clipper: A Low-Latency Online Prediction Serving System"
+    url: https://www.usenix.org/conference/nsdi17/technical-sessions/presentation/crankshaw
+    year: 2017
+    type: paper
+    authors: Daniel Crankshaw, Xin Wang, Guilio Zhou
+  - title: "TensorFlow Serving: Flexible, High-Performance ML Serving"
+    url: https://arxiv.org/abs/1712.06139
+    year: 2017
+    type: paper
+    authors: Christopher Olston, Noah Fiedel, Kiril Gorovoy
+  - title: Model Serving Security Best Practices
+    url: https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+    year: 2023
+    type: guide
+    authors: Google Cloud
+tips:
+  - tr: Her model yüklemesinde cryptographic signature verification yapın.
+    en: Perform cryptographic signature verification on every model load.
+  - tr: Rate limiting ve request throttling ile abuse'ı önleyin, per-client quota belirleyin.
+    en: Prevent abuse with rate limiting and request throttling, set per-client quota.
+  - tr: Health check endpoint'lerinde internal detayları leak etmeyin, sadece status dönün.
+    en: Don't leak internal details in health check endpoints, only return status.

@@ -1,0 +1,208 @@
+id: rlhf
+name: RLHF
+fullName: Reinforcement Learning from Human Feedback
+category: training
+desc:
+  tr: |-
+    AI modellerini insan geri bildirimiyle hizalama yöntemi — ham bir metin tahmincisini yardımcı bir asistana dönüştüren teknolojidir. Süreç üç aşamadan oluşur: önce SFT ile model cevap vermeyi öğrenir, sonra insan değerlendirmeciler binlerce cevap çifti arasında tercihlerde bulunur, son olarak bu tercihlerden bir ödül modeli (reward model) eğitilir ve asıl model bu modele göre optimize edilir.
+
+    [OpenAI](https://openai.com), [ChatGPT](https://openai.com/chatgpt)'yi 2022'de piyasaya sürerken tam olarak bu yöntemi kullandı — GPT-3.5'in ham halinden ChatGPT'nin doğal konuşma stiline geçiş RLHF sayesinde gerçekleşti. InstructGPT makalesi bu yöntemin temelini ortaya koydu ve bugün neredeyse tüm büyük AI laboratuvarları ([Anthropic](https://anthropic.com), Google DeepMind, [Meta](https://ai.meta.com)) kendi modellerinde RLHF veya türevlerini kullanıyor.
+
+    Dezavantajı karmaşık ve pahalı olmasıdır — bu nedenle DPO gibi daha basit alternatifler popülerlik kazandı.
+  en: |-
+    A technique for aligning AI models with human preferences, transforming a raw text predictor into a helpful assistant. The process has three stages: first SFT teaches the model to respond to instructions, then human evaluators rank thousands of response pairs by quality, and finally a reward model is trained from those preferences to optimize the base model via reinforcement learning.
+
+    This is exactly how [ChatGPT](https://openai.com/chatgpt) went from GPT-3.5's raw form to the conversational assistant that launched in November 2022 — [OpenAI](https://openai.com)'s InstructGPT paper laid the groundwork for this approach. Today, virtually every major AI lab ([Anthropic](https://anthropic.com), Google DeepMind, [Meta](https://ai.meta.com)) uses RLHF or its variants to align their models.
+
+    The downside is complexity and cost: you need thousands of human labelers and a separate reward model, which is why simpler alternatives like DPO have gained popularity.
+  fr: "Une technique pour aligner les modeles d'IA sur les preferences humaines, transformant un simple predicteur de texte en assistant utile. Le processus comporte trois etapes : d'abord le SFT apprend au modele a repondre aux instructions, puis des evaluateurs humains classent des milliers de paires de reponses par qualite, et enfin un modele de recompense est entraine a partir de ces preferences pour optimiser le modele de base. C'est exactement ainsi que ChatGPT est passe de la version brute de GPT-3.5 a l'assistant conversationnel lance en novembre 2022. Aujourd'hui, pratiquement tous les grands laboratoires d'IA (Anthropic, Google DeepMind, Meta) utilisent RLHF ou ses variantes. L'inconvenient est la complexite et le cout, c'est pourquoi des alternatives plus simples comme DPO ont gagne en popularite."
+  zh: 一种将AI模型与人类偏好对齐的技术，能将原始文本预测器转变为有用的助手。过程分三个阶段：首先通过SFT教模型回应指令，然后人类评估者对数千对回答进行质量排名，最后从这些偏好中训练奖励模型，通过强化学习优化基础模型。这正是ChatGPT从GPT-3.5原始形态变为2022年11月推出的对话助手的方法——OpenAI的InstructGPT论文奠定了这一方法的基础。如今，几乎所有主要AI实验室（Anthropic、Google DeepMind、Meta）都使用RLHF或其变体来对齐模型。缺点是复杂且昂贵，因此DPO等更简单的替代方案越来越受欢迎。
+  ar: "تقنية لمواءمة نماذج الذكاء الاصطناعي مع تفضيلات البشر، تحوّل متنبئ نص خام إلى مساعد مفيد. تتكون العملية من ثلاث مراحل: أولاً يعلّم SFT النموذج الاستجابة للتعليمات، ثم يصنّف مقيّمون بشريون آلاف أزواج الإجابات حسب الجودة، وأخيراً يُدرَّب نموذج مكافأة من تلك التفضيلات لتحسين النموذج الأساسي عبر التعلم المعزز. هذا بالضبط كيف تحول ChatGPT من الشكل الخام لـ GPT-3.5 إلى المساعد المحادثي الذي أُطلق في نوفمبر 2022. اليوم، تستخدم جميع مختبرات الذكاء الاصطناعي الكبرى تقريباً (Anthropic، Google DeepMind، Meta) تقنية RLHF أو متغيراتها. العيب هو التعقيد والتكلفة، لذلك اكتسبت بدائل أبسط مثل DPO شعبية."
+  ru: "Техника выравнивания моделей ИИ с человеческими предпочтениями, превращающая сырой текстовый предсказатель в полезного ассистента. Процесс состоит из трёх этапов: сначала SFT учит модель отвечать на инструкции, затем люди-оценщики ранжируют тысячи пар ответов по качеству, и наконец на основе этих предпочтений обучается модель вознаграждения для оптимизации базовой модели через обучение с подкреплением. Именно так ChatGPT превратился из сырого GPT-3.5 в разговорного ассистента, запущенного в ноябре 2022 года — статья OpenAI об InstructGPT заложила основу этого подхода. Сегодня практически все крупные лаборатории ИИ (Anthropic, Google DeepMind, Meta) используют RLHF или его варианты. Недостаток — сложность и дороговизна, поэтому более простые альтернативы вроде DPO набирают популярность."
+analogy:
+  tr: Öğrencinin öğretmeninden 'bu cevap daha iyi, bu daha kötü' geri bildirimi alarak geliştiği süreç.
+  en: A student improving by getting 'this answer iş better, this one iş worse' feedback from a teacher.
+  fr: Un étudiant s'améliorant en recevant des retours de type 'cette réponse est meilleure, celle-ci est moins bonne' de la part d'un enseignant.
+  zh: 学生通过从老师那里获得"这个答案更好，这个更差"的反馈而进步。
+  ar: طالب يتحسن من خلال الحصول على ملاحظات من المعلم 'هذه الإجابة أفضل، هذه أسوأ'.
+  ru: Студент, улучшающийся благодаря обратной связи от учителя вида 'этот ответ лучше, этот хуже'.
+security:
+  - title:
+      tr: Reward Model Hacking
+      en: Reward Model Hacking
+      fr: Piratage du modèle de récompense
+      zh: 奖励模型黑客攻击
+      ar: اختراق نموذج المكافأة
+      ru: Взлом модели вознаграждения
+    description:
+      tr: RLHF'de policy model, reward model'i maximize etmeyi öğrenir. Ancak reward model imperfect olduğu için, policy model reward hacking yapabilir — actual helpful olma yerine sadece high reward alan output üretir. Örneğin verbose/polite ama wrong answer üretir. Reward model quality critical.
+      en: In RLHF, policy model learns to maximize reward model. But because reward model is imperfect, policy model can do reward hacking - generating outputs that get high reward instead of being actually helpful. For example, generates verbose/polite but wrong answer. Reward model quality is critical.
+      fr: En RLHF, le modèle de politique apprend à maximiser le modèle de récompense. Mais comme le modèle de récompense est imparfait, le modèle de politique peut faire du reward hacking — générant des sorties qui obtiennent une haute récompense au lieu d'être réellement utiles. La qualité du modèle de récompense est critique.
+      zh: 在RLHF中，策略模型学习最大化奖励模型。但由于奖励模型不完美，策略模型可能进行奖励黑客——生成获得高奖励而非真正有用的输出。例如生成冗长/礼貌但错误的答案。奖励模型质量至关重要。
+      ar: في RLHF يتعلم نموذج السياسة تعظيم نموذج المكافأة. لكن لأن نموذج المكافأة غير مثالي، يمكن لنموذج السياسة اختراق المكافأة — إنتاج مخرجات تحصل على مكافأة عالية بدلاً من أن تكون مفيدة فعلاً. جودة نموذج المكافأة حاسمة.
+      ru: В RLHF модель политики учится максимизировать модель вознаграждения. Но поскольку модель вознаграждения несовершенна, модель политики может делать reward hacking — генерировать выходы с высоким вознаграждением вместо действительно полезных. Качество модели вознаграждения критически важно.
+    severity: high
+  - title:
+      tr: Preference Data Poisoning
+      en: Preference Data Poisoning
+      fr: Empoisonnement des données de préférence
+      zh: 偏好数据投毒
+      ar: تسميم بيانات التفضيل
+      ru: Отравление данных предпочтений
+    description:
+      tr: RLHF preference data (human feedback) manipüle edilerek model zararlı behavior öğretilebilir. Malicious annotator veya hacked annotation platform üzerinden systematic olarak zararlı response'lara yüksek rating verilirse, model jailbreak öğrenir. Annotation quality control şart.
+      en: Model can be taught harmful behavior by manipulating RLHF preference data (human feedback). If malicious annotator or hacked annotation platform systematically gives high ratings to harmful responses, model learns jailbreak. Annotation quality control is mandatory.
+      fr: Un comportement nuisible peut être enseigné au modèle en manipulant les données de préférence RLHF (feedback humain). Si un annotateur malveillant ou une plateforme d'annotation piratée donne systématiquement de hautes notes aux réponses nuisibles, le modèle apprend le jailbreak. Le contrôle qualité des annotations est obligatoire.
+      zh: 通过操纵RLHF偏好数据（人类反馈）可以教模型有害行为。如果恶意标注者或被黑的标注平台系统性地给有害响应高评分，模型就会学会越狱。标注质量控制是必须的。
+      ar: يمكن تعليم النموذج سلوكاً ضاراً بالتلاعب ببيانات تفضيل RLHF. إذا قام معلق خبيث بإعطاء تقييمات عالية منهجياً للاستجابات الضارة، يتعلم النموذج كسر القيود. مراقبة جودة التعليقات إلزامية.
+      ru: Модель можно научить вредоносному поведению путём манипуляции данными предпочтений RLHF (обратная связь людей). Если злонамеренный аннотатор систематически даёт высокие оценки вредным ответам, модель учится джейлбрейку. Контроль качества аннотаций обязателен.
+    severity: critical
+  - title:
+      tr: Mode Collapse to Safe-but-Useless
+      en: Mode Collapse to Safe-but-Useless
+      fr: Effondrement modal vers sûr-mais-inutile
+      zh: 向安全但无用的模式坍缩
+      ar: الانهيار النمطي إلى آمن لكن عديم الفائدة
+      ru: Коллапс в безопасный-но-бесполезный режим
+    description:
+      tr: RLHF sırasında model çok conservative olabilir ve useful output vermemeyi öğrenir. 'I cannot help with that' her şeye response olarak mode collapse yaratır. Bu da adversarial olarak exploit edilebilir — model gerçekten harmful olmayan sorulara bile cevap vermez.
+      en: During RLHF, model can become too conservative and learn to not give useful output. Mode collapse where 'I cannot help with that' is response to everything. This can also be adversarially exploited - model won't answer even genuinely non-harmful questions.
+      fr: Pendant le RLHF, le modèle peut devenir trop conservateur et apprendre à ne pas donner de sortie utile. Effondrement modal où 'Je ne peux pas aider avec ça' est la réponse à tout. Ceci peut aussi être exploité adversairement — le modèle ne répond même pas aux questions réellement non-nuisibles.
+      zh: RLHF期间模型可能变得过于保守，学会不提供有用输出。模式坍缩——'我无法帮助你'成为对一切的回应。这也可以被对抗性利用——模型甚至不回答真正无害的问题。
+      ar: أثناء RLHF قد يصبح النموذج محافظاً جداً ويتعلم عدم إعطاء مخرجات مفيدة. الانهيار النمطي حيث 'لا أستطيع المساعدة' هو الرد على كل شيء. يمكن استغلال هذا أيضاً — النموذج لا يجيب حتى على الأسئلة غير الضارة حقاً.
+      ru: Во время RLHF модель может стать слишком консервативной и научиться не давать полезных ответов. Коллапс режима, где 'Я не могу помочь с этим' — ответ на всё. Это также может быть использовано злоумышленниками — модель не отвечает даже на безвредные вопросы.
+    severity: medium
+  - title:
+      tr: RLHF Training Log Bilgi Sızıntısı
+      en: RLHF Training Log Information Disclosure
+      fr: Divulgation d'informations des logs d'entraînement RLHF
+      zh: RLHF训练日志信息泄露
+      ar: تسريب معلومات سجلات تدريب RLHF
+      ru: Утечка информации из логов обучения RLHF
+    description:
+      tr: RLHF training log'ları reward score distribution, KL divergence ve PPO hyperparameter'ları hakkında bilgi içerir. Bu metrikler public paylaşılırsa, saldırgan reward model'in weakness'larını anlayabilir ve daha etkili jailbreak prompt'ları craft edebilir.
+      en: RLHF training logs contain information about reward score distribution, KL divergence, and PPO hyperparameters. If these metrics are shared publicly, attackers can understand reward model weaknesses and craft more effective jailbreak prompts.
+      fr: Les logs d'entraînement RLHF contiennent des informations sur la distribution des scores de récompense, la divergence KL et les hyperparamètres PPO. Si ces métriques sont partagées publiquement, les attaquants peuvent comprendre les faiblesses du modèle de récompense.
+      zh: RLHF训练日志包含奖励分数分布、KL散度和PPO超参数的信息。如果这些指标公开共享，攻击者可以了解奖励模型的弱点并制作更有效的越狱提示。
+      ar: تحتوي سجلات تدريب RLHF على معلومات حول توزيع درجات المكافأة والتباعد KL ومعلمات PPO. إذا شُوركت هذه المقاييس علنياً، يمكن للمهاجمين فهم نقاط ضعف نموذج المكافأة.
+      ru: Логи обучения RLHF содержат информацию о распределении наград, KL-дивергенции и гиперпараметрах PPO. При публичном доступе злоумышленники могут понять слабости модели вознаграждения и создать более эффективные джейлбрейк-промпты.
+    severity: low
+config:
+  - title: Reward Model Ensemble for Robustness
+    lang: python
+    code: |-
+      import torch
+      from transformers import AutoModelForSequenceClassification
+
+      class EnsembleRewardModel:
+          """Use multiple reward models to prevent reward hacking"""
+          def __init__(self, model_names: list):
+              self.models = [
+                  AutoModelForSequenceClassification.from_pretrained(name)
+                  for name in model_names
+              ]
+
+          def get_reward(self, prompt: str, response: str) -> float:
+              """Compute ensemble reward"""
+              rewards = []
+
+              for model in self.models:
+                  inputs = tokenizer(prompt + response, return_tensors="pt")
+                  with torch.no_grad():
+                      reward = model(**inputs).logits[0, 0].item()
+                  rewards.append(reward)
+
+              # Use median to be robust to outliers
+              ensemble_reward = torch.tensor(rewards).median().item()
+
+              # Detect reward hacking: high variance = suspicious
+              reward_std = torch.tensor(rewards).std().item()
+              if reward_std > 2.0:
+                  print(f"WARNING: Reward variance too high: {reward_std}")
+
+              return ensemble_reward
+
+      # Use during RLHF training
+      reward_models = ["model1/reward", "model2/reward", "model3/reward"]
+      ensemble = EnsembleRewardModel(reward_models)
+
+      reward = ensemble.get_reward(prompt, response)
+    description:
+      tr: RLHF'de tek reward model yerine ensemble kullanın. Median reward alın, outlier'lara robust olun. High variance durumunda reward hacking tespiti yapın.
+      en: Use ensemble of reward models instead of single one in RLHF. Take median reward, be robust to outliers. Detect reward hacking with high variance.
+  - title: Preference Data Validation
+    lang: python
+    code: |-
+      from collections import defaultdict
+      import numpy as np
+
+      class PreferenceDataAuditor:
+          """Audit human preference data for poisoning"""
+          def __init__(self):
+              self.annotator_stats = defaultdict(lambda: {
+                  'total': 0,
+                  'controversial': 0,  # Disagrees with majority
+                  'extreme': 0,  # Always picks extreme ratings
+              })
+
+          def audit_annotation(self, annotator_id: str, prompt: str,
+                               chosen: str, rejected: str, majority_choice: str):
+              stats = self.annotator_stats[annotator_id]
+              stats['total'] += 1
+
+              # Check if disagrees with majority
+              if chosen != majority_choice:
+                  stats['controversial'] += 1
+
+              # Detect suspicious annotator
+              if stats['total'] > 100:
+                  controversy_rate = stats['controversial'] / stats['total']
+                  if controversy_rate > 0.4:  # >40% disagreement
+                      print(f"ALERT: Annotator {annotator_id} has {controversy_rate:.1%} controversy rate")
+                      return False
+
+              return True
+
+          def get_suspicious_annotators(self, threshold=0.3):
+              """Find annotators who frequently disagree"""
+              suspicious = []
+              for annotator_id, stats in self.annotator_stats.items():
+                  if stats['total'] < 50:
+                      continue
+                  controversy_rate = stats['controversial'] / stats['total']
+                  if controversy_rate > threshold:
+                      suspicious.append((annotator_id, controversy_rate))
+              return suspicious
+
+      # Use during data collection
+      auditor = PreferenceDataAuditor()
+      for annotation in preference_dataset:
+          if not auditor.audit_annotation(**annotation):
+              # Flag for manual review
+              pass
+    description:
+      tr: Preference data annotator'larını audit edin. Majority ile %40+ disagree eden annotator'ları tespit edin. Poisoning attempt'leri yakalayın.
+      en: Audit preference data annotators. Detect annotators disagreeing 40%+ with majority. Catch poisoning attempts.
+research:
+  - title: Scaling Laws for Reward Model Overoptimization
+    url: https://arxiv.org/abs/2210.10760
+    year: 2022
+    type: paper
+    authors: Leo Gao, et al.
+  - title: Poisoning Language Models via Preference Data
+    url: https://arxiv.org/abs/2302.10149
+    year: 2023
+    type: paper
+    authors: Jiaming Ji, et al.
+  - title: Training Language Models to Follow Instructions with Human Feedback
+    url: https://arxiv.org/abs/2203.02155
+    year: 2022
+    type: paper
+    authors: OpenAI et al.
+tips:
+  - tr: Reward model'i de red-teaming yapın, adversarial prompt'lara karşı test edin.
+    en: Red-team the reward model too, test against adversarial prompts.
+  - tr: RLHF sonrası KL divergence'ı monitor edin, base model'den çok fazla sapma mode collapse işareti.
+    en: Monitor KL divergence after RLHF - too much deviation from base model signals mode collapse.
+  - tr: Preference data'sını GitHub'a koymayın, annotator pattern'leri reverse-engineer edilebilir.
+    en: Don't put preference data on GitHub - annotator patterns can be reverse-engineered.

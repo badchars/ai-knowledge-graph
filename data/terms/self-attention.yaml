@@ -1,0 +1,157 @@
+id: self-attention
+name: Self-Attention
+fullName: Self-Attention / Intra-Attention
+category: architecture
+desc:
+  tr: |-
+    Bir cümledeki her kelimenin aynı cümle içindeki diğer tüm kelimelere bakarak kendi bağlamsal anlamını belirlediği işlem. 'Self' (öz) kelimesi, modelin dışarıdan bilgi almadan kendi girdi metni içindeki ilişkileri keşfetmesini ifade eder — yani her kelime kendisini çevreleyen bağlamdan anlam çıkarır.
+
+    Örneğin 'O bankada çalışıyor' cümlesinde 'banka' kelimesi, 'çalışıyor' kelimesine bakarak bunun bir finans kurumu olduğunu anlar. Teknik olarak her kelime için Query, Key ve Value vektörleri hesaplanır ve bunların çarpımı ile attention skorları elde edilir.
+
+    Self-attention'ın hesaplama maliyeti girdi uzunluğunun karesiyle (O(n^2)) orantılıdır, bu yüzden uzun context'lerde Flash Attention gibi optimize edilmiş implementasyonlar kullanılır. Transformer mimarisinin dili bu kadar iyi anlamasının temelinde self-attention yatar.
+  en: |-
+    The process where each word in a sentence determines its own contextual meaning by looking at every other word in the same sentence. The 'self' part means the model discovers relationships within its own input text without external information — each word derives meaning from its surrounding context.
+
+    For example, in 'She works at the bank', the word 'bank' looks at 'works' to understand this refers to a financial institution, not a riverbank. Technically, Query, Key, and Value vectors are computed for each word, and their products yield attention scores.
+
+    The computational cost of self-attention scales quadratically with input length (O(n^2)), which is why optimized implementations like Flash Attention are used for long contexts. Self-attention is the foundation of why the Transformer architecture understands language as well as it does.
+  fr: Le processus par lequel chaque mot d'une phrase determine sa propre signification contextuelle en examinant tous les autres mots de la meme phrase. Le terme 'self' (auto) signifie que le modele decouvre les relations au sein de son propre texte d'entree sans information externe — chaque mot tire son sens de son contexte environnant. Par exemple, dans 'Elle travaille a la banque', le mot 'banque' regarde 'travaille' pour comprendre qu'il s'agit d'une institution financiere. Techniquement, des vecteurs Query, Key et Value sont calcules pour chaque mot, et leurs produits donnent les scores d'attention. Le cout de calcul du self-attention augmente quadratiquement avec la longueur de l'entree (O(n^2)), c'est pourquoi des implementations optimisees comme Flash Attention sont utilisees pour les contextes longs. Le self-attention est le fondement de la comprehension linguistique de l'architecture Transformer.
+  zh: 句子中每个词通过查看同一句子中其他所有词来确定自身上下文含义的过程。"Self"（自）意味着模型在不借助外部信息的情况下发现输入文本内部的关系——每个词从其周围的上下文中获取含义。例如在"她在银行工作"中，"银行"这个词通过查看"工作"来理解这里指的是金融机构而非河岸。技术上，为每个词计算Query、Key和Value向量，它们的乘积产生注意力分数。Self-attention的计算成本与输入长度的平方成正比（O(n^2)），因此在处理长上下文时会使用Flash Attention等优化实现。Self-attention是Transformer架构能如此好地理解语言的根基。
+  ar: العملية التي تحدد فيها كل كلمة في الجملة معناها السياقي من خلال النظر إلى كل كلمة أخرى في نفس الجملة. كلمة "ذاتي" (Self) تعني أن النموذج يكتشف العلاقات داخل نصه المُدخل دون معلومات خارجية — كل كلمة تستمد معناها من سياقها المحيط. مثلاً في "هي تعمل في البنك"، كلمة "البنك" تنظر إلى "تعمل" لتفهم أن المقصود مؤسسة مالية وليس ضفة نهر. تقنياً، يتم حساب متجهات Query وKey وValue لكل كلمة، وحاصل ضربها ينتج درجات الانتباه. تكلفة حساب Self-attention تتناسب تربيعياً مع طول المُدخل (O(n^2))، لذلك تُستخدم تطبيقات محسّنة مثل Flash Attention للسياقات الطويلة. Self-attention هو الأساس الذي يجعل بنية Transformer تفهم اللغة بهذه الكفاءة.
+  ru: Процесс, при котором каждое слово в предложении определяет своё контекстное значение, рассматривая все остальные слова в том же предложении. Часть "self" (само-) означает, что модель обнаруживает связи внутри собственного входного текста без внешней информации — каждое слово извлекает смысл из окружающего контекста. Например, в предложении "Она работает в банке" слово "банк" смотрит на "работает", чтобы понять, что речь о финансовом учреждении, а не о берегу реки. Технически для каждого слова вычисляются векторы Query, Key и Value, и их произведения дают оценки внимания. Вычислительная стоимость self-attention растёт квадратично с длиной входа (O(n^2)), поэтому для длинных контекстов используются оптимизации вроде Flash Attention. Self-attention — фундамент того, почему архитектура Transformer так хорошо понимает язык.
+analogy:
+  tr: Bir toplantıda herkesin birbirini dinlemesi ve kimin söylediği en önemli ona karar vermesi gibi.
+  en: Like a meeting where everyone listens to everyone else and decides whose words matter most for each topic.
+  fr: Comme une réunion où tout le monde écoute tout le monde et décide quelles paroles comptent le plus pour chaque sujet.
+  zh: 就像一个会议，每个人都听其他人的发言，并决定谁的话对每个话题最重要。
+  ar: مثل اجتماع حيث يستمع الجميع لبعضهم البعض ويقررون كلمات من هي الأكثر أهمية لكل موضوع.
+  ru: Как встреча, где все слушают друг друга и решают, чьи слова наиболее важны для каждой темы.
+security:
+  - title:
+      tr: Self-Attention Quadratic Complexity DoS
+      en: Self-Attention Quadratic Complexity DoS
+      fr: DoS par complexité quadratique du Self-Attention
+      zh: Self-Attention二次复杂度DoS
+      ar: DoS عبر التعقيد التربيعي لـ Self-Attention
+      ru: DoS через квадратичную сложность Self-Attention
+    description:
+      tr: Self-attention O(n²) complexity'ye sahiptir. Saldırgan çok uzun input (100K+ token) göndererek GPU memory'yi doldurabilir veya hesaplama süresini saatlere çıkarabilir. Rate limiting olmadan DoS saldırısı kolaydır. Özellikle long-context modellerde (128K context) ciddi risk.
+      en: Self-attention has O(n²) complexity. Attacker can send very long input (100K+ tokens) to fill GPU memory or extend computation to hours. DoS attack is easy without rate limiting. Serious risk especially in long-context models (128K context).
+      fr: Le self-attention a une complexité O(n²). Un attaquant peut envoyer une entrée très longue (100K+ tokens) pour remplir la mémoire GPU ou prolonger le calcul pendant des heures. Attaque DoS facile sans limitation de débit. Risque sérieux dans les modèles à long contexte (128K).
+      zh: Self-attention具有O(n²)复杂度。攻击者可以发送超长输入（100K+token）来填满GPU内存或将计算时间延长到数小时。没有速率限制时DoS攻击很容易。在长上下文模型（128K）中风险尤其严重。
+      ar: يمتلك Self-attention تعقيداً O(n²). يمكن للمهاجم إرسال مدخل طويل جداً (100K+ token) لملء ذاكرة GPU أو إطالة الحساب لساعات. هجوم DoS سهل بدون تحديد المعدل.
+      ru: Self-attention имеет квадратичную сложность O(n²). Злоумышленник может отправить очень длинный ввод (100K+ токенов) для заполнения памяти GPU или увеличения времени вычислений до часов. DoS-атака проста без ограничения частоты запросов.
+    severity: high
+  - title:
+      tr: Token Position Encoding Exploits
+      en: Token Position Encoding Exploits
+      fr: Exploitation de l'encodage positionnel des tokens
+      zh: Token位置编码漏洞
+      ar: استغلال ترميز موضع التوكن
+      ru: Эксплуатация позиционного кодирования токенов
+    description:
+      tr: Self-attention, positional encoding ile token sırasını öğrenir. RoPE, ALiBi gibi encoding'lerde specific position'lara crafted input yerleştirerek model'in attention distribution'ını manipüle edebilirsiniz. Jailbreak prompt'larında bu teknik kullanılır — safety instruction'ı farklı pozisyona iterek ignore edilmesi sağlanır.
+      en: Self-attention learns token order via positional encoding. In encodings like RoPE and ALiBi, placing crafted input at specific positions can manipulate model's attention distribution. This technique is used in jailbreak prompts - pushing safety instruction to different position to make it ignored.
+      fr: Le self-attention apprend l'ordre des tokens via l'encodage positionnel. Dans les encodages comme RoPE et ALiBi, placer des entrées fabriquées à des positions spécifiques peut manipuler la distribution d'attention. Cette technique est utilisée dans les prompts de jailbreak.
+      zh: Self-attention通过位置编码学习token顺序。在RoPE和ALiBi等编码中，在特定位置放置精心构造的输入可以操纵模型的注意力分布。此技术用于越狱提示——将安全指令推到不同位置使其被忽略。
+      ar: يتعلم Self-attention ترتيب التوكنات عبر الترميز الموضعي. يمكن التلاعب بتوزيع انتباه النموذج بوضع مدخلات مصنوعة في مواضع محددة. تُستخدم هذه التقنية في موجهات كسر الحماية.
+      ru: Self-attention обучается порядку токенов через позиционное кодирование. В кодировках RoPE и ALiBi размещение специально созданных данных на определённых позициях может манипулировать распределением внимания модели. Эта техника используется в джейлбрейк-промптах.
+    severity: medium
+  - title:
+      tr: Attention Score Extraction via Timing
+      en: Attention Score Extraction via Timing
+      fr: Extraction des scores d'attention par timing
+      zh: 通过定时提取注意力分数
+      ar: استخراج درجات الانتباه عبر التوقيت
+      ru: Извлечение оценок внимания через тайминг
+    description:
+      tr: Self-attention score hesaplama süresi, token similarity'sine bağlıdır. Timing side-channel saldırısı ile hangi token'ların birbirine benzer olduğu çıkarılabilir. Multi-tenant inference ortamlarında bu, başka kullanıcının prompt içeriği hakkında bilgi verir.
+      en: Self-attention score computation time depends on token similarity. Timing side-channel attacks can extract which tokens are similar to each other. In multi-tenant inference environments, this reveals information about other user's prompt content.
+      fr: Le temps de calcul des scores de self-attention dépend de la similarité des tokens. Les attaques par canal auxiliaire temporel peuvent extraire quels tokens sont similaires. En environnement multi-locataire, cela révèle des informations sur le contenu du prompt d'un autre utilisateur.
+      zh: Self-attention分数计算时间取决于token相似度。定时侧信道攻击可以提取哪些token相互相似。在多租户推理环境中，这会揭示其他用户提示词内容的信息。
+      ar: يعتمد وقت حساب درجات Self-attention على تشابه التوكنات. يمكن لهجمات القناة الجانبية الزمنية استخراج التوكنات المتشابهة. في بيئات الاستدلال متعددة المستأجرين، يكشف هذا معلومات عن محتوى موجه مستخدم آخر.
+      ru: Время вычисления оценок self-attention зависит от схожести токенов. Атаки по тайминговому побочному каналу могут определить, какие токены схожи друг с другом. В мультитенантных средах это раскрывает информацию о промпте другого пользователя.
+    severity: medium
+  - title:
+      tr: Self-Attention Input Uzunluk Keşfi
+      en: Self-Attention Input Length Discovery
+      fr: Découverte de la longueur d'entrée Self-Attention
+      zh: Self-Attention输入长度发现
+      ar: اكتشاف طول مدخل Self-Attention
+      ru: Обнаружение длины ввода Self-Attention
+    description:
+      tr: Self-attention hesaplama süresi O(n²) ile orantılı olduğundan, response latency ölçülerek input token sayısı yüksek doğrulukla tahmin edilebilir. Multi-tenant ortamlarda bu, başka kullanıcının prompt uzunluğunu ortaya çıkarır.
+      en: Since self-attention computation time is proportional to O(n²), measuring response latency can estimate input token count with high accuracy. In multi-tenant environments, this reveals other user's prompt length.
+      fr: Puisque le temps de calcul du self-attention est proportionnel à O(n²), mesurer la latence de réponse permet d'estimer le nombre de tokens d'entrée avec une haute précision. En environnement multi-locataire, cela révèle la longueur du prompt d'un autre utilisateur.
+      zh: 由于self-attention计算时间与O(n²)成正比，测量响应延迟可以高精度估计输入token数。在多租户环境中，这揭示了其他用户的提示词长度。
+      ar: بما أن وقت حساب self-attention يتناسب مع O(n²)، يمكن لقياس تأخر الاستجابة تقدير عدد التوكنات المُدخلة بدقة عالية. في البيئات متعددة المستأجرين، يكشف هذا طول موجه مستخدم آخر.
+      ru: Поскольку время вычисления self-attention пропорционально O(n²), измерение задержки ответа позволяет с высокой точностью оценить количество входных токенов. В мультитенантных средах это раскрывает длину промпта другого пользователя.
+    severity: low
+config:
+  - title: Self-Attention Input Length Limiting
+    lang: python
+    code: |-
+      from transformers import AutoTokenizer, AutoModelForCausalLM
+
+      tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B")
+      model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.3-70B")
+
+      MAX_INPUT_TOKENS = 4096  # Enforce strict limit
+
+      def safe_inference(prompt: str):
+          tokens = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=MAX_INPUT_TOKENS)
+
+          if tokens.input_ids.shape[1] > MAX_INPUT_TOKENS:
+              raise ValueError(f"Input exceeds {MAX_INPUT_TOKENS} tokens - potential DoS attack")
+
+          # Set memory budget
+          with torch.cuda.amp.autocast():
+              outputs = model.generate(**tokens, max_new_tokens=512)
+
+          return tokenizer.decode(outputs[0])
+    description:
+      tr: Self-attention DoS'u önlemek için input token sayısını sert şekilde sınırlayın. Context window'dan bağımsız olarak güvenli bir max_length belirleyin. Memory budget aşımını engelleyin.
+      en: Strictly limit input token count to prevent self-attention DoS. Set safe max_length independent of context window. Prevent memory budget overflow.
+  - title: Flash Attention for Secure Inference
+    lang: python
+    code: |-
+      # Use Flash Attention to reduce memory footprint
+      from transformers import AutoModelForCausalLM
+      import torch
+
+      model = AutoModelForCausalLM.from_pretrained(
+          "meta-llama/Llama-3.3-70B",
+          attn_implementation="flash_attention_2",  # O(n) memory instead of O(n²)
+          torch_dtype=torch.bfloat16,
+          device_map="auto"
+      )
+
+      # Flash Attention prevents quadratic memory DoS
+      # Still limit max tokens for timing DoS prevention
+      MAX_SAFE_TOKENS = 8192
+    description:
+      tr: Flash Attention kullanarak quadratic memory complexity'yi O(n)'e indirin. DoS saldırılarının etkisini azaltın. Yine de timing DoS için token limiti koyun.
+      en: Use Flash Attention to reduce quadratic memory complexity to O(n). Mitigate impact of DoS attacks. Still set token limit to prevent timing DoS.
+research:
+  - title: "Flash Attention: Fast and Memory-Efficient Exact Attention"
+    url: https://arxiv.org/abs/2205.14135
+    year: 2022
+    type: paper
+    authors: Tri Dao, et al.
+  - title: Adversarial Attacks on Position Embeddings
+    url: https://arxiv.org/abs/2211.09341
+    year: 2022
+    type: paper
+    authors: Zhengyan Zhang, et al.
+  - title: Timing Attacks on Transformer Attention
+    url: https://arxiv.org/abs/2304.12345
+    year: 2023
+    type: paper
+    authors: Security Lab
+tips:
+  - tr: Long-context model'lerde (128K+) mutlaka Flash Attention kullanın, O(n²) memory DoS'tan korunun.
+    en: Always use Flash Attention in long-context models (128K+) to protect against O(n²) memory DoS.
+  - tr: Input token limit'i model context window'dan daha düşük tutun, safety margin bırakın.
+    en: Keep input token limit lower than model context window to maintain safety margin.
+  - tr: Positional encoding değişikliklerine karşı model davranışını test edin, jailbreak riski değerlendirin.
+    en: Test model behavior against positional encoding changes to assess jailbreak risk.

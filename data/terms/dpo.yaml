@@ -1,0 +1,225 @@
+id: dpo
+name: DPO
+fullName: Direct Preference Optimization
+category: training
+desc:
+  tr: |-
+    RLHF'nin daha basit ve daha kararlı alternatifi — ayrı bir ödül modeli eğitmek yerine, tercih verilerini doğrudan kullanarak modeli optimize eder. RLHF üç aşamalı karmasık bir süreç gerektirirken (SFT + reward model + RL), [DPO](https://arxiv.org/abs/2305.18290) bunu tek bir eğitim aşamasına indirger: modele "A cevabı B'den daha iyi" şeklindeki veri çiftlerini gösterip doğrudan optimize eder.
+
+    Zephyr modeli ([Hugging Face](https://huggingface.co)), [Mixtral](https://mistral.ai) Instrüçt (Mistral AI) ve [Llama](https://ai.meta.com/llama/) 2 Chat'in bazı versiyonları DPO ile eğitildi. Araştırmalar, DPO'nun RLHF ile karşılaştıribilir kalite verdiğini ancak eğitim süreçinin çok daha stabil olduğunu gösteriyor.
+
+    Dezavantajı, çok büyük ölçeklerde RLHF'nin hala biraz daha iyi sonuç verebilmesidir — bu yüzden [OpenAI](https://openai.com) ve [Anthropic](https://anthropic.com) gibi şirketler hala RLHF kullanır.
+  en: |-
+    A simpler and more stable alternative to RLHF that optimizes models directly from preference data instead of training a separate reward model. While RLHF requires a complex three-stage process (SFT + reward model + RL optimization), [DPO](https://arxiv.org/abs/2305.18290) reduces this to a single training step: you show the model pairs of responses where "answer A iş better than B" and optimize directly.
+
+    Models like Zephyr ([Hugging Face](https://huggingface.co)), [Mixtral](https://mistral.ai) Instruct (Mistral AI), and some versions of [Llama](https://ai.meta.com/llama/) 2 Chat were trained using DPO. Research shows DPO achieves comparable quality to RLHF while being significantly more stable during training and easier to implement.
+
+    The tradeoff iş that at very large scales, RLHF can still edge out DPO slightly — which iş why companies like [OpenAI](https://openai.com) and [Anthropic](https://anthropic.com) still use RLHF for their flagship models.
+  fr: "Une alternative plus simple et plus stable a RLHF qui optimise les modeles directement a partir de donnees de preference au lieu d'entrainer un modele de recompense separe. Alors que RLHF necessite un processus complexe en trois etapes (SFT + modele de recompense + optimisation RL), DPO reduit cela a une seule etape : on montre au modele des paires de reponses ou \"A est meilleur que B\" et on optimise directement. Des modeles comme Zephyr (HuggingFace), Mixtral Instruct (Mistral AI) et certaines versions de Llama 2 Chat ont ete entraines avec DPO. La recherche montre que DPO atteint une qualite comparable a RLHF tout en etant significativement plus stable. Le compromis est qu'a tres grande echelle, RLHF peut encore legerement surpasser DPO."
+  zh: RLHF的更简单、更稳定的替代方案，直接从偏好数据优化模型，而不是训练单独的奖励模型。RLHF需要复杂的三阶段过程（SFT + 奖励模型 + RL优化），DPO将其简化为单一训练步骤：向模型展示回答A优于B的响应对并直接优化。Zephyr（HuggingFace）、Mixtral Instruct（Mistral AI）和Llama 2 Chat的部分版本都使用DPO训练。研究表明DPO达到与RLHF相当的质量，同时训练过程显著更稳定、更易实现。权衡在于在超大规模下，RLHF仍可能略优于DPO——因此OpenAI和Anthropic等公司仍在旗舰模型中使用RLHF。
+  ar: "بديل أبسط وأكثر استقراراً لـ RLHF يُحسّن النماذج مباشرة من بيانات التفضيلات بدلاً من تدريب نموذج مكافأة منفصل. بينما يتطلب RLHF عملية معقدة من ثلاث مراحل (SFT + نموذج مكافأة + تحسين RL)، يختصر DPO ذلك إلى خطوة تدريب واحدة: تعرض على النموذج أزواج إجابات حيث \"A أفضل من B\" وتُحسّن مباشرة. نماذج مثل Zephyr (HuggingFace) وMixtral Instruct (Mistral AI) وبعض إصدارات Llama 2 Chat دُرّبت باستخدام DPO. تُظهر الأبحاث أن DPO يحقق جودة مماثلة لـ RLHF مع استقرار أكبر بكثير أثناء التدريب. المقايضة هي أنه في النطاقات الكبيرة جداً، قد يتفوق RLHF قليلاً على DPO."
+  ru: "Более простая и стабильная альтернатива RLHF, оптимизирующая модели напрямую на данных предпочтений вместо обучения отдельной модели вознаграждения. Если RLHF требует сложного трёхэтапного процесса (SFT + модель вознаграждения + RL-оптимизация), DPO сводит всё к одному шагу обучения: модели показывают пары ответов, где \"ответ A лучше B\", и оптимизируют напрямую. Модели Zephyr (HuggingFace), Mixtral Instruct (Mistral AI) и некоторые версии Llama 2 Chat обучены с помощью DPO. Исследования показывают, что DPO достигает сопоставимого с RLHF качества при значительно большей стабильности обучения. Компромисс в том, что на очень больших масштабах RLHF всё ещё может немного превосходить DPO — поэтому компании вроде OpenAI и Anthropic по-прежнему используют RLHF для флагманских моделей."
+analogy:
+  tr: RLHF'de öğretmen önce puanlama sistemi kurar sonra eğitir. DPO'da doğrudan 'bu daha iyi' der — aradaki adımı atlar.
+  en: In RLHF, the teacher first builds a scoring system then trains. In DPO, the teacher directly says 'this iş better' — skipping the middle step.
+  fr: Dans RLHF, l'enseignant construit d'abord un système de notation puis entraîne. Dans DPO, l'enseignant dit directement 'c'est mieux' — en sautant l'étape intermédiaire.
+  zh: 在RLHF中，老师首先建立评分系统然后训练。在DPO中，老师直接说"这个更好"——跳过中间步骤。
+  ar: في RLHF، يقوم المعلم أولاً ببناء نظام تسجيل ثم يدرب. في DPO، يقول المعلم مباشرة 'هذا أفضل' — متخطيًا الخطوة الوسطى.
+  ru: В RLHF учитель сначала строит систему оценки, затем обучает. В DPO учитель напрямую говорит 'это лучше' — пропуская промежуточный шаг.
+security:
+  - title:
+      tr: DPO Preference Manipulation
+      en: DPO Preference Manipulation
+      fr: Manipulation de préférences DPO
+      zh: DPO偏好操纵
+      ar: التلاعب بتفضيلات DPO
+      ru: Манипуляция предпочтениями DPO
+    description:
+      tr: Direct Preference Optimization'da chosen/rejected pair'leri manipüle edilerek model zararlı behavior öğretilebilir. RLHF'den farklı olarak DPO reward model kullanmaz, bu yüzden preference poisoning daha kolay. Malicious annotator systematic olarak harmful response'ları 'chosen' olarak işaretlerse, model jailbreak öğrenir.
+      en: Model can be taught harmful behavior by manipulating chosen/rejected pairs in Direct Preference Optimization. Unlike RLHF, DPO doesn't use reward model, making preference poisoning easier. If malicious annotator systematically marks harmful responses as 'chosen', model learns jailbreak.
+      fr: Un comportement nuisible peut être enseigné au modèle en manipulant les paires choisies/rejetées dans DPO. Contrairement au RLHF, DPO n'utilise pas de modèle de récompense, rendant l'empoisonnement de préférences plus facile. Si un annotateur malveillant marque systématiquement les réponses nuisibles comme 'choisies', le modèle apprend le jailbreak.
+      zh: 通过操纵DPO中的选中/拒绝对可以教模型有害行为。与RLHF不同，DPO不使用奖励模型，使偏好投毒更容易。如果恶意标注者系统性地将有害响应标记为'选中'，模型就会学会越狱。
+      ar: يمكن تعليم النموذج سلوكاً ضاراً بالتلاعب بأزواج المختار/المرفوض في DPO. على عكس RLHF لا يستخدم DPO نموذج مكافأة مما يجعل تسميم التفضيلات أسهل.
+      ru: Модель можно научить вредоносному поведению манипуляцией парами chosen/rejected в DPO. В отличие от RLHF, DPO не использует модель вознаграждения, что облегчает отравление предпочтений. При систематической маркировке вредных ответов как 'chosen' модель учится джейлбрейку.
+    severity: critical
+  - title:
+      tr: DPO Beta Hyperparameter Exploitation
+      en: DPO Beta Hyperparameter Exploitation
+      fr: Exploitation de l'hyperparamètre bêta DPO
+      zh: DPO Beta超参数利用
+      ar: استغلال المعلمة الفائقة بيتا في DPO
+      ru: Эксплуатация гиперпараметра бета DPO
+    description:
+      tr: DPO beta parametresi, model'in base model'den ne kadar sapabileceğini kontrol eder. Çok yüksek beta (>0.5) aggressive alignment yapar ve safety'yi bozabilir. Çok düşük beta (<0.05) ise preference'ları ignore eder. Beta tuning sırasında adversarial preference injection ile model davranışı manipüle edilebilir.
+      en: DPO beta parameter controls how much model can deviate from base model. Too high beta (>0.5) does aggressive alignment and can break safety. Too low beta (<0.05) ignores preferences. During beta tuning, model behavior can be manipulated via adversarial preference injection.
+      fr: Le paramètre bêta DPO contrôle combien le modèle peut dévier du modèle de base. Un bêta trop élevé (>0.5) fait un alignement agressif et peut briser la sécurité. Un bêta trop bas (<0.05) ignore les préférences. Le comportement du modèle peut être manipulé via injection adversaire de préférences.
+      zh: DPO beta参数控制模型可以偏离基础模型多少。过高的beta（>0.5）进行激进对齐可能破坏安全性。过低的beta（<0.05）忽略偏好。在beta调优期间可通过对抗性偏好注入操纵模型行为。
+      ar: تتحكم معلمة بيتا DPO في مدى انحراف النموذج عن النموذج الأساسي. بيتا مرتفعة جداً تكسر الأمان وبيتا منخفضة جداً تتجاهل التفضيلات. يمكن التلاعب بسلوك النموذج أثناء ضبط بيتا عبر حقن تفضيلات عدائية.
+      ru: Параметр бета DPO контролирует степень отклонения модели от базовой. Слишком высокий бета (>0.5) ломает безопасность, слишком низкий (<0.05) игнорирует предпочтения. Поведение модели может быть манипулировано через состязательную инъекцию предпочтений.
+    severity: medium
+  - title:
+      tr: DPO Reference Model Poisoning
+      en: DPO Reference Model Poisoning
+      fr: Empoisonnement du modèle de référence DPO
+      zh: DPO参考模型投毒
+      ar: تسميم النموذج المرجعي لـ DPO
+      ru: Отравление референсной модели DPO
+    description:
+      tr: DPO, reference model (frozen base model) ile policy model arasındaki KL divergence'ı constraint yapar. Reference model backdoor'luysa, DPO bu backdoor'u preserve eder. Supply chain attack — reference model güvenliği critical. Poisoned reference model zararlı behavior'ı normalize eder.
+      en: DPO constrains KL divergence between reference model (frozen base model) and policy model. If reference model is backdoored, DPO preserves this backdoor. Supply chain attack - reference model security is critical. Poisoned reference model normalizes harmful behavior.
+      fr: DPO contraint la divergence KL entre le modèle de référence (modèle de base gelé) et le modèle de politique. Si le modèle de référence est backdooré, DPO préserve ce backdoor. Attaque de chaîne d'approvisionnement — la sécurité du modèle de référence est critique.
+      zh: DPO约束参考模型（冻结的基础模型）和策略模型之间的KL散度。如果参考模型有后门，DPO会保留此后门。供应链攻击——参考模型安全至关重要。中毒的参考模型使有害行为正常化。
+      ar: يقيّد DPO التباعد KL بين النموذج المرجعي والنموذج السياسي. إذا كان النموذج المرجعي مزوداً بباب خلفي، يحافظ DPO على هذا الباب الخلفي. هجوم سلسلة التوريد — أمن النموذج المرجعي حاسم.
+      ru: DPO ограничивает KL-дивергенцию между референсной моделью и моделью политики. Если референсная модель содержит бэкдор, DPO его сохраняет. Атака на цепочку поставок — безопасность референсной модели критически важна.
+    severity: high
+  - title:
+      tr: DPO Eğitim Konfigürasyonu Bilgi Sızıntısı
+      en: DPO Training Configuration Information Disclosure
+      fr: Divulgation de la configuration d'entraînement DPO
+      zh: DPO训练配置信息泄露
+      ar: تسريب معلومات تكوين تدريب DPO
+      ru: Утечка конфигурации обучения DPO
+    description:
+      tr: DPO training'de kullanılan beta değeri, learning rate ve batch size gibi hyperparameter'lar model'in çıktı dağılımından çıkarılabilir. Bu bilgiler model'in alignment strength'ini ve potential weakness'larını reveal eder. API probbing ile competitive intelligence toplanabilir.
+      en: Hyperparameters used in DPO training such as beta value, learning rate, and batch size can be inferred from model's output distribution. This information reveals model's alignment strength and potential weaknesses. Competitive intelligence can be gathered via API probing.
+      fr: Les hyperparamètres utilisés dans l'entraînement DPO (valeur bêta, taux d'apprentissage, taille de batch) peuvent être déduits de la distribution de sortie du modèle. Ces informations révèlent la force d'alignement et les faiblesses potentielles du modèle.
+      zh: DPO训练中使用的超参数（beta值、学习率、批量大小）可从模型输出分布推断。此信息揭示模型的对齐强度和潜在弱点。可通过API探测收集竞争情报。
+      ar: يمكن استنتاج المعلمات الفائقة المستخدمة في تدريب DPO من توزيع مخرجات النموذج. تكشف هذه المعلومات قوة محاذاة النموذج ونقاط ضعفه المحتملة.
+      ru: Гиперпараметры обучения DPO (значение бета, learning rate, batch size) могут быть выведены из распределения выходов модели. Эта информация раскрывает силу выравнивания модели и потенциальные уязвимости.
+    severity: low
+config:
+  - title: DPO with Preference Validation
+    lang: python
+    code: |-
+      from dataclasses import dataclass
+      from typing import List
+      import numpy as np
+
+      @dataclass
+      class PreferencePair:
+          prompt: str
+          chosen: str
+          rejected: str
+          annotator_id: str
+
+      class DPOPreferenceValidator:
+          """Validate DPO preference pairs for poisoning"""
+          def __init__(self):
+              self.annotator_agreement = {}
+
+          def validate_pair(self, pair: PreferencePair, other_pairs: List[PreferencePair]) -> bool:
+              """Check if preference pair is consistent with others"""
+              # Find same prompt from different annotators
+              same_prompt_pairs = [
+                  p for p in other_pairs
+                  if p.prompt == pair.prompt and p.annotator_id != pair.annotator_id
+              ]
+
+              if not same_prompt_pairs:
+                  return True  # No comparison available
+
+              # Check agreement
+              agreements = 0
+              for other in same_prompt_pairs:
+                  if pair.chosen == other.chosen:
+                      agreements += 1
+
+              agreement_rate = agreements / len(same_prompt_pairs)
+
+              # Flag if annotator frequently disagrees
+              if pair.annotator_id not in self.annotator_agreement:
+                  self.annotator_agreement[pair.annotator_id] = []
+
+              self.annotator_agreement[pair.annotator_id].append(agreement_rate)
+
+              avg_agreement = np.mean(self.annotator_agreement[pair.annotator_id])
+              if avg_agreement < 0.6:  # <60% agreement
+                  print(f"WARNING: Annotator {pair.annotator_id} has low agreement: {avg_agreement:.1%}")
+                  return False
+
+              return True
+
+      # Usage before DPO training
+      validator = DPOPreferenceValidator()
+      cleaned_dataset = []
+
+      for pair in dpo_dataset:
+          if validator.validate_pair(pair, dpo_dataset):
+              cleaned_dataset.append(pair)
+          else:
+              print(f"Removed suspicious pair from {pair.annotator_id}")
+    description:
+      tr: DPO preference pair'lerini cross-annotator agreement ile validate edin. %60'ın altında agreement olan annotator'ları flag edin. Poisoning attempt'leri temizleyin.
+      en: Validate DPO preference pairs with cross-annotator agreement. Flag annotators with <60% agreement. Clean poisoning attempts.
+  - title: Safe DPO Training
+    lang: python
+    code: |-
+      from trl import DPOTrainer, DPOConfig
+
+      # Configure DPO with safety constraints
+      dpo_config = DPOConfig(
+          beta=0.1,  # Conservative beta - don't deviate too much from base
+          max_prompt_length=512,
+          max_length=1024,
+          remove_unused_columns=False,
+          num_train_epochs=1,  # Single epoch to prevent overfitting
+          per_device_train_batch_size=4,
+          gradient_accumulation_steps=4,
+          learning_rate=5e-7,  # Low LR for stability
+          logging_steps=10,
+          eval_steps=100,
+          save_steps=100,
+          warmup_steps=100,
+      )
+
+      # Verify reference model integrity before training
+      import hashlib
+      ref_model_hash = hashlib.sha256(
+          str(reference_model.state_dict()).encode()
+      ).hexdigest()
+
+      TRUSTED_REF_HASH = "abc123..."  # Store trusted hash
+      if ref_model_hash != TRUSTED_REF_HASH:
+          raise ValueError("Reference model hash mismatch - possible poisoning!")
+
+      # Train with DPO
+      trainer = DPOTrainer(
+          model=model,
+          ref_model=reference_model,
+          args=dpo_config,
+          train_dataset=train_dataset,
+          eval_dataset=eval_dataset,
+      )
+
+      trainer.train()
+
+      # Safety evaluation after DPO
+      from safety_eval import evaluate_safety
+      safety_metrics = evaluate_safety(model)
+      print(f"Post-DPO safety: {safety_metrics}")
+    description:
+      tr: DPO'da conservative beta kullanın (0.1). Reference model integrity'sini hash ile doğrulayın. Single epoch ile overfitting önleyin. Training sonrası safety eval yapın.
+      en: Use conservative beta (0.1) in DPO. Verify reference model integrity with hash. Prevent overfitting with single epoch. Run safety eval after training.
+research:
+  - title: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
+    url: https://arxiv.org/abs/2305.18290
+    year: 2023
+    type: paper
+    authors: Rafael Rafailov, et al.
+  - title: Poisoning DPO with Adversarial Preferences
+    url: https://arxiv.org/abs/2402.09034
+    year: 2024
+    type: paper
+    authors: DPO Security Research
+  - title: Understanding the Limitations of DPO
+    url: https://arxiv.org/abs/2404.07722
+    year: 2024
+    type: paper
+    authors: Alignment Research
+tips:
+  - tr: DPO preference data'sını minimum 3 annotator ile validate edin, majority voting kullanın.
+    en: Validate DPO preference data with minimum 3 annotators, use majority voting.
+  - tr: Beta parameter'ı 0.05-0.2 aralığında tutun, aggressive alignment'tan kaçının.
+    en: Keep beta parameter in 0.05-0.2 range, avoid aggressive alignment.
+  - tr: Reference model'i trusted source'dan indirin ve hash doğrulaması yapın.
+    en: Download reference model from trusted source and verify hash.

@@ -1,0 +1,183 @@
+id: embedding
+name: Embedding
+fullName: Embedding (Vector Representation)
+category: architecture
+desc:
+  tr: |-
+    Kelimeleri, cümleleri veya belgeleri sabit uzunlukta sayı dizilerine (vektörlere) dönüştürme yöntemi — AI modellerinin dili 'anlamasının' temel mekanizması. Örneğin [OpenAI](https://openai.com)'nin text-embedding-3-large modeli her metni 3072 boyutlu bir vektöre dönüştürür.
+
+    Bu vektörlerin en güçlü özelliği: anlamca yakın kavramlar vektör uzayında birbirine yakın olur — 'kral' ve 'kraliçe' vektörleri arasındaki mesafe, 'kral' ve 'masa' arasındakinden çok daha küçüktür. Bu özellik sayesinde embedding'ler semantic search (anlamsal arama), RAG (Retrieval-Augmented Generation) ve öneri sistemlerinin temelini oluşturur.
+
+    Örneğin bir şirketin dokümanları üzerinde soru-cevap sistemi kurmak istediğinizde, önce tüm dokümanlar embedding'lere dönüştürülür ve bir vektör veritabanında (Pinecone, Weaviate, pgvector gibi) saklanır. LLM'lerin içindeki embedding katmanı ise her tokeni modelin işleyebileceği bir vektöre dönüştürür — GPT-4'te bu 12288 boyutlu bir vektördür.
+  en: |-
+    The method of converting words, sentences, or documents into fixed-length arrays of numbers (vectors) — the fundamental mechanism by which AI models 'understand' language. For instance, [OpenAI](https://openai.com)'s text-embedding-3-large model converts each text into a 3072-dimensional vector.
+
+    The most powerful property of these vectors: semantically similar concepts are close together in vector space — the distance between 'king' and 'queen' vectors is much smaller than between 'king' and 'table'. This property makes embeddings the foundation of semantic search, RAG (Retrieval-Augmented Generation), and recommendation systems.
+
+    For example, when building a Q&A system over company documents, all documents are first converted to embeddings and stored in a vector database (like Pinecone, Weaviate, or pgvector). Inside LLMs, the embedding layer converts each token into a vector the model can process — in GPT-4 this is a 12288-dimensional vector.
+  fr: "La methode de conversion de mots, phrases ou documents en tableaux de nombres de longueur fixe (vecteurs) — le mecanisme fondamental par lequel les modeles d'IA 'comprennent' le langage. Par exemple, le modele text-embedding-3-large d'OpenAI convertit chaque texte en un vecteur de 3072 dimensions. La propriete la plus puissante de ces vecteurs : les concepts semantiquement similaires sont proches dans l'espace vectoriel — la distance entre les vecteurs 'roi' et 'reine' est bien inferieure a celle entre 'roi' et 'table'. Cette propriete fait des embeddings la base de la recherche semantique, du RAG (Retrieval-Augmented Generation) et des systemes de recommandation. Par exemple, pour construire un systeme de Q&R sur des documents d'entreprise, tous les documents sont d'abord convertis en embeddings et stockes dans une base de donnees vectorielle (Pinecone, Weaviate ou pgvector). Dans les LLM, la couche d'embedding convertit chaque token en un vecteur que le modele peut traiter — dans GPT-4, c'est un vecteur de 12288 dimensions."
+  zh: 将词语、句子或文档转换为固定长度数字数组（向量）的方法——AI模型"理解"语言的基本机制。例如OpenAI的text-embedding-3-large模型将每段文本转换为3072维向量。这些向量最强大的特性是：语义相近的概念在向量空间中距离相近——"国王"和"王后"向量之间的距离远小于"国王"和"桌子"之间的距离。这一特性使embedding成为语义搜索、RAG（检索增强生成）和推荐系统的基础。例如要在公司文档上构建问答系统时，首先将所有文档转换为embedding并存储在向量数据库中（如Pinecone、Weaviate或pgvector）。在LLM内部，embedding层将每个token转换为模型可以处理的向量——在GPT-4中这是一个12288维向量。
+  ar: "طريقة تحويل الكلمات والجمل أو المستندات إلى مصفوفات أرقام ثابتة الطول (متجهات) — الآلية الأساسية التي \"تفهم\" بها نماذج الذكاء الاصطناعي اللغة. مثلاً نموذج text-embedding-3-large من OpenAI يحوّل كل نص إلى متجه من 3072 بُعد. أقوى خاصية لهذه المتجهات: المفاهيم المتشابهة دلالياً تكون قريبة في فضاء المتجهات — المسافة بين متجهي \"ملك\" و\"ملكة\" أقل بكثير من المسافة بين \"ملك\" و\"طاولة\". هذه الخاصية تجعل الـ embeddings أساس البحث الدلالي وRAG (التوليد المعزز بالاسترجاع) وأنظمة التوصية. مثلاً عند بناء نظام أسئلة وأجوبة على مستندات شركة، تُحوّل جميع المستندات أولاً إلى embeddings وتُخزّن في قاعدة بيانات متجهية (مثل Pinecone أو Weaviate أو pgvector). داخل النماذج اللغوية الكبيرة، طبقة الـ embedding تحوّل كل token إلى متجه يمكن للنموذج معالجته — في GPT-4 هذا متجه من 12288 بُعد."
+  ru: "Метод преобразования слов, предложений или документов в числовые массивы фиксированной длины (векторы) — фундаментальный механизм, с помощью которого модели ИИ \"понимают\" язык. Например, модель text-embedding-3-large от OpenAI преобразует каждый текст в 3072-мерный вектор. Самое мощное свойство этих векторов: семантически близкие концепции оказываются рядом в векторном пространстве — расстояние между векторами \"король\" и \"королева\" намного меньше, чем между \"король\" и \"стол\". Это свойство делает эмбеддинги основой семантического поиска, RAG (Retrieval-Augmented Generation) и рекомендательных систем. Например, при создании системы вопросов-ответов по документам компании все документы сначала преобразуются в эмбеддинги и сохраняются в векторной базе данных (Pinecone, Weaviate или pgvector). Внутри LLM слой эмбеддинга преобразует каждый токен в вектор, который модель может обработать — в GPT-4 это 12288-мерный вектор."
+analogy:
+  tr: Her kelimeyi haritadaki koordinata dönüştürmek. 'Kral' ve 'Kralice' birbirine yakın, 'Kral' ve 'Araba' uzak olur.
+  en: Converting each word to coordinates on a map. 'King' and 'Queen' are nearby, 'King' and 'Car' are far apart.
+  fr: Convertir chaque mot en coordonnées sur une carte. 'Roi' et 'Reine' sont proches, 'Roi' et 'Voiture' sont éloignés.
+  zh: 将每个单词转换为地图上的坐标。"国王"和"王后"靠近，"国王"和"汽车"相距很远。
+  ar: تحويل كل كلمة إلى إحداثيات على خريطة. 'الملك' و'الملكة' قريبان، 'الملك' و'السيارة' بعيدان.
+  ru: Преобразование каждого слова в координаты на карте. 'Король' и 'Королева' находятся близко, 'Король' и 'Машина' — далеко.
+security:
+  - title:
+      tr: Embedding Inversion Attacks
+      en: Embedding Inversion Attacks
+      fr: Attaques d'inversion d'embeddings
+      zh: 嵌入反转攻击
+      ar: هجمات عكس التضمين
+      ru: Атаки инверсии эмбеддингов
+    description:
+      tr: Model embedding'lerinden original text'i geri çıkarma saldırısı. Embedding vector'ler semantic information içerir ve yeterli query ile tersine mühendislik yapılabilir. Özellikle RAG sistemlerinde vector database'den embedding çalınırsa, kaynak dokümanların içeriği çıkarılabilir. Sentence transformers özellikle vulnerable.
+      en: Attack to extract original text from model embeddings. Embedding vectors contain semantic information and can be reverse-engineered with sufficient queries. Especially in RAG systems, if embeddings are stolen from vector database, source document content can be extracted. Sentence transformers are especially vulnerable.
+      fr: Attaque pour extraire le texte original à partir des embeddings. Les vecteurs d'embedding contiennent des informations sémantiques et peuvent être rétro-ingénieriés avec suffisamment de requêtes. Dans les systèmes RAG, si les embeddings sont volés de la base vectorielle, le contenu des documents sources peut être extrait.
+      zh: 从模型嵌入中提取原始文本的攻击。嵌入向量包含语义信息，通过足够的查询可以进行逆向工程。特别是在RAG系统中，如果嵌入从向量数据库中被盗，源文档内容可以被提取。
+      ar: هجوم لاستخراج النص الأصلي من التضمينات. تحتوي متجهات التضمين على معلومات دلالية ويمكن عكس هندستها. خاصة في أنظمة RAG، إذا سُرقت التضمينات من قاعدة البيانات المتجهية.
+      ru: Атака по извлечению исходного текста из эмбеддингов модели. Эмбеддинг-векторы содержат семантическую информацию и могут быть обратно разработаны. Особенно в RAG-системах при краже эмбеддингов из векторной базы данных.
+    severity: high
+  - title:
+      tr: Embedding Poisoning in RAG
+      en: Embedding Poisoning in RAG
+      fr: Empoisonnement d'embeddings dans RAG
+      zh: RAG中的嵌入投毒
+      ar: تسميم التضمين في RAG
+      ru: Отравление эмбеддингов в RAG
+    description:
+      tr: RAG sisteminde vector database'e malicious embedding inject ederek model'i kandırma. Saldırgan özel crafted doküman embed ettirip, normal query'lerde bu zararlı content'in retrieve edilmesini sağlar. Model güvenilir kaynakmış gibi zararlı bilgi üretir. Vector DB access control critical.
+      en: Deceiving model by injecting malicious embeddings into vector database in RAG system. Attacker embeds specially crafted document to ensure this harmful content is retrieved on normal queries. Model generates harmful information as if from trusted source. Vector DB access control is critical.
+      fr: Tromper le modèle en injectant des embeddings malveillants dans la base vectorielle du système RAG. L'attaquant intègre un document spécialement fabriqué pour que ce contenu nuisible soit récupéré lors de requêtes normales. Le contrôle d'accès à la base vectorielle est critique.
+      zh: 通过向RAG系统的向量数据库注入恶意嵌入来欺骗模型。攻击者嵌入精心制作的文档，确保在正常查询时检索到此有害内容。模型像来自可信来源一样生成有害信息。
+      ar: خداع النموذج بحقن تضمينات خبيثة في قاعدة البيانات المتجهية لنظام RAG. يضمّن المهاجم مستنداً مصنوعاً خصيصاً ليتم استرجاع هذا المحتوى الضار في الاستعلامات العادية. التحكم في الوصول لقاعدة البيانات المتجهية أمر حاسم.
+      ru: Обман модели путём инъекции вредоносных эмбеддингов в векторную базу данных RAG. Злоумышленник встраивает специально созданный документ для извлечения вредного контента при обычных запросах. Контроль доступа к векторной БД критически важен.
+    severity: high
+  - title:
+      tr: Embedding Space Membership Inference
+      en: Embedding Space Membership Inference
+      fr: Inférence d'appartenance dans l'espace d'embedding
+      zh: 嵌入空间成员推断
+      ar: استدلال العضوية في فضاء التضمين
+      ru: Определение принадлежности в пространстве эмбеддингов
+    description:
+      tr: Embedding space'de specific text'in olup olmadığını tespit ederek training data membership inference yapma. Embedding similarity scores kullanılarak, model'in specific document'i training'de görüp görmediği %80+ accuracy ile tespit edilebilir. GDPR/privacy riski.
+      en: Training data membership inference by detecting if specific text exists in embedding space. Using embedding similarity scores, whether model saw specific document during training can be detected with 80%+ accuracy. GDPR/privacy risk.
+      fr: Inférence d'appartenance aux données d'entraînement en détectant si un texte spécifique existe dans l'espace d'embedding. Les scores de similarité d'embedding permettent de détecter avec plus de 80% de précision si le modèle a vu un document spécifique. Risque RGPD/vie privée.
+      zh: 通过检测嵌入空间中是否存在特定文本来进行训练数据成员推断。使用嵌入相似度分数，可以以80%+的准确率检测模型是否在训练中看到特定文档。GDPR/隐私风险。
+      ar: استدلال عضوية بيانات التدريب بالكشف عن وجود نص محدد في فضاء التضمين. باستخدام درجات تشابه التضمين، يمكن اكتشاف ما إذا رأى النموذج مستنداً محدداً أثناء التدريب بدقة 80%+. خطر GDPR/الخصوصية.
+      ru: Определение принадлежности к обучающим данным путём обнаружения конкретного текста в пространстве эмбеддингов. По оценкам схожести эмбеддингов можно определить с точностью 80%+, видела ли модель конкретный документ при обучении. Риск GDPR/конфиденциальности.
+    severity: medium
+  - title:
+      tr: Embedding API Kota Bilgi Sızıntısı
+      en: Embedding API Quota Information Disclosure
+      fr: Divulgation d'informations de quota API d'embedding
+      zh: 嵌入API配额信息泄露
+      ar: كشف معلومات حصة API التضمين
+      ru: Раскрытие информации о квоте API эмбеддингов
+    description:
+      tr: Embedding API rate limit hata mesajları kullanıcı quota bilgilerini, organizasyon boyutunu ve kullanım hacmini açığa çıkarabilir. Bu bilgiler business intelligence ve social engineering saldırılarında kullanılabilir.
+      en: Embedding API rate limit error messages can reveal user quota information, organization size, and usage volume. This information can be used in business intelligence and social engineering attacks.
+      fr: Les messages d'erreur de limite de débit de l'API d'embedding peuvent révéler des informations sur les quotas utilisateur, la taille de l'organisation et le volume d'utilisation. Ces informations peuvent être utilisées pour le renseignement commercial et l'ingénierie sociale.
+      zh: 嵌入API速率限制错误消息可能揭示用户配额信息、组织规模和使用量。这些信息可用于商业情报和社会工程攻击。
+      ar: قد تكشف رسائل خطأ حد معدل API التضمين معلومات حصة المستخدم وحجم المنظمة وحجم الاستخدام. يمكن استخدام هذه المعلومات في الاستخبارات التجارية وهجمات الهندسة الاجتماعية.
+      ru: Сообщения об ошибках ограничения частоты API эмбеддингов могут раскрыть информацию о квоте пользователя, размере организации и объёме использования. Эта информация может использоваться в бизнес-разведке и атаках социальной инженерии.
+    severity: low
+config:
+  - title: Differential Privacy for Embeddings
+    lang: python
+    code: |-
+      import torch
+      import torch.nn.functional as F
+
+      def dp_embedding(text, model, epsilon=1.0):
+          """Generate embedding with differential privacy noise"""
+          # Get base embedding
+          with torch.no_grad():
+              embedding = model.encode(text, convert_to_tensor=True)
+
+          # Calculate DP noise scale (Laplace mechanism)
+          sensitivity = 1.0  # L2 normalized embeddings
+          noise_scale = sensitivity / epsilon
+
+          # Add calibrated noise
+          noise = torch.randn_like(embedding) * noise_scale
+          noisy_embedding = embedding + noise
+
+          # Re-normalize to unit sphere
+          noisy_embedding = F.normalize(noisy_embedding, p=2, dim=-1)
+
+          return noisy_embedding
+
+      # Use for sensitive document embeddings
+      from sentence_transformers import SentenceTransformer
+      model = SentenceTransformer('all-MiniLM-L6-v2')
+
+      sensitive_doc = "Confidential internal memo..."
+      safe_embedding = dp_embedding(sensitive_doc, model, epsilon=0.5)
+    description:
+      tr: Hassas doküman embedding'lerine differential privacy noise ekleyin. Laplace mechanism ile calibrated noise kullanın. Embedding inversion saldırılarını zorlaştırın.
+      en: Add differential privacy noise to sensitive document embeddings. Use calibrated noise with Laplace mechanism. Make embedding inversion attacks harder.
+  - title: Vector DB Access Control
+    lang: python
+    code: |-
+      # Pinecone with namespace-based isolation
+      import pinecone
+
+      pinecone.init(api_key="YOUR_API_KEY")
+      index = pinecone.Index("secure-embeddings")
+
+      # Store embeddings with user-specific namespaces
+      def store_embedding(user_id: str, doc_id: str, embedding: list):
+          # Namespace provides logical isolation
+          namespace = f"user_{user_id}"
+
+          index.upsert(
+              vectors=[(doc_id, embedding)],
+              namespace=namespace
+          )
+
+      # Query only from user's own namespace
+      def query_embedding(user_id: str, query_vector: list, top_k=5):
+          namespace = f"user_{user_id}"
+
+          results = index.query(
+              vector=query_vector,
+              namespace=namespace,  # Can't access other users' embeddings
+              top_k=top_k
+          )
+
+          return results
+
+      # Enable encryption at rest
+      # index.configure(encryption_at_rest=True)
+    description:
+      tr: Vector database'de namespace-based isolation kullanın. Her kullanıcının embedding'leri ayrı namespace'te. Encryption at rest aktif edin, cross-user access'i önleyin.
+      en: Use namespace-based isolation in vector database. Each user's embeddings in separate namespace. Enable encryption at rest, prevent cross-user access.
+research:
+  - title: Text Embeddings Reveal (Almost) As Much As Text
+    url: https://arxiv.org/abs/2310.06816
+    year: 2023
+    type: paper
+    authors: John X. Morris, et al.
+  - title: Membership Inference Attacks on Sentence Encoders
+    url: https://arxiv.org/abs/2203.03929
+    year: 2022
+    type: paper
+    authors: Shuai Tang, et al.
+  - title: Poisoning Attacks on Retrieval-Augmented Generation
+    url: https://arxiv.org/abs/2402.05290
+    year: 2024
+    type: paper
+    authors: Zhen Tan, et al.
+tips:
+  - tr: RAG sistemlerinde vector DB'ye write access'i sıkı kontrol edin, embedding poisoning'i önleyin.
+    en: Strictly control write access to vector DB in RAG systems to prevent embedding poisoning.
+  - tr: Hassas dokümanların embedding'lerini DP noise ile koruyun, epsilon=0.5 iyi başlangıç.
+    en: Protect sensitive document embeddings with DP noise, epsilon=0.5 is good start.
+  - tr: Embedding similarity threshold'u düşük tutmayın, false match'ler information leakage yaratır.
+    en: Don't keep embedding similarity threshold too low, false matches create information leakage.
