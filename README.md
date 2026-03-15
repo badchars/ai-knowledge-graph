@@ -28,25 +28,6 @@
 
 <br/>
 
-```
-         ╭──────────────────────────────────────────────────────╮
-         │                                                      │
-         │     GPU ──── CUDA ──── vLLM ──── KV-Cache            │
-         │      │                  │           │                │
-         │    VRAM    Transformer ─┤     PagedAttention         │
-         │      │        │   │    │           │                 │
-         │    DGX    Attention MoE │    Continuous Batch        │
-         │             │         │                              │
-         │        Embedding ── RAG ── Prompt Injection          │
-         │             │       │          │                     │
-         │        Vector DB   LLM    Jailbreak                  │
-         │                     │         │                      │
-         │             Fine-tuning   Guardrails                 │
-         │                 │             │                      │
-         │              LoRA         AI Firewall                │
-         │                                                      │
-         ╰──────────────────────────────────────────────────────╯
-```
 
 </div>
 
