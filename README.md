@@ -1,5 +1,7 @@
 <div align="center">
 
+**[English](README.md) · [Türkçe](README.tr.md) · [Français](README.fr.md) · [中文](README.zh.md) · [العربية](README.ar.md) · [Русский](README.ru.md)**
+
 <br/>
 
 <picture>
