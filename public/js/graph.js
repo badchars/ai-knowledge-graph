@@ -37,7 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const svg = d3.select('#graph').append('svg').attr('width', W).attr('height', H);
   var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
-  // No defs/gradients/filters — Snow uses plain fills
+  // ── SVG Defs — radial gradients + glow filter for synapse nodes ──
+  var defs = svg.append('defs');
+
+  // Radial gradient per category (bright center → category color → transparent edge)
+  Object.entries(categories).forEach(function([id, cat]) {
+    var grad = defs.append('radialGradient').attr('id', 'soma-' + id);
+    grad.append('stop').attr('offset', '0%').attr('stop-color', '#fff').attr('stop-opacity', isDark ? '0.85' : '0.7');
+    grad.append('stop').attr('offset', '35%').attr('stop-color', cat.color).attr('stop-opacity', isDark ? '0.55' : '0.4');
+    grad.append('stop').attr('offset', '100%').attr('stop-color', cat.color).attr('stop-opacity', isDark ? '0.08' : '0.05');
+  });
+
+  // Glow filter (gaussian blur)
+  var glowFilter = defs.append('filter')
+    .attr('id', 'soma-glow')
+    .attr('x', '-60%').attr('y', '-60%').attr('width', '220%').attr('height', '220%');
+  glowFilter.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', '2');
+
+  // Deterministic pseudo-random seeded by node id + index
+  function seedRand(id, i) {
+    var h = 0, s = id + String(i);
+    for (var j = 0; j < s.length; j++) { h = ((h << 5) - h) + s.charCodeAt(j); h |= 0; }
+    return (h & 0x7fffffff) % 1000 / 1000;
+  }
 
   const g = svg.append('g');
 
@@ -78,11 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
     .attr('stroke', function(d){
       var src = typeof d.source==='object' ? d.source : nodeMap[d.source];
       var cat = src ? categories[src.category] : null;
-      return cat ? cat.color+(isDark?'15':'20') : 'rgba(128,128,128,.08)';
+      return cat ? cat.color+(isDark?'28':'18') : 'rgba(128,128,128,.08)';
     })
-    .attr('stroke-width', 1.2)
+    .attr('stroke-width', 1.5)
     .attr('stroke-linecap','round')
-    .attr('stroke-dasharray','3 8');
+    .attr('stroke-dasharray','6 12');
 
   // Link labels — created empty, text set only when needed (on hover/select)
   const linkLabel = linkG.selectAll('text').data(links).join('text')
@@ -94,47 +116,102 @@ document.addEventListener('DOMContentLoaded', function() {
     .style('cursor','pointer')
     .call(d3.drag().on('start',ds).on('drag',dd).on('end',de));
 
-  // Node circle — low opacity fill
+  // ── Synapse Node Layers ──
+  var goldenAngle = 137.508 * Math.PI / 180;
+
+  // Soma (cell body — radial gradient)
   node.append('circle')
-    .attr('class','node-main')
+    .attr('class','node-soma')
     .attr('r', function(d){ return nodeRadius(d); })
-    .attr('fill', function(d){ return categories[d.category].color+(isDark?'18':'12'); })
-    .attr('stroke', function(d){ return categories[d.category].color+(isDark?'30':'25'); })
-    .attr('stroke-width', 1);
+    .attr('fill', function(d){ return 'url(#soma-' + d.category + ')'; })
+    .attr('stroke', function(d){ return categories[d.category].color + (isDark?'40':'30'); })
+    .attr('stroke-width', 0.8);
 
-  // Center dot
+  // 3. Nucleus (bright center dot)
   node.append('circle')
-    .attr('class','node-dot')
-    .attr('r', function(d){ return Math.max(2.5, nodeRadius(d)*0.28); })
+    .attr('class','node-nucleus')
+    .attr('r', function(d){ return Math.max(2, nodeRadius(d)*0.22); })
     .attr('fill', function(d){ return categories[d.category].color; })
-    .attr('opacity', isDark ? .6 : .7);
+    .attr('opacity', isDark ? .9 : .8);
 
-  // Label
+  // 4. Dendrites (organic spikes — stalks + tips)
+  node.each(function(d) {
+    var r = nodeRadius(d);
+    var color = categories[d.category].color;
+    var count = Math.min(5, 2 + Math.floor((linkCounts[d.id]||0) / 3));
+    var angleOffset = seedRand(d.id, 99) * Math.PI * 2;
+
+    for (var i = 0; i < count; i++) {
+      var angle = goldenAngle * i + angleOffset;
+      var len = 5 + seedRand(d.id, i) * 4;
+      var tipR = r + len;
+      var baseX = Math.cos(angle) * (r - 1);
+      var baseY = Math.sin(angle) * (r - 1);
+      var tipX = Math.cos(angle + (i % 2 === 0 ? 0.15 : -0.15)) * tipR;
+      var tipY = Math.sin(angle + (i % 2 === 0 ? 0.15 : -0.15)) * tipR;
+      var cpAngle = angle + (i % 2 === 0 ? -0.2 : 0.2);
+      var cpR = r + len * 0.4;
+      var cpX = Math.cos(cpAngle) * cpR;
+      var cpY = Math.sin(cpAngle) * cpR;
+
+      // Dendrite stalk (curved path)
+      d3.select(this).append('path')
+        .attr('class','node-dendrite')
+        .attr('d', 'M'+baseX.toFixed(1)+','+baseY.toFixed(1)+' Q'+cpX.toFixed(1)+','+cpY.toFixed(1)+' '+tipX.toFixed(1)+','+tipY.toFixed(1))
+        .attr('fill','none')
+        .attr('stroke', color)
+        .attr('stroke-width', 1.2)
+        .attr('opacity', isDark ? .45 : .35);
+
+      // Dendrite tip (small bulb)
+      d3.select(this).append('circle')
+        .attr('class','node-dendrite-tip')
+        .attr('cx', tipX.toFixed(1))
+        .attr('cy', tipY.toFixed(1))
+        .attr('r', 1.5 + seedRand(d.id, i + 10) * 0.8)
+        .attr('fill', color)
+        .attr('opacity', isDark ? .55 : .4);
+    }
+  });
+
+  // Node breathing animation on soma
+  node.each(function(d, i) {
+    d3.select(this).select('.node-soma')
+      .style('animation', 'node-breathe 3s ease-in-out infinite')
+      .style('animation-delay', (i * 0.07) + 's');
+  });
+
+  // 6. Label — category-colored
   node.append('text')
-    .attr('dy', function(d){ return nodeRadius(d)+14; })
+    .attr('dy', function(d){ return nodeRadius(d) + 14; })
     .attr('text-anchor','middle')
-    .attr('font-size','10px')
-    .attr('font-weight','500')
-    .attr('fill','var(--text2)')
+    .attr('font-size','11px')
+    .attr('font-weight','600')
+    .attr('fill', function(d){ return categories[d.category].color; })
+    .attr('opacity', .85)
     .text(function(d){ return d.name; });
 
   // Tooltip
   var tooltip = document.getElementById('tooltip');
   node.on('mouseover', function(e,d){
     var color = categories[d.category].color;
-    d3.select(this).select('.node-main')
-      .transition().duration(150)
-      .attr('fill', color+(isDark?'30':'22'))
-      .attr('stroke', color+(isDark?'55':'44'))
-      .attr('stroke-width', 1.5)
-      .attr('r', nodeRadius(d)+2);
-    d3.select(this).select('.node-dot')
-      .transition().duration(150)
-      .attr('r', Math.max(3, nodeRadius(d)*0.35))
+    var r = nodeRadius(d);
+    d3.select(this).select('.node-soma')
+      .transition().duration(200)
+      .attr('r', r + 2)
+      .attr('stroke', color + (isDark?'66':'50'))
+      .attr('stroke-width', 1.2);
+    d3.select(this).select('.node-nucleus')
+      .transition().duration(200)
+      .attr('r', Math.max(2.5, r*0.28))
       .attr('opacity', 1);
+    d3.select(this).selectAll('.node-dendrite')
+      .transition().duration(200).attr('opacity', isDark ? .7 : .55);
+    d3.select(this).selectAll('.node-dendrite-tip')
+      .transition().duration(200).attr('opacity', isDark ? .8 : .65);
     d3.select(this).select('text')
-      .transition().duration(150)
-      .attr('fill', color);
+      .transition().duration(200)
+      .attr('opacity', 1);
     var hcl = window.currentLang ? window.currentLang() : 'en';
     link.attr('stroke', function(l){ return (l.source.id===d.id||l.target.id===d.id) ? color+'55' : (isDark?'rgba(128,128,128,.03)':'rgba(128,128,128,.04)'); })
       .attr('stroke-width', function(l){ return (l.source.id===d.id||l.target.id===d.id) ? 1.8 : 1; });
@@ -150,19 +227,24 @@ document.addEventListener('DOMContentLoaded', function() {
   })
   .on('mousemove', function(e){ if(tooltip){ tooltip.style.left=(e.pageX+14)+'px'; tooltip.style.top=(e.pageY-8)+'px'; }})
   .on('mouseout', function(e,d){
-    d3.select(this).select('.node-main')
-      .transition().duration(150)
-      .attr('fill', categories[d.category].color+(isDark?'18':'12'))
-      .attr('stroke', categories[d.category].color+(isDark?'30':'25'))
-      .attr('stroke-width', 1)
-      .attr('r', nodeRadius(d));
-    d3.select(this).select('.node-dot')
-      .transition().duration(150)
-      .attr('r', Math.max(2.5, nodeRadius(d)*0.28))
-      .attr('opacity', isDark ? .6 : .7);
+    var color = categories[d.category].color;
+    var r = nodeRadius(d);
+    d3.select(this).select('.node-soma')
+      .transition().duration(200)
+      .attr('r', r)
+      .attr('stroke', color + (isDark?'40':'30'))
+      .attr('stroke-width', 0.8);
+    d3.select(this).select('.node-nucleus')
+      .transition().duration(200)
+      .attr('r', Math.max(2, r*0.22))
+      .attr('opacity', isDark ? .9 : .8);
+    d3.select(this).selectAll('.node-dendrite')
+      .transition().duration(200).attr('opacity', isDark ? .45 : .35);
+    d3.select(this).selectAll('.node-dendrite-tip')
+      .transition().duration(200).attr('opacity', isDark ? .55 : .4);
     d3.select(this).select('text')
-      .transition().duration(150)
-      .attr('fill', 'var(--text2)');
+      .transition().duration(200)
+      .attr('opacity', .85);
     if (activeNode) { highlightNode(activeNode); }
     else { clearHighlight(); }
     if(tooltip) tooltip.style.display='none';
@@ -461,16 +543,23 @@ document.addEventListener('DOMContentLoaded', function() {
     mutations.forEach(function(m) {
       if (m.attributeName === 'data-theme') {
         isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        // Update node fills
-        node.select('.node-main')
-          .attr('fill', function(d){ return categories[d.category].color+(isDark?'18':'12'); })
-          .attr('stroke', function(d){ return categories[d.category].color+(isDark?'30':'25'); });
-        node.select('.node-dot')
-          .attr('opacity', isDark ? .6 : .7);
+        // Update synapse node opacities + gradient stops
+        node.select('.node-soma')
+          .attr('stroke', function(d){ return categories[d.category].color + (isDark?'40':'30'); });
+        node.select('.node-nucleus').attr('opacity', isDark ? .9 : .8);
+        node.selectAll('.node-dendrite').attr('opacity', isDark ? .45 : .35);
+        node.selectAll('.node-dendrite-tip').attr('opacity', isDark ? .55 : .4);
+        // Update radial gradient stops for theme
+        Object.entries(categories).forEach(function([id, cat]) {
+          var grad = svg.select('#soma-' + id);
+          grad.select('stop:nth-child(1)').attr('stop-opacity', isDark ? '0.85' : '0.7');
+          grad.select('stop:nth-child(2)').attr('stop-opacity', isDark ? '0.55' : '0.4');
+          grad.select('stop:nth-child(3)').attr('stop-opacity', isDark ? '0.08' : '0.05');
+        });
         // Update links
         link.attr('stroke', function(d){
           var src = categories[d.source.category];
-          return src ? src.color+(isDark?'15':'20') : 'rgba(128,128,128,.08)';
+          return src ? src.color+(isDark?'28':'18') : 'rgba(128,128,128,.08)';
         });
       }
     });
